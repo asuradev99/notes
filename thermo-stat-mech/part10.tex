@@ -1,0 +1,443 @@
+% ============================================================
+%  Pages 111–125: Functions of a R.V.; Irreversible Processes;
+%  Thermal Equilibrium; Review (Equipartition, Ideal Gas,
+%  Partial Derivatives, Probability)
+% ============================================================
+
+\section{Functions of a Random Variable}
+
+\subsection{Motivation: the Bayes Result Revisited}
+
+The lecture opened by completing the Bayes calculation begun previously. For a disease with prevalence $p(D)=10^{-4}$ and a test with sensitivity $p(+|D)=99\times 10^{-2}$ and false-positive rate $p(+|\bar{D})=10^{-6}$, the posterior probability of disease given a positive test result is
+
+\begin{align}
+  p(D\mid+) &= \frac{p(+\mid D)\,p(D)}{p(+\mid D)\,p(D)+p(+\mid\bar{D})\,p(\bar{D})} \notag \\
+             &= \frac{99\times 10^{-2}\cdot 10^{-4}}
+                     {99\times 10^{-2}\cdot 10^{-4}+1\cdot 10^{-6}\cdot(1-10^{-4})}
+              \approx 0.0001.
+\end{align}
+
+Even with an extremely sensitive and specific test, the low base rate of the disease keeps the posterior probability very small — a classic illustration of why base rates matter.
+
+\subsection{The Problem of Transforming a Density}
+
+Let $X$ be a random variable (R.V.) with probability density $p(x)$. We frequently need the density of a derived quantity $Y = f(X)$. As a concrete example, consider a one-dimensional gas whose molecules have velocity $v$ drawn from the Maxwell distribution
+
+\begin{equation}
+  p(v) = A\,e^{-Mv^2/2k_BT}, \qquad -\infty < v < \infty,
+\end{equation}
+
+where $A$ is the normalization constant. Suppose we want the density $p(E)$ for the kinetic energy $E = \tfrac{1}{2}mv^2$.
+
+A naive (and incorrect) approach is to apply the chain rule directly:
+\begin{equation}
+  p(E) = \frac{dp}{dE} = \frac{dp}{dv}\frac{dv}{dE}.
+\end{equation}
+Since $E=\tfrac{1}{2}mv^2$ gives $\dv{E}{v}=mv$, one might write $p(E)=\frac{1}{\sqrt{2mE}}\,A\,e^{-E/k_BT}$. This is \emph{wrong} for two distinct reasons. First, the expression $dp/dE$ can return negative values, which is impossible for a probability density. Second, and more fundamentally, the map $v\mapsto E=\tfrac{1}{2}mv^2$ is two-to-one: both $v=+\sqrt{2E/m}$ and $v=-\sqrt{2E/m}$ give the same energy $E$, so both contributions must be summed.
+
+\subsection{The Correct Method: Delta-Function Approach}
+
+The systematic way to find the density of $Y=f(X)$ starts from the identity
+
+\begin{equation}
+  p(x) = \int_{-\infty}^{\infty} p(k)\,\delta(x-k)\,dk,
+\end{equation}
+
+which simply says that integrating over all values $k$ of the random variable $K$, while picking out the specific value $x$ via the delta function, returns $p(x)$. Applying the same idea to $Y=f(X)$, we integrate over all $x$ and use the delta function to enforce $y = f(x)$:
+
+\begin{equation}
+  p(y) = \int_{-\infty}^{\infty} p(x)\,\delta\!\bigl(y - f(x)\bigr)\,dx.
+\end{equation}
+
+To evaluate this integral we use the standard identity for a delta function composed with a function:
+\begin{equation}
+  \delta(g(x)) = \sum_{x_i:\,g(x_i)=0} \frac{1}{|g'(x_i)|}\,\delta(x-x_i),
+\end{equation}
+where the sum runs over all zeros $x_i$ of $g$. Setting $g(x) = y - f(x)$, so that $g'(x)=-f'(x)$, we obtain
+
+\begin{formula}[Density of a function of a R.V.]
+\begin{equation}
+  p(y) = \sum_{x_i:\,f(x_i)=y} \frac{1}{|f'(x_i)|}\,p(x_i).
+\end{equation}
+\end{formula}
+
+The sum over all pre-images $x_i$ automatically accounts for multi-valuedness.
+
+\subsubsection{Example: Kinetic Energy in 1D}
+
+Returning to the Maxwell gas, $f(v)=\tfrac{1}{2}mv^2$, so $f'(v)=mv$. The equation $\tfrac{1}{2}mv^2=E$ has two zeros: $v_i = \pm\sqrt{2E/m}$. Therefore
+
+\begin{align}
+  p(E) &= \int dv\,p(v)\,\delta\!\bigl(E - \tfrac{1}{2}mv^2\bigr) \notag \\
+        &= \sum_{v=\pm\sqrt{2E/m}} \frac{1}{m|v|}\bigg|_{v=v_i} p(v_i) \notag \\
+        &= \frac{1}{m\sqrt{2E/m}}\,A\,e^{-E/k_BT} \times 2
+         = \frac{A}{\sqrt{2mE}}\cdot 2\,e^{-E/k_BT}.
+\end{align}
+
+Both roots contribute equally in magnitude, giving the correct factor of 2 that the naive chain-rule approach misses.
+
+\subsection{Two Random Variables: Density of \texorpdfstring{$Z=XY$}{Z=XY}}
+
+Consider two random variables $X$ and $Y$ with joint density $p(x,y) = C\sqrt{1-xy}$ on the unit square $0\le x,y\le 1$ (zero elsewhere).
+
+\begin{center}[DIAGRAM: unit square $[0,1]^2$ in the $x$-$y$ plane, shaded to indicate support of $p(x,y)$]\end{center}
+
+We wish to find $p(z)$ for $Z=XY$. The general formula gives
+
+\begin{equation}
+  p(z) = \int_0^1 dx\int_0^1 dy\;p(x,y)\,\delta(z-xy).
+\end{equation}
+
+The integration range is finite (the unit square), and we must be careful that the delta function $\delta(z-xy)$ is only non-zero at the curve $xy=z$ inside this region.
+
+\paragraph{Step 1: Decide which variable to integrate first.} We will integrate over $y$ first. The delta function $\delta(z-xy)$ has a zero at $y=z/x$ (for fixed $x$), with $\left|\pdv{(z-xy)}{y}\right|=x$, so
+
+\begin{equation}
+  p(z) = \int_0^1 dx\int_{-\infty}^{\infty} dy\;p(x,y)\,\delta(z-xy)
+       = \int_0^1 dx\;\frac{1}{x}\,p\!\left(x,\frac{z}{x}\right).
+\end{equation}
+
+\paragraph{Step 2: Incorporate the Heaviside step function.} To restrict $y$ to the unit interval, introduce $\Theta(y)\,\Theta(1-y)$, which enforces $0\le y\le 1$. Writing the full integral with explicit step functions,
+
+\begin{equation}
+  p(z) = \int_0^1 dx\int_{-\infty}^{\infty}dy\;\Theta(y)\,\Theta(1-y)\,C\sqrt{1-xy}\;\delta(z-xy).
+\end{equation}
+
+The Heaviside step function is defined as
+\begin{equation}
+  \Theta(x) = \begin{cases} 1 & x > 0, \\ 0 & x \le 0. \end{cases}
+\end{equation}
+
+After integrating over $y$ using the delta function (picking out $y=z/x$), the step functions become $\Theta(z/x)\,\Theta(1-z/x)$. Since $z,x>0$ the first factor is automatically 1, while $\Theta(1-z/x)=1$ requires $x\ge z$. Hence the $x$-integration is restricted to $x\in[z,1]$:
+
+\begin{align}
+  p(z) &= \int_z^1 dx\;\frac{C\sqrt{1-z/x}}{x} \cdot \frac{1}{x}
+  \quad\text{[since }\sqrt{1-xy}\to\sqrt{1-z}\text{ at }y=z/x\text{]} \notag \\
+  &= C\sqrt{1-z}\int_z^1 \frac{dx}{x}.
+\end{align}
+
+Evaluating the integral,
+
+\begin{equation}
+  \int_z^1 \frac{dx}{x} = -\log z,
+\end{equation}
+
+so
+
+\begin{formula}
+\begin{equation}
+  p(z) = -C\sqrt{1-z}\,\log z, \qquad 0\le z\le 1.
+\end{equation}
+\end{formula}
+
+\subsection{Example: Density of \texorpdfstring{$Z=X+Y$}{Z=X+Y}}
+
+For $X,Y\sim\mathrm{Uniform}[0,1]$ independently, $p(x,y)=1$ on the unit square and zero elsewhere, and we want $p(z)$ for $Z=X+Y$.
+
+\begin{equation}
+  p(z) = \int_0^1 dx\int_0^1 dy\;\delta(z-x-y).
+\end{equation}
+
+Introduce step functions to enforce the unit square and write
+
+\begin{equation}
+  p(z) = \int_0^1 dx\int_{-\infty}^{\infty} dy\;\Theta(y)\,\Theta(1-y)\,\delta(z-x-y).
+\end{equation}
+
+Integrating over $y$ sets $y=z-x$, so $\Theta(z-x)\,\Theta(1-(z-x))=\Theta(z-x)\,\Theta(1-z+x)$. This constrains $x\le z$ and $x\ge z-1$, so $x\in[\max(0,z-1),\min(1,z)]$. The integral over $x$ is just the length of this interval:
+
+\begin{align}
+  0 < z < 1: &\quad p(z) = \int_0^z dx = z, \\
+  1 < z < 2: &\quad p(z) = \int_{z-1}^1 dx = 2-z.
+\end{align}
+
+The result is the triangular distribution on $[0,2]$, peaking at $z=1$.
+
+\begin{center}[DIAGRAM: triangular probability density $p(z)$, rising linearly from 0 to 1 as $z$ goes from 0 to 1, then falling linearly back to 0 at $z=2$, with peak value 1]\end{center}
+
+% ============================================================
+\section{Recitation 10: Irreversible Processes and Thermal Equilibrium}
+% ============================================================
+
+\subsection{Entropy and Reversible Processes}
+
+Entropy satisfies $dS = \delta Q / T$ for a reversible process. To illustrate what this means, consider heating a system from temperature $T_{\mathrm{low}}$ to $T_{\mathrm{high}}$ by coupling it to a thermal reservoir at $T_1$.
+
+\begin{center}[DIAGRAM: box labeled ``adiabatic walls'' with heat $Q$ entering, coupled to a reservoir at temperature $T_1$]\end{center}
+
+One reversible protocol is to let heat $\delta Q$ trickle in while the system temperature is $T$, giving
+
+\begin{equation}
+  \Delta S = \int_{T_{\mathrm{low}}}^{T_{\mathrm{high}}} \frac{C_V\,dT}{T}.
+\end{equation}
+
+A second equivalent protocol passes heat through a continuously varying stack of reservoirs, giving $\int C_p\,dT/T$, depending on the constraint. Both protocols compute the same entropy change because $S$ is a state function.
+
+\subsection{Irreversible Processes}
+
+In an irreversible process entropy is produced. The canonical example is a \emph{free expansion}: a gas in a sealed container suddenly has a piston yanked out. The expansion occurs instantaneously, so $\delta Q = 0$ and no work is done against anything ($\delta W = 0$). From the first law, $\Delta U = 0$. However, the entropy \emph{jumps} discontinuously in the new thermodynamic state: $\Delta S > 0$ even though $\delta Q = 0$. Importantly, once you try to recompress the gas (returning it to its original volume), entropy is again generated rather than recovered — free expansion is genuinely irreversible.
+
+\begin{center}[DIAGRAM: box with dashed line showing initial gas region; piston suddenly removed, gas fills entire volume]\end{center}
+
+\subsection{Why Does Thermal Equilibrium Occur?}
+
+Thermal equilibrium is the macroscopic consequence of entropy maximization. Consider two subsystems labeled 1 and 2 with entropies $S_1(U_1)$ and $S_2(U_2)$. The total energy is conserved: $U = U_1 + U_2$, so $U_2 = U - U_1$. The total entropy is $S_\text{tot} = S_1 + S_2$, which is an increasing function of $U$.
+
+\begin{center}[DIAGRAM: two boxes labeled 1 and 2 connected by a diathermal wall; individual entropies $S_1(U_1)$ and $S_2(U_2)$ shown]\end{center}
+
+At equilibrium, $S_\text{tot}$ is maximized with respect to $U_1$:
+
+\begin{align}
+  \pdv{S_\text{tot}}{U_1} &= \pdv{S_1}{U_1} + \pdv{S_2}{U_1} = 0.
+\end{align}
+
+Since $U_2 = U - U_1$, we have $\pdv{S_2}{U_1} = -\pdv{S_2}{U_2}$. Therefore the condition becomes
+
+\begin{formula}[Condition for thermal equilibrium]
+\begin{equation}
+  \pdv{S_1}{U_1} = \pdv{S_2}{U_2} \quad\Longleftrightarrow\quad \frac{1}{T_1} = \frac{1}{T_2},
+\end{equation}
+\end{formula}
+
+identifying $1/T \equiv \partial S/\partial U\big|_V$ as the definition of temperature. The two subsystems reach the same temperature when entropy is maximized — this is the statistical mechanical origin of thermal equilibrium.
+
+\subsection{Worked Probability Problem: Arranging Energy Quanta}
+
+Consider three quantum harmonic oscillators, each with energy levels $E_n = \hbar\omega(n+\tfrac{1}{2})$. The total energy is $E_\text{tot} = \hbar\omega(n_1+n_2+n_3+\tfrac{3}{2})$. The problem asks: for a fixed total quantum number $n_1+n_2+n_3=N$, in how many ways can energy be distributed? This is the ``stars and bars'' combinatorics problem:
+
+\begin{equation}
+  \Omega = \binom{N+2}{2}.
+\end{equation}
+
+For small $N$, this can be enumerated directly. For example with $N=8$: the configuration $(4,4,0)$ and its permutations give $\binom{8+2}{2}=45$ microstates in total. The most probable macrostate (the one with most arrangements) is when the $n_i$ are as nearly equal as possible. This is the microstate argument for why thermal equilibrium corresponds to the most probable distribution.
+
+\subsection{Kinetic Theory and Thermodynamic Relations}
+
+Moving to kinetic theory, the first law states $\delta Q + \delta W = dU$. For a gas with $pV = Nk_BT$:
+
+\begin{align}
+  T\,dS - p\,dV &= dU, \\
+  dS &= \frac{1}{T}\,dU + \frac{p}{T}\,dV = \left(\pdv{S}{U}\right)_V dU + \left(\pdv{S}{V}\right)_U dV.
+\end{align}
+
+Since $S$ is a state function, this expression for $dS$ is always valid — it holds for any process connecting the same two states, reversible or not.
+
+\subsection{Recitation Example: \texorpdfstring{$Z=XY$}{Z=XY} with Uniform Joint Density on \texorpdfstring{$[0,2]\times[0,2]$}{[0,2]x[0,2]}}
+
+Here $p(x,y)=\tfrac{1}{6}\cdot C$ (a constant) on $[0,2]\times[0,3]$ and zero elsewhere, with $z = xy$. Using the delta-function formula,
+
+\begin{align}
+  p(z) &= \int_0^3 dy\int_0^2 dx\;p(x,y)\,\delta(z-xy) \notag \\
+        &= \int_0^3 dy\int_{-\infty}^{\infty} dx\;\frac{1}{6}\,\Theta(x)\,\Theta(2-x)\,\delta(z-xy).
+\end{align}
+
+The delta function sets $x = z/y$, with $\left|\pdv{(z-xy)}{x}\right| = y$, giving $g'(x) = -y$. The step functions restrict $0 \le z/y \le 2$, i.e., $y \ge z/2$. Combining with the $y$-integration range $[0,3]$, the lower limit on $y$ is $\max(z/2, 0) = z/2$ (for $0 < z \le 6$):
+
+\begin{align}
+  p(z) &= \int_{z/2}^{3} dy\;\frac{1}{6}\cdot\frac{1}{y}\,\Theta\!\left(\frac{z}{y}\right)\Theta\!\left(2-\frac{z}{y}\right) \notag \\
+        &= \int_{z/2}^{3} \frac{dy}{6y} = \frac{1}{6}\bigl[\ln(3) - \ln(z/2)\bigr] = \frac{1}{6}\ln\!\left(\frac{6}{z}\right).
+\end{align}
+
+\begin{formula}
+\begin{equation}
+  p(z) = \frac{1}{6}\ln\!\left(\frac{6}{z}\right), \qquad 0 < z \le 6.
+\end{equation}
+\end{formula}
+
+% ============================================================
+\section{Review: Thermodynamics and Probability}
+% ============================================================
+
+\subsection{Overview}
+
+This review covers material through Lecture 8. The subject has two sides: a macroscopic (thermodynamic) framework and a microscopic (kinetic theory / statistical) framework.
+
+\begin{center}[DIAGRAM: box labeled ``Macroscopic'' containing ``$T,V,p,S,W$'' coupled via heat $Q$ to a box labeled ``Microscopic / kinetic'', with ``$N,V,k_BT$'' inside and ``m.v.t.'' (mean value theorem / partition function) indicated]\end{center}
+
+The macroscopic state functions are $T$, $V$, $p$, $S$, and the internal energy $U$. The First Law is
+
+\begin{equation}
+  \Delta U = \Delta Q + \Delta W.
+\end{equation}
+
+The state functions $T,V,p,S$ all determine $U(T,V,p,\ldots)$. The quantity $\delta Q/T$ is \emph{not} a state function (it is path-dependent), but $\partial(\delta Q/\partial T)\big|_p$ is the heat capacity at constant pressure $C_p$, and so on.
+
+Equilibrium conditions:
+\begin{enumerate}
+  \item \textbf{Thermal equilibrium}: $T_1=T_2$ (temperatures equalize).
+  \item \textbf{Mechanical equilibrium}: pressures equalize.
+\end{enumerate}
+
+\subsection{Equipartition Theorem}
+
+The Hamiltonian of an ideal gas molecule in 3D is
+
+\begin{equation}
+  H = \frac{m}{2}\!\left(v_x^2+v_y^2+v_z^2\right) + \frac{k}{2}\!\left(x^2+y^2+z^2\right).
+\end{equation}
+
+\begin{theorem}[Equipartition Theorem]
+Every quadratic degree of freedom in the Hamiltonian contributes $\tfrac{1}{2}k_BT$ to the mean energy. In particular,
+\begin{equation}
+  \left\langle \frac{mv_\alpha^2}{2}\right\rangle = \frac{k_BT}{2}, \qquad
+  \left\langle \frac{kx_\alpha^2}{2}\right\rangle = \frac{k_BT}{2},
+\end{equation}
+so that $\langle mv^2/2\rangle = \tfrac{3}{2}k_BT$ for a monatomic gas.
+\end{theorem}
+
+The total internal energy is therefore
+
+\begin{equation}
+  E_\text{internal} = \frac{f}{2}Nk_BT,
+\end{equation}
+
+where $f$ is the number of quadratic degrees of freedom. For a \textbf{monatomic} ideal gas, $f=3$ (translational only). For a \textbf{diatomic} molecule, $f=5$ (three translational plus two rotational; the vibrational modes are often frozen out at room temperature, giving $f=5$, though at high temperatures $f$ can rise to 7). For \textbf{multiatomic} molecules, $f=6$ in general.
+
+\subsection{Ideal Gas and Van der Waals Gas}
+
+The ideal gas law is $pV = Nk_BT$. The \textbf{van der Waals} equation accounts for weak intermolecular attractions and the finite size of molecules:
+
+\begin{equation}
+  \left(p + \frac{aN^2}{V^2}\right)(V - Nb) = Nk_BT,
+\end{equation}
+
+where $a$ describes the attractive interaction and $b$ is the excluded volume per molecule. The total energy includes an interaction term:
+
+\begin{equation}
+  E = E_\text{kinetic} - \frac{aN^2}{V}.
+\end{equation}
+
+\subsubsection{Work and Adiabatic Processes}
+
+For a reversible process, $\Delta W = -\int p\,dV$. There is also work associated with surface tension: $\Delta W = -\oint \vec{\sigma}\cdot d\vec{A}$.
+
+For an adiabatic process ($\Delta Q = 0$):
+
+\begin{align}
+  \Delta Q = \Delta U - \Delta W &= 0, \\
+  \frac{f+2}{2}p\,dV + \frac{f}{2}V\,dp &= 0, \\
+  \frac{f+2}{f}\frac{dV}{V} + \frac{dp}{p} &= 0,
+\end{align}
+
+which integrates to
+
+\begin{formula}[Adiabatic relation]
+\begin{equation}
+  pV^{\gamma} = \text{const.}, \qquad \gamma = \frac{f+2}{f}.
+\end{equation}
+\end{formula}
+
+This relation holds for an ideal gas undergoing a quasi-static adiabatic process. (For a free expansion, $\delta Q=0$ but $V$ just increases — the adiabatic formula does not apply because the process is not quasi-static.)
+
+\subsubsection{Mass on a Piston: Adiabatic Compression}
+
+Consider a gas at initial pressure $p_0$ and volume $V_0$ with a mass $M$ resting on the piston of area $S$. The pressure inside is $p_1 = p_0 + Mg/S$. We add mass slowly (quasi-static), so the final pressure satisfies $p_0 V_0^\gamma = p_1 V_1^\gamma$, giving
+
+\begin{equation}
+  V_1 = V_0\left(\frac{p_0}{p_0 + Mg/S}\right)^{1/\gamma}.
+\end{equation}
+
+The work done is
+
+\begin{align}
+  \Delta W &= \frac{f}{2}Nk_BT\,\Delta\!\left(\frac{1}{T}\right)^{-1}
+             = \frac{f}{2}Nk(T_1-T_0)
+             = \frac{f}{2}(p_1 V_1 - p_0 V_0).
+\end{align}
+
+If instead the mass is added suddenly (irreversible), the gas oscillates and eventually damps to equilibrium at a new volume $V_2$. The work done in the irreversible case equals $p_1\,(V_0-V_2)$ (constant external pressure throughout), and $\Delta W = V_0\,\tfrac{3}{2}\cdot\tfrac{Mg}{S}$ by energy conservation.
+
+\subsection{Partial Derivatives and Thermodynamic Identities}
+
+For a function $f(x_1,\ldots,x_n)$, the total differential is
+
+\begin{equation}
+  df = \left.\pdv{f}{x_1}\right|_{x_2,\ldots,x_n} dx_1 + \cdots + \left.\pdv{f}{x_n}\right|_{x_1,\ldots,x_{n-1}} dx_n.
+\end{equation}
+
+In thermodynamics, with $n$ variables related by $m$ equations of state, there are $n-m$ degrees of freedom, and therefore $n-m-1$ constraints must be specified when computing a partial derivative. For instance, $U(p,V,T)$ with one equation of state ($pV=Nk_BT$) has two degrees of freedom, so $\pdv{U}{T}\big|_V$ and $\pdv{U}{T}\big|_p$ are both well-defined and in general different.
+
+Three important rules for partial derivatives:
+
+\begin{enumerate}
+  \item \textbf{Change of held variable:} For $f(x,y)$ with $y=y(x,c)$,
+        \begin{equation}
+          \left.\pdv{f}{x}\right|_c = \left.\pdv{f}{x}\right|_y + \left.\pdv{f}{y}\right|_x \left.\pdv{y}{x}\right|_c.
+        \end{equation}
+
+  \item \textbf{Chain rule:} If $c = c(x,y)$,
+        \begin{equation}
+          \left.\pdv{f}{x}\right|_c = \left.\pdv{f}{x}\right|_y\cdot\left.\pdv{x}{x_c}\right|_y + \left.\pdv{f}{y}\right|_x\cdot\left.\pdv{y}{x}\right|_c.
+        \end{equation}
+        Furthermore, $\left.\pdv{f}{x}\right|_c\cdot\left.\pdv{x}{c}\right|_y = \left.\pdv{f}{c}\right|_y$, which is just the ordinary chain rule rearranged.
+
+  \item \textbf{Cyclic relation:} For three variables $x,y,z$ related by one constraint,
+        \begin{equation}
+          \left.\pdv{x}{y}\right|_z\cdot\left.\pdv{y}{z}\right|_x\cdot\left.\pdv{z}{x}\right|_y = -1.
+        \end{equation}
+
+  \item \textbf{Exactness condition:} The differential $df = g_1\,dx_1 + g_2\,dx_2$ is exact (i.e., $f$ is a well-defined function) if and only if
+        \begin{equation}
+          \left.\pdv{g_2}{x_1}\right|_{x_2} = \left.\pdv{g_1}{x_2}\right|_{x_1}.
+        \end{equation}
+\end{enumerate}
+
+% ============================================================
+\section{Probability: Review and Key Results}
+% ============================================================
+
+\subsection{Axioms and Basic Definitions}
+
+A probability density $p(x)$ must satisfy:
+\begin{enumerate}
+  \item $p(x) \ge 0$ for all $x$.
+  \item $\int_{-\infty}^{\infty} p(x)\,dx = 1$ (normalization). In the discrete case, $\sum_i p_i = 1$.
+  \item For discrete distributions, $p(x) = \sum_i p_i\,\delta(x-x_i)$, which gives
+        \begin{equation}
+          \int_{-\infty}^{\infty} f(x)\,\delta(x-x_i)\,dx = \sum_{x_i} f(x_i)\,\frac{1}{|g'(x_i)|}
+        \end{equation}
+        when integrating against a function of the delta argument.
+\end{enumerate}
+
+\subsection{Important Discrete Distributions}
+
+\paragraph{Binomial distribution.} The probability of exactly $m$ successes in $N$ independent trials each with success probability $p$ is
+
+\begin{equation}
+  P_m = \binom{N}{m} p^m (1-p)^{N-m}.
+\end{equation}
+
+\paragraph{Poisson distribution.} In the limit of rare events ($p\to 0$, $N\to\infty$, $\lambda=Np$ fixed), the binomial approaches the Poisson distribution:
+
+\begin{equation}
+  P_n(t) = \frac{(\lambda t)^n\,e^{-\lambda t}}{n!}.
+\end{equation}
+
+The binomial coefficient satisfies $\binom{N}{m} = \frac{N!}{m!\,(N-m)!}$, and for large $N$, Stirling's approximation gives
+
+\begin{equation}
+  \log(N!) \approx N\log N - N + \log\!\sqrt{2\pi N}.
+\end{equation}
+
+\subsection{Gaussian (Normal) Distribution}
+
+In the large-$N$ limit the binomial distribution, and many other discrete distributions, converge to the Gaussian:
+
+\begin{equation}
+  p(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-(x-\mu)^2/2\sigma^2}.
+\end{equation}
+
+The mean and variance are defined as
+
+\begin{align}
+  \langle x \rangle &= \int x\,p(x)\,dx, \\
+  \mathrm{Var}(x) &= \bigl\langle (x - \langle x\rangle)^2\bigr\rangle = \langle x^2\rangle - \langle x\rangle^2.
+\end{align}
+
+\begin{formula}[Variance identity]
+\begin{equation}
+  \mathrm{Var}(x) = \langle x^2 \rangle - \langle x \rangle^2.
+\end{equation}
+\end{formula}
+
+For the Gaussian, $\langle x\rangle = \mu$ and $\mathrm{Var}(x) = \sigma^2$, as expected from the parameters.

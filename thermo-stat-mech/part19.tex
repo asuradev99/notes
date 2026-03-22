@@ -1,0 +1,278 @@
+\section{Distinguishable vs.\ Indistinguishable Particles}
+
+The classical regime is characterised by having the average number of particles per single-particle state much less than one, i.e.\ $\#\,\text{particles}/\text{state} \ll 1$. In this limit there is negligible chance that two particles compete for the same quantum state, and the statistics of identical particles become irrelevant.
+
+When the particles are \emph{distinguishable} (and the Hamiltonian is separable), the $N$-particle partition function factorises:
+\begin{formula}
+\begin{equation}
+    Z_N = (Z_1)^N,
+\end{equation}
+\end{formula}
+where $Z_1$ is the single-particle partition function. For \emph{indistinguishable} particles we must divide by $N!$ to avoid overcounting the configurations that differ only by permuting identical particles:
+\begin{formula}
+\begin{equation}
+    Z_N = \frac{1}{N!}(Z_1)^N.
+\end{equation}
+\end{formula}
+This correction is only valid at high temperature, i.e.\ in the classical limit; at low temperatures quantum statistics (Fermi--Dirac or Bose--Einstein) must be used instead.
+
+\section{Harmonic Oscillator Statistics}
+
+\subsection{Single-Oscillator Energy}
+
+A three-dimensional quantum harmonic oscillator has energy levels labelled by three non-negative integers $(n_1, n_2, n_3)$:
+\begin{equation}
+    \varepsilon = \hbar\omega\!\left(n_1 + n_2 + n_3 + \tfrac{3}{2}\right).
+\end{equation}
+The $\tfrac{3}{2}\hbar\omega$ zero-point term is the quantum mechanical ground-state energy of the three independent oscillator directions. This expression treats each quantum number $n_i$ as labelling the state of a separate mode, and together the three modes encode the full vibrational energy of a single particle in a harmonic potential.
+
+\subsection{Average Energy of $N$ Oscillators}
+
+For a system of $N$ independent three-dimensional harmonic oscillators in thermal equilibrium, the average total energy is
+\begin{formula}
+\begin{equation}
+    \langle U_N \rangle = 3N\hbar\omega\!\left[\frac{1}{2} + \frac{1}{e^{\beta\hbar\omega}-1}\right]
+    = 3N\hbar\omega\,e^{\beta\hbar\omega/2}\cosh\!\left(\frac{\beta\hbar\omega}{2}\right),
+\end{equation}
+\end{formula}
+where $\beta = 1/k_B T$. In the two limiting regimes:
+\begin{itemize}
+    \item As $T \to \infty$: $\langle U_N \rangle \to 3Nk_BT$, recovering the classical equipartition result.
+    \item As $T \to 0$: $\langle U_N \rangle \to 3N\hbar\omega$ (the zero-point energy dominates).
+\end{itemize}
+
+\begin{fact}[Dulong--Petit Law]
+For a solid modelled as $N$ three-dimensional harmonic oscillators, the heat capacity at constant volume is
+\begin{equation}
+    C_V = 3Nk_B,
+\end{equation}
+the classical high-temperature result. This is the Dulong--Petit law.
+\end{fact}
+
+\subsection{Adiabatic Cooling}
+
+Adiabatic cooling is the process by which the temperature of a system decreases when parameters such as volume or magnetic field are changed slowly (quasi-statically) and without heat exchange. Because the process is adiabatic, the entropy $S$ is constant; however, the change in the external parameter shifts the energy level spacings, and as a result the temperature $T$ changes. This is the principle behind adiabatic demagnetisation refrigeration.
+
+\section{Electromagnetic Radiation}
+
+\subsection{Blackbody Radiation and the Riemann Zeta Integral}
+
+A useful definite integral that appears repeatedly in blackbody calculations is
+\begin{formula}
+\begin{equation}
+    \int_0^\infty \frac{x^s}{e^x - 1}\,dx = s!\;\zeta(s+1),
+\end{equation}
+\end{formula}
+where $\zeta$ is the Riemann zeta function.
+
+\subsection{Setup of the Electromagnetic Field in a Box}
+
+Consider the electromagnetic field confined to a box of volume $V$. The field has two polarisation states per mode (transverse polarisations only; longitudinal modes are not physical). The state of the EM field is specified by listing the occupation numbers $\{n_{\vec{k},\lambda}\}$ for each wavevector $\vec{k}$ and polarisation $\lambda$. The allowed wavevectors satisfy periodic boundary conditions, and the frequency of mode $(\vec{k},\lambda)$ is $\omega = c|\vec{k}|$. The total energy of a given state is
+\begin{equation}
+    E(\text{state}) = \sum_{\vec{k},\lambda} \left(n_{\vec{k},\lambda} + \tfrac{1}{2}\right)\hbar\omega(\vec{k}).
+\end{equation}
+
+\subsection{Partition Function}
+
+Because each mode is an independent harmonic oscillator, the partition function factorises over modes. The single-mode partition function is that of a harmonic oscillator:
+\begin{equation}
+    Z_{\vec{k}} = \frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}}.
+\end{equation}
+The full partition function is $Z = \prod_{\vec{k}} (Z_{\vec{k}})^2$ (the square accounts for the two polarisations). Taking the logarithm and converting the sum over $\vec{k}$ to an integral (valid in large $V$), while discarding the constant zero-point contribution (which diverges but does not affect thermodynamic quantities),
+\begin{formula}
+\begin{equation}
+    \log Z = \frac{V}{\pi^2 c^3}\int_0^\infty d\omega\,\omega^2\!\left[-\frac{\beta\hbar\omega}{2} - \log\!\left(1 - e^{-\beta\hbar\omega}\right)\right].
+\end{equation}
+\end{formula}
+The zero-point term ($-\beta\hbar\omega/2$) is typically neglected (``reject'') since it leads to a divergent constant energy that is unobservable. The thermodynamics (internal energy $U$, free energy $F$, and power radiated) then follow from $\log Z$ as an exercise.
+
+\subsection{Power Radiated}
+
+The power per unit area emitted by a blackbody as a function of frequency is the Planck distribution:
+\begin{formula}
+\begin{equation}
+    I = \frac{\text{Power}}{\text{Area}} = \frac{\hbar}{4\pi^2 c^2}\int_0^\infty \frac{\omega^3}{e^{\beta\hbar\omega}-1}\,d\omega.
+\end{equation}
+\end{formula}
+
+\begin{theorem}[Stefan--Boltzmann Law]
+The total power per unit area emitted by a blackbody is proportional to the fourth power of absolute temperature:
+\begin{equation}
+    \frac{P}{A} = \sigma T^4, \qquad \sigma = \frac{\pi^2 k_B^4}{60\hbar^3 c^2}.
+\end{equation}
+\end{theorem}
+
+\chapter{Grand Canonical Ensemble}
+
+\section{Motivation and Setup}
+
+In the canonical ensemble the number of particles $N$ is fixed, which can be restrictive. The grand canonical ensemble lifts this constraint by allowing the system to exchange both energy \emph{and} particles with a reservoir. Microstates are counted with no fixed constraint on $N$, and the equilibrium state is determined by two intensive reservoir parameters: the temperature $T$ and the chemical potential $\mu$.
+
+Two important classes of quantum particles are distinguished by their spin and exchange symmetry:
+
+\begin{definition}[Fermions]
+Fermions have half-integer spin and are \emph{antisymmetric} under particle exchange. A fundamental consequence is the Pauli exclusion principle: \textbf{fermions cannot occupy the same quantum state}. This means the partition function cannot be factored into independent single-particle sums.
+\end{definition}
+
+\begin{definition}[Bosons]
+Bosons have integer spin and are \emph{symmetric} under particle exchange. Any number of bosons may occupy the same quantum state.
+\end{definition}
+
+\section{Grand Canonical Ensemble: Thermodynamics}
+
+The grand canonical ensemble applies when $V$, $M$ (or other extensive parameter), and $T$ are fixed, while $N$ and $U$ fluctuate. The chemical potential is defined as
+\begin{equation}
+    \mu = \left.\pdv{U}{N}\right|_{S,V},
+\end{equation}
+which is the energy cost of adding one particle at fixed entropy and volume. The fundamental thermodynamic relation is extended to include particle exchange:
+\begin{formula}
+\begin{equation}
+    dU = T\,dS - P\,dV + \mu\,dN.
+\end{equation}
+\end{formula}
+
+\subsection{Grand Partition Function}
+
+The grand partition function $\mathcal{Z}$ sums over all microstates $i$ and all particle numbers $N_i$:
+\begin{formula}
+\begin{equation}
+    \mathcal{Z} = \sum_i e^{-\beta E_i}\,e^{\beta\mu N_i}.
+\end{equation}
+\end{formula}
+The probability of microstate $i$ (with energy $E_i$ and particle number $N_i$) is
+\begin{equation}
+    p_j(E_j, N_j) = \frac{1}{\mathcal{Z}}\,e^{-\beta E_j}\,e^{\beta\mu N_j}.
+\end{equation}
+
+\subsection{Thermodynamic Relations from $\log\mathcal{Z}$}
+
+The grand potential and all thermodynamic averages follow from $\log\mathcal{Z}$:
+
+\begin{enumerate}
+    \item \textbf{Chemical potential and average energy:}
+    \begin{equation}
+        \pdv{}{\beta}\log\mathcal{Z} = \mu\langle N\rangle - \langle U\rangle.
+    \end{equation}
+
+    \item \textbf{Average particle number:}
+    \begin{equation}
+        \pdv{}{(\beta\mu)}\log\mathcal{Z} = \langle N\rangle.
+    \end{equation}
+
+    \item \textbf{Entropy:}
+    \begin{equation}
+        S = \frac{\langle U\rangle - \mu\langle N\rangle}{T} + k_B\log\mathcal{Z}.
+    \end{equation}
+
+    \item \textbf{Grand potential (analogue of the free energy):}
+    \begin{formula}
+    \begin{equation}
+        \Omega \equiv -k_BT\log\mathcal{Z} = U - TS - \mu N.
+    \end{equation}
+    \end{formula}
+    The grand potential is the natural analogue of the Helmholtz free energy $F = U - TS$ when particle number is not fixed. Its total differential is
+    \begin{equation}
+        d\Omega = -S\,dT - P\,dV - N\,d\mu,
+    \end{equation}
+    from which useful relations follow:
+    \begin{equation}
+        S = -\left.\pdv{\Omega}{T}\right|_{V,\mu}, \qquad
+        P = -\left.\pdv{\Omega}{V}\right|_{T,\mu}, \qquad
+        N = -\left.\pdv{\Omega}{\mu}\right|_{T,V}.
+    \end{equation}
+\end{enumerate}
+
+\chapter{Quantum Statistics}
+
+\section{Single-Particle Energy Levels and Microstates}
+
+Consider a system of non-interacting quantum particles. The single-particle energy levels are $\varepsilon_a$ for $a = 1, 2, 3, \ldots$. A microstate of the many-body system is specified by the set of occupation numbers $\{n_a\}$, where $n_a$ counts how many particles occupy level $a$. The total energy and total particle number of this microstate are
+\begin{equation}
+    mN_j - E_j = \sum_a \mu n_a - \varepsilon_a n_a = \sum_a (\mu - \varepsilon_a)\,n_a.
+\end{equation}
+
+\subsection{Grand Partition Function for Non-Interacting Particles}
+
+Because the particles are non-interacting, the grand partition function factorises over single-particle levels:
+\begin{formula}
+\begin{equation}
+    \mathcal{Z} = \sum_{\{n_a\}} \prod_a e^{-\beta(\varepsilon_a - \mu)n_a} = \prod_a \mathcal{Z}_a,
+\end{equation}
+\end{formula}
+where the sum is over all allowed occupation-number configurations. The single-level grand partition functions are:
+
+\begin{align}
+    \mathcal{Z}_a^{\text{(F)}} &= \prod_a \bigl(1 + e^{\beta(\mu - \varepsilon_a)}\bigr) & &\text{(Fermions: } n_a \in \{0,1\}\text{)}, \\[4pt]
+    \mathcal{Z}_a^{\text{(B)}} &= \prod_a \frac{1}{1 - e^{\beta(\mu - \varepsilon_a)}} & &\text{(Bosons: } n_a \in \{0,1,2,\ldots\}\text{)}.
+\end{align}
+The fermionic result follows from a two-term sum ($n_a = 0$ or $1$); the bosonic result is a geometric series.
+
+\section{Quantum Regime}
+
+\begin{definition}[Quantum regime]
+A system is in the \emph{quantum regime} (and quantum degeneracy effects become important) when the thermal de Broglie wavelength $\lambda_{\text{th}}$ is comparable to or larger than the mean inter-particle spacing:
+\begin{equation}
+    \left(\frac{N}{V}\right)\lambda_{\text{th}}^3 \sim 1.
+\end{equation}
+Equivalently, the system is quantum-degenerate when $\langle n_a \rangle \sim 1$, meaning a typical state is appreciably occupied. This is the criterion used in practice.
+\end{definition}
+
+\section{Fermi--Dirac Distribution}
+
+\begin{center}[DIAGRAM: sketch of the Fermi--Dirac distribution $\langle n_a \rangle$ vs.\ energy $\varepsilon_a$, showing a step function at $T = 0$ with the sharp edge at $\varepsilon_a = \mu$, and a thermally rounded step at low but nonzero $T$]\end{center}
+
+For a system of fermions, the mean occupation number of level $a$ is
+\begin{formula}
+\begin{equation}
+    \langle n_a \rangle = \frac{1}{1 + e^{\beta(\varepsilon_a - \mu)}}.
+\end{equation}
+\end{formula}
+At $T = 0$ this is a perfect step function: all states below $\mu$ are fully occupied, all states above are empty. The chemical potential at $T = 0$ is called the \emph{Fermi energy} $\varepsilon_F$. As $T$ increases, the step rounds over an energy range $\sim k_BT$ around $\mu$.
+
+\section{Bose--Einstein Distribution}
+
+For a system of bosons, the mean occupation number is
+\begin{formula}
+\begin{equation}
+    \langle n_a \rangle = \frac{1}{e^{\beta(\varepsilon_a - \mu)} - 1}.
+\end{equation}
+\end{formula}
+Note that the chemical potential of a Bose gas must satisfy $\mu < \varepsilon_0$ (where $\varepsilon_0$ is the ground-state energy) to keep all occupation numbers positive and finite.
+
+At high energy or high temperature, both the Fermi--Dirac and Bose--Einstein distributions approach the classical (Maxwell--Boltzmann) result:
+\begin{equation}
+    \langle n_a \rangle \approx e^{-\beta(\varepsilon_a - \mu)},
+\end{equation}
+as the exponential in the denominator dominates over the $\pm 1$.
+
+\begin{center}[DIAGRAM: two sketches of $\langle n_a \rangle$ vs.\ $\varepsilon_a$: left panel shows the low-$T$ quantum degenerate limit with $N > V\lambda_{\text{th}}^{-3}$; right panel shows the high-$T$ classical limit with $N < V\lambda_{\text{th}}^{-3}$]\end{center}
+
+\section{Important Approximations and Bose--Einstein Condensation}
+
+\subsection{Chemical Potential in the Classical Limit}
+
+When $N \ll V/\lambda_{\text{th}}^3$ (the classical limit), the chemical potential takes the approximate form
+\begin{equation}
+    \mu \approx \varepsilon_0 - \frac{k_BT}{1} \ln\frac{n_0}{N} \approx -\frac{k_BT}{\phantom{1}} \cdot \text{(const)},
+\end{equation}
+or more precisely, the chemical potential lies well below the ground-state energy so that $e^{\beta(\varepsilon_0 - \mu)} \gg 1$.
+
+\subsection{Total Particle Number: $N_{\text{tot}}$}
+
+The total particle number is obtained by summing the mean occupations over all levels. When $N \ll V/\lambda_{\text{th}}^3$, energy levels are dense and the sum can be replaced by an integral over the density of states $g(\varepsilon)$:
+\begin{equation}
+    N_{\text{tot}} = N_0 + \frac{V}{\lambda_{\text{th}}^3}\left(\frac{4}{\sqrt{\pi}}\int_0^\infty \frac{\sqrt{\varepsilon}}{e^{\beta(\varepsilon-\mu)}-1}\,d\varepsilon\right) \sim \zeta\!\left(\tfrac{3}{2}\right).
+\end{equation}
+In the two limiting cases:
+\begin{itemize}
+    \item If $N \ll V/\lambda_{\text{th}}^3$: energy levels can be treated as a continuum, $\mu$ can be found by solving the integral constraint on $N$, and all particles occupy excited states ($N_0 \approx 0$).
+    \item If $N \gg V/\lambda_{\text{th}}^3$: the excited states saturate (they can only hold $\sim V/\lambda_{\text{th}}^3$ particles), and the remainder must condense into the ground state.
+\end{itemize}
+
+\begin{fact}[Bose--Einstein Condensation]
+When $N/V > \lambda_{\text{th}}^{-3}$ (equivalently $N > V/\lambda_{\text{th}}^3$), the fraction of bosons in the ground state becomes macroscopic:
+\begin{equation}
+    \frac{N_0}{N} \to 1 \quad \text{(Bose--Einstein condensation)}.
+\end{equation}
+This is a genuine phase transition driven purely by quantum statistics: below a critical temperature $T_c$ a macroscopic occupation of the single-particle ground state develops, even in the absence of any interactions.
+\end{fact}

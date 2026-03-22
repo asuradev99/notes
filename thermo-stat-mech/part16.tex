@@ -1,0 +1,570 @@
+% ============================================================
+%  Part 16 — Adiabatic Cooling, Photon Gas, Grand Canonical
+%  Transcribed from pages 201–215
+% ============================================================
+
+% ------------------------------------------------------------------
+%  Continuation: high-T limit, heat capacity, and adiabatic cooling
+% ------------------------------------------------------------------
+
+\subsection*{High-temperature limit of the Einstein solid}
+
+In the limit $T \to \infty$ we have $x \equiv \beta\hbar\omega \ll 1$, so
+\begin{equation}
+    \frac{1}{e^x - 1} \approx \frac{1}{x + \tfrac{1}{2}x^2}
+    = \frac{1}{x\!\left(1+\tfrac{1}{2}x\right)} \approx \frac{1}{x}\!\left(1-\frac{x}{2}\right)
+    \approx \frac{1}{x},
+\end{equation}
+and therefore the internal energy becomes
+\begin{equation}
+    U(T\to\infty) = \frac{3N\hbar\omega}{\beta\hbar\omega} = 3Nk_BT.
+\end{equation}
+This agrees with the equipartition theorem: all $6$ degrees of freedom (three kinetic, three potential) of the oscillators are active, each contributing $\tfrac{1}{2}k_BT$.
+
+\subsection*{Heat capacity of the Einstein solid}
+
+Differentiating the internal energy with respect to temperature yields
+\begin{equation}
+    C_V = \pdv{U}{T} = 3Nk_B\!\left(\frac{\hbar\omega}{k_BT}\right)^{\!2}
+    \frac{e^{\beta\hbar\omega}}{\left(e^{\beta\hbar\omega}-1\right)^2}.
+\end{equation}
+
+\paragraph{Low-temperature limit ($T\to 0$).}  As $T\to 0$ the exponential
+$e^{\beta\hbar\omega}$ dominates the denominator, giving
+\begin{equation}
+    C_V \approx 3Nk_B\!\left(\frac{\hbar\omega}{k_BT}\right)^{\!2}
+    e^{-\hbar\omega/k_BT} \xrightarrow{T\to 0} 0.
+\end{equation}
+All degrees of freedom are frozen out: the thermal energy $k_BT$ is far too small
+to excite any oscillator across the gap $\hbar\omega$.
+
+\paragraph{High-temperature limit ($T\to\infty$).}  Expanding the denominator for small
+$\beta\hbar\omega$ recovers
+\begin{equation}
+    C_V \to 3Nk_B.
+\end{equation}
+
+\begin{fact}
+\textbf{Dulong--Petit Law.}  At high temperatures the heat capacity of a monatomic
+solid saturates at $C_V = 3Nk_B = 3R$ per mole, corresponding to the full
+equipartition result for three-dimensional harmonic oscillators.
+\end{fact}
+
+% ------------------------------------------------------------------
+\section{Final Example: Adiabatic Cooling}
+% ------------------------------------------------------------------
+
+We consider $N$ classical, indistinguishable, relativistic particles confined in a
+linear (absolute-value) potential.  Specifically:
+\begin{itemize}
+    \item \textit{Classical:} the typical number of particles per quantum state is
+          much less than one.
+    \item \textit{Indistinguishable:} the $N$-particle partition function acquires
+          the Gibbs correction $Z_N = Z_1^N / N!$.
+    \item \textit{Relativistic with linear potential:} single-particle energy is
+          $E = c|p|$ and potential energy is $V(x)=\alpha|x|$.
+\end{itemize}
+
+The single-particle partition function is
+\begin{equation}
+    Z_1 = \int \frac{d^3x\, d^3p}{(2\pi\hbar)^3}\;
+    e^{-\beta c|p|}\, e^{-\beta\alpha|x|}.
+\end{equation}
+
+\paragraph{Evaluating the integrals.}  Both the momentum and position integrals are
+of the form $\int d^3u\, e^{-a|u|}$.  In spherical coordinates,
+\begin{align}
+    \int d^3u\; e^{-a|u|}
+    &= 4\pi \int_0^\infty u^2 e^{-au}\,du
+     = 4\pi a^{-3} \int_0^\infty r^2 e^{-r}\,dr
+     = \frac{8\pi}{a^3},
+\end{align}
+using $\int_0^\infty r^2 e^{-r}\,dr = 2$.  Applying this to both factors gives
+\begin{equation}
+    Z_1 = \frac{1}{(2\pi\hbar)^3}(8\pi)^2
+    \left(\frac{k_BT}{c}\right)^{\!3}\!\left(\frac{k_BT}{\alpha}\right)^{\!3}
+    = \frac{8}{\pi}\!\left(\frac{1}{\beta c\alpha}\right)^{\!3}(k_BT)^6.
+\end{equation}
+
+The internal energy and entropy of the $N$-particle system follow from
+$U_N = -\partial_\beta \log Z_N$ and $S_N = U_N/T + k_B\log Z_N$:
+\begin{align}
+    U_N &= 6Nk_BT,\\
+    S_N &= 6Nk_B + k_B\!\left[N\log Z_1 - N\log N + N\right].
+\end{align}
+The factor $6$ confirms that each particle has six effective degrees of freedom
+(three from the relativistic momentum integral, three from the linear position
+potential).
+
+\paragraph{Adiabatic change of the trap gradient.}  If $\alpha$ is changed
+\emph{adiabatically}, then $S_N$ is held constant.  Since $S_N$ depends on $T$
+and $\alpha$ only through $Z_1 \propto T^6/\alpha^3$, holding $S_N$ constant
+requires $Z_1 = \text{const}$, i.e.\
+\begin{equation}
+    \frac{T^6}{\alpha^3} = \text{const} \implies T^2 \propto \alpha
+    \implies \boxed{T \sim \sqrt{\alpha}}.
+\end{equation}
+Reducing the trap gradient adiabatically therefore cools the gas: as $\alpha$ is
+slowly decreased, the temperature drops as $\sqrt{\alpha}$.
+
+% ------------------------------------------------------------------
+\section{Electromagnetic Radiation: the Photon Gas}
+% ------------------------------------------------------------------
+
+\subsection{Physical setup}
+
+Consider an empty cubic box of side $L$ held at temperature $T$.  The walls
+continuously absorb and emit photons, maintaining thermal equilibrium.  We want
+to find the allowed modes of the electromagnetic field inside, quantise them, and
+compute the thermodynamics.
+
+\subsection{Allowed modes from Maxwell's equations}
+
+In vacuum with no charges or currents, Maxwell's equations give
+\begin{align}
+    \left(\frac{1}{c^2}\partial_t^2 - \nabla^2\right)\vec{E} &= 0, &
+    \nabla\cdot\vec{E} &= 0,\\
+    \nabla\cdot\vec{B} &= 0, &
+    \frac{1}{c}\partial_t\vec{B} + \nabla\times\vec{E} &= 0\quad\text{(Faraday)}.
+\end{align}
+
+Seeking standing-wave solutions satisfying the conducting boundary condition
+$E_\parallel = 0$ at each wall, the components of $\vec{E}$ take the form
+\begin{align}
+    E_x &= E_{x0}\cos(k_x x)\sin(k_y y)\sin(k_z z)\sin(\omega t),\notag\\
+    E_y &= E_{y0}\sin(k_x x)\cos(k_y y)\sin(k_z z)\sin(\omega t),\\
+    E_z &= E_{z0}\sin(k_x x)\sin(k_y y)\cos(k_z z)\sin(\omega t).\notag
+\end{align}
+The dispersion relation is $\omega = c|\vec{k}|$.  The transversality condition
+$\nabla\cdot\vec{E}=0$ requires $k_xE_{x0}+k_yE_{y0}+k_zE_{z0}=0$, which removes
+one component of $\vec{E}_0$, leaving two independent polarisations.
+
+\subsection{Boundary conditions and allowed wavevectors}
+
+Applying the boundary conditions at each pair of walls:
+\begin{itemize}
+    \item At $x=L$: require $E_y=E_z=0$, so $\sin(k_xL)=0$ giving
+          $k_x = n_x\pi/L$.
+    \item At $y=L$: $k_y = n_y\pi/L$.
+    \item At $z=L$: $k_z = n_z\pi/L$.
+\end{itemize}
+
+\begin{formula}
+The allowed wavevectors are
+\begin{equation}
+    \vec{k} = \frac{\pi}{L}(n_x,\,n_y,\,n_z),\qquad n_x,n_y,n_z = 0,1,2,\ldots
+\end{equation}
+For each $\vec{k}$ there are \emph{two} independent polarisation modes.
+\end{formula}
+
+\subsection{Quantum description of photons}
+
+Each EM mode of wavevector $\vec{k}$ satisfies
+\begin{equation}
+    \partial_t^2 \vec{E} = -\omega^2 \vec{E},
+\end{equation}
+which is identical to the harmonic oscillator equation.  Quantising each mode,
+the energy levels are
+\begin{equation}
+    \mathcal{E}_n(\vec{k}) = \left(n+\tfrac{1}{2}\right)\hbar\omega(\vec{k}),
+    \qquad n = 0,1,2,\ldots,
+\end{equation}
+where $n$ is the number of photons (quanta of energy) in that mode.
+
+The full state of the EM field is specified by the set of occupation numbers
+$\{n_{\vec{k},\lambda}\}$ for every mode $(\vec{k},\lambda)$, where $\lambda=1,2$
+labels the two polarisations.
+
+\begin{definition}
+The \textbf{total energy of the EM field} in a given state is
+\begin{equation}
+    E(\text{state}) = \sum_{\vec{k},\lambda}
+    \left(n_{\vec{k},\lambda}+\tfrac{1}{2}\right)\hbar\omega(\vec{k}).
+\end{equation}
+\end{definition}
+
+\subsection{Partition function}
+
+Summing over all configurations $\{n_{\vec{k},\lambda}\}$ and using the fact that
+the exponential of a sum factors into a product of exponentials,
+\begin{align}
+    Z &= \sum_{\{n_{\vec{k},\lambda}\}}
+    \exp\!\left\{-\beta\sum_{\vec{k},\lambda}
+    \left(n_{\vec{k},\lambda}+\tfrac{1}{2}\right)\hbar\omega(\vec{k})\right\}
+    = \prod_{\vec{k},\lambda}\sum_{n=0}^{\infty}
+    \exp\!\left(-\beta\!\left(n+\tfrac{1}{2}\right)\hbar\omega(\vec{k})\right).
+\end{align}
+Each factor is a geometric series, giving
+\begin{equation}
+    Z = \prod_{\vec{k},\lambda} Z_\omega(\vec{k}),\qquad
+    Z_\omega = \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}.
+\end{equation}
+
+% ------------------------------------------------------------------
+\section{EM Radiation Thermodynamics}
+% ------------------------------------------------------------------
+
+\subsection{Partition function in the continuum limit}
+
+Including the two polarisations, the log-partition function is
+\begin{equation}
+    \log Z = \sum_{n_x,n_y,n_z} 2\log Z_\omega.
+\end{equation}
+In the thermodynamic limit, the sum over non-negative integers becomes an integral
+over the positive octant of $n$-space.  Switching to spherical coordinates and
+changing variable $\omega = \pi c n/L$ (so $d\omega = \pi c\,dn/L$):
+\begin{align}
+    \log Z
+    &= \frac{4\pi}{8}\int_0^\infty n^2\,dn \cdot 2\log Z_\omega\notag\\
+    &= \pi\left(\frac{L}{\pi c}\right)^{\!3}\int_0^\infty \omega^2 \log Z_\omega\,d\omega.
+\end{align}
+Writing $V=L^3$ and substituting $\log Z_\omega = -\tfrac{\beta\hbar\omega}{2}
+-\log(1-e^{-\beta\hbar\omega})$, the zero-point term contributes a (divergent)
+constant to $F$ that is the same for all temperatures and can be neglected:
+
+\begin{formula}
+\textbf{Partition function of the photon gas (dropping zero-point energy):}
+\begin{equation}
+    \log Z = \frac{V}{\pi^2 c^3}\int_0^\infty d\omega\;\omega^2
+    \left[-\log\!\left(1-e^{-\beta\hbar\omega}\right)\right].
+\end{equation}
+\end{formula}
+
+\subsection{Internal energy}
+
+\begin{equation}
+    U = -\pdv{\log Z}{\beta}
+    = \frac{V}{\pi^2 c^3}\int_0^\infty d\omega\;
+    \underbrace{\omega^2}_{\text{density of modes}}\;
+    \underbrace{\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}}_{\text{mean energy per mode}}.
+\end{equation}
+
+To evaluate, substitute $\tau = \beta\hbar\omega$:
+\begin{equation}
+    U = \frac{\hbar V}{\pi^2 c^3}\!\left(\frac{k_BT}{\hbar}\right)^{\!4}
+    \int_0^\infty \frac{\tau^3\,d\tau}{e^\tau-1}
+    = \frac{\hbar V}{\pi^2 c^3}\!\left(\frac{k_BT}{\hbar}\right)^{\!4} 3!\,\zeta(4),
+\end{equation}
+using the standard result $\int_0^\infty \tau^\nu(e^\tau-1)^{-1}\,d\tau = \nu!\,\zeta(\nu+1)$.
+
+\begin{fact}
+\textbf{Riemann zeta function values:}
+\begin{equation}
+    \zeta(2) = \frac{\pi^2}{6},\qquad \zeta(3)\approx 1.202,\qquad \zeta(4)=\frac{\pi^4}{90}.
+\end{equation}
+\end{fact}
+
+Inserting $3!\,\zeta(4) = 6\cdot\pi^4/90 = \pi^4/15$:
+
+\begin{formula}
+\textbf{Energy density of the EM field (Stefan's $T^4$ law):}
+\begin{equation}
+    \frac{U}{V} = \frac{\pi^2 k_B^4}{15\hbar^3 c^3}\,T^4
+    = \frac{4\sigma}{c}\,T^4,
+    \qquad \sigma \equiv \frac{\pi^2 k_B^4}{60\hbar^3 c^2}.
+\end{equation}
+Here $\sigma$ is the \textbf{Stefan--Boltzmann constant}.
+\end{formula}
+
+\subsection{Free energy}
+
+Integrating by parts in the frequency integral,
+\begin{align}
+    F &= -k_BT\log Z
+    = \frac{k_BTV}{\pi^2 c^3}\int_0^\infty \omega^2\log(1-e^{-\beta\hbar\omega})\,d\omega\notag\\
+    &= \frac{k_BTV}{\pi^2 c^3}\!\left[
+      \tfrac{1}{3}\omega^3\log(1-e^{-\beta\hbar\omega})\Big|_0^\infty
+      + \frac{\beta\hbar}{3}\int_0^\infty \frac{\omega^3\,d\omega}{e^{\beta\hbar\omega}-1}
+    \right]
+    = -\frac{U}{3}.
+\end{align}
+Hence $F = -U/3$.
+
+\subsection{Pressure and entropy}
+
+From $dF = -S\,dT - P\,dV$:
+\begin{equation}
+    P = -\pdv{F}{V}\bigg|_T = \frac{U}{3V} = \frac{1}{3}\cdot\frac{4\sigma T^4}{c}.
+\end{equation}
+Radiation pressure is one-third the energy density, analogous to a classical ideal
+gas of massless particles.
+
+\begin{formula}
+\textbf{Entropy of the photon gas:}
+\begin{equation}
+    S = -\pdv{F}{T}\bigg|_V = \frac{4U}{3T} = \frac{16\sigma T^3 V}{3c}.
+\end{equation}
+\end{formula}
+
+\subsection{Number of photons}
+
+Dividing the energy integrand by the energy per photon $\hbar\omega$ gives the
+number of photons at each frequency.  Integrating:
+\begin{equation}
+    N = \frac{V}{\pi^2 c^3}\int_0^\infty \frac{\omega^2\,d\omega}{e^{\beta\hbar\omega}-1}
+    = \frac{V}{\pi^2 c^3}\!\left(\frac{k_BT}{\hbar}\right)^{\!3} 2\,\zeta(3)
+    \approx \frac{1.48\,\sigma T^3 V}{\hbar c}.
+\end{equation}
+The number of photons scales as $T^3$ and is not a conserved quantity.
+
+\subsection{Heat capacity and fluctuations}
+
+The heat capacity is
+\begin{equation}
+    C_V = \pdv{U}{T}\bigg|_V = \frac{16\sigma T^3 V}{c}.
+\end{equation}
+
+The relative energy fluctuation scales as
+\begin{equation}
+    \frac{\sigma(U)}{U} \sim \sqrt{\frac{\hbar c}{\sigma T^3 V}} \sim \frac{1}{\sqrt{N}},
+\end{equation}
+as expected for a system of $N$ nearly independent modes.
+
+% ------------------------------------------------------------------
+\subsection{Some Points on the Photon Gas}
+% ------------------------------------------------------------------
+
+\subsubsection*{(1) Mechanical derivation of radiation pressure}
+
+Consider plane waves of mode $\vec{k}$ incident on a wall at angle $\theta$ to
+the wall normal.
+
+\begin{center}
+[DIAGRAM: Plane wave ray incident at angle $\theta$ to a flat conducting wall;
+area element $A$ on wall; hemisphere of radius $c\,\delta t$ indicating the
+volume of photons that can reach the wall in time $\delta t$]
+\end{center}
+
+In a small time $\delta t$, photons in a volume $A\,c\,\delta t\cos\theta$ heading
+toward the wall arrive.  Each mode of energy density $U_k$ contributes energy
+$A\,c\,\delta t\cos\theta \cdot U_k$ and hence momentum
+$A\,\delta t\cos\theta \cdot U_k$ (since photon momentum equals energy$/c$).
+Each reflection bounces the photon back, so the impulse per photon is doubled;
+only the component normal to the wall contributes to pressure, giving a factor of
+$\cos\theta$ again.  The pressure from one mode is therefore proportional to
+$2\cos^2\theta\, U_k$.
+
+Integrating over all incoming directions (hemisphere) and averaging:
+\begin{align}
+    P &= 2\langle\cos^2\theta\rangle\cdot\frac{U}{V}
+    = 2\cdot\frac{\int_0^{\pi/2}\cos^2\theta\sin\theta\,d\theta}
+                 {\int_0^{\pi/2}\sin\theta\,d\theta}
+    \cdot\frac{U}{2V}
+    = \frac{1}{3}\frac{U}{V},
+\end{align}
+confirming the thermodynamic result.
+
+\subsubsection*{(2) Classical limit: the ultraviolet catastrophe}
+
+As $\hbar\to 0$, the Bose--Einstein factor becomes
+$e^{\beta\hbar\omega}-1\approx \beta\hbar\omega$, so the energy density
+diverges:
+\begin{equation}
+    U \to \frac{k_BTV}{\pi^2 c^3}\int_0^\infty \omega^2\,d\omega \to \infty.
+\end{equation}
+This is the \textbf{Rayleigh--Jeans} result: the classical equipartition theorem
+assigns $k_BT$ to every mode, and there are infinitely many high-frequency modes.
+The resulting divergence is called the \textbf{ultraviolet catastrophe}, and its
+resolution by Planck (through the quantisation of the EM field) was a foundational
+moment in quantum mechanics.
+
+\subsubsection*{(3) Spectral emission and the Stefan--Boltzmann law}
+
+Imagine making a small hole in the box.  Photons in a hemisphere of radius $r$
+within the small volume $dV = r^2\sin\theta\,d\theta\,d\phi\,dr$ that travel
+toward area $A$ of the hole escape if their direction points at the hole and they
+are within distance $c\,\delta t$.  The energy emitted per unit time, per unit
+area, per unit frequency is
+\begin{equation}
+    \frac{\text{Power}}{A\;d\omega}
+    = \frac{\hbar}{4\pi^2 c^2}\cdot\frac{\omega^3}{e^{\beta\hbar\omega}-1}.
+\end{equation}
+
+\begin{fact}
+\textbf{Recap --- spectral radiance per unit angular frequency:}
+\begin{equation}
+    \frac{P/A}{\text{unit}\;\omega}
+    = \frac{\hbar}{4\pi^2 c^2}\cdot\frac{\omega^3}{e^{\beta\hbar\omega}-1}.
+\end{equation}
+\end{fact}
+
+Integrating over all frequencies and using the same zeta-function result:
+\begin{align}
+    \frac{P}{A}
+    &= \frac{\hbar}{4\pi^2 c^2}
+       \left(\frac{k_BT}{\hbar}\right)^{\!4}
+       \int_0^\infty\frac{\tau^3\,d\tau}{e^\tau-1}
+    = \frac{\hbar}{4\pi^2 c^2}
+       \left(\frac{k_BT}{\hbar}\right)^{\!4} 3!\,\zeta(4)
+    = \frac{\pi^2 k_B^4}{60\hbar^3 c^2}\,T^4.
+\end{align}
+
+\begin{formula}
+\textbf{Stefan--Boltzmann Law:}
+\begin{equation}
+    \frac{P}{A} = \sigma T^4,\qquad
+    \sigma = \frac{\pi^2 k_B^4}{60\hbar^3 c^2}.
+\end{equation}
+\end{formula}
+
+\paragraph{Example: Earth's equilibrium temperature.}
+
+The Sun has surface temperature $T_0\approx 5772\,\text{K}$ and radius
+$R_\odot\approx 6.96\times 10^8\,\text{m}$; the Earth--Sun distance is
+$a\approx 1.5\times 10^{11}\,\text{m}$.  The total solar luminosity is
+$P_\odot = 4\pi R_\odot^2\,\sigma T_0^4$.  The power intercepted by Earth's
+cross-section $\pi R_E^2$ is
+\begin{equation}
+    P_\text{in} = P_\odot\cdot\frac{\pi R_E^2}{4\pi a^2}.
+\end{equation}
+Setting this equal to the power radiated by Earth's full surface,
+$P_\text{out} = 4\pi R_E^2\,\sigma T_E^4$, gives
+
+\begin{formula}
+\textbf{Earth's equilibrium temperature:}
+\begin{equation}
+    T_E = T_0\!\left(\frac{R_\odot}{2a}\right)^{\!1/2} \approx 278\,\text{K}.
+\end{equation}
+This is close to the observed average surface temperature; the actual value is
+somewhat higher due to the greenhouse effect.
+\end{formula}
+
+% ------------------------------------------------------------------
+\chapter{Grand Canonical Ensemble}
+% ------------------------------------------------------------------
+
+\section{Recap: Gibbs Factor and its Limitations}
+
+When particles are indistinguishable, we correct the classical partition function
+by the Gibbs factor $1/N!$, writing $Z_N = Z_1^N/N!$.  This works well in the
+\emph{high-temperature limit}, where the typical occupancy of any single quantum
+state is much less than one and so two particles are very unlikely to occupy the
+same state.  At low temperatures this approximation fails, because occupancies of
+order one or more become common, and we must use the correct quantum statistics.
+
+\section{Bosons and Fermions}
+
+Quantum mechanics requires the many-body wavefunction to be \emph{symmetric}
+under exchange for \textbf{bosons} (integer spin) and \emph{antisymmetric} for
+\textbf{fermions} (half-integer spin).  For two single-particle states $\psi_{k_1}$
+and $\psi_{k_2}$:
+\begin{align}
+    \text{Bosons:}\quad
+    \Psi_{k_1k_2}
+    &= \frac{1}{\sqrt{2}}\!\left[\psi_{k_1}(1)\psi_{k_2}(2)
+       +\psi_{k_2}(1)\psi_{k_1}(2)\right],\\
+    \text{Fermions:}\quad
+    \Psi_{k_1k_2}
+    &= \frac{1}{\sqrt{2}}\!\left[\psi_{k_1}(1)\psi_{k_2}(2)
+       -\psi_{k_2}(1)\psi_{k_1}(2)\right].
+\end{align}
+For fermions the wavefunction vanishes when $k_1=k_2$, so two fermions cannot
+occupy the same state.  This is the \textbf{Pauli exclusion principle}.
+
+\begin{fact}
+For \textbf{bosons}, the occupation number $n_k$ of any single-particle state
+$k$ can be any non-negative integer: $n_k = 0,1,2,\ldots$
+
+For \textbf{fermions}, $n_k\in\{0,1\}$ only.
+\end{fact}
+
+\section{General $N$-Particle State}
+
+A general $N$-particle state is labelled by occupation numbers
+$|n_1, n_2, \ldots, n_k, \ldots\rangle$, where $n_i$ is the number of particles
+in single-particle state $i$ and $\sum_i n_i = N$.
+
+\paragraph{Boson example.}  For $N=3$ spinless (spin-0) bosons in a harmonic
+oscillator, the levels are $k=0,1,2,\ldots$ with energies
+$E_k=(k+\tfrac{1}{2})\hbar\omega$.  The allowed states are tuples $(n_0,n_1,n_2,\ldots)$
+with $\sum n_i = 3$.  There is one state at total energy $\tfrac{3}{2}\hbar\omega$
+(all three in $k=0$), one at $\tfrac{5}{2}\hbar\omega$, two at $\tfrac{7}{2}\hbar\omega$
+(one particle excited to $k=1$ or $k=2$), and so on.
+
+\begin{center}
+[DIAGRAM: Energy-level diagram ($k=0,1,2,3$ horizontal lines) showing four
+$N=3$ boson configurations labelled by total occupation tuples; total energies
+$\tfrac{3}{2}\hbar\omega$, $\tfrac{5}{2}\hbar\omega$, $\tfrac{7}{2}\hbar\omega$,
+$\tfrac{9}{2}\hbar\omega$ indicated below]
+\end{center}
+
+\paragraph{Fermion example.}  For $N=3$ spin-$\tfrac{1}{2}$ fermions (each level
+2-fold degenerate from spin up/down), the Pauli principle allows at most one
+particle per spin-level.  At each total energy there are a countable number of
+configurations; the lowest possible energy requires filling the lowest available
+spin-states.
+
+\begin{center}
+[DIAGRAM: Energy-level diagram for $N=3$ spin-$\tfrac{1}{2}$ fermions, showing
+allowed occupation configurations (arrows for spin up/down) at energies
+$\tfrac{3}{2}\hbar\omega$ (no state: Pauli blocked), $\tfrac{5}{2}\hbar\omega$
+(2 states), $\tfrac{7}{2}\hbar\omega$ (few states), $\tfrac{9}{2}\hbar\omega$
+(more states)]
+\end{center}
+
+\section{Why the Canonical Partition Function Does Not Factorise}
+
+For a fixed-$N$ system, the canonical partition function is
+\begin{equation}
+    Z_N = \sum_{\substack{n_1,n_2,\ldots \\ \sum_i n_i = N}}
+    e^{-\beta n_1\varepsilon_1}\,e^{-\beta n_2\varepsilon_2}\cdots.
+\end{equation}
+Because the occupation numbers must satisfy the constraint $\sum_i n_i = N$, they
+are not independent, and the sum \emph{cannot} be factored into a product of
+independent single-mode sums.  The Gibbs approximation $Z_N \approx Z_1^N/N!$
+fails for quantum statistics.  The grand canonical ensemble, which relaxes the
+fixed-$N$ constraint, is the natural framework.
+
+\section{The Grand Canonical Ensemble}
+
+\begin{definition}
+In the \textbf{grand canonical ensemble} the system is in contact with a reservoir
+that fixes both temperature $T$ and chemical potential $\mu$.  The particle number
+$N$ is allowed to fluctuate; only the average $\langle N\rangle$ is determined by
+$\mu$.  The fixed variables are $V$, $\mu$, $T$.
+\end{definition}
+
+The three ensembles are compared as follows.
+
+\begin{center}
+[DIAGRAM: Table comparing microcanonical ($V,N,U$ fixed; $T,P,\mu$ derived),
+canonical ($V,N,T$ fixed; $U$ fluctuates), and grand canonical ($V,\mu,T$ fixed;
+$U$ and $N$ fluctuate)]
+\end{center}
+
+\section{New Thermodynamic Potential and Chemical Potential}
+
+Allowing particle exchange modifies the first law:
+\begin{equation}
+    dU = T\,dS - P\,dV + \mu\,dN.
+\end{equation}
+The \textbf{chemical potential} $\mu$ is the energy cost of adding one particle
+at fixed entropy and volume:
+\begin{equation}
+    \mu = \pdv{U}{N}\bigg|_{S,V} = -T\pdv{S}{N}\bigg|_{U,V}.
+\end{equation}
+
+\paragraph{Physical intuition.}  Consider two subsystems that can exchange both
+energy and particles.  Maximising the total entropy with respect to energy exchange
+gives $T_1=T_2$ (thermal equilibrium), and maximising with respect to particle
+exchange gives
+\begin{equation}
+    \pdv{S_1}{N_1}\bigg|_{U,V} = \pdv{S_2}{N_2}\bigg|_{U,V}
+    \implies \frac{\mu_1}{T_1} = \frac{\mu_2}{T_2},
+\end{equation}
+so in equilibrium $T$ and $\mu$ are equalised simultaneously.  The chemical
+potential plays the same role for particle exchange that temperature plays for
+energy exchange.
+
+\begin{center}
+[DIAGRAM: Two boxes in thermal and particle contact; arrows showing energy
+$U$ and particle number $N$ flow; one box labelled ``system'', the other
+``reservoir at $T$, $\mu$'']
+\end{center}
+
+Placing the system in contact with a large reservoir at $(T,\mu)$, the system's
+energy and particle number both fluctuate.  Let $U_\text{tot}$ and $N_\text{tot}$
+denote the conserved totals; then $U_\text{res} = U_\text{tot} - U$ and
+$N_\text{res} = N_\text{tot} - N$ are determined by conservation.  The analysis
+that follows from expanding the reservoir entropy leads to the grand canonical
+probability distribution, which we develop in the next section.

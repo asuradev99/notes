@@ -1,0 +1,498 @@
+% Pages 141–155
+% Lec. 11: Second Law, Ergodic Hypothesis (continued)
+% Lec. 12: Semi-classical Phase Space, Statistical Model of Ideal Gas
+% Lec. 12 continued: Gibbs Paradox, Entropy of Mixing, Thermodynamic Equilibrium
+
+% ---- Page 141: Continuation of entropy increase / paradox resolution ----
+
+This means the entropy must certainly increase with time:
+
+\begin{formula}
+\begin{equation}
+    \dv{S}{t} \geq 0.
+\end{equation}
+\end{formula}
+
+From the information-theory perspective, our uncertainty about the actual microstate can only increase. This asymmetry in time raises a subtle paradox: both classical and quantum frameworks yield time-reversal invariant evolutions at the level of individual microstates, yet macroscopic entropy grows. The resolution lies in the ensemble picture.
+
+\begin{center}[DIAGRAM: a tube in phase space showing an initial ensemble (blob of microstates in one slice) evolving forward in time to a final slice; arrows indicate the flow of classical microstates; the shape of the blob deforms but its volume (Liouville) is conserved]\end{center}
+
+The shape of the ensemble may change dramatically as it evolves — stretching and folding through phase space — and hence the \emph{number of microstates} it overlaps with appears to increase. This is how entropy grows: not because individual trajectories are irreversible, but because the initial ensemble, drawn from a tiny region of phase space, eventually shadows an overwhelmingly larger number of microstates.
+
+% ---- Page 142–143: Recitation (Midterm Review) problems ----
+
+\section{Recitation: Midterm Review Problems}
+
+\subsection*{Problem 1}
+
+Parts (b) through (h) of Problem~1 address various aspects of the Van der Waals gas and quasi-static processes. Part~(b) notes that internal energy does not change in the same way as passive heat changes (i.e.\ not all internal energy changes correspond to passive heat transfer). Part~(g) is identified as false; the remaining parts (c) and (h) are left as exercises.
+
+\subsection*{Problem 2}
+
+\textbf{Part (a).} We compute the work, heat, and internal energy change for a Van der Waals gas expanding from volume $V_1$ to $V_2$. The internal energy change is
+\begin{equation}
+    \Delta U = U_2 - U_1 - \frac{aN^2}{V^2}\bigg|_{\text{evaluated}}.
+\end{equation}
+The quasi-static work done \emph{on} the gas is
+\begin{align}
+    W &= -\int_{V_1}^{V_2} P\,dV = -\int_{V_1}^{V_2}\!\left(\frac{NkT}{V - Nb} - \frac{aN^2}{V^2}\right)dV \notag\\
+    &= \left[-NkT\ln(V - Nb) - \frac{aN^2}{V}\right]_{V_1}^{V_2} \notag\\
+    &= NkT\ln\!\left(\frac{V_1 - Nb}{V_2 - Nb}\right) - \frac{aN^2}{V_1}(r - 1),
+\end{align}
+where $r = V_1/V_2$. The heat transferred to the gas is
+\begin{align}
+    Q &= NkT\ln\!\left(\frac{V_1 - Nb}{V_2 - Nb}\right) \notag\\
+    &= -NkT\ln\!\left(\frac{V_1 - Nb}{V_2 - Nb}\right) \leq 0,
+\end{align}
+confirming that heat flows \emph{out} of the gas during an expansion at fixed $T$.
+
+\textbf{Part (b).} Using the triple product (cyclic) rule for a general equation of state,
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T + \left.\pdv{V}{T}\right|_U \left.\pdv{T}{U}\right|_V = -1,
+\end{equation}
+which can be rearranged as
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T = -C_V \left.\pdv{T}{V}\right|_U.
+\end{equation}
+
+\subsection*{Free Expansion into a Vacuum}
+
+\begin{center}[DIAGRAM: a container divided by a partition; left side holds a gas at volume $V$, right side is vacuum; the partition is removed and the gas expands to fill total volume]\end{center}
+
+Consider letting a gas freely expand into a vacuum. The protocol is: (1) start in equilibrium at temperature $T$; (2) measure $T$ of the gas; (3) open valve; (4) allow equilibration; (5) measure $\Delta T$. For an ideal gas, $\Delta U = \Delta W + \Delta Q = 0$ since no work is done against a vacuum and no heat is exchanged. For an ideal monatomic gas, $U = \frac{3}{2}NkT$, and $C_V = \frac{3}{2}Nk$, $C_P = \frac{5}{2}Nk$.
+
+The heat capacity at constant volume can be related to the limiting ratio of energy and temperature increments:
+\begin{equation}
+    \lim_{\Delta T \to 0}\left(\frac{\Delta V}{\Delta T}\right) = \left.\pdv{V}{T}\right|_P.
+\end{equation}
+
+\subsection*{Problem 4}
+
+\textbf{Part (a).} The Poisson distribution $p(m, \lambda) = \frac{\lambda^m}{m!}e^{-\lambda}$ gives the probability of $m$ events when the mean is $\lambda$. With $\frac{\partial \lambda}{\partial t} = \frac{N}{T}$, one finds $P_1 = \frac{N}{T}e^{-N t/T}$.
+
+\textbf{Part (b).} The number of argon-40 atoms that decay in a finite time $T$ follows a Poisson distribution $\text{Poisson}\!\left(\frac{N t}{T}, t\right)$. For zero decays ($m = 0$), the probability is $P_0 = e^{-N t/T}$, so $P_0$:
+
+% ---- Page 144: Lec. 11 — Entropy and the Second Law ----
+
+\section{Entropy Will Basically Always Increase in Time}
+
+\subsection{Paradox Resolution}
+
+The seeming paradox between time-reversal invariance of microscopic physics and the macroscopic arrow of time is resolved by examining the ensemble picture more carefully.
+
+\begin{center}[DIAGRAM: two panels showing phase-space slices. Left: initial ensemble (blob of microstates). Right: final ensemble after evolution, which has spread to occupy a much larger region of phase space. Arrows connect initial to final ensemble.]\end{center}
+
+The crucial point is that the time-evolved \emph{initial} microstate is only a \emph{subset} of the final state ensemble. There are a vast number of microstates compatible with the final macrostate that are \emph{not} causally linked to any initial microstate of the original ensemble — these have simply not been accessed.
+
+\subsection{How Much Has Entropy Increased?}
+
+Consider a gas free expansion: $N$ atoms that were confined to one half of a box now fill the whole box. We need one extra bit of information per atom to describe which side of the box any given atom is on. This means the Shannon entropy increases by $N$ bits:
+\begin{equation}
+    \Delta S = k_B\ln_2\Delta\Omega \implies \Delta S = Nk_B\ln 2.
+\end{equation}
+The ratio of accessible microstates after to before the expansion is
+\begin{equation}
+    \frac{\Gamma_{\text{new}}}{\Gamma_{\text{old}}} = e^{N\ln 2} = 2^N \approx 2^{10^{23}}.
+\end{equation}
+This is an astronomically large number, which illustrates why the entropy increase is, for all practical purposes, irreversible.
+
+\begin{fact}
+\textbf{Note:} Isolated systems may only increase entropy. Most systems ``relax'' to the state of maximum entropy.
+\end{fact}
+
+% ---- Page 145: Second Law, Ergodic Hypothesis, Density of States ----
+
+\subsection{Second Law of Thermodynamics}
+
+\begin{theorem}[Second Law of Thermodynamics]
+The entropy of a closed system will always increase. Equivalently, we can never know the exact microstate of a macroscopic system — our uncertainty can only grow.
+\end{theorem}
+
+\subsection{Ergodic Hypothesis}
+
+\begin{definition}[Ergodic Hypothesis]
+To compute the average of a macroscopic observable, we should average over every microstate, weighted by its probability. This \emph{ensemble average} is defined as
+\begin{equation}
+    \langle f \rangle = \sum_{\{S_i\}} f(S_i)\,p(S_i) = \frac{1}{T}\int_0^T f(t)\,dt,
+\end{equation}
+where the last equality asserts that the ensemble average equals the time average.
+\end{definition}
+
+We assume that the time average equals the ensemble average. This is \emph{not} true for all systems — not all systems are ergodic — but a system in thermal equilibrium samples every microstate over time according to $p(S_i)$, and the ergodic hypothesis holds to excellent approximation in that case.
+
+\subsection{Isolated Systems and Entropy}
+
+For an \textbf{isolated} system (one that cannot exchange heat), all isolated systems evolve to thermodynamic equilibrium, meaning all microstates become equally likely. Hence $S = k_B\ln\Omega$.
+
+\subsection{Density of States}
+
+\begin{definition}[Density of States]
+To compute thermodynamic properties of an isolated system with fixed energy $E$, we need to count the number of accessible microstates. Rather than counting states \emph{exactly} at energy $E$, we calculate the number of states $N(E)$ with energy up to $E$ and then differentiate to obtain the density of states $\rho(E) = \dv{N}{E}$, which measures the number of states in a small energy window $E \to E + dE$.
+\end{definition}
+
+The practical recipe is: (1) calculate $N(E)$, the cumulative number of states, and (2) differentiate.
+
+% ---- Page 146: Spin in Magnetic Field and Particle in a Box ----
+
+\section{Examples: Spin in a Magnetic Field and Particle in a Box}
+
+\subsection{Spin-$\tfrac{1}{2}$ Particle in a Magnetic Field}
+
+Consider a spin-$\tfrac{1}{2}$ particle in a magnetic field. The magnetic moment is $\vec{M} = 2\mu_B \vec{S}/\hbar$ (in Bohr magnetons), so the energy is $E = -\vec{M}\cdot\vec{B}$, which gives only two possible values $E = \pm\mu_B B$.
+
+\begin{center}[DIAGRAM: energy level diagram showing two levels: $E = -\mu_B B$ (spin aligned with field) and $E = +\mu_B B$ (spin anti-aligned)]\end{center}
+
+The cumulative number of states up to energy $E$ is:
+\begin{equation}
+    N(E) =
+    \begin{cases}
+        0 & E < -\mu_B B, \\
+        1 & -\mu_B B \leq E < \mu_B B, \\
+        2 & E \geq \mu_B B,
+    \end{cases}
+\end{equation}
+which can be written compactly as $N(E) = \Theta(E + \mu_B B) + \Theta(E - \mu_B B)$, where $\Theta$ is the Heaviside step function.
+
+The density of states is therefore
+\begin{equation}
+    \dv{N}{E} = \delta(E + \mu_B B) + \delta(E - \mu_B B),
+\end{equation}
+a pair of delta-function spikes at the two allowed energies.
+
+\begin{center}[DIAGRAM: graph of $\dv{N}{E}$ vs.\ $E$ showing two vertical spikes at $E = -\mu_B B$ and $E = +\mu_B B$]\end{center}
+
+\begin{definition}[Density of States]
+$\dv{N}{E}$ is the number of states in a small energy window $[E, E + dE]$. Two key properties: (1) it is non-negative (and in fact non-decreasing in $N$), and (2) the integral $\int_{E_1}^{E_2}\dv{N}{E}\,dE = N(E_2) - N(E_1)$ counts all states between $E_1$ and $E_2$.
+\end{definition}
+
+\subsection{Particle in a Box}
+
+\begin{center}[DIAGRAM: three-dimensional rectangular box of side length $L$]\end{center}
+
+Solving the Schr\"{o}dinger equation in a cubic box of side $L$ gives energy eigenvalues
+\begin{equation}
+    E(n_1, n_2, n_3) = \frac{\pi^2\hbar^2}{2mL^2}\left(n_1^2 + n_2^2 + n_3^2\right),
+\end{equation}
+where $n_1, n_2, n_3 = 1, 2, 3, \ldots$ are positive quantum numbers (for a single particle). These are the \emph{energy quanta} of the problem.
+
+\textbf{Real numbers.} For helium ($M = 4.166\times 10^{-27}$~kg, $L = 1$~mm), the energy quantum $\frac{\pi^2\hbar^2}{2mL^2} \approx 10^{-23}$~J $\approx k_B \times 0.7$~K. At room temperature this is about $10^{13}$ times smaller than $k_BT$, so the quantum energy spacing is completely negligible and the spectrum appears continuous.
+
+The cumulative number of states up to energy $E$ is
+\begin{equation}
+    N(E) = \sum_{n_1, n_2, n_3} \Theta\!\left(E - \frac{\pi^2\hbar^2}{2mL^2}(n_1^2 + n_2^2 + n_3^2)\right).
+\end{equation}
+
+% ---- Page 147: Density of States for a Particle in a Box (continued) ----
+
+Explicitly, $N(E)$ counts every positive-integer lattice point $(n_1, n_2, n_3)$ satisfying
+\begin{equation}
+    n_1^2 + n_2^2 + n_3^2 \leq C^2, \qquad C \equiv \sqrt{\frac{2mL^2 E}{\pi^2\hbar^2}}.
+\end{equation}
+Since the energy spacing is tiny compared to $k_BT$ (as shown above), the quantum level spacing is effectively continuous for all practical purposes ($k_BT \gg \Delta Q$, where $\Delta Q$ is the quantum level spacing). We can therefore use the continuum approximation: because $\Theta(cx) = \Theta(x)$ for $c > 0$, the sum over quantum numbers becomes an integral,
+\begin{equation}
+    N(E) = \int_0^\infty dn_1 \int_0^\infty dn_2 \int_0^\infty dn_3\; \Theta\!\left(C - \sqrt{n_1^2 + n_2^2 + n_3^2}\right),
+\end{equation}
+which is the volume of the portion of a sphere of radius $C$ in the all-positive octant (only $\tfrac{1}{8}$ of the full sphere, since each $n_i \geq 0$). This gives
+\begin{equation}
+    N(E) = \frac{1}{8}\cdot\frac{4\pi}{3}C^3 = \frac{1}{6\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2}V\,E^{3/2},
+\end{equation}
+where $V = L^3$. The density of states follows by differentiation:
+\begin{formula}
+\begin{equation}
+    \dv{N}{E} = \frac{1}{4\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2}V\sqrt{E}.
+\end{equation}
+\end{formula}
+
+\subsection{Generalization to Arbitrary Systems}
+
+For a general system with a set of quantum numbers $\{n_i\}$ and energy levels $\{E\{n_i\}\}$, the cumulative count and density of states are
+\begin{align}
+    N(E) &= \sum_{\{n_i\}} \Theta(E - E\{n_i\}) \approx \int \prod_j dn_j\;\Theta(E - E\{n_j\}), \\
+    \rho(E) &= \sum_{\{n_i\}} \delta(E - E\{n_i\}) \approx \int \prod_j dn_j\;\delta(E - E\{n_j\}).
+\end{align}
+
+Alternatively, we may sum over energy \emph{levels} $E'$ (rather than individual quantum numbers):
+\begin{equation}
+    N(E) \approx \int_{-\infty}^{E} dE'\,\rho(E'),
+\end{equation}
+where $\rho(E') = \dv{N}{E'}\big|_{\text{degeneracy}}$ counts the number of states at each level. One can verify the consistency: $\rho(E) = \int dE'\,\rho(E')\,\delta(E - E') = \rho(E)$. \checkmark
+
+% ---- Page 148: Lec. 12 — State Counting in Semi-Classical Physics ----
+
+\chapter{Semi-Classical Phase Space and State Counting}
+
+\section{State Counting in Semi-Classical Physics}
+
+It is often more convenient to start from how the energy $E$ depends on position $x$ and momentum $p$, rather than working directly with quantum numbers. If we know the classical energy $E(x, p)$, how can we count the available quantum states?
+
+For a single particle, the state is a point in 6-dimensional phase space: $\{x, y, z, p_x, p_y, p_z\}$. For $N$ particles, the state is a point in $6N$-dimensional phase space. The issue is that classically $N(E)$ is infinite — phase space is a continuum — but quantum mechanics tells us states are discrete. The semi-classical approach bridges the two.
+
+\subsection{One Particle in a Box: Semi-Classical Counting}
+
+For a particle in a box, $E = p^2/2m$. The cumulative count of states up to energy $E$ is
+\begin{equation}
+    N(E) = \frac{1}{\Delta}\int d^3x\int d^3p\;\Theta(E - E(x,p)),
+\end{equation}
+where $\Delta$ is the volume of one quantum state in phase space (to be determined), and the factor accounts for the fact that states are not infinitesimally small. Evaluating the spatial integral gives a factor of $V$, and the momentum integral gives the volume of the sphere $p^2 \leq 2mE$:
+\begin{align}
+    N(E) &= \frac{1}{\Delta}\int d^3x\int d^3p\;\Theta(2mE - p^2) \notag\\
+    &= \frac{V}{\Delta}\cdot\frac{4\pi}{3}(2mE)^{3/2},
+\end{align}
+(taking only the positive-$p$ octant is not needed here since the classical phase-space integral runs over all $p$). This gives
+\begin{equation}
+    N(E) = \frac{4\pi}{3\Delta}\,V(2mE)^{3/2}.
+\end{equation}
+
+Comparing with the quantum result $N(E) = \frac{1}{6\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2}V\,E^{3/2}$, the two agree provided
+\begin{formula}
+\begin{equation}
+    \boxed{\Delta = (2\pi\hbar)^3 = h^3.}
+\end{equation}
+\end{formula}
+
+This is the \textbf{volume of one quantum state in 3D phase space}. Physically, it follows directly from the Heisenberg uncertainty principle: $\Delta x\,\Delta p_x \sim \hbar$, so a minimum-uncertainty cell in phase space has volume $\hbar^3$ per spatial dimension, or $(2\pi\hbar)^3$ in three dimensions.
+
+\begin{definition}[Phase Space Volume Per State]
+For a system with a 1D phase space, the volume of one quantum state is $\Delta = 2\pi\hbar = h$. For a $d$-dimensional system, $\Delta = (2\pi\hbar)^d = h^d$.
+\end{definition}
+
+The general semi-classical rule is therefore:
+\begin{equation}
+    N(E) = \frac{1}{(2\pi\hbar)^{3N}}\int d^{3N}x\int d^{3N}p\;\Theta(E - E(\vec{x}, \vec{p})).
+\end{equation}
+
+% ---- Page 149: Statistical Model of the Ideal Gas ----
+
+\chapter{Statistical Model of the Ideal Gas}
+
+We now apply the machinery of state counting to $N$ non-interacting particles in a box. The setup rests on four assumptions:
+\begin{enumerate}
+    \item A single particle is fully characterized by 3 quantum numbers $n_x, n_y, n_z$; each atom independently occupies such a state.
+    \item The $N$-particle state is specified by $\hat{n} = \{n_i^j\}$, the collection of quantum numbers for each atom $j$.
+    \item The system is isolated, with fixed state variables $(N, V, U)$.
+    \item We work in the classical limit $\frac{\text{\# states}}{\text{\# particles}} \gg 1$ (many more states than particles), which follows from the fact that the energy quantum is many orders of magnitude smaller than $k_BT$ and the Gibbs factor does not account for this.
+\end{enumerate}
+
+The classical limit ensures that the typical energy $E_{\max}/N$ is much larger than the quantum energy level spacing, so energy levels are effectively continuous and particles rarely share the same two states.
+
+To build intuition: if we let every atom carry an energy drawn from an occupied state $E_{\max}$, the number of states at fixed total energy $U$ is
+\begin{equation}
+    N(U) = \sum_{n_1, n_2} \sum_{\ldots} \Theta\!\left(U - \frac{\pi^2\hbar^2}{2mL^2}\sum_j |n_j|^2\right)
+    = \int\!\!\int \prod_j dn_j^x\,dn_j^y\,dn_j^z\;\Theta\!\left(C^2 - \sum_j |\vec{n}_j|^2\right),
+\end{equation}
+where $C = \sqrt{2mL^2 U/(\pi^2\hbar^2)}$. Now perform a change of variables $n_j^x = R_j^x$, $n_j^y = R_j^y$, $n_j^z = R_j^z$ (i.e., the $3N$ quantum numbers form a vector $\vec{R}$ in $3N$-dimensional space). The integrand becomes
+\begin{equation}
+    N(U) = R^{3N}\int_0^\infty dR_1\int_0^\infty dR_2\,\cdots\int_0^\infty dR_{3N}\;\Theta\!\left(1 - \sum_j R_j^2\right),
+\end{equation}
+where we have also rescaled each $n_j \to C\,R_j$. Since the integrand is symmetric (even) in each $R_j$, we can extend the integration over all of $\mathbb{R}^{3N}$ and compensate with a factor of $(\tfrac{1}{2})^{3N}$:
+\begin{equation}
+    N(U) = \left(\frac{1}{2}\right)^{3N} R^{3N} \int_{-\infty}^{\infty} d^{3N}R\;\Theta\!\left(1 - |\vec{R}|^2\right).
+\end{equation}
+The integral on the right is the volume of the unit $3N$-dimensional sphere.
+
+% ---- Page 150: Volume of 3N-sphere, Gamma Function, and Entropy ----
+
+\section{Volume of the $3N$-Dimensional Sphere and the Gamma Function}
+
+The unit sphere in $3N$ dimensions has volume
+\begin{equation}
+    V_{3N} = \frac{\pi^{3N/2}}{\Gamma\!\left(\frac{3N}{2} + 1\right)},
+\end{equation}
+a standard result.
+
+\begin{definition}[Gamma Function]
+The Gamma function is defined for positive integers by $\Gamma(n) = (n-1)!$ and satisfies $\Gamma(n+1) = n\,\Gamma(n)$. For half-integers, $\Gamma\!\left(n + \tfrac{1}{2}\right) = \frac{(2n)!}{4^n n!}\sqrt{\pi}$.
+\end{definition}
+
+Putting everything together, the cumulative number of states for the $N$-particle ideal gas is
+\begin{equation}
+    N(U) = \left(\frac{1}{2}\right)^{3N}\left(\frac{2mL^2 U}{\pi^2\hbar^2}\right)^{3N/2}V_{3N}
+          = \frac{1}{\Gamma\!\left(\frac{3N}{2}+1\right)}\left(\frac{mU}{\pi\hbar^2}\right)^{3N/2}V^N.
+\end{equation}
+
+We can afford to be cavalier about whether we use $N(U)$ or the slightly different number of states in a thin shell $[U, U+\delta U]$, because in the thermodynamic limit the logarithm of either quantity is dominated by the same leading term; corrections are of relative order $1/N \ll 1$.
+
+\subsection{Entropy of the Ideal Gas}
+
+The number of states in the shell $[U, U + \delta U]$ is $\Gamma(U) = \dv{N}{U}\,\delta U$. Using Stirling's approximation $\ln N! \approx N\ln N - N$ and differentiating $N(U)$:
+\begin{equation}
+    \Gamma(U, V, N) = \dv{N}{U}\delta U = \left(\frac{\pi}{2}\right)^{3N/2}\frac{1}{\Gamma\!\left(\frac{3N}{2}\right)}\left(\frac{2mU}{\pi^2\hbar^2}\right)^{3N/2-1}\!\cdot\frac{3N}{2}\cdot\frac{V^N}{\pi\hbar^2}\,\delta U.
+\end{equation}
+
+Taking the logarithm (and noting that multiplicative constants like $\delta U$ are negligible compared to the extensive terms at large $N$):
+\begin{align}
+    S(U, V, N) &= k_B\ln\Gamma(U,V,N) \notag\\
+    &= Nk_B\left[\ln V + \ln\!\left(\frac{4\pi mU}{3N\pi^2\hbar^2}\right)^{3/2} + \frac{3}{2}\right] + \text{(negligible terms)} \notag\\
+    &= Nk_B\left[\ln V + \frac{3}{2}\ln\!\left(\frac{4mU}{3N\hbar^2}\right) + \frac{3}{2}\right] \notag\\
+    &= Nk_B\!\left[\ln V + \frac{3}{2}\ln\!\left(\frac{4\pi mU}{3Nh^2/(4\pi^2)}\right)\right] \notag\\
+    &= Nk_B\!\left[\ln V + \frac{3}{2}\ln\frac{U}{N} + \frac{3}{2}\ln\frac{4\pi m}{3h^2/(4\pi^2)} + \frac{3}{2}\right].
+\end{align}
+Collecting terms and writing things more cleanly:
+\begin{equation}
+    S = Nk_B\!\left[\ln V + \frac{3}{2}\ln\frac{U}{N} + \frac{3}{2}\ln\frac{m}{3\pi\hbar^2} + \frac{3}{2}\right].
+\end{equation}
+
+\subsubsection{Consistency Check}
+
+The entropy should be extensive: $S(2U, 2V, 2N) = 2S(U, V, N)$. Substituting,
+\begin{equation}
+    S(2U, 2V, 2N) = k_B(2N)\!\left[\ln(2V) + \frac{3}{2}\ln\frac{2U}{2N} + \cdots + \frac{3}{2}\right] = 2S(U, V, N) + 2k_B N\ln 2.
+\end{equation}
+The extra $2k_B N\ln 2$ term spoils extensivity! This is the \textbf{Gibbs Paradox}.
+
+% ---- Page 150 continued and Page 151: Gibbs Paradox ----
+
+\section{The Gibbs Paradox}
+
+Recall that for a free expansion (gas expands into an equal vacuum volume), the entropy changes by
+\begin{equation}
+    \Delta S = Nk_B\ln 2.
+\end{equation}
+
+\begin{center}[DIAGRAM: left panel shows a gas confined to the left half of a box; right panel shows the same gas after free expansion filling the whole box; entropy change $\Delta S = Nk_B\ln 2$ is indicated]\end{center}
+
+This entropy change arises because the final state ensemble contains many more microstates than the initial one. Now consider the reverse: take a gas $(2N, 2V, 2U)$ and insert a partition to divide it into two $(N, V, U)$ halves. This is the \emph{above} process in reverse, so $\Delta S = -2k_B N\ln 2$.
+
+The issue is that when we integrated over all quantum numbers $\int dn_1\,dn_2^y\cdots$, we treated particle~1 in state $i$ and particle~2 in state $j$ as \emph{different} from particle~2 in state $i$ and particle~1 in state $j$. But these two arrangements describe \emph{identical physical configurations} for indistinguishable particles. We have therefore \textbf{over-counted by $N!$}.
+
+The corrected entropy is obtained by dividing $\Gamma$ by $N!$ before taking the logarithm:
+\begin{align}
+    S &= k_B\ln\!\left[\frac{1}{N!}\left(\frac{MU}{2\pi\hbar^2}\right)^{3N/2}\frac{1}{N!}\cdot\left(\frac{1}{\frac{3N}{2}!}\right)V^N\right]
+\end{align}
+which after applying Stirling's approximation yields the celebrated \textbf{Sackur--Tetrode equation}:
+
+\begin{formula}
+\begin{equation}
+    \boxed{S = k_B N\!\left[\ln\frac{V}{N} + \frac{3}{2}\ln\frac{U}{N} + \frac{3}{2}\ln\frac{m}{3\pi\hbar^2} + \frac{5}{2}\right].}
+\end{equation}
+\end{formula}
+
+This is often written in the equivalent form
+\begin{equation}
+    S = k_B N\!\left[\ln\frac{V}{N} + \frac{3}{2}\ln\frac{U}{N} + \frac{3}{2}\ln\!\left(\frac{4\pi m}{3h^2}\right) + \frac{5}{2}\right],
+\end{equation}
+known as the \textbf{Sackur--Tetrode equation}.
+
+\begin{fact}
+\textbf{Note:} In the quantum-mechanical (low energy) limit, low-energy states can become multiply occupied; this makes the counting more intricate and motivates the use of the \emph{Grand Canonical Ensemble}.
+\end{fact}
+
+% ---- Page 151 continued and Page 152: Entropy of Mixing ----
+
+\section{Entropy of Mixing}
+
+Using the Sackur--Tetrode equation, we can calculate $S$ directly from the state variables. Consider two \emph{distinct} gases $A$ and $B$, initially separated and allowed to mix.
+
+\begin{center}[DIAGRAM: a box divided by a removable partition. Left compartment holds $N_A$ particles of gas $A$ at volume $V_A$; right compartment holds $N_B$ particles of gas $B$ at volume $V_B$. After the partition is removed, both gases mix in the total volume $V = V_A + V_B$.]\end{center}
+
+The initial entropy is
+\begin{equation}
+    S_i = S(T, N_A, V_A, U_A) + S(T, N_B, V_B, U_B).
+\end{equation}
+After mixing (and waiting for equilibration), the final entropy is $S_f = S(N_A, V, U_A) + S(N_B, V, U_B)$, where each gas now occupies the full volume $V$.
+
+If initially $T_A = T_B$, $P_A = P_B$, then $\frac{U_A}{N_A} = \frac{U_B}{N_B}$, $\frac{V_A}{N_A} = \frac{V_B}{N_B} = \frac{V}{N}$.
+
+\begin{formula}
+\begin{equation}
+    \Delta S_{\text{mix}} = S_f - S_i = k_B N_A \ln\frac{V}{V_A} + k_B N_B \ln\frac{V}{V_B} \geq 0.
+\end{equation}
+\end{formula}
+
+\subsection{Sanity Check: Two Identical Gases}
+
+If the two gases are \emph{identical} ($A = B$), the same calculation gives
+\begin{align}
+    S_i &= k_B N_A\!\left[\ln\frac{V_A}{N_A} + \frac{3}{2}\ln\frac{U_A}{N_A} + C_A\right]
+         + k_B N_B\!\left[\ln\frac{V_B}{N_B} + \frac{3}{2}\ln\frac{U_B}{N_B} + C_B\right],\\
+    S_f &= k_B N\!\left[\ln\frac{V}{N} + \frac{3}{2}\ln\frac{U}{N} + C\right].
+\end{align}
+With the assumption that the system is initially in thermodynamic equilibrium $(T_A = T_B = T)$ and $(P_A = P_B = P)$, so that $\frac{V_A}{N_A} = \frac{V_B}{N_B} = \frac{V}{N}$, we find $S_i = S_f$, i.e.\ $\Delta S_{\text{mix}} = 0$. Mixing two identical gases at equal temperature and pressure produces no entropy change, as expected physically. This confirms that the Sackur--Tetrode equation correctly encodes the indistinguishability of identical particles.
+
+\begin{center}[DIAGRAM: Box divided into two compartments $A$ and $B$, each with particles of the same species; after removal of partition, the mixed state is indistinguishable from the initial state, so $\Delta S = 0$.]\end{center}
+
+The reason that $\Delta S_{\text{mix}} = 0$ for identical gases is deep: Boltzmann entropy is that which is \emph{maximal} over all distributions of microstates. The state of thermodynamic equilibrium already \emph{is} the state of maximum entropy, and after mixing two identical equilibrated gases the system need not reach a new equilibrium — it is already there.
+
+% ---- Page 153: Maximizing Entropy at Equilibrium ----
+
+\section{Equilibrium as Maximum Entropy}
+
+After mixing, the system must reach equilibrium. For mixing to produce $\Delta S_{\text{mix}} = 0$ when starting from equilibrium, the starting state must already be at maximum entropy. This means that $\Delta S_{\text{mix}}$ is smallest when the two gases are initially in equilibrium.
+
+Now consider two subsystems $A$ and $B$ that may exchange energy and volume, with the constraints $U = U_A + U_B$ and $V = V_A + V_B$ fixed. We want to find the microstate distribution that maximizes $F = S_A + S_B$ subject to these constraints, using Lagrange multipliers $\lambda$ (for energy) and $\delta$ (for volume):
+\begin{align}
+    F &= S_A + S_B + \lambda(U - U_A - U_B) + \delta(V - V_A - V_B) \notag\\
+    &= k_B N_A\!\left[\ln\frac{V_A}{N_A} + \frac{3}{2}\ln\frac{U_A}{N_A} + C_A\right] \notag\\
+    &\quad + k_B N_B\!\left[\ln\frac{V_B}{N_B} + \frac{3}{2}\ln\frac{U_B}{N_B} + C_B\right] \notag\\
+    &\quad + \lambda(U - U_A - U_B) + \delta(V - V_A - V_B).
+\end{align}
+
+Setting partial derivatives to zero:
+\begin{align}
+    \pdv{F}{U_A} = 0 &\implies \frac{3}{2}k_B N_A\cdot\frac{1}{U_A} - \lambda = 0 \implies \lambda = \frac{3}{2}k_B N_A\,\frac{1}{U_A},\\
+    \pdv{F}{U_B} = 0 &\implies \lambda = \pdv{S_B}{U_B}\bigg|_{V_B,N_B} = \frac{3}{2}k_B N_B\,\frac{1}{U_B},\\
+    \pdv{F}{V_A} = 0 &\implies \delta = \pdv{S_A}{V_A}\bigg|_{U_A,N_A} = \frac{k_B N_A}{V_A},\\
+    \pdv{F}{V_B} = 0 &\implies \delta = \pdv{S_B}{V_B}\bigg|_{U_B,N_B} = \frac{k_B N_B}{V_B}.
+\end{align}
+
+The maximum-entropy condition therefore equates the Lagrange multipliers:
+\begin{equation}
+    \lambda = \left.\pdv{S_A}{U_A}\right|_{V_A,N_A} = \left.\pdv{S_B}{U_B}\right|_{V_B,N_B}
+    \quad\text{and}\quad
+    \delta = \left.\pdv{S_A}{V_A}\right|_{U_A,N_A} = \left.\pdv{S_B}{V_B}\right|_{U_B,N_B}.
+\end{equation}
+
+The quantity $\lambda = \pdv{S}{U}\big|_{V,N}$ is the \emph{max entropy quantity} for energy exchange, and $\delta = \pdv{S}{V}\big|_{U,N}$ is the corresponding quantity for volume exchange. For an ideal gas, $\lambda = \frac{3}{2}k_B\frac{N}{U}$ and $\delta = \frac{k_B N}{V}$, so the equilibrium conditions reduce to equal temperature ($\frac{U_A}{N_A} = \frac{U_B}{N_B}$, i.e.\ just equal temperature) and equal pressure ($\frac{N_A}{V_A} = \frac{N_B}{V_B}$, i.e.\ just equal pressure).
+
+% ---- Page 154: Summary and Thermodynamic Definition of Temperature ----
+
+\begin{theorem}[Thermodynamic Equilibrium via Entropy Maximization]
+The state of maximum entropy of an isolated composite system is reached when
+\begin{equation}
+    \left.\pdv{S}{V}\right|_{U,N} \quad\text{and}\quad \left.\pdv{S}{U}\right|_{V,N}
+\end{equation}
+equalize across all subsystems.
+\end{theorem}
+
+For an ideal gas, $\frac{3}{2}k_B\frac{N}{U}$ equal implies equal temperature, and $\frac{k_B N}{V}$ equal implies equal pressure.
+
+\subsection*{Summary}
+
+\begin{itemize}
+    \item Entropy measures the ignorance associated with the ensemble. It is a state function $S(U, V, N)$.
+    \item The entropy of an isolated system in equilibrium is maximized.
+\end{itemize}
+
+% ---- Page 155: Thermodynamic Definition of Temperature and 0th Law ----
+
+\section{Thermodynamic Definition of Temperature}
+
+Consider two systems $A$ and $B$ in thermal contact (able to exchange heat $\delta Q$ but not volume or particles):
+
+\begin{center}[DIAGRAM: two boxes labeled $A$ (with variables $U_A, V_A, N_A$) and $B$ (with variables $U_B, V_B, N_B$) connected by an arrow labeled $\delta Q$, indicating heat exchange]\end{center}
+
+If the combined system is in thermal equilibrium, then $S_{\text{tot}} = S_A + S_B$ is maximum. Since $dU = dU_A + dU_B = 0$ and $dU_A = -dU_B$, the condition $dS = 0$ gives:
+\begin{equation}
+    dS = dS_A + dS_B = 0.
+\end{equation}
+With $dU_A = \delta Q$ and $dU_B = -\delta Q$:
+\begin{equation}
+    \left.\pdv{S_A}{U_A}\right|_{V_A,N_A} dU_A + \left.\pdv{S_B}{U_B}\right|_{V_B,N_B} dU_B = 0,
+\end{equation}
+so that, since $dU_A = -dU_B = \delta Q$:
+\begin{equation}
+    \left(\left.\pdv{S_A}{U_A}\right|_{V_A,N_A} - \left.\pdv{S_B}{U_B}\right|_{V_B,N_B}\right)\delta Q = 0.
+\end{equation}
+Equilibrium (holding for all $\delta Q$) requires the two partial derivatives to be equal. This motivates the thermodynamic definition of temperature:
+
+\begin{theorem}[Thermodynamic Definition of Temperature]
+\begin{equation}
+    \left.\pdv{S}{U}\right|_{V,N} = \frac{1}{T}.
+\end{equation}
+\end{theorem}
+
+This definition is not circular: it defines temperature purely in terms of the entropy function $S(U,V,N)$ without reference to any thermometer. For an ideal gas, $S = \frac{3}{2}Nk_B\ln U + \ldots$, so $\pdv{S}{U}\big|_{V,N} = \frac{3Nk_B}{2U}$, giving $U = \frac{3}{2}Nk_BT$ — consistent with the kinetic theory result. Unlike the kinetic definition, this one is \emph{not} history-dependent: it is defined entirely in terms of state functions.
+
+\section{Zeroth Law of Thermodynamics}
+
+The zeroth law follows as a corollary: if $A$ is in equilibrium with $C$ (both have the same $\pdv{S}{U}$) and $B$ is also in equilibrium with $C$, then $A$ and $B$ must have the same $\pdv{S}{U} = 1/T$ as well and are therefore in mutual equilibrium. Temperature is thus a transitive, equivalence-class-defining property of matter.

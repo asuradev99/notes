@@ -1,0 +1,612 @@
+\chapter{Probability Distributions: a Summary}
+
+\section{Poisson Distribution}
+
+The Poisson distribution models rare events occurring randomly in time. The key assumption is that the probability of a single event occurring in an infinitesimal interval $dt$ is $\lambda\,dt$, where $\lambda$ is the constant rate. For the number of events $n$ occurring in a finite time $T$, the distribution has mean $\langle n \rangle = \lambda T$ and variance $\operatorname{Var}(n) = \lambda T$.
+
+\section{Normalized Gaussian}
+
+\begin{definition}[Gaussian distribution]
+The normalized Gaussian (normal) distribution is
+\begin{equation}
+    p(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right),
+\end{equation}
+with mean $\mu$ and variance $\operatorname{Var}(n) = \sigma^2$.
+\end{definition}
+
+\section{Binomial Distribution}
+
+\begin{definition}[Binomial distribution]
+Let $n$ be the number of trials and $p$ the probability of success for a single trial. The binomial distribution gives the probability of exactly $n$ successes in $N$ trials:
+\begin{equation}
+    p_N(n) = \binom{N}{n}(1-p)^{N-n}\,p^n.
+\end{equation}
+Its mean is $\langle n \rangle = pN$ and its variance is $Np(1-p)$.
+\end{definition}
+
+\section{Multiple Random Variables}
+
+When dealing with two or more random variables simultaneously, the appropriate tool is the \emph{joint probability distribution}. For two continuous variables $x$ and $y$, we define
+\begin{equation}
+    p(x,y) = \frac{\partial^2 P}{\partial x\,\partial y},
+\end{equation}
+so that $dP = p(x,y)\,dx\,dy$ is the probability that $x$ lies in $[x, x+dx]$ and simultaneously $y$ lies in $[y, y+dy]$.
+
+\begin{center}[DIAGRAM: small rectangle of width $dx$ and height $dy$ in the $xy$-plane illustrating the infinitesimal probability element $dP = p(x,y)\,dx\,dy$]\end{center}
+
+\subsection{Normalization and Cumulative Distribution}
+
+Normalization requires
+\begin{equation}
+    \int_{x,y} dx\,dy\;p(x,y) = 1.
+\end{equation}
+The cumulative distribution is
+\begin{equation}
+    \int_{-\infty}^{x}\int_{-\infty}^{y} p(x',y')\,dx'\,dy' = P(x,y).
+\end{equation}
+
+\subsection{Mean of a Function}
+
+The expectation value of any function $f(x,y)$ is
+\begin{equation}
+    \langle f(x,y) \rangle = \iint f(x,y)\,p(x,y)\,dx\,dy.
+\end{equation}
+
+\subsection{Marginal Probability Distribution}
+
+The \emph{marginal} distribution for $y$ alone is obtained by integrating out $x$:
+\begin{equation}
+    p(y) = \int_{-\infty}^{\infty} p(x,y)\,dx.
+\end{equation}
+This gives the probability density for $y$ without regard to the value of $x$.
+
+\section{Conditional Random Variables}
+
+The \emph{conditional} probability density for $y$ given that $x$ takes a particular value is
+\begin{equation}
+    P(x \mid y) = \frac{p(x,y)}{p(x)}.
+\end{equation}
+Two random variables are \emph{independent} when their joint distribution factorises: $p(x,y) = p(x)\,p(y)$, in which case knowing $x$ gives no information about $y$.
+
+\subsection{Bayes' Theorem for Random Variables}
+
+Bayes' theorem follows directly from the symmetry of the joint distribution. Exchanging the roles of $x$ and $y$ in the definition of the conditional distribution yields
+\begin{formula}
+\begin{equation}
+    p(y \mid x) = \frac{p(x \mid y)\,p(y)}{p(x \mid y)\,p(y) + p(x \mid \bar{y})\,p(\bar{y})},
+\end{equation}
+\end{formula}
+where $\bar{y}$ denotes the complement event. This is the random-variable analogue of Bayes' theorem.
+
+\section{Functions of a Random Variable}
+
+Suppose we know $p(x)$ and define $y = f(x)$; we want $p(y)$. Using the delta function as a constraint filter,
+\begin{equation}
+    p(y) = \int_{-\infty}^{\infty} p(x)\,\delta(y - f(x))\,dx = \sum_i \frac{1}{|f'(x_i)|}\,p(x_i),
+\end{equation}
+where the $x_i$ are all solutions of $f(x_i) = y$. Each pre-image contributes with weight inversely proportional to the local stretching $|f'|$.
+
+\section{Heaviside Step Function}
+
+When variables of interest are bounded — for instance $x$ and $y$ restricted to some domain — one must use the Heaviside step function to enforce the integral bounds. Recall
+\begin{definition}[Heaviside step function]
+\begin{equation}
+    \theta(x) = \begin{cases} 1 & x > 0, \\ 0 & x \leq 0. \end{cases}
+\end{equation}
+\end{definition}
+
+\begin{center}[DIAGRAM: plot of $\theta(x)$: zero for $x < 0$, unit jump at the origin, flat at one for $x > 0$]\end{center}
+
+The step function is used to replace integral bounds: instead of writing $\int_a^b$, one integrates over all of $\mathbb{R}$ and inserts $\theta(x-a)\,\theta(b-x)$ into the integrand. Its distributional derivative is the Dirac delta: $\dv{\theta}{x} = \delta(x)$, which is a crucial identity.
+
+\subsection{Multivariable Heaviside}
+
+In multiple dimensions, suppose one has an integral $\int dx_i \cdots \int \theta(f(x_1,\ldots,x_{i-1}) - g(x_i))\,dx_i$. In this setting one must also generate a $\theta$-function to enforce the remaining constraints $f(x_1,\ldots,x_{i-1}) > 0$, so that the $\theta$-function for the innermost integral can fire. Concretely,
+\begin{equation}
+    \int_0^\infty \theta\!\bigl(f(x_1,\ldots,x_{i-1}) - g(x_i)\bigr)\,dx_i = \theta\!\bigl(f(x_1,\ldots,x_{i-1})\bigr)\int_0^{f(\cdots)} \theta\!\bigl(f(\cdots)-g(x_i)\bigr)\,dx_i.
+\end{equation}
+The outer $\theta$ ensures the inner one can actually be satisfied.
+
+\section{Sum Distribution}
+
+Let $S_n = \sum_i x_i$ be a sum of $n$ random variables. Its distribution is
+\begin{equation}
+    p(S_n = s) = \int \prod_i dx_i\,p(x_i)\;\delta\!\left(s - \sum_i x_i\right).
+\end{equation}
+
+The mean of the sum is additive:
+\begin{equation}
+    \langle S \rangle = \langle x_1 \rangle + \langle x_2 \rangle + \cdots + \langle x_n \rangle.
+\end{equation}
+
+For independent random variables the variances also add:
+\begin{formula}
+\begin{equation}
+    \operatorname{Var}(S_n) = \sum_n \operatorname{Var}(x_n), \qquad (x_i \text{ independent}).
+\end{equation}
+\end{formula}
+
+In the special case where all $x_k$ are drawn from the same distribution $p(x_k)$, the mean and variance of the sum scale linearly with $n$:
+\begin{equation}
+    \langle S_n \rangle = n\langle x \rangle, \qquad \operatorname{Var}(S_n) = n\operatorname{Var}(x), \qquad \sigma(S_n) = \sqrt{n}\,\sigma(x).
+\end{equation}
+Defining the sample average $\bar{x} = S_n/n$, one finds
+\begin{formula}
+\begin{equation}
+    \operatorname{Var}(\bar{x}) = \frac{1}{n}\operatorname{Var}(x), \qquad \sigma(\bar{x}) = \frac{1}{\sqrt{n}}\,\sigma(x).
+\end{equation}
+\end{formula}
+This $1/\sqrt{n}$ suppression of fluctuations is the statistical underpinning of why macroscopic observables are sharp.
+
+\section{Convolutions}
+
+The probability distribution of the sum of independent random variables is the \emph{convolution} of their individual distributions. This follows immediately from the delta-function representation of the sum distribution. A particularly important special case:
+
+\begin{theorem}[Stability of the Gaussian]
+If $x$ and $y$ are independently Gaussian distributed with means $\langle x \rangle$, $\langle y \rangle$ and variances $\operatorname{Var}(x)$, $\operatorname{Var}(y)$, then $S = x + y$ is also Gaussian with
+\begin{equation}
+    \langle S \rangle = \langle x \rangle + \langle y \rangle, \qquad \operatorname{Var}(S) = \operatorname{Var}(x) + \operatorname{Var}(y).
+\end{equation}
+\end{theorem}
+
+\section{Central Limit Theorem}
+
+\begin{theorem}[Central Limit Theorem]
+Let $S_n$ be the sum of $n$ statistically independent, identically distributed random variables, each with mean $\langle x \rangle$ and finite variance $\sigma^2(x)$. Then as $n \to \infty$,
+\begin{equation}
+    p(S_n) \xrightarrow{n \to \infty} \text{Gaussian with mean } n\langle x \rangle \text{ and variance } n\operatorname{Var}(x).
+\end{equation}
+\end{theorem}
+
+The requirement that $\sigma^2(x)$ be finite is essential; distributions with divergent variance (such as the Cauchy distribution) do not obey the CLT. The CLT explains why so many physical observables — which are sums of contributions from many microscopic degrees of freedom — are Gaussian distributed.
+
+\chapter{Information Entropy}
+
+\section{Ensemble and Shannon Entropy}
+
+\begin{definition}[Ensemble]
+An \emph{ensemble} is a set of symbols together with their probabilities. Examples include a set of letters $\{$`H', `T', `$\frac{1}{2}$', `$\frac{1}{3}$'$\}$ from a coin-flip experiment, or a set of microstates $\{s_1, s_2, \ldots, s_N\}$ with probabilities $p_1, \ldots, p_N$.
+\end{definition}
+
+\begin{definition}[Shannon entropy]
+The Shannon entropy of an ensemble with probabilities $\{p_j\}$ is
+\begin{equation}
+    \sigma = -\sum_{j=1}^{N} p_j \log_2 p_j.
+\end{equation}
+\end{definition}
+
+The intuition behind this definition is that $\sigma$ is the minimum number of bits required to unambiguously transmit a message drawn from the ensemble. Two limiting cases clarify the formula. If all $p_j = 1/N$ (maximum uncertainty), then $\sigma = \log_2 N$. If one outcome is certain ($p_j = 1$ for some $j$), then $\sigma = 0$, because no transmission is needed.
+
+\subsection{Proving the Shannon Formula}
+
+The Shannon formula can be derived by counting. Consider $N$ letters forming strings of length $M$, where letter $i$ appears $n_i$ times. The number of distinct strings with those frequencies is
+\begin{equation}
+    \Omega = \frac{M!}{n_1!\,n_2!\,\cdots\,n_N!}.
+\end{equation}
+Taking $\log_2 \Omega / M$ in the large-$M$ limit (using Stirling's approximation $\ln n! \approx n \ln n - n$) and identifying $p_i = n_i/M$ reproduces the Shannon formula $\sigma = -\sum p_i \log_2 p_i$.
+
+\chapter{Statistical Mechanics: Thermodynamic Macrostates}
+
+\section{Macrostates, Microstates, and the Ergodic Hypothesis}
+
+\begin{definition}[Thermodynamic macrostate]
+A thermodynamic \emph{macrostate} is an ensemble of microstates, with each microstate representing one symbol. For a system with state variables $\{s_i\}$ and corresponding probabilities $\{p_i\}$ (where $\sum_{i=1}^N p_i = 1$), $N$ is the number of microstates compatible with the specified macrostate and $p_i$ is the probability that microstate $i$ is the true one.
+\end{definition}
+
+\begin{definition}[Ergodic Hypothesis]
+For an isolated system in thermodynamic equilibrium, the probability distribution $\{p_1, \ldots, p_N\}$ is the one that \emph{maximises} uncertainty (Shannon entropy). This is the postulate of equal a priori probabilities: the equilibrium ensemble is the one about which we are most ignorant, subject to the macroscopic constraints.
+\end{definition}
+
+The ergodic hypothesis also asserts that the time average of any observable equals its ensemble average:
+\begin{equation}
+    \langle f \rangle = \frac{1}{T}\int_0^T f(t)\,dt = \sum_i f(s_i)\,p(s_i).
+\end{equation}
+The left side is a time average; the right side is an ensemble average. Equality is the content of ergodicity.
+
+\subsection{Thermodynamic Entropy and Boltzmann's Formula}
+
+From the ergodic hypothesis, the thermodynamic entropy is identified with the Shannon entropy weighted by $k_B$:
+\begin{formula}
+\begin{equation}
+    S_{\text{thermo}} = -k_B \sum_i p_i \ln p_i = k_B \ln \Gamma,
+\end{equation}
+\end{formula}
+where $\Gamma$ is the multiplicity (number of equally likely microstates). The last equality — \emph{Boltzmann's entropy formula} — holds when all microstates are equally probable.
+
+\section{Second Law of Thermodynamics}
+
+\begin{theorem}[Second Law]
+$\Delta S_{\text{universe}} \geq 0$ always. This applies also to isolated ($\delta Q = 0$) systems, for which $\Delta S_{\text{system}} \geq 0$.
+\end{theorem}
+
+A macrostate consisting of two microstates has $S = k_B \ln 2$; one consisting of four microstates has $S = k_B \ln 4$; and so on.
+
+\begin{center}[DIAGRAM: left, two boxes each with two microstates ($S = k_B \ln 2$ each); right, combined system with four microstates ($S = k_B \ln 4$), illustrating entropy extensivity and the second law]\end{center}
+
+A common puzzle is why entropy should increase over time if the microscopic laws are time-reversible. The resolution is that the time-evolved initial microstate is only a tiny subset of the final macrostate's microstate ensemble. The initial state has many fewer compatible microstates, hence lower entropy.
+
+\subsection{Entropy is Extensive}
+
+\begin{fact}[Extensivity of entropy]
+For two independent subsystems $A$ and $B$,
+\begin{equation}
+    S_{AB} = S_A + S_B.
+\end{equation}
+\end{fact}
+This follows immediately from the product rule for probabilities ($p_{AB} = p_A p_B$) and the logarithm in Boltzmann's formula.
+
+\section{Density of States}
+
+Let $N(E)$ denote the number of microstates with energy at most $E$ and $dN/dE$ the density of states. Two important properties hold: (1) $dN/dE$ must be increasing in $E$ (it is positive definite for physical systems), and (2) the integral $\int_{E_1}^{E_2} \frac{dN}{dE}\,dE$ equals the number of states between energies $E_1$ and $E_2$.
+
+\section{Single Particle in a Box: 3D Infinite Square Well}
+
+The allowed energies for a single particle of mass $m$ confined to a 3D box are labelled by three positive integers $(n_1, n_2, n_3)$:
+\begin{equation}
+    E(n_1, n_2, n_3) = \frac{\pi^2\hbar^2}{2mL^2}\bigl(n_1^2 + n_2^2 + n_3^2\bigr).
+\end{equation}
+The number of states with energy at most $E$ is
+\begin{align}
+    N(E) &= \sum_{n_1, n_2, n_3} \theta\!\left(E - \frac{\pi^2\hbar^2}{2mL^2}(n_1^2+n_2^2+n_3^2)\right) \nonumber \\
+         &= \int_0^\infty dn_1 \int_0^\infty dn_2 \int_0^\infty dn_3\; \theta\!\left(C^2 - n_1^2 - n_2^2 - n_3^2\right),
+\end{align}
+where $C^2 = 2mEL^2/(\pi^2\hbar^2)$. The integral counts the volume of one octant of a sphere of radius $C$, giving $N(E) = \frac{\pi}{6}C^3 \propto E^{3/2}$.
+
+\subsection{Important Assumption and Continuum Approximation}
+
+The continuum approximation (replacing the discrete sum by an integral) requires $k_BT \gg \Delta E$, the level spacing. When this holds,
+\begin{equation}
+    \frac{dN}{dE} = \frac{1}{4\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} V \sqrt{E}.
+\end{equation}
+To sum over energy levels one writes $N(E) = \int_0^\infty dE'\,\frac{dN}{dE'}\,\theta(E - E')$.
+
+\subsection{Converting the Sum to a Phase-Space Integral}
+
+Summing over both positions $\vec{x}$ and momenta $\vec{p}$ in $d$ dimensions, the volume of a single quantum state in phase space is $(2\pi\hbar)^d$:
+\begin{equation}
+    \Delta = (2\pi\hbar)^d.
+\end{equation}
+This comes from the Heisenberg uncertainty relation $\Delta x\,\Delta p = h$. In three spatial dimensions, the conversion from discrete sums to continuous phase-space integrals reads
+\begin{formula}
+\begin{equation}
+    dN = \frac{d^3x\,d^3p}{(2\pi\hbar)^3}.
+\end{equation}
+\end{formula}
+
+\chapter{Ideal Gas Statistics}
+
+\section{Assumptions}
+
+The statistical mechanics of the ideal gas rests on three assumptions. First, the system is isolated with fixed state variables $(N, V, U)$. Second, the $N$ particles are specified by their quantum numbers $\vec{n} = \{p_i^j\}$ (individual momenta). Third, and most important, we work in the \emph{classical} regime: the number of available states far exceeds the number of particles,
+\begin{equation}
+    \frac{\#\text{ states}}{\#\text{ particles}} \gg 1 \qquad \Longleftrightarrow \qquad \frac{N}{V} \ll \frac{1}{\lambda_{\text{th}}^3},
+\end{equation}
+where $\lambda_{\text{th}}$ is the thermal de Broglie wavelength (defined below).
+
+\section{Sackur--Tetrode Equation}
+
+Carrying out the full counting of microstates for an ideal gas of $N$ monatomic particles and taking the logarithm yields the \emph{Sackur--Tetrode equation} for the entropy:
+\begin{formula}
+\begin{equation}
+    S = k_B N\left[\log\frac{V}{N} + \frac{3}{2}\log\frac{U}{N} + \frac{3}{2}\log\frac{M}{3\pi\hbar^2} + \frac{5}{2}\right].
+\end{equation}
+\end{formula}
+
+\section{Thermal de Broglie Wavelength}
+
+\begin{definition}[Thermal de Broglie wavelength]
+The thermal de Broglie wavelength is
+\begin{equation}
+    \lambda_{\text{th}} = \sqrt{\frac{2\pi\hbar^2}{Mk_BT}},
+\end{equation}
+and measures how spatially localised the wavefunction of a particle is at temperature $T$. The classical regime corresponds to $\lambda_{\text{th}}^3 \ll V/N$.
+\end{definition}
+
+\section{Entropy of Mixing}
+
+Consider two species of ideal gas (A and B) initially separated in volumes $V_A$ and $V_B$ at the same temperature ($T_A = T_B$) and same particle density ($N_A/V_A = N_B/V_B$). When the partition is removed, the entropy of mixing is
+
+\begin{center}[DIAGRAM: left panel shows two separate boxes, one filled with species A (dark dots) and one with species B (light dots); right panel shows both species mixed uniformly]\end{center}
+
+\begin{formula}
+\begin{equation}
+    \Delta S_{\text{mix}} = k_B N_A \log\frac{V}{V_A} + k_B N_B \log\frac{V}{V_B} + \cdots + k_B N_n \log\frac{V}{V_n} = -Nk_B\sum_i \frac{N_i}{N}\log\frac{V_i}{V},
+\end{equation}
+\end{formula}
+where $V = V_A + V_B + \cdots$. Since $V_i < V$ for each species, every term $\log(V/V_i) > 0$ and $\Delta S_{\text{mix}} > 0$, as expected.
+
+\chapter{Thermodynamic Equilibrium}
+
+\section{Thermodynamic Temperature and Pressure}
+
+If a system is in thermodynamic equilibrium, then $S$ is maximised. Setting $dU = 0$ and $dS = dS_A + dS_B = 0$ (with fixed total energy and volume) gives the conditions for equilibrium.
+
+\begin{definition}[Thermodynamic temperature]
+\begin{equation}
+    \left.\pdv{S}{U}\right|_{V,N} = \frac{1}{T}.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Thermodynamic pressure]
+\begin{equation}
+    \left.\pdv{S}{V}\right|_{U,N} = \frac{P}{T}.
+\end{equation}
+\end{definition}
+
+Temperature is a \emph{state function}: it depends only on the current state of the system, not on how that state was reached. The conditions $(\partial S/\partial U)_{V,N}$ equal for two systems are the precise statement of thermal equilibrium.
+
+\section{Zeroth Law of Thermodynamics}
+
+\begin{theorem}[Zeroth Law]
+For three systems $A$, $B$, and $C$: if $A$ is in thermal equilibrium with $B$, and $B$ is in thermal equilibrium with $C$, then $A$ is in thermal equilibrium with $C$. Formally,
+\begin{equation}
+    \left.\pdv{S_A}{U_A}\right|_{N_A,V_A} = \left.\pdv{S_B}{U_B}\right|_{N_B,V_B} \quad \text{and} \quad \left.\pdv{S_B}{U_B}\right|_{N_B,V_B} = \left.\pdv{S_A}{U_A}\right|_{N_A,V_A}\bigg|_{P_C,V_C}.
+\end{equation}
+\end{theorem}
+
+The significance of the zeroth law is that it establishes temperature as a well-defined, transitive property — it guarantees that a thermometer can exist and work consistently.
+
+\chapter{The Laws of Thermodynamics}
+
+\section{Reversible Processes and the Second Law}
+
+\begin{definition}[Reversible process]
+A process is \emph{reversible} if one can reverse its direction by infinitesimally altering the parameters. This requires: (1) volume does not change discontinuously (so $dU = \delta Q$), (2) the system remains arbitrarily close to thermodynamic equilibrium throughout, and (3) $dU$ is infinitesimal so that any heat flow can be reversed by an infinitesimal change.
+\end{definition}
+
+For a reversible process the second law specialises to the elegant relation
+\begin{formula}
+\begin{equation}
+    dS = \frac{1}{T}\,\delta Q_{\text{rev}}.
+\end{equation}
+\end{formula}
+
+\begin{definition}[Quasi-static process]
+A process that you can reverse the direction of by a tiny change in parameters. Note that \emph{free expansion} is \emph{not} reversible: a gas expanding into a vacuum does no work and cannot be made to reverse by a tiny perturbation.
+\end{definition}
+
+\section{First Law of Thermodynamics}
+
+\begin{theorem}[First Law]
+\begin{equation}
+    dU = T\,dS - P\,dV.
+\end{equation}
+This assumes all processes are quasi-static and reversible. Here $T\,dS = \delta Q_{\text{rev}}$ is the reversible heat exchange and $P\,dV$ is the work done by the system.
+\end{theorem}
+
+\section{Closed System and Heat Reservoirs}
+
+A \emph{closed system} has a fixed number of particles but can exchange heat with its surroundings, so $dU$ can be nonzero. When the system is connected to a large heat reservoir (a \emph{thermostat}) at temperature $T$, the system equilibrates so that $T_{\text{reservoir}} = T_{\text{system}}$.
+
+\begin{center}[DIAGRAM: large box labelled ``heat reservoir at $T$'' connected to a smaller box labelled ``system $U$''; heat flows between them]\end{center}
+
+A practical tip: when writing thermodynamic quantities for a system in contact with a reservoir, express everything in terms of $T$.
+
+\chapter{Third Law of Thermodynamics}
+
+\begin{theorem}[Third Law]
+As $T \to 0$, $S \to 0$. Concretely:
+\begin{enumerate}
+    \item As $T \to 0$, the entropy $S \to 0$.  Some systems have ground-state degeneracies (like vacancies in a lattice) that give $S(0) > 0$, but generically $S \to 0$.
+    \item As $T \to 0$, the heat capacity $C_V(T)$ must also $\to 0$, since $\int_0^T C_V\,dT/T$ must converge.
+    \item You cannot reach $T = 0$ in a finite number of steps.
+\end{enumerate}
+\end{theorem}
+
+\section{Entropy Processes}
+
+From the first law, $dS = \frac{dU}{T} + \frac{P\,dV}{T}$.
+
+\begin{enumerate}
+    \item \textbf{Adiabatic process:} $\delta Q = 0 \Rightarrow dS = 0$. This corresponds to a vertical line in the $T$-$S$ diagram.
+    \item \textbf{Isometric (constant volume):} $dV = 0$. By the Sackur--Tetrode equation, $T = f(V)\,e^{-S_0}$ for some function. The change in entropy is $\Delta S = \int C_V\,dT/T$.
+    \item \textbf{Isothermal:} $dU = 0 \Rightarrow T\,dS = P\,dV$, a horizontal line in the $T$-$S$ diagram. The entropy change is
+    \begin{equation}
+        \Delta S = Nk_B\log\frac{V_B}{V_A}, \qquad \delta Q = \int_{T_1}^{T_0} C_V\,dT \approx \frac{3}{2}Nk_B(T_2 - T_1).
+    \end{equation}
+    \item \textbf{Isobaric:} $\delta Q = C_P\,dT > C_V\,dT$.
+\end{enumerate}
+
+\section{Carnot Cycle}
+
+\textbf{Very important:} For the Carnot cycle, $\Delta U = 0$ and $\Delta S = 0$, etc.\ (state functions return to their original values). Therefore $W_{\text{net}} = Q_{\text{net}}$ (use heat to derive this).
+
+\begin{center}[DIAGRAM: $P$-$V$ diagram of the Carnot cycle with four labelled vertices; two isotherms at $T_H$ and $T_C$ and two adiabats connecting them; arrows indicating the direction of traversal]\end{center}
+
+\begin{center}[DIAGRAM: $T$-$S$ diagram of the Carnot cycle showing a rectangle with upper edge at $T_H$, lower edge at $T_C$, left edge at $S_1$, and right edge at $S_f$; net heat added is the area of the rectangle]\end{center}
+
+The net work done by the Carnot engine is
+\begin{equation}
+    W_{\text{net}} = Nk_B(T_H - T_C)\log\frac{V_B}{V_A}.
+\end{equation}
+
+\begin{definition}[Carnot efficiency]
+\begin{equation}
+    \eta = \frac{W_{\text{out}}}{Q_{\text{in}}} = 1 - \frac{T_C}{T_H} = \frac{T_H - T_C}{T_H}.
+\end{equation}
+\end{definition}
+
+Be careful about the sign convention when computing $W$ and $Q$ along each leg of the cycle.
+
+\section{Stirling Engine}
+
+The Stirling engine replaces the adiabatic legs of the Carnot cycle with isometric (constant-volume) cooling and heating. The ideal Stirling efficiency is
+\begin{formula}
+\begin{equation}
+    \eta = \frac{Nk_B(T_H - T_C)\log(V_B/V_A)}{Nk_BT_H\log(V_B/V_A) + C_V(T_H - T_C)}.
+\end{equation}
+\end{formula}
+With a perfect \emph{regenerator} that absorbs and re-injects the heat $C_V(T_H - T_C)$ during the isometric strokes, the denominator reduces to the isothermal heat input alone and the Stirling efficiency equals the Carnot efficiency.
+
+\begin{center}[DIAGRAM: $P$-$V$ diagram of the Stirling cycle: two isotherms at $T_H$ (upper) and $T_C$ (lower) connected by two vertical (constant-volume) lines at $V_A$ and $V_B$]\end{center}
+
+\subsection{Tip: Heat Capacity of Gas Mixtures}
+
+To find the effective heat capacity of a mixture of gases, weight the individual heat capacities by their relative mole fractions:
+\begin{equation}
+    C_{V,\text{mix}} = f_1 C_V^1 + f_2 C_V^2, \qquad \text{or equivalently} \qquad Nk_B(f_1 C_V^1 + f_2 C_V^2),
+\end{equation}
+for single-particle heat capacities.
+
+\chapter{Free Energy}
+
+\section{Criterion for Spontaneous Processes}
+
+A spontaneous process occurs when $\Delta S_{\text{universe}} \geq 0$. For an \emph{isolated} system this means $\Delta S_{\text{system}} \geq 0$. For a system that is \emph{not} isolated, the relevant criterion is instead $\Delta F \leq 0$ or $\Delta G \leq 0$, depending on the constraints.
+
+\section{Helmholtz Free Energy}
+
+\begin{definition}[Helmholtz free energy]
+\begin{equation}
+    F \equiv U - TS \qquad \Longleftrightarrow \qquad \Delta F = \Delta U - T\Delta S.
+\end{equation}
+The Helmholtz free energy is appropriate for systems at fixed $V$ and $T$.
+\end{definition}
+
+$F$ constrains the amount of work the system can do as a result of $\Delta Q$: $W \leq -\Delta F$. If $W = 0$, the system spontaneously changes until $F$ is minimised. A system held at fixed $T$ and $V$ spontaneously evolves until $F$ reaches its minimum.
+
+\section{Gibbs Free Energy}
+
+\begin{definition}[Gibbs free energy]
+\begin{equation}
+    G \equiv U + PV - TS.
+\end{equation}
+The Gibbs free energy is appropriate for systems at fixed $P$ and $T$, which is the most common experimental situation.
+\end{definition}
+
+The Gibbs free energy is the relevant potential for understanding why phase transitions occur: at a phase transition the two phases have equal $G$.
+
+\section{Thermodynamic Potentials}
+
+The four standard thermodynamic potentials are:
+\begin{enumerate}
+    \item Internal energy: $U$
+    \item Enthalpy: $H \equiv U + PV$
+    \item Helmholtz free energy: $F \equiv U - TS$
+    \item Gibbs free energy: $G \equiv U - TS + PV$
+\end{enumerate}
+
+Their total differentials, derived from the first law $dU = T\,dS - P\,dV$, are:
+\begin{align}
+    dU &= T\,dS - P\,dV, \\
+    dH &= T\,dS + V\,dP, \\
+    dF &= -S\,dT - P\,dV, \\
+    dG &= -S\,dT + V\,dP.
+\end{align}
+In compact form:
+\begin{equation}
+    dH = T\,dS + V\,dP, \qquad dF = -S\,dT - P\,dV, \qquad dG = -S\,dT + V\,dP.
+\end{equation}
+
+\subsection{Deriving Maxwell Relations}
+
+The Maxwell relations follow from the equality of mixed second partial derivatives of the thermodynamic potentials. Since each potential is an exact differential, its mixed partials commute, yielding identities among thermodynamic response functions. For example, from $dF = -S\,dT - P\,dV$:
+\begin{equation}
+    \left.\pdv{S}{V}\right|_T = \left.\pdv{P}{T}\right|_V.
+\end{equation}
+All state functions must be equal for mixed partial derivatives: this is the condition that guarantees the potentials are well-defined functions of state.
+
+\chapter{The Canonical Ensemble}
+
+\section{Setup and Probability}
+
+In the canonical ensemble, $V$, $N$, and $T$ are held fixed while the energy $U$ fluctuates. Each microstate corresponds to one symbol in an ensemble, and the probabilities are determined by the Boltzmann factor. Microstates are \emph{not} equally likely; instead,
+
+\begin{formula}
+\begin{equation}
+    p_j(E_j) = \frac{1}{Z}\,e^{-E_j/k_BT},
+\end{equation}
+\end{formula}
+where the exponential weight $e^{-E_j/k_BT}$ suppresses high-energy microstates and the factor $1/Z$ ensures normalisation.
+
+\section{Partition Function}
+
+\begin{definition}[Partition function]
+\begin{equation}
+    Z = \sum_j e^{-E_j/k_BT} \qquad \text{or} \qquad Z = \sum_{E_j} g(j)\,e^{-E_j/k_BT},
+\end{equation}
+where $g(j)$ is the degeneracy of energy level $j$.
+\end{definition}
+
+The partition function sums over \emph{all} microstates of a system. It is a new state function $Z(T, V, N)$, depending on the ensemble parameters. For degenerate spectra the second form, summing over energy levels weighted by their degeneracy, is more convenient.
+
+\subsection{Continuum Approximation}
+
+In the classical (continuum) limit,
+\begin{equation}
+    Z \approx \int dE\;\frac{dN}{dE}\,e^{-E/k_BT}.
+\end{equation}
+This approximation is valid when the mode energy spacing is small compared to $k_BT$: $E(\text{mode}) \sim \tfrac{1}{2}k_BT \gg$ level spacing.
+
+\subsection{Semiclassical Partition Function}
+
+In the semiclassical approximation, the sum over quantum states is replaced by a phase-space integral:
+\begin{equation}
+    Z = \int \prod_{i=1}^{N} \frac{d^3x_i\,d^3p_i}{(2\pi\hbar)^3}\;e^{-E_j/k_BT}, \qquad E = E(\{\vec{x}_i\},\{\vec{p}_i\}).
+\end{equation}
+
+\section{Thermodynamics from the Partition Function}
+
+All thermodynamic quantities follow from $Z$:
+\begin{enumerate}
+    \item $U = -\pdv{\beta}{\log Z}$, where $\beta = 1/k_BT$.
+    \item $C_V = k_B\beta^2\pdv[2]{\log Z}{\beta}$.
+    \item $S = -\left.\pdv{F}{T}\right|_V = \frac{U}{T} + k_B\log Z$.
+    \item $P = -\left.\pdv{F}{V}\right|_T$.
+    \item $F = -k_BT\log Z$.
+    \item $\text{Var}(U) = k_BT^2 C_V$.
+\end{enumerate}
+
+\section{Ideal Gas Thermodynamics from the Partition Function}
+
+The single-particle partition function is
+\begin{equation}
+    Z_1 = \int \frac{d^3x\,d^3p}{(2\pi\hbar)^3}\,\exp\!\left(-\beta\frac{|\vec{p}|^2}{2m}\right) = \frac{V}{\lambda_{\text{th}}^3}, \qquad \lambda_{\text{th}} \equiv \sqrt{\frac{2\pi\hbar^2}{mk_BT}}.
+\end{equation}
+The thermal de Broglie wavelength $\lambda_{\text{th}}$ sets the scale: the particle occupies a phase-space volume $\lambda_{\text{th}}^3$ per unit real-space volume, so $Z_1 = V/\lambda_{\text{th}}^3$.
+
+To recover the Sackur--Tetrode equation, one adds an overall factor to $Z_N = \frac{1}{N!}(Z_1)^N$.
+
+\subsection{Tip}
+
+In general, $U \sim Nk_BT$ and $C_V \sim Nk_B$.
+
+\section{Equipartition Theorem}
+
+\begin{theorem}[Equipartition Theorem]
+Let $\xi$ be any degree of freedom that enters the Hamiltonian quadratically, e.g.\
+\begin{equation}
+    H = a\xi^2 + \cdots.
+\end{equation}
+Then each such quadratic term contributes exactly $\tfrac{1}{2}k_BT$ to the average energy.
+\end{theorem}
+
+This follows by direct evaluation of the Gaussian integral over $\xi$ in the partition function.
+
+\section{Getting Probability Distributions from the Partition Function}
+
+The probability of finding the system in a state with energy in $[E, E+dE]$ is
+\begin{equation}
+    \delta p(E) = p(E_j)\,\delta E = \frac{1}{Z}\frac{dN}{dE}\exp(-\beta E)\,\delta E.
+\end{equation}
+In the semiclassical approximation,
+\begin{equation}
+    \delta p(E) = \frac{d^3x\,d^3p}{(2\pi\hbar)^3}\,\frac{1}{Z}\,e^{-\beta E(\vec{x},\vec{p})}.
+\end{equation}
+
+\section{Distinguishable vs.\ Indistinguishable Particles}
+
+\begin{definition}[Classical regime]
+In the classical regime, the number of particles per state is much less than one:
+\begin{equation}
+    \frac{\# \text{ particles}}{\# \text{ states}} \ll 1.
+\end{equation}
+\end{definition}
+
+If particles are \emph{separable and distinguishable} (classical limit), the $N$-particle partition function factorises:
+\begin{formula}
+\begin{equation}
+    Z_N = (Z_1)^N.
+\end{equation}
+\end{formula}
+For identical (indistinguishable) quantum particles one must divide by $N!$ to avoid overcounting permutations of particles among states, giving $Z_N = (Z_1)^N / N!$ for the ideal quantum gas in the classical regime.

@@ -1,0 +1,325 @@
+\chapter{Some Important Probability Distributions}
+
+Once you have a probability distribution for a system, you can perform any statistical analysis or test you need. The underlying statistics of the physical system determines which probability distribution is appropriate. We discuss three common distributions: the Gaussian, the Poisson, and the binomial.
+
+\section{The Gaussian (Normal) Distribution}
+
+\begin{definition}[Gaussian distribution]
+The Gaussian, or normal, distribution is the continuous probability density
+\begin{equation}
+    p(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left\{-\frac{(x-a)^2}{2\sigma^2}\right\},
+\end{equation}
+where $a$ is the mean and $\sigma^2$ is the variance.
+\end{definition}
+
+\begin{center}[DIAGRAM: bell-shaped Gaussian curve symmetric about the peak at $x = a$, with the peak marked by a dashed vertical line]\end{center}
+
+The distribution is characterised by two parameters: the \emph{width} $\sigma$ (standard deviation) and the \emph{variance} $\mathrm{Var}(x) = \sigma^2$.
+
+\subsection{Normalization}
+
+The normalization integral
+\begin{equation}
+    \int_{-\infty}^{\infty} p(x)\,dx = \frac{1}{\sqrt{2\pi\sigma^2}} \int_{-\infty}^{\infty} e^{-(x-a)^2/2\sigma^2}\,dx
+\end{equation}
+is evaluated by the substitution $u = (x-a)/\sqrt{2}\,\sigma$, giving $dx = \sqrt{2}\,\sigma\,du$:
+\begin{equation}
+    = \frac{1}{\sqrt{2\pi\sigma^2}}\cdot\sqrt{2}\,\sigma \int_{-\infty}^{\infty} e^{-u^2}\,du
+    = \frac{1}{\sqrt{\pi}}\int_{-\infty}^{\infty} e^{-u^2}\,du = 1,
+\end{equation}
+where the last step uses the standard Gaussian integral $\int_{-\infty}^{\infty} e^{-u^2}\,du = \sqrt{\pi}$.
+
+\subsection{Moments}
+
+Higher moments of the Gaussian are computed by repeated differentiation of the generating integral. One useful general result is
+\begin{equation}
+    \int_{-\infty}^{\infty} u^{2n} e^{-u^2}\,du = \frac{1 \cdot 3 \cdot 5 \cdots (2n-1)}{2^n}\,\sqrt{\pi}.
+\end{equation}
+The standard deviation $\sigma$ is defined so that $\mathrm{Var}(x) = \langle(x-a)^2\rangle = \sigma^2$, consistent with the exponent.
+
+\subsection{Cumulative Distribution and the Error Function}
+
+The cumulative distribution function (CDF) is the probability that $x$ lies below some value $\bar{x}$:
+\begin{equation}
+    P(\bar{x}) = \frac{1}{\sqrt{2\pi\sigma^2}} \int_{-\infty}^{\bar{x}} e^{-(z-a)^2/2\sigma^2}\,dz.
+\end{equation}
+Changing variables to $u = (z-a)/\sqrt{2}\,\sigma$, with upper limit $(\bar{x}-a)/\sqrt{2}\,\sigma$, this becomes
+\begin{equation}
+    P(\bar{x}) = \frac{1}{\sqrt{\pi}} \int_{-\infty}^{(\bar{x}-a)/\sqrt{2}\,\sigma} e^{-u^2}\,du
+    \equiv 1 - \frac{1}{2}\operatorname{erfc}\!\left(\frac{\bar{x}-a}{\sqrt{2}\,\sigma}\right).
+\end{equation}
+
+\begin{definition}[Complementary error function]
+The complementary error function is
+\begin{equation}
+    \operatorname{erfc}(z) = \frac{1}{\sqrt{\pi}}\int_{z}^{\infty} e^{-u^2}\,du.
+\end{equation}
+\end{definition}
+
+\subsection{Interpretation of $\sigma$: Probability in Bands}
+
+The parameter $\sigma$ sets a natural scale for the width of the distribution. Integrating $p(x)$ over a symmetric interval of half-width $n\sigma$ about the mean gives the following standard results:
+\begin{align}
+    \Pr(a - \sigma < x < a + \sigma) &= \int_{a-\sigma}^{a+\sigma} p(x)\,dx \approx 0.68, \\
+    \Pr(a - 2\sigma < x < a + 2\sigma) &\approx 0.95, \\
+    \Pr(a - 5\sigma < x < a + 5\sigma) &\approx 1 - 5.7\times 10^{-7}.
+\end{align}
+
+\begin{center}[DIAGRAM: Gaussian bell curve with the central $1\sigma$ band shaded and labeled 68\%, the $2\sigma$ band labeled 95\%]\end{center}
+
+The $5\sigma$ criterion is the standard threshold for a discovery claim in particle physics; the probability of a false positive at that level is less than one in a million.
+
+\section{The Poisson Distribution}
+
+\subsection{Model and Setup}
+
+\begin{definition}[Poisson process]
+A Poisson process models the occurrence of discrete events in continuous time (or space). The single assumption is that the probability of an event occurring in a short interval $dt$ is $\lambda\,dt$, where $\lambda$ is a constant rate. Equivalently, the expected number of events in time $dt$ is $\lambda\,dt$.
+\end{definition}
+
+Physical examples include waiting for a bus, radioactive decay, and thermionic emission (electrons emitted by a hot cathode). In each case the rate $\lambda$ may depend on the system but is assumed constant.
+
+Let $n$ be the random variable counting the number of events in a total observation time $T$; $n$ is discrete. We wish to derive the probability mass function $P_n(T)$.
+
+\subsection{Derivation}
+
+Divide the interval $T$ into $N$ bins each of length $T/N$, and take $N$ so large that the probability of more than one event per bin is negligible. Each bin is then an independent Bernoulli trial with success probability $\lambda T/N$.
+
+\begin{center}[DIAGRAM: a time axis from $0$ to $T$ divided into $N$ equal bins of width $T/N$, with a double-headed arrow marking a single bin]\end{center}
+
+Under these conditions:
+\begin{align}
+    P(\text{no event in one bin}) &= 1 - \lambda\frac{T}{N}, \\
+    P(\text{no event in any bin}) &= \left(1 - \lambda\frac{T}{N}\right)^N \xrightarrow{N\to\infty} e^{-\lambda T}.
+\end{align}
+The probability of exactly one event is
+\begin{equation}
+    P(\text{one event}) = N\cdot\frac{\lambda T}{N}\left(1-\frac{\lambda T}{N}\right)^{N-1} \xrightarrow{N\to\infty} \lambda T\,e^{-\lambda T}.
+\end{equation}
+For exactly two events, picking the two bins and taking the limit:
+\begin{align}
+    P(\text{two events}) &= \binom{N}{2}\left(\frac{\lambda T}{N}\right)^2\left(1-\frac{\lambda T}{N}\right)^{N-2} \notag\\
+    &= \frac{N(N-1)}{2}\left(\frac{\lambda T}{N}\right)^2\left(1-\frac{\lambda T}{N}\right)^{N-2} \xrightarrow{N\to\infty} \frac{1}{2}(\lambda T)^2 e^{-\lambda T}.
+\end{align}
+The pattern is clear. In general:
+
+\begin{formula}[Poisson distribution]
+\begin{equation}
+    \boxed{P_n(T) = \frac{(\lambda T)^n}{n!}\,e^{-\lambda T}.}
+\end{equation}
+\end{formula}
+
+\subsection{Normalization, Mean, and Variance}
+
+\textbf{Normalization.} Summing over all $n \ge 0$,
+\begin{equation}
+    \sum_{n=0}^{\infty} P_n(T) = e^{-\lambda T}\sum_{n=0}^{\infty}\frac{(\lambda T)^n}{n!} = e^{-\lambda T}\cdot e^{\lambda T} = 1.
+\end{equation}
+
+\textbf{Mean.} Let $z \equiv \lambda T$ for brevity. Then
+\begin{align}
+    \langle n\rangle &= \sum_{n=0}^{\infty} n\,P_n = \sum_{n=0}^{\infty} n\,\frac{z^n}{n!}\,e^{-z} = e^{-z}\sum_{n=0}^{\infty} n\,\frac{z^n}{n!}.
+\end{align}
+Using $n/n! = 1/(n-1)!$ and shifting the index, $\sum_{n=0}^{\infty} n\,z^n/n! = z\,e^z$, so
+\begin{equation}
+    \langle n\rangle = e^{-z}\cdot z\,e^z = z = \lambda T.
+\end{equation}
+
+\begin{fact}
+The mean of the Poisson distribution equals the rate times the observation time: $\langle n\rangle = \lambda T$.
+\end{fact}
+
+\textbf{Variance.} We compute $\langle n(n-1)\rangle$ first:
+\begin{align}
+    \langle n(n-1)\rangle &= \sum_{n=0}^{\infty} n(n-1)\,\frac{z^n}{n!}\,e^{-z}
+    = e^{-z}\left(0 + 0 + 2\,\frac{z^2}{2!} + 6\,\frac{z^3}{3!} + \cdots\right) \notag\\
+    &= e^{-z}\,z^2\sum_{n=0}^{\infty}\frac{z^n}{n!} = z^2.
+\end{align}
+Since $\langle n^2 - n\rangle = \langle n^2\rangle - \langle n\rangle = z^2$, we have $\langle n^2\rangle = z^2 + z$. Therefore,
+\begin{equation}
+    \mathrm{Var}(n) = \langle n^2\rangle - \langle n\rangle^2 = (z^2 + z) - z^2 = z = \lambda T.
+\end{equation}
+
+\begin{formula}
+For the Poisson distribution, variance equals mean:
+\begin{equation}
+    \boxed{\mathrm{Var}(n) = \lambda T = \langle n\rangle, \qquad \sigma(n) = \sqrt{\lambda T}.}
+\end{equation}
+\end{formula}
+
+The relative spread (ratio of standard deviation to mean) is
+\begin{equation}
+    \frac{\sigma(n)}{\langle n\rangle} = \frac{1}{\sqrt{\lambda T}} = \frac{1}{\sqrt{\langle n\rangle}}.
+\end{equation}
+In the limit of large $\lambda T$, likely values of $n$ are much greater than one and the relative fluctuations become small — the distribution becomes sharply peaked around its mean.
+
+\subsection{Large-$\lambda T$ Limit: Recovery of the Gaussian}
+
+For large $\lambda T$, the Poisson distribution approaches a Gaussian. To see this, write $\log P_n = n\log z - \log n! - z$ and apply Stirling's approximation $\log n! \approx n\log n - n + \tfrac{1}{2}\log(2\pi n)$:
+\begin{equation}
+    \log P_n \approx n\log z - n\log n + n - \tfrac{1}{2}\log(2\pi n) - z.
+\end{equation}
+Expanding around the peak $n = \bar{n} = z$: $\pdv{\log P_n}{n} = \log z - \log n - 1 + 1 = \log z - \log n$, which vanishes at $n = z$. The second derivative is $-1/n$, evaluated at $n = z$ gives $-1/z$. Therefore
+\begin{equation}
+    \log P_n(z) \approx -\tfrac{1}{2}\log(2\pi z) + \tfrac{1}{2}(n-z)^2\cdot\left(-\frac{1}{z}\right),
+\end{equation}
+which gives
+\begin{equation}
+    \boxed{P_n(z) \approx \frac{1}{\sqrt{2\pi z}}\,e^{-(n-z)^2/2z}.}
+\end{equation}
+This is a Gaussian with mean $z = \lambda T$ and variance $z = \lambda T$, consistent with what we computed exactly. This result is an instance of the \emph{Central Limit Theorem}: the sum of many independent Bernoulli trials approaches a normal distribution.
+
+\section{The Binomial Distribution}
+
+\subsection{Model and Setup}
+
+The binomial distribution models a \emph{random walk}: a system that takes $N$ total steps, each step independently moving right with probability $a$ or left with probability $b = 1 - a$. Physical examples include Brownian motion and spin chain models. The random variable of interest is $n$, the number of right steps taken out of $N$ total.
+
+\begin{center}[DIAGRAM: discrete number line with steps marked left and right; arrow indicating a single step to the right with probability $a$ and a step to the left with probability $b = 1-a$]\end{center}
+
+\begin{formula}[Binomial distribution]
+The probability of taking exactly $n$ right steps in $N$ total steps is
+\begin{equation}
+    \boxed{P_N(n) = \binom{N}{n}(1-a)^{N-n}\,a^n.}
+\end{equation}
+\end{formula}
+
+The binomial coefficient $\binom{N}{n}$ counts the number of distinct sequences of $N$ steps with exactly $n$ to the right; each such sequence has probability $a^n(1-a)^{N-n}$.
+
+\subsection{Normalization, Mean, and Variance}
+
+\textbf{Normalization.}
+\begin{equation}
+    \sum_{n=0}^{N} P_N(n) = \sum_{n=0}^{N}\binom{N}{n}a^n b^{N-n} = (a+b)^N = 1,
+\end{equation}
+where the last step uses the binomial theorem and $a + b = 1$.
+
+\textbf{Mean.}
+\begin{align}
+    \langle n\rangle &= \sum_{n=0}^{N}\binom{N}{n} n\,a^n b^{N-n}
+    = a\,\pdv{}{a}\sum_{n=0}^{N}\binom{N}{n}a^n b^{N-n} \notag\\
+    &= a\,\pdv{}{a}(a+b)^N = a\cdot N(a+b)^{N-1} = aN.
+\end{align}
+
+\begin{fact}
+The mean of the binomial distribution is $\langle n\rangle = aN$.
+\end{fact}
+
+\textbf{Variance.} We need $\langle n^2\rangle$. Compute $\langle n^2\rangle$ using the same differentiation trick. Starting from $\sum n\,a^n\binom{N}{n}b^{N-n} = aN(a+b)^{N-1}$, apply $a\,\partial/\partial a$ again to get $\langle n^2\rangle$:
+\begin{align}
+    \langle n^2\rangle &= a\,\pdv{}{a}\bigl[aN(a+b)^{N-1}\bigr]
+    = aN + a^2 N(N-1).
+\end{align}
+Therefore
+\begin{equation}
+    \mathrm{Var}(n) = \langle n^2\rangle - \langle n\rangle^2 = aN + a^2N(N-1) - a^2N^2 = Na(1-a) = Nab.
+\end{equation}
+
+\begin{formula}
+\begin{equation}
+    \sigma(n) = \sqrt{Na(1-a)} = \sqrt{Nab}.
+\end{equation}
+\end{formula}
+
+The ratio of the standard deviation to the mean is
+\begin{equation}
+    \frac{\sigma(n)}{\langle n\rangle} = \frac{\sqrt{Na(1-a)}}{Na} = \frac{1}{\sqrt{N}}\sqrt{\frac{1-a}{a}},
+\end{equation}
+which vanishes as $N\to\infty$. Relative fluctuations shrink as $1/\sqrt{N}$, so in the large-$N$ limit the distribution becomes sharply peaked.
+
+\subsection{Large-$N$ Gaussian Limit}
+
+For $N\to\infty$, by Stirling's approximation applied to the binomial coefficients, the distribution approaches a Gaussian:
+\begin{equation}
+    P_N(n) \approx \frac{1}{\sqrt{2\pi Na(1-a)}}\,e^{-(n-Na)^2/2Na(1-a)}.
+\end{equation}
+This is again an instance of the Central Limit Theorem: the binomial is the sum of $N$ independent Bernoulli random variables, and their sum converges to a normal distribution in the large-$N$ limit.
+
+\section{Joint Probability Distributions}
+
+When two (or more) random variables are present simultaneously, the appropriate object is the \emph{joint probability distribution}.
+
+\begin{definition}[Joint probability density]
+For two continuous random variables $X$ and $Y$, the joint probability density $p(x,y)$ is defined by
+\begin{equation}
+    p(x,y)\,dx\,dy \equiv \Pr(x \le X \le x+dx \text{ and } y \le Y \le y+dy).
+\end{equation}
+\end{definition}
+
+\textbf{Normalization.}
+\begin{equation}
+    \int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} dx\,dy\; p(x,y) = 1.
+\end{equation}
+
+\textbf{Cumulative distribution.}
+\begin{equation}
+    P(x,y) = \int_{-\infty}^{x} dx'\!\int_{-\infty}^{y} dy'\, p(x',y').
+\end{equation}
+
+\textbf{Expected values.}
+\begin{equation}
+    \langle f(x,y)\rangle = \int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} dx\,dy\; f(x,y)\,p(x,y).
+\end{equation}
+
+\subsection{Marginal Distributions}
+
+A natural question is: what is the probability distribution for $x$ alone, regardless of the value of $y$? This is the \emph{marginal distribution} obtained by integrating over all values of $y$:
+\begin{equation}
+    p(x) = \int_{-\infty}^{\infty} p(x,y)\,dy.
+\end{equation}
+Similarly, the marginal distribution for $y$ is
+\begin{equation}
+    p(y) = \int_{-\infty}^{\infty} p(x,y)\,dx.
+\end{equation}
+The marginal $p(x)$ is the probability density at $x$, integrated over (i.e.\ ignorant of) all possible values of $y$.
+
+\subsection{Statistical Independence}
+
+If the joint distribution factorises as $p(x,y) = p(x)\,p(y)$, then knowledge of $y$ gives no information about $x$: the two random variables are \emph{statistically independent}. In this case all joint moments factorise, e.g.\ $\langle f(x)g(y)\rangle = \langle f(x)\rangle\langle g(y)\rangle$.
+
+\section{Conditional Probability and Bayes' Theorem}
+
+\subsection{Conditional Probability}
+
+Given a specific value $y$, we may ask: what is the probability distribution for $x$? This is the \emph{conditional probability} $p(x|y)$, read as ``the probability density of $x$ given $y$.''
+
+It is derived from the joint distribution by Bayes' rule. The joint probability element $p(x,y)\,dx\,dy$ is the probability that $x \in [x, x+dx]$ and $y \in [y, y+dy]$. This can be factored in two ways:
+\begin{equation}
+    p(x,y)\,dx\,dy = p(y)\,dy \cdot p(x|y)\,dx,
+\end{equation}
+which gives
+\begin{equation}
+    \boxed{p(x|y) = \frac{p(x,y)}{p(y)}.}
+\end{equation}
+
+\subsection{Bayes' Theorem}
+
+Since the joint distribution is symmetric, $p(x,y) = p(x|y)\,p(y) = p(y|x)\,p(x)$, we immediately obtain:
+
+\begin{theorem}[Bayes' Theorem]
+\begin{equation}
+    p(x,y) = p(x|y)\,p(y) = p(y|x)\,p(x).
+\end{equation}
+\end{theorem}
+
+Rearranging, the conditional probabilities are related by
+\begin{equation}
+    p(y|x) = \frac{p(x|y)\,p(y)}{p(x)}.
+\end{equation}
+This is the basis of Bayesian inference: it allows one to update a prior belief $p(y)$ about $y$ given new evidence $x$, using the likelihood $p(x|y)$.
+
+\textbf{Example: Medical Testing.} A disease affects 1 in every million people, so $\Pr(D) = 10^{-6}$. A diagnostic test has sensitivity $\Pr(+|D) = 99\%$ and specificity $\Pr(-|\bar{D}) = 99\%$ (i.e.\ the false-positive rate is $1\%$). If a randomly chosen person tests positive, what is $\Pr(D|+)$?
+
+By Bayes' theorem,
+\begin{equation}
+    \Pr(D|+) = \frac{\Pr(+|D)\,\Pr(D)}{\Pr(+)}.
+\end{equation}
+The total probability of testing positive is
+\begin{equation}
+    \Pr(+) = \Pr(+|D)\Pr(D) + \Pr(+|\bar{D})\Pr(\bar{D}) \approx 0.99\times 10^{-6} + 0.01\times(1 - 10^{-6}) \approx 0.01.
+\end{equation}
+Therefore
+\begin{equation}
+    \Pr(D|+) \approx \frac{0.99\times 10^{-6}}{0.01} \approx 10^{-4}.
+\end{equation}
+Despite a 99\% accurate test, a positive result corresponds to only about a 0.01\% chance of actually having the disease. The result is counterintuitive precisely because the disease is so rare: almost all positive tests come from false positives among the vast healthy population. This illustrates why Bayes' theorem and base rates matter in medical statistics.

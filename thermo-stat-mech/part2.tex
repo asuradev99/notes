@@ -1,0 +1,274 @@
+\chapter{Heat and Work}
+
+\begin{definition}[Heat]
+Heat is any spontaneous flow of energy from one object to another caused by a difference in temperature.
+\end{definition}
+
+\begin{center}[DIAGRAM: Two blocks in thermal contact --- one hot, one cold --- with wavy arrows indicating heat flowing from the hotter to the cooler block]\end{center}
+
+\begin{definition}[Work]
+Work is any transfer of energy into or out of a system other than heat. Common examples include pushing a piston, stirring a fluid, or driving a current through a resistor.
+\end{definition}
+
+\section{First Law of Thermodynamics}
+
+\begin{theorem}[First Law]
+\[
+    \Delta U = Q + W,
+\]
+where $U$ is the total internal energy of the system, $Q$ is the heat added to the system, and $W$ is the work done on the system.
+\end{theorem}
+
+Heat can be transferred between systems by three mechanisms. \textbf{Conduction} is the transfer of thermal energy through direct molecular contact. \textbf{Convection} is driven by the bulk motion of a fluid: warmer material expands, becomes less dense, and rises, continuously transporting energy. \textbf{Radiation} is the emission and absorption of electromagnetic waves, which requires no material medium.
+
+\subsection{Units of Heat}
+
+The \textbf{calorie} is defined as the amount of heat required to raise the temperature of one gram of water by one degree Celsius. The mechanical equivalent of heat,
+\[
+    1\,\text{cal} \approx 4.2\,\text{J},
+\]
+establishes that heat and work are both forms of energy transfer, measured in the same units.
+
+\section{Compression Work}
+
+\begin{center}[DIAGRAM: A piston of area $A$ being pushed inward by a force $F$ through a displacement $\Delta x$, compressing gas in a cylinder. The volume change is $\Delta V = -\Delta x \cdot A$.]\end{center}
+
+The work done on a gas by a moving piston follows from $W = \int \vec{F} \cdot d\vec{x}$. In the limit of \textbf{quasistatic compression} --- compression slow enough that the pressure remains spatially uniform throughout the gas at every instant --- the force exerted on the piston equals $F = PA$. Since moving the piston inward by $dx$ decreases the volume by $dV = -A\,dx$, the work done on the gas is
+
+\begin{formula}[Compression Work]
+\[
+    W = -\int_{V_i}^{V_f} P(V)\,dV.
+\]
+\end{formula}
+
+When the gas is compressed ($V_f < V_i$) the integral is negative, so $W > 0$: positive work is done on the gas, as expected.
+
+\subsection{Isothermal Compression}
+
+Isothermal compression is carried out so slowly that the gas remains in thermal contact with its surroundings and its temperature stays constant throughout. With $T$ fixed, the ideal gas law gives $P = NkT/V$, so
+
+\begin{formula}[Isothermal Work]
+\[
+    W = -\int_{V_i}^{V_f} \frac{NkT}{V}\,dV = -NkT\ln\frac{V_f}{V_i} = NkT\ln\frac{V_i}{V_f}.
+\]
+\end{formula}
+
+Since the temperature is constant, the internal energy of an ideal gas is unchanged: $\Delta U = \frac{f}{2}Nk\Delta T = 0$. The first law then gives $Q = -W$, so all the work done on the gas flows out as heat:
+
+\[
+    Q_{\text{isothermal}} = -NkT\ln\frac{V_i}{V_f} = NkT\ln\frac{V_f}{V_i}.
+\]
+
+\subsection{Adiabatic Compression}
+
+Adiabatic compression is carried out so rapidly that no heat has time to enter or leave the system: $Q = 0$. The compression is still assumed to be quasistatic, so the work formula above still applies. The first law reduces to $dU = dW$, giving
+
+\[
+    \frac{f}{2}Nk\,dT = -P\,dV.
+\]
+
+Dividing both sides by $NkT = PV$ separates variables:
+
+\[
+    \frac{f}{2}\frac{dT}{T} = -\frac{dV}{V}.
+\]
+
+Integrating from initial to final state:
+
+\[
+    \frac{f}{2}\ln\frac{T_f}{T_i} = -\ln\frac{V_f}{V_i},
+\]
+
+which exponentiates to the adiabatic constraint:
+
+\begin{formula}[Adiabatic Constraint (T, V)]
+\[
+    V_f T_f^{f/2} = V_i T_i^{f/2}.
+\]
+\end{formula}
+
+To express the constraint in terms of pressure and volume, substitute $T = PV/(Nk)$:
+
+\[
+    V_f\!\left(\frac{P_f V_f}{Nk}\right)^{f/2} = V_i\!\left(\frac{P_i V_i}{Nk}\right)^{f/2}
+    \implies V_f^{f/2+1}\,P_f^{f/2} = V_i^{f/2+1}\,P_i^{f/2}.
+\]
+
+Defining the \textbf{adiabatic index} $\gamma \equiv (f+2)/f$, so that $f/2 + 1 = f\gamma/2$, this simplifies to:
+
+\begin{formula}[Adiabatic Constraint (P, V)]
+\[
+    V_f^\gamma P_f = V_i^\gamma P_i, \qquad \gamma = \frac{f+2}{f}.
+\]
+\end{formula}
+
+The quantity $PV^\gamma$ is conserved along an adiabat. Since $\gamma > 1$, the adiabat $P \propto V^{-\gamma}$ falls more steeply than the isotherm $P \propto V^{-1}$ in a $P$--$V$ diagram: when you compress a gas adiabatically, the pressure rises faster because the temperature also rises.
+
+\begin{center}[DIAGRAM: $P$--$V$ diagram showing an isotherm (shallower curve, $P \propto 1/V$) and an adiabat (steeper curve) both passing through the same initial point $(V_i, P_i)$ and ending at the same final volume $V_f$, with the adiabat reaching a higher final pressure.]\end{center}
+
+\section*{Problem 1.38}
+
+A bubble of gas expands as it rises through water. Compare the final volumes under isothermal and adiabatic expansion for the same pressure drop.
+
+\textit{Isothermal:} $PV = \text{const}$, so $P_f V_f = P_i V_i$, giving $P_f/P_i = V_i/V_f$.
+
+\textit{Adiabatic:} $PV^\gamma = \text{const}$, so
+\[
+    \frac{P_f}{P_i} = \left(\frac{V_i}{V_f}\right)^\gamma
+    \implies \left(\frac{P_f}{P_i}\right)^{1/\gamma} = \frac{V_i}{V_f}.
+\]
+
+For the same pressure ratio $P_f/P_i < 1$, we compare the two expressions for $V_i/V_f$. Since $\gamma > 1$ implies $1/\gamma < 1$, raising a number less than one to a smaller power brings it closer to one, so
+
+\[
+    \left(\frac{P_f}{P_i}\right)^{1/\gamma} < \frac{P_f}{P_i}
+    \implies \left(\frac{V_i}{V_f}\right)_\text{adiabatic} < \left(\frac{V_i}{V_f}\right)_\text{isothermal}
+    \implies \boxed{V_{f,\,\text{adiabatic}} > V_{f,\,\text{isothermal}}}.
+\]
+
+This makes physical sense: during adiabatic expansion the gas cools, which lowers the pressure for a given volume, causing it to expand further to reach the same final pressure. Equivalently, the isothermal bubble has had time to absorb heat from the surroundings and thus expands less.
+
+\chapter{Heat Capacity and Latent Heat}
+
+\section{Heat Capacities}
+
+\begin{definition}[Heat Capacity]
+The \textbf{heat capacity} $C$ of an object is the amount of heat required to raise its temperature by $1\,\text{K}$:
+\[
+    C = \frac{Q}{\Delta T}.
+\]
+The \textbf{specific heat capacity} $c = C/m$ normalises by mass.
+\end{definition}
+
+The heat capacity is not uniquely defined without specifying the conditions under which heat is added, since $Q$ depends on whether the volume or pressure is held fixed. These two cases give different, well-defined quantities.
+
+\subsection{Heat Capacity at Constant Volume}
+
+When volume is held fixed, no expansion work is done ($W = -P\Delta V = 0$), so the first law gives $\Delta U = Q$. The heat capacity at constant volume is therefore
+
+\begin{formula}[Heat Capacity at Constant Volume]
+\[
+    C_V = \left(\frac{\partial U}{\partial T}\right)_{\!V}.
+\]
+\end{formula}
+
+For a system whose energy is stored entirely in quadratic degrees of freedom, the equipartition theorem gives $U = \frac{f}{2}NkT$, and differentiating yields
+
+\begin{theorem}[Dulong--Petit Rule]
+\[
+    C_V = \frac{f}{2}Nk = \frac{f}{2}nR.
+\]
+The heat capacity is proportional to the number of active degrees of freedom per molecule.
+\end{theorem}
+
+This result is remarkably simple: each degree of freedom contributes $\frac{1}{2}Nk$ to the heat capacity. In practice, $f$ is not constant with temperature --- various degrees of freedom (vibrational modes in particular) ``freeze out'' at low temperatures as the spacing between quantum energy levels becomes large compared to $kT$, reducing the effective $f$ and hence $C_V$.
+
+\subsection{Heat Capacity at Constant Pressure}
+
+At constant pressure, the gas is free to expand when heated, so it does work on its surroundings. The heat capacity at constant pressure is therefore larger than $C_V$:
+
+\[
+    C_P = \left(\frac{Q}{\Delta T}\right)_{\!P}
+    = \frac{\Delta U - W}{\Delta T}
+    = \frac{\Delta U + P\Delta V}{\Delta T}
+    = \left(\frac{\partial U}{\partial T}\right)_{\!P} + P\left(\frac{\partial V}{\partial T}\right)_{\!P}.
+\]
+
+For an ideal gas, $V = NkT/P$, so $(\partial V/\partial T)_P = Nk/P$, giving $P(\partial V/\partial T)_P = Nk$. Since $(\partial U/\partial T)_P = C_V$ for an ideal gas (internal energy depends only on temperature), we obtain
+
+\begin{formula}[$C_P$ for an Ideal Gas]
+\[
+    C_P = C_V + Nk = C_V + nR.
+\]
+\end{formula}
+
+The heat capacity at constant pressure exceeds that at constant volume by exactly $nR$, regardless of the molecular structure of the gas. The extra energy goes into the work of expansion rather than into raising the temperature.
+
+\section{Latent Heat}
+
+During a phase transition (melting, boiling), a system absorbs heat without any change in temperature. The ordinary definition $C = Q/\Delta T$ would give an infinite heat capacity, which signals that temperature is simply the wrong variable here.
+
+\begin{definition}[Latent Heat]
+The \textbf{latent heat} $L$ is the total heat required to completely convert a substance from one phase to another at constant pressure. The \textbf{specific latent heat} is $\ell = L/m$, measured in $\text{J/kg}$ or $\text{J/g}$.
+\end{definition}
+
+The energy absorbed during a phase transition goes into breaking intermolecular bonds rather than increasing the kinetic energy of molecules, which is why the temperature remains constant throughout. Typical values:
+\begin{itemize}
+    \item Melting ice: $\ell = 333\,\text{J/g}$ ($80\,\text{cal/g}$)
+    \item Boiling water: $\ell = 2260\,\text{J/g}$ ($540\,\text{cal/g}$)
+\end{itemize}
+
+\section*{Problems}
+
+\subsection*{Problem 1.41}
+
+A metal block is dropped into a cup of water. Since the system is thermally isolated, $\Delta U_\text{total} = 0$, which means the heat lost by the metal equals the heat gained by the water:
+\[
+    m_m C_m \,|\Delta T_m| = m_w C_w \,|\Delta T_w|.
+\]
+
+\begin{enumerate}[label=\alph*)]
+    \item The heat gained by the water: $Q_w = m_w C_w \Delta T_w = 250 \times 4 \times 4 = 4000\,\text{J}$.
+    \item By conservation of energy, the metal lost the same amount: $4000\,\text{J}$.
+    \item The heat capacity of the metal block: $m_m C_m = \dfrac{4000\,\text{J}}{78\,\text{K}} \approx 51.3\,\text{J/K}$.
+    \item The specific heat capacity: $C_m = \dfrac{51.3}{100\,\text{g}} \approx 0.51\,\text{J/(g\,K)}$.
+\end{enumerate}
+
+\subsection*{Problem 1.43}
+
+The measured molar heat capacity of water is $C_V/\text{molecule} = 18 \times 4.186\,\text{J} / (6.022 \times 10^{23}) \approx 9.07\,k$. From the equipartition theorem, $C_V/\text{molecule} = fk/2$, so
+
+\[
+    f \approx 2 \times 9.07 \approx 18.
+\]
+
+This large value (compared to $f=3$ for a monatomic gas) reflects the many vibrational and rotational modes active in a liquid water molecule at room temperature.
+
+\medskip
+
+The problem also introduces two thermodynamic response functions. The \textbf{thermal expansion coefficient} and \textbf{isothermal compressibility} are defined by
+\[
+    \beta = \frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_{\!P}, \qquad
+    \kappa_T = -\frac{1}{V}\left(\frac{\partial V}{\partial P}\right)_{\!T}.
+\]
+
+\begin{enumerate}[label=\alph*)]
+    \item A temperature increase $dT$ at constant pressure produces a volume change $dV = \beta V\,dT$.
+
+    \item A pressure increase $dP$ at constant temperature produces $dV = -\kappa_T V\,dP$.
+
+    \item Along a path of constant volume, the two effects must cancel: $\beta V\,dT = \kappa_T V\,dP$, giving the useful identity
+    \[
+        \left(\frac{\partial P}{\partial T}\right)_{\!V} = \frac{\beta}{\kappa_T}
+        = -\frac{(\partial V/\partial T)_P}{(\partial V/\partial P)_T}.
+    \]
+
+    \item For an ideal gas, $V = nRT/P$, so
+    \[
+        \beta = \frac{1}{V}\cdot\frac{nR}{P} = \frac{1}{T}, \qquad
+        \kappa_T = \frac{1}{V}\cdot\frac{nRT}{P^2} = \frac{1}{P}.
+    \]
+    Therefore $(\partial P/\partial T)_V = \beta/\kappa_T = P/T$, which agrees with differentiating $PV = nRT$ at constant $V$. \checkmark
+
+    \item A real-gas pressure rise along a constant-volume path is $\partial P = (\beta/\kappa_T)\,\partial T$.
+\end{enumerate}
+
+\subsection*{Problem 1.48}
+
+Estimate how long a glacier of cross-section $2\,\text{m}\times 1\,\text{m}$ and height $100\,\text{m}$, composed of $50\%$ ice and $50\%$ air by volume, would take to melt.
+
+\begin{center}[DIAGRAM: Rectangular block $2\,\text{m} \times 1\,\text{m}$ base and $100\,\text{m}$ height.]\end{center}
+
+The volume of the block is $2\,\text{m}^3$ per metre of height, giving a total of $200\,\text{m}^3$, of which half is ice: $100\,\text{m}^3$ of ice with mass $917\,\text{kg/m}^3 \times 100\,\text{m}^3 = 9.17 \times 10^4\,\text{kg} = 9.17 \times 10^7\,\text{g}$.
+
+The energy required to melt all the ice:
+\[
+    Q = \ell \cdot m = 333\,\text{J/g} \times 9.17\times10^7\,\text{g} \approx 3.1\times10^{10}\,\text{J}.
+\]
+
+Estimating the absorbed solar power as roughly $1\,\text{kW/m}^2$ over the $2\,\text{m}^2$ top surface gives $\sim 2\,\text{kW}$, so
+\[
+    t \approx \frac{3.1\times10^{10}\,\text{J}}{2\times10^3\,\text{W}} \approx 1.5\times10^7\,\text{s}.
+\]
+
+Converting: $1.5\times10^7\,\text{s} \div (6\times10^5\,\text{s/week}) \approx 4.5\,\text{weeks} \approx 5\,\text{weeks}$.

@@ -1,0 +1,556 @@
+% ============================================================
+%  Chapter 6 — The Canonical Ensemble
+%  Merged from parts 14 (stat-mech section), 15, 16 (up to
+%  adiabatic cooling), and part8 (Maxwell-Boltzmann speed
+%  distribution subsection).
+% ============================================================
+
+\chapter{The Canonical Ensemble}
+
+% ------------------------------------------------------------------
+\section{Derivation of the Boltzmann Distribution}
+% ------------------------------------------------------------------
+
+Most laboratory systems are held at a fixed \emph{temperature} rather than a fixed energy,
+because they are in thermal contact with a much larger body — a heat reservoir.  The
+appropriate statistical ensemble for such a system is the \emph{canonical ensemble}.
+
+Consider a small system $S$ in thermal contact with a large reservoir $R$ at temperature $T$.
+The combined object, reservoir plus system, is isolated, so the microcanonical postulate
+applies to it: every microstate of the total system is equally probable.  Total extensive
+quantities are additive,
+\begin{equation}
+    U_{\text{tot}} = U_R + U_S, \qquad S_{\text{tot}} = S_R + S_S.
+\end{equation}
+
+\begin{center}
+[DIAGRAM: large reservoir at temperature $T$ on the left exchanging heat with a small
+system on the right; a double-headed arrow labelled ``heat'' connects them]
+\end{center}
+
+The key question is: what is the probability $P_j$ that the system is found in a specific
+microstate $j$ carrying energy $E_j$?  When the system is in microstate $j$, the reservoir
+has energy $U_R = U_{\text{tot}} - E_j$ and can be in any of $\Omega_R(U_{\text{tot}} - E_j)$
+microstates.  Because the system's microstate is fixed at $j$, it contributes only a factor of
+one.  Equal probability of all total microstates therefore gives
+\begin{equation}
+    P_j \;\propto\; \Omega_R\!\left(U_{\text{tot}} - E_j\right)
+        \;=\; e^{S_R(U_{\text{tot}} - E_j)/k_B}.
+\end{equation}
+
+Because the reservoir is large, $E_j \ll U_{\text{tot}}$, and we Taylor-expand $S_R$ to first
+order in $E_j$:
+\begin{equation}
+    S_R\!\left(U_{\text{tot}} - E_j\right)
+    \;\approx\; S_R(U_{\text{tot}}) - \left.\pdv{S_R}{U}\right|_V E_j
+    \;=\; S_R(U_{\text{tot}}) - \frac{E_j}{T},
+\end{equation}
+where the thermodynamic identity $(\partial S_R/\partial U)_V = 1/T$ has been used.  The
+constant $S_R(U_{\text{tot}})$ is the same for every microstate $j$ and is absorbed into the
+overall normalisation.  We are left with the celebrated \textbf{Boltzmann factor}:
+
+\begin{formula}[Boltzmann factor]
+\begin{equation}
+    P_j \;\propto\; e^{-E_j / k_B T}.
+    \label{eq:boltzmann_factor}
+\end{equation}
+\end{formula}
+
+The validity of the first-order expansion requires higher-order terms to be negligible.  The
+next correction is proportional to $E_j^2\,\partial^2 S_R/\partial U^2$, which is suppressed
+by $E_j / k_B T \ll 1$ whenever the system is small compared with the reservoir.  The
+derivation rests on two crucial observations: the system's microstate $j$ is unique
+($\Omega_S = 1$), so only the reservoir multiplicity matters; and because the reservoir is
+much larger than the system, its temperature $T$ is unchanged by the system acquiring energy
+$E_j$.
+
+\subsection*{The Partition Function and Normalisation}
+
+Requiring the probabilities to sum to unity determines the normalisation.  Writing
+$\beta \equiv 1/(k_B T)$,
+
+\begin{formula}[Partition function]
+\begin{equation}
+    Z(T, V, N) \;=\; \sum_j e^{-\beta E_j},
+    \label{eq:partition_function}
+\end{equation}
+where the sum runs over \emph{all microstates} $j$ of the system.  The normalised
+Boltzmann distribution is then
+\begin{equation}
+    P_j = \frac{e^{-\beta E_j}}{Z}.
+\end{equation}
+\end{formula}
+
+Higher-energy microstates are exponentially suppressed relative to lower-energy ones, with
+suppression controlled by the ratio $E_j / k_B T$.  At high temperature, all microstates
+become nearly equally probable; at low temperature, only the lowest-energy states carry
+appreciable weight.
+
+\begin{definition}[Canonical ensemble]
+The \textbf{canonical ensemble} is the ensemble of microstates of a closed system in
+equilibrium with a heat reservoir at temperature $T$.  Unlike the microcanonical ensemble
+(which is restricted to a fixed energy shell), microstates at all energies are included, and
+each microstate $j$ is assigned probability $P_j = e^{-\beta E_j}/Z$.
+\end{definition}
+
+In practice the sum in \eqref{eq:partition_function} is rarely performed by listing
+individual quantum numbers.  If $g(E_i)$ denotes the degeneracy of energy $E_i$, the sum
+over microstates becomes a sum over distinct energies,
+\begin{equation}
+    Z \;=\; \sum_{E_i} g(E_i)\,e^{-\beta E_i},
+\end{equation}
+and in the limit of a continuous spectrum this becomes an integral over the density of
+states.  For a single classical particle in three dimensions,
+\begin{equation}
+    Z_1 \;=\; \int \frac{d^3x\,d^3p}{(2\pi\hbar)^3}\;e^{-\beta E(\vec{x},\vec{p})}.
+\end{equation}
+
+% ------------------------------------------------------------------
+\section{Thermodynamics from the Partition Function}
+% ------------------------------------------------------------------
+
+The canonical ensemble provides a systematic recipe for extracting all thermodynamic
+quantities from the partition function $Z$.
+
+\subsection*{Internal energy}
+
+The internal energy is the ensemble average of the energy.  Observing that
+$E_j e^{-\beta E_j} = -\partial e^{-\beta E_j}/\partial\beta$, the numerator of the average
+is $-\partial Z/\partial\beta$, so
+
+\begin{formula}[Internal energy from $Z$]
+\begin{equation}
+    U = \langle E \rangle = -\pdv{\log Z}{\beta}.
+    \label{eq:U_from_Z}
+\end{equation}
+\end{formula}
+
+\subsection*{Helmholtz free energy and entropy}
+
+Starting from the Gibbs entropy $S = -k_B \sum_j P_j \log P_j$ with
+$\log P_j = -\beta E_j - \log Z$, a short calculation gives
+\begin{equation}
+    S = k_B\beta U + k_B \log Z = \frac{U}{T} + k_B \log Z.
+\end{equation}
+Rearranging immediately yields the fundamental relation
+
+\begin{formula}[Helmholtz free energy]
+\begin{equation}
+    F = U - TS = -k_B T \log Z.
+    \label{eq:F_from_Z}
+\end{equation}
+\end{formula}
+
+All remaining thermodynamic quantities follow from $dF = -S\,dT - P\,dV$:
+
+\begin{formula}[Entropy and pressure from $Z$]
+\begin{equation}
+    S = -\left.\pdv{F}{T}\right|_V = \frac{\partial(k_B T \log Z)}{\partial T}\bigg|_V,
+    \qquad
+    P = -\left.\pdv{F}{V}\right|_T.
+\end{equation}
+\end{formula}
+
+\subsection*{Heat capacity}
+
+Differentiating $U = -\partial \log Z / \partial\beta$ with respect to $T$ and using
+$\partial/\partial T = -k_B \beta^2 \,\partial/\partial\beta$,
+
+\begin{formula}[Heat capacity from $Z$]
+\begin{equation}
+    C_V = \left.\pdv{U}{T}\right|_V = k_B\beta^2\,\pdv[2]{\log Z}{\beta}.
+\end{equation}
+\end{formula}
+
+\subsection*{Energy fluctuations}
+
+The variance $\mathrm{Var}(E) = \langle E^2\rangle - \langle E\rangle^2$ can be obtained by
+differentiating $U = -\partial\log Z/\partial\beta$ once more, which gives
+$\partial^2\log Z/\partial\beta^2 = \langle E^2\rangle - \langle E\rangle^2$.  Comparing with
+the expression for $C_V$ above:
+
+\begin{formula}[Energy fluctuations]
+\begin{equation}
+    \mathrm{Var}(E) = k_B T^2 C_V.
+    \label{eq:var_E}
+\end{equation}
+\end{formula}
+
+This is a striking result: equilibrium fluctuations in energy are directly proportional to
+the macroscopic response function $C_V$.  For an ideal gas,
+$C_V = \tfrac{3}{2}Nk_B$ and $U = \tfrac{3}{2}Nk_BT$, so
+\begin{equation}
+    \frac{\sigma(U)}{U} = \frac{\sqrt{k_BT^2 C_V}}{U}
+    = \sqrt{\frac{3}{2}}\cdot\frac{1}{\sqrt{N}}.
+\end{equation}
+Relative fluctuations are suppressed by $1/\sqrt{N}$ and are negligible for macroscopic
+systems.  More generally, since $C_V \sim N$ and $U \sim N$, we always have
+$\sigma(U)/U \sim 1/\sqrt{N}$, which justifies treating the canonical and microcanonical
+ensembles as equivalent in the thermodynamic limit.
+
+\begin{theorem}[Canonical ensemble thermodynamics recipe]
+Given the partition function $Z(T, V, N)$:
+\begin{alignat}{3}
+    &\text{(1)}\quad U = -\pdv{\log Z}{\beta}, \qquad
+    &&\text{(2)}\quad P = -\left.\pdv{F}{V}\right|_T, \qquad
+    &&\text{(3)}\quad F = -k_B T \log Z,\\[4pt]
+    &\text{(4)}\quad S = \frac{U}{T} + k_B \log Z, \qquad
+    &&\text{(5)}\quad C_V = k_B\beta^2\pdv[2]{\log Z}{\beta}, \qquad
+    &&\text{(6)}\quad \mathrm{Var}(U) = k_B T^2 C_V.
+\end{alignat}
+\end{theorem}
+
+\subsection*{Equipartition as a corollary}
+
+The equipartition theorem is a direct consequence of the Gaussian structure of Boltzmann
+integrals.  Suppose $\xi$ is any degree of freedom that enters the Hamiltonian quadratically:
+$H = a\xi^2 + \cdots$.  The canonical integral over $\xi$ is
+\begin{equation}
+    Z = \int_{-\infty}^{\infty} d\xi\;e^{-\beta a\xi^2}\times\cdots
+      = \sqrt{\frac{\pi}{\beta a}}\times\cdots.
+\end{equation}
+The contribution to the internal energy from this degree of freedom is
+\begin{equation}
+    U_\xi = -\pdv{}{\beta}\!\left[-\tfrac{1}{2}\log(\beta a) + \cdots\right]
+           = \frac{1}{2\beta} = \frac{1}{2}k_BT.
+\end{equation}
+
+\begin{fact}
+\textbf{Equipartition theorem.}  Each quadratic degree of freedom contributes
+$\tfrac{1}{2}k_BT$ to the average energy, regardless of the coefficient $a$.
+\end{fact}
+
+% ------------------------------------------------------------------
+\section{Two-Level System and the Schottky Anomaly}
+% ------------------------------------------------------------------
+
+The simplest non-trivial application of the canonical ensemble is a spin-$\tfrac{1}{2}$
+particle in an external magnetic field $B$.  The two energy levels are
+\begin{equation}
+    E_1 = -\mu_B B \quad\text{(spin aligned with field)}, \qquad
+    E_2 = +\mu_B B \quad\text{(spin anti-aligned)}.
+\end{equation}
+
+The partition function is
+\begin{equation}
+    Z = e^{\beta\mu_B B} + e^{-\beta\mu_B B} = 2\cosh(\beta\mu_B B).
+\end{equation}
+The internal energy follows from \eqref{eq:U_from_Z}:
+\begin{equation}
+    U = -\pdv{\log Z}{\beta} = -\mu_B B \tanh(\beta\mu_B B).
+\end{equation}
+
+At low temperature, $U \to -\mu_B B$ as the system settles into its ground state.  At high
+temperature, $U \to 0$ as both states become equally likely.
+
+\begin{center}
+[DIAGRAM: plot of $U(T)$ rising from $-\mu_B B$ at $T=0$ toward $0$ as $T\to\infty$,
+with the scale $k_BT \sim \mu_B B$ indicated on the horizontal axis]
+\end{center}
+
+The entropy is obtained from $S = U/T + k_B \log Z$:
+\begin{equation}
+    S = k_B\log\!\left(2\cosh(\beta\mu_B B)\right) - \frac{\mu_B B}{T}\tanh(\beta\mu_B B).
+\end{equation}
+As $T \to 0$, both terms cancel to give $S \to 0$ (unique ground state, consistent with the
+third law).  As $T \to \infty$, $\tanh \to 0$ and $S \to k_B\log 2$, corresponding to two
+equally accessible states.
+
+\subsection*{Heat capacity and the Schottky anomaly}
+
+Differentiating $U$ with respect to $T$,
+\begin{equation}
+    C_V = \pdv{U}{T} = \frac{(\mu_B B)^2}{k_B T^2}\,\mathrm{sech}^2(\beta\mu_B B).
+\end{equation}
+
+This is the \textbf{Schottky anomaly}: the heat capacity peaks at an intermediate temperature
+$k_BT \sim \mu_B B$, where the thermal energy is comparable to the level spacing.  It falls
+off exponentially at low $T$ (because the excited state is frozen out) and as $T^{-2}$ at
+high $T$ (because both states become equally occupied and the system loses its ability to
+absorb entropy).  The peak in $C_V$ is a universal signature of a finite-level-spacing system
+and occurs in many physical contexts, including nuclear spin systems and crystal-field split
+levels.
+
+The probabilities of the two states are
+\begin{equation}
+    P_1 = \frac{e^{\beta\mu_B B}}{Z} = \frac{1}{1 + e^{-2\beta\mu_B B}}, \qquad
+    P_2 = \frac{1}{1 + e^{2\beta\mu_B B}},
+\end{equation}
+which are related to the Fermi-Dirac function, as one would expect for a two-level occupation
+problem.
+
+% ------------------------------------------------------------------
+\section{The Ideal Gas from the Partition Function}
+% ------------------------------------------------------------------
+
+\subsection*{Single-particle partition function}
+
+For an ideal gas of $N$ distinguishable monatomic particles in volume $V$, the $N$-particle
+partition function factorises because the Hamiltonian is a sum of single-particle
+Hamiltonians.  The single-particle partition function is
+\begin{equation}
+    Z_1 = \int \frac{d^3x\,d^3p}{(2\pi\hbar)^3}\;e^{-\beta p^2/2m}.
+\end{equation}
+The spatial integral gives a factor of $V$.  Evaluating the momentum integral in spherical
+coordinates by substituting $u = \sqrt{\beta/2m}\,p$,
+\begin{equation}
+    \int d^3p\;e^{-\beta p^2/2m} = 4\pi\int_0^\infty p^2\,e^{-\beta p^2/2m}\,dp
+    = \left(\frac{2\pi m}{\beta}\right)^{3/2} = (2\pi mk_BT)^{3/2}.
+\end{equation}
+Combining,
+\begin{equation}
+    Z_1 = \frac{V}{\lambda_{\text{th}}^3},
+    \qquad
+    \lambda_{\text{th}} = \frac{h}{\sqrt{2\pi mk_BT}},
+\end{equation}
+where $\lambda_{\text{th}}$ is the \textbf{thermal de Broglie wavelength}.
+
+\begin{formula}[Single-particle ideal gas partition function]
+\begin{equation}
+    Z_1 = \frac{V}{\lambda_{\text{th}}^3} \propto V T^{3/2}.
+\end{equation}
+\end{formula}
+
+\subsection*{$N$-particle partition function and the Gibbs factor}
+
+If the particles are treated as distinguishable, the $N$-particle partition function is
+$(Z_1)^N$, which gives an entropy proportional to $N\log V$ rather than $N\log(V/N)$ — the
+quantity is not extensive.  This is the \textbf{Gibbs paradox}: mixing identical gases at
+the same temperature and pressure should produce no entropy change, yet the distinguishable
+formula gives a positive mixing entropy.
+
+The resolution is that identical particles are \emph{indistinguishable}.  Dividing the
+phase-space volume by $N!$ to avoid overcounting of identical-particle configurations:
+
+\begin{formula}[Ideal gas partition function for indistinguishable particles]
+\begin{equation}
+    Z_N = \frac{(Z_1)^N}{N!} = \frac{1}{N!}\left(\frac{V}{\lambda_{\text{th}}^3}\right)^N.
+    \label{eq:ideal_gas_ZN}
+\end{equation}
+This approximation is valid in the classical (high-temperature) limit, where the typical
+occupancy of any single quantum state is much less than one.
+\end{formula}
+
+\subsection*{Recovery of the Sackur--Tetrode entropy}
+
+Using $F = -k_BT\log Z_N$ and $S = -(\partial F/\partial T)_V$, with Stirling's
+approximation $\log N! \approx N\log N - N$:
+
+\begin{formula}[Sackur--Tetrode equation]
+\begin{equation}
+    S = k_BN\!\left[\log\frac{V}{N\lambda_{\text{th}}^3} + \frac{5}{2}\right].
+    \label{eq:sackur_tetrode}
+\end{equation}
+\end{formula}
+
+This entropy is properly extensive: doubling $N$ and $V$ at fixed density doubles $S$.  The
+internal energy is recovered as
+\begin{equation}
+    U = -\pdv{\log Z_N}{\beta} = \frac{3}{2}Nk_BT,
+\end{equation}
+in agreement with the equipartition theorem for three translational degrees of freedom.
+
+% ------------------------------------------------------------------
+\section{The Maxwell--Boltzmann Distribution}
+% ------------------------------------------------------------------
+
+The canonical ensemble allows us to derive not just averages but the full probability
+distributions for observables.  The joint probability density in single-particle phase space
+is $\rho \propto e^{-\beta p^2/2m}$ (uniform in position for an ideal gas).
+
+\subsection*{Energy distribution}
+
+The energy distribution $P(E)$ is obtained by integrating over all phase-space points with
+energy $E$, inserting a delta function to enforce the energy constraint:
+\begin{equation}
+    P(E) = \frac{V}{Z_1}\cdot\frac{4\pi}{(2\pi\hbar)^3}
+            \int_0^\infty p^2\,e^{-\beta p^2/2m}\;\delta\!\left(E - \frac{p^2}{2m}\right)dp.
+\end{equation}
+Evaluating the delta function at $p = \sqrt{2mE}$ and collecting factors:
+
+\begin{formula}[Maxwell--Boltzmann energy distribution]
+\begin{equation}
+    P(E) = 2\pi\!\left(\frac{1}{\pi k_BT}\right)^{3/2}\sqrt{E}\;e^{-\beta E}.
+    \label{eq:MB_energy}
+\end{equation}
+\end{formula}
+
+This distribution peaks at $E = \tfrac{1}{2}k_BT$ and has mean
+$\langle E\rangle = \tfrac{3}{2}k_BT$, consistent with the equipartition result for three
+translational degrees of freedom.
+
+\subsection*{Speed distribution}
+
+The speed distribution $P(v)$ is derived from $P(E)$ by changing variables via
+$E = \tfrac{1}{2}mv^2$.  Requiring probability to be conserved, $P(v)\,dv = P(E)\,dE$, and
+using $dE = mv\,dv$:
+
+\begin{formula}[Maxwell--Boltzmann speed distribution]
+\begin{equation}
+    P(v) = 4\pi\!\left(\frac{m}{2\pi k_BT}\right)^{3/2} v^2\,e^{-mv^2/2k_BT}.
+    \label{eq:MB_speed}
+\end{equation}
+\end{formula}
+
+\begin{center}
+[DIAGRAM: three-dimensional velocity space with a spherical shell of radius $v_0$ and
+thickness $dv$; the shell volume $4\pi v^2 dv$ multiplied by the Boltzmann weight
+$e^{-mv^2/2k_BT}$ gives the probability of finding the particle with speed in $[v, v+dv]$]
+\end{center}
+
+The normalisation constant is obtained by imposing $\int_0^\infty P(v)\,dv = 1$.
+Substituting $u = \sqrt{m/2k_BT}\,v$ and using $\int_0^\infty u^2 e^{-u^2}\,du = \sqrt{\pi}/4$,
+one verifies that the prefactor $4\pi(m/2\pi k_BT)^{3/2}$ is indeed the correct normalisation.
+
+The mean speed is
+\begin{equation}
+    \langle v \rangle = \int_0^\infty v\,P(v)\,dv = \sqrt{\frac{8k_BT}{\pi m}},
+\end{equation}
+and the rms speed is
+\begin{equation}
+    v_{\text{rms}} = \sqrt{\langle v^2\rangle} = \sqrt{\frac{3k_BT}{m}}.
+\end{equation}
+
+The $v^2$ prefactor in $P(v)$ reflects the growing phase-space volume of a spherical shell
+in velocity space at radius $v$; the Boltzmann suppression $e^{-mv^2/2k_BT}$ cuts off the
+distribution at high speeds.  The competition between these two factors produces the
+characteristic asymmetric peak.
+
+% ------------------------------------------------------------------
+\section{The Einstein Solid and Quantum Oscillators}
+% ------------------------------------------------------------------
+
+A monatomic solid can be modelled as $N$ independent three-dimensional harmonic oscillators,
+each with the same frequency $\omega$.  The oscillators are distinguishable (they sit at
+definite lattice sites), so $Z_N = (Z_1)^N$.
+
+\subsection*{Single-oscillator partition function}
+
+The energy levels of a quantum harmonic oscillator in three dimensions are
+\begin{equation}
+    \varepsilon = \hbar\omega\!\left(n_1 + n_2 + n_3 + \tfrac{3}{2}\right),
+    \qquad n_1, n_2, n_3 = 0, 1, 2, \ldots
+\end{equation}
+The single-oscillator partition function factorises over the three spatial directions:
+\begin{align}
+    Z_1 &= e^{-3\beta\hbar\omega/2}
+           \left(\sum_{n=0}^{\infty} e^{-\beta\hbar\omega n}\right)^3
+         = e^{-3\beta\hbar\omega/2}
+           \left(\frac{1}{1 - e^{-\beta\hbar\omega}}\right)^3,
+\end{align}
+using the geometric series $\sum_{n=0}^\infty x^n = 1/(1-x)$ for $|x| < 1$.  Therefore,
+\begin{equation}
+    Z_N = (Z_1)^N = \left[\frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}}\right]^{3N}.
+\end{equation}
+
+\subsection*{Internal energy and the Planck factor}
+
+From $U_N = -\partial\log Z_N/\partial\beta$:
+\begin{equation}
+    \log Z_N = 3N\!\left[-\tfrac{1}{2}\beta\hbar\omega
+               - \log\!\left(1 - e^{-\beta\hbar\omega}\right)\right],
+\end{equation}
+so
+\begin{equation}
+    U_N = 3N\!\left[\tfrac{1}{2}\hbar\omega
+          + \hbar\omega\cdot\frac{e^{-\beta\hbar\omega}}{1 - e^{-\beta\hbar\omega}}\right].
+\end{equation}
+The second fraction simplifies to $1/(e^{\beta\hbar\omega} - 1)$, which is the mean
+occupation number of a bosonic mode — the \textbf{Planck factor} $\bar{n}$.  Thus
+
+\begin{formula}[Einstein solid internal energy]
+\begin{equation}
+    U_N = 3N\hbar\omega\!\left[\frac{1}{2} + \bar{n}\right],
+    \qquad \bar{n} = \frac{1}{e^{\beta\hbar\omega} - 1}.
+    \label{eq:einstein_U}
+\end{equation}
+\end{formula}
+
+The term $\tfrac{3}{2}N\hbar\omega$ is the zero-point energy; $3N\hbar\omega\,\bar{n}$ is
+the thermal excitation above it.
+
+\paragraph{Low-temperature limit ($T \to 0$).}
+As $T \to 0$, $e^{\beta\hbar\omega} \gg 1$ so $\bar{n} \approx e^{-\beta\hbar\omega} \to 0$.
+The internal energy approaches the zero-point value $\tfrac{3}{2}N\hbar\omega$, and the
+heat capacity falls off exponentially:
+\begin{equation}
+    C_V \approx 3Nk_B\!\left(\frac{\hbar\omega}{k_BT}\right)^2
+    e^{-\hbar\omega/k_BT} \xrightarrow{T\to 0} 0.
+\end{equation}
+All degrees of freedom are \emph{frozen out}: the thermal energy $k_BT$ is far too small to
+excite any oscillator across the gap $\hbar\omega$.
+
+\paragraph{High-temperature limit ($T \to \infty$).}
+For $\beta\hbar\omega \ll 1$, we expand $e^{\beta\hbar\omega} - 1 \approx \beta\hbar\omega$,
+giving $\bar{n} \approx 1/\beta\hbar\omega - 1/2 + \cdots$.  Substituting,
+\begin{equation}
+    U_N \approx 3N\hbar\omega\!\left[\tfrac{1}{2} + \frac{1}{\beta\hbar\omega} - \tfrac{1}{2}\right]
+        = 3Nk_BT,
+\end{equation}
+recovering the classical equipartition result: each of the $3N$ oscillators has kinetic and
+potential energy $\tfrac{1}{2}k_BT$ each, for a total of $3Nk_BT$.
+
+\subsection*{Heat capacity}
+
+Differentiating \eqref{eq:einstein_U} with respect to $T$:
+\begin{equation}
+    C_V = \pdv{U_N}{T} = 3Nk_B\!\left(\frac{\hbar\omega}{k_BT}\right)^2
+    \frac{e^{\beta\hbar\omega}}{\left(e^{\beta\hbar\omega} - 1\right)^2}.
+\end{equation}
+
+\begin{fact}
+\textbf{Dulong--Petit Law.}  At high temperatures the heat capacity of a monatomic solid
+saturates at $C_V = 3Nk_B = 3R$ per mole, corresponding to the full equipartition result
+for three-dimensional harmonic oscillators.
+\end{fact}
+
+% ------------------------------------------------------------------
+\section{Final Example: Adiabatic Cooling}
+% ------------------------------------------------------------------
+
+We close the chapter with an instructive example of adiabatic cooling that illustrates how
+the partition function encodes the equation of state through the dependence of $Z$ on
+external parameters.
+
+Consider $N$ classical, indistinguishable particles confined in a linear (absolute-value)
+potential and with relativistic kinematics.  Specifically, the single-particle energy is
+$E = c|\vec{p}|$ (ultrarelativistic dispersion) and the trap potential is
+$V(\vec{x}) = \alpha|\vec{x}|$, where $\alpha$ is the trap gradient.
+
+The single-particle partition function is
+\begin{equation}
+    Z_1 = \int \frac{d^3x\, d^3p}{(2\pi\hbar)^3}\;
+    e^{-\beta c|\vec{p}|}\, e^{-\beta\alpha|\vec{x}|}.
+\end{equation}
+Both the momentum and position integrals are of the form
+$\int d^3u\, e^{-a|\vec{u}|} = 4\pi\int_0^\infty u^2 e^{-au}\,du = 8\pi/a^3$, using
+$\int_0^\infty r^2 e^{-r}\,dr = 2$.  Applying this to both factors,
+\begin{equation}
+    Z_1 = \frac{1}{(2\pi\hbar)^3}(8\pi)^2
+    \left(\frac{k_BT}{c}\right)^3\!\left(\frac{k_BT}{\alpha}\right)^3
+    = \frac{8}{\pi}\!\left(\frac{k_BT}{\hbar}\right)^6 \frac{1}{(c\alpha)^3}.
+\end{equation}
+
+The $N$-particle partition function for indistinguishable particles is
+$Z_N = Z_1^N/N!$, and the internal energy and entropy are
+\begin{align}
+    U_N &= -\pdv{\log Z_N}{\beta} = 6Nk_BT,\\
+    S_N &= \frac{U_N}{T} + k_B\log Z_N
+         = 6Nk_B + k_B\!\left[N\log Z_1 - N\log N + N\right].
+\end{align}
+The factor of $6$ confirms six effective degrees of freedom per particle (three from the
+relativistic momentum integral and three from the linear position potential).
+
+\paragraph{Adiabatic change of the trap gradient.}
+If $\alpha$ is changed \emph{adiabatically}, $S_N$ is held fixed.  Since $S_N$ depends on
+$T$ and $\alpha$ only through $Z_1 \propto T^6/\alpha^3$, holding $S_N$ constant requires
+$Z_1 = \text{const}$, i.e.\
+\begin{equation}
+    \frac{T^6}{\alpha^3} = \text{const}
+    \quad\Longrightarrow\quad T^2 \propto \alpha
+    \quad\Longrightarrow\quad \boxed{T \sim \sqrt{\alpha}}.
+\end{equation}
+Reducing the trap gradient adiabatically therefore \emph{cools} the gas: as $\alpha$ is
+slowly decreased, the temperature drops as $\sqrt{\alpha}$.  This is an analogue of laser
+cooling by adiabatic expansion, and the same $T \propto \sqrt{\alpha}$ scaling applies to
+any system whose partition function has the form $Z_1 \propto T^n/\alpha^m$.

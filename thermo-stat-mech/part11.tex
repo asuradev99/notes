@@ -1,0 +1,406 @@
+\section{Entropy and Reversible Processes}
+
+The differential relation for entropy is
+\begin{equation}
+    dS = \frac{\dbar Q}{T}.
+\end{equation}
+For a quasi-static (reversible) process that includes an isothermal step at temperature $T_H$ delivering heat $Q_H$, the total entropy change of a system heated from $T_C$ to $T_H$ is found by splitting the process: first a reversible non-isothermal step gives
+\begin{equation}
+    \Delta S = \int_{T_C}^{T_H} \frac{C_V \, dT}{T} + \frac{Q_H}{T_H},
+\end{equation}
+while for a purely non-isothermal path the isothermal term is absent:
+\begin{equation}
+    \Delta S = \int_{T_C}^{T_H} \frac{C_V \, dT}{T}.
+\end{equation}
+
+\begin{center}[DIAGRAM: two reservoirs at temperatures $T_H$ and $T_C$ with heat $Q$ flowing from hot to cold; entropy decreases in the hot reservoir by $Q/T_H$ and increases in the cold reservoir by $Q/T_C$]\end{center}
+
+When a fixed quantity of heat $Q$ flows from a hot reservoir at $T_H$ to a cold reservoir at $T_C$, the entropy changes are
+\begin{equation}
+    \Delta S_C = \frac{Q}{T_C}, \qquad \Delta S_H = -\frac{Q}{T_H}.
+\end{equation}
+Because $T_C < T_H$ we have $\Delta S_C > |\Delta S_H|$, so the total entropy of the universe increases. This is a concrete illustration that irreversible heat flow always raises total entropy.
+
+\subsection{How to Reversibly Heat a System}
+
+Reversibly raising a cold body at temperature $T_C$ all the way to a hot temperature $T_H$ cannot be done by direct contact with the hot reservoir, since that is irreversible. Instead, one introduces a sequence of intermediate thermal reservoirs at temperatures $T_C, T_{C+1}, T_{C+2}, \ldots, T_H$, each infinitesimally hotter than the last, so that the system is always in near-equilibrium with the reservoir it contacts. In a refrigerator or heat pump the analogous trick is implemented by a working fluid: air going out carries heat away from inside, while cold air coming in absorbs heat from the surroundings.
+
+\begin{center}[DIAGRAM: sequence of reservoirs $T_C, T_{C+1}, T_{C+2}, \ldots, T_H$ arranged from left (cold) to right (hot); arrows indicating incremental heat transfer at each stage]\end{center}
+
+\chapter{The Carnot Engine}
+
+\section{The Carnot Cycle in $P$-$V$ Space}
+
+\begin{center}[DIAGRAM: $P$-$V$ diagram showing the four strokes of the Carnot cycle; upper isothermal at $T_H$ (absorbing $Q_H$), right adiabat, lower isothermal at $T_C$ (rejecting $Q_C$), left adiabat; shaded area equals $W_{\text{out}}$]\end{center}
+
+The Carnot engine operates between a hot reservoir at $T_H$ and a cold reservoir at $T_C$. Its four strokes are: (1) isothermal expansion at $T_H$ (absorbing heat $Q_H$), (2) adiabatic expansion from $T_H$ to $T_C$, (3) isothermal compression at $T_C$ (rejecting heat $Q_C$), and (4) adiabatic compression back to the initial state. During the adiabatic strokes the entropy does not change, confirming the motto \emph{adiabat: entropy = 0} (constant). The entropy of the ideal gas scales as
+\begin{equation}
+    S \sim k_B \ln V^N = Nk_B \ln V,
+\end{equation}
+which reflects the fact that the accessible phase-space volume grows as $V^N$. For a gas of $N$ particles in $d = 3$ dimensions the energy surface in $3N$-dimensional momentum space is a $3N$-dimensional sphere:
+\begin{equation}
+    E = \frac{1}{2m}\bigl(p_{x_1}^2 + p_{y_1}^2 + p_{z_1}^2 + \cdots + p_{z_N}^2\bigr).
+\end{equation}
+
+\section{The Carnot Cycle in $T$-$S$ Space}
+
+\begin{center}[DIAGRAM: $T$-$S$ diagram for the Carnot cycle; rectangle with upper edge at $T_H$ (width $Q_H/T_H$), lower edge at $T_C$; area equals $W_{\text{out}}$]\end{center}
+
+In the $T$-$S$ representation the cycle becomes a rectangle, which makes the energetics transparent. Using the first law and the definition $\dbar Q = T\,dS$, one has $Q = W_{\text{out}} - W_{\text{in}}$, and the work output is
+\begin{equation}
+    W_{\text{out}} = Q_{\text{hot}} - Q_{\text{cold}}.
+\end{equation}
+The Carnot condition (reversibility implies equal entropy changes on the two isothermal legs) gives
+\begin{equation}
+    \frac{Q_H}{T_H} = \frac{Q_C}{T_C},
+\end{equation}
+so the cold heat rejected is $Q_C = \dfrac{T_C}{T_H} Q_H$. Therefore
+\begin{equation}
+    W_{\text{out}} = Q_H - Q_C = Q_H\!\left(1 - \frac{T_C}{T_H}\right) = Q_H\,\frac{T_H - T_C}{T_H}.
+\end{equation}
+
+\begin{theorem}[Carnot Efficiency]
+The efficiency of the Carnot engine is
+\begin{equation}
+    \eta \equiv \frac{W_{\text{out}}}{Q_H} = \frac{T_H - T_C}{T_H} = 1 - \frac{T_C}{T_H}.
+\end{equation}
+No heat engine operating between reservoirs at $T_H$ and $T_C$ can exceed this efficiency.
+\end{theorem}
+
+For a numerical example with $T_H = 600\ \mathrm{K}$ and $T_C = 300\ \mathrm{K}$:
+\begin{equation}
+    \eta = \frac{600 - 300}{600} = \frac{300}{600} = 50\%.
+\end{equation}
+
+\begin{center}[DIAGRAM: $P$-$V$ curve for a less-than-ideal engine; the working area lies inside the Carnot rectangle]\end{center}
+
+\section{Running the Carnot Engine Backwards: Refrigerators and Heat Pumps}
+
+\begin{center}[DIAGRAM: $P$-$V$ diagram traversed in the reverse (clockwise) sense; $Q_H$ leaves to the hot reservoir (``warms coils at back of fridge'') and $Q_C$ is absorbed from the cold reservoir (``absorbed from food'')]\end{center}
+
+Reversing the cycle turns the engine into a refrigerator: work $W_{\text{in}}$ is supplied, heat $Q_C$ is absorbed from the cold reservoir (the food), and heat $Q_H$ is expelled to the hot reservoir (the room). Energy conservation gives
+\begin{equation}
+    W_{\text{in}} + Q_C - Q_H = 0 \implies Q_H = Q_C \cdot \frac{T_H}{T_C}.
+\end{equation}
+Substituting the Carnot relation,
+\begin{equation}
+    W_{\text{in}} + Q_C\!\left(1 - \frac{T_H}{T_C}\right) = 0.
+\end{equation}
+
+\subsection{Coefficient of Performance: Refrigerator}
+
+The figure of merit for a refrigerator is how much cold heat is absorbed per unit of work supplied. From the equations above,
+\begin{equation}
+    \frac{Q_C}{W_{\text{in}}} = \frac{-1}{1 - T_H/T_C} = \frac{T_C}{T_H - T_C} \approx \frac{278}{30} \approx 9, \quad \text{(for } T_H = 308\ \mathrm{K},\, T_C = 278\ \mathrm{K}\text{)}.
+\end{equation}
+In typical household conditions this ratio is around $9$--$14$, meaning the refrigerator moves roughly an order of magnitude more heat than the electrical work it consumes.
+
+\subsection{Coefficient of Performance: Heat Pump}
+
+For a heat pump the quantity of interest is how much heat is delivered to the hot side per unit of work:
+\begin{equation}
+    W_{\text{in}} + Q_H\!\left(\frac{T_C}{T_H} - 1\right) = 0
+    \implies \frac{Q_H}{W_{\text{in}}} = \frac{-1}{T_C/T_H - 1} = \frac{T_H}{T_H - T_C}.
+\end{equation}
+For $T_H = 500\ \mathrm{K}$ and $T_H - T_C = 25\ \mathrm{K}$ this gives $Q_H/W_{\text{in}} = 500/25 = 20$, implying a coefficient of performance of about $12$ in realistic settings. A heat pump can thus deliver substantially more thermal energy to a building than the electrical energy it consumes.
+
+\chapter{Canonical Ensembles and Information Entropy}
+
+\section{Sums of Random Variables}
+
+\subsection{Setup and Mean}
+
+Let $S_n = \sum_{j=1}^{n} x_j$ be a sum of $n$ random variables. Suppose the joint probability density factorises as
+\begin{equation}
+    p(x_1, x_2, \ldots, x_n) = \prod_{j=1}^{n} p_j(x_j),
+\end{equation}
+which holds when the variables are \emph{statistically independent}. (In principle, statistical mechanics does not require full independence; what matters is that interactions are weak.) The probability density for the sum $S_n$ is then
+\begin{equation}
+    p(S_n) = \int \prod_{j=1}^{n} dx_j\, p_j(x_j)\; \delta\!\left(S_n - \sum_{j=1}^{n} x_j\right). \label{eq:sum_dist}
+\end{equation}
+This is the \emph{sum distribution}. The delta function enforces the constraint that the $x_j$ sum to $S_n$.
+
+To find the mean $\langle S_n\rangle$ we compute
+\begin{align}
+    \langle S_n\rangle &= \int dS_n\; S_n\, p(S_n) \notag \\
+    &= \int dS_n\; S_n \int \prod_{j=1}^{n} dx_j\, p_j(x_j)\;\delta\!\left(S_n - \sum_j x_j\right) \notag \\
+    &= \int \prod_{j=1}^{n} dx_j\, p_j(x_j)\left[\sum_j x_j\right] \notag \\
+    &= \int \prod_{j=1}^{n} dx_j\, p_j(x_j)\left[x_1 + x_2 + \cdots + x_n\right].
+\end{align}
+Because the $x_j$ are independent, the integral factorises term by term:
+\begin{equation}
+    \langle S_n\rangle = \langle x_1\rangle + \langle x_2\rangle + \cdots = \sum_{k=1}^{n}\langle x_k\rangle.
+\end{equation}
+The mean of a sum of independent random variables is the sum of the means — an unsurprising but foundational result.
+
+\subsection{Variance of the Sum}
+
+To find $\mathrm{Var}(S_n) = \langle S_n^2\rangle - \langle S_n\rangle^2$ we expand
+\begin{align}
+    \langle S_n^2\rangle &= \int \prod_{j} dx_j\, p_j(x_j)\left[\sum_k x_k\right]^2 \notag \\
+    &= \int \prod_{j} dx_j\, p_j(x_j)\left[\sum_k x_k^2 + \sum_{k \neq \ell} x_k x_\ell\right] \notag \\
+    &= \left[\langle x_1^2\rangle + \langle x_2^2\rangle + \cdots + \langle x_n^2\rangle\right] + \sum_{k \neq \ell}\langle x_k\rangle\langle x_\ell\rangle,
+\end{align}
+where in the last step statistical independence was used for the cross terms: $\langle x_k x_\ell\rangle = \langle x_k\rangle\langle x_\ell\rangle$ for $k\neq\ell$. Meanwhile,
+\begin{equation}
+    \langle S_n\rangle^2 = \left[\sum_k \langle x_k\rangle\right]^2 = \sum_k \langle x_k\rangle^2 + \sum_{k\neq\ell}\langle x_k\rangle\langle x_\ell\rangle.
+\end{equation}
+The cross terms cancel exactly, leaving
+\begin{equation}
+    \mathrm{Var}(S_n) = \sum_{k=1}^{n}\bigl(\langle x_k^2\rangle - \langle x_k\rangle^2\bigr) = \sum_{k=1}^{n}\mathrm{Var}[x_k].
+\end{equation}
+
+\begin{theorem}[Additivity of Variance]
+If $x_1, \ldots, x_n$ are statistically independent, then the variance of their sum equals the sum of their variances:
+\begin{equation}
+    \mathrm{Var}\!\left(\sum_{k=1}^{n} x_k\right) = \sum_{k=1}^{n} \mathrm{Var}[x_k].
+\end{equation}
+\end{theorem}
+
+\subsection{Special Case: Identically Distributed Variables}
+
+When all $x_k$ are drawn from the same distribution $p(x)$, we have $\langle S_n\rangle = n\langle x\rangle$ and $\mathrm{Var}(S_n) = n\,\mathrm{Var}(x)$, so $\sigma(S_n) = \sqrt{n}\,\sigma(x)$. The \emph{sample mean} $\bar{x} = S_n/n$ therefore satisfies
+\begin{equation}
+    \langle\bar{x}\rangle = \langle x\rangle, \qquad \mathrm{Var}(\bar{x}) = \frac{1}{n}\mathrm{Var}(x), \qquad \sigma(\bar{x}) = \frac{1}{\sqrt{n}}\,\sigma(x).
+\end{equation}
+The last relation is exactly why repeating a measurement $n$ times and averaging reduces the standard deviation by a factor of $\sqrt{n}$: the signal-to-noise ratio of $\bar{x}$ grows as $\sqrt{n}$.
+
+\begin{center}[DIAGRAM: left panel, broad $p(x)$ distribution with mean $\langle x\rangle$ and width $\sigma$; right panel, much narrower distribution of $\bar{x}$ with width $\sigma/\sqrt{n}$]\end{center}
+
+\section{Convolutions and the PDF of a Sum}
+
+The probability density for the sum $S_n$, given by equation \eqref{eq:sum_dist}, is an $n$-fold convolution. To see this most clearly, consider $n = 2$: the density of $S_2 = x + y$ is
+\begin{align}
+    p(S_2) &= \int dx\, dy\; p_1(x)\, p_2(y)\;\delta(S_2 - (x+y)) \notag \\
+    &= \int dx\; p_1(x)\, p_2(S_2 - x),
+\end{align}
+which is precisely the \emph{convolution} $p_1 * p_2$ evaluated at $S_2$. Hence $p(S_2) = p_1 \circledast p_2$.
+
+\begin{definition}[Convolution]
+The convolution of two functions $f$ and $g$ is
+\begin{equation}
+    (f \circledast g)(z) = \int dx\; f(x)\, g(z - x).
+\end{equation}
+\end{definition}
+
+For the general $n$-fold case:
+\begin{equation}
+    p(S_n) = \int \prod_{j=1}^{n} dx_j\; f_j(x_j)\;\delta\!\left(z - \sum_{k=1}^{n} x_k\right) = f_1 \circledast f_2 \circledast \cdots \circledast f_n.
+\end{equation}
+The order is irrelevant since convolution is commutative and associative.
+
+\begin{fact}
+The PDF of the sum of independent random variables is the convolution of their individual PDFs.
+\end{fact}
+
+\textbf{Example.} Take $S = x + y$ where $p(x)$ is uniform on $[-1, 1]$ and $p(y)$ is uniform on $[-1, 1]$. Their convolution is a triangular distribution on $[-2, 2]$. Even a single convolution changes the shape: repeated convolution progressively rounds the distribution toward a Gaussian.
+
+\section{Three Important Examples of Convolution}
+
+\begin{enumerate}
+    \item \textbf{Gaussian variables.} If $x$ and $y$ are independently Gaussian, then $S = x + y$ is also Gaussian with $\langle S\rangle = \langle x\rangle + \langle y\rangle$ and $\mathrm{Var}(S) = \mathrm{Var}(x) + \mathrm{Var}(y)$. The Gaussian family is \emph{closed} under convolution.
+
+    \item \textbf{Poissonian variables.} If $x$ and $y$ are independently Poissonian then $S = x + y$ is also Poissonian. This follows directly from the convolution and is consistent with $\langle S\rangle = \langle x\rangle + \langle y\rangle$.
+
+    \item \textbf{Lorentzian (Cauchy) variables.} The Lorentzian distribution is
+    \begin{equation}
+        p(x) = \frac{1}{\pi}\,\frac{1}{(x-a)^2 + \Gamma^2},
+    \end{equation}
+    with $\langle x\rangle = a$ but $\mathrm{Var}(x) = \infty$ (the distribution has heavy tails). If $x$ and $y$ are independently Lorentzian then $S = x + y$ is also Lorentzian. Because the variance is infinite, the standard deviation of $S$ is still infinite regardless of how many terms are summed.
+\end{enumerate}
+
+A practical summary: the width-to-mean ratio scales as $\sigma_S / \langle S_n\rangle \sim 1/\sqrt{n}$ as $n$ grows, for any distribution with finite variance.
+
+\section{The Central Limit Theorem}
+
+\begin{theorem}[Central Limit Theorem]
+Let $S_n = x_1 + x_2 + \cdots + x_n$ be a sum of statistically independent, identically distributed random variables each with mean $\langle x\rangle$ and finite variance $\sigma^2(x)$. As $n \to \infty$, the distribution $p(S_n)$ converges to a Gaussian with mean $n\langle x\rangle$ and variance $n\,\mathrm{Var}(x)$:
+\begin{equation}
+    p(S_n) \xrightarrow{n\to\infty} \frac{1}{\sqrt{2\pi n\,\mathrm{Var}(x)}}\;\exp\!\left(-\frac{(S_n - n\langle x\rangle)^2}{2n\,\mathrm{Var}(x)}\right).
+\end{equation}
+The requirement of \emph{finite variance} is essential: Lorentzian distributions fail it and do not obey the CLT.
+\end{theorem}
+
+\subsection{Example 1: Poissonian Measurements}
+
+Let $m$ be the number of events observed in a time window $T$, drawn from a Poissonian distribution with rate $\lambda$ (so $P_m = (\lambda T)^m e^{-\lambda T}/m!$). Repeat this measurement $n$ times and define $S_n = \sum_{i=1}^{n} m_i$. We have $\langle S_n\rangle = n\lambda T$ and $\mathrm{Var}(S_n) = n\lambda T$ (since the Poisson variance equals its mean). Note that $S_n$ is itself Poissonian. When $S_n \gg 1$ we already know this approaches a Gaussian, consistent with the CLT:
+\begin{equation}
+    p_{S_n} \approx \frac{1}{\sqrt{2\pi n\lambda T}}\;\exp\!\left(-\frac{(S_n - n\lambda T)^2}{2n\lambda T}\right).
+\end{equation}
+
+\subsection{Example 2: Total Energy of an Ideal Gas}
+
+For a single atom in a one-dimensional ideal gas, the kinetic energy $E = p^2/(2m)$ has the distribution
+\begin{equation}
+    p(E) = \sqrt{\frac{1}{\pi E k_B T}}\;\exp\!\left(-\frac{E}{k_B T}\right),
+\end{equation}
+with $\langle E\rangle = \tfrac{1}{2}k_B T$ and $\mathrm{Var}(E) = \tfrac{1}{4}(k_B T)^2$. The total energy of $N$ atoms is $E_{\text{tot}} = \sum_{i=1}^{N} E_i$, so $\langle E_{\text{tot}}\rangle = \tfrac{1}{2}Nk_B T$ and $\mathrm{Var}(E_{\text{tot}}) = \tfrac{1}{4}N(k_B T)^2$.
+
+\begin{center}[DIAGRAM: narrow Gaussian peak for $p(E_{\text{tot}})$ centred on $\langle E_{\text{tot}}\rangle$; the width-to-mean ratio $\sigma(E_{\text{tot}})/\langle E_{\text{tot}}\rangle \sim N^{-1/2}$ is indicated]\end{center}
+
+By the Central Limit Theorem, as $N\to\infty$ the distribution $p(E_{\text{tot}})$ becomes a very sharply peaked Gaussian:
+\begin{equation}
+    \frac{\sigma(E_{\text{tot}})}{\langle E_{\text{tot}}\rangle} = \sqrt{\frac{\tfrac{1}{4}N(k_BT)^2}{\tfrac{1}{4}N^2(k_BT)^2}} = \frac{1}{\sqrt{N}} \approx 10^{-12} \quad \text{for } N \sim 10^{24}.
+\end{equation}
+This is an astronomically narrow peak. It is why thermodynamics deals in certainties rather than distributions: for $\sim 10^{24}$ particles the total energy is essentially deterministic, and the relative fluctuation is utterly negligible.
+
+The key message is that in thermodynamics we very often deal with systems containing a tremendous number of constituents, and the resulting uncertainty about macroscopic quantities becomes vanishingly small. We will soon see that this ``concentration of measure'' can be quantified rigorously.
+
+\chapter{Information Entropy}
+
+\section{Motivation: Measuring Randomness}
+
+Consider an \emph{ensemble}: a set of symbols $\{S_i\}$ together with their probabilities $\{p_i\}$. For example, a fair coin has $S = \{\text{H}, \text{H}, \text{T}, \text{H}, \ldots\}$, or a gas has $S = \{x_1, p_1, x_2, p_2, \ldots\}$ (its microstate). The question is: how random, or how unpredictable, is a particular ensemble?
+
+Two extremes clarify what we want. If $p_j = 1$ for one outcome and $p_{j\neq i} = 0$ for all others, the outcome is certain and there is no randomness. If all $p_j$ are similar, many outcomes are plausible and a specification of the actual outcome carries more information.
+
+A natural \emph{measure of randomness} is the minimum number of bits required to specify precise values of the symbols, on average. Consider a fair coin: the outcome is $\mathrm{H}$ or $\mathrm{T}$, so a 1-bit code ($0 = \mathrm{H}$, $1 = \mathrm{T}$) suffices. For four equally likely symbols $\{A, B, C, D\}$, a naive scheme uses 2 bits per symbol ($A\to 00$, $B\to 01$, $C\to 10$, $D\to 11$).
+
+A cleverer scheme exploits unequal probabilities. Suppose the symbol frequencies are $p_A = \tfrac{1}{2}$, $p_B = \tfrac{1}{4}$, $p_C = \tfrac{1}{8}$, $p_D = \tfrac{1}{8}$. Rather than wasting 2 bits on the common symbol $A$, one can assign variable-length codes — for instance via a binary tree — that yield an average code length less than 2 bits per symbol. Shannon's theorem tells us precisely the minimum achievable average.
+
+\section{Shannon's Theorem}
+
+\begin{theorem}[Shannon's Theorem]
+The minimum average number of bits needed to transmit a signal drawn from an ensemble $\{S_i, p_i\}$ is
+\begin{equation}
+    \sigma = -\sum_{j=1}^{N} p_j \log_2 p_j.
+\end{equation}
+The quantity $\sigma$ is called the \emph{Shannon entropy} of the ensemble.
+\end{theorem}
+
+\subsection{Example: Biased Coin}
+
+A naive code for a biased coin ($p_A = \tfrac{3}{4}$, $p_B = \tfrac{1}{4}$) uses 1 bit per symbol. Shannon says $\sigma = -\tfrac{3}{4}\log_2\tfrac{3}{4} - \tfrac{1}{4}\log_2\tfrac{1}{4} \approx 0.811$ bits per symbol.
+
+A better approach encodes \emph{pairs} of symbols. The four possible pairs and their probabilities are: $AA \to (9/16)$, $AB \to (3/16)$, $BA \to (3/16)$, $BB \to (1/16)$. Assigning codes with a binary tree (e.g.\ $AA\to 0$, $AB\to 10$, $BA\to 110$, $BB\to 111$) gives an average code length of
+\begin{equation}
+    \frac{9}{16}\cdot 1 + \frac{3}{16}\cdot 2 + \frac{3}{16}\cdot 3 + \frac{1}{16}\cdot 3 = \frac{9 + 6 + 9 + 3}{16} = \frac{27}{16} \approx 1.688 \text{ bits per pair},
+\end{equation}
+or $\approx 0.844$ bits per symbol — close to the Shannon bound of $0.811$. This is also an \emph{unambiguous} (prefix-free) code.
+
+\begin{center}[DIAGRAM: binary decision tree with root splitting into branches for $A$ (left, bit 0) and $B$ (right, bit 1); further branches encode $AA$, $AB$, $BA$, $BB$]\end{center}
+
+\section{Proof of Shannon's Theorem}
+
+\subsection{Setup}
+
+Consider an alphabet of $N$ possible letters ($N = 26$ for English). Produce a message of length $M \gg N$, and let each letter $j$ occur $n_j$ times, with $\sum_j n_j = M$. The number of distinct messages with the same composition is
+\begin{equation}
+    \Omega = \frac{M!}{n_1!\, n_2!\, \cdots\, n_N!}.
+\end{equation}
+To transmit one particular message uniquely we need enough bits to distinguish it from all $\Omega$ possibilities. If we use $B$ bits, we can form $2^B$ distinct bit-strings. Setting $2^B = \Omega$ at the critical (minimum) number of bits gives
+\begin{align}
+    B \log 2 &= \log \Omega = \log M! - \sum_j \log n_j! \notag \\
+    &\approx M\log M - M - \sum_j (n_j \log n_j - n_j) \quad \text{(Stirling)} \notag \\
+    &= M\log M - \sum_j n_j \log n_j \notag \\
+    &= M\sum_j \frac{n_j}{M}\log M - M\sum_j \frac{n_j}{M}\log n_j \notag \\
+    &= -M\sum_j \frac{n_j}{M}\log\frac{n_j}{M}.
+\end{align}
+Identifying $p_j = n_j/M$ as the relative frequency of letter $j$, and dividing by $M$,
+\begin{equation}
+    \frac{B}{M} = -\sum_j p_j \log_2 p_j \equiv \sigma.
+\end{equation}
+Thus $\sigma$ is the minimum number of bits \emph{per symbol} needed to specify the message — Shannon's result.
+
+\section{Shannon Entropy: Properties}
+
+\begin{definition}[Shannon Entropy]
+For an ensemble $\{S_i, p_i\}_{i=1}^{N}$, the Shannon entropy is
+\begin{equation}
+    \sigma = -\sum_{j=1}^{N} p_j \log_2 p_j,
+\end{equation}
+measured in bits. It equals the minimum average number of bits required to specify the value of a symbol drawn from the ensemble.
+\end{definition}
+
+\subsection{Bounds on $\sigma$}
+
+\textbf{Lower bound.} The minimum uncertainty corresponds to $p_i = 1$ for one $i$ and zero for all others. Then $\sigma = -1\cdot\log_2 1 = 0$.
+
+\textbf{Upper bound.} The maximum uncertainty corresponds to all symbols equally likely, $p_j = 1/N$. Then
+\begin{equation}
+    \sigma = -\sum_{j=1}^{N} \frac{1}{N}\log_2\frac{1}{N} = \log_2 N.
+\end{equation}
+
+\subsection{Proof that the Uniform Distribution Maximises $\sigma$}
+
+We want to maximise $\sigma = -\sum_j p_j \log_2 p_j$ subject to the constraint $\sum_j p_j = 1$. Introduce a Lagrange multiplier $\lambda$ and define
+\begin{equation}
+    F(p_j, \lambda) = -\sum_j p_j \log_2 p_j + \lambda\!\left(\sum_j p_j - 1\right)
+    = -\frac{1}{\ln 2}\sum_j p_j \ln p_j + \lambda\!\left(\sum_j p_j - 1\right).
+\end{equation}
+Setting $\partial F/\partial p_i = 0$:
+\begin{equation}
+    \frac{\partial F}{\partial p_i} = -\frac{1}{\ln 2}(\ln p_i + 1) + \lambda = 0 \implies \ln p_i = \lambda \ln 2 - 1.
+\end{equation}
+This is independent of $i$, so $p_i$ is the same for all $i$. By normalisation, $p_i = 1/N$ for all $i$, confirming that the uniform distribution is the unique maximum.
+
+\section{Shannon Entropy and Thermodynamics}
+
+To calculate $\sigma$ we need to know the probability distribution $\{p_i\}$ over the symbols. In information theory these are given; in thermodynamics they often are not. When we specify a thermodynamic macrostate (e.g.\ $N$, $V$, $U$) we are actually describing an \emph{ensemble}: a macrostate is compatible with a vast number of microstates, and we do not know which one the system actually occupies.
+
+\begin{center}[DIAGRAM: two-column table comparing information theory and thermodynamics; left column: ensemble $S = \{x_i, p_i\}$, $i = 1\ldots N$; right column: ensemble $S = \{\hat{x}_i, p_i\}$, microstates specified classically by position and momentum lists or quantum-mechanically by quantum numbers; $N$ is the number of compatible microstates, $p_j$ is the probability that microstate $j$ is the true one]\end{center}
+
+\subsection{Thermodynamic Entropy}
+
+The thermodynamic entropy of an ensemble $\{p_i\}$ is defined as
+\begin{equation}
+    S_{\{p_i\}} = -k_B \sum_{j=1}^{N} p_j \log p_j,
+\end{equation}
+which is very closely related to the Shannon entropy — the only differences are the use of natural logarithm instead of $\log_2$ and the prefactor $k_B$, which converts the unit from bits to joules per kelvin. The relation between the two is $S = k_B \ln 2\cdot\sigma$.
+
+The factor $k_B$ was introduced historically to match the pre-existing unit of temperature (kelvin), after which $TS$ is an energy. We will soon see that $TS$ enters the energy balance in a natural way.
+
+\subsection{The Ergodic Hypothesis}
+
+In practice we often do not know the $\{p_j\}$, and they cannot be measured directly. The key postulate of equilibrium statistical mechanics is:
+
+\begin{fact}[Ergodic Hypothesis]
+For an isolated system in thermodynamic equilibrium, the set $\{p_j\}$ is the one that maximises the entropy (i.e.\ maximises uncertainty). If the particles are in a potential, the constraint is the total energy $U$; otherwise all compatible microstates are equally likely.
+\end{fact}
+
+Under this postulate, $S = \max_{\{p_j\}}\bigl[-k_B\sum_j p_j\log p_j\bigr]$. For an isolated system with no further constraints the maximum is achieved by the uniform distribution over all $\Gamma$ compatible microstates, giving
+\begin{equation}
+    S = -k_B \sum_{j=1}^{\Gamma} \frac{1}{\Gamma}\log\frac{1}{\Gamma} = k_B\log\Gamma.
+\end{equation}
+This is \textbf{Boltzmann's entropy formula}, where $\Gamma$ is the multiplicity (the number of microstates compatible with the macrostate).
+
+\begin{formula}[Boltzmann's Entropy]
+\begin{equation}
+    S = k_B \log \Gamma,
+\end{equation}
+where $\Gamma$ is the multiplicity of the macrostate.
+\end{formula}
+
+\section{Properties of Entropy}
+
+\subsection{Entropy as a State Function}
+
+Entropy $S$ is a state function: it can be computed from state variables alone. Once the macrostate $(N, V, U)$ is specified, the multiplicity $\Gamma$ is determined, and hence so is $S$.
+
+\subsection{Extensivity}
+
+Entropy is an \emph{extensive} quantity: doubling the system doubles the entropy. To see this, consider two subsystems $A$ and $B$ combined.
+
+\begin{center}[DIAGRAM: rectangle divided into two halves labelled $A$ (multiplicity $\Gamma_A$) and $B$ (multiplicity $\Gamma_B$)]\end{center}
+
+The combined multiplicity is $\Gamma_{\text{tot}} = \Gamma_A \cdot \Gamma_B$ (the microstates of $A$ and $B$ are independent), so
+\begin{equation}
+    S = k_B \log(\Gamma_A \cdot \Gamma_B) = k_B\log\Gamma_A + k_B\log\Gamma_B = S_A + S_B.
+\end{equation}
+
+\textbf{Example: two-state gas.} Consider a ``gas'' of $N$ particles each of which can have energy $0$ or $\epsilon$. The total energy is $U = \epsilon n_1$, where $n_1$ is the number of particles in state 1 (energy $\epsilon$). Each microstate is uniquely specified by a binary string of length $N$ (e.g.\ $001\ldots$). The multiplicity is
+\begin{equation}
+    \Gamma(U, N) = \binom{N}{n_1} = \binom{N}{U/\epsilon},
+\end{equation}
+and the entropy is
+\begin{align}
+    S &= -k_B\log\frac{N!}{(U/\epsilon)!\,(N - U/\epsilon)!} \notag \\
+    &= Nk_B\!\left[\log N - \log\!\left(N - \frac{U}{\epsilon}\right)\right] - \frac{U}{\epsilon}k_B\!\left[\log\frac{U}{\epsilon} - \log\!\left(N - \frac{U}{\epsilon}\right)\right].
+\end{align}
+One can verify that this entropy is extensive: $S(2U, 2N) = 2S(U, N)$, as expected for an extensive quantity.
+
+\chapter{The Second Law of Thermodynamics}
+
+\begin{fact}[Second Law]
+There are many equivalent statements of the Second Law (see, e.g., Atkins). The one most natural here: for an isolated system, the entropy cannot decrease; it may remain constant (reversible processes) or increase (irreversible processes), but it can certainly increase with time.
+\end{fact}

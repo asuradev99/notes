@@ -1,0 +1,156 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Mathematical Preliminaries}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Partial Derivatives}{7}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Relations among First Partials}{7}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Mixed Second Partials}{8}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Exact and Inexact Differentials}{8}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}The Dirac Delta Function}{9}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Composite Arguments}{9}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}The Heaviside Step Function}{10}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Representations}{10}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}Probability}{10}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Expectation Values and Moments}{11}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}The Gaussian Distribution}{12}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}The Poisson Distribution}{12}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}The Binomial Distribution}{13}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.3.5}Joint Distributions, Marginals, and Statistical Independence}{14}{subsection.1.3.5}%
+\contentsline {subsection}{\numberline {1.3.6}Conditional Probability and Bayes' Theorem}{15}{subsection.1.3.6}%
+\contentsline {section}{\numberline {1.4}Functions of Random Variables}{15}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}The Delta-Function Method}{15}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Worked Example: Kinetic Energy from the Maxwell Speed Distribution}{16}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Worked Example: Sum of Two Uniform Variables}{16}{subsection.1.4.3}%
+\contentsline {section}{\numberline {1.5}Sums of Random Variables and the Central Limit Theorem}{17}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Mean and Variance of Sums}{17}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Convolutions}{17}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}The Central Limit Theorem}{18}{subsection.1.5.3}%
+\contentsline {section}{\numberline {1.6}The Gamma Function}{18}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Recurrence Relation and Connection to Factorials}{19}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}The Special Value $\Gamma (1/2) = \sqrt {\pi }$}{19}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}Stirling's Approximation}{19}{subsection.1.6.3}%
+\contentsline {section}{\numberline {1.7}Information Entropy}{20}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Measuring Randomness}{20}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Derivation of the Shannon Formula}{20}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Properties of Shannon Entropy}{21}{subsection.1.7.3}%
+\contentsline {subsection}{\numberline {1.7.4}Connection to Thermodynamic Entropy}{21}{subsection.1.7.4}%
+\contentsline {chapter}{\numberline {2}Classical Thermodynamics}{23}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Thermal Equilibrium and Temperature}{23}{section.2.1}%
+\contentsline {section}{\numberline {2.2}The Ideal Gas}{23}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Kinetic Derivation of the Ideal Gas Law}{23}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The Barometric Formula}{24}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}The Van der Waals Gas}{25}{section.2.3}%
+\contentsline {section}{\numberline {2.4}The Equipartition Theorem}{25}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Heat, Work, and the First Law}{26}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Compression Work}{27}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Heat Capacities}{27}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Latent Heat}{28}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Thermodynamic Processes}{28}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Isothermal Compression}{29}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Adiabatic Compression}{29}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Isochoric and Isobaric Processes}{29}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}Enthalpy}{30}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Why Enthalpy is Convenient}{30}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Heat Capacity at Constant Pressure}{30}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Enthalpy of Formation}{31}{subsection.2.7.3}%
+\contentsline {section}{\numberline {2.8}Rates of Processes}{31}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Heat Conduction and Fourier's Law}{31}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Thermal Conductivity from Kinetic Theory}{31}{subsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.8.3}Diffusion and Fick's Laws}{32}{subsection.2.8.3}%
+\contentsline {chapter}{\numberline {3}Statistical Mechanics: Multiplicity and Entropy}{35}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Microstates, Macrostates, and Multiplicity}{35}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Two-State Paramagnet}{36}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}The Einstein Model of Solids}{36}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Interacting Einstein Solids and Equilibrium}{36}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Large Systems and Stirling's Approximation}{37}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}High-Temperature Limit ($q \gg N$)}{37}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Low-Temperature Limit ($q \ll N$)}{38}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Sharpness of the Multiplicity Peak}{38}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Density of States and Semi-Classical Phase Space}{39}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}State Counting and One Quantum State Per $h^3$}{39}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Semi-Classical Phase Space and the $h^3$ Cell}{39}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}General $N$-Particle System}{40}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}The Multiplicity of an Ideal Gas: Sackur-Tetrode}{40}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Volume of the $3N$-Dimensional Momentum Sphere}{40}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Derivation of the Sackur-Tetrode Equation}{41}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}The Gibbs Paradox and the $1/N!$ Factor}{41}{subsection.3.5.3}%
+\contentsline {section}{\numberline {3.6}Entropy: $S = k\ln \Omega $}{41}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Entropy of Mixing}{42}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Free Expansion}{43}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}Temperature and Pressure from Entropy}{43}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}The Statistical Definition of Temperature}{43}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Pressure from Entropy}{44}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}Verification Against the Ideal Gas}{44}{subsection.3.7.3}%
+\contentsline {subsection}{\numberline {3.7.4}Connecting to Clausius: $dS = \mathchar '26\mkern -12mu dQ/T$}{44}{subsection.3.7.4}%
+\contentsline {subsection}{\numberline {3.7.5}The Zeroth Law as a Corollary}{45}{subsection.3.7.5}%
+\contentsline {section}{\numberline {3.8}Paramagnetism}{45}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Setup and Multiplicity}{45}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Temperature, Energy, and Magnetization}{46}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}Limiting Behaviour and the Saturation of Magnetization}{46}{subsection.3.8.3}%
+\contentsline {subsection}{\numberline {3.8.4}Entropy of the Paramagnet}{46}{subsection.3.8.4}%
+\contentsline {chapter}{\numberline {4}The Laws of Thermodynamics and Heat Engines}{47}{chapter.4}%
+\contentsline {section}{\numberline {4.1}The Second Law and Irreversibility}{47}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Macroscopic Statement}{47}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Microscopic Origin: Phase-Space Argument}{47}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Ergodic Hypothesis}{48}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Reversible and Irreversible Processes}{48}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}The Clausius Inequality}{49}{subsection.4.1.5}%
+\contentsline {section}{\numberline {4.2}Entropy Changes in Thermodynamic Processes}{50}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}General Formula}{50}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Isochoric (Constant-Volume) Heating}{50}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Isobaric (Constant-Pressure) Heating}{50}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Isothermal Expansion}{50}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Adiabatic Process}{51}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}How to Reversibly Heat a System}{51}{subsection.4.2.6}%
+\contentsline {section}{\numberline {4.3}The Third Law}{51}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Three Equivalent Statements}{51}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Physical Origin: Ground-State Degeneracy and Residual Entropy}{52}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Macroscopic View of Entropy}{52}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Heat Engines and the Carnot Bound}{53}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Definition of a Heat Engine}{53}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}The Carnot Cycle: Four Steps}{53}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Full Ideal-Gas Derivation of the Carnot Efficiency}{54}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Efficiency from the Second Law}{54}{subsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.4.5}Carnot's Theorem: No Engine Can Exceed Carnot Efficiency}{55}{subsection.4.4.5}%
+\contentsline {section}{\numberline {4.5}Refrigerators and Heat Pumps}{55}{section.4.5}%
+\contentsline {section}{\numberline {4.6}The Stirling Engine}{56}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Four Steps of the Stirling Cycle}{56}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Net Work and Efficiency Without a Regenerator}{57}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}The Regenerator and Why $\eta _\text {Stirling} = \eta _\text {Carnot}$ with It}{57}{subsection.4.6.3}%
+\contentsline {chapter}{\numberline {5}Thermodynamic Potentials and Free Energy}{59}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Spontaneous Processes at Fixed Constraints}{59}{section.5.1}%
+\contentsline {section}{\numberline {5.2}The Four Thermodynamic Potentials}{61}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Maxwell Relations}{62}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Example: The Hydrogen Fuel Cell}{63}{section.5.4}%
+\contentsline {chapter}{\numberline {6}The Canonical Ensemble}{65}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Derivation of the Boltzmann Distribution}{65}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Thermodynamics from the Partition Function}{66}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Two-Level System and the Schottky Anomaly}{68}{section.6.3}%
+\contentsline {section}{\numberline {6.4}The Ideal Gas from the Partition Function}{69}{section.6.4}%
+\contentsline {section}{\numberline {6.5}The Maxwell--Boltzmann Distribution}{70}{section.6.5}%
+\contentsline {section}{\numberline {6.6}The Einstein Solid and Quantum Oscillators}{72}{section.6.6}%
+\contentsline {paragraph}{Low-temperature limit ($T \to 0$).}{72}{section*.27}%
+\contentsline {paragraph}{High-temperature limit ($T \to \infty $).}{73}{section*.28}%
+\contentsline {section}{\numberline {6.7}Final Example: Adiabatic Cooling}{73}{section.6.7}%
+\contentsline {paragraph}{Adiabatic change of the trap gradient.}{74}{section*.30}%
+\contentsline {chapter}{\numberline {7}Quantum Statistics and the Grand Canonical Ensemble}{75}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Quantum Particles: Bosons and Fermions}{75}{section.7.1}%
+\contentsline {section}{\numberline {7.2}The Grand Canonical Ensemble}{76}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Derivation of the Grand Canonical Distribution}{76}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Grand Potential and Thermodynamic Derivatives}{77}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}The Modified First Law and Chemical Potential}{78}{subsection.7.2.3}%
+\contentsline {section}{\numberline {7.3}Fermi--Dirac and Bose--Einstein Statistics}{78}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Factorisation of the Grand Partition Function}{78}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Fermions: the Fermi--Dirac Distribution}{79}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Bosons: the Bose--Einstein Distribution}{79}{subsection.7.3.3}%
+\contentsline {subsection}{\numberline {7.3.4}Classical Limit and the Maxwell--Boltzmann Distribution}{80}{subsection.7.3.4}%
+\contentsline {section}{\numberline {7.4}The Photon Gas}{80}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Physical Setup and Allowed Modes}{80}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Partition Function and Internal Energy}{81}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Stefan--Boltzmann Law and Spectral Radiance}{83}{subsection.7.4.3}%
+\contentsline {subsection}{\numberline {7.4.4}Classical Limit and the Ultraviolet Catastrophe}{83}{subsection.7.4.4}%
+\contentsline {subsection}{\numberline {7.4.5}Application: Equilibrium Temperature of the Earth}{83}{subsection.7.4.5}%
+\contentsline {section}{\numberline {7.5}Degenerate Fermi Systems}{84}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}The Zero-Temperature Fermi Gas}{84}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Low-Temperature Corrections: the Sommerfeld Expansion}{84}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}Bose--Einstein Condensation}{85}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}The Maximum Density of Excited States}{85}{subsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.6.2}Condensation and the Condensate Fraction}{85}{subsection.7.6.2}%

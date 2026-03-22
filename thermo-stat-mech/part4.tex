@@ -1,0 +1,416 @@
+% Pages 31–40: Einstein Model of Solids, Interacting Systems, Large Systems
+
+% ── Continuation of the paramagnet discussion (page 31 top) ──────────────────
+
+The multiplicity of a two-state paramagnet with $N$ total dipoles and $N_\uparrow$ aligned
+dipoles is
+\[
+  \Omega(N_\uparrow) = \frac{N!}{N_\uparrow!\, N_\downarrow!}.
+\]
+Parallel dipoles carry \emph{less} (more negative) energy than antiparallel ones, because
+flipping a dipole against an external field requires work.  Since the total energy is
+proportional to the number of up or down dipoles, specifying the macrostate (i.e.\
+$N_\uparrow$) is sufficient to determine $E_{\text{tot}}$.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{The Einstein Model of Solids}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Consider a solid modelled as a collection of quantum harmonic oscillators whose energies
+come in discrete units of size $hf$.  Here $h = 6.63\times10^{-34}$~J$\cdot$s is
+Planck's constant and $f = \frac{1}{2\pi}\sqrt{k_s/m} = \omega/2\pi$ is the natural
+oscillation frequency.  Classically the potential energy would be the continuous function
+$\frac{1}{2}k_s x^2$, but quantum mechanics forces the allowed energies to be integer
+multiples of $hf$ above the zero-point energy $E_0 = \frac{1}{2}hf$.
+
+\begin{center}
+[DIAGRAM: Several identical harmonic-oscillator potential wells drawn side by side.
+Horizontal lines mark the equally-spaced energy levels $E_0 = \tfrac{1}{2}hf$,
+$\tfrac{3}{2}hf$, $\tfrac{5}{2}hf$, \ldots\ inside each well.  Label beneath the
+group: ``Oscillators''.]
+\end{center}
+
+In a three-dimensional solid each atom sits at a lattice site and vibrates independently
+along three orthogonal directions, giving $N_{\text{atoms}}$ atoms a total of
+$N = 3N_{\text{atoms}}$ independent oscillators.  The central combinatorial question is:
+in how many ways can $q$ indistinguishable energy units be distributed among $N$
+oscillators?
+
+\begin{formula}[Multiplicity of an Einstein Solid]
+The number of microstates consistent with having exactly $q$ energy units shared among
+$N$ oscillators is
+\[
+  \Omega(N,q) = \binom{q+N-1}{q} = \frac{(q+N-1)!}{q!\,(N-1)!}.
+\]
+This is the ``stars and bars'' result: we are distributing $q$ identical objects (stars)
+into $N$ bins separated by $N-1$ dividers (bars).
+\end{formula}
+
+As a quick check, the arrangement $*\,|\,{*}{*}\,|\,|\,{*}{*}$ uses 3 bars and therefore
+describes 4 oscillators carrying a total of 5 energy units.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Interacting Systems}
+\label{sec:interacting}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Consider two Einstein solids, A and B, placed in thermal contact.  We say they are
+\emph{weakly coupled}: energy can flow between them, but the rate of inter-solid exchange
+is much slower than the rate of intra-solid redistribution.  Consequently, on short
+timescales the individual energies $U_A$ and $U_B$ are essentially fixed, while on long
+timescales only the total $U_{\text{tot}} = U_A + U_B$ is conserved.  The macrostate of
+the combined system is therefore specified by the pair $(q_A, q_B)$ with $q_A + q_B = q$
+constant.
+
+\begin{center}
+[DIAGRAM: Two rectangular boxes labeled ``Solid A, $N_A$, $q_A$'' and
+``Solid B, $N_B$, $q_B$'' connected by a wavy arrow labeled ``Energy''.  The pair is
+enclosed in a dashed rectangle labeled ``Isolated system''.]
+\end{center}
+
+Each solid has its own multiplicity:
+\[
+  \Omega_A = \binom{q_A + N_A - 1}{q_A}, \qquad
+  \Omega_B = \binom{q_B + N_B - 1}{q_B}.
+\]
+Because the two solids are statistically independent, the total multiplicity factors as
+$\Omega_{\text{tot}} = \Omega_A \cdot \Omega_B$ by the generalized product rule.
+
+\begin{definition}[Fundamental Assumption of Statistical Mechanics]
+In an isolated system in thermal equilibrium, every accessible microstate is equally
+probable.
+\end{definition}
+
+This assumption implies that any microscopic process $X \to Y$ occurs with the same rate
+as its time-reverse $Y \to X$.  It does \emph{not}, however, mean that all
+\emph{macrostates} are equally likely: a macrostate with more microstates is simply more
+probable.  There is also a consistency requirement on the coupling strength---the two
+solids must be coupled strongly enough to exchange energy (so that $q = q_A + q_B$ is
+conserved and all macrostates are reachable), yet weakly enough that the energy-level
+spacing within each oscillator is undisturbed.
+
+\begin{center}
+[DIAGRAM: Bar chart with horizontal axis $q_A$ running from $0$ to $q$ (equivalently
+$q_B$ from $q$ to $0$).  The bars show $\Omega_{\text{tot}}$ peaking sharply near the
+centre.  A tall central bar is labelled ``State A (probable)''; a short bar near the
+right edge is labelled ``State B (improbable)''.]
+\end{center}
+
+The distribution of $\Omega_{\text{tot}}$ over macrostates peaks sharply near $q_A =
+q_B = q/2$.  If the system starts in an extreme macrostate B (nearly all energy in one
+solid), it is overwhelmingly likely to evolve toward the peak (state A).  We describe
+this as energy (heat) flowing spontaneously from the hotter solid to the cooler one.
+
+\begin{definition}[Second Law of Thermodynamics]
+Energy in an isolated system flows spontaneously until the system reaches (or fluctuates
+near) its most probable macrostate---the macrostate of maximum entropy.
+\end{definition}
+
+\subsection*{Problem 2.8}
+
+Two Einstein solids each have $N = 10$ oscillators and share a total of $q = 20$ energy
+units.
+
+\begin{enumerate}[label=\alph*)]
+  \item There are 21 macrostates, corresponding to $q_A = 0, 1, \ldots, 20$.
+
+  \item The total number of microstates follows from summing over all macrostates, which
+    by the Vandermonde identity collapses to a single binomial:
+    \[
+      \Omega_{\text{tot}}
+      = \sum_{i=0}^{20} \binom{i+9}{i}\binom{20-i+9}{20-i}
+      = \binom{39}{20} \approx 6.89\times10^{10}.
+    \]
+
+  \item All 20 units in solid A corresponds to $q_A = 20$, $q_B = 0$.  The number of
+    such microstates is $\binom{29}{20}$, giving a probability
+    \[
+      P = \frac{\dbinom{29}{20}}{\dbinom{39}{20}}
+        = \frac{1.0\times10^9}{6.89\times10^{10}}
+        \approx 1.45\times10^{-2}.
+    \]
+
+  \item The most probable macrostate has $q_A = q_B = 10$, with probability
+    \[
+      P_{\max}
+      = \frac{\dbinom{19}{10}^2}{\dbinom{39}{20}}
+      = \frac{8.255\times10^9}{6.89\times10^{10}}
+      \approx 0.124.
+    \]
+
+  \item Starting with all energy in solid A corresponds to starting in state B of the
+    diagram above; the system will spontaneously evolve toward the uniform distribution
+    (state A).
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Large Systems}
+\label{sec:large-systems}
+% ─────────────────────────────────────────────────────────────────────────────
+
+As $N$ and $q$ grow, the multiplicity distribution $\Omega_{\text{tot}}(q_A)$ becomes
+dramatically sharper relative to the total range of $q_A$.
+
+\begin{center}
+[DIAGRAM: Two bell-curve sketches side by side.  Left curve is broad and low, labelled
+``$N,\,q \approx \text{few hundred}$''.  Right curve is tall and narrow, labelled
+``$N,\,q \approx \text{few thousand}$''.  An arrow points from left to right.]
+\end{center}
+
+Two properties of large numbers underlie all of what follows.  First, when $\lambda \gg
+a$ we have $\lambda + a \approx \lambda$ (e.g.\ $10^{23} + 23 \approx 10^{23}$).
+Second, multiplying a large power by a modest factor barely changes the exponent:
+$y^x \cdot y^a \approx y^x$ when $y^a$ is not astronomically large relative to $y^x$
+(e.g.\ $10^{10}\cdot 10 \approx 10^{10}$,\; $2^{10}\cdot 2^3 \approx 2^{10}$).
+Combined with Taylor's theorem $f(a+x)\approx f(a)+f'(a)x+\cdots$, these observations
+yield two workhorses:
+
+\begin{formula}[Logarithm Approximation]
+For $|x| \ll 1$,
+\[
+  \ln(1+x) \approx x.
+\]
+This follows immediately from the Taylor series
+$\ln(1+x) = x - x^2/2 + x^3/3 - \cdots$
+\end{formula}
+
+\begin{formula}[Stirling's Approximation]
+For $N \gg 1$,
+\[
+  N! \approx N^N e^{-N} \sqrt{2\pi N},
+  \qquad \text{equivalently,} \qquad
+  \ln(N!) \approx N\ln N - N.
+\]
+\end{formula}
+
+\subsection{Multiplicity of a Large Einstein Solid}
+
+In the \emph{high-temperature limit} $q \gg N$ (many energy units per oscillator) we can
+approximate $(q+N-1)! \approx (q+N)!$ and $(N-1)! \approx N!/(N)$, giving
+\[
+  \Omega(N,q) \approx \frac{(q+N)!}{q!\,N!}.
+\]
+Taking the logarithm and applying Stirling's approximation:
+\begin{align*}
+  \ln\Omega
+  &= \ln\!\bigl[(q+N)!\bigr] - \ln(q!) - \ln(N!) \\
+  &\approx (q+N)\ln(q+N) - (q+N) - q\ln q + q - N\ln N + N \\
+  &= (q+N)\ln(q+N) - q\ln q - N\ln N.
+\end{align*}
+Since $q \gg N$, we expand $\ln(q+N)$ using the logarithm approximation:
+\[
+  \ln(q+N) = \ln q + \ln\!\left(1+\frac{N}{q}\right) \approx \ln q + \frac{N}{q}.
+\]
+Substituting back:
+\begin{align*}
+  \ln\Omega
+  &= (q+N)\!\left(\ln q + \frac{N}{q}\right) - q\ln q - N\ln N \\
+  &= q\ln q + N + N\ln q + \frac{N^2}{q} - q\ln q - N\ln N \\
+  &= N\ln\!\left(\frac{q}{N}\right) + N + \underbrace{\frac{N^2}{q}}_{\to\,0}.
+\end{align*}
+
+\begin{formula}[Einstein Solid: High-Temperature Limit]
+For $q \gg N$,
+\[
+  \Omega(N,q) \approx \left(\frac{eq}{N}\right)^N.
+\]
+\end{formula}
+
+For arbitrary large $N$ and $q$ (not necessarily in either limit), a more careful
+application of Stirling's approximation to the exact formula gives:
+
+\begin{formula}[Einstein Solid: General Large-$N$ Approximation]
+\[
+  \Omega(N,q) \approx
+  \frac{\left(\dfrac{q+N}{q}\right)^{\!q}\!\left(\dfrac{q+N}{N}\right)^{\!N}}
+       {\sqrt{2\pi q(q+N)/N}}.
+\]
+\end{formula}
+
+\subsection*{Problems}
+
+\textbf{2.17.}
+In the low-temperature limit $q \ll N$ (few energy units per oscillator), expand
+$\ln(N+q)$ instead:
+\[
+  \ln(N+q) = \ln N + \ln\!\left(1+\frac{q}{N}\right) \approx \ln N + \frac{q}{N}.
+\]
+Then
+\begin{align*}
+  \ln\Omega
+  &\approx (q+N)\!\left(\ln N + \frac{q}{N}\right) - q\ln q - N\ln N \\
+  &= q\ln N + \frac{q^2}{N} + N\ln N + \frac{q^2}{N} - q\ln q - N\ln N \\
+  &\approx q\ln N + q - q\ln q
+   = q\ln\!\left(\frac{N}{q}\right) + q,
+\end{align*}
+giving
+\[
+  \Omega(N,q) \approx \left(\frac{eN}{q}\right)^q \qquad (q \ll N).
+\]
+
+\textbf{2.18.}
+Starting from the exact formula
+\[
+  \Omega(N,q) = \binom{N-1+q}{q} = \frac{(N-1+q)!}{(N-1)!\,q!}
+  = \frac{N}{N+q}\cdot\frac{(N+q)!}{N!\,q!},
+\]
+apply Stirling's approximation to each factorial:
+\begin{align*}
+  \Omega(N,q)
+  &= \frac{N}{N+q}\cdot
+     \frac{(N+q)^{N+q}\,e^{-(N+q)}\sqrt{2\pi(N+q)}}
+          {N^N e^{-N}\sqrt{2\pi N}\cdot q^q e^{-q}\sqrt{2\pi q}} \\
+  &= \frac{N}{N+q}\left(\frac{N+q}{N}\right)^N\!\left(\frac{N+q}{q}\right)^q
+     \sqrt{\frac{N+q}{2\pi Nq}}.
+\end{align*}
+The prefactor $N/(N+q)$ combines with the square root to give
+\[
+  \Omega(N,q)
+  = \frac{\left(\dfrac{N+q}{N}\right)^N\!\left(\dfrac{N+q}{q}\right)^q}
+         {\sqrt{\dfrac{2\pi q(N+q)}{N}}},
+\]
+which is the general formula stated above.
+
+\textbf{2.19.}
+For a two-state paramagnet with $N$ total dipoles and $N_\uparrow$ aligned:
+\[
+  \ln\Omega
+  = \ln(N!) - \ln(N_\uparrow!) - \ln\!\bigl((N-N_\uparrow)!\bigr).
+\]
+Apply Stirling's approximation and expand $(N-N_\uparrow)\ln(N-N_\uparrow)$ for
+$N_\uparrow \ll N$:
+\[
+  (N-N_\uparrow)\ln(N-N_\uparrow)
+  = (N-N_\uparrow)\!\left(\ln N + \ln\!\left(1-\frac{N_\uparrow}{N}\right)\right)
+  \approx (N-N_\uparrow)\!\left(\ln N - \frac{N_\uparrow}{N}\right).
+\]
+Collecting terms:
+\[
+  \ln\Omega \approx N_\uparrow\ln\!\left(\frac{N}{N_\uparrow}\right) + N_\uparrow,
+\]
+so
+\[
+  \Omega(N, N_\uparrow) \approx \left(\frac{Ne}{N_\uparrow}\right)^{N_\uparrow}.
+\]
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Sharpness of the Multiplicity Function}
+\label{sec:sharpness}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Consider two large, interacting Einstein solids each with $N$ oscillators, sharing $q =
+q_A + q_B$ total energy units in the high-temperature limit $q \gg N$.  Using the
+high-temperature formula for each solid,
+\[
+  \Omega_{\text{tot}}
+  = \left(\frac{eq_A}{N}\right)^N\!\left(\frac{eq_B}{N}\right)^N
+  = \left(\frac{e}{N}\right)^{2N}(q_A q_B)^N.
+\]
+This is maximised when $q_A q_B$ is maximised subject to $q_A + q_B = q$, i.e.\ at
+$q_A = q_B = q/2$:
+\[
+  \Omega_{\max} = \left(\frac{e}{N}\right)^{2N}\!\left(\frac{q}{2}\right)^{2N}
+               = \left(\frac{eq}{2N}\right)^{2N}.
+\]
+
+To quantify how sharply $\Omega_{\text{tot}}$ peaks, write $q_A = q/2 + x$ and
+$q_B = q/2 - x$ for small $x \ll q$, so that $q_A q_B = (q/2)^2 - x^2$.  Then
+\begin{align*}
+  \ln\!\left[(q_A q_B)^N\right]
+  &= N\ln\!\left[\left(\frac{q}{2}\right)^2\!\left(1 - \left(\frac{2x}{q}\right)^2\right)\right] \\
+  &\approx N\!\left[\ln\!\left(\frac{q}{2}\right)^2 - \left(\frac{2x}{q}\right)^2\right],
+\end{align*}
+using $\ln(1-\epsilon)\approx -\epsilon$ for small $\epsilon = (2x/q)^2$.  Therefore
+
+\begin{formula}[Gaussian Form of the Multiplicity Peak]
+Near the maximum,
+\[
+  \Omega_{\text{tot}}(x) = \Omega_{\max}\, \exp\!\left[-N\!\left(\frac{2x}{q}\right)^2\right].
+\]
+The distribution is a Gaussian in the displacement $x = q_A - q/2$.
+\end{formula}
+
+\subsection*{Gaussian Width and the Thermodynamic Limit}
+
+The $1/e$ half-width of the Gaussian is found by setting the exponent equal to $-1$:
+\[
+  N\!\left(\frac{2x}{q}\right)^2 = 1
+  \;\Longrightarrow\; x = \pm\frac{q}{2\sqrt{N}}
+  \;\Longrightarrow\; \Delta x = \frac{q}{\sqrt{N}}.
+\]
+The \emph{relative} width of the peak compared to the full range $q$ is
+\[
+  \frac{\Delta x}{q} = \frac{1}{\sqrt{N}}.
+\]
+For a macroscopic solid $N \sim 10^{23}$, so $\Delta x / q \sim 10^{-11.5}$---the peak
+is vanishingly narrow.  In the \emph{thermodynamic limit} ($N \to \infty$), random
+fluctuations away from the most probable macrostate are so improbable that they are
+unmeasurable in practice.
+
+\subsection*{Problem 2.22}
+
+Two Einstein solids each have $N$ oscillators and $q = N$ energy units each (so $2N$
+total energy units shared between $2N$ oscillators).
+
+\begin{enumerate}[label=\alph*)]
+  \item There are $2N+1$ macrostates (one for each value of $q_A$ from $0$ to $2N$).
+
+  \item The total multiplicity, using the general formula with $2N$ oscillators and $2N$
+    energy units, is
+    \[
+      \Omega(2N, 2N)
+      = \frac{\left(\dfrac{4N}{2N}\right)^{2N}\!\left(\dfrac{4N}{2N}\right)^{2N}}
+             {\sqrt{2\pi\cdot\dfrac{(2N)(4N)}{2N}}}
+      = \frac{2^{4N}}{\sqrt{8\pi N}}.
+    \]
+
+  \item The maximum multiplicity occurs at $q_A = q_B = N$ (each solid has $N$
+    oscillators and $N$ energy units), giving
+    \[
+      \Omega_{\max} = \bigl[\Omega(N,N)\bigr]^2 = \frac{2^{4N}}{4\pi N}.
+    \]
+
+  \item The fraction of all microstates that lie at the peak is
+    \[
+      \frac{\Omega_{\max}}{\Omega_{\text{tot}}}
+      = \frac{2^{4N}/(4\pi N)}{2^{4N}/\sqrt{8\pi N}}
+      = \frac{\sqrt{8\pi N}}{4\pi N}
+      = \frac{1}{\sqrt{2\pi N}}.
+    \]
+    The Gaussian width in units of $q_A$ is $\Delta x = q/\sqrt{N} = 2N/\sqrt{N} =
+    2\sqrt{N}$, so the fraction of the $q_A$ axis covered by the peak is $2\sqrt{N}/
+    (2N) = 1/\sqrt{N}$.  The probability contained in the peak is roughly
+    \[
+      \frac{\Omega_{\max}}{\Omega_{\text{tot}}} \times \Delta x
+      \;\sim\; \frac{1}{\sqrt{2\pi N}} \times \sqrt{N}
+      \sim \sqrt{\frac{1}{2\pi}},
+    \]
+    consistent with the Gaussian normalisation.
+
+    \begin{center}
+    [DIAGRAM: Sharp symmetric peak of $\Omega_{\text{tot}}$ vs.\ $q_A$ over the range
+    $[0,2N]$.  The peak width $\Delta x$ is labelled and is visually much narrower than
+    the total range.  Peak height labelled $\Omega_{\max}$.]
+    \end{center}
+\end{enumerate}
+
+\subsection*{Problem 2.23}
+
+\begin{enumerate}[label=\alph*)]
+  \item The total number of microstates of a two-state paramagnet with $N$ dipoles
+    (all macrostates equally weighted) is
+    \[
+      \Omega_{\text{tot}}
+      = \binom{N}{N/2}
+      = \frac{N!}{\left[\left(\tfrac{N}{2}\right)!\right]^2}.
+    \]
+    Applying Stirling's approximation:
+    \[
+      \Omega_{\text{tot}}
+      = \frac{N^N e^{-N}\sqrt{2\pi N}}
+             {\left[\left(\tfrac{N}{2}\right)^{N/2} e^{-N/2}\sqrt{\pi N}\right]^2}
+      = \frac{N^N e^{-N}\sqrt{2\pi N}}
+             {(N/2)^N e^{-N}\,\pi N}
+      = 2^N\sqrt{\frac{2}{\pi N}}.
+    \]
+\end{enumerate}

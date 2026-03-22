@@ -1,0 +1,253 @@
+\chapter{Enthalpy}
+
+Rather than tracking the internal energy of a system in isolation, it is often more convenient to account simultaneously for the work required to make room for the system against a constant external pressure. This motivates the definition of enthalpy.
+
+\begin{definition}
+The \textbf{enthalpy} of a system is
+\[
+    H \coloneq U + PV,
+\]
+where $U$ is the internal energy, $P$ is the pressure, and $V$ is the volume. Physically, $H$ represents the total energy cost to create the system from nothing: $U$ to assemble its internal energy, plus the work $PV$ done against the atmosphere to carve out the space it occupies.
+\end{definition}
+
+\begin{center}[DIAGRAM: An empty container being pushed open against atmospheric pressure to become a container of gas molecules, with the work $W = PV$ labeled.]\end{center}
+
+\section{Why Enthalpy is Convenient}
+
+Suppose some process occurs at constant pressure --- heat is added, chemicals react, and so on. The energy, volume, and enthalpy all change by amounts $\Delta U$, $\Delta V$, and $\Delta H$. After the process,
+\begin{align*}
+    H + \Delta H &= (U + \Delta U) + P(V + \Delta V) \\
+                 &= H + \Delta U + P\,\Delta V,
+\end{align*}
+so at constant pressure,
+\begin{formula}
+\[
+    \Delta H = \Delta U + P\,\Delta V.
+\]
+\end{formula}
+A system's enthalpy increases either because its internal energy grows or because its volume expands and it does work on the surroundings.
+
+Applying the First Law, $\Delta U = Q + W_\text{total} = Q - P\,\Delta V + W_\text{other}$, where $W_\text{other}$ denotes any work beyond compression. Substituting,
+\[
+    \Delta H = Q - P\,\Delta V + P\,\Delta V + W_\text{other},
+\]
+and the $P\,\Delta V$ terms cancel exactly:
+
+\begin{formula}
+\[
+    \Delta H = Q + W_\text{other}.
+\]
+\end{formula}
+
+This is the key utility of enthalpy: when only heat enters or leaves the system (no other work is performed), the change in enthalpy equals the heat exchanged, $\Delta H = Q$. The compression bookkeeping disappears entirely.
+
+\section{Heat Capacity in Terms of Enthalpy}
+
+When the only change is a rise in temperature with no other work ($W_\text{other} = 0$), we have $\Delta H = Q$, so the heat capacity at constant pressure is
+
+\begin{formula}
+\[
+    C_P = \left(\frac{Q}{\Delta T}\right)_P = \left(\frac{\partial H}{\partial T}\right)_P.
+\]
+\end{formula}
+
+For the heat capacity at constant volume, $\Delta V = 0$, so no compression work is done. Then $W_\text{total} = W_\text{other}$, and $\Delta H = Q + W_\text{other} = \Delta U$, giving
+
+\begin{formula}
+\[
+    C_V = \left(\frac{\partial U}{\partial T}\right)_V = \left(\frac{\partial H}{\partial T}\right)_V.
+\]
+\end{formula}
+
+\section{Numerical Examples}
+
+\subsection*{Boiling Water}
+
+Standard enthalpy tables give $\Delta H = 40{,}660\ \text{J}$ to boil one mole of water at one atmosphere. Dividing by water's molar mass ($18\ \text{g/mol}$) yields a specific enthalpy of vaporisation $\Delta h = 2260\ \text{J/g}$.
+
+Not all of this energy is stored in the resulting water vapour; a portion must go into pushing the atmosphere back. Treating steam as an ideal gas, the molar volume at $373\ \text{K}$ and $1\ \text{atm}$ is $V = RT/P$, so the work of expansion is
+\[
+    PV = RT = (8.31\ \text{J\,K}^{-1})(373\ \text{K}) \approx 3100\ \text{J/mol}.
+\]
+This represents about 8\% of the total enthalpy --- a small but sometimes significant correction.
+
+\subsection*{Enthalpy of Formation of Water}
+
+The reaction
+\[
+    \text{H}_2 + \tfrac{1}{2}\,\text{O}_2 \longrightarrow \text{H}_2\text{O}
+\]
+has a standard \textbf{enthalpy of formation} $\Delta H \approx -286\ \text{kJ/mol}$: forming one mole of water releases $286\ \text{kJ}$. Most of this energy comes from the thermal and chemical energy of the molecules themselves; a small portion arises from the work the atmosphere does as it fills in the space vacated by the consumed gases.
+
+\section{Problems}
+
+\textbf{1.49.} One mole of H$_2$ has mass $\approx 2\ \text{g}$; half a mole of O$_2$ has mass $\approx 16\ \text{g}$. The $PV$ work for the reactants is $PV = nRT = \tfrac{3}{2} \cdot 8.31\ \text{J\,K}^{-1}$.
+
+\textbf{1.50.} For methane combustion, $\text{CH}_4 + 2\,\text{O}_2 \to \text{CO}_2 + 2\,\text{H}_2\text{O}$:
+
+(a) The enthalpy of formation of CH$_4$ is $\Delta H_1 = -74.81\ \text{kJ/mol}$.
+
+(b) The enthalpies of formation of the products give
+\[
+    \Delta H_2 = -395.51 + 2\times(-241.82) = -877.15\ \text{kJ/mol}.
+\]
+
+(c) The total enthalpy of combustion is $\Delta H_\text{total} = -802.66\ \text{kJ/mol}$.
+
+(d) Same as (c).
+
+(e) For the gas-phase reaction, the change in moles of gas is $\Delta n = 3 - 3 = 0$, so
+\[
+    \delta W_P = -RT - 2RT + RT + 2RT = 0 \implies \Delta H = \Delta U.
+\]
+If the water product instead ends up as liquid, the enthalpies of formation change:
+\[
+    \Delta H_2' = -395.51 + 2\times(-285.83) = -965.17\ \text{kJ/mol},
+\]
+giving $\Delta H_\text{new} = -890.56\ \text{kJ/mol}$. Here $\Delta n = 1 - 3 = -2$ moles of gas, so
+\[
+    \delta W = P\,\Delta V = \Delta n\, RT = -2RT \implies \Delta H_\text{new} = \Delta U + 2RT.
+\]
+
+(f) The sun's mass is $m \approx 2\times10^{30}\ \text{kg}$, giving roughly $10^{32}\ \text{mol}$ of hydrogen. At a luminosity of $3.9\times10^{26}\ \text{J/s}$ and a combustion enthalpy of $\sim 800\ \text{kJ/mol}$,
+\[
+    \text{consumption rate} \approx \frac{3.9\times10^{26}}{8\times10^5}\ \frac{\text{mol}}{\text{s}} \approx 4.1\times10^{20}\ \frac{\text{mol}}{\text{s}},
+\]
+implying a hydrogen lifetime of order $\tfrac{1}{4}\times10^{62}\ \text{years}$ --- vastly longer than the actual solar lifetime, confirming that the sun cannot be powered by chemical combustion.
+
+\textbf{1.54.} A person of mass $m$ descends a height $h$, converting gravitational potential energy $U_0 = mgh$ into metabolic heat (at roughly 25\% efficiency for mechanical work). The number of 100-kcal bowls of food equivalent is
+\[
+    \#\,\text{bowls} = mgh\ \text{J} \cdot \frac{4\ \text{J}}{1\ \text{J}_\text{mech}} \cdot \frac{1\ \text{kcal}}{4184\ \text{J}} \cdot \frac{1\ \text{bowl}}{100\ \text{kcal}}
+    = \frac{2400 \times 1500}{100 \times 4184}
+    \approx 9\ \text{bowls}.
+\]
+
+(b) The heat capacity of a $60\ \text{kg}$ person is $C = 60\ \text{kg} \times 2.98\ \text{kJ\,kg}^{-1}\text{K}^{-1} \approx 128.8\ \text{kJ/K}$. The thermal energy deposited is $4.60 \times 10 \times 1500 \approx 3.6\times10^6\ \text{J} = 3.6\times10^3\ \text{kJ}$, so
+\[
+    \Delta T = \frac{3.6\times10^3\ \text{kJ}}{128.8\ \text{kJ/K}} \approx 15\ {}^\circ\text{C}.
+\]
+The energy density of kerosene, $580\ \text{cal/g} \times 4.184\ \text{J/cal} \times 1000\ \text{g/kg} \approx 2{,}426{,}720\ \text{J/kg}$, implies that the equivalent energy corresponds to about $1.11$ litres of kerosene.
+
+% ============================================================
+\chapter{Rates of Processes}
+% ============================================================
+
+\section{Heat Conduction}
+
+Heat flows spontaneously from hot to cold. The question of interest is: at what \emph{rate} does this occur?
+
+\begin{center}[DIAGRAM: A barrier of thickness $\Delta x$ and area $A$ separating an outside region at temperature $T_1$ from an inside region at temperature $T_2$, with an arrow showing heat $Q$ flowing through in time $\Delta t$.]\end{center}
+
+Consider a slab of material separating a warm interior from a cooler exterior. By dimensional reasoning, the heat $Q$ flowing through the barrier should be proportional to the area $A$, the time elapsed $\Delta t$, and the temperature difference $\Delta T$, and inversely proportional to the thickness $\Delta x$:
+\[
+    Q \sim \frac{A\,\Delta T\,\Delta t}{\Delta x}
+    \qquad\Longrightarrow\qquad
+    \frac{Q}{\Delta t} \sim \frac{A\,\Delta T}{\Delta x}.
+\]
+The material-dependent constant of proportionality is the \textbf{thermal conductivity} $k_t$.
+
+\begin{formula}[Fourier's Law of Heat Conduction]
+\[
+    \frac{Q}{\Delta t} = -k_t\, A\, \frac{\partial T}{\partial x}.
+\]
+The negative sign ensures heat flows in the direction of decreasing temperature: if $\partial T/\partial x > 0$, heat flows in the $-x$ direction.
+\end{formula}
+
+Thermal conductivities vary over four orders of magnitude across common materials (all in $\text{W\,m}^{-1}\text{K}^{-1}$): air ($0.026$), wood ($0.08$), water ($0.6$), glass ($0.8$), iron ($80$), and copper ($400$). Metals conduct heat so efficiently because free electrons, which carry energy far more readily than phonons, dominate the transport.
+
+\section{Thermal Conductivity of an Ideal Gas}
+
+In a gas, heat is transported by molecules carrying kinetic energy from one region to another. The rate is limited by how far a molecule travels before it collides and shares its energy, which is characterised by the mean free path.
+
+\begin{definition}
+The \textbf{mean free path} $\ell$ is the average distance a molecule travels between successive collisions. In a dilute gas, $\ell$ is much larger than the average intermolecular spacing.
+\end{definition}
+
+To estimate $\ell$, treat the molecule of interest as a sphere of radius $r$ and all other molecules as point particles. Two molecules collide when their centres come within $2r$ of each other, so the moving molecule sweeps out an effective cylinder of radius $2r$.
+
+\begin{center}[DIAGRAM: Two circles each of radius $r$ shown equivalent to a single collision cross-section of radius $2r$; the moving molecule sweeps a cylinder of radius $2r$ and length $\ell$ with $V_\text{rel}$ labeled.]\end{center}
+
+A collision becomes likely when the volume of the swept cylinder equals the average volume per molecule:
+\[
+    \pi(2r)^2\,\ell \approx \frac{V}{N}
+    \qquad\Longrightarrow\qquad
+    \ell \approx \frac{1}{4\pi r^2}\cdot\frac{V}{N}.
+\]
+This is a rough approximation that ignores the distribution of relative speeds. The average time between collisions is then $\overline{\Delta t} = \ell/\bar{v}$, where $\bar{v}$ is the mean molecular speed (well approximated by $v_\text{rms}$).
+
+\subsection{Deriving Thermal Conductivity from Kinetic Theory}
+
+\begin{center}[DIAGRAM: Two adjacent boxes separated by a barrier at position $x$. Box 1 (left) at temperature $T_1$ with total energy $U_1$; Box 2 (right) at temperature $T_2$ with total energy $U_2$. A flux arrow points rightward across the barrier.]\end{center}
+
+Consider two boxes of gas separated by an imaginary barrier, each with volume $V$, box 1 at temperature $T_1$ and box 2 at temperature $T_2 > T_1$. In one mean free time $\Delta t = \ell/\bar{v}$, roughly half the molecules in each box cross the barrier and carry their energy with them. The net heat transferred from box 2 to box 1 is
+\[
+    Q_x = \frac{1}{2}(U_1 - U_2) = -\frac{1}{2}(U_2 - U_1) = -\frac{1}{2}C_V(T_2 - T_1),
+\]
+where $C_V$ is the heat capacity of the gas in either box. Writing the temperature difference as $T_2 - T_1 = \ell\,\partial T/\partial x$,
+
+\begin{formula}
+\[
+    Q \approx -\tfrac{1}{2}\,C_V\,\ell\,\frac{\partial T}{\partial x}.
+\]
+\end{formula}
+
+This has the same form as Fourier's law, $Q/\Delta t = -k_t A\,\partial T/\partial x$, so we can read off the thermal conductivity. Using $\Delta t = \ell/\bar{v}$ and expressing $C_V/V = \tfrac{f}{2}Nk/V = \tfrac{f}{2}P/T$ via the ideal gas law,
+
+\begin{formula}
+\[
+    k_t = \frac{1}{2}\,\frac{C_V}{V}\,\bar{v}\,\ell = \frac{1}{4}\,f\,\frac{P}{T}\,\bar{v}\,\ell,
+\]
+\end{formula}
+
+where $f$ is the number of degrees of freedom per molecule. Notably, since $\bar{v} \propto T^{1/2}$ and $\ell \propto V/N \propto T/P$, the product $\bar{v}\,\ell \propto T^{3/2}/P$ and $k_t \propto T^{1/2}$ --- independent of pressure, a result confirmed experimentally over a wide range.
+
+\section{Diffusion}
+
+While heat conduction involves the transport of energy, \textbf{diffusion} describes the transport of particles themselves, driven by a gradient in their number density $n$ (particles per unit volume).
+
+\begin{center}[DIAGRAM: A box with higher particle concentration on the left than the right, illustrating a concentration gradient that drives net particle flow to the right.]\end{center}
+
+The \textbf{flux} $\vec{J}$ is the net number of particles crossing a unit area per unit time. By the same dimensional reasoning as before, the flux is proportional to the concentration gradient:
+
+\begin{formula}[Fick's First Law]
+\[
+    J_x = -D\,\frac{\partial n}{\partial x},
+\]
+\end{formula}
+
+where $D$ is the \textbf{diffusion coefficient}, which depends on the species of molecule and the medium through which it diffuses. The negative sign again ensures flux is directed down the gradient. Combining Fick's First Law with conservation of particle number yields
+
+\begin{formula}[Fick's Second Law]
+\[
+    \frac{\partial n}{\partial t} = D\,\frac{\partial^2 n}{\partial x^2}.
+\]
+\end{formula}
+
+This is a diffusion equation: an initially sharp concentration profile spreads out over time, with the width of the distribution growing as $\sqrt{Dt}$. By kinetic-theory arguments analogous to those for thermal conductivity, $D \sim \bar{v}\,\ell$, so the same mean free path that governs heat conduction also sets the scale of particle diffusion.
+
+% ============================================================
+\chapter{Two-State Systems}
+% ============================================================
+
+Irreversible processes are not logically required by the laws of mechanics --- they are simply overwhelmingly probable. To understand why, we must count the number of ways a system can be arranged.
+
+Imagine flipping three distinguishable coins. There are $2^3 = 8$ possible outcomes. These outcomes organise naturally into two levels of description.
+
+\begin{definition}
+A \textbf{microstate} is a complete specification of the system (e.g., which coins show heads and which show tails). A \textbf{macrostate} is a coarser description, typically specifying only a macroscopic quantity such as the total number of heads. The \textbf{multiplicity} $\Omega$ of a macrostate is the number of microstates consistent with it.
+\end{definition}
+
+For $N$ distinguishable objects of which $n$ are in a designated state,
+\[
+    \Omega(N, n) = \binom{N}{n}.
+\]
+Systems evolve toward macrostates of higher multiplicity because there are simply more ways to be in them.
+
+\section{Two-State Paramagnet}
+
+A paramagnet is a material whose constituent particles behave like tiny magnetic compass needles that tend to align parallel to an applied field, but only while the field is present (unlike a ferromagnet, which can maintain alignment spontaneously). Each magnetic particle carries a \textbf{dipole} moment --- which may belong to a whole group of atoms, a single atom, or a single electron.
+
+In the idealized \textbf{two-state paramagnet}, each dipole is constrained to point either parallel ($\uparrow$) or antiparallel ($\downarrow$) to the applied field. With $N$ total dipoles, $N_\uparrow$ pointing up, and $N_\downarrow = N - N_\uparrow$ pointing down, the multiplicity of a configuration with $N_\uparrow$ up-spins is
+\[
+    \Omega(N_\uparrow) = \frac{N!}{N_\uparrow!\, N_\downarrow!} = \binom{N}{N_\uparrow}.
+\]

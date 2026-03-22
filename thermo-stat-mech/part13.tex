@@ -1,0 +1,412 @@
+%% Part 13: Entropy, the Laws of Thermodynamics, and Heat Engines
+%% Covers pages 156–170
+
+\chapter{Entropy and the Laws of Thermodynamics}
+
+\section{The Zeroth Law of Thermodynamics}
+
+Consider three systems $A$, $B$, and $C$. The Zeroth Law states that if system $A$ is in thermal equilibrium with system $C$, and system $B$ is also in thermal equilibrium with system $C$, then $A$ and $B$ are in thermal equilibrium with each other. In equations, if
+\begin{equation}
+    \left.\pdv{S_A}{U_A}\right|_{N_A, V_A} = \left.\pdv{S_C}{U_C}\right|_{N_C, V_C}
+    \quad \text{and} \quad
+    \left.\pdv{S_B}{U_B}\right|_{N_B, V_B} = \left.\pdv{S_C}{U_C}\right|_{N_C, V_C},
+\end{equation}
+then it follows that
+\begin{equation}
+    \left.\pdv{S_A}{U_A}\right|_{N_A, V_A} = \left.\pdv{S_B}{U_B}\right|_{N_B, V_B}.
+\end{equation}
+This is the microscopic content of the Zeroth Law: the quantity $\partial S/\partial U$ (which we identify with $1/T$) is equalized between systems in thermal contact.
+
+\section{Relating Temperature to the First Law}
+
+If there exists an entropy function $S(U, V)$, we may write $U(S, V)$, and the total differential is
+\begin{equation}
+    dU = \left.\pdv{U}{S}\right|_V dS + \left.\pdv{U}{V}\right|_S dV.
+\end{equation}
+The first term represents the change in $U$ at constant volume, which must be related to heat; the second term represents the change in $U$ due to volume change, which is related to work. Comparing with the First Law $dU = \delta Q + \delta W$, and recalling that for a quasi-static reversible process $\delta W = -p\,dV$, we identify
+\begin{equation}
+    dU = T\,dS - p\,dV.
+\end{equation}
+This relation is fundamental. From it we extract the thermodynamic definition of pressure:
+
+\begin{definition}[Thermodynamic pressure]
+\begin{equation}
+    \left.\pdv{U}{V}\right|_S = -p.
+\end{equation}
+\end{definition}
+
+This relation holds strictly only for quasi-static and reversible processes, though the combination $T\,dS - p\,dV$ is exact as a relation between state functions.
+
+\subsection{Entropy Change for Infinitesimal Heat Transfer}
+
+Recall the setup of considering an infinitesimal, reversible heat transfer $\delta Q_\text{rev}$ to a system. Three assumptions make the analysis tractable: (1) the volume does not change, so $dU = \delta Q$; (2) the system remains arbitrarily close to equilibrium; and (3) $dU$ is infinitesimal, so the direction of heat flow can be reversed by an infinitesimal change. Under these conditions,
+\begin{equation}
+    dU = \delta Q_\text{rev} \implies dS = \frac{1}{T}\,\delta Q_\text{rev},
+\end{equation}
+and therefore
+\begin{equation}
+    dS = \left.\pdv{S}{U}\right|_V dU = \frac{1}{T}\,dU.
+\end{equation}
+
+\begin{center}[DIAGRAM: small square system with heat $\delta Q$ flowing in from the left]\end{center}
+
+\section{Reversible Processes}
+
+\begin{definition}[Reversible process]
+A reversible process is one that can be reversed in direction by a tiny, infinitesimal change in the parameters. Equivalently, the system remains in quasi-static equilibrium throughout.
+\end{definition}
+
+An important subtlety is that $dS \geq 0$ is possible even without any heat flow, as in free expansion. More generally:
+
+\begin{formula}[Second Law --- entropy inequality]
+\begin{equation}
+    dS \geq \frac{\delta Q}{T},
+\end{equation}
+with equality holding if and only if the process is reversible.
+\end{formula}
+
+This result connects to the First Law as follows. If work is performed in quasi-static equilibrium with no friction, then $\delta W = -p\,dV$. If heat is added quasi-statically and reversibly, then $\delta Q = T\,dS$. Together these give
+\begin{equation}
+    dU = T\,dS - p\,dV,
+\end{equation}
+the fundamental thermodynamic identity.
+
+\section{Closed Systems and the Canonical Ensemble}
+
+A \emph{closed system} has a fixed number of particles but can exchange heat with its surroundings. The surroundings are modeled as a large heat reservoir held at temperature $T$, so that $T_\text{reservoir} = T_\text{system}$ is fixed. Rather than working with $U$ as the independent variable, we now want to express all thermodynamic quantities as functions of $T$.
+
+\subsection{Two-State Paramagnet Revisited}
+
+Consider $N$ particles, each of which can be in either the spin-up state (energy $\varepsilon$) or the spin-down state (energy $0$). The internal energy and multiplicity are
+\begin{equation}
+    U = n\varepsilon, \qquad \Omega = \binom{N}{n} = \frac{N!}{n!(N-n)!}.
+\end{equation}
+Using Stirling's approximation, the entropy is
+\begin{align}
+    S &= k_B \bigl[N\log N - n\log n - (N-n)\log(N-n)\bigr].
+\end{align}
+We can relate $U$ and $T$ via $\frac{1}{T} = \pdv{S}{U}$:
+\begin{align}
+    \left.\pdv{S}{U}\right|_N
+    &= \frac{k_B}{\varepsilon}\log\!\left(\frac{N\varepsilon}{U} - 1\right) = \frac{1}{T}.
+\end{align}
+Solving for the occupation fraction:
+\begin{equation}
+    \frac{N\varepsilon}{U} = 1 + e^{\varepsilon/k_B T}
+    \implies U = \frac{N\varepsilon}{1 + e^{\varepsilon/k_B T}}, \quad n = \frac{N}{1+e^{\varepsilon/k_B T}}.
+\end{equation}
+The entropy expressed as a function of $T$ becomes
+\begin{equation}
+    S = k_B N\!\left[\log\!\bigl(1+e^{\varepsilon/k_B T}\bigr) + \frac{\varepsilon/k_B T}{1+e^{\varepsilon/k_B T}}\right].
+\end{equation}
+
+\begin{center}[DIAGRAM: $U$ vs.\ $T$ (left) saturating at $N\varepsilon/2$ from below; $S$ vs.\ $T$ (right) saturating at $k_B N\log 2$]\end{center}
+
+Now, given a fixed temperature $T$, what is the average energy? The quantities $U(T,N)$ and $n(T,N)$ are those for the case where the system is thermally connected to a reservoir. At $T \to 0$, all particles fall into the ground state giving $U\to 0$. At large $T$, both states become equally likely, so $U \to N\varepsilon/2$ rather than $N\varepsilon$ (since only half the particles are in the excited state on average). The $S$ vs.\ $T$ plot saturates at $k_B N\log 2$ because at high $T$ all $2^N$ configurations are equally likely, giving maximum entropy.
+
+As $T\to 0$, $\frac{1}{2}$ of particles approach the ground state. The entropy approaches a maximum at $U = N\varepsilon/2$ (half the particles excited), because $S(U) \propto \log\binom{N}{N/2}$, which is a maximum there. Furthermore, $T = \pdv{U}{S} \to \infty$ as $T\to 0$, since $\pdv{S}{U}\to 0$ at the ground state:
+\begin{equation}
+    T = \pdv{U}{S} = \infty \implies \frac{1}{T} = \pdv{S}{U} = 0.
+\end{equation}
+
+\section{The Third Law of Thermodynamics}
+
+\begin{theorem}[Third Law (Nernst)]
+As $T \to 0$, the entropy approaches zero: $S \to 0$. More generally, $S$ approaches a constant as $T\to 0$.
+\end{theorem}
+
+The caveat is that some systems possess \emph{ground-state degeneracy}, in which case $S\to k_B \log g$ where $g$ is the degeneracy. Practically speaking, $S\to\text{const}$ as $T\to 0$. A physical consequence is that since $\delta Q = T\,dS$, as $T\to 0$ one needs to remove less and less heat to reduce $S$, so in the limit $T\to 0$ one cannot extract any heat at all, making it impossible to cool the system further.
+
+\section{Note on Thermal Equilibrium}
+
+Recall that we previously considered heat flow between two systems. At equilibrium $dS = 0$. If the two systems $A$ and $B$ are in contact but heat exchange is blocked, then
+\begin{equation}
+    dS_A = \left.\pdv{S_A}{U_A}\right|_{V_A, N_A} dU_A + \left.\pdv{S_A}{U_B}\right|_{V_B, N_B} dU_B = 0.
+\end{equation}
+This motivates the identification $1/T = \partial S/\partial U$, and thermal equilibrium requires
+\begin{equation}
+    \left(\pdv{S_A}{U_A}\right)_{N_A, V_A} = \left(\pdv{S_B}{U_B}\right)_{N_B, V_B},
+    \quad \text{i.e.,}\quad T_A = T_B.
+\end{equation}
+
+Now allow a partition between the two systems to move (mechanical equilibrium). The total entropy change is
+\begin{equation}
+    dS = \left.\pdv{S_A}{V_A}\right|_{U_A, N_A} dV_A + \left.\pdv{S_B}{V_B}\right|_{U_B, N_B} dV_B.
+\end{equation}
+Since $dV_A = -dV_B$, at an extremum the two partial derivatives must be equal. From the fundamental relation $dS = \frac{1}{T}dU + \frac{p}{T}dV$ we read off:
+
+\begin{definition}[Thermodynamic pressure, entropy form]
+\begin{equation}
+    \left.\pdv{S}{V}\right|_{U, N} = \frac{p}{T}.
+\end{equation}
+\end{definition}
+
+We now have a complete recipe for obtaining thermodynamics from a microcanonical ensemble.
+
+\subsection{General Recipe}
+
+The general recipe for deriving the full thermodynamics of a system within the microcanonical ensemble is:
+\begin{enumerate}
+    \item Obtain $\Gamma(U, V, N)$ (the number of microstates), then $S = k_B \ln \Gamma$.
+    \item Compute $\frac{1}{T} = \pdv{S}{U}\big|_{V,N}$ to obtain $U(T, V, N)$.
+    \item Use $U(T, V, N)$ to express $S(T, V, N)$.
+    \item Use $\frac{p}{T} = \pdv{S}{V}\big|_{U,N}$ to obtain the equation of state $F(p, V, T, N) = 0$.
+\end{enumerate}
+
+\subsection{Example: Ideal Gas}
+
+Recall the Sackur--Tetrode entropy:
+\begin{equation}
+    S(U, V, N) = Nk_B \left[\log\frac{V}{N} + \frac{3}{2}\log\frac{U}{N} + C\right].
+\end{equation}
+
+\textbf{Step 1: Temperature.}
+\begin{equation}
+    \frac{1}{T} = \left.\pdv{S}{U}\right|_{V, N} = \frac{3}{2}\frac{Nk_B}{U}
+    \implies \boxed{U = \frac{3}{2}Nk_B T.}
+\end{equation}
+This is the equipartition result: each of the three translational degrees of freedom contributes $\frac{1}{2}k_BT$.
+
+\textbf{Step 2: Entropy as a function of $T$.} Substituting $U = \frac{3}{2}Nk_BT$:
+\begin{align}
+    S(T, V, N) &= Nk_B\!\left[\log\frac{V}{N} + \frac{3}{2}\log\!\left(\frac{3k_B T}{2}\right) + \frac{3}{2}\log\frac{M}{N} + \frac{5}{2}\right] \notag \\
+    &= Nk_B\!\left[\log\!\left(\frac{V}{N\lambda_{th}^3}\right) + \frac{5}{2}\right],
+\end{align}
+where the \emph{thermal de Broglie wavelength} is
+\begin{equation}
+    \lambda_{th} = \sqrt{\frac{2\pi\hbar^2}{mk_BT}}.
+\end{equation}
+This is the typical quantum-mechanical length scale --- the distance over which a particle can be localized, limited by the Heisenberg uncertainty principle. It is also the typical quantum-mechanical uncertainty in position for a particle in the gas.
+
+\textbf{Step 3: Pressure.}
+\begin{equation}
+    \frac{p}{T} = \left.\pdv{S}{V}\right|_{U, N} = \frac{Nk_B}{V}
+    \implies \boxed{pV = Nk_B T.}
+\end{equation}
+
+\textbf{Low-temperature (strong) limit.} As $T\to 0$, $\frac{Mk_BT}{\cdots}\to 0$, so $S_\text{Sackur-Tetrode}\to -\infty$. This violates the Third Law and signals a breakdown of the classical result at low temperatures. The Gibbs factor was justified by assuming negligible probability of more than one particle occupying the same single-particle state. This assumption fails at low $T$.
+
+\section{Validity of the Classical Ideal Gas: Classical--Quantum Crossover}
+
+The classical Sackur--Tetrode result breaks down when $S \to 0$, i.e., when
+\begin{equation}
+    \log\!\left(\frac{V}{N\lambda_{th}^3}\right) \approx 0 \implies \frac{V}{N} \sim \lambda_{th}^3,
+\end{equation}
+or equivalently $n\lambda_{th}^3 \sim 1$ where $n = N/V$ is the number density. The condition for the classical regime to be valid is:
+
+\begin{formula}[Classical regime criterion]
+\begin{equation}
+    N\left(\frac{2\pi\hbar^2}{mk_B T}\right)^{3/2} \ll V, \qquad \text{i.e., } n\lambda_{th}^3 \ll 1.
+\end{equation}
+For ideal gas, this is the requirement that the mean inter-particle spacing $d = (V/N)^{1/3}$ greatly exceeds $\lambda_{th}$.
+\end{formula}
+
+The thermal de Broglie wavelength can be thought of as the distance over which an atom may be localized, limited by Heisenberg's uncertainty principle. Quantum effects become important when $\lambda_{th} \gtrsim d$. Using $p \sim nk_BT$ for the pressure:
+\begin{equation}
+    d \sim \left(\frac{k_B T}{p}\right)^{1/3}, \qquad \lambda_{th} = \sqrt{\frac{2\pi\hbar^2}{mk_BT}}.
+\end{equation}
+The crossover $d \sim \lambda_{th}$ occurs at a temperature
+\begin{equation}
+    T^{3/2} \sim \frac{2\pi\hbar^2}{mk_B} \left(\frac{p}{k_B}\right)^{1/3},
+\end{equation}
+which for most gases is well below 1 K and thus quantum effects are negligible at room temperature.
+
+\section{More on the Third Law of Thermodynamics}
+
+There are three equivalent statements of the Third Law:
+
+\begin{enumerate}
+    \item As $T\to 0$, the entropy of a perfect crystal is zero.
+    \item As $T\to 0$, the heat capacity of a substance also approaches zero.
+    \item It is impossible to cool a system to absolute zero in a finite number of processes.
+\end{enumerate}
+
+\subsection{Statement 1: Entropy of a Crystal}
+
+Consider a crystal at $T\to 0$: atoms stop moving and settle into a perfectly periodic arrangement, giving $\Omega = 1$ and $S = 0$. In practice, there are always defects and vacancies. A particularly clean example is \emph{isotope disorder}: natural carbon consists of ${}^{12}$C ($98.93\%$) and ${}^{13}$C ($1.07\%$). Each site can hold either isotope, so there is a residual entropy even at $T = 0$. This residual entropy is
+\begin{equation}
+    \frac{S_\text{res}}{k_B} = -\sum_j p_j \log_2 p_j,
+    \quad \text{so for isotope disorder: }
+    S_\text{isotope} = -Nk_B \log 2 \sum_j p_j \log p_j,
+\end{equation}
+where the sum runs over isotope species.
+
+\subsection{Statement 2: Heat Capacity Goes to Zero}
+
+Let $S(T=0) = S_0$. Then
+\begin{equation}
+    S(T) = S_0 + \int_0^T dS = S_0 + \int_0^T \frac{C(T')}{T'}\,dT'.
+\end{equation}
+Since $dS = \delta Q / T = C\,dT/T$, for the integral to converge as $T'\to 0$ we need $C(T')\to 0$; otherwise the expression for $S$ diverges. This must go to zero otherwise this expression diverges.
+
+\subsection{Statement 3: Impossible to Reach Absolute Zero}
+
+Consider attempting to cool a gas by repeatedly alternating isothermal compression and adiabatic expansion. Isothermal compression reduces entropy (heat is removed to the surroundings). Adiabatic expansion then reduces temperature. Each cycle brings the temperature closer to zero but by a smaller and smaller amount --- because $S\to 0$ as $T\to 0$, the isothermal step can only remove a vanishing amount of entropy, and the subsequent adiabatic step can only reduce the temperature by a corresponding vanishing amount. Absolute zero is therefore unreachable in a finite number of steps.
+
+\begin{center}[DIAGRAM: $T$ vs.\ $S$ plot showing alternating isothermal (horizontal) and adiabatic (vertical) steps, converging asymptotically toward $T = 0$]\end{center}
+
+\section{How Does Entropy Change Under Various Processes?}
+
+Recall the fundamental relations:
+\begin{equation}
+    \left.\pdv{S}{U}\right|_{V, N} = \frac{1}{T}, \qquad
+    \left.\pdv{S}{V}\right|_{U, N} = \frac{p}{T},
+\end{equation}
+so that $dS = \frac{1}{T}dU + \frac{p}{T}dV$ and $dU = T\,dS - p\,dV$, both holding in quasi-static reversible processes. In general, $dS \geq \delta Q / T$.
+
+We classify processes as follows. An \emph{adiabatic} process has $\delta Q = 0$. An \emph{isoentropic} (isentropic) process has $dS = 0$ --- this coincides with adiabatic for reversible processes. A \emph{quasi-static} process keeps the system close to equilibrium. A \emph{reversible} process is quasi-static with no friction: heat flow can be reversed by an infinitesimal change.
+
+As an example, consider a quasi-static reversible heat flow between a hot body at $T+dT$ and a cooler system at $T$:
+\begin{equation}
+    dS_A = \frac{-\delta Q}{T + dT}, \qquad dS_B = \frac{+\delta Q}{T}.
+\end{equation}
+The total entropy change of the universe is
+\begin{equation}
+    dS_\text{univ} = \delta Q\!\left(\frac{1}{T} - \frac{1}{T+dT}\right) = \delta Q\,\frac{dT}{T(T+dT)} \geq 0.
+\end{equation}
+In the reversible limit where $dT\to 0$ (infinitesimal temperature difference), $dS_\text{univ}\to 0$.
+
+For a reversible infinitesimal change:
+\begin{equation}
+    dS = \delta Q\,\frac{dT}{T(T+dT)} \approx \delta Q\,\frac{dT}{T^2}.
+\end{equation}
+
+Another example: a \emph{quasi-static process with net friction} such as slow expansion of a gas against a piston with friction. Due to friction, the gas only expands if its force on the piston is finitely smaller than $pA$, so some energy is dissipated and entropy increases irreversibly.
+
+\begin{center}[DIAGRAM: gas (hatched region on left) expanding against a piston with friction; arrow pointing right; notation ``$p$'' inside gas and ``$A_\text{piston}$'' on piston face; note that friction makes force finitely smaller than $pA$]\end{center}
+
+\chapter{Entropy Changes in Specific Processes and Heat Engines}
+
+\section{Entropy Changes in Processes (Lecture 15)}
+
+We compute $\Delta S$ for the ideal gas in several standard processes, using $dS = \frac{1}{T}dU + \frac{p}{T}dV$.
+
+\subsection{Isochoric (Constant-Volume) Heating}
+
+With $dV = 0$, the entropy change is purely due to the change in internal energy:
+\begin{equation}
+    \Delta S = \int_{T_A}^{T_B} \frac{C_V\,dT}{T} = \frac{3}{2}Nk_B \log\frac{T_B}{T_A}.
+\end{equation}
+The heat absorbed equals the change in internal energy (no work done):
+\begin{equation}
+    \Delta Q = \int_A^B T\,dS = \int_A^B C_V\,dT = \frac{3}{2}Nk_B(T_B - T_A) = \Delta U.
+\end{equation}
+
+\begin{center}[DIAGRAM: $P$--$V$ diagram showing isochoric process as a vertical segment; isotherms labeled $T_A$ (lower) and $T_B$ (upper)]\end{center}
+
+\subsection{Isobaric (Constant-Pressure) Heating}
+
+With $dp = 0$, two methods are available.
+
+\textbf{Method 1.} Since $\delta Q = C_P\,dT$ at constant pressure:
+\begin{equation}
+    \Delta S = \int_A^B \frac{C_P\,dT}{T} = \frac{5}{2}Nk_B \log\frac{T_B}{T_A}.
+\end{equation}
+
+\textbf{Method 2.} Use the enthalpy $H = U + pV$, so $dH = T\,dS + V\,dp$. At constant pressure $dH = T\,dS$:
+\begin{equation}
+    \Delta H = \int \frac{1}{T}\,dH \implies \Delta S = \int \frac{C_P\,dT}{T} = \frac{5}{2}Nk_B\log\frac{T_B}{T_A}.
+\end{equation}
+
+Notice that $\Delta S_\text{isobaric} > \Delta S_\text{isochoric}$ because at constant pressure the gas must both increase its internal energy \emph{and} do $p\,dV$ work:
+\begin{equation}
+    \Delta Q_\text{isobaric} = \Delta U + p\,\Delta V > \Delta U = \Delta Q_\text{isochoric}.
+\end{equation}
+Thus more entropy is generated during isobaric heating.
+
+\begin{center}[DIAGRAM: $P$--$V$ diagram showing isobaric process as a horizontal segment, with the gas expanding from $V_A$ to $V_B$]\end{center}
+
+\subsection{Isothermal Expansion}
+
+With $T$ constant, the internal energy of an ideal gas does not change ($dU = 0$), so
+\begin{equation}
+    \Delta S = \int \frac{p}{T}\,dV = \int \frac{Nk_B}{V}\,dV = Nk_B\log\frac{V_B}{V_A} = \Delta S.
+\end{equation}
+This is positive for expansion ($V_B > V_A$), as expected.
+
+\begin{center}[DIAGRAM: $P$--$V$ diagram showing isothermal curve from $A$ (small $V$, high $P$) to $B$ (large $V$, low $P$)]\end{center}
+
+For a \emph{closed loop} in $P$--$V$ space, since $S$ is a state function, $\Delta S = 0$ around any cycle. This can be verified for the cycle combining isochoric, isothermal, and isobaric steps. For example, an isothermal step at $T_+$ from $V_A$ to $V_B$, followed by an isochoric step cooling from $T_+$ to $T_-$:
+\begin{equation}
+    \Delta S_\text{cycle} = \frac{3}{2}Nk_B\log\frac{T_+}{T_-} + Nk_B\log\frac{V_A}{V_B}
+    - \frac{3}{2}Nk_B\log\frac{T_+}{T_-} + \cdots = 0. \checkmark
+\end{equation}
+
+\begin{center}[DIAGRAM: closed loop in $P$--$V$ space with upper and lower isotherms ($T_+$ and $T_-$) connected by two processes; $\Delta S = 0$ labeled]\end{center}
+
+\subsection{Adiabatic Process}
+
+For an adiabatic process $\delta Q = 0$, so $dS = 0$.
+
+\section{Heat Engines}
+
+\begin{definition}[Heat engine]
+An engine is a device that takes in heat (e.g., from burning fuel) and does work, operating cyclically --- it returns to the same thermodynamic state periodically. A machine that executes closed paths in thermodynamic phase space is called a heat engine.
+\end{definition}
+
+Because $U$ is a state function, integrating around any closed loop gives $\oint dU = 0$, so
+\begin{equation}
+    \oint dU = \oint (T\,dS - p\,dV) = 0.
+\end{equation}
+The net work done by the engine per cycle is $\Delta W = -\oint p\,dV$, and the net heat absorbed is $\Delta Q = \oint T\,dS$, so $\Delta W = -\Delta Q$. The heat is added at high $T$ and removed at low $T$, which is what allows net work to be extracted.
+
+\begin{center}[DIAGRAM: $P$--$V$ diagram (left) showing closed loop with shaded area equal to net work done; $T$--$S$ diagram (right) showing corresponding loop with heat added on top and heat subtracted on bottom]\end{center}
+
+\section{Efficiency}
+
+\begin{definition}[Efficiency]
+The efficiency of a heat engine is
+\begin{equation}
+    \eta = \frac{W}{Q_\text{in}},
+\end{equation}
+where $W$ is the net work done per cycle and $Q_\text{in}$ is the heat absorbed from the hot reservoir.
+\end{definition}
+
+By energy conservation, $Q_\text{in} = W + Q_\text{out}$, so
+\begin{equation}
+    \eta = \frac{Q_\text{in} - Q_\text{out}}{Q_\text{in}} = 1 - \frac{Q_\text{out}}{Q_\text{in}}.
+\end{equation}
+It is always true that at least some of the heat is lost irreversibly and cannot be recovered.
+
+\begin{center}[DIAGRAM: engine schematic with hot reservoir $T_+$ at top providing $Q_\text{in}$, engine in the middle producing work $W$, and cold reservoir $T_-$ at bottom receiving $Q_\text{out}$]\end{center}
+
+\section{Carnot's Engine}
+
+\begin{definition}[Carnot engine]
+The Carnot engine achieves the highest possible efficiency for any heat engine operating between a hot reservoir at $T_+$ and a cold reservoir at $T_-$. It consists of four reversible steps:
+\begin{enumerate}
+    \item Isothermal expansion at $T_+$: work is done by the gas, heat $Q_+$ is absorbed.
+    \item Adiabatic expansion: work done, no heat flow ($\delta Q = 0$), temperature falls from $T_+$ to $T_-$.
+    \item Isothermal compression at $T_-$: work done on the gas, heat $Q_-$ is rejected.
+    \item Adiabatic compression: work done on gas, no heat flow, temperature rises from $T_-$ to $T_+$.
+\end{enumerate}
+\end{definition}
+
+\begin{center}[DIAGRAM: $P$--$V$ diagram showing Carnot cycle with two isotherms ($T_+$ upper, $T_-$ lower) connected by two adiabats; $T$--$S$ diagram shows a rectangle with $Q_+$ added at top and $Q_-$ subtracted at bottom]\end{center}
+
+\subsection{Carnot Efficiency from the Second Law}
+
+By the First Law applied to the full cycle, $Q_+ = W + Q_-$. The Second Law requires the entropy of the universe to be non-decreasing. The engine itself returns to its starting state after each cycle, so its entropy does not change: $\Delta S_\text{engine} = 0$. The entropy changes of the reservoirs are
+\begin{equation}
+    \Delta S_\text{hot} = \frac{-Q_+}{T_+} \quad (\text{heat leaves hot reservoir}),
+    \qquad
+    \Delta S_\text{cold} = \frac{Q_-}{T_-} \quad (\text{heat enters cold reservoir}).
+\end{equation}
+The Second Law $\Delta S_\text{universe} \geq 0$ then gives
+\begin{equation}
+    \frac{Q_-}{T_-} - \frac{Q_+}{T_+} \geq 0
+    \implies \frac{Q_-}{Q_+} \geq \frac{T_-}{T_+}.
+\end{equation}
+Substituting into the efficiency formula:
+\begin{equation}
+    \eta = 1 - \frac{Q_-}{Q_+} \leq 1 - \frac{T_-}{T_+}.
+\end{equation}
+
+\begin{formula}[Carnot efficiency bound]
+\begin{equation}
+    \boxed{\eta \leq 1 - \frac{T_-}{T_+}},
+\end{equation}
+with equality if and only if all heat exchange occurs reversibly (i.e., the Carnot cycle).
+\end{formula}
+
+This is one of the deepest results in thermodynamics: regardless of the working substance or engineering details, no engine operating between $T_+$ and $T_-$ can exceed the Carnot efficiency $1 - T_-/T_+$.

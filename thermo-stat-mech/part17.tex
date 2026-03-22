@@ -1,0 +1,525 @@
+\chapter{The Grand Canonical Ensemble}
+
+\section{Setting Up the Grand Canonical Ensemble}
+
+The grand canonical ensemble describes a system that can exchange both energy \emph{and} particles with a large reservoir. The reservoir is characterised by a fixed temperature $T$ and chemical potential $\mu$; neither $E$ nor $N$ is fixed for the system itself, only $T$, $V$, and $\mu$.
+
+The setup is analogous to the derivation of the canonical ensemble. We ask: what is the probability that the system is found in a specific microstate $s_j$ with energy $E_j$ and particle number $N_j$? The reservoir then has energy $U - E_j$ and particle number $N - N_j$, so its entropy is $S_R(U - E_j,\, N - N_j)$. The probability is proportional to the number of reservoir microstates,
+\begin{equation}
+    P(\text{system in microstate } s_j) = P_j(E_j, N_j) \propto \Gamma_S(s_j) \cdot \Gamma_R(U - E_j,\, N - N_j),
+\end{equation}
+where $\Gamma_S(s_j) = 1$ for a specific microstate. The reservoir multiplicity is $e^{S_R(U-E_j,\, N-N_j)/k_B}$.
+
+Expanding $S_R(U - E_j,\, N - N_j)$ in a Taylor series around $(U, N)$ and using the thermodynamic identities $(\partial S_R/\partial U)_N = 1/T$ and $(\partial S_R/\partial N)_U = -\mu/T$ gives
+\begin{align}
+    S_R(U - E_j,\, N - N_j) &\approx S_R(U, N) - E_j \left.\pdv{S_R}{U}\right|_N - N_j \left.\pdv{S_R}{N}\right|_U \notag \\
+    &\approx S_R(U, N) - \frac{E_j}{T} + \frac{\mu N_j}{T}.
+\end{align}
+Exponentiating and discarding the (constant) $e^{S_R(U,N)/k_B}$ factor, which merely normalises the distribution, we obtain the grand canonical probability:
+\begin{formula}
+\begin{equation}
+    P_j(E_j, N_j) = \frac{1}{\mathcal{Z}}\,e^{-\beta E_j}\,e^{\beta\mu N_j},
+\end{equation}
+\end{formula}
+where $\beta = 1/k_BT$ and $\mathcal{Z}$ is the normalisation constant called the \emph{grand partition function}.
+
+\begin{definition}[Grand Partition Function]
+The grand partition function $\mathcal{Z}$ is defined by summing the Boltzmann-like weights over all microstates $j$:
+\begin{equation}
+    \mathcal{Z} = \sum_j e^{-\beta E_j}\,e^{\beta\mu N_j}.
+\end{equation}
+\end{definition}
+
+\section{Thermodynamics from the Grand Partition Function}
+
+Just as the Helmholtz free energy is the key bridge from the canonical partition function to thermodynamics, a parallel structure exists here. Differentiating $\ln\mathcal{Z}$ with respect to $\beta$ at fixed $\mu$ extracts the mean energy and particle number. Differentiating with respect to $\mu$ (via $\beta\mu$) at fixed $\beta$ gives the mean particle number:
+\begin{align}
+    \pdv{\ln\mathcal{Z}}{\beta} &= \frac{1}{\mathcal{Z}}\pdv{\mathcal{Z}}{\beta} = \frac{1}{\mathcal{Z}}\sum_j (\mu N_j - E_j)\,e^{\beta(\mu N_j - E_j)} = \mu\langle N\rangle - \langle U\rangle, \\[4pt]
+    \pdv{\ln\mathcal{Z}}{\mu}\bigg|_\beta &= \frac{1}{\mathcal{Z}}\cdot\frac{1}{k_BT}\sum_j N_j\,e^{\beta(\mu N_j - E_j)} = \beta\langle N\rangle,
+\end{align}
+so that $\pdv{(\ln\mathcal{Z})}{(\beta\mu)} = \langle N\rangle$.
+
+The entropy is computed from $S = -k_B\sum_j P_j\ln P_j$. Substituting $\ln P_j = \beta\mu N_j - \beta E_j - \ln\mathcal{Z}$:
+\begin{align}
+    S &= -k_B\sum_j P_j\bigl(\beta\mu N_j - \beta E_j - \ln\mathcal{Z}\bigr) \notag \\
+    &= \frac{1}{T}\sum_j P_j(E_j - \mu N_j) + k_B\ln\mathcal{Z} \notag \\
+    &= \frac{\langle U\rangle - \mu\langle N\rangle}{T} + k_B\ln\mathcal{Z}.
+\end{align}
+Rearranging yields two equivalent boxed results:
+\begin{formula}
+\begin{equation}
+    S = \frac{\langle U\rangle - \mu\langle N\rangle}{T} + k_B\ln\mathcal{Z},
+\end{equation}
+\end{formula}
+\begin{formula}
+\begin{equation}
+    -k_BT\ln\mathcal{Z} = \langle U\rangle - TS - \mu\langle N\rangle \equiv \Omega,
+\end{equation}
+\end{formula}
+where $\Omega$ is the \emph{grand potential} (also written $\Omega$ in many texts).
+
+\begin{definition}[Grand Potential]
+The grand potential is $\Omega = -k_BT\ln\mathcal{Z} = U - TS - \mu N$. Its differential follows from $dU = TdS - PdV + \mu\,dN$:
+\begin{equation}
+    d\Omega = dU - T\,dS - S\,dT - \mu\,dN - N\,d\mu = -S\,dT - P\,dV - N\,d\mu.
+\end{equation}
+\end{definition}
+From this differential we can read off the natural derivatives:
+\begin{formula}
+\begin{equation}
+    S = -\left.\pdv{\Omega}{T}\right|_{V,\mu}, \qquad
+    P = -\left.\pdv{\Omega}{V}\right|_{T,\mu}, \qquad
+    N = -\left.\pdv{\Omega}{\mu}\right|_{T,V}.
+\end{equation}
+\end{formula}
+
+\section{Recitation: Classical Partition Function as a Continuous Limit}
+
+\textit{(Wednesday, May 7, 2025.)} As a worked example, consider a one-dimensional classical system with Hamiltonian $H(q) = c|q|$ (linear potential). The partition function is a sum over states spaced by $\Delta q$:
+\begin{equation}
+    Z = \sum_q e^{-\beta c|q|} = \frac{1}{\Delta q}\sum_q e^{-\beta c|q|}\,\Delta q.
+\end{equation}
+Taking the continuum limit $\Delta q \to 0$ converts the sum to an integral:
+\begin{equation}
+    Z = \frac{1}{\Delta q}\int_{-\infty}^{\infty} e^{-\beta c|q|}\,dq.
+\end{equation}
+By symmetry of the integrand, the range $(-\infty, 0)$ contributes equally to $(0, \infty)$, so
+\begin{align}
+    Z &= \frac{2}{\Delta q}\int_0^{\infty} e^{-\beta cq}\,dq \notag \\
+    &= \frac{2}{\Delta q}\left[\frac{-1}{\beta c}\,e^{-\beta cq}\right]_0^{\infty} \notag \\
+    &= \frac{2}{\beta c\,\Delta q}.
+\end{align}
+This result exhibits the standard classical feature: the partition function is a ratio involving $\beta c$ in the denominator, reflecting how the thermal energy $k_BT$ sets the scale for how far the particle ranges.
+
+\chapter{Quantum Statistics}
+
+\section{When Does the Gibbs Factor Go Wrong?}
+
+\begin{center}[DIAGRAM: sketch of the phase space question -- when does quantum statistics become necessary?]\end{center}
+
+The grand canonical ensemble is the natural framework for quantum statistics, where the number of particles in a given energy level is not fixed. Recall the key grand canonical results:
+
+\begin{itemize}
+    \item $\displaystyle\pdv{\ln\mathcal{Z}}{\beta}\bigg|_{\beta\mu} = \mu\langle N\rangle - \langle U\rangle$
+    \item $\displaystyle\pdv{\ln\mathcal{Z}}{(\beta\mu)}\bigg|_{\beta} = \langle N\rangle$
+    \item $S = \dfrac{\langle U\rangle - \mu\langle N\rangle}{T} + k_B\ln\mathcal{Z}$
+\end{itemize}
+
+The grand potential is $\Omega = -k_BT\ln\mathcal{Z} = U - TS - \mu N$, and its partial derivatives give entropy, pressure, and particle number as noted above.
+
+\section{Application to Quantum Statistics}
+
+\subsection{Factorisation of the Grand Partition Function}
+
+Consider a system whose single-particle energy levels are labelled $\varepsilon_\alpha$ for $\alpha = 1, 2, 3, \ldots$. A specific microstate of the many-body system is entirely determined by specifying the occupation numbers $\{n_\alpha\}$, the number of particles in each single-particle level. The total particle number and total energy for a microstate labelled $j$ are
+\begin{equation}
+    \mu N_j - E_j = \sum_\alpha (\mu n_\alpha - \varepsilon_\alpha n_\alpha) = \sum_\alpha (\mu - \varepsilon_\alpha)\,n_\alpha.
+\end{equation}
+
+The grand partition function is a sum over all allowed sets $\{n_\alpha\}$:
+\begin{equation}
+    \mathcal{Z} = \sum_j e^{-\beta E_j + \beta\mu N_j} = \sum_{\{n_\alpha\}} \prod_\alpha e^{\beta(\mu - \varepsilon_\alpha)n_\alpha}.
+\end{equation}
+Because the exponent separates into a sum over $\alpha$, the sum over all occupation-number configurations factorises into a product over single-particle levels, and the unconstrained sum over each $n_\alpha$ runs independently:
+\begin{equation}
+    \mathcal{Z} = \prod_\alpha \sum_{n_\alpha} e^{\beta(\mu-\varepsilon_\alpha)n_\alpha}.
+\end{equation}
+This factorisation is a key advantage of the grand canonical ensemble: because we do not impose a fixed total $N = n_{\alpha_1} + n_{\alpha_2} + \cdots$, the sums over the individual occupation numbers decouple completely.
+
+\subsection{Fermions and the Fermi--Dirac Distribution}
+
+For fermions, the Pauli exclusion principle restricts each occupation number to $n_\alpha \in \{0, 1\}$. The single-level sum is therefore just two terms:
+\begin{equation}
+    \sum_{n_\alpha=0}^{1} e^{\beta(\mu-\varepsilon_\alpha)n_\alpha} = 1 + e^{\beta(\mu-\varepsilon_\alpha)}.
+\end{equation}
+The grand partition function for fermions is then
+\begin{formula}
+\begin{equation}
+    \mathcal{Z} = \prod_\alpha \Bigl(1 + e^{\beta(\mu-\varepsilon_\alpha)}\Bigr).
+\end{equation}
+\end{formula}
+To find the mean occupation of level $\alpha$, we use $\langle N\rangle = k_BT\,\partial\ln\mathcal{Z}/\partial\mu$. Differentiating $\ln\mathcal{Z} = \sum_\alpha \ln(1 + e^{\beta(\mu-\varepsilon_\alpha)})$ with respect to $\mu$:
+\begin{align}
+    \langle N\rangle &= \frac{1}{\beta}\pdv{(\ln\mathcal{Z})}{\mu} = \sum_\alpha \frac{e^{\beta(\mu-\varepsilon_\alpha)}}{1+e^{\beta(\mu-\varepsilon_\alpha)}},
+\end{align}
+so that the mean occupation number of each level is
+\begin{formula}
+\begin{equation}
+    \langle n_\alpha\rangle = \frac{1}{e^{\beta(\varepsilon_\alpha-\mu)}+1}.
+\end{equation}
+\end{formula}
+This is the celebrated \textbf{Fermi--Dirac distribution}.
+
+\subsection{Bosons and the Bose--Einstein Distribution}
+
+For bosons there is no restriction on occupation numbers; each $n_\alpha$ ranges over all non-negative integers. The single-level sum is a geometric series:
+\begin{equation}
+    \sum_{n_\alpha=0}^{\infty} e^{\beta(\mu-\varepsilon_\alpha)n_\alpha} = \frac{1}{1 - e^{\beta(\mu-\varepsilon_\alpha)}},
+\end{equation}
+which converges provided $\mu < \varepsilon_\alpha$ for all $\alpha$, i.e.\ $\mu$ must lie below the ground-state energy. The grand partition function for bosons is
+\begin{formula}
+\begin{equation}
+    \mathcal{Z} = \prod_\alpha \frac{1}{1 - e^{\beta(\mu-\varepsilon_\alpha)}}.
+\end{equation}
+\end{formula}
+Differentiating $\ln\mathcal{Z} = -\sum_\alpha \ln(1 - e^{\beta(\mu-\varepsilon_\alpha)})$ with respect to $\mu$ gives the mean occupation:
+\begin{align}
+    \langle N\rangle &= \frac{1}{\beta}\pdv{\ln\mathcal{Z}}{\mu} = \sum_\alpha \frac{e^{\beta(\mu-\varepsilon_\alpha)}}{1-e^{\beta(\mu-\varepsilon_\alpha)}},
+\end{align}
+so
+\begin{formula}
+\begin{equation}
+    \langle n_\alpha\rangle = \frac{1}{e^{\beta(\varepsilon_\alpha-\mu)}-1}.
+\end{equation}
+\end{formula}
+This is the \textbf{Bose--Einstein distribution}.
+
+\subsection{Recovery of Maxwell--Boltzmann Statistics}
+
+At high energies (or equivalently at high temperatures), $\varepsilon_\alpha \gg \mu$ so $e^{\beta(\varepsilon_\alpha-\mu)} \gg 1$, and both Fermi--Dirac and Bose--Einstein distributions approach $e^{-\beta(\varepsilon_\alpha - \mu)}$, which is the classical Boltzmann factor. Quantum statistics become relevant precisely when $\langle n_\alpha \rangle \sim 1$, i.e.\ when it matters whether multiple particles can occupy the same state.
+
+\section{When Do Quantum Statistics Become Relevant?}
+
+The criterion for quantum degeneracy is most naturally phrased in terms of the thermal de Broglie wavelength. In a canonical ensemble, the single-particle partition function for a particle in a box of volume $V$ is
+\begin{equation}
+    Z_1 = \frac{V}{\lambda_{\text{th}}^3},
+\end{equation}
+where $\lambda_{\text{th}} = h/\sqrt{2\pi mk_BT}$ is the thermal de Broglie wavelength. The mean occupation of a given state in the classical approximation is roughly $\langle n_\alpha\rangle \sim N/Z_1 = N\lambda_{\text{th}}^3/V$. When this ratio approaches 1, quantum effects become essential:
+\begin{formula}
+\begin{equation}
+    N\lambda_{\text{th}}^3 \gg V \quad \Longleftrightarrow \quad \text{quantum degenerate}.
+\end{equation}
+\end{formula}
+Equivalently, quantum statistics are important when either (i) the temperature is low enough that $\lambda_{\text{th}}$ becomes comparable to the inter-particle spacing, or (ii) the density is so high that particles are packed within a de Broglie wavelength of one another.
+
+\section{Degenerate Fermi Systems}
+
+\subsection{Zero-Temperature Fermi Gas}
+
+Recall the Fermi--Dirac distribution:
+\begin{equation}
+    \langle n_\alpha\rangle = \frac{1}{1 + e^{\beta(\varepsilon_\alpha - \mu)}}.
+\end{equation}
+In the zero-temperature limit $T \to 0$ (i.e.\ $\beta \to \infty$), this becomes a sharp step function:
+\begin{equation}
+    \langle n_\alpha\rangle \xrightarrow{T\to 0}
+    \begin{cases}
+        1 & \varepsilon_\alpha < \mu, \\
+        0 & \varepsilon_\alpha > \mu.
+    \end{cases}
+\end{equation}
+All states below the chemical potential $\mu$ are fully occupied and all states above are empty. The chemical potential at $T = 0$ is called the \emph{Fermi energy} $\varepsilon_F$. These statistics underpin the behaviour of electrons in metals, nucleons in nuclei, and neutrons in neutron stars. The surface in energy space at $\varepsilon = \mu$ is called the \emph{Fermi surface}.
+
+\begin{center}[DIAGRAM: step function showing $\langle n_\alpha\rangle = 1$ for $\varepsilon < \mu$ and $\langle n_\alpha\rangle = 0$ for $\varepsilon > \mu$ at $T=0$; all filled states below $\mu$ labelled]\end{center}
+
+\section{Degenerate Bose Gases}
+
+\subsection{Structure of the Bose--Einstein Distribution}
+
+Recall
+\begin{equation}
+    \langle n_\alpha\rangle = \frac{1}{e^{\beta(\varepsilon_\alpha - \mu)} - 1}.
+\end{equation}
+An important constraint is that $\mu \leq 0$ for a gas of bosons (taking the ground state energy as the zero of energy); otherwise $\langle n_\alpha\rangle$ would be negative for the lowest energy levels, which is unphysical. This means $\mu$ must always be non-positive for bosons.
+
+Unlike fermions, low-energy states for bosons are \emph{enhanced} relative to the classical prediction: the denominator $e^{\beta(\varepsilon-\mu)}-1$ is smaller than $e^{\beta(\varepsilon-\mu)}$, so $\langle n_\alpha\rangle$ exceeds the classical Boltzmann value. This tendency for bosons to cluster in low-energy states is the microscopic origin of Bose--Einstein condensation.
+
+\begin{center}[DIAGRAM: plot of $\langle n_\alpha\rangle$ vs.\ $\varepsilon$ for Bose--Einstein statistics compared to the Maxwell--Boltzmann curve; Bose--Einstein lies above at low energies]\end{center}
+
+\subsection{Density of States for a Bose Gas in a Box}
+
+Consider a bosonic gas of non-interacting particles in a box of volume $V$. The total particle number is $N = \sum_\alpha \langle n_\alpha\rangle$. When the energy levels are very closely spaced (large box), the sum over states can be replaced by an integral using the density of states. In three dimensions, with $\varepsilon = p^2/2m$:
+\begin{equation}
+    \sum_\alpha \to \int \frac{d^3x\,d^3p}{(2\pi\hbar)^3} = \left(\frac{1}{2\pi\hbar}\right)^3 V \int 4\pi p^2\,dp.
+\end{equation}
+Changing variables from $p$ to $\varepsilon$ via $\varepsilon = p^2/2m$, so $p = \sqrt{2m\varepsilon}$ and $dp = \frac{m}{\sqrt{2m\varepsilon}}\,d\varepsilon = \sqrt{\frac{m}{2\varepsilon}}\,d\varepsilon$, gives
+\begin{align}
+    N &= \left(\frac{1}{2\pi\hbar}\right)^3 V \int_0^\infty 4\pi p^2 \cdot \frac{1}{e^{\beta(\varepsilon-\mu)}-1}\,dp \notag \\
+    &= 4\pi\left(\frac{V}{(2\pi\hbar)^3}\right)\int_0^\infty \sqrt{2m\varepsilon}\cdot m \cdot \frac{1}{e^{\beta(\varepsilon-\mu)}-1}\,d\varepsilon \notag \\
+    &= 4\pi\int_0^\infty \sqrt{2mE}\cdot\frac{m}{\sqrt{2mE}}\cdot\frac{V}{(2\pi\hbar)^3}\,\frac{1}{e^{\beta(\varepsilon-\mu)}-1}\,d\varepsilon.
+\end{align}
+Collecting factors:
+\begin{equation}
+    N = V\cdot\frac{1}{(2\pi\hbar)^3}\cdot 4\pi\int_0^\infty \sqrt{2m\varepsilon}\cdot m\cdot\frac{d\varepsilon}{e^{\beta(\varepsilon-\mu)}-1}.
+\end{equation}
+Performing the substitution $u = \beta\varepsilon$ (so $\varepsilon = u/\beta = k_BT\,u$) and absorbing constant prefactors, this becomes
+\begin{equation}
+    \frac{N}{V} = \frac{1}{\lambda_{\text{th}}^3}\cdot\frac{2}{\sqrt{\pi}}\int_0^\infty \frac{\sqrt{u}\,du}{e^{u-\beta\mu}-1},
+\end{equation}
+where $\lambda_{\text{th}} = h/\sqrt{2\pi mk_BT}$ is the thermal de Broglie wavelength.
+
+\subsection{The Breakdown of the Continuum Approximation at Low Energy}
+
+A subtle issue arises when $\mu \to 0$: the integrand $\sqrt{\varepsilon}/(e^{\beta(\varepsilon-\mu)}-1)$ vanishes as $\sqrt{\varepsilon}$ for small $\varepsilon$, which might suggest no problem. However, the density of states $g(\varepsilon) \propto \sqrt{\varepsilon}$ itself goes to zero, while the Bose--Einstein occupation number $1/(e^{\beta(\varepsilon-\mu)}-1)$ diverges. For small $\varepsilon$ and $\mu$ near 0, the product $\sqrt{\varepsilon}/(e^{\beta\varepsilon}-1) \to 0$, so the integrand is well-behaved at the lower limit. This means the integral
+\begin{equation}
+    \frac{N_{\text{max}}}{V} = \frac{2}{\sqrt{\pi}}\cdot\frac{1}{\lambda_{\text{th}}^3}\int_0^\infty \frac{\sqrt{u}\,du}{e^u - 1} = \frac{\zeta(3/2)}{\lambda_{\text{th}}^3}
+\end{equation}
+with $\zeta(3/2) \approx 2.612$, has a \emph{finite maximum value}. This is a remarkable result: at a given temperature, the continuum of excited states can only accommodate a finite number density of particles.
+
+The difficulty with treating energy as a continuum at $T=0$ is more fundamental: at $T=0$, every particle is in the ground state ($n_0 \gg 1$), and the occupation of the ground state is macroscopic. Taylor expanding the Bose--Einstein distribution for the ground state energy $\varepsilon_0$ with $N \gg 1$ gives $e^{\beta(\varepsilon_0 - \mu)} \approx 1$, so $e^{\beta(\varepsilon_0 - \mu)} \ll 1$ implies $\mu \approx \varepsilon_0 - k_BT/N$:
+\begin{equation}
+    n_0 \approx \frac{k_BT}{\varepsilon_0 - \mu}.
+\end{equation}
+When $N$ is large but $\mu$ has adjusted so that $n_0 \sim N$, the ground-state occupation is macroscopic and \emph{cannot} be captured by the continuum integral, because the density of states $g(\varepsilon_0) = 0$ at the ground-state energy.
+
+\subsection{Bose--Einstein Condensation}
+
+The picture is now clear. For $T$ high enough (or $N/V$ low enough), the integral over excited states can accommodate all $N$ particles and $\mu < 0$ adjusts accordingly. But as $T$ is lowered at fixed $N/V$, the maximum density of particles that can be stored in excited states decreases. Once $N/V > N_{\text{max}}(T)/V$, the excess particles are forced into the ground state: this is \textbf{Bose--Einstein condensation}.
+
+The total number of particles is
+\begin{equation}
+    N_{\text{tot}} = V\lambda_{\text{th}}^{-3}\zeta(3/2) + n_0,
+\end{equation}
+where $n_0$ is the macroscopic ground-state occupation. Rearranging,
+\begin{equation}
+    \frac{n_0}{N_{\text{tot}}} = 1 - \frac{V\lambda_{\text{th}}^{-3}\zeta(3/2)}{N_{\text{tot}}}.
+\end{equation}
+This fraction approaches 1 when $(N_{\text{tot}}/V)\lambda_{\text{th}}^3 \gg 1$, i.e.\ deep in the quantum degenerate regime. For $N < V\lambda_{\text{th}}^{-3}\zeta(3/2)$, one can always find a $\mu < 0$ such that the excited states accommodate all particles, and $n_0 \approx 0$ (the system is not condensed). The ground-state fraction $n_0/N_{\text{tot}}$ approaches 1 when the temperature is well below the condensation temperature, transitioning from a Maxwell--Boltzmann-like tail at high energies to a macroscopic accumulation at $\varepsilon = 0$.
+
+\begin{center}[DIAGRAM: occupation $\langle n_\alpha\rangle$ vs.\ $\varepsilon$ for the condensed regime: large spike at $\varepsilon = 0$ representing the condensate, with a smooth Bose--Einstein tail for $\varepsilon > 0$; Maxwell--Boltzmann shown for comparison]\end{center}
+
+The entropy of a condensed Bose gas can be obtained by integrating $d\Omega / T$:
+\begin{equation}
+    S = \int_T^0 \frac{d\Omega}{T'}\,dT'.
+\end{equation}
+
+\chapter{Summary of Thermodynamics and Statistical Mechanics}
+
+\textit{(Summary sheet.)}
+
+\section{Mathematical Tools: Partial Derivatives}
+
+For a function $x(y, z)$, the total differential is
+\begin{formula}
+\begin{equation}
+    dx = \left.\pdv{x}{y}\right|_z dy + \left.\pdv{x}{z}\right|_y dz.
+\end{equation}
+\end{formula}
+Setting $dx = 0$ (holding $x$ constant) yields the \emph{triple product rule}:
+\begin{formula}
+\begin{equation}
+    \left.\pdv{x}{y}\right|_z \left.\pdv{y}{z}\right|_x \left.\pdv{z}{x}\right|_y = -1.
+\end{equation}
+\end{formula}
+The reciprocal rule states $(\partial x/\partial y)_z = [(\partial y/\partial x)_z]^{-1}$.
+
+\subsection{Mixed Partials and Exact Differentials}
+
+Suppose $(\partial x/\partial y)_z = f_1(y,z)$ and $(\partial x/\partial z)_y = f_2(y,z)$. Then $dx$ is an exact differential if and only if the mixed partials commute:
+\begin{formula}
+\begin{equation}
+    \left.\pdv{f_1}{z}\right|_y = \left.\pdv{f_2}{y}\right|_z = \frac{\partial^2 x}{\partial y\,\partial z}.
+\end{equation}
+\end{formula}
+
+\section{Terms and Definitions}
+
+\begin{definition}[Internal Energy]
+The internal energy $U = U - U_0$ is the sum of all contributions to the energy of a system treated as an isolated whole: kinetic energy, potential energy, chemical binding energy, etc. It is an extensive state function.
+\end{definition}
+
+\begin{definition}[Third Law (Nernst's Theorem)]
+No energy can be extracted from a system at absolute zero; equivalently, $S \to 0$ as $T \to 0$ for a system in equilibrium.
+\end{definition}
+
+\begin{definition}[Heat]
+Heat is the transfer of thermal (disordered kinetic) energy between two bodies. It is an inexact differential denoted $\dbar Q$.
+\end{definition}
+
+\begin{definition}[Thermal Equilibrium]
+Two systems are in thermal equilibrium when they share the same temperature: $T_1 = T_2$.
+\end{definition}
+
+\begin{definition}[Microstate]
+A microstate is a complete specification of the microscopic configuration of a system — for example, a list of positions $\vec{x}_i$, momenta $\vec{p}_i$, and quantum numbers $\vec{n}_i$ for each particle.
+\end{definition}
+
+\begin{definition}[Macrostate]
+A macrostate is a specification of macroscopic (intensive and extensive) state variables such as $N$, $V$, and $U$. Many microstates correspond to the same macrostate. Crucially, macrostates must \emph{not} depend on the history or path taken; they are fully determined by the current equilibrium values of the state variables.
+\end{definition}
+
+Thermodynamic variables come in two types. \emph{Intensive} variables (e.g.\ pressure $P$, temperature $T$, chemical potential $\mu$) do not depend on the quantity of matter. \emph{Extensive} variables (e.g.\ volume $V$, entropy $S$, particle number $N$, energy $U$) scale with the quantity of matter. Any macrostate is fully characterised by a list of independent state variables, e.g.\ $(N, V, U)$.
+
+\begin{definition}[Quasi-static Process]
+A quasi-static process maintains ``equilibrium'' throughout, proceeding so slowly that the system passes through a continuous sequence of equilibrium states. This allows one to draw the process on a phase diagram and evaluate $\Delta U$, $W$, or $Q$ by integration along the path. A quasi-static process can proceed via non-gas-phase states (e.g.\ phase transitions).
+\end{definition}
+
+\section{Equation of State and Ideal Gas Law}
+
+\begin{theorem}[Equipartition Theorem]
+Each quadratic degree of freedom in the Hamiltonian contributes $\frac{1}{2}k_BT$ to the average energy. For a molecule with $f$ active quadratic degrees of freedom, $U_{\text{int}} = \frac{f}{2}Nk_BT$.
+\end{theorem}
+
+Each translational degree of freedom contributes $\frac{1}{2}k_BT$; each rotational degree of freedom contributes $\frac{1}{2}k_BT$; each vibrational mode contributes two quadratic terms (kinetic and potential), giving $k_BT$.
+
+\begin{formula}[Ideal Gas Law]
+\begin{equation}
+    PV = Nk_BT = nRT,
+\end{equation}
+where $n$ is the number of moles and $R = N_A k_B$.
+\end{formula}
+
+\section{Heat, Energy, and Work}
+
+In a closed system, a small change in internal energy is the sum of heat added and work done on the system:
+\begin{formula}[First Law of Thermodynamics]
+\begin{equation}
+    dU = \dbar Q + \dbar W = \dbar Q - P\,dV.
+\end{equation}
+\end{formula}
+Here $\dbar Q$ and $\dbar W$ are inexact differentials (path-dependent), while $dU$ is exact (a state function). The other thermodynamic differentials are $dF = -S\,dT - P\,dV$, $dG = -S\,dT + V\,dP$, and $dH = T\,dS + V\,dP$.
+
+\subsection{Heat Capacity}
+
+At constant volume, no work is done, so $dU = \dbar Q = C_V dT$:
+\begin{formula}
+\begin{equation}
+    dU = \dbar Q = C_V\,dT, \qquad \text{(constant } V\text{)}.
+\end{equation}
+\end{formula}
+At constant pressure, the system also does $P\,dV$ work as it expands, so more heat is required for the same temperature rise:
+\begin{formula}
+\begin{equation}
+    \dbar Q = dU + P\,dV = C_P\,dT, \qquad \text{(constant } P\text{)}.
+\end{equation}
+\end{formula}
+The heat capacities are related by
+\begin{equation}
+    C_P = C_V + \left[P + \left.\pdv{U}{V}\right|_T\right]\left.\pdv{V}{T}\right|_P.
+\end{equation}
+For an ideal gas this simplifies to the \textbf{Mayer relation}:
+\begin{formula}
+\begin{equation}
+    C_P = C_V + Nk_B = \left(1 + \frac{f}{2}\right)Nk_B.
+\end{equation}
+\end{formula}
+The adiabatic index is defined as
+\begin{formula}
+\begin{equation}
+    \gamma \equiv \frac{C_P}{C_V} = \frac{f+2}{f}.
+\end{equation}
+\end{formula}
+
+\subsection{Adiabatic Processes}
+
+In an adiabatic process $\dbar Q = 0$, so $dU = -P\,dV$. Combined with the ideal gas law and $C_V$, one derives the \emph{adiabatic relations}:
+\begin{formula}
+\begin{equation}
+    PV^\gamma = \text{const}, \qquad TV^{\gamma-1} = \text{const}.
+\end{equation}
+\end{formula}
+The work done in an adiabatic process from state $A$ to state $B$ is
+\begin{equation}
+    W_{\text{adiabatic}} = \frac{Nk_BT_A}{\gamma - 1}\left[\left(\frac{V_A}{V_B}\right)^{\gamma-1} - 1\right].
+\end{equation}
+
+\begin{center}[DIAGRAM: $P$-$V$ diagram showing isothermal curve (shallower) and adiabatic curve (steeper) passing through the same point; isothermal work $W_{\varepsilon=0}$ and adiabatic work $W_{\varepsilon \neq 0}$ shaded]\end{center}
+
+\subsection{Isothermal Processes}
+
+For an isothermal process $dT = 0$, so $dU = 0$ for an ideal gas, giving $\dbar Q = P\,dV$. The work done by the gas in an isothermal expansion from $V_i$ to $V_f$ is
+\begin{formula}
+\begin{equation}
+    W_{\text{isothermal}} = nRT\ln\!\left(\frac{V_f}{V_i}\right).
+\end{equation}
+\end{formula}
+
+\begin{center}[DIAGRAM: $P$-$V$ diagram showing isothermal hyperbola $P = nRT/V$; shaded area under curve representing work done]\end{center}
+
+\subsection{Isochoric (Constant-Volume) Processes}
+
+No work is done ($dW = 0$), so $dU = \dbar Q$ and
+\begin{formula}
+\begin{equation}
+    \Delta U = \int C_V(T, V)\,dT.
+\end{equation}
+\end{formula}
+For an ideal gas, $\Delta U = \frac{f}{2}Nk_B\,\Delta T$.
+
+\subsection{Isobaric (Constant-Pressure) Processes}
+
+\begin{align}
+    \Delta U &= \int C_P(T,V)\,dT - P(V_B - V_A), \\
+    \Delta H &= \int C_P(T,V)\,dT.
+\end{align}
+\begin{formula}
+\begin{equation}
+    \Delta H = \int C_P(T, V)\,dT.
+\end{equation}
+\end{formula}
+
+\subsection{Enthalpy}
+
+\begin{definition}[Enthalpy]
+The enthalpy is $H \equiv U + PV$. At constant pressure, $dH = \dbar Q_P$, so enthalpy is the ``heat content'' at constant pressure.
+\end{definition}
+
+\subsection{State Functions and Cycles}
+
+For any state function $X$, the change around a closed cycle vanishes: $\oint dX = 0$, so $\Delta X = 0$.
+
+\section{Probability}
+
+\subsection{Probability Density and Cumulative Distribution}
+
+For a continuous random variable $x$ with probability density $p(x)$, the infinitesimal probability is $dP = p(x)\,dx$, i.e.\ the probability that $x$ takes a value in $[x, x+dx]$. The cumulative distribution function is
+\begin{equation}
+    P(x_0 \leq x \leq x_1) = \int_{x_0}^{x_1} p(x)\,dx \equiv P(x_1).
+\end{equation}
+\begin{formula}[Normalisation]
+\begin{equation}
+    \int_{-\infty}^{\infty} p(x)\,dx = 1.
+\end{equation}
+\end{formula}
+
+\subsection{Mixed Distributions}
+
+Discrete probability distributions can be described using Dirac deltas. If the variable takes discrete values $x_j$ with probabilities $P_j$, then
+\begin{equation}
+    p(x) = \sum_j P_j\,\delta(x - x_j), \qquad \int_{j-\varepsilon}^{j+\varepsilon} p(x)\,dx = P_j. \checkmark
+\end{equation}
+
+\subsection{Mean and Variance}
+
+\begin{formula}
+\begin{equation}
+    \langle x\rangle = \int x\,p(x)\,dx.
+\end{equation}
+\end{formula}
+\begin{formula}
+\begin{equation}
+    \operatorname{Var}(x) = \langle(x-\langle x\rangle)^2\rangle = \langle x^2\rangle - \langle x\rangle^2, \qquad \sigma(x) \equiv \sqrt{\operatorname{Var}(x)}.
+\end{equation}
+\end{formula}
+
+\subsection{Gaussian Integral}
+
+\begin{formula}
+\begin{equation}
+    \int_{-\infty}^{\infty} e^{-ax^2}\,dx = \sqrt{\frac{\pi}{a}}.
+\end{equation}
+\end{formula}
+By symmetry of the even integrand, the half-range integral is
+\begin{equation}
+    \int_0^\infty e^{-ax^2}\,dx = \frac{1}{2}\sqrt{\frac{\pi}{a}}.
+\end{equation}
+
+\subsection{Uniform Sampling and Ergodicity}
+
+An important idea: if a particle is confined to a potential $V(q)$ and its position is sampled at random times, the probability of finding it in an interval $[q, q+dq]$ is proportional to the time spent there, i.e.\ inversely proportional to the speed. In classical mechanics, the time-averaged probability density is
+\begin{formula}
+\begin{equation}
+    \dv{P}{q} = p(q) = \frac{C}{|v(q)|},
+\end{equation}
+\end{formula}
+where $C$ is a normalisation constant. This connects the ergodic hypothesis (time averages equal ensemble averages) to the classical microcanonical distribution.
+
+\subsection{Poisson Distribution}
+
+If a process has a mean count $\langle x\rangle$ per interval, the probability of observing exactly $n$ events follows the Poisson distribution:
+\begin{formula}
+\begin{equation}
+    P(n) = \frac{\langle x\rangle^n\,e^{-\langle x\rangle}}{n!}.
+\end{equation}
+\end{formula}
+This distribution arises whenever events are rare and independent. The mean rate $\lambda = \langle x\rangle$ determines both the mean and the variance: $\operatorname{Var}(n) = \langle x\rangle$.

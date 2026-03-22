@@ -1,0 +1,456 @@
+% Pages 41–50
+
+% ---- Pages 41: Problems 2.23–2.25 ----
+
+\begin{enumerate}
+  \item[b)] Converting $10^9$ years to seconds:
+  \[
+    10^9 \,\text{yr} \times \frac{52\,\text{wk}}{\text{yr}} \times \frac{7\,\text{days}}{\text{wk}}
+    \times \frac{24\,\text{hr}}{\text{day}} \times \frac{60\,\text{min}}{\text{hr}}
+    \times \frac{60\,\text{s}}{\text{min}}
+    = 10^9 \times 365.25 \times 86400 \approx 10^{16}\,\text{s}.
+  \]
+
+  \item[c)] ``Accessible'' means physically allowed by the conservation laws, not that the system will
+  actually visit every such state. In practice, not every accessible microstate will be reached.
+\end{enumerate}
+
+\textbf{2.24.}
+\begin{enumerate}
+  \item[a)] As computed in Problem~2.22, the peak multiplicity for a two-state paramagnet is
+  $\Omega\!\left(N,\tfrac{N}{2}\right) = 2^N\!\sqrt{\tfrac{2}{\pi N}} = \Omega_{\max}$.
+
+  \item[b)] For a general spin-up count $N_0$,
+  \[
+    \Omega(N, N_0) = \binom{N}{N_0} = \frac{N!}{N_0!\,(N-N_0)!}.
+  \]
+\end{enumerate}
+
+\textbf{2.25.}
+\begin{enumerate}
+  \item[a)] The random walker ends back at the center. In terms of steps, the sequence is
+  $\epsilon \to \epsilon \to \epsilon \to \epsilon \leftarrow \epsilon$, illustrating that a return
+  to the origin is the most probable outcome.
+\end{enumerate}
+
+% ---- Page 42: Section 2.5 — Ideal Gas ----
+
+\section{The Ideal Gas}
+
+\subsection{Multiplicity of a Monatomic Ideal Gas}
+
+The central lesson so far is that only a tiny fraction of the microstates of a large interacting
+system carry appreciable probability; the rest are overwhelmingly unlikely. We now apply this
+reasoning to a continuous system: the ideal gas.
+
+Consider first a monatomic ideal gas consisting of a single atom in a fixed volume $V$ with fixed
+total energy $U$. The multiplicity of this system has two independent sources: the atom can be
+anywhere in the spatial volume $V$, and its momentum vector can point anywhere in the region of
+momentum space consistent with the energy constraint. Hence
+\[
+  \Omega_1 \propto V \cdot V_p,
+\]
+where $V_p$ denotes the ``volume'' accessible in momentum space. The energy constraint
+\[
+  U = \frac{1}{2m}(p_x^2 + p_y^2 + p_z^2) \quad\Longrightarrow\quad p_x^2 + p_y^2 + p_z^2 = 2mU
+\]
+restricts the momentum to the \emph{surface} of a sphere of radius $\sqrt{2mU}$ in
+three-dimensional momentum space.
+
+To count microstates properly we need quantum mechanics, which discretises the states and
+provides a natural lower bound on the uncertainty of any measurement.
+
+\begin{fact}
+\textbf{Heisenberg Uncertainty Principle.} For a particle confined to a region of length $L_x$ in
+position space, the uncertainty in position and momentum satisfies $\Delta x \,\Delta p_x \gtrsim h$,
+where $h$ is Planck's constant.
+\end{fact}
+
+The number of distinct position states in the $x$-direction is $L_x/\Delta x$, and the number of
+distinct momentum states is $L_p/\Delta p_x$. The total number of distinct states along $x$ is
+therefore $(L_x/\Delta x)(L_p/\Delta p_x) = L_x L_p / h$. Extending this to three dimensions gives
+the fundamental result:
+
+\begin{center}
+[DIAGRAM: Position space showing a wavefunction of width $\Delta x$ inside a box of length $L_x$;
+momentum space showing a wavefunction of width $\Delta p_x$ inside a range $L_p$]
+\end{center}
+
+\begin{formula}
+The multiplicity of a single monatomic molecule in three dimensions is
+\[
+  \Omega_1 = \frac{V\, V_p}{h^3},
+\]
+where $V_p$ is the accessible volume in momentum space.
+\end{formula}
+
+\subsection{Multiplicity for $N$ Molecules}
+
+For two molecules the energy constraint becomes
+\[
+  \|\vb{p}_1\|^2 + \|\vb{p}_2\|^2 = 2mU,
+\]
+which describes the surface of a six-dimensional hypersphere. Because the molecules move
+independently, the spatial part of the multiplicity factorises, and we write
+\[
+  \Omega_2 = \frac{V^2}{h^6} \cdot A_{\text{mom}},
+\]
+where $A_{\text{mom}}$ is the area of the six-dimensional momentum hypersphere. This formula
+treats the molecules as distinguishable. If they are indistinguishable—as identical molecules
+must be—we divide by $2!$ to avoid overcounting:
+\[
+  \Omega_2 = \frac{1}{2}\cdot\frac{V^2}{h^6}\cdot(\text{area of momentum hypersphere}).
+\]
+
+Extending to $N$ indistinguishable molecules, the momentum constraint restricts the $3N$-component
+momentum vector to the surface of a $3N$-dimensional hypersphere of radius $\sqrt{2mU}$. The
+surface area of a $d$-dimensional sphere of radius $r$ is
+\[
+  A_d = \frac{2\pi^{d/2}}{\left(\tfrac{d}{2}-1\right)!}\,r^{d-1}.
+\]
+Applying this with $d = 3N$ and $r = \sqrt{2mU}$:
+
+\begin{formula}
+The multiplicity of an ideal gas of $N$ indistinguishable monatomic molecules is
+\[
+  \Omega_N = \frac{1}{N!}\cdot\frac{V^N}{h^{3N}}\cdot
+    \frac{2\pi^{3N/2}}{\!\left(\tfrac{3N}{2}-1\right)!}\,(\sqrt{2mU})^{3N-1}
+  \;\approx\; \frac{1}{N!}\cdot\frac{V^N}{h^{3N}}\cdot
+    \frac{\pi^{3N/2}}{\left(\tfrac{3N}{2}\right)!}\,(2mU)^{3N/2},
+\]
+where the second form drops the subleading $r^{-1}$ factor, valid for large $N$.
+\end{formula}
+
+Isolating the dependences on $U$ and $V$, the multiplicity takes the compact form
+\begin{formula}
+\[
+  \Omega(U,V,N) = f(N)\cdot V^N \cdot U^{3N/2}.
+\]
+\end{formula}
+The exponent $3N/2$ is the number of quadratic degrees of freedom divided by two; it is not a
+universal result but is specific to the monatomic ideal gas.
+
+\subsection{Two Interacting Ideal Gases}
+
+\begin{center}
+[DIAGRAM: Two boxes side by side separated by a partition that allows energy (but not matter or
+volume) to pass through; left box labelled $U_A,\,V_A,\,N$; right box labelled $U_B,\,V_B,\,N$]
+\end{center}
+
+Suppose two ideal gases are separated by a partition that permits only energy exchange. The total
+multiplicity is the product $\Omega_{\text{total}} = \Omega_A\,\Omega_B$, which gives
+\[
+  \Omega_{\text{total}} = \bigl[f(N)\bigr]^2 (V_A V_B)^N (U_A U_B)^{3N/2}.
+\]
+This has the same mathematical structure as the multiplicity of two interacting Einstein solids,
+so all of the earlier analysis carries over directly. By arguments analogous to those in
+Section~2.4, the width of the multiplicity peak about the most likely energy sharing is
+\[
+  \Delta U \sim \frac{U_{\text{total}}}{\sqrt{3N/2}},
+\]
+confirming that for macroscopic $N$ the peak is extraordinarily sharp.
+
+The same logic applies if instead of energy we allow \emph{volume} to be exchanged through a
+movable partition.
+
+\begin{center}
+[DIAGRAM: Same two-box setup with a movable partition; the question is which value of $V_A$
+maximises $\Omega_{\text{total}}$]
+\end{center}
+
+By symmetry, the most likely split is equal volumes, and the width of the peak around that split is
+\[
+  \Delta V \sim \frac{V_{\text{total}}}{\sqrt{N}}.
+\]
+
+\textbf{Example.} What is the probability that all $N$ molecules of a gas spontaneously occupy
+only the left half of their container?
+
+\begin{center}
+[DIAGRAM: Box divided by a dashed line; all $N$ molecules on the left half; arrow to same box with
+molecules distributed throughout]
+\end{center}
+
+Confining all molecules to the left half is equivalent to having an ideal gas in a volume $V/2$.
+Since $\Omega \propto V^N$, shrinking the volume by half reduces the multiplicity by $2^N$, so the
+probability of this configuration is $2^{-N}$—utterly negligible for any macroscopic $N$.
+
+\subsection*{Problem}
+
+If the volume changes from $V$ to $0.99V$, the multiplicity changes by
+\[
+  \frac{\Omega_{\text{new}}}{\Omega_{\text{orig}}} = (0.99)^N,
+\]
+which for $N \sim 10^{23}$ is fantastically small.
+
+% ---- Page 45: Section 2.6 — Entropy ----
+
+\section{Entropy}
+
+The pattern that has emerged across every system we have studied is that any large system will
+almost certainly be found in—or very near—the macrostate of greatest multiplicity. Fluctuations
+away from this peak are not forbidden, only exponentially suppressed. This observation is the
+statistical underpinning of the second law of thermodynamics.
+
+\begin{definition}
+The \textbf{entropy} of a macrostate with multiplicity $\Omega$ is
+\[
+  S \equiv k\ln\Omega,
+\]
+with units of J/K. Because $\Omega \geq 1$, entropy is non-negative. Because $\Omega =
+\Omega_A\Omega_B$ for independent subsystems, entropy is additive: $S_{\text{total}} = S_A + S_B$.
+\end{definition}
+
+\begin{theorem}
+\textbf{Second Law of Thermodynamics.} The total entropy of an isolated system tends to increase
+(or remain constant) over time. Equivalently, the multiplicity tends to increase.
+\end{theorem}
+
+\textbf{Example: high-temperature Einstein solid.} In the limit $q \gg N$, the multiplicity of
+an Einstein solid is $\Omega \approx (eq/N)^N$, so
+\[
+  S = k\ln\!\left[\left(\frac{eq}{N}\right)^{\!N}\right] = kN\ln\!\left(\frac{eq}{N}\right)
+  = kN\!\left(\ln\frac{q}{N} + 1\right).
+\]
+
+The additive property of entropy is worth emphasising. When two subsystems $A$ and $B$ are
+independent, $\Omega_{\text{total}} = \Omega_A\Omega_B$, and therefore
+\[
+  S_{\text{total}} = k\ln(\Omega_A\Omega_B) = k\ln\Omega_A + k\ln\Omega_B = S_A + S_B.
+\]
+This holds when the macrostates of $A$ and $B$ are specified separately; it requires care when $A$
+and $B$ interact, because then $\Omega_{\text{total}}$ must be computed directly as a sum over
+shared microstates.
+
+\begin{center}
+[DIAGRAM: Left: single box containing both gases $A$ and $B$ together. Right: gas $A$ and gas $B$
+in separate boxes. The entropy formula $S_A + S_B$ applies to the separated case when macrostates
+are independently specified.]
+\end{center}
+
+In practice, for a system with an overwhelmingly sharp multiplicity peak, the total entropy is well
+approximated by $S \approx k\ln\Omega_{\text{most likely}}$.
+
+% ---- Page 46: Sackur–Tetrode, Free Expansion, Entropy of Mixing ----
+
+\subsection{Entropy of an Ideal Gas: the Sackur--Tetrode Equation}
+
+Starting from the multiplicity
+\[
+  \Omega_N \approx \frac{1}{N!}\cdot\frac{V^N}{h^{3N}}\cdot
+    \frac{\pi^{3N/2}}{\left(\tfrac{3N}{2}\right)!}\,(2mU)^{3N/2}
+\]
+and applying Stirling's approximation ($\ln n! \approx n\ln n - n$) to both $N!$ and
+$\left(\tfrac{3N}{2}\right)!$, one obtains the entropy of an ideal gas:
+
+\begin{formula}
+\textbf{Sackur--Tetrode Equation.}
+\[
+  S(N,V,U) = Nk\!\left[\ln\!\left(\frac{V}{N}\left(\frac{4\pi m U}{3Nh^2}\right)^{3/2}\right)
+  + \frac{5}{2}\right].
+\]
+\end{formula}
+
+As expected, $S$ increases with $N$, $V$, or $U$, and with the energy per particle $U/N$.
+For a volume change at fixed $U$ and $N$, the Sackur--Tetrode equation gives
+\begin{formula}
+\[
+  \Delta S = S(V_f) - S(V_i) = Nk\ln\!\frac{V_f}{V_i},
+\]
+\end{formula}
+which applies, for example, in a quasistatic isothermal compression or expansion.
+
+\subsection{Free Expansion}
+
+\begin{center}
+[DIAGRAM: Gas confined to the left half of an insulated box by a removable partition; arrow
+pointing right; gas now fills the entire box]
+\end{center}
+
+In a free expansion, a partition is removed and the gas expands into vacuum. No work is done and
+no heat is transferred, so $U$ is unchanged. Yet the volume doubles, and by the Sackur--Tetrode
+equation the entropy increases by $Nk\ln 2 > 0$. This is an irreversible process: entropy has been
+created from nothing. Unlike a quasistatic expansion, there is no external reservoir to absorb
+that entropy, and the process cannot be run in reverse without violating the second law.
+
+\subsection{Entropy of Mixing}
+
+Allowing two \emph{different} ideal gases to mix also generates entropy. Suppose gases $A$ and
+$B$ each contain $N$ molecules, occupy volume $V$, and have the same internal energy. When the
+partition between them is removed, each gas expands from $V$ to $2V$, so
+\[
+  \Delta S_A = Nk\ln\frac{2V}{V} = Nk\ln 2 = \Delta S_B.
+\]
+
+\begin{center}
+[DIAGRAM: Two separate boxes (gas $A$ left, gas $B$ right) with arrow pointing to a single box
+containing both gases mixed]
+\end{center}
+
+\begin{formula}
+The \textbf{entropy of mixing} for two distinct ideal gases is
+\[
+  \Delta S_{\text{mix}} = \Delta S_A + \Delta S_B = 2Nk\ln 2.
+\]
+\end{formula}
+
+This result applies only when the gases are \emph{different}. Doubling a gas of a single species
+does not produce entropy of mixing; the entropy of $2N$ molecules of helium in volume $2V$ is
+simply $2S_{\text{initial}}$, not $2S_{\text{initial}} + 2Nk\ln 2$.
+
+\begin{center}
+[DIAGRAM: Two boxes each containing gas $A$ (same species); arrow with $\neq$ sign; single larger
+box of gas $A$, illustrating no entropy of mixing for identical species]
+\end{center}
+
+The reason lies in the $1/N!$ factor in the multiplicity. The molecules of a single-species gas
+are \emph{indistinguishable}: swapping two helium atoms produces no new microstate. The $1/N!$
+accounts for this, so combining two identical volumes does not open up any new microstates beyond
+what doubling $N$ already accounts for. For two \emph{different} species, swapping an $A$
+molecule with a $B$ molecule genuinely creates a new microstate, and the $1/N!$ factor within
+each species does not eliminate that additional count.
+
+\begin{center}
+[DIAGRAM: Two identical molecules in a box with a double-headed arrow, indicating that swapping
+them yields the same microstate, justifying the $1/N!$ factor]
+\end{center}
+
+\subsection{Reversible and Irreversible Processes}
+
+\begin{definition}
+An \textbf{irreversible} process increases the total entropy of the universe; a \textbf{reversible}
+process leaves the total entropy unchanged.
+\end{definition}
+
+Free expansion and heat flow across a finite temperature difference are irreversible: they create
+entropy. A slow, quasistatic compression, by contrast, is reversible: the gas is always in
+equilibrium, and any entropy that enters or leaves the gas does so in a way that can be exactly
+undone by reversing the process.
+
+% ---- Page 48: Problems 2.28–2.30 ----
+
+\subsection*{Problems}
+
+\textbf{2.28.} Each card in a deck is unique, so there are $52!$ distinct arrangements. The
+entropy is therefore
+\begin{align*}
+  S &= k\ln(52!) \approx k\!\left(52\ln 52 - 52 + \tfrac{1}{2}\ln(2\pi \cdot 52)\right) \\
+    &= k\!\left(52\ln 52 - 52 + \ln\!\sqrt{2052}\right) \\
+    &\approx 1{,}300\,k \;\approx\; 1.9 \times 10^{-20}\,\text{J/K}.
+\end{align*}
+
+\textbf{2.29.} Two Einstein solids interact: solid $A$ has $N_A = 100$ oscillators and solid $B$
+has $N_B = 200$ oscillators, with $q = 100$ total energy units. The total multiplicity for a given
+value of $q_A$ is
+\[
+  \Omega(q_A) = \binom{q_A + 99}{q_A}\binom{(100 - q_A) + 199}{100 - q_A}.
+\]
+
+The most likely macrostate ($q_A = 60$, $q_B = 40$, proportional to oscillator numbers):
+\[
+  \Omega_c = \binom{159}{60}\binom{239}{40} = \frac{159!\;239!}{60!\;99!\;40!\;199!}
+  \;\Rightarrow\; S_c \approx 264.4\,k.
+\]
+
+At equal sharing ($q_A = 50$, $q_B = 50$):
+\[
+  \Omega_2 = \binom{149}{50}\binom{249}{50} = \frac{149!\;249!}{50!\;99!\;50!\;199!}
+  \;\Rightarrow\; S_2 \approx 263.2\,k.
+\]
+
+The least likely macrostate (all energy in $B$, $q_A = 0$):
+\[
+  S_{\min} = k\ln\binom{299}{100} = k\ln\frac{299!}{100!\;199!} \approx 187.5\,k.
+\]
+
+Over long time scales the system explores all macrostates, but spends the vast majority of its
+time near the peak. The entropy associated with the full accessible range is
+$\sim k\ln\dbinom{399}{100} \approx 262\,k$.
+
+\textbf{Problem 2.30.}
+\begin{enumerate}
+  \item[a)] Using the result of Problem~2.22, the entropy of a two-state paramagnet at the
+  multiplicity peak is
+  \[
+    S = k\ln\!\frac{2^N}{\sqrt{4\pi N}} \approx 2.77\times10^{23}\,k.
+  \]
+
+  \item[b)] The most likely macrostate has multiplicity
+  \[
+    \Omega_{\text{most likely}} = \frac{(2^N)(2^N)}{\sqrt{4\pi N}} = \frac{2^{2N}}{\sqrt{4\pi N}},
+  \]
+  so $S_{\text{most likely}} \sim 2.77\times10^{23}\,k$ as well. The timescale required to
+  visit every microstate is therefore irrelevant: the entropy computed from the peak multiplicity
+  is already essentially exact.
+\end{enumerate}
+
+% ---- Pages 49–50: Problem 2.49, Problems 2.33–2.37 ----
+
+\textbf{2.49.} Derivation of the Sackur--Tetrode equation. Starting from
+\[
+  \Omega_N \approx \frac{1}{N!}\cdot\frac{V^N}{h^{3N}}\cdot
+    \frac{\pi^{3N/2}}{\left(\tfrac{3N}{2}\right)!}\,(2mU)^{3N/2},
+\]
+apply Stirling's approximation to $\ln N! \approx N\ln N - N$ and
+$\ln\!\left(\tfrac{3N}{2}\right)! \approx \tfrac{3N}{2}\ln\tfrac{3N}{2} - \tfrac{3N}{2}$:
+\begin{align*}
+  \Omega_N
+  &= \frac{1}{N^N e^{-N}\!\sqrt{2\pi N}}\cdot\frac{V^N}{h^{3N}}
+     \cdot\frac{\pi^{3N/2}}{\!\left(\tfrac{3N}{2}\right)^{3N/2}\!e^{-3N/2}\!\sqrt{\tfrac{3N}{2}}}
+     \cdot(2mU)^{3N/2} \\[4pt]
+  &= \frac{e^N}{N^N}\cdot\frac{V^N}{h^{3N}}
+     \cdot\left(\frac{\pi\cdot 2mU}{\tfrac{3N}{2}}\right)^{3N/2}\cdot e^{3N/2} \\[4pt]
+  &= \frac{V^N}{N^N h^{3N}}\left(\frac{4\pi mU}{3N}\right)^{3N/2} e^{5N/2} \\[4pt]
+  &= \left[\frac{V}{N}\cdot\frac{1}{h^3}\left(\frac{4\pi mU}{3N}\right)^{3/2} e^{5/2}\right]^N \\[4pt]
+  &= \left[\frac{V}{N}\left(\frac{4\pi mU}{3Nh^2}\right)^{3/2} e^{5/2}\right]^N. \checkmark
+\end{align*}
+Taking the logarithm recovers the Sackur--Tetrode equation.
+
+\textbf{2.33.}
+\begin{enumerate}
+  \item[a)] Argon is heavier than helium ($m_{\text{Ar}} \gg m_{\text{He}}$), so the momentum
+  hypersphere of radius $\sqrt{2mU}$ is larger for argon at the same energy. A larger momentum
+  surface area means more accessible microstates and hence a greater multiplicity and entropy.
+\end{enumerate}
+
+\textbf{2.34.} In an isothermal expansion the internal energy $U = \tfrac{3}{2}NkT$ is fixed
+(since $T$ is constant), so the Sackur--Tetrode equation gives
+\[
+  \Delta S = Nk\ln\frac{V_f}{V_i}.
+\]
+The heat absorbed in a quasistatic isothermal expansion equals the work done by the gas:
+$Q = NkT\ln(V_f/V_i)$, so
+\[
+  \Delta S = \frac{Q}{T}.
+\]
+In a free expansion, by contrast, $Q = 0$ yet $\Delta S = Nk\ln(V_f/V_i) > 0$. The formula
+$\Delta S = Q/T$ does not apply to irreversible processes; the entropy increase in free expansion
+is genuine but has no corresponding heat flow.
+
+\textbf{2.35.} The Sackur--Tetrode entropy becomes negative when the argument of the logarithm
+falls below $e^{-5/2}$, i.e.\ when
+\[
+  \frac{V}{N}\left(\frac{4\pi mU}{3Nh^2}\right)^{3/2} < e^{-5/2}.
+\]
+Solving for $U$:
+\[
+  \frac{4\pi mU}{3Nh^2} = \left(\frac{N}{V}\right)^{2/3} e^{-5/3}
+  \;\Longrightarrow\;
+  U = \frac{3Nh^2}{4\pi m}\left(\frac{N}{V}\right)^{2/3} e^{-5/3}.
+\]
+A negative value of $S$ signals that the Sackur--Tetrode equation has broken down: the gas is
+so cold and dense that quantum effects dominate and the classical counting of microstates is no
+longer valid.
+
+\textbf{2.37.} A mixture of two gases $A$ and $B$ contains $(1-x)N$ molecules of $A$ and $xN$
+molecules of $B$. Assuming both species have the same mass and energy per molecule, and that the
+total volume is $V_{\text{tot}}$, the partial volumes before mixing are
+\[
+  V_A = (1-x)\,V_{\text{tot}}, \qquad V_B = x\,V_{\text{tot}}.
+\]
+After mixing, each species occupies the full volume $V_{\text{tot}}$, and the entropy of mixing is
+\[
+  \Delta S_{\text{mix}} = -Nk\bigl[(1-x)\ln(1-x) + x\ln x\bigr],
+\]
+which is non-negative for all $0 \leq x \leq 1$ and vanishes only for pure species ($x = 0$ or
+$x = 1$).

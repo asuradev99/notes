@@ -1,0 +1,449 @@
+% Pages 171–185: Carnot Cycle Steps, Stirling Engine, Free Energies, Maxwell Relations, Stat Mech of Closed Systems
+
+\section{Optimality of the Carnot Cycle}
+
+Recall that the efficiency of any reversible engine operating between reservoirs at $T_+$ and $T_-$ satisfies $\eta = 1 - T_-/T_+$. This is $100\%$ only when $T_- = 0$ or $T_+ \to \infty$, neither of which is attainable. So can we engineer a cycle that beats the Carnot limit? The answer is no: the Carnot cycle achieves the \emph{highest possible efficiency} of any heat engine operating between two fixed temperatures.
+
+To see why, consider modifying the Carnot cycle by adding heat at some intermediate temperature between $T_-$ and $T_+$.
+
+\begin{center}[DIAGRAM: Two $T$--$S$ diagrams side by side. Left: original Carnot rectangle with corners at $T_\pm$. Right: modified cycle with a bump at an intermediate temperature $T_i$, adding extra area.]\end{center}
+
+For the modified engine, the net work per cycle is still $W' = \oint p\,dV = \oint T\,dS$ by the first and second laws. The heat drawn from the hot reservoir, however, is $Q_+' < Q_+$ (since $W' < W$ for the same $Q_-$, noting $W' < W$). More carefully: the modified cycle absorbs the same $Q_-$ as the Carnot cycle from the cold reservoir (since the cold isothermal segment is unchanged), so
+\begin{align}
+    Q_-' &= Q_- \quad (\text{same as Carnot}), \\
+    Q_+' &= W' + Q_-' \quad \Rightarrow \quad Q_+' < Q_+.
+\end{align}
+The efficiency of the modified engine is then
+\begin{equation}
+    \eta' = \frac{W'}{Q_+'} = 1 - \frac{Q_-'}{Q_+'} \leq 1 - \frac{Q_-}{Q_+} = \eta_{\text{Carnot}}.
+\end{equation}
+The inequality holds because the additional heat is delivered at $T_i < T_+$, making it less useful. Thus:
+
+\begin{theorem}[Maximum Efficiency of a Heat Engine]
+The maximum efficiency of a heat engine operating between a hot reservoir at $T_+$ and a cold reservoir at $T_-$ is
+\begin{equation}
+    \eta_{\max} = 1 - \frac{T_-}{T_+},
+\end{equation}
+achieved by the Carnot cycle.
+\end{theorem}
+
+\section{Steps of the Carnot Cycle}
+
+We now work through each of the four steps of the Carnot cycle for an ideal gas of $N$ particles, computing the work done and heat absorbed at each stage.
+
+\subsection{Step 1: Isothermal Expansion at $T_+$}
+
+The gas expands from volume $V_A$ to $V_B$ at constant temperature $T_+$. Since $PV = Nk_BT$ for an ideal gas, the pressure is $p = Nk_BT_+/V$, and the work done \emph{by} the gas is
+\begin{equation}
+    W_1 = \int_{V_A}^{V_B} p\,dV = \int_{V_A}^{V_B} \frac{Nk_BT_+}{V}\,dV = Nk_BT_+\ln\!\left(\frac{V_B}{V_A}\right) > 0,
+\end{equation}
+since $V_B > V_A$ (expansion). For an isothermal process on an ideal gas, the internal energy is unchanged ($\Delta U_1 = 0$), so by the first law
+\begin{equation}
+    \Delta Q_1 = W_1 = Nk_BT_+\ln\!\left(\frac{V_B}{V_A}\right).
+\end{equation}
+This is the heat \emph{added} to the gas from the hot reservoir.
+
+\subsection{Step 2: Adiabatic Expansion from $T_+$ to $T_-$}
+
+The gas expands adiabatically from $V_B$ (at $T_+$) to $V_C$ (at $T_-$). No heat is exchanged: $\Delta Q_2 = 0$. For an adiabatic process, $pV^\gamma = \text{const}$, so $p_B V_B^\gamma = p V^\gamma$ throughout. The work done by the gas is
+\begin{align}
+    W_2 &= \int_{V_B}^{V_C} p\,dV = \int_{V_B}^{V_C} \frac{p_B V_B^\gamma}{V^\gamma}\,dV \notag \\
+    &= p_B V_B^\gamma \left[\frac{V^{1-\gamma}}{1-\gamma}\right]_{V_B}^{V_C} = \frac{p_B V_B^\gamma}{1-\gamma}\left[V_C^{1-\gamma} - V_B^{1-\gamma}\right] \notag \\
+    &= \frac{Nk_BT_+}{1-\gamma}\left[\left(\frac{V_C}{V_B}\right)^{1-\gamma} - 1\right].
+\end{align}
+
+\subsection{Step 3: Isothermal Compression at $T_-$}
+
+The gas is compressed from $V_C$ to $V_D$ at constant temperature $T_-$. By the same reasoning as Step~1,
+\begin{equation}
+    W_3 = Nk_BT_-\ln\!\left(\frac{V_D}{V_C}\right) < 0,
+\end{equation}
+since $V_D < V_C$ (compression). Work is done \emph{upon} the gas. Since $\Delta U_3 = 0$,
+\begin{equation}
+    \Delta Q_3 = W_3 = Nk_BT_-\ln\!\left(\frac{V_D}{V_C}\right) < 0.
+\end{equation}
+Heat is expelled to the cold reservoir.
+
+\subsection{Step 4: Adiabatic Compression from $T_-$ to $T_+$}
+
+The gas is compressed adiabatically from $V_D$ (at $T_-$) back to $V_A$ (at $T_+$), closing the cycle. No heat is exchanged: $\Delta Q_4 = 0$. The work done is analogous to Step~2 but with $V_D < V_A$:
+\begin{equation}
+    W_4 = \frac{Nk_BT_-}{1-\gamma}\left[\left(\frac{V_A}{V_D}\right)^{1-\gamma} - 1\right] < 0,
+\end{equation}
+since $V_A < V_D$, so the gas is compressed and work is done upon it. The magnitude is smaller than $W_2$ because it is done at the lower temperature $T_-$; the net work over the two adiabatic steps is positive.
+
+\subsection{Net Work and Heat}
+
+The table below summarises the work done by and heat added to the gas in each step.
+
+\begin{center}
+\begin{tabular}{clll}
+    \hline
+    Step & Process & Work done & Heat added \\
+    \hline
+    1 & Isothermal exp.\ at $T_+$ & $Nk_BT_+\ln(V_B/V_A) > 0$ & $Nk_BT_+\ln(V_B/V_A) > 0$ \\
+    2 & Adiabatic exp. & $\dfrac{Nk_BT_+}{1-\gamma}\bigl[(V_C/V_B)^{1-\gamma}-1\bigr] > 0$ & $0$ \\
+    3 & Isothermal comp.\ at $T_-$ & $Nk_BT_-\ln(V_D/V_C) < 0$ & $Nk_BT_-\ln(V_D/V_C) < 0$ \\
+    4 & Adiabatic comp. & $\dfrac{Nk_BT_-}{1-\gamma}\bigl[(V_A/V_D)^{1-\gamma}-1\bigr] < 0$ & $0$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+Since the internal energy returns to its initial value after a complete cycle ($\Delta U = 0$), the net work equals the net heat added: $W_{\text{net}} = Q_{\text{net}}$. The net work is
+\begin{align}
+    W_{\text{net}} &= Nk_B\left[T_+\ln\frac{V_B}{V_A} - T_-\ln\frac{V_C}{V_D} + \frac{T_+}{1-\gamma}\left(\!\left(\frac{V_C}{V_B}\right)^{1-\gamma}\!-1\right) + \frac{T_-}{1-\gamma}\left(\!\left(\frac{V_A}{V_D}\right)^{1-\gamma}\!-1\right)\right].
+\end{align}
+
+The last two terms cancel each other. To see this, recall that for an adiabatic process $T V^{\gamma-1} = \text{const}$. Applied to Steps 2 and 4:
+\begin{align}
+    T_+ V_B^{\gamma-1} &= T_- V_C^{\gamma-1}, \label{eq:adiab2}\\
+    T_- V_D^{\gamma-1} &= T_+ V_A^{\gamma-1}. \label{eq:adiab4}
+\end{align}
+Dividing these two relations gives $V_B/V_A = V_C/V_D$, or equivalently $V_D/V_C = V_A/V_B$. The last two adiabatic terms in $W_{\text{net}}$ involve $\left(V_C/V_B\right)^{1-\gamma}$ and $\left(V_A/V_D\right)^{1-\gamma}$; using the adiabatic conditions one can explicitly verify that
+\begin{equation}
+    T_+ V_B^{\gamma-1}\bigl[V_C^{1-\gamma} - V_B^{1-\gamma}\bigr] + T_- V_D^{\gamma-1}\bigl[V_A^{1-\gamma} - V_D^{1-\gamma}\bigr] = 0.
+\end{equation}
+Therefore the net work simplifies to
+\begin{equation}
+    \boxed{W_{\text{net}} = Nk_B(T_+ - T_-)\ln\frac{V_B}{V_A}}.
+\end{equation}
+The heat drawn from the hot reservoir is $Q_{\text{in}} = Nk_BT_+\ln(V_B/V_A)$, so the efficiency is
+\begin{formula}
+\begin{equation}
+    \eta = \frac{W_{\text{net}}}{Q_{\text{in}}} = \frac{Nk_B(T_+-T_-)\ln(V_B/V_A)}{Nk_BT_+\ln(V_B/V_A)} = \boxed{1 - \frac{T_-}{T_+}},
+\end{equation}
+\end{formula}
+confirming the Carnot result.
+
+\subsection{Assumptions Underlying Carnot Efficiency}
+
+Two key assumptions are embedded in the Carnot analysis. First, all work is calculated via $W = \int p\,dV$, which is valid only for \emph{quasistatic} (reversible) processes. Second, heat is exchanged only when the system and reservoir are at the same temperature, which is also a condition of reversibility. Together these require the heat transfer and the piston motion to be arbitrarily slow. The practical trade-off is therefore efficiency versus speed: a real engine must run at finite speed and will inevitably have irreversibilities that reduce efficiency below the Carnot bound.
+
+\section{The Stirling Engine}
+
+The Stirling engine is a practical modification of the Carnot cycle. Instead of the two adiabatic legs (which are difficult to implement as perfectly reversible processes), the adiabats are replaced by \emph{isochoric} (constant-volume) heating and cooling steps. This makes the cycle easier to build while retaining the same two operating temperatures $T_+$ and $T_-$.
+
+\begin{center}[DIAGRAM: Left, $p$--$V$ diagram of the Stirling cycle: two vertical isochoric segments replacing the Carnot adiabats, and two isothermal segments connecting them; hatched area marks the net work. Right, the corresponding $T$--$S$ diagram showing the rectangular Carnot cycle as a dashed outline and the wider Stirling rectangle, with extra heat added labeled.]\end{center}
+
+By navigating the $T$--$S$ plane, replacing adiabats (vertical lines in $T$--$S$) with isochores, we find $T = f(V)\,e^{S/C_V}$ during the isochoric steps.
+
+Clearly more work per cycle is done for the same $T_+$, $T_-$, and volume ratio $V_C/V_A$. The four steps and their contributions are:
+
+\begin{center}
+\begin{tabular}{clll}
+    \hline
+    Step & Process & Work Done & Heat Added \\
+    \hline
+    1 & Isothermal exp.\ at $T_+$ & $Nk_BT_+\ln(V_C/V_A) > 0$ & $Nk_BT_+\ln(V_C/V_A) > 0$ \\
+    2 & Isochoric cool & $0$ & $C_V(T_- - T_+) < 0$ \\
+    3 & Isothermal comp.\ at $T_-$ & $Nk_BT_-\ln(V_A/V_C) < 0$ & $Nk_BT_-\ln(V_A/V_C) < 0$ \\
+    4 & Isochoric heat & $0$ & $C_V(T_+ - T_-) > 0$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+The net work done is
+\begin{equation}
+    W_{\text{net}} = Nk_B(T_+ - T_-)\ln\frac{V_C}{V_A},
+\end{equation}
+the same as the Carnot cycle for the same volume ratio and temperatures. The heat input from the hot reservoir is larger, however, because the isochoric heating step (step 4) must also be supplied:
+\begin{equation}
+    Q_{\text{in}} = Nk_BT_+\ln\frac{V_C}{V_A} + C_V(T_+ - T_-).
+\end{equation}
+The efficiency is therefore
+\begin{equation}
+    \eta_{\text{Stirling}} = \frac{Nk_B(T_+-T_-)\ln(V_C/V_A)}{Nk_BT_+\ln(V_C/V_A) + C_V(T_+-T_-)}
+    = \frac{1 - T_-/T_+}{1 + \dfrac{C_V}{Nk_B\ln(V_C/V_A)}\left(1 - \dfrac{T_-}{T_+}\right)},
+\end{equation}
+which is strictly less than $\eta_{\text{Carnot}} = 1 - T_-/T_+$.
+
+\subsection{Net Work Improvement Over Carnot}
+
+Despite the lower efficiency, the Stirling engine produces more net work per cycle than a Carnot engine operating between the same two isothermal segments at the same volume ratio. The ratio of net works is
+\begin{equation}
+    \frac{W_{\text{Stirling}}}{W_{\text{Carnot}}} = \frac{Nk_B(T_+-T_-)\ln(V_C/V_A)}{Nk_B(T_+-T_-)\ln(V_B/V_A)},
+\end{equation}
+where $V_B/V_A$ is the volume ratio along the Carnot isothermal expansion. For the Carnot cycle, the adiabatic constraint $T_+ V_B^{\gamma-1} = T_- V_C^{\gamma-1}$ gives
+\begin{equation}
+    \log V_B = \log V_C - \frac{1}{\gamma-1}\log\frac{T_+}{T_-},
+\end{equation}
+so $\log(V_C/V_B) = \frac{1}{\gamma-1}\log(T_+/T_-)$, and the volume ratio for Carnot's isothermal expansion is smaller than $V_C/V_A$. Thus for the same volume ratio,
+\begin{equation}
+    \frac{W_{\text{Stirling}}}{W_{\text{Carnot}}} = \frac{\log(V_C/V_A)}{\log(V_C/V_A) - \frac{1}{\gamma-1}\log(T_+/T_-)}.
+\end{equation}
+As a concrete example, with $T_+/T_- = 2$, $V_C/V_A = 10$, and $\gamma = 1.4$ (air), one finds $W_{\text{Stirling}}/W_{\text{Carnot}} \approx 4$, at the cost of a lower efficiency.
+
+\subsection{The Regenerator}
+
+The penalty in the Stirling cycle is the extra heat $C_V(T_+ - T_-)$ that must be added during the isochoric heating step (step 4) and removed during the isochoric cooling step (step 2). These two amounts are equal in magnitude. A \emph{regenerator} exploits this: a thermally massive medium (e.g., a wire mesh) sits between the hot and cold ends of the engine. During the isochoric cooling step (step 2), the gas passes through the regenerator and deposits its excess heat there. During the isochoric heating step (step 4), the same gas reclaims this stored heat as it passes back through.
+
+\begin{center}[DIAGRAM: Four-panel schematic of the Stirling engine cycle. Panel 1: isothermal compression at $T_-$ (bottom). Panel 2: isochoric heating as gas moves through the regenerator. Panel 3: isothermal expansion at $T_+$ (top). Panel 4: isochoric cooling as gas returns through the regenerator. Hatching indicates the regenerator material between the two pistons.]\end{center}
+
+With an ideal regenerator, the heat that must be supplied externally during step 4 is zero — the regenerator provides it — so the net external heat input reduces to $Q_{\text{in}} = Nk_BT_+\ln(V_C/V_A)$, identical to the Carnot heat input. Therefore:
+
+\begin{theorem}[Stirling Engine with Regenerator]
+A Stirling engine equipped with a perfect regenerator achieves the Carnot efficiency:
+\begin{equation}
+    \eta_{\text{Carnot}} = \eta_{\text{Stirling (with regenerator)}} = 1 - \frac{T_-}{T_+}.
+\end{equation}
+\end{theorem}
+
+The regenerator effectively internalises the isochoric heat exchange so that the environment never needs to know about it.
+
+% ----------------------------------------------------------------
+% Pages 178–179: Engines and Microcanonical Ensemble problems
+% (These pages appear to be worksheet-style calculations for the
+%  microcanonical ensemble for two-state systems and ideal gases.)
+% ----------------------------------------------------------------
+
+\section{Microcanonical Ensemble: Worked Examples}
+
+The following calculations review the multiplicity and entropy for standard microcanonical systems.
+
+\subsection{Two-Box Two-State System}
+
+Consider two boxes, each containing $N$ distinguishable particles that can each be in one of two states. The total number of microstates is $(2N+1)$ — one for each allowed value of the net ``spin'' — confirming that the most-probable macrostate dominates. For the combined system of $2N$ particles with $N$ in each box:
+
+\begin{align}
+    \Omega(2N, N) &= \binom{2N}{N} \cdot \left(\frac{2N\,!_{\text{approx}}}{N}\right)^{\!} \approx \frac{(2^{2N})(4)^N}{\sqrt{8\pi N}} = \frac{2^{4N}}{\sqrt{8\pi N}}.
+\end{align}
+
+More carefully, applying Stirling's approximation $n! \approx \sqrt{2\pi n}(n/e)^n$:
+\begin{equation}
+    \Omega(2N,N) = \binom{2N}{N} \approx \frac{(2)^N(2)^N}{\sqrt{4\pi N}} = \frac{2^{2N}}{\sqrt{4\pi N}}.
+\end{equation}
+The width of the peak about the most-probable macrostate scales as $\sqrt{2\pi N}$, so the relative width goes as
+\begin{equation}
+    \frac{\text{width}}{2N+1} \approx \frac{\sqrt{2\pi N}}{2N} \sim \frac{1}{\sqrt{N}},
+\end{equation}
+which becomes negligibly small for macroscopic $N$. This is the origin of the sharpness of thermodynamic state functions.
+
+\subsection{Entropy of an Ideal Gas (Sackur--Tetrode)}
+
+For a monatomic ideal gas of $N$ particles in volume $V$ with total energy $U$, the Boltzmann entropy is
+\begin{align}
+    S &= k_BN\left[\log\frac{V}{N} + \frac{3}{2}\log\frac{U}{N} + \frac{3}{2}\log\frac{M}{3\pi\hbar^2} + \frac{5}{2}\right],
+\end{align}
+which can be written compactly as
+\begin{equation}
+    S = k_BN\log\left[\frac{V}{N}\left(\frac{U}{N}\right)^{3/2}\!\left(\frac{M}{3\pi\hbar^2}\right)^{3/2}\right] + \frac{5}{2}k_BN.
+\end{equation}
+Setting $S = 0$ to find the minimum energy (i.e., the ground-state condition) and using $U/N = \frac{3}{2}k_BT$, one can solve for the temperature at which the classical ideal gas description breaks down. Using $N/V = P/k_BT$, this condition yields $T \approx 10\,\text{mK}$, below which quantum effects (Bose--Einstein or Fermi--Dirac statistics) become essential.
+
+% ----------------------------------------------------------------
+% Pages 180–183: Lecture 17 — Thermodynamics and Free Energy
+% ----------------------------------------------------------------
+
+\chapter{Thermodynamics and Free Energy}
+
+\section{Spontaneous Processes and the Second Law}
+
+An isolated system may spontaneously change its state only if doing so does not decrease its entropy:
+\begin{equation}
+    \Delta S \geq 0 \quad \text{(isolated system)}.
+\end{equation}
+However, most interesting systems in practice are \emph{not} isolated — they are in contact with a thermal reservoir at fixed temperature $T$. We need a criterion for spontaneous change that is appropriate for these coupled system-plus-reservoir situations.
+
+\section{System at Fixed \texorpdfstring{$V$}{V} and \texorpdfstring{$T$}{T}: Helmholtz Free Energy}
+
+\begin{center}[DIAGRAM: A reservoir at temperature $T$ connected to a system with fixed volume $V$ and variable internal energy $U$. Heat $\Delta Q_{\text{res}}$ flows from reservoir to system; work $W$ is done by the system.]\end{center}
+
+Consider a system in thermal contact with a reservoir at fixed temperature $T$, and with fixed volume (so the only work possible is non-$pV$ work $W$). The spontaneity condition requires the total entropy change to be non-negative:
+\begin{equation}
+    \Delta S_{\text{bath}} + \Delta S_{\text{system}} \geq 0.
+\end{equation}
+Energy conservation gives $\Delta Q_{\text{res}} + \Delta U_{\text{system}} + W_{\text{system}} = 0$, where $\Delta Q_{\text{res}}$ is the heat added to the system from the bath (it is the change in internal energy of the reservoir in magnitude, but with opposite sign), and $W_{\text{system}}$ is the work done by the system. Hence $\Delta Q_{\text{res}} = -\Delta U - W$. Since the reservoir is large, it exchanges heat reversibly, so $\Delta S_{\text{bath}} = \Delta Q_{\text{bath}}/T = -\Delta Q_{\text{res}}/T = (\Delta U + W)/T$. Substituting:
+\begin{align}
+    \frac{\Delta U + W}{T} + \Delta S &\geq 0 \notag \\
+    \Rightarrow\quad -\Delta U - W + T\Delta S &\geq 0 \notag \\
+    \Rightarrow\quad \Delta U - T\Delta S + W &\leq 0.
+\end{align}
+
+\begin{definition}[Helmholtz Free Energy]
+The \emph{Helmholtz free energy} is defined as
+\begin{equation}
+    F \equiv U - TS.
+\end{equation}
+Its change at fixed $T$ is $\Delta F = \Delta U - T\Delta S$.
+\end{definition}
+
+The spontaneity condition therefore becomes $\Delta F + W \leq 0$, or equivalently:
+
+\begin{formula}
+\begin{equation}
+    W \leq -\Delta F.
+\end{equation}
+\end{formula}
+
+This has two important consequences:
+\begin{enumerate}
+    \item The Helmholtz free energy bounds the maximum work a system can do: a system can perform at most $-\Delta F$ of work in an isothermal process. The name ``free energy'' refers to the energy that is \emph{free} to do work, as distinct from the portion that must be disbursed as heat to maintain the entropy balance.
+    \item If $W = 0$ (no work done), then $\Delta F \leq 0$: the system evolves spontaneously toward states of lower Helmholtz free energy. At thermodynamic equilibrium, $F$ is \emph{minimized}. Equivalently, at fixed $T$ and $V$ and $W = 0$, the system maximises entropy of the universe while using the constraint of fixed temperature. The competition between minimising $U$ (energetic preference) and maximising $S$ (entropic preference) is precisely captured by $F = U - TS$.
+\end{enumerate}
+
+\begin{fact}
+A system at fixed $T$ and $V$ will spontaneously evolve until its Helmholtz free energy is minimized.
+\end{fact}
+
+\section{System at Fixed \texorpdfstring{$P$}{P} and \texorpdfstring{$T$}{T}: Gibbs Free Energy}
+
+Now consider a system in contact with a reservoir at fixed $T$ and $P$, able to exchange both heat and volume work $p\,dV$ with the environment. The total entropy condition is
+\begin{equation}
+    \Delta S_{\text{bath}} + \Delta S_{\text{system}} \geq 0.
+\end{equation}
+Energy conservation gives $\Delta Q_{\text{bath}} + \Delta U + p\Delta V + W_{\text{other}} = 0$, so $\Delta Q_{\text{bath}} = -\Delta U - p\Delta V - W_{\text{other}}$. Then $\Delta S_{\text{bath}} = \Delta Q_{\text{bath}}/T$, and substituting:
+\begin{align}
+    \frac{-\Delta U - p\Delta V - W_{\text{other}}}{T} + \Delta S &\geq 0 \notag\\
+    \Rightarrow\quad \Delta(U + pV - TS) + W_{\text{other}} &\leq 0.
+\end{align}
+
+\begin{definition}[Gibbs Free Energy]
+The \emph{Gibbs free energy} (also called the \emph{Gibbs potential}) is
+\begin{equation}
+    G \equiv U + pV - TS = H - TS = F + pV,
+\end{equation}
+where $H = U + pV$ is the enthalpy.
+\end{definition}
+
+The spontaneity condition at fixed $T$ and $P$ is therefore:
+
+\begin{formula}
+\begin{equation}
+    W_{\text{other}} \leq -\Delta G.
+\end{equation}
+\end{formula}
+
+The Gibbs free energy plays the same role at constant $T$, $P$ as the Helmholtz free energy does at constant $T$, $V$:
+\begin{enumerate}
+    \item The maximum non-$pV$ work a system can deliver in an isothermal, isobaric process is $-\Delta G$.
+    \item If $W_{\text{other}} = 0$, the system evolves spontaneously until $G$ is minimized. Thermodynamic equilibrium at fixed $T$ and $P$ is the state of minimum Gibbs free energy.
+\end{enumerate}
+
+\begin{fact}[Why Phase Transitions Happen]
+Phase transitions occur because the Gibbs free energy of one phase (e.g., liquid water) can become lower than that of another (e.g., ice) at a certain temperature. Below $0\,^\circ\text{C}$, the Gibbs free energy of ice is less than that of liquid water, so water spontaneously freezes.
+\end{fact}
+
+\subsection{Example: Hydrogen Fuel Cell}
+
+A hydrogen fuel cell operates at fixed $T$ and $P$, driving the reaction
+\begin{equation}
+    \text{H}_2 + \text{O}_2 \to \text{H}_2\text{O}
+\end{equation}
+to produce electrical current. The thermodynamic data per mole of water produced are:
+\begin{align}
+    \Delta H &= -286\,\text{kJ/mol}, \\
+    \Delta S &= -163\,\text{J/(K\,mol)}.
+\end{align}
+At $T = 300\,\text{K}$, the Gibbs free energy change is
+\begin{equation}
+    \Delta G = \Delta H - T\Delta S = -286\,\text{kJ/mol} - (300\,\text{K})(-163\,\text{J/(K\,mol)}) \approx -237\,\text{kJ/mol}.
+\end{equation}
+Although $286\,\text{kJ/mol}$ of energy is released by the reaction, only $237\,\text{kJ/mol}$ is available to do electrical work; the remaining $49\,\text{kJ/mol}$ must leave as heat to the environment. The thermodynamic efficiency of the fuel cell is therefore
+\begin{equation}
+    E_{\text{ff}} = \frac{|\Delta G|}{|\Delta H|} = \frac{237}{286} \approx 83\%.
+\end{equation}
+By contrast, if we burned the hydrogen in a heat engine at $T_+ \approx 1760\,\text{K}$ (the flame temperature), the Carnot efficiency would be $1 - T_-/T_+ = 1 - 300/1760 \approx 0.83$ as well, but reaching such a high flame temperature is far more demanding than operating a fuel cell at room temperature.
+
+\section{Thermodynamic Potentials}
+
+The four standard thermodynamic potentials and their natural variables are:
+
+\begin{enumerate}
+    \item \textbf{Internal energy}: $U$, with $dU = T\,dS - p\,dV$.
+    \item \textbf{Enthalpy}: $H = U + pV$, with $dH = T\,dS + V\,dp$.
+    \item \textbf{Helmholtz free energy}: $F = U - TS$, with $dF = -S\,dT - p\,dV$.
+    \item \textbf{Gibbs free energy}: $G = U - TS + pV$, with $dG = -S\,dT + V\,dp$.
+\end{enumerate}
+
+All four are state functions and therefore have \emph{exact} differentials. This means their mixed second partial derivatives must commute, a condition that generates the Maxwell relations.
+
+\section{Maxwell Relations}
+
+Since each thermodynamic potential has an exact differential, its mixed partial derivatives are equal regardless of order. Applying this to each of the four potentials:
+
+\begin{align}
+    dU = T\,dS - p\,dV \quad&\Rightarrow\quad \left.\pdv{T}{V}\right|_S = -\left.\pdv{p}{S}\right|_V \tag{U} \\[6pt]
+    dH = T\,dS + V\,dp \quad&\Rightarrow\quad \left.\pdv{T}{p}\right|_S = \left.\pdv{V}{S}\right|_p \tag{H} \\[6pt]
+    dF = -S\,dT - p\,dV \quad&\Rightarrow\quad \left.\pdv{S}{V}\right|_T = \left.\pdv{p}{T}\right|_V \tag{F} \\[6pt]
+    dG = -S\,dT + V\,dp \quad&\Rightarrow\quad \left.\pdv{S}{p}\right|_T = -\left.\pdv{V}{T}\right|_p \tag{G}
+\end{align}
+
+\begin{theorem}[Maxwell Relations]
+\begin{align}
+    \left.\pdv{T}{V}\right|_S &= -\left.\pdv{p}{S}\right|_V, \qquad
+    \left.\pdv{T}{p}\right|_S = \left.\pdv{V}{S}\right|_p, \notag \\
+    \left.\pdv{S}{V}\right|_T &= \left.\pdv{p}{T}\right|_V, \qquad
+    \left.\pdv{S}{p}\right|_T = -\left.\pdv{V}{T}\right|_p.
+\end{align}
+In practice, derive these as needed from the relevant differential rather than memorising them.
+\end{theorem}
+
+\subsection{Example: Internal Pressure}
+
+How does the internal energy $U$ of a gas vary with volume at constant temperature? Starting from $dU = T\,dS - p\,dV$, divide by $dV$ at fixed $T$:
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T = T\left.\pdv{S}{V}\right|_T - p.
+\end{equation}
+The Maxwell relation from $dF$ gives $\left.\pdv{S}{V}\right|_T = \left.\pdv{p}{T}\right|_V$, so:
+\begin{formula}
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T = T\left.\pdv{p}{T}\right|_V - p.
+\end{equation}
+\end{formula}
+This can also be written as $\left.\pdv{U}{V}\right|_T = T^2\left.\pdv{(p/T)}{T}\right|_V$, or equivalently
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T = \left.T\frac{\partial^2 p}{\partial T^2}\right|_V = \frac{\partial^2 G}{\partial V}.
+\end{equation}
+For an ideal gas, $p = Nk_BT/V$, so $\left.\pdv{p}{T}\right|_V = Nk_B/V = p/T$, giving $\left.\pdv{U}{V}\right|_T = 0$ — the internal energy of an ideal gas is independent of volume, as expected.
+
+% ----------------------------------------------------------------
+% Pages 184–185: Stat Mech of Closed Systems, Boltzmann Distribution
+% ----------------------------------------------------------------
+
+\chapter{Statistical Mechanics of Closed Systems}
+
+\section{From Microcanonical to Canonical Ensemble}
+
+So far, fixed-energy (microcanonical) systems lead to microstate multiplicities that form a microcanonical ensemble, where all microstates are equally likely. In practice, however, most laboratory systems are held at fixed \emph{temperature} rather than fixed energy, because they are in thermal contact with a much larger reservoir. The appropriate statistical ensemble for such systems is the \emph{canonical ensemble}.
+
+The shift from fixed energy to fixed temperature changes the probability assignment over microstates: at fixed energy, all accessible microstates are equally probable; at fixed temperature, the system's energy can fluctuate, and microstates at different energies have different probabilities.
+
+\section{Probability of a Microstate at Fixed Temperature}
+
+\begin{center}[DIAGRAM: A small system in thermal contact with a large reservoir. Labels: reservoir with $U_R$, $V_R$, $S_R$, $N_R$; system with $U_S$, $V_S$, $S_S$, $N_S$; heat bath arrow between them.]\end{center}
+
+Consider a system attached to a large heat reservoir at temperature $T$. The combined system-plus-reservoir is isolated, with total energy $U = U_R + U_S$ fixed. We ask: what is the probability that the system is found in a specific microstate $j$ with energy $E_j$?
+
+The key insight is that even though the system has a fixed temperature $T$ (set by the reservoir), its energy can fluctuate. The \emph{relative} amount of energy $U_S = E_j$ is not fixed, but the total $U = U_R + U_S$ is. When the system is in microstate $j$, the reservoir has energy $U_R = U - E_j$ and can be in any of $\Omega_R(U - E_j)$ microstates. Since all microstates of the combined system are equally likely (microcanonical postulate for the total isolated system), the probability of finding the system in microstate $j$ is proportional to the number of reservoir microstates:
+\begin{equation}
+    P(E_j) \propto \Omega_S(j,\,E_j) \cdot \Omega_R(U - E_j),
+\end{equation}
+where $\Omega_S(j, E_j) = 1$ (a single specific microstate of the system). Thus
+\begin{equation}
+    P_j \propto \Omega_R(U - E_j).
+\end{equation}
+
+\section{Derivation of the Boltzmann Distribution}
+
+To evaluate $\Omega_R(U - E_j)$, write it in terms of the reservoir entropy: $\Omega_R = e^{S_R/k_B}$. Since $E_j \ll U$ (the system is tiny compared to the reservoir), we expand $S_R(U - E_j)$ to first order about $U$:
+\begin{equation}
+    S_R(U - E_j) \approx S_R(U) - E_j\left.\pdv{S_R}{U}\right|_{N,V} = S_R(U) - \frac{E_j}{T},
+\end{equation}
+using the thermodynamic identity $\left.\pdv{S}{U}\right|_{V,N} = 1/T$. Therefore
+\begin{equation}
+    \Omega_R(U - E_j) = e^{S_R(U-E_j)/k_B} \approx e^{S_R(U)/k_B}\cdot e^{-E_j/k_BT}.
+\end{equation}
+The first factor $e^{S_R(U)/k_B}$ is a constant independent of $j$ (it is the prefactor that will be absorbed into the normalisation). We arrive at the fundamental result:
+
+\begin{theorem}[Boltzmann Distribution]
+\label{thm:boltzmann}
+The probability that a system in thermal equilibrium at temperature $T$ is found in a specific microstate $j$ with energy $E_j$ is
+\begin{equation}
+    \boxed{P_j \propto e^{-E_j/k_BT}}.
+\end{equation}
+The normalised distribution is $P_j = e^{-\beta E_j}/Z$, where $\beta = 1/k_BT$ and $Z = \sum_j e^{-\beta E_j}$ is the \emph{partition function}.
+\end{theorem}
+
+This result is the cornerstone of statistical mechanics. It tells us that higher-energy microstates are exponentially suppressed relative to lower-energy ones, with the suppression controlled by the ratio $E_j/k_BT$. At high temperature, all microstates become nearly equally probable; at low temperature, only the lowest-energy states are occupied with appreciable probability.
+
+The derivation rests on two crucial observations: (i) the system's microstate $j$ is unique ($\Omega_S = 1$), so only the reservoir multiplicity matters; and (ii) because the reservoir is much larger than the system, the Taylor expansion of $S_R$ is valid — the reservoir's temperature $T$ is essentially unchanged by the system acquiring energy $E_j$.

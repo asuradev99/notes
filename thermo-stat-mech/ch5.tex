@@ -1,0 +1,178 @@
+\chapter{Thermodynamic Potentials and Free Energy}
+
+\section{Spontaneous Processes at Fixed Constraints}
+
+The second law states that the entropy of an isolated system can only increase: $\Delta S \geq 0$. At equilibrium, $S$ is maximized subject to whatever constraints are imposed. If the only constraints are fixed internal energy $U$ and fixed volume $V$, this is the complete story --- the condition for spontaneous change is simply $dS \geq 0$ and equilibrium is the state of maximum entropy.
+
+Most laboratory systems, however, are not isolated. They sit in thermal contact with a reservoir at some fixed temperature $T$, and we want a criterion for spontaneous change that is intrinsic to the system rather than requiring us to track entropy changes in the reservoir. Deriving such a criterion involves accounting for the universe's entropy (system plus reservoir) and then re-expressing the result as a statement about a function of the system's state variables alone. Different constraints yield different free energies.
+
+\subsection*{At Fixed $T$ and $V$: Helmholtz Free Energy}
+
+\begin{center}[DIAGRAM: A reservoir at temperature $T$ connected to a system with fixed volume $V$ and variable internal energy $U$. Heat $\Delta Q$ flows from reservoir to system; any non-$pV$ work $W$ is done by the system on the outside world.]\end{center}
+
+Consider a system at fixed volume in contact with a large heat reservoir at temperature $T$. The system is allowed to do non-$pV$ work $W$ on the outside world. The total entropy of the universe (system plus reservoir) must not decrease, so
+\begin{equation}
+    \Delta S_{\text{bath}} + \Delta S_{\text{sys}} \geq 0.
+\end{equation}
+Energy conservation for the system gives $\Delta Q_{\text{in}} = \Delta U + W$, where $\Delta Q_{\text{in}}$ is heat flowing into the system from the bath. Since the reservoir is much larger than the system, it exchanges this heat reversibly, so $\Delta S_{\text{bath}} = -\Delta Q_{\text{in}}/T = -(\Delta U + W)/T$. Substituting:
+\begin{align}
+    -\frac{\Delta U + W}{T} + \Delta S &\geq 0 \notag \\
+    \Rightarrow\quad \Delta U - T\Delta S + W &\leq 0.
+\end{align}
+
+\begin{definition}[Helmholtz Free Energy]
+The \emph{Helmholtz free energy} is
+\begin{equation}
+    F \;\defeq\; U - TS.
+\end{equation}
+At fixed temperature its change is $\Delta F = \Delta U - T\Delta S$.
+\end{definition}
+
+The spontaneity condition becomes $\Delta F + W \leq 0$, which gives the bound
+\begin{formula}
+\begin{equation}
+    W \leq -\Delta F.
+\end{equation}
+\end{formula}
+This result has two immediate consequences. First, the maximum work a system can extract in any isothermal process is $-\Delta F$; this is why $F$ is called a \emph{free} energy --- it quantifies the energy that is free to do work, as opposed to the portion locked in entropy and unavailable. Second, if no work is done ($W = 0$), then $\Delta F \leq 0$: the system drifts spontaneously toward states of lower $F$.
+
+\begin{fact}
+A system held at fixed $T$ and $V$, doing no external work, evolves spontaneously until its Helmholtz free energy is minimized. Thermodynamic equilibrium at fixed $T$, $V$ is the state of minimum $F$.
+\end{fact}
+
+Physically, $F = U - TS$ encodes a competition: lowering $U$ is energetically favourable, but raising $S$ is entropically favourable, and the temperature $T$ weights the trade-off. At low $T$, energy dominates; at high $T$, entropy dominates.
+
+\subsection*{At Fixed $T$ and $P$: Gibbs Free Energy}
+
+Now suppose the system is in contact with a reservoir that fixes both temperature $T$ and pressure $P$. The system can exchange both heat and volume work ($p\,dV$) with the environment, and may additionally perform other (non-$pV$) work $W_{\text{other}}$. Energy conservation gives $\Delta Q_{\text{in}} = \Delta U + P\Delta V + W_{\text{other}}$, so $\Delta S_{\text{bath}} = -\Delta Q_{\text{in}}/T$. The total entropy condition $\Delta S_{\text{bath}} + \Delta S_{\text{sys}} \geq 0$ then becomes
+\begin{equation}
+    \frac{-\Delta U - P\Delta V - W_{\text{other}}}{T} + \Delta S \geq 0
+    \quad\Rightarrow\quad
+    \Delta(U + PV - TS) + W_{\text{other}} \leq 0.
+\end{equation}
+
+\begin{definition}[Gibbs Free Energy]
+The \emph{Gibbs free energy} (or Gibbs potential) is
+\begin{equation}
+    G \;\defeq\; U + PV - TS \;=\; H - TS \;=\; F + PV,
+\end{equation}
+where $H = U + PV$ is the enthalpy.
+\end{definition}
+
+The spontaneity condition at fixed $T$ and $P$ is therefore
+\begin{formula}
+\begin{equation}
+    W_{\text{other}} \leq -\Delta G.
+\end{equation}
+\end{formula}
+The maximum non-$pV$ work extractable from an isothermal, isobaric process is $-\Delta G$. When no other work is done, $\Delta G \leq 0$ and the system evolves spontaneously to states of lower Gibbs free energy.
+
+\begin{fact}
+A system held at fixed $T$ and $P$ evolves spontaneously until its Gibbs free energy is minimized. In particular, phase transitions occur because the Gibbs free energy of one phase can become lower than that of another at a particular temperature: below $0\,^\circ\text{C}$ at atmospheric pressure, the Gibbs free energy of ice is less than that of liquid water, so water spontaneously freezes.
+\end{fact}
+
+\section{The Four Thermodynamic Potentials}
+
+The four standard thermodynamic potentials are obtained from $U$ by Legendre transforms that trade natural variables. Including particle number, the fundamental relation $dU = T\,dS - P\,dV + \mu\,dN$ shows that the natural variables of $U$ are $(S, V, N)$. Each Legendre transform replaces one extensive variable by its conjugate intensive variable. The chemical potential $\mu$ is defined as the energy cost of adding one particle at fixed $S$ and $V$.
+
+\begin{definition}[Chemical Potential]
+\begin{equation}
+    \mu \;\defeq\; \left.\pdv{U}{N}\right|_{S,V}.
+\end{equation}
+At fixed $T$ and $P$ it equals the rate of change of Gibbs free energy with particle number:
+\begin{equation}
+    \mu = \left.\pdv{G}{N}\right|_{T,P}.
+\end{equation}
+\end{definition}
+
+The four potentials, their definitions, natural variables, and exact differentials are collected in the following table.
+
+\begin{center}
+\begin{tabular}{llll}
+    \hline
+    Potential & Definition & Natural variables & Exact differential \\
+    \hline
+    Internal energy $U$ & --- & $S,\,V,\,N$ & $dU = T\,dS - P\,dV + \mu\,dN$ \\[4pt]
+    Enthalpy $H$ & $U + PV$ & $S,\,P,\,N$ & $dH = T\,dS + V\,dP + \mu\,dN$ \\[4pt]
+    Helmholtz free energy $F$ & $U - TS$ & $T,\,V,\,N$ & $dF = -S\,dT - P\,dV + \mu\,dN$ \\[4pt]
+    Gibbs free energy $G$ & $U - TS + PV$ & $T,\,P,\,N$ & $dG = -S\,dT + V\,dP + \mu\,dN$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+A useful mnemonic is that the coefficient of each differential on the right-hand side is the thermodynamic conjugate of that variable. For $dU$: $T$ conjugate to $S$, $-P$ conjugate to $V$, $\mu$ conjugate to $N$. The sign pattern flips for the Legendre-transformed variables: replacing $S$ by $T$ (going from $U$ to $F$) changes the sign of the $T\,dS$ term and introduces $-S\,dT$; replacing $V$ by $P$ (going from $U$ to $H$) analogously introduces $+V\,dP$.
+
+The conjugate relationships read off from the differentials are
+\begin{align}
+    T = \left.\pdv{U}{S}\right|_{V,N} = \left.\pdv{H}{S}\right|_{P,N}, \qquad
+    P = -\left.\pdv{U}{V}\right|_{S,N} = -\left.\pdv{F}{V}\right|_{T,N}, \\[6pt]
+    V = \left.\pdv{H}{P}\right|_{S,N} = \left.\pdv{G}{P}\right|_{T,N}, \qquad
+    S = -\left.\pdv{F}{T}\right|_{V,N} = -\left.\pdv{G}{T}\right|_{P,N}.
+\end{align}
+These identities give compact expressions for all thermodynamic quantities in terms of whichever potential is most natural for the problem at hand.
+
+\section{Maxwell Relations}
+
+Because all four thermodynamic potentials are state functions, their differentials are exact: mixed second partial derivatives commute. Applied to each of the four differentials (at fixed $N$ for simplicity), this exactness condition yields one Maxwell relation per potential:
+
+\begin{align}
+    dU = T\,dS - P\,dV \quad&\Rightarrow\quad \left.\pdv{T}{V}\right|_S = -\left.\pdv{P}{S}\right|_V, \tag{from $U$} \\[6pt]
+    dH = T\,dS + V\,dP \quad&\Rightarrow\quad \left.\pdv{T}{P}\right|_S = \phantom{+}\left.\pdv{V}{S}\right|_P, \tag{from $H$} \\[6pt]
+    dF = -S\,dT - P\,dV \quad&\Rightarrow\quad \left.\pdv{S}{V}\right|_T = \phantom{+}\left.\pdv{P}{T}\right|_V, \tag{from $F$} \\[6pt]
+    dG = -S\,dT + V\,dP \quad&\Rightarrow\quad \left.\pdv{S}{P}\right|_T = -\left.\pdv{V}{T}\right|_P. \tag{from $G$}
+\end{align}
+
+\begin{theorem}[Maxwell Relations]
+The four Maxwell relations are
+\begin{align}
+    \left.\pdv{T}{V}\right|_S = -\left.\pdv{P}{S}\right|_V, \qquad
+    \left.\pdv{T}{P}\right|_S &= \left.\pdv{V}{S}\right|_P, \notag \\[6pt]
+    \left.\pdv{S}{V}\right|_T = \left.\pdv{P}{T}\right|_V, \qquad
+    \left.\pdv{S}{P}\right|_T &= -\left.\pdv{V}{T}\right|_P.
+\end{align}
+In practice, it is more reliable to derive each relation as needed from the relevant differential than to memorise the signs.
+\end{theorem}
+
+The power of these relations lies in connecting quantities that are experimentally inaccessible to quantities that are easily measured. A prime illustration is the internal pressure.
+
+\subsection*{Application: Internal Pressure}
+
+How does the internal energy of a gas depend on volume at fixed temperature? Begin from $dU = T\,dS - P\,dV$ and divide by $dV$ at constant $T$:
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T = T\left.\pdv{S}{V}\right|_T - P.
+\end{equation}
+The quantity $\left.\pdv{S}{V}\right|_T$ is not directly measurable, but the Maxwell relation derived from $dF$ gives $\left.\pdv{S}{V}\right|_T = \left.\pdv{P}{T}\right|_V$, which \emph{is} measurable from the equation of state. Substituting:
+
+\begin{formula}
+\begin{equation}
+    \left.\pdv{U}{V}\right|_T = T\left.\pdv{P}{T}\right|_V - P.
+\end{equation}
+\end{formula}
+
+This is the \emph{internal pressure}. For an ideal gas, $P = Nk_BT/V$ gives $\left.\pdv{P}{T}\right|_V = P/T$, so the internal pressure is $T(P/T) - P = 0$. The internal energy of an ideal gas is independent of volume, as expected from the absence of intermolecular interactions. For a van der Waals gas or any real gas with attractive interactions, the internal pressure is positive: expanding the gas stretches intermolecular bonds and increases $U$.
+
+\section{Example: The Hydrogen Fuel Cell}
+
+A hydrogen fuel cell converts chemical energy directly into electrical work at fixed temperature and pressure, making it a natural setting for Gibbs free energy. The reaction is
+\begin{equation}
+    \mathrm{H_2} + \tfrac{1}{2}\mathrm{O_2} \;\longrightarrow\; \mathrm{H_2O}.
+\end{equation}
+The thermodynamic data per mole of water produced at $T = 300\,\mathrm{K}$ are
+\begin{align}
+    \Delta H &= -286\,\mathrm{kJ\,mol^{-1}}, \\
+    \Delta S &= -163\,\mathrm{J\,K^{-1}\,mol^{-1}}.
+\end{align}
+The change in Gibbs free energy is
+\begin{equation}
+    \Delta G = \Delta H - T\Delta S = -286\,\mathrm{kJ\,mol^{-1}} - (300\,\mathrm{K})(-163\,\mathrm{J\,K^{-1}\,mol^{-1}}) \approx -237\,\mathrm{kJ\,mol^{-1}}.
+\end{equation}
+Although the reaction releases $286\,\mathrm{kJ\,mol^{-1}}$ of enthalpy, only $237\,\mathrm{kJ\,mol^{-1}}$ is available to do electrical work; the remaining $49\,\mathrm{kJ\,mol^{-1}}$ must be expelled as heat to compensate for the entropy decrease of the reaction ($\Delta S < 0$ means the products are more ordered than the reactants, so the universe's entropy can only be kept non-decreasing by discarding heat). The thermodynamic efficiency of the fuel cell is
+\begin{equation}
+    \eta_{\mathrm{fc}} = \frac{|\Delta G|}{|\Delta H|} = \frac{237}{286} \approx 83\%.
+\end{equation}
+
+For comparison, consider burning hydrogen in a heat engine. The flame temperature is roughly $T_+ \approx 1760\,\mathrm{K}$, and the cold reservoir (atmosphere) is at $T_- = 300\,\mathrm{K}$. The Carnot bound gives
+\begin{equation}
+    \eta_{\mathrm{Carnot}} = 1 - \frac{T_-}{T_+} = 1 - \frac{300}{1760} \approx 83\%.
+\end{equation}
+The numerical coincidence is striking: the fuel cell and the Carnot engine achieve the same limiting efficiency, but they do so in very different ways. The Carnot bound is set by the ratio of reservoir temperatures; the fuel cell bound is set by the ratio $|\Delta G|/|\Delta H|$, which reflects the thermodynamics of the chemical reaction itself at room temperature. In practice, fuel cells operate at much lower temperatures than combustion engines and avoid the irreversibilities associated with burning, making them a more tractable route to high efficiency in real devices.

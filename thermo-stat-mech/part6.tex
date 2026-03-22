@@ -1,0 +1,615 @@
+% Pages 51–65
+
+% ---- Page 51: Completion of entropy of mixing (problem 2.37 / eq. 2.38) ----
+
+The total entropy of mixing is the sum of the two contributions:
+\[
+  \Delta S_{\text{mix}} = \Delta S_A + \Delta S_B.
+\]
+For gases $A$ and $B$ with mole fractions $(1-x)$ and $x$ respectively, expanding each species
+into the full volume gives
+\begin{align*}
+  \Delta S_A &= (1-x)Nk\ln\!\frac{1}{1-x} = -(1-x)Nk\ln(1-x), \\
+  \Delta S_B &= xNk\ln\!\frac{1}{x} = -xNk\ln x,
+\end{align*}
+and therefore
+\begin{formula}
+\[
+  \Delta S_{\text{mix}} = -Nk\bigl[(1-x)\ln(1-x) + x\ln x\bigr].
+\]
+\end{formula}
+
+It is instructive to derive this result from the combinatorial formula directly. The
+$\binom{N}{N_A}$ factor in the multiplicity is essentially the number of distinguishable
+configurations of the combined system: it counts the ways to arrange both species that would
+have been indistinguishable had all particles been of the same type. Writing $N_A = (1-x)N$ and
+$N_B = xN$:
+\begin{align*}
+  \Delta S_{\text{mixing}}
+  &= k\ln\binom{N}{N_A N_B'} = k\ln\!\frac{N!}{(Nx)!\,(N(1-x))!} \\
+  &= k\!\left[\ln N! - \ln\bigl((Nx)!\bigr) - \ln\bigl((N(1-x))!\bigr)\right] \\
+  &= k\!\left[N\ln N - \cancel{N} - (Nx)\ln(Nx) + \cancel{Nx}
+     - N(1-x)\ln\bigl(N(1-x)\bigr) + \cancel{N(1-x)}\right] \\
+  &= Nk\!\left[\ln N - x\ln(Nx) - (1-x)\ln\bigl(N(1-x)\bigr)\right] \\
+  &= Nk\!\left[\ln N - x(\ln N + \ln x) - (1-x)(\ln N + \ln(1-x))\right] \\
+  &= Nk\!\left[-x\ln x - (1-x)\ln(1-x)\right]. \quad\checkmark
+\end{align*}
+
+% ---- Page 52: Section 3.1 — Temperature ----
+
+\section{Temperature}
+
+\subsection{How Does Entropy Relate to Other Variables?}
+
+We have defined entropy $S = k\ln\Omega$ and seen that an isolated system tends toward its
+highest-entropy macrostate. But entropy is not the most convenient quantity for everyday
+measurements. We now ask: how does entropy relate to other macroscopic variables, and in
+particular, what is temperature?
+
+Recall that we defined two objects to be at the same \emph{temperature} when they are in
+thermal equilibrium with each other. We also know that two objects in thermal equilibrium
+attain the maximum total entropy. These two facts together determine the statistical definition
+of temperature.
+
+\textbf{Example.} Consider a system of harmonic oscillators: solid $A$ has $N_A = 300$
+oscillators, solid $B$ has $N_B = 200$ oscillators, and the total energy is $q_{\text{total}} =
+100$ units. The total multiplicity is
+\[
+  \Omega_{\text{total}} = \binom{300 + q_A}{q_A}\binom{100 - q_A + 200}{100 - q_A}.
+\]
+
+At thermal equilibrium we know that
+\[
+  \pdv{S_{\text{total}}}{U_A} = 0
+  \qquad\Longrightarrow\qquad
+  \pdv{S_A}{U_A} + \pdv{S_B}{U_A} = 0,
+\]
+and since $dU_A = -dU_B$ (total energy is conserved),
+\[
+  \pdv{S_A}{U_A} = \pdv{S_B}{U_B}.
+\]
+This is the equilibrium condition: both solids must have the same value of $\partial S/\partial U$.
+
+\begin{center}
+[DIAGRAM: Graph of $S_A$, $S_B$, and $S_{\text{total}}$ as functions of $q_A$. $S_A$ increases
+monotonically, $S_B$ decreases monotonically, and $S_{\text{total}}$ has a smooth maximum. The
+equilibrium point (marked with a cross) is where the slopes of $S_A$ and $S_B$ are equal in
+magnitude. A steeper slope in $S_A$ than in $S_B$ at a given point means adding energy to $A$
+gains more entropy than removing it from $B$ loses, so energy flows into $A$.]
+\end{center}
+
+The intuition is as follows. At a point where $\partial S_A/\partial U_A > \partial S_B/\partial
+U_B$, transferring a small amount of energy from $B$ to $A$ increases the total entropy: the
+entropy gained by $A$ exceeds the entropy lost by $B$. Energy will therefore flow from $B$ into
+$A$. A steeper $\partial S/\partial U$ corresponds to a colder object (it gains more entropy per
+unit of energy received), while a shallower slope corresponds to a hotter object (it gives away
+energy more readily). This motivates the definition:
+
+\begin{definition}
+\textbf{Temperature} is defined by
+\begin{equation}
+  T \equiv \left(\pdv{S}{U}\right)_{N,V}^{-1} = \pdv{U}{S}\bigg|_{N,V}. \tag{1}
+\end{equation}
+Equivalently, $dS = dU/T$ at constant $N$ and $V$.
+\end{definition}
+
+% ---- Page 53: Real-World Examples ----
+
+\subsection{Real-World Examples}
+
+\subsubsection*{Einstein Solid (Harmonic Oscillators)}
+
+Recall that for an Einstein solid in the high-temperature limit ($q \gg N$), the entropy is
+\[
+  S = Nk\ln\!\left(\frac{q}{N}\right) + Nk = Nk\ln U - Nk\ln(N\varepsilon) + Nk,
+\]
+where $U = q\varepsilon$. Differentiating with respect to $U$ at fixed $N$,
+\[
+  T = \left(\pdv{S}{U}\right)^{-1} = \frac{U}{Nk}
+  \qquad\Longrightarrow\qquad U = NkT.
+\]
+This is the equipartition result for $N$ harmonic oscillators (each with two quadratic degrees
+of freedom, giving $\frac{1}{2}kT$ per degree of freedom). No additional constants appear in
+this formula---the definition of temperature in equation~(1) reproduces the correct physics
+without any free parameters.
+
+\subsubsection*{Monatomic Ideal Gas}
+
+For a monatomic ideal gas the entropy from the Sackur--Tetrode equation depends on $U$ as
+\[
+  S = Nk\ln V + \frac{3}{2}Nk\ln U + \text{(function of }N\text{ only)}.
+\]
+Differentiating,
+\[
+  T = \left(\pdv{S}{U}\right)^{-1} = \frac{U}{\tfrac{3}{2}Nk}
+  \qquad\Longrightarrow\qquad U = \frac{3}{2}NkT,
+\]
+which gives 3 degrees of freedom per atom (the three translational directions), each
+contributing $\frac{1}{2}kT$ of energy. This is exactly the equipartition theorem for a
+monatomic ideal gas. The factor $\frac{3}{2}$ reflects 3 degrees of freedom per oscillator.
+
+% ---- Page 54: Problems (blank) ----
+
+\subsection*{Problems}
+
+% (No problems recorded on this page.)
+
+% ---- Page 55: Section 3.2 — Entropy and Heat: Predicting Heat Capacities ----
+
+\section{Entropy and Heat}
+
+\subsection{Predicting Heat Capacities}
+
+To compare statistical-mechanical predictions with experiment, we can use the
+\textbf{heat capacity at constant volume}:
+\begin{definition}
+\[
+  C_V \equiv \left(\pdv{U}{T}\right)_{N,V}.
+\]
+\end{definition}
+
+For an Einstein solid in the high-temperature limit, $U = NkT$ (shown above), so $C_V =
+\pdv{U}{T} = Nk$. For a monatomic ideal gas, $U = \frac{3}{2}NkT$, so
+\[
+  C_V = \pdv{T}\!\left(\frac{3}{2}NkT\right) = \frac{3}{2}Nk.
+\]
+
+\subsubsection*{Full Procedure to Find Heat Capacity}
+
+The general statistical-mechanical program for computing $C_V$ proceeds as follows.
+\begin{enumerate}[label=\arabic*.]
+  \item Use quantum mechanics and combinatorics to find the multiplicity $\Omega$ in terms of
+        $U$, $V$, $N$, and any other relevant variables.
+  \item Take $S = k\ln\Omega$ to find the entropy.
+  \item Differentiate $S$ with respect to $U$ to find $T(U, V, \ldots)$.
+  \item Solve for $U$ as a function of $T$.
+  \item Find $C_V \equiv \partial U/\partial T$.
+\end{enumerate}
+
+\subsection{Measuring Entropies}
+
+For most systems it is too hard to write down an explicit formula for the multiplicity and
+hence for the entropy. However, the entropy can be \emph{measured} thermodynamically. If a
+small amount of heat $\dbar Q$ is added to a system while its volume is held constant (so no
+work is done), then by the first law $dU = \dbar Q$, and the definition $T = (\partial S/\partial
+U)^{-1}$ gives
+
+\begin{formula}
+\[
+  dS = \frac{\dbar Q}{T} \qquad (\text{constant }V).
+\]
+\end{formula}
+
+If the temperature of the object remains approximately constant while heat is added (or if
+changes in temperature are tracked continuously), we can integrate:
+\begin{formula}
+\[
+  \Delta S = S_f - S_i = \int_{T_i}^{T_f} \frac{C_V}{T}\,dT.
+\]
+\end{formula}
+This formula allows the entropy of a system to be determined from calorimetric measurements of
+$C_V(T)$ alone, without any microscopic model.
+
+% ---- Page 56: Third Law, Macroscopic View of Entropy ----
+
+\subsection{Third Law of Thermodynamics}
+
+\begin{theorem}
+\textbf{Third Law of Thermodynamics.} The entropy of a system approaches zero as its
+temperature approaches absolute zero. The heat capacity $C_V$ also goes to zero as $T \to 0$.
+\end{theorem}
+
+In practice, $S$ is often non-zero at low temperatures because the system has \emph{residual
+entropy}: degrees of freedom that remain ``frozen in'' and do not equilibrate on laboratory
+time scales. Residual entropy can arise from frozen molecular arrangements, mixtures of nuclear
+isotopes, multiplicity of alignment of nuclear spins, and similar effects. The Third Law
+strictly applies only to equilibrium states.
+
+Furthermore, as $T \to 0$, the heat capacity $C_V \to 0$ as well, because the various quantum
+degrees of freedom (rotational, vibrational, etc.) ``freeze out'' one by one; they can no
+longer be thermally excited and therefore stop contributing to the energy.
+
+\subsection{Macroscopic View of Entropy}
+
+The relation $dS = \dbar Q/T$ was historically the \emph{original} definition of entropy,
+introduced by Clausius long before the statistical-mechanical interpretation. One can think of
+energy as a fluid that is conserved as it flows between systems: energy is neither created nor
+destroyed. Entropy, however, behaves differently: each ``packet'' of energy carries a little
+entropy with it, and that entropy is \emph{not} conserved. It is \emph{created} whenever heat
+flows (it is created wherever heat flows irreversibly). The total entropy of the universe
+therefore never decreases.
+
+% ---- Page 57: Section 3.3 — Paramagnetism ----
+
+\section{Paramagnetism}
+
+\subsection{Notation and Macroscopic Physics}
+
+We now study a \textbf{two-state paramagnet}: a system of $N$ spin-$\tfrac{1}{2}$ dipoles
+immersed in a constant external magnetic field $B$ in the $+\hat{z}$ direction. We assume
+there are no interactions between dipoles --- this is the \emph{ideal} paramagnet.
+
+Each dipole can point either ``up'' ($+\hat{z}$) or ``down'' ($-\hat{z}$), with energies
+\[
+  \varepsilon_{\uparrow} = -\mu B \quad (\text{``up'', lower energy, aligned with }B), \qquad
+  \varepsilon_{\downarrow} = +\mu B \quad (\text{``down'', higher energy, anti-aligned with }B).
+\]
+Here $\mu$ is the magnitude of the magnetic moment of a single dipole. Let $N_\uparrow$ be the
+number of up-spins and $N_\downarrow = N - N_\uparrow$ the number of down-spins. The total
+energy is
+\[
+  U_{\text{total}} = \mu B(N_\uparrow - N_\downarrow) \cdot(-1) = -\mu B(N_\uparrow - N_\downarrow)
+  = \mu B(N - 2N_\uparrow).
+\]
+
+\begin{definition}
+The \textbf{magnetization} $M$ is the total magnetic moment of the entire system, with
+``up'' contributing $+\mu$ and ``down'' contributing $-\mu$:
+\[
+  M \equiv \mu(N_\uparrow - N_\downarrow) = -\frac{U}{B}.
+\]
+\end{definition}
+
+The multiplicity of the system depends only on $N_\uparrow$ (equivalently, on the energy or
+the magnetization):
+\begin{formula}
+\[
+  \Omega(N_\uparrow) = \binom{N}{N_\uparrow} = \frac{N!}{N_\uparrow!\,N_\downarrow!}.
+\]
+\end{formula}
+
+% ---- Pages 58–65: Unit 1 Introduction — Statistical Description of Nature ----
+
+\chapter{Introduction: Why Statistical Mechanics?}
+
+\section{Motivation and Physical Examples}
+
+The central question of statistical mechanics is: \emph{how does the macroscopic world arise
+from the underlying microscopic one?} There is a vast gap between the level of description
+at which we know the fundamental laws (Newton's equations for each particle, or Schr\"odinger's
+equation for the quantum state) and the level at which we actually observe phenomena. Statistical
+mechanics bridges that gap.
+
+A partial list of systems where this question is non-trivial illustrates the breadth of the
+problem:
+\begin{itemize}
+  \item A piston filled with gas
+  \item Water in a kettle
+  \item Air in the lungs
+  \item A neutron star
+  \item A fermionic superfluid
+  \item A photon gas
+\end{itemize}
+
+\subsection{Efficiency of a Refrigerator}
+
+A refrigerator does work to move heat from a cold reservoir (the food inside) to a hot
+reservoir (the room). For an ideal refrigerator operating between room temperature $T_{\rm room}$
+and food temperature $T_{\rm food}$, the ratio of heat removed to work done is bounded by:
+
+\begin{center}
+[DIAGRAM: Box labelled ``Fridge'' with an arrow labelled ``Do work'' entering and an arrow
+labelled ``Heat out'' exiting to the right. This schematically represents the refrigeration
+cycle: work is consumed to pump heat from cold to hot.]
+\end{center}
+
+\begin{formula}
+\[
+  \frac{\text{Heat removed}}{\text{Work done}} \leq \frac{T_{\rm room}}{T_{\rm room} - T_{\rm food}}
+  \approx 18
+\]
+\end{formula}
+for typical values. No matter how efficient your fridge is engineered to be, this ratio cannot
+exceed the thermodynamic bound.
+
+\subsection{Cooling a Quantum Gas}
+
+\begin{center}
+[DIAGRAM: Two columns showing $^3\mathrm{Li}$ (fermions) and $^6\mathrm{Li}$ (bosons). As the gas
+is cooled (temperature decreasing downward), the energy level occupancy changes: bosons
+condense into the ground state (Bose--Einstein condensation, marked BEC), while fermions stack
+up in a Fermi sea due to the Pauli exclusion principle.]
+\end{center}
+
+Cooling a gas of quantum particles leads to qualitatively different behaviour depending on
+whether the particles are bosons or fermions. Bosons can all occupy the same quantum state and
+form a Bose--Einstein condensate (BEC), while fermions must fill up energy levels one by one
+from the bottom.
+
+\subsection{Superfluidity}
+
+\begin{center}
+[DIAGRAM: A flat plane (representing a superfluid film) confined in a geometry. On the left,
+cooling causes the system to become a superfluid; on the right, the superfluid exhibits
+quantum vortices---topological defects in the phase of the order parameter.]
+\end{center}
+
+A superfluid is a phase of matter in which a quantum fluid flows without viscosity. A remarkable
+feature of rotating superfluids is the appearance of \emph{quantum vortices}: each vortex
+carries exactly one quantum of circulation, $h/m$. This is a macroscopic manifestation of
+quantum mechanics.
+
+\section{Why Do We Need a Statistical Description?}
+
+\subsection{The Complexity Argument}
+
+The fundamental obstacle to a direct microscopic approach is one of scale. Consider air in an
+ordinary room:
+\begin{itemize}
+  \item $V \sim 10^3\,\mathrm{m}^3$
+  \item $P \approx 1\,\mathrm{atm} \approx 10^5\,\mathrm{Pa}$
+  \item $T \approx 300\,\mathrm{K}$
+\end{itemize}
+From the ideal gas law $PV = Nk_BT$,
+\[
+  N \approx 10^{28} \text{ molecules}.
+\]
+To specify the full state of the gas one would need the position and velocity of every molecule:
+$(x, y, z, v_x, v_y, v_z)$ for each, giving $6N \sim 6 \times 10^{28}$ numbers. Storing these
+as single-precision floats at $10^{16}$ bytes per hard drive would require $10^{20}$~TB of
+storage. Even on the fastest current supercomputer (performing $\sim 10^{18}$ floating-point
+operations per second), a single update of the state would take on the order of $10^{10}$
+seconds --- far longer than the age of the universe.
+
+But the deeper obstacle is not merely computational. Even if we could solve Laplace's demon's
+problem and track every particle, many of the most important macroscopic phenomena simply do
+not \emph{appear} in the fundamental microscopic laws:
+\begin{itemize}
+  \item The concepts of \emph{temperature} and \emph{entropy} are nowhere in Newton's equations.
+  \item $F = ma$ says nothing about the arrow of time, phase transitions, or thermal
+        equilibration.
+\end{itemize}
+As Philip Anderson put it: \textbf{More is Different}. As the complexity of a system increases,
+qualitatively new concepts and laws emerge that cannot be reduced to the laws governing the
+constituents:
+\[
+  \text{Quarks/electrons} \;\to\; \text{Atoms/molecules} \;\to\; \text{Materials} \;\to\;
+  \text{Engines.}
+\]
+The basic idea of statistical mechanics is to turn this complexity to our advantage by adopting
+a statistical model. Even if the exact microscopic laws are unknown, we can still make powerful
+predictions by characterising the probability distribution over microstates.
+
+\subsection{Statistical Mechanics vs.\ Thermodynamics}
+
+The two pillars of the subject complement each other:
+
+\begin{center}
+\begin{tabular}{p{0.45\linewidth}|p{0.45\linewidth}}
+  \textbf{Statistical Mechanics} & \textbf{Thermodynamics} \\[4pt]
+  Connects microscopic models to macroscopic observables. & Governs the flow of energy, heat,
+  and work at the macroscopic level. \\[4pt]
+  Inputs: atoms, spins, EM modes, \ldots & Language of emergent properties. \\[4pt]
+  Calculates statistical behaviour. & Temperature $\sim$ average thermal energy; pressure $\sim$
+  average force on wall. \\[4pt]
+  & Thermodynamics does not concern itself with the microscopic model. \\[4pt]
+  & Abstractness is the price of generality.
+\end{tabular}
+\end{center}
+
+\section{Some Tools We Will Need}
+
+The main mathematical and conceptual tools used throughout this course are:
+\begin{itemize}
+  \item \textbf{Quantum mechanics} --- statistical mechanics requires knowing the states of the
+        system. Quantum mechanics provides a discrete, countable set of states (energy levels
+        labelled by quantum numbers), which makes probability theory well-defined.
+  \item \textbf{Probability theory} --- used to calculate averages, fluctuations, and the
+        behaviour of the system in equilibrium.
+  \item \textbf{Partial derivatives} --- used to relate changes in thermodynamic quantities.
+  \item \textbf{Some base concepts} --- introduced below.
+\end{itemize}
+
+\section{Basic Concepts}
+
+\subsection{Thermodynamic System and Environment}
+
+A \textbf{thermodynamic system} consists of many constituents (molecules, spins, photons,
+etc.). The \textbf{environment} (or \textbf{reservoir}) is the rest of the universe. The system
+may exchange energy, volume, or particles with its environment, depending on the constraints
+imposed.
+
+\subsection{Internal Energy}
+
+\begin{definition}
+The \textbf{internal energy} $U$ of a system is the sum of all contributions to the energy of
+the system treated as an isolated whole:
+\[
+  U := \sum_i E_i.
+\]
+\end{definition}
+
+For example, for a box of helium, $U$ includes the kinetic energy of the atoms, the
+electron--nucleus interactions (binding energies), and the nuclear binding energies. For a box
+of oxygen, it additionally includes rotational and vibrational energies of the $\mathrm{O}_2$
+molecules.
+
+Internal energy does \emph{not} include the centre-of-mass kinetic energy of the entire box
+(bulk motion), nor the potential energy of the system in an external field (e.g.\ gravity):
+those are not intrinsic to the internal state of the system.
+
+\subsection{Temperature}
+
+\begin{center}
+[DIAGRAM: Graph of internal energy $U$ vs.\ temperature $T$. The curve is flat at $T = 0$ and
+rises steeply at higher $T$. At $T = 0$, no more energy can be extracted unless a chemical
+reaction occurs (marked ``chemical reaction''). The horizontal axis shows $T = 0$, $T_{\rm ice}$,
+and $T_{\rm water}$ as reference points.]
+\end{center}
+
+Temperature is a surprisingly elusive concept. The boxed statement below captures the
+operational meaning:
+\begin{fact}
+$T = 0$ means that no more energy can be extracted from the system (kinetic energy $= 0$)
+unless a chemical reaction occurs.
+\end{fact}
+
+We use the \textbf{Kelvin scale}: $0^\circ\mathrm{C} = 273.15\,\mathrm{K}$ and a change of
+$1^\circ\mathrm{C}$ equals a change of $1\,\mathrm{K}$.
+
+\subsection{Thermal Energy}
+
+\begin{definition}
+The \textbf{thermal energy} is $U(T) - U(0)$, i.e.\ the internal energy measured relative to
+the ground state. It differs from $U$ only by a (sometimes inconvenient) constant.
+\end{definition}
+
+\subsection{Heat}
+
+\begin{definition}
+\textbf{Heat} $Q$ is the piece of thermal energy transferred between systems at the microscopic
+(molecular) level. Heat flows from hot to cold. Heat is \emph{not} a type of energy stored in
+a system; it is a \emph{mode of energy transfer}, not a property of a system.
+\end{definition}
+
+\subsection{Thermal Equilibrium}
+
+\begin{definition}
+\textbf{Thermal equilibrium}: if an isolated system is left alone, its macroscopic properties
+cease to change over time. Temperatures equalize and there is no further net heat flow.
+\end{definition}
+
+\section{Zeroth Law of Thermodynamics}
+
+\begin{theorem}
+\textbf{Zeroth Law of Thermodynamics.} If system $A$ is in thermal equilibrium with system $B$,
+and system $B$ is in thermal equilibrium with system $C$, then $A$ is in thermal equilibrium
+with $C$.
+\end{theorem}
+
+This law is what makes temperature a well-defined, transitive property: one can always use a
+thermometer (system $B$) to compare the temperatures of two other systems.
+
+\section{State of a System}
+
+The full description of a system differs markedly between classical and quantum mechanics.
+
+\begin{center}
+\begin{tabular}{p{0.45\linewidth}|p{0.45\linewidth}}
+  \textbf{Classical} & \textbf{Quantum} \\[4pt]
+  Each particle $i$ has a position $\vb{r}_i$ and velocity $\vb{v}_i$. The state is the
+  $6N$-dimensional vector $\{\vb{r}_1, \vb{v}_1, \vb{r}_2, \vb{v}_2, \ldots, \vb{r}_N, \vb{v}_N\}$.
+  & Only discrete energies are allowed. States are labelled by quantum numbers, e.g.\
+  $n = 1, 2, 3, \ldots$. A quantum state $\ket{\psi}$ is a list of quantum numbers specifying
+  the occupation of each level.
+\end{tabular}
+\end{center}
+
+\begin{center}
+[DIAGRAM: Classical side: $N$ particles with arrows indicating positions and velocities.
+Quantum side: a ladder of energy levels $n = 1, 2, \ldots, k, \ldots$ with some levels marked
+as occupied (countable).]
+\end{center}
+
+\subsection{Quantum States (Continued)}
+
+A concrete example of a quantum state is a collection of elementary magnets (spins): each may
+be $\uparrow$ ($+1$) or $\downarrow$ ($-1$). A possible state of the system is
+\[
+  \ket{\psi} = \{\tfrac{1}{2}, +1, +1, -1, +1, -1, \ldots\}.
+\]
+This is a list of quantum numbers, one per spin. Both classical and quantum descriptions aim to
+fully specify the \textbf{microstate} of the system. In practice, even specifying the microstate
+of $10^{28}$ molecules is either impossible or useless --- so we must work statistically.
+
+\section{States in Thermodynamics}
+
+\subsection{Reaching Equilibrium}
+
+In practice, we allow the system to ``settle,'' meaning it evolves until it ceases to change
+at the macroscopic level (e.g.\ temperature $T$, pressure $P$, volume $V$, and energy $U$ all
+become time-independent). The system is then said to have reached \textbf{thermodynamic
+equilibrium}. It may not be in any specific microstate; the microstate fluctuates, but the
+macrostate is fixed.
+
+\subsection{Macrostates}
+
+\begin{definition}
+A \textbf{macrostate} is defined by \emph{state variables} --- macroscopic quantities that
+characterise the equilibrium state. Examples include $N$ (number of particles), $V$ (volume),
+$U$ (internal energy), $P$ (pressure), $T$ (temperature), and $S$ (entropy). These are not
+all independent.
+\end{definition}
+
+One can fully characterise a macrostate by a set of \emph{independent} state variables. For
+example, specifying $(U, N, V)$ for an ideal gas determines all other equilibrium properties.
+Some state variables are defined even away from equilibrium (e.g.\ $N$), while others are not.
+
+\subsubsection*{Extensive and Intensive Variables}
+
+State variables are classified by how they scale with system size.
+\begin{itemize}
+  \item \textbf{Extensive} variables scale with $N$ (system size): $N$, $V$, $U$, $S$. If two
+        identical systems are combined, an extensive variable doubles.
+  \item \textbf{Intensive} variables are independent of system size: $T$, $P$. If two identical
+        systems are combined, an intensive variable is unchanged.
+\end{itemize}
+
+For example, combining two identical systems $\boxed{1}$ and $\boxed{2}$:
+\[
+  N = N_1 + N_2 = 2N \;\to\; \text{Extensive}, \qquad
+  V = V_1 + V_2 = 2V \;\to\; \text{Extensive},
+\]
+\[
+  T = T_1 = T_2 \;\to\; \text{Intensive}, \qquad
+  P = P_1 = P_2 \;\to\; \text{Intensive}, \qquad
+  S = S_1 + S_2 \;\to\; \text{Extensive}.
+\]
+
+\subsection{State Functions}
+
+\begin{definition}
+A \textbf{state function} is a quantity whose value depends only on the current macrostate, not
+on the history of how that state was reached. Formally, $f$ is a state function when
+\[
+  \pdv{f}{y}\bigg|_z = \pdv{f}{z}\bigg|_y \quad (\text{the mixed partials commute}).
+\]
+\end{definition}
+
+The macrostate of a thermodynamic system may itself depend on the choice of state variables:
+for example, the phase diagram of a substance (solid, liquid, gas) changes depending on which
+variables $(P, T)$ are used. Phase diagrams and $P$-$T$ diagrams (with regions for solid,
+liquid, gas, and exotic phases like superconductors, antiferromagnets, and strange metals)
+illustrate how richly the macrostate can vary.
+
+\begin{center}
+[DIAGRAM: Left panel: ordinary $P$-$T$ phase diagram showing solid, liquid, and gas regions
+with the triple point and critical point. Right panel: a more exotic phase diagram (e.g.\ for
+a high-temperature superconductor) showing regions labelled AFM (antiferromagnet), strange
+metal, $\mathrm{S.C.}$ (superconductor), and Fermi liquid, with ``doping'' on the horizontal
+axis and temperature on the vertical axis.]
+\end{center}
+
+\section{Microstates and the Information Gap}
+
+\begin{definition}
+A \textbf{microstate} defines the specific microscopic configuration of all the constituents
+of a system.
+\begin{itemize}
+  \item \textbf{Classical}: specified by $6N$ numbers $\{\vb{r}_i, \vb{v}_i\}$.
+  \item \textbf{Quantum}: specified by $\sim e^N$ quantum numbers $\{n_1, n_2, \ldots\}$ (one
+        per accessible level).
+\end{itemize}
+\end{definition}
+
+One can uniquely identify a microstate with a point in \textbf{phase space} (the
+$6N$-dimensional space of positions and momenta). For a single one-dimensional particle, the
+phase space is two-dimensional (position $x$ and momentum $p$). For $N$ particles in $d$
+dimensions, the phase space has dimension $D = 2Nd$.
+
+\begin{fact}
+\textbf{Crucial Information Gap.} There is a vast gap between the macrostate and the
+microstate. Every macrostate is compatible with an enormous number of microstates --- the
+\emph{multiplicity} $\Omega$. Macroscopic properties depend on the macrostate (e.g.\ heat
+capacity, compressibility), not on which particular microstate the system happens to be in.
+\end{fact}
+
+\textbf{Example.} A box of gas with macrostate $(N, V, U)$ is compatible with $\Omega(N, V, U)$
+microstates. The multiplicity is the key quantity linking the microscopic and macroscopic
+descriptions.
+
+\begin{definition}
+The \textbf{micro-canonical ensemble} is the set of all copies (``replicas'') of the
+microstate of a system with fixed macrostate $(N, V, U)$. It is the natural ensemble for an
+isolated system.
+\end{definition}

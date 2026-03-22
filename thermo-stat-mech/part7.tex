@@ -1,0 +1,726 @@
+% Pages 66–80
+
+% ---- Page 66: Micro-canonical Ensemble, Equation of State, Isotropy ----
+
+\section{The Micro-Canonical Ensemble}
+
+\begin{definition}
+The \textbf{micro-canonical ensemble} is the set of all microstates accessible to an isolated
+system at fixed energy, volume, and particle number.
+\end{definition}
+
+\begin{fact}
+\textbf{Key postulate.} The nature of a microstate does \emph{not} depend on the history of the
+system, even if it was prepared by different methods. This is not obvious: Newton's laws are
+time-symmetric, so there is no reason in the microscopic dynamics why the system should be unable
+to infer its own past. Nevertheless, it is a foundational postulate of statistical mechanics that
+the macroscopic relationships between state variables are also independent of history. Examples
+such as $P$, $S$, and so on are defined for the \emph{entire} ensemble, not for any particular
+microstate. For instance, $P(N,V,U)$ is the pressure of the gas averaged over the ensemble.
+\end{fact}
+
+\begin{definition}
+A \textbf{quasi-static} process maintains equilibrium while going from state $A$ to state $B$.
+One can then draw a definite trajectory in the space of state variables. If the process is
+non-quasi-static this is not possible.
+\end{definition}
+
+\subsection{Equation of State for an Ideal Gas}
+
+The internal energy of an ideal gas (a collection of $N$ non-interacting point particles) is
+purely kinetic and hence purely thermal:
+\begin{equation}
+  U_{\text{internal}} = U_{\text{thermal}} = \sum_{i=1}^{N} E_i
+  = \sum_{i} \tfrac{1}{2}m\!\left(v_{xi}^2 + v_{yi}^2 + v_{zi}^2\right).
+\end{equation}
+Define the average of any squared velocity component as
+\begin{equation}
+  \langle v_x^2 \rangle = \frac{1}{N}\sum_{i=1}^{N} v_{xi}^2.
+\end{equation}
+
+\begin{definition}
+The \textbf{isotropic velocity assumption} states that
+\[
+  \langle v_x^2 \rangle = \langle v_y^2 \rangle = \langle v_z^2 \rangle \equiv \langle v^2 \rangle,
+\]
+since there is no reason for the velocities to prefer any one direction. Under this assumption
+$U = \tfrac{3}{2}Nm\langle v^2\rangle$.
+\end{definition}
+
+We do not directly measure $U$ or $v$; instead we introduce the \textbf{temperature} $T$
+operationally through
+\begin{formula}
+\[
+  T \equiv \frac{m\langle v^2\rangle}{k_B}, \qquad k_B = 1.38\times10^{-23}\,\text{J/K}.
+\]
+\end{formula}
+This definition makes $T$ proportional to the mean kinetic energy per degree of freedom, which is
+the content of the equipartition theorem developed in the next lecture.
+
+% ---- Page 67: Problem set — average molecular mass; barometric formula ----
+
+\subsection*{Problems}
+
+\textbf{1.} The average molecular mass of air is estimated from its composition ($78\%$ N$_2$,
+$21\%$ O$_2$, $1\%$ Ar):
+\[
+  \bar{M} \approx 28.02\times0.78 + 32\times0.21 + 39.948\times0.01 \approx 29\,\text{g/mol}.
+\]
+
+\textbf{2.} \textit{Barometric formula.} Consider a thin horizontal slab of atmosphere at height
+$z$, thickness $dz$, and cross-sectional area $A$.
+
+\begin{center}
+[DIAGRAM: Thin atmospheric slab of area $A$ and thickness $dz$ at height $z$; pressure $P(z+dz)$
+acting downward from above and $P(z)$ acting upward from below; weight $mg = \rho V g$ acting
+downward]
+\end{center}
+
+The volume of the slab is $V = A\,dz$. Vertical force balance on the slab gives
+\[
+  P(z)\,A = P(z+dz)\,A + \rho g\,A\,dz,
+\]
+which rearranges to
+\begin{equation}
+  P(z+dz) - P(z) = -\rho g\,dz \qquad\Longrightarrow\qquad \dv{P}{z} = -\rho g.
+\end{equation}
+
+\textbf{b)} Using the ideal gas law $PV = NkT$ and the relation $\rho = mN/V = mP/(k_B T)$,
+\begin{align}
+  \dv{P}{z} &= -\frac{mg}{k_B T}\,P.
+\end{align}
+
+\textbf{c)} This is a separable ODE with solution
+\begin{formula}
+\[
+  P(z) = P(0)\,e^{-mgz/(k_B T)}.
+\]
+\end{formula}
+This is the \textbf{barometric formula}: pressure falls exponentially with altitude, with a
+characteristic scale height $k_B T/(mg)$.
+
+At the bottom of the diagram there is an illustration of an object submerged in fluid. The air
+displaced by the object has mass $\rho_{\text{air}}V$, while the actual mass of the air is
+$\rho_{\text{air}}V$; the buoyant force therefore equals $(\rho_{\text{outside}}\,V + 500)\,g$
+for an object 500 g heavier than the air it displaces.
+
+% ---- Page 68: Hot-air balloon calculation ----
+
+A hot-air balloon provides a nice application. The balloon displaces a volume $V$ of outside air,
+so the buoyant force equals the weight of the displaced air: $\rho_{\text{air}}\,V\,g$. The
+difference between outside and inside air densities must support the payload mass $M_{\text{load}}$:
+\[
+  (\rho_{\text{air}} - \rho_{\text{balloon}})\,V\,g = M_{\text{load}}\,g
+  \qquad\Longrightarrow\qquad
+  \rho_{\text{air}} - \rho_{\text{balloon}} = \frac{M_{\text{load}}}{V}.
+\]
+Using $PV = nRT$ (molar form), the density $\rho = mn/V = mP/(RT)$, so
+\begin{align}
+  \frac{mP}{RT_{\text{air}}} - \frac{mP}{RT_{\text{balloon}}} &= \frac{M_{\text{load}}}{V}, \\[4pt]
+  \frac{1}{T_{\text{air}}} - \frac{1}{T_{\text{balloon}}} &= \frac{M_{\text{load}}}{VmP}\cdot mP
+  = \frac{M_{\text{load}}}{V\,mP}\cdot mP.
+\end{align}
+Solving for $T_{\text{balloon}}$:
+\begin{formula}
+\[
+  T_{\text{balloon}} = \frac{1}{\dfrac{1}{T_0} - \dfrac{M_{\text{load}}}{VmP}},
+\]
+\end{formula}
+where $T_0 = T_{\text{air}}$. The required balloon air mass is
+\[
+  M_{\text{air}} = m\frac{PV}{RT} \approx 1900\,\text{kg}.
+\]
+
+% ---- Page 69: Recap — Ideal Gas in a Box, Temperature, Kinetic Model ----
+
+\section{Ideal Gas Law and Equipartition}
+
+\subsection{Recap: Ideal Gas in a Box}
+
+Consider $N$ point particles confined to a box. The internal energy equals the kinetic energy,
+which equals the thermal energy:
+\[
+  U_{\text{internal}} = \sum_{i=1}^{N} E_i
+  = \tfrac{1}{2}m \sum_{i=1}^{N}\!\left(v_{xi}^2 + v_{yi}^2 + v_{zi}^2\right).
+\]
+Define $\langle v_\alpha^2\rangle = \frac{1}{N}\sum_i v_{\alpha i}^2$. Under the isotropic
+velocity assumption $\langle v_x^2\rangle = \langle v_y^2\rangle = \langle v_z^2\rangle =
+\langle v^2\rangle$, so $U = \tfrac{3}{2}Nm\langle v^2\rangle$.
+
+We do not directly measure $U$ or $v$; instead temperature is introduced operationally:
+\begin{formula}
+\[
+  T = \frac{m\langle v^2\rangle}{k_B}.
+\]
+\end{formula}
+Practically, how does one set a particular temperature? One connects the gas to a large
+\textbf{reservoir} at temperature $T$ via a conducting wire. In equilibrium the temperatures
+equalise. The exact energy of the gas will fluctuate, but its \emph{average} energy is
+determined by $T$.
+
+\begin{center}
+[DIAGRAM: Large reservoir at temperature $T$ connected by a conducting wire to a small box of gas;
+a wavy line labelled $U$ illustrates that $U$ fluctuates about a mean value determined by $T$]
+\end{center}
+
+\begin{formula}
+The average internal energy of an ideal gas is
+\[
+  \langle U\rangle = \tfrac{3}{2}Nk_BT = \tfrac{3}{2}nN_Ak_B = \tfrac{3}{2}nRT
+  \quad\text{(molar gas constant)},
+\]
+where $n$ is the number of moles and $N_A$ is Avogadro's number. The energy is \emph{extensive}
+(proportional to $N$) whereas temperature is \emph{intensive}.
+\end{formula}
+
+\subsection{Kinetic Model of a Gas}
+
+\begin{enumerate}
+\item Assume a box of side length $L$ and volume $V = L^3$.
+\item Collisions with the walls conserve energy (elastic); only the normal component of velocity
+reverses.
+\end{enumerate}
+
+% ---- Page 70: Kinetic model continued; PV = NkT; Isotherms, Isochores, Isobars ----
+
+In a collision with the $x$-wall a particle with velocity $v_{xi}$ bounces back, so the momentum
+change is $\Delta p_{xi} = 2mv_{xi}$. The round-trip time between successive collisions with the
+same wall is $\Delta t = 2L/v_{xi}$, giving a force on the wall from the $i$-th atom of
+\[
+  F_{xi} = \frac{\Delta p_{xi}}{\Delta t} = \frac{2mv_{xi}}{2L/v_{xi}} = \frac{m v_{xi}^2}{L}.
+\]
+Summing over all $N$ atoms:
+\[
+  F_x = \frac{m}{L}\sum_{i=1}^{N} v_{xi}^2 = \frac{mN\langle v_x^2\rangle}{L}
+  = \frac{mN\langle v^2\rangle}{L}.
+\]
+Recalling $m\langle v^2\rangle = k_BT$, the force is $F_x = Nk_BT/L$, and the pressure
+$P = F_x/A = F_x/L^2$ gives
+\begin{formula}
+\[
+  PV = Nk_BT.
+\]
+This is the \textbf{ideal gas law}. Its derivation required two ingredients: conservation of
+momentum at the wall, and the identification of temperature with mean kinetic energy.
+\end{formula}
+
+From $PV = Nk_BT$ one immediately reads off:
+\begin{align}
+  V(P,T) &= \frac{Nk_BT}{P}, \\
+  T(P,V) &= \frac{PV}{Nk_B}.
+\end{align}
+
+\begin{center}
+[DIAGRAM: Three $P$--$V$--$T$ diagrams side by side. \textbf{Isotherms}: $P$--$V$ plot showing
+hyperbolic curves $P \propto 1/V$ labelled by temperature, with $T_1 < T_2$ shown; lower
+temperature gives a lower curve. \textbf{Isochores}: $P$--$T$ plot showing straight lines
+$P \propto T$ through the origin, one line per volume. \textbf{Isobars}: $V$--$T$ plot showing
+straight lines $V \propto T$ through the origin, one line per pressure.]
+\end{center}
+
+Finally, the question arises: how do we include interactions between particles? The ideal gas
+neglects all inter-particle forces. The Van der Waals gas, discussed next, reinstates them
+approximately.
+
+% ---- Page 71: Van der Waals Gas; Equipartition Theorem ----
+
+\section{Van der Waals Gas}
+
+Real gases deviate from the ideal gas law because molecules have a finite size and interact with
+one another. At short range the interaction is strongly repulsive, and at large separations it is
+weakly attractive.
+
+\begin{center}
+[DIAGRAM: Lennard-Jones-type potential energy curve $V(r)$ versus separation $r$: steeply
+repulsive for $r < R$, a potential well near $r = R$, and gradual approach to zero at large $r$
+with the note ``at large distances, atoms are attractive'']
+\end{center}
+
+The Van der Waals model corrects the ideal gas law in two ways.
+
+\textbf{1. Excluded volume.} Each atom excludes other atoms from some volume $b$ around itself.
+If there are $N$ atoms, the effective volume available to each atom is reduced from $V$ to
+$V - Nb$:
+\begin{center}
+[DIAGRAM: Several atoms shown as hard spheres with exclusion halos; the total excluded volume per
+atom is labelled $b$]
+\end{center}
+
+\textbf{2. Attractive interactions.} Atoms are generally attractive at large separations. An atom
+near the edge of the box is pulled back toward the interior by its $N/V$ neighbours. If we double
+the density, each of those $N/V$ neighbours also has twice as many neighbours pulling on it, so
+the total potential energy scales as $(N/V)^2$:
+\[
+  \text{PE} = -a\frac{N}{V}\cdot N = -\frac{aN^2}{V}.
+\]
+This lowers the pressure by
+\[
+  \Delta P = -\pdv{V}\!\left(-\frac{aN^2}{V}\right) = -\frac{aN^2}{V^2}.
+\]
+Substituting both corrections into the ideal gas law ($V \to V - Nb$, $P \to P + aN^2/V^2$):
+
+\begin{formula}
+\textbf{Van der Waals equation of state:}
+\[
+  \left(P + \frac{aN^2}{V^2}\right)(V - Nb) = Nk_BT.
+\]
+\end{formula}
+
+\subsection{Equipartition Theorem}
+
+Recall that $m\langle v^2\rangle = k_BT$ — this is an example of a more general statement. Each
+quadratic degree of freedom (each term $\frac{1}{2}\alpha q^2$ in the Hamiltonian) contributes
+$\frac{1}{2}k_BT$ to the average energy. Formally:
+
+\begin{theorem}
+\textbf{Equipartition Theorem.} In classical thermal equilibrium, each quadratic degree of
+freedom contributes $\frac{1}{2}k_BT$ to the mean energy. Examples include $\frac{1}{2}kx^2$
+(stretching a spring), $\frac{1}{2}mv^2$ (translational kinetic energy), and $\frac{1}{2}I\omega^2$
+(rotational kinetic energy).
+\end{theorem}
+
+% ---- Page 72: Equipartition — counting dof; diatomic molecules; Dulong--Petit ----
+
+\begin{formula}
+For a system with $f$ quadratic degrees of freedom the total average energy is
+\[
+  U = \frac{1}{2}f N k_B T.
+\]
+\end{formula}
+
+Note that vibration contributes \emph{two} degrees of freedom to a diatomic molecule: one for
+the kinetic energy of vibration ($\frac{1}{2}\mu\dot{r}^2$, where $\mu$ is the reduced mass) and
+one for the potential energy of stretching ($\frac{1}{2}k r^2$). Each contributes $\frac{1}{2}k_BT$
+to the energy, giving a combined contribution of $k_BT$ per vibrational mode.
+
+\textbf{Example: diatomic gas.} A gas of diatomic molecules has:
+\begin{itemize}
+  \item 3 translational degrees of freedom,
+  \item 2 rotational degrees of freedom,
+  \item 2 vibrational degrees of freedom (1 kinetic + 1 potential),
+\end{itemize}
+for a total of $f = 7$ classical degrees of freedom.
+
+\textbf{Example: crystal of $N$ atoms.} A crystal can be modelled as $N$ atoms each connected to
+its neighbours by springs. The $N$ atoms have $3N$ normal modes of vibration, each contributing
+2 degrees of freedom (kinetic + potential), giving $6N$ total degrees of freedom. By equipartition:
+\[
+  U = \frac{1}{2}\cdot 6N\cdot k_BT = 3Nk_BT.
+\]
+
+\begin{formula}
+\textbf{Dulong--Petit Law.} For a solid crystal, $U = 3Nk_BT$. This implies a heat capacity
+$C_V = 3Nk_B$ per mole, in good agreement with experiment at room temperature.
+\end{formula}
+
+The Dulong--Petit law breaks down at low temperatures because quantum mechanics freezes out
+the vibrational modes when $k_BT \ll \hbar\omega$ (a regime where the classical equipartition
+theorem no longer applies).
+
+% ---- Page 73: Recitation 4 problems — Helium energy; flux through a wall; exponential decay ----
+
+\subsection*{Recitation Problems}
+
+\textbf{1.} \textit{Internal energy of Helium.} Helium is a noble gas with $3 + 2 + 2 = 7$
+degrees of freedom. Wait — helium is monatomic, so only the 3 translational degrees matter
+(rotational and vibrational modes are absent or frozen at room temperature). Thus
+\[
+  U_{\text{He}} = \tfrac{3}{2}Nk_BT = \tfrac{3}{2}PV
+  = \tfrac{3}{2}(10^5\,\text{N/m}^2)(10^{-3}\,\text{m}^3) = 150\,\text{J},
+\]
+and correspondingly $U_{\text{He}} = \tfrac{3}{2}Nk_BT$.
+
+\textbf{2.} \textit{Momentum flux through a wall.}
+
+\begin{center}
+[DIAGRAM: Box of side $L$ with area $A$ on one face; a single molecule bouncing off the wall
+imparting momentum $2mv_x$]
+\end{center}
+
+Consider a single molecule hitting a wall. It imparts momentum $\overline{\Delta p}_{\text{force}} =
+F\Delta t = PA\,\Delta t$. The number of molecules hitting the wall per unit time must be
+\[
+  \frac{dN}{dt} = \frac{PA\,\Delta t}{2mv_x}.
+\]
+
+Part b): We know $\langle v_x^2\rangle = \langle v_y^2\rangle = \langle v_z^2\rangle = \langle v^2\rangle
+= k_BT/m$, so
+\[
+  -\Delta N = \frac{PA\Delta t}{2mv_x} \propto \frac{PA\Delta t}{2m}\sqrt{\frac{m}{k_BT}}.
+\]
+
+Part c): For an ideal gas, $-\Delta N = \frac{Nk_BT}{V}\cdot\frac{A\Delta t}{m}\cdot
+\sqrt{\frac{m}{k_BT}} = -\frac{A}{V}\sqrt{\frac{k_BT}{m}}\,\Delta t$, giving exponential decay:
+\begin{formula}
+\[
+  N(t) = N_0\,\exp\!\left(-\frac{1}{\tau}t\right),
+\]
+\end{formula}
+where the characteristic time $\tau$ involves the geometry and the thermal speed. Numerically,
+\[
+  \sqrt{\frac{m}{k_BT}} = \sqrt{\frac{0.029\,\text{kg}/N_A}{(1.4\times10^{-23}\,\text{J/K})(300\,\text{K})}}
+  = 3.4\times10^{-3}\,\text{s/m}.
+\]
+
+% ---- Page 74: Problem 3 — heating by half-shakes ----
+
+\textbf{3.} \textit{Heating by half-shakes.} A container is shaken so that each ``half-shake''
+imparts a small impulse to the gas. Each half-shake deposits energy
+\[
+  \tfrac{1}{2}mv_s^2 = mc\Delta T, \qquad \Delta T_{\text{hs}} = \frac{v_s^2}{2c},
+\]
+where $v_s$ is the shake speed and $c$ is the specific heat. With $v_s = 2\,\text{m/s}$ and
+$c = 4200\,\text{J/(kg\,K)}$:
+\[
+  \Delta T_{\text{hs}} = \frac{(2\,\text{m/s})^2}{2\times4200\,\text{J/(kg\,K)}}
+  \approx 5\times10^{-4}\,\text{K per half-shake}.
+\]
+With 2 shakes/s and 2 half-shakes/shake for 600 s, the total temperature rise is
+\[
+  \Delta T = \frac{2\,\text{shakes/s} \times 2\,\text{half-shakes/shake} \times 600\,\text{s}
+  \times \Delta T_{\text{hs}}}{1} \approx 1.2\,\text{K}.
+\]
+
+% ---- Page 75: Lecture 4 — Closed Systems, First Law, Adiabatic Transformations ----
+
+\chapter{Energy, Heat, Work, and the First Law}
+
+\section{Closed Systems}
+
+A \textbf{closed system} may only exchange energy with its surroundings via two channels:
+thermal energy (heat) $Q$ and mechanical energy (work) $W$. We wish to describe changes in
+macrostates, so we work with infinitesimal transformations.
+
+\begin{definition}
+An \textbf{infinitesimal transformation} changes the state variables by infinitesimal amounts.
+In the $P$--$V$ diagram, the system moves from $(P, V)$ to $(P+dP, V+dV)$, the temperature
+changes from $T$ to $T+dT$, and the internal energy changes from $U$ to $U+dU$. The system
+remains at equilibrium throughout (quasi-static condition).
+\end{definition}
+
+\begin{center}
+[DIAGRAM: $P$--$V$ diagram with a point labelled $(P,V,T,U)$ and a nearby point labelled
+$(P+dP, V+dV, T+dT, U+dU)$; an isotherm passes through the first point]
+\end{center}
+
+We define heat and work exchanged:
+\begin{itemize}
+  \item $\delta Q$: small amount of energy transferred \emph{as heat} (not an exact differential;
+  depends on path).
+  \item $\delta W$: small amount of energy transferred \emph{as work} (not an exact differential;
+  depends on path). The notation $\delta$ (rather than $d$) signals that these are not exact
+  differentials — the ``dot'' in $\dot{W}$ serves the same purpose. One cannot define a ``work
+  function'' $W(T,V)$ at a state; one can only speak of work done \emph{along} a process.
+\end{itemize}
+
+\begin{formula}
+\textbf{First Law of Thermodynamics:}
+\[
+  dU = \delta Q + \delta W.
+\]
+The internal energy $U$ is a state function (exact differential), but heat and work individually
+are not.
+\end{formula}
+
+\textbf{Example: ideal gas expansion.} We know how to compute heat (from temperature changes)
+and sometimes work. For a quasi-static process the gas can always exert pressure $P = F/A_{\rm ext}$
+on its boundary. The work done \emph{by} the gas when the piston moves by $dx$ is
+$\delta W_{\text{by}} = P A_{\rm ext}\,dx = P\,dV$, so the work done \emph{on} the gas is
+\[
+  \delta W = -P\,dV.
+\]
+For processes where the gas exerts force on a piston or expands against an external pressure,
+one must provide $P = P_{\rm ext}$ at any instant; requiring this makes the process quasi-static.
+
+\begin{center}
+[DIAGRAM: Left: $P$--$V$ diagram with the work element $\delta W = P\,dV$ shaded. Right: a
+cylinder-piston apparatus with pressure acting on the piston face, labelled so that
+$dW = -P\,dV < 0$ when the piston moves outward ($dV > 0$)]
+\end{center}
+
+\textbf{Example: linear spring.} For a rubber band or spring, $\delta W = F\,dl$ where $l$ is
+the extension and $F$ is the applied tension.
+
+\subsection{Adiabatic Transformation}
+
+\begin{definition}
+A transformation is \textbf{adiabatic} if no heat is exchanged: $\delta Q = 0$. Then
+$dU = \delta W$, and by the first law $dU = -P\,dV$, so
+\[
+  P = -\left.\pdv{U}{V}\right|_{\delta Q = 0}.
+\]
+\end{definition}
+
+State functions such as $P$, $V$, $T$, $U$ are defined in terms of gas state variables and may
+be changed by slow quasi-static processes. One may go from one equilibrium state to another via a
+non-quasi-static method as well (e.g.\ free expansion of a gas, where $U$ stays the same but
+$V \to 2V$ and $\delta W = 0$).
+
+% ---- Page 76: Heat capacities; C_P vs C_V; EoS algebra ----
+
+\section{Heat Capacity at Constant Volume and Constant Pressure}
+
+What happens when we add heat? We expect temperature to rise. The rate depends on what is held
+constant.
+
+\textbf{Constant $V$:} No work can be done ($dV = 0$, $\delta W = 0$), so all the heat goes into
+internal energy: $\delta Q = dU$. The heat capacity at constant volume is
+\begin{formula}
+\[
+  C_V = \left.\pdv{U}{T}\right|_V = \left.\frac{\delta Q}{dT}\right|_V.
+\]
+\end{formula}
+To calculate $U(T,V)$ we need an equation of state.
+
+\textbf{Constant $P$:} The gas can expand, so some of the heat does work on the surroundings.
+Writing $\delta Q = C_P\,dT$ and using $dU = \delta Q - P\,dV$:
+\[
+  \delta Q = dU + P\,dV, \qquad \Rightarrow \qquad C_P = \left.\pdv{U}{T}\right|_P + P\left.\pdv{V}{T}\right|_P.
+\]
+
+\begin{center}
+[DIAGRAM: Left: rigid container (constant $V$) with heat flowing in, labelled $\delta Q = C_V dT$.
+Right: piston-cylinder (constant $P$, free to move) with heat flowing in, labelled
+$\delta Q = C_P dT$; the piston rises indicating work $P\,dV$ is done]
+\end{center}
+
+The two descriptions are related by the equation of state. For instance, if we know $U(T,V)$, we
+can use the EoS to eliminate one variable. Using $V$ as a state function of $(T,P)$:
+\[
+  dV = \left.\pdv{V}{T}\right|_P dT + \left.\pdv{V}{P}\right|_T dP.
+\]
+Substituting into $dU$:
+\[
+  dU = \left.\pdv{U}{T}\right|_V dT + \left.\pdv{U}{V}\right|_T dV
+  = \left[\left.\pdv{U}{T}\right|_V + \left.\pdv{U}{V}\right|_T \left.\pdv{V}{T}\right|_P\right]dT
+    + \left.\pdv{U}{V}\right|_T \left.\pdv{V}{P}\right|_T dP.
+\]
+Therefore
+\[
+  \left.\pdv{U}{T}\right|_P = C_V + \left.\pdv{U}{V}\right|_T \left.\pdv{V}{T}\right|_P,
+\]
+and since $C_P = \left.\pdv{U}{T}\right|_P + P\left.\pdv{V}{T}\right|_P$:
+
+\begin{formula}
+\[
+  C_P = C_V + \left(P + \left.\pdv{U}{V}\right|_T\right)\left.\pdv{V}{T}\right|_P.
+\]
+\end{formula}
+This is the general thermodynamic relation connecting $C_P$ and $C_V$.
+
+% ---- Page 77: Processes; Process diagrams; Isothermal compression cycles ----
+
+\section{Processes}
+
+For any finite (not just infinitesimal) quasi-static transformation, the system moves along a
+path in state space: $U_i \to U_f$, $P_i \to P_f$, $V_i \to V_f$. The path is called a
+\textbf{process}.
+
+\begin{itemize}
+  \item If the process is quasi-static, one can track it on phase diagrams and label it uniquely.
+  \item If it is non-quasi-static, only the initial and final states are well defined.
+\end{itemize}
+
+To calculate total heat $\Delta Q$ and work $\Delta W$ along a process, one must integrate
+$\delta Q$ and $\delta W$ along the path:
+\[
+  \Delta W = \int_i^f \delta W, \qquad \Delta Q = \int_i^f \delta Q.
+\]
+However, the change in the \emph{state function} $U$ can be computed simply as the endpoint
+difference:
+\[
+  \Delta U = \int_i^f dU = U(b) - U(a),
+\]
+regardless of the path.
+
+\begin{center}
+[DIAGRAM: $P$--$V$ diagram with two paths between points $A$ (low $V$, high $P$) and $B$ (high
+$V$, low $P$): one quasi-static path (smooth curve, labelled ``quasi-static'') and one non-quasi-static
+path (jagged line, labelled ``non-quasi-static''); the shaded area under the smooth path represents work]
+\end{center}
+
+\subsection{Isothermal Compression and Expansion Cycles}
+
+Consider a gas undergoing a cyclic process. An \textbf{isothermal} process occurs at constant $T$.
+
+\begin{center}
+[DIAGRAM: $P$--$V$ diagram showing two isotherms $T_1 > T_2$; gas compressed along the upper
+isotherm, expanded along the lower; the enclosed area between the two curves represents the net
+work per cycle]
+\end{center}
+
+On the $P$--$V$ diagram, isotherms are hyperbolas $P = Nk_BT/V$. Compression along a higher
+isotherm requires more work than expansion along a lower isotherm, so the area between the
+isotherms (the ``distance between bottoms'') is non-zero and represents net work input.
+
+For an isothermal process with an ideal gas, $\Delta U = 0$ (since $U = \tfrac{3}{2}Nk_BT$ and
+$T$ is constant), so $\delta Q = -\delta W = P\,dV$. Now assume an ideal gas with
+$U_i = \tfrac{3}{2}Nk_BT$ and $PV = Nk_BT$:
+\[
+  dU = \tfrac{3}{2}Nk_B\,dT, \qquad dU = \delta Q - P\,dV.
+\]
+Combined:
+\[
+  \tfrac{3}{2}Nk_B\,dT = \delta Q - P\,dV.
+\]
+Using $P = Nk_BT/V$:
+\[
+  \tfrac{3}{2}(P\,dV + V\,dP) = \delta Q - P\,dV,
+\]
+so
+\[
+  \tfrac{5}{2}P\,dV + \tfrac{3}{2}V\,dP = \delta Q.
+\]
+
+% ---- Page 78: Adiabatic Work; PV^gamma = const; Isochoric Change ----
+
+This gives $\frac{5}{2}(P\,dV) + \frac{3}{2}V\,dP = \delta Q$. Setting $\delta Q = 0$ for an
+adiabatic process:
+\[
+  \frac{5}{2}P\,dV + \frac{3}{2}V\,dP = 0
+  \qquad\Longrightarrow\qquad
+  \left(\frac{3}{2}+1\right)P\,dV + \frac{3}{2}V\,dP = 0.
+\]
+Dividing by $\frac{3}{2}PV$:
+\[
+  \frac{5/2}{3/2}\,\frac{dV}{V} + \frac{dP}{P} = 0
+  \qquad\Longrightarrow\qquad \frac{5}{3}\frac{dV}{V} + \frac{dP}{P} = 0.
+\]
+Integrating gives $\frac{5}{3}\ln V + \ln P = \text{const}$, or equivalently
+
+\begin{formula}
+\[
+  PV^\gamma = \text{const}, \qquad \gamma = \frac{C_P}{C_V} = \frac{5/3 \cdot Nk_B}{Nk_B} = \frac{5}{3}
+  \quad\text{(monatomic ideal gas)}.
+\]
+\end{formula}
+
+\subsection{Adiabatic Work}
+
+The work done in an adiabatic process can be computed using $PV^\gamma = P_A V_A^\gamma =
+\text{const}$:
+\begin{align}
+  \Delta W &= -\int_{V_A}^{V_B} P\,dV = -P_A V_A^\gamma \int_{V_A}^{V_B} V^{-\gamma}\,dV \notag\\
+  &= -P_A V_A^\gamma \cdot \frac{1}{1-\gamma}\left[V^{1-\gamma}\right]_{V_A}^{V_B} \notag\\
+  &= \frac{P_A V_A^\gamma}{\gamma - 1}\left[V_B^{1-\gamma} - V_A^{1-\gamma}\right] \notag\\
+  &= \frac{P_A V_A}{\gamma - 1}\left[\left(\frac{V_B}{V_A}\right)^{1-\gamma} - 1\right].
+\end{align}
+
+\begin{formula}
+\[
+  W_{\text{adiabat}} = \frac{Nk_BT_A}{\gamma - 1}\left[\left(\frac{V_B}{V_A}\right)^{1-\gamma} - 1\right].
+\]
+$W_{\text{adiabat}} < 0$ if $V_B < V_A$ (compression: work done on the gas), and
+$W_{\text{adiabat}} > 0$ if $V_B > V_A$ (expansion: gas does positive work).
+\end{formula}
+
+Comparing adiabatic and isothermal processes: because temperature falls during adiabatic
+compression, the adiabat is steeper than the isotherm in the $P$--$V$ diagram; more work is
+required for the same volume change along an adiabat.
+
+\begin{center}
+[DIAGRAM: $P$--$V$ diagram with an adiabat (steeper curve, labelled $PV^\gamma = \text{const}$)
+and an isotherm (less steep hyperbola, labelled $PV = \text{const}$) both passing through the
+same initial point $V_i$; the area under the adiabat to $V_f$ is larger, illustrating greater
+adiabatic work]
+\end{center}
+
+\subsection{Isochoric Change: Constant Volume}
+
+For a process at constant volume $dV = 0$, so $\delta W = 0$, and the first law gives
+$dU = \delta Q$. The gas exchanges heat but does no work; all the energy goes into changing its
+internal energy.
+
+\begin{center}
+[DIAGRAM: $T$--$Q$ diagram for an isochoric process: a straight line from $T_A$ to $T_B > T_A$
+as heat $Q$ is added; labelled ``isochoric heating'']
+\end{center}
+
+Since $dU = \delta Q$ and $\left.\pdv{Q}{T}\right|_V = C_V$:
+\[
+  \left.\pdv{U}{T}\right|_V = C_V.
+\]
+
+% ---- Page 79: Isochoric continued; Isobaric; Enthalpy; Mayer's relation ----
+
+For an isochoric process, $dU_V = \delta Q$, so
+\begin{formula}
+\[
+  \Delta U = \int C_V(T, V)\,dT.
+\]
+\end{formula}
+For an ideal gas, $\Delta U = \tfrac{3}{2}Nk_B\,dT$, so $C_V = \tfrac{3}{2}Nk_B$ and
+$\Delta U = \tfrac{3}{2}Nk_B(T_B - T_A)$.
+
+\subsection{Isobaric Process: Constant Pressure}
+
+\begin{center}
+[DIAGRAM: $P$--$V$ diagram with a horizontal line at constant $P$ between volumes $V_A$ and
+$V_B > V_A$; the shaded rectangle below the line represents work $P(V_B - V_A)$ done by the gas]
+\end{center}
+
+At constant pressure both heat and work are exchanged:
+\[
+  \delta W = C_P\,dT - P\,dV, \qquad \Delta W = -P(V_B - V_A), \qquad \Delta Q = \int C_P(T,V)\,dT.
+\]
+Thus $\Delta U = \int C_P\,dT - P(V_B - V_A)$.
+
+\subsection{Enthalpy}
+
+Is there a new state function that plays the role of $U$ for constant-pressure processes, just as
+$U$ does for constant-volume processes? Yes: it is the enthalpy.
+
+\begin{definition}
+The \textbf{enthalpy} is
+\[
+  H \equiv U + PV.
+\]
+\end{definition}
+
+Its differential is $dH = dU + P\,dV + V\,dP$. Using the first law $dU = \delta Q - P\,dV$:
+\[
+  dH = \delta Q + V\,dP.
+\]
+At constant pressure ($dP = 0$), $dH = \delta Q$. Therefore the heat added at constant pressure
+equals the change in enthalpy, just as heat added at constant volume equals the change in
+internal energy.
+
+We showed earlier that $C_P = C_V + \left(P + \left.\pdv{U}{V}\right|_T\right)\left.\pdv{V}{T}\right|_P$.
+For an ideal gas, $\left.\pdv{U}{V}\right|_T = 0$ (internal energy depends only on $T$) and
+$\left.\pdv{V}{T}\right|_P = Nk_B/P$, so
+\begin{formula}
+\[
+  C_P = C_V + Nk_B \qquad\text{(Mayer's relation, ideal gas)}.
+\]
+\end{formula}
+Since $C_V = \tfrac{f}{2}Nk_B$, this gives $C_P = \left(1 + \tfrac{f}{2}\right)Nk_B$. For a
+monatomic ideal gas ($f = 3$): $C_V = \tfrac{3}{2}Nk_B$, $C_P = \tfrac{5}{2}Nk_B$.
+
+% ---- Page 80: Summary — heat at const V, const P; C_P vs C_V ----
+
+\section{Summary: Heat Capacities}
+
+\begin{itemize}
+  \item When heat is added at \emph{constant volume}, $\delta Q = dU$ and
+  $\left.\pdv{Q}{T}\right|_V = C_V$.
+  \item When heat is added at \emph{constant pressure}, $\delta Q = dH$ and
+  $\left.\pdv{Q}{T}\right|_P = C_P$.
+  \item The response to a given temperature change satisfies
+  $\left.\pdv{Q}{T}\right|_V = \left.\pdv{U}{T}\right|_V = C_V$ and
+  $\left.\pdv{Q}{T}\right|_P = \left.\pdv{H}{T}\right|_P = C_P$.
+\end{itemize}
+
+\subsection*{Why is $C_P > C_V$?}
+
+\begin{center}
+[DIAGRAM: Two side-by-side panels. Left panel (isochoric heating): rigid container with a flame
+underneath; all heat goes into raising $U$: $\delta Q = dU$. Right panel (isobaric heating):
+piston-cylinder with constant weight on piston and flame underneath; heat goes into raising $U$
+\emph{and} doing work $P\,dV$: $\delta Q = dU + P\,dV$, so more heat is needed for the same
+$\Delta T$.]
+\end{center}
+
+At constant pressure the gas is free to expand. Some of the added heat therefore goes into doing
+$P\,dV$ work on the surroundings rather than raising the temperature. Consequently, more heat is
+required to achieve the same temperature rise at constant pressure than at constant volume, which
+is why $C_P > C_V$.

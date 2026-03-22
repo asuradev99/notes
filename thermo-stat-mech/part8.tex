@@ -1,0 +1,432 @@
+\section{Recitation 5: Worked Problems on Thermodynamic Processes}
+
+\subsection{Problem 1: Linear Process in the $PV$-Plane}
+
+Consider a process in which the pressure varies linearly with volume according to $P(V) = V$ (in appropriate units), with the gas going from the state $(V_i, P_i) = (1, 1)$ to $(V_f, P_f) = (3, 3)$.
+
+\begin{center}[DIAGRAM: $PV$-diagram with a straight line from $(1,1)$ to $(3,3)$, axes labeled $V$ and $P$]\end{center}
+
+\textbf{(b) Work done on the gas.}
+The work done \emph{on} the gas is $W = -\int P(V)\,dV$ (with the sign convention that positive $W$ means work done on the gas). With $P(V) = V$,
+\begin{align}
+    W &= -\int_1^3 V\,dV = -\left.\frac{V^2}{2}\right|_1^3 = -\frac{9}{2} + \frac{1}{2} = -4\ \text{atm}\cdot\text{litres}.
+\end{align}
+Converting to SI units: $-4\ \text{atm}\cdot\text{L} = -4 \times (2\times 10^{-3}\ \text{m}^3) \times (1.01325\times 10^5\ \text{Pa}) \approx -4\times 10^2\ \text{J}$. (The notes give $W \approx -4\times 10^2\ \text{J}$.)
+
+\textbf{(c) Change in internal energy.}
+By the equipartition theorem, $U = \tfrac{1}{2}f N k T$, so
+\begin{equation}
+    \Delta U = \tfrac{1}{2}f\,NR\,\Delta T = \tfrac{3}{2}\,\Delta(PV).
+\end{equation}
+Using the ideal gas law, $\Delta(PV) = P_f V_f - P_i V_i = 3\cdot 3 - 1\cdot 1 = 8\ \text{atm}\cdot\text{L}$. In SI,
+\begin{align}
+    \Delta U &= \frac{3}{2}(P_f V_f - P_i V_i) = \frac{3}{2}\bigl(3\times 10^5 \times 3\times 10^{-3} - 1\times 10^5 \times 1\times 10^{-3}\bigr) \notag \\
+             &= \frac{3}{2}\times 8\times 10^2 = 12\times 10^2 = 1200\ \text{J}.
+\end{align}
+
+\textbf{(d) Heat added to the gas.}
+By the first law, $Q = \Delta U - W$. Since the work done \emph{on} the gas is $W \approx -400\ \text{J}$, the work done \emph{by} the gas is $+400\ \text{J}$. Therefore
+\begin{equation}
+    Q = \Delta U - W_{\text{on}} = 1200\ \text{J} - (-400\ \text{J}) = 1600\ \text{J}.
+\end{equation}
+
+\subsection{Problem 2: Rectangular Cycle with $f = 5$}
+
+For a diatomic gas (translational and rotational degrees of freedom only at room temperature), $f = 3 + 2 = 5$. A rectangular cycle in the $PV$-plane has four segments traversed in order, with states characterised by pressures $P_1 < P_2$ and volumes $V_1 < V_2$.
+
+\textbf{Segment 1 $\to$ 2 (isochoric, volume $V_1$):}
+No volume change, so $W_1 = 0$. The internal energy changes as
+$\Delta U_1 = \tfrac{f}{2}\Delta(PV) = \tfrac{f}{2}(P_2 - P_1)V_1$,
+and by the first law $Q_1 = \Delta U_1 = \tfrac{f}{2}(P_2 - P_1)V_1$.
+
+\textbf{Segment 2 $\to$ 3 (isobaric, pressure $P_2$):}
+The gas expands from $V_1$ to $V_2$ against constant pressure $P_2$, so $W_2 = P_2(V_1 - V_2) < 0$ (work done on the gas; the gas does positive work on the surroundings). The change in internal energy is $\Delta U_2 = \tfrac{f}{2}P_2(V_2 - V_1)$. Since $\Delta U_2 = Q_2 + W_2$ (with the convention that $W$ is work done on the gas),
+\begin{equation}
+    Q_2 = \Delta U_2 - W_2 = \tfrac{f}{2}P_2(V_2 - V_1) + P_2(V_2 - V_1) = \tfrac{f+2}{2}P_2(V_2 - V_1).
+\end{equation}
+This can also be written as $Q_2 = \tfrac{f}{2}P_2(V_2 - V_1) + P_2(V_2 - V_1)$. Heat is added during this expansion (heat in, work out).
+
+\textbf{Segment 3 $\to$ 4 (isochoric, volume $V_2$):}
+Again $W_3 = 0$, and $\Delta U_3 = \tfrac{f}{2}\Delta(PV) = \tfrac{f}{2}(P_1 - P_2)V_2$. Therefore $Q_3 = \tfrac{f}{2}(P_1 - P_2)V_2 < 0$: heat is removed.
+
+\textbf{Segment 4 $\to$ 1 (isobaric, pressure $P_1$):}
+The gas is compressed at constant pressure $P_1$, so $W_4 = P_1(V_2 - V_1) > 0$ (work done on the gas). The internal energy change is $\Delta U_4 = \tfrac{f}{2}P_1(V_1 - V_2) < 0$, giving $Q_4 = \Delta U_4 - W_4 = \tfrac{f+2}{2}P_1(V_1 - V_2) < 0$: heat is removed.
+
+\subsection{Problem 3: Ideal Gas Relations Using Total Differentials}
+
+\textbf{(a) Adiabatic constraint from $dU = dW$.}
+For an adiabatic process there is no heat exchange, so the first law reduces to $dU = -P\,dV$. From equipartition, $dU = \tfrac{1}{2}fNR\,dT = \tfrac{f}{2}d(PV)$. Expanding the total differential of $V = NkT/P$:
+\begin{equation}
+    dV = \left.\pdv{V}{T}\right|_P dT + \left.\pdv{V}{P}\right|_T dP = \frac{Nk}{P}\,dT - \frac{NkT}{P^2}\,dP.
+\end{equation}
+Substituting into $dU = -P\,dV$:
+\begin{equation}
+    \frac{f}{2}\,dU = \frac{f}{2}\bigl(P\,dV + V\,dP\bigr) = -P\,dV,
+\end{equation}
+which, after inserting $dV$, gives
+\begin{equation}
+    \frac{f}{2}\,dT = -dT + \frac{T}{P}\,dP \quad\Longrightarrow\quad \left(\frac{f+2}{2}\right)dT = \frac{T}{P}\,dP.
+\end{equation}
+This is a separable ODE whose solution is the adiabatic relation $T \propto P^{2/(f+2)}$, or equivalently $PV^\gamma = \text{const}$ with $\gamma = (f+2)/f$.
+
+\textbf{(b) Barometric formula.}
+In hydrostatic equilibrium, the pressure gradient is determined by the weight of the gas column:
+\begin{equation}
+    \dv{P}{z} = -\frac{mg}{kT}\,P,
+\end{equation}
+where $m$ is the molecular mass and $g$ is gravitational acceleration. This first-order ODE has the exponential (barometric) solution
+\begin{equation}
+    P(z) = P(0)\,\exp\!\left(-\frac{mgz}{kT}\right).
+\end{equation}
+
+\section{Recitation 6 (Placeholder)}
+
+\begin{center}[DIAGRAM: blank page header for Recitation 6, Wednesday February 19, 2025]\end{center}
+
+\chapter{Thermodynamic Cycles and Heat Engines}
+
+\section{Cycles in State Space}
+
+\subsection{General Properties of Cycles}
+
+Processes may be combined to form \emph{cycles}: closed loops in the state space of a system. Because any state function (such as internal energy $U$, entropy $S$, or temperature $T$) depends only on the current state and not on the history, the change in \emph{any} state function over a complete cycle must be exactly zero:
+\begin{formula}
+\begin{equation}
+    \oint dU = 0, \qquad \oint dS = 0, \qquad \text{etc.}
+\end{equation}
+\end{formula}
+This is a direct consequence of these quantities being well-defined functions of state. In contrast, heat and work are \emph{not} state functions — their differentials $\dbar Q$ and $\dbar W$ are inexact — and the net heat added or the net work done over a cycle may be non-zero. Indeed, generating a non-zero net work output while exchanging heat with reservoirs is precisely the purpose of a heat engine.
+
+\subsection{The Carnot Cycle}
+
+The Carnot cycle is the canonical example of a reversible heat engine. It consists of four quasi-static steps, depicted schematically on a $PV$-diagram:
+
+\begin{center}[DIAGRAM: $PV$-diagram of the Carnot cycle with four labeled segments: (1$\to$2) isothermal expansion at high $T$, (2$\to$3) adiabatic expansion, (3$\to$4) isothermal compression at low $T$, (4$\to$1) adiabatic compression; the enclosed area is shaded and labeled $\Delta W$]\end{center}
+
+The four segments are:
+\begin{itemize}
+    \item \textbf{1 $\to$ 2 (isothermal expansion):} The gas is in contact with a high-temperature reservoir and expands isothermally. Work is done by the gas ($\Delta W < 0$ in the ``work done on gas'' convention) and heat flows in ($\Delta Q > 0$).
+    \item \textbf{2 $\to$ 3 (adiabatic expansion):} The gas expands adiabatically and cools. No heat exchange ($\Delta Q = 0$) and the gas does work ($\Delta W < 0$).
+    \item \textbf{3 $\to$ 4 (isothermal compression):} The gas is in contact with a cold reservoir and is compressed isothermally. Work is done on the gas ($\Delta W > 0$) and heat is expelled to the cold reservoir ($\Delta Q < 0$).
+    \item \textbf{4 $\to$ 1 (adiabatic compression):} The gas is compressed adiabatically and warms back to its initial temperature. No heat exchange ($\Delta Q = 0$).
+\end{itemize}
+
+The \emph{total work done} by the engine over the cycle equals the enclosed area on the $PV$-diagram.
+
+\subsection{Efficiency of a Heat Engine}
+
+The essential feature of any heat engine is that heat $Q_H$ is absorbed from a high-temperature reservoir and heat $Q_C$ is rejected to a low-temperature reservoir, with the difference emerging as net work $\Delta W = Q_H - Q_C$. (The cycle requires that heat be added at high temperature and removed at low temperature — it is not possible to convert heat entirely into work without rejecting some waste heat.) We would like to maximise the ratio of useful work output to heat input, which defines the \emph{thermal efficiency}:
+\begin{definition}[Thermal efficiency]
+\begin{equation}
+    \eta = \frac{\Delta W}{Q_{\text{in}}} = \frac{Q_H - Q_C}{Q_H} = 1 - \frac{Q_C}{Q_H}.
+\end{equation}
+\end{definition}
+
+\section{Recitation 7: Further Ideal Gas Problems}
+
+\subsection{Problem 1: Thermodynamic Response Functions}
+
+\textbf{(a) Volume expansion from a total differential.}
+The volume $V(T, P)$ of an ideal gas satisfies $V = NkT/P$. Its total differential is
+\begin{equation}
+    dV = \left.\pdv{V}{T}\right|_P dT + \left.\pdv{V}{P}\right|_T dP = V\beta\,dT - V\kappa_T\,dP,
+\end{equation}
+where we identify the \emph{thermal expansion coefficient} $\beta$ and the \emph{isothermal compressibility} $\kappa_T$. For an adiabatic process, $dU = -P\,dV$ and $dU = \tfrac{1}{2}fNR\,dT$, giving $dV = V\beta\,dT$.
+
+\textbf{(b) Adiabatic relation $dV = -V\kappa_T\,dP$.}
+Under an adiabatic constraint, $dQ = 0$ implies $dU = -P\,dV = \tfrac{f}{2}(P\,dV + V\,dP)$. This gives the same adiabatic relation derived in Problem 3 of Recitation 5.
+
+\textbf{(c) Computing $\beta$ and $\kappa_T$ for an ideal gas.}
+From $V\kappa_T\,dP = V\beta\,dT$ and $PV = NkT$, comparing the adiabatic constraint $V\kappa_T\,dP = V\beta\,dT$ with $V\beta\,dP$:
+\begin{equation}
+    \left.\pdv{P}{T}\right|_V = \frac{\beta}{\kappa_T}.
+\end{equation}
+For an ideal gas, $\beta = \tfrac{1}{V}\left.\pdv{V}{T}\right|_P = \tfrac{1}{V}\cdot\tfrac{Nk}{P} = \tfrac{1}{T}$, and
+\begin{equation}
+    \kappa_T = -\tfrac{1}{V}\left.\pdv{V}{P}\right|_T = -\tfrac{1}{V}\cdot\tfrac{-NkT}{P^2} = \tfrac{NkT}{PV\cdot P} = \tfrac{1}{P}.
+\end{equation}
+Thus for an ideal gas $\beta = 1/T$ and $\kappa_T = 1/P$, confirming $(\partial P/\partial T)_V = \beta/\kappa_T = P/T = Nk/V$.
+
+\textbf{(d) Computing $(\partial U/\partial T)_V$.}
+\begin{equation}
+    \left.\pdv{U}{T}\right|_V = \pdv{}{T}\!\left(\tfrac{f}{2}NkT\right) = \tfrac{f}{2}Nk = \frac{NkT}{V}\cdot\frac{f}{2T}\cdot V = C_V.
+\end{equation}
+
+\textbf{(e) Numerical pressure change for an adiabatic process.}
+The pressure change for a small temperature change $dT$ at constant volume is
+\begin{equation}
+    dP = \left.\pdv{P}{T}\right|_V dT = \frac{Nk}{V}\,dT \approx \frac{\beta}{\kappa_T}\,dT.
+\end{equation}
+Substituting numbers ($dT = 10\ \text{K}$, $\beta/\kappa_T \approx 2.5\times 10^{-7}\ \text{Pa}\cdot\text{K}^{-1}$ from the notes, using $Nk/V \approx 4.5\times 10^{-3}\ \text{m}^{-3}$ in appropriate units):
+\begin{equation}
+    dP \approx 5.6\times 10^6\ \text{Pa} = 56\ \text{atm}.
+\end{equation}
+
+\subsection{Problem 2: The Gamma Function (Schroedr B.7)}
+
+This problem establishes the formula $\Gamma(n+1) = n!$ for non-negative integers $n$, using integration by parts and weak induction, and then evaluates $\Gamma(1/2)$ via differentiation under the integral sign.
+
+\subsubsection{Base Case: $\Gamma(1) = 0! = 1$}
+
+The gamma function is defined by the integral
+\begin{equation}
+    \Gamma(n) = \int_0^\infty x^{n-1} e^{-x}\,dx.
+\end{equation}
+For $n = 1$, setting $u = 1$ and $dv = e^{-x}\,dx$:
+\begin{align}
+    \Gamma(1) = \int_0^\infty e^{-x}\,dx &= \left[-e^{-x}\right]_0^\infty + \int_0^\infty e^{-x}\,dx \notag \\
+    &= \bigl(0 - (-1)\bigr) = 1 = 0!. \quad\checkmark
+\end{align}
+
+\subsubsection{Inductive Step}
+
+Assume that $\int_0^\infty x^k e^{-x}\,dx = \Gamma(k+1)$ holds for $0 \le k \le n$. We wish to show that $\int_0^\infty x^{n+1}e^{-x}\,dx = (n+1)\Gamma(n+1)$. Integrating by parts with $u = x^{n+1}$ and $dv = e^{-x}\,dx$:
+\begin{align}
+    \int_0^\infty x^{n+1}e^{-x}\,dx &= \left[-x^{n+1}e^{-x}\right]_0^\infty + \int_0^\infty (n+1)e^{-x}\cdot x^n\,dx \notag \\
+    &= 0 + (n+1)\int_0^\infty e^{-x}x^n\,dx = (n+1)\,\Gamma(n+1).
+\end{align}
+(The boundary term vanishes because the exponential decays faster than any polynomial.) By weak induction this holds for all $n \ge 0$, giving:
+\begin{formula}
+\begin{equation}
+    \int_0^\infty x^n e^{-x}\,dx = n!
+\end{equation}
+\end{formula}
+
+\subsubsection{Differentiation Under the Integral Sign}
+
+A powerful technique for evaluating parameter-dependent integrals is \emph{differentiating under the integral sign} (Leibniz's rule). Consider
+\begin{equation}
+    F(t) = \int_0^\infty e^{-tx}\,dx = \left[-\tfrac{1}{t}e^{-tx}\right]_0^\infty = \frac{1}{t}.
+\end{equation}
+Differentiating both sides with respect to $t$:
+\begin{equation}
+    F'(t) = \dv{}{t}\int_0^\infty e^{-tx}\,dx = \int_0^\infty (-x)e^{-tx}\,dx = -\frac{1}{t^2}.
+\end{equation}
+Differentiating again:
+\begin{equation}
+    F''(t) = \int_0^\infty x^2 e^{-tx}\,dx = \frac{2}{t^3}.
+\end{equation}
+In general, repeated differentiation gives
+\begin{formula}
+\begin{equation}
+    \int_0^\infty x^n e^{-tx}\,dx = \frac{n!}{t^{n+1}}, \qquad t > 1,
+\end{equation}
+\end{formula}
+which agrees with the result above when $t = 1$.
+
+\subsubsection{Evaluating $\Gamma(1/2) = \sqrt{\pi}$}
+
+We compute $\Gamma(1/2) = \int_0^\infty x^{-1/2}e^{-x}\,dx$. Substituting $u = \sqrt{x}$, so $x = u^2$ and $dx = 2u\,du$:
+\begin{equation}
+    \Gamma\!\left(\tfrac{1}{2}\right) = \int_0^\infty (u^2)^{-1/2} e^{-u^2}\cdot 2u\,du = 2\int_0^\infty e^{-u^2}\,du.
+\end{equation}
+Let $I = \int_0^\infty e^{-x^2}\,dx$, so that $\Gamma(1/2) = 2I$. To evaluate $I$, introduce the auxiliary function
+\begin{equation}
+    f(t) = \int_0^\infty \frac{e^{-t^2(1+x^2)}}{1+x^2}\,dx.
+\end{equation}
+Differentiating under the integral sign with respect to $t$:
+\begin{align}
+    f'(t) &= \int_0^\infty \frac{-2t(1+x^2)\,e^{-t^2(1+x^2)}}{1+x^2}\,dx = -2t\int_0^\infty e^{-t^2(1+x^2)}\,dx \notag \\
+          &= -2t\,e^{-t^2}\int_0^\infty e^{-t^2 x^2}\,dx.
+\end{align}
+Substituting $y = tx$ so that $dy = t\,dx$:
+\begin{equation}
+    f'(t) = -2t\,e^{-t^2}\cdot\frac{1}{t}\int_0^\infty e^{-y^2}\,dy = -2e^{-t^2}\,I.
+\end{equation}
+Integrating both sides over $t$ from $0$ to $\infty$:
+\begin{equation}
+    \int_0^\infty f'(t)\,dt = -2I\int_0^\infty e^{-t^2}\,dt = -2I^2.
+\end{equation}
+By the fundamental theorem of calculus, the left side is $f(\infty) - f(0)$. Evaluating the limits: $f(\infty) = 0$ (the exponential $e^{-t^2(1+x^2)}\to 0$ for all $x \ge 0$), and
+\begin{equation}
+    f(0) = \int_0^\infty \frac{1}{1+x^2}\,dx = \left[\arctan x\right]_0^\infty = \frac{\pi}{4}.
+\end{equation}
+A substitution $u = \tan y$ (i.e.\ $x = \tan y$, $dx = \sec^2 y\,dy$) also gives $I^2 = \int_0^{\pi/2} \frac{\sec^2 y}{1+\tan^2 y}\,dy = \tfrac{1}{2}\int dy = \tfrac{\pi}{4}$. Therefore $-2I^2 = -\pi/2$, giving $I^2 = \pi/4$ and:
+\begin{formula}
+\begin{equation}
+    I = \int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}, \qquad \Gamma\!\left(\tfrac{1}{2}\right) = \sqrt{\pi}.
+\end{equation}
+\end{formula}
+
+Using the recurrence $\Gamma(n+1) = n\,\Gamma(n)$:
+\begin{align}
+    \Gamma\!\left(\tfrac{3}{2}\right) &= \tfrac{1}{2}\,\Gamma\!\left(\tfrac{1}{2}\right) = \tfrac{1}{2}\sqrt{\pi}, \\
+    \Gamma\!\left(-\tfrac{1}{2}\right) &= \frac{\Gamma(1/2)}{-1/2} = -2\sqrt{\pi}.
+\end{align}
+
+\chapter{Probability in Statistical Mechanics}
+
+\section{Probability Primer}
+
+\subsection{Random Variables}
+
+\begin{definition}[Random variable]
+A random variable (RV) $X$ is a quantity whose value cannot be predicted with certainty, but which has a definite set of possible values $\{x_j\}$, $j = 1, 2, \ldots, N$. Examples include the outcome of a coin flip ($X_1 = H$, $X_2 = T$) and the face of a die ($N = 6$, $x_1 = 1$, $x_2 = 2$, $x_3 = 3$, \ldots).
+\end{definition}
+
+The origin of randomness may be \emph{classical} — arising from imperfect information about a deterministic system, as in the case of a coin or a die — or \emph{quantum mechanical}, as for the position of an electron in an atom. Random variables may be \emph{discrete} (e.g.\ die faces, coin outcomes), \emph{continuous} (e.g.\ the speed of a gas molecule), or \emph{mixed} (e.g.\ time spent in a queue, or wind speed: calm $10\%$ of the time, otherwise described by a continuous distribution).
+
+\subsection{Discrete Probability Distributions}
+
+Suppose a discrete RV takes values $\{x_j\}$, $j = 1, 2, \ldots, M$. A probability distribution is constructed as follows. Sample $X$ many times (say $N \gg M$ trials) and record $n_j(N)$, the number of times outcome $x_j$ occurs. The frequency $f_j(N) = n_j(N)/N$ satisfies $\sum_j f_j = 1$ by construction. The probability of outcome $j$ is defined as the limiting frequency:
+\begin{definition}[Discrete probability]
+\begin{equation}
+    P_j = \lim_{N\to\infty} f_j(N), \qquad P_j \ge 0, \qquad \sum_j P_j = 1.
+\end{equation}
+\end{definition}
+
+\section{Continuous Random Variables}
+
+For a continuous RV, it is not meaningful to speak of the probability of achieving a single exact value. Instead, one defines the probability $dP$ that $X$ takes a value in the infinitesimal interval $[x, x+dx]$:
+\begin{definition}[Probability density]
+\begin{equation}
+    dP = p(x)\,dx,
+\end{equation}
+where $p(x) \ge 0$ is the \emph{probability density function}. The probability that $X$ lies in a finite range $[x_1, x_2]$ is
+\begin{equation}
+    \int_{x_1}^{x_2} p(x)\,dx,
+\end{equation}
+and normalisation requires $\int_{-\infty}^\infty p(x)\,dx = 1$.
+\end{definition}
+
+\begin{center}[DIAGRAM: smooth bell-shaped curve $p(x)$ with a shaded strip of width $dx$ at $x_0$ indicating $dP = p(x_0)dx$, and a shaded region from $x_1$ to $x_2$ indicating the probability of being in that range]\end{center}
+
+\subsection{Cumulative Distribution Function}
+
+\begin{definition}[Cumulative distribution function]
+\begin{equation}
+    \mathcal{P}(x) = \int_{-\infty}^{x} p(\xi)\,d\xi = \Pr[\text{value} < x].
+\end{equation}
+\end{definition}
+The probability that $X$ takes a value between $x$ and $x + \Delta x$ is
+\begin{equation}
+    \Delta P = \mathcal{P}(x + \Delta x) - \mathcal{P}(x) = \frac{d\mathcal{P}}{dx}\,\Delta x = p(x)\,\Delta x,
+\end{equation}
+confirming that the probability density is the derivative of the CDF.
+
+\subsection{Unified Treatment via the Dirac Delta}
+
+Delta functions provide a way to handle discrete and continuous random variables within a single framework. A discrete RV with outcomes $\{x_j\}$ and probabilities $\{P_j\}$ can be described by the formal density
+\begin{formula}
+\begin{equation}
+    p(x) = \sum_j P_j\,\delta(x - x_j).
+\end{equation}
+\end{formula}
+Recalling the sifting properties $\int f(x)\,\delta(x - x_0)\,dx = f(x_0)$ and $\int f(x)\,\delta(g(x))\,dx = \sum_j f(x_j)/|g'(x_j)|$, one checks immediately that
+\begin{equation}
+    \int_{-\infty}^\infty p(x)\,dx = \sum_j P_j \int_{-\infty}^\infty \delta(x - x_j)\,dx = \sum_j P_j = 1,
+\end{equation}
+and that for a tiny interval around $x_j$,
+\begin{equation}
+    \int_{x_j - \varepsilon}^{x_j + \varepsilon} p(x)\,dx = P_j. \quad \checkmark
+\end{equation}
+This formalism treats discrete, continuous, or mixed distributions under a unified framework.
+
+\section{Expectation Values and Moments}
+
+\subsection{Mean}
+
+\begin{definition}[Mean (expectation value)]
+\begin{equation}
+    \langle X \rangle = \int_{-\infty}^\infty x\,p(x)\,dx.
+\end{equation}
+\end{definition}
+This is the average possible value weighted by likelihood.
+
+\subsection{Variance and Standard Deviation}
+
+\begin{definition}[Variance]
+\begin{equation}
+    \mathrm{Var}(X) = \langle (X - \langle X\rangle)^2 \rangle = \langle X^2 \rangle + \langle X^2 \rangle - 2\langle X\rangle^2.
+\end{equation}
+Expanding the square,
+\begin{equation}
+    \mathrm{Var}(X) = \langle X^2 \rangle - \langle X \rangle^2.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Standard deviation]
+\begin{equation}
+    \sigma(X) = \sqrt{\mathrm{Var}(X)}.
+\end{equation}
+\end{definition}
+The standard deviation is a measure of the ``width'' of the probability distribution — it quantifies the typical range of values that have a significant chance of occurring.
+
+\subsection{Higher Moments}
+
+\begin{definition}[Skewness]
+\begin{equation}
+    \text{Skewness} = \left\langle\left(\frac{X - \langle X\rangle}{\sigma}\right)^3\right\rangle.
+\end{equation}
+\end{definition}
+The skewness tells you how asymmetric the distribution is about its mean.
+
+\begin{definition}[Kurtosis]
+\begin{equation}
+    \text{Kurtosis} = \left\langle\left(\frac{X - \langle X\rangle}{\sigma}\right)^4\right\rangle.
+\end{equation}
+\end{definition}
+The kurtosis is a measure of the shape of the distribution — in particular, how heavy the tails are compared to a Gaussian.
+
+\section{Examples: Velocity Distributions}
+
+\subsection{Uniform Distribution}
+
+As a first example, consider gas molecules that may take any $x$-velocity in the range $[-v_{\max}, v_{\max}]$, with all values equally likely:
+\begin{equation}
+    p(v_x) =
+    \begin{cases}
+        \dfrac{1}{2v_{\max}} & |v_x| < v_{\max}, \\[6pt]
+        0 & \text{otherwise.}
+    \end{cases}
+\end{equation}
+
+\begin{center}[DIAGRAM: flat (uniform) probability density $p(v_x) = 1/(2v_{\max})$ shown as a rectangle between $-v_{\max}$ and $v_{\max}$]\end{center}
+
+The mean velocity vanishes by symmetry, since the integrand $v_x\,p(v_x)$ is odd:
+\begin{equation}
+    \langle v_x \rangle = \int_{-\infty}^\infty v_x\,p(v_x)\,dv_x = 0.
+\end{equation}
+The mean-square velocity is
+\begin{equation}
+    \langle v_x^2 \rangle = \frac{1}{2v_{\max}}\int_{-v_{\max}}^{v_{\max}} v_x^2\,dv_x = \frac{1}{3}v_{\max}^2,
+\end{equation}
+and therefore $\mathrm{Var}(v_x) = \langle v_x^2\rangle - \langle v_x\rangle^2 = \tfrac{1}{3}v_{\max}^2$.
+
+\subsection{Maxwell–Boltzmann Speed Distribution (Normalisation)}
+
+A physically motivated distribution for molecular speeds is the Maxwell–Boltzmann form:
+\begin{equation}
+    p(v) = A v^2 \exp\!\left(-\frac{Mv^2}{2k_BT}\right),
+\end{equation}
+where $M$ is the molecular mass, $k_B$ is Boltzmann's constant, and $A$ is a normalisation constant. To find $A$, impose $\int_0^\infty p(v)\,dv = 1$:
+\begin{equation}
+    A\int_0^\infty v^2 e^{-(M/2k_BT)v^2}\,dv = 1.
+\end{equation}
+Define $u^2 = \tfrac{M}{2k_BT}v^2$, so $v = \sqrt{\tfrac{2k_BT}{M}}\,u$ and $dv = \sqrt{\tfrac{2k_BT}{M}}\,du$. Substituting:
+\begin{equation}
+    A\left(\frac{2k_BT}{M}\right)^{3/2}\int_0^\infty u^2 e^{-u^2}\,du = 1.
+\end{equation}
+The Gaussian integral result (derived in the previous section) gives $\int_0^\infty e^{-au^2}\,du = \tfrac{1}{2}\sqrt{\pi/a}$, and differentiating with respect to $a$ gives $\int_0^\infty u^2 e^{-au^2}\,du = \tfrac{1}{4}\sqrt{\pi/a^3}$. For $a = 1$, this equals $\tfrac{\sqrt{\pi}}{4}$.
+
+Using the Gaussian distribution identity:
+\begin{formula}[Gaussian integral]
+\begin{equation}
+    \int_0^\infty e^{-au^2}\,du = \frac{1}{2}\sqrt{\frac{\pi}{a}},
+\end{equation}
+\end{formula}
+and differentiating under the integral sign to obtain:
+\begin{equation}
+    \int_0^\infty u^2 e^{-au^2}\,du = \frac{1}{4}\sqrt{\frac{\pi}{a^3}}.
+\end{equation}
+With $a = 1$ this yields $\int_0^\infty u^2 e^{-u^2}\,du = \tfrac{\sqrt{\pi}}{4}$, so the normalisation becomes
+\begin{equation}
+    A\left(\frac{2k_BT}{M}\right)^{3/2}\cdot\frac{\sqrt{\pi}}{4} = 1 \quad\Longrightarrow\quad A = \frac{4}{\sqrt{\pi}}\left(\frac{M}{2k_BT}\right)^{3/2}.
+\end{equation}
+
+The mean speed is then
+\begin{align}
+    \langle v \rangle &= \int_0^\infty v\,p(v)\,dv = A\int_0^\infty v^3 e^{-Mv^2/2k_BT}\,dv \notag \\
+                      &= A\left(\frac{2k_BT}{M}\right)^2 \int_0^\infty u^3 e^{-u^2}\,du,
+\end{align}
+where $u = \sqrt{M/2k_BT}\,v$. The remaining integral $\int_0^\infty u^3 e^{-u^2}\,du$ can be evaluated by the same differentiation-under-the-integral-sign technique (to be continued).

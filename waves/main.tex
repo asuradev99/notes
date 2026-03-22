@@ -1,0 +1,1237 @@
+\documentclass{book}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{physics}
+
+
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=defsty,numberlike=theorem]{definition}
+\tcolorboxenvironment{definition}{colback=LightGray}
+
+\declaretheoremstyle[name=Formula,]{formsty}
+\declaretheorem[style=formsty,numberlike=theorem]{formula}
+\tcolorboxenvironment{formula}{colback=LightGray}
+
+
+\declaretheoremstyle[name=Important Fact,]{factsty}
+\declaretheorem[style=factsty,numberlike=theorem]{fact}
+\tcolorboxenvironment{fact}{colback=LightGray}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=6.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% Definitions
+
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+
+\newcommand{\rhat}{\boldsymbol{\hat{\textbf{r}}}}
+\newcommand{\tthat}{\hat{\boldsymbol{\theta}}}
+
+\newcommand{\vect}[1]{\boldsymbol{\overrightarrow{#1}}}
+\newcommand{\svect}[1]{\boldsymbol{\vec{#1}}}
+\newcommand{\uvect}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+
+\newcommand{\defeq}{\vcentcolon=}
+
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{ Introductory Physics Notes}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Compiled from 8.012, 8.022, and other miscellaneous textbook} \vspace*{10\baselineskip}}
+		}
+\date{}
+\author{\textbf{Ethan Suresh} \\ 
+		MIT \\
+		2024}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+
+\chapter{Classical Mechanics}
+\section{Preliminaries}
+
+\subsection{Vectors}
+The following is a collection of helpful facts/definitions taken from \textit{Mathematical Methods for Physicists} I did not already know about vectors. Here is a list of basic properties of vectors: 
+
+\begin{theorem}
+
+(Basic Vector Properties). 
+
+\begin{enumerate}
+  \item $\vect{a} + \vect{0} = \vect{a}$ (Existence of Additive Identity)
+  \item $\vect{a} + \vect{b} = \vect{b} + \vect{a} $ (Commutativity) 
+  \item $\vect{a} + (\vect{b} + \vect{c}) = (\vect{a} + \vect{b}) + \vect{c}$ (Associativity)
+  \item $|\uvect{u} | = 1 $ (Unit Vector Length)
+  
+\end{enumerate}
+
+Additionally, multiplying a scalar by a vector is intuitively distributive, associative, commutative, etc.
+    
+\end{theorem}
+
+A vector is composed of components which are projections of the vector onto the relevant coordinate axes, as follows: 
+
+\begin{definition}
+    The \textbf{direction cosines} are the angles that a vector makes with the coordinate axes. These produce formulas for the projections of a vector $\vect{A}$:
+    \begin{align}
+         & A_x = |\vect{A}|\cos(\alpha) 
+         & A_y &= |\vect{A}|\cos(\beta) 
+         & A_z = |\vect{A}|\cos(\gamma)
+    \end{align}
+
+    
+\end{definition}
+
+ \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\linewidth]{img/cosines.png}
+        \caption{Vector components and direction cosines of A.}
+        \label{fig:enter-label}
+\end{figure}
+
+
+    
+
+\subsection{Dot Products}
+
+\begin{definition}[Dot Product]
+    $$\vect{A} \cdot \vect{B} := \sum_{i=1}^n{a_i b_i} = |\vect{A}||\vect{B}|\cos(\theta)  $$    
+\end{definition}
+
+Here are some useful properties of dot products summarized:
+
+\begin{theorem}
+
+(Dot product properties). 
+
+\begin{enumerate}
+  \item $\vect{a} \cdot \vect{a} = |\vect{a}|^2$
+  \item $\vect{a} \cdot \vect{a} = 0 \iff \vect{a} = 0 $
+  \item $\vect{a} \cdot \vect{b} = \vect{b} \cdot \vect{a} $ (Commutativity) 
+  \item $\vect{a} \cdot (\vect{b} + \vect{c}) = (\vect{a} \cdot \vect{b}) + (\vect{a} \cdot \vect{c})$ (Distributivity Over Addition)
+  \item $(k\vect{a}) \cdot \vect{b} = \vect{a} \cdot (k\vect{b}) $ (Scalar Associativity)
+  
+\end{enumerate}
+    
+\end{theorem}
+We can use the dot product to more compactly define the projection of one vector onto another. Consider the following scenario: 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/proj.png}
+    \caption{Vector Projection}
+\end{figure}
+
+We want to describe the vector $\vect{p}$, which is the projection of $\vect{a}$ onto $\vect{b}$, in terms of the dot product. Clearly, $|\vect{p}| = |\vect{a}|cos(\theta)$. We also know the direction of $\vect{p}$, which is the same as the direction of $\vect{p}$, or $\frac{\vect{b}}{|\vect{b}|} $. Thus, we have 
+
+\begin{align*}
+    \vect{p} &= |\vect{a}|\cos(\theta) \frac{\vect{b}}{|\vect{b}|} \\
+             &= |\vect{a}|\frac{|\vect{b}|}{|\vect{b}|} \cos(\theta)  \frac{\vect{b}}{|\vect{b}|} \\
+             &= \frac{\vect{a} \cdot \vect{b}}{|\vect{b}|} \uvect{b}
+\end{align*}
+
+
+\begin{definition}
+    The \textbf{projection} of $\vect{a}$ onto $\vect{b}$, or $\textbf{proj}_b(a)$, is defined as 
+
+   $$ \textbf{proj}_b(a) = |\vect{a}\cos(\theta)|\uvect{b} = \frac{\vect{a} \cdot \vect{b}}{|\vect{b}|} \uvect{b} 
+   = \frac{\vect{a} \cdot \vect{b}}{\vect{b} \cdot \vect{b}} \uvect{b}  $$
+\end{definition}
+
+\subsection{Cross Products}
+\begin{definition}
+    The \textbf{cross product} of two vectors is 
+    \begin{displaymath}
+        \vect{a} \cross \vect{b} = 
+        \begin{vmatrix}
+            \ihat & \jhat & \khat \\
+            a_i & a_j & a_k \\
+            b_i & b_j & b_k \\
+            
+        \end{vmatrix}
+    \end{displaymath}
+    Where the direction of the resulting vector follows the right-hand rule. Additionally, the magnitude of the cross product is
+ \begin{displaymath}
+    |\vect{a} \cross \vect{b}| = |\vect{a}||\vect{b}|\sin(\theta)
+ \end{displaymath}
+
+    
+\end{definition}
+
+ Some useful properties of cross products are summarized below: 
+
+ \begin{theorem}
+  (Cross Product Properties). \    
+    
+\begin{enumerate}
+  \item $\vect{a} \cross \vect{a} = 0$ 
+  \item $\vect{a} \cross \vect{b} = - \vect{b} \cross \vect{a} $ (Anticommutativity) 
+  \item $\vect{a} \cross (\vect{b} + \vect{c}) = (\vect{a} \cross \vect{b}) + (\vect{a} \cross \vect{c})$ (Distributivity Over Addition)
+  \item $(k\vect{a}) \cross \vect{b} = \vect{a} \cross (k\vect{b}) $ (Scalar Associativity)
+  
+\end{enumerate}
+ \end{theorem}
+ 
+
+
+Finally, we summarize some useful vector derivative formulas below.
+
+\begin{definition}
+
+    (Vector Derivative Identities). Let $\vect{A}$, $\vect{B}$, be time-varying vectors and let
+    $a(t)$ be a scalar-valued function of time. Then \
+   \begin{itemize}
+    \centering
+    \item $\dv{t}(a(t)\vect{A}) = \vect{A} \dv{a}{t} + a(t)\dv{\vect{A}}{t}$
+     
+    \item $\dv{t}(\vect{A} \cdot \vect{B}) = \vect{A} \dv{\vect{B}}{t} + \vect{B}\dv{\vect{A}}{t}$
+
+    \item $\dv{t}(\vect{A} \cross \vect{B}) = \dv{\vect{A}}{t}\cross\vect{B} +  \vect{A} \cross \dv{\vect{B}}{t}$
+   \end{itemize} 
+    
+\end{definition}
+
+
+\subsection{Taylor Series and Differentials}
+
+Suppose we have a function that we want to express as a power series: 
+
+\[
+f(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \dots
+    \]
+
+To find the coefficients of this expression, we can first observe that
+
+\[ 
+    a_0 = f(0)
+\]
+
+To find the next coefficients, we can differentiate: 
+
+\begin{align*}
+    a_1 &= f'(0) \\
+    a_2 &= \frac{f''(0)}{2!} \\
+    a_3 &= \frac{f'''(0)}{3!} \\
+        &\dots \\
+\end{align*}
+
+Thus, combining our results we have 
+
+\[
+    f(x) = f(0) + f'(0)x + \frac{1}{2}f''(0)x^2 + \frac{1}{3!}f'''(0)x^3 + \dots 
+\]
+
+In general, the Taylor Series centered at an arbitrary input value $a$ is 
+
+\begin{definition}[Taylor Series]
+    \label{def:tseries}
+    \[
+        f(a+x) = f(a) + f'(a)(x) + \frac{1}{2}f''(a)x^2 + \frac{1}{3!}f'''(a)x^3 + \dots 
+        \]
+    
+\end{definition}
+
+The following is a list of common Taylor expansions: 
+
+\begin{theorem}
+(Common Taylor Expansions). \
+\begin{enumerate}
+    \item $\sin(x) = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \dots \approx x $ (for small $x$)
+    \item $\cos(x) = 1 - \frac{1}{2}x^2 + \frac{1}{4!}x^4 + \dots \approx 1 - \frac{1}{2}x^2 $ (for small $x$)
+    \item $e^{x} = 1 + x + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + \dots $ (Valid for all $x$) 
+    \item $\frac{1}{1 \pm x} = 1 \mp x + x^2 \mp x^3 + \dots$ (Only valid for $-1 < x < 1$)
+    \item $\frac{1}{\sqrt{1 + x}} = 1 - \frac{1}{2}x + \frac{1}{8}x^2 + \dots$ (Only valid for $-1 < x < 1$)
+    \item $(1+x)^n = 1 + nx + \frac{n(n-1)}{2!} x^2 + \frac{n(n-1)(n-2)}{3!} x^3 + \dots$ (Only valid for $-1 < x < 1$) 
+    
+
+\end{enumerate}    
+\end{theorem}
+
+Using the Taylor series, we can now construct a useful approximation for differentials. 
+Consider the Taylor series of $f(x+\Delta x)$. By Definition \ref{def:tseries}, 
+
+\[
+    f(x+\Delta x) = f(x) + f'(x)\Delta x + \dots
+\]
+
+Discarding higher-order terms, we note that 
+
+\[
+    \frac{\Delta f}{\Delta x} \approx f'(x)
+\]
+
+
+\section{Kinematics}
+
+
+\subsection{Position and Displacement}
+
+We begin by describing a Cartesian coordinate system with $x$, $y$, and $z$ axes as follows:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/coord_system.png}
+    \caption{The Cartesian coordinate system.}
+\end{figure}
+
+We choose to represent points in space as three-dimensional \textit{position} vectors in this coordinate system of the form $ \bm{r} = (x, y, z)$ (or, alternatively, $ \bm{r} = x \ihat + y \jhat + z \khat$).
+
+\begin{definition}
+    A \textbf{position vector} is represented as a 3d vector of the form 
+    $ \bm{r} = x \ihat + y \jhat + z \khat$
+\end{definition}
+
+
+Note that position vectors are dependent on a particular choice of coordinate system because they represent the vector from the origin of the coordinate system to the point of interest. Two or more position vectors can describe the same point in space. 
+
+\indent Now we can define the difference, or \textbf{displacement}, between two vectors: 
+
+\begin{definition}
+    The \textit{displacement} between two vectors $ \vect{r_1} = x_1 \ihat + y_1 \jhat + z_1 \khat $ and $\vect{r_2} = x_2 \ihat + y_2 \jhat + z_2 \khat $ is the vector 
+
+    $$ \svect{s} = \vect{r_1 r_2} = \vect{r_2} - \vect{r_1} = (x_2 - x_1) \ihat + (y_2 - y_1) \jhat + (z_2 - z_1) \khat$$
+\end{definition}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{img/image.png}
+    \caption{A graphical representation of the displacement vector $\svect{s}$. }
+    \label{fig:displacement_fig}
+\end{figure}
+
+
+Note that here, $r_1$ is the initial position and $r_2$ is the final position. Crucially, however, $\svect{s}$ does not depend directly on these positions but only their relative difference. 
+Consider the scenario described by Figure \ref{ind}. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/coord_ref.png}
+    \caption{A proof that displacement vectors are independent of a coordinate system.}
+    \label{ind}
+\end{figure}
+
+In this figure, let $\vect{r_1}$ and $\vect{r_2}$ be the position vectors of points $P_1$ and $P_2$ with respect to the leftmost coordinate system, and let $\vect{r_1}'$ and $\vect{r_2}'$ be the position vectors of the same points with respect to the rightmost coordinate system. Additionally, let $\vect{R}$ be the vector connecting the origins of the two coordinate systems. Finally, let $\vect{s}$ be the displacement vector from $\vect{r_1}$ to  $\vect{r_2}$, and $\vect{s}'$ as the displacement vector from $\vect{r_1}'$ to $\vect{r_2}'$. We must show that $\vect{s} = \vect{s}'$. Notice that, from Figure \ref{ind}, it is immediately apparent that $\vect{r_1} = \vect{R} + \vect{r_1}'$ and $\vect{r_2} = \vect{R} + \vect{r_2}'$. Thus, from the above definitions it follows that 
+
+\begin{align*}
+\vect{s} & = \vect{r_2} - \vect{r_1} \\
+            & = (\vect{R} + \vect{r_2}') - (\vect{R} + \vect{r_1}') \\
+        & = \vect{r_2}' - \vect{r_1}'\\
+        & = \vect{s_1}'\\
+\end{align*}
+Therefore, $\svect{s}$ is independent of any particular coordinate system. 
+
+\subsection{Velocity and Acceleration}
+
+Recall that in one dimension, the average velocity of a particle between two instances in time $\it{t_1}$ and $\it{t_2}$  can be written as 
+
+$$ \bar{v} = \frac{x(t_2) - x(t_1)}{t_2 - t_1} $$
+
+Taking the limit, we find that the \textbf{instantaneous velocity} can be defined as
+
+\begin{definition}[One-Dimensional Instantaneous Velocity]
+
+    $$ v(t) = \lim_{\Delta t \rightarrow 0}{\frac{x(t + \Delta t) - x(t)}{\Delta t}} = \frac{dx}{dt} = \dot{x}$$
+    
+\end{definition}
+
+Similarly, for one-dimensional acceleration, the \textbf{instantaneous acceleration} is 
+
+\begin{definition}[One-Dimensional Acceleration]
+    $$ a(t) = \frac{dv}{dt} = \frac{d^2 x}{dt^2} = \dot{v} = \ddot{x}$$
+\end{definition}
+
+We can easily extend these definition to multiple dimensions using vectors. 
+
+\subsection{Motion in Several Dimensions}
+
+Consider a particle in a three-dimensional coordinate system whose position $\vect{r} = x(t) \ihat + y(t) \jhat + z(t) \khat $ varies as a function of time. Suppose that, in a brief time interval $\Delta t$ after a time $t$, the vector $\vect{r}$ changes by a displacement $\vect{\Delta r}$. Thus, we can define the the average velocity vector $\vect{\bar{v}}$ to be 
+
+$$ \vect{\bar{v}} =  \frac{\vect{\Delta r}}{\Delta t} = \frac{\vect{r}(t + \Delta t) - \vect{r}(t)}{\Delta t}$$
+
+Expanding the above expression component-wise we see that
+
+$$  \frac{\vect{\Delta r}}{\Delta t} =
+\frac{x(t+\Delta t) - x(t)}{\Delta t} \ihat +  \\
+\frac{y(t+\Delta t) - y(t)}{\Delta t} \jhat + \\ 
+\frac{z(t+\Delta t) - z(t)}{\Delta t} \khat
+$$
+
+Taking the limit as $\Delta t \rightarrow 0$ yields
+
+\begin{definition}[Instantaneous Velocity]
+    
+$$ \vect{v} =  \frac{d\svect{r}}{dt} = \frac{dx}{dt} \ihat + \frac{dy}{dt} \jhat + \frac{dz}{dt} \khat $$
+\end{definition}
+
+
+Note that this step only works because the basis vectors $\ihat$, $\jhat$, and $\khat$ are independent of time, so they can be treated as constants. This is not true for other coordinate systems, such as a polar coordinate system. We can, similar to before, define the instantaneous acceleration as the time derivative of the above expression: 
+
+
+\begin{definition}[Instantaneous Acceleration]
+    \label{def:instacc}
+    $$
+        \vect{a} =  \frac{d\svect{v}}{dt} = \frac{d^2\vect{x}}{dt^2} 
+    $$
+
+\end{definition}
+
+When visualizing the velocity vector $\vect{v}(t)$, it is helpful to note that the velocity vector is always tangent to the trajectory of the particle. This is because, for small $\Delta t$, 
+
+\begin{equation}
+\label{eq:parallel}
+\frac{\vect{\Delta r}}{\Delta t} \approx \frac{d\svect{r}}{d t} = \vect{v}(t) \implies \vect{\Delta r} \approx \vect{v}(t) \Delta t
+\end{equation}
+
+
+\subsection{Formal Solutions to the Kinematic Equation}
+
+Definition \ref{def:instacc} gives the three differential equations (one for each component) for the velocity 
+in terms of the acceleration. A trivial integration gives
+
+\begin{align}
+    \vect{v}(t) = \vect{v}(t_0) + \int_{t_0}^{t} \vect{a}(t')dt'
+    \label{eq:s}
+\end{align}
+
+Since position depends on velocity in a similar manner, a similar expression can be found
+for the position in terms of velocity: 
+
+
+\begin{align}
+    \vect{r}(t) = \vect{r}(t_0) + \int_{t_0}^{t} \vect{v}(t')dt'
+    \label{eq:t} 
+\end{align}
+
+Suppose that $\vect{a}$ is constant and $t_0 = 0$, then Eq. \ref{eq:s} and Eq. \ref{eq:t} become 
+
+\begin{align*}
+    \vect{v}(t) &= \vect{v_0} + \vect{a}t \\ 
+    \implies \vect{r}(t) &= \vect{r_0} + \int_{0}^{t} (\vect{v_0} + \vect{a}t') dt'\\ 
+                         &= \vect{r_0} + \vect{v_0}t + \frac{1}{2}\vect{a}t^2
+\end{align*}
+
+\begin{formula}[Kinematic Solution with Uniform Acceleration]
+    For \textbf{uniform acceleration}, the solution to the kinematic 
+    equations for position in terms of the initial conditions, and the acceleration is
+    \[
+        \vect{r}(t) = \vect{r_0} + \vect{v_0}t + \frac{1}{2}\vect{a}t^2
+    \]
+\end{formula}
+
+\subsection{Rotating Vectors and Acceleration}
+
+Unlike the scalar derivative, the derivative of a vector can cause
+a vector to change either direction, magnitude, or both. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{img/rotvec.png}
+    \end{center}
+    \caption{}
+    \label{fig:change}
+\end{figure}
+
+In Fig. \ref{fig:change}, a vector $\vect{A}$ changes by an amount
+$\vect{\Delta A}$ over a small period of time $\Delta t$. $\vect{\Delta A}$ is 
+resolved into two components, $\vect{\Delta A_\perp}$ and $\vect{\Delta A_\parallel}$. 
+Consider how each of these components change $\vect{A}$ as $\Delta A \rightarrow 0$. 
+The magnitude of $\vect{A}$ plus the perpendicular component is $\norm{\vect{A} +
+\vect{\Delta A_{\perp}}} = \sqrt{A^2 + \Delta A_{\perp}^2 } \approx A$ for small $\Delta A_{\perp}$. 
+Thus, the perpendicular component does not change the magnitude of $A$, it only rotates it. The parallel
+component has no perpendicular component and thus only changes the magnitude of $A$. Recall that, by Eq. \ref{eq:parallel}, 
+the velocity vector $\frac{d\vect{A}}{dt}$ is always parallel to the trajectory $\vect{\Delta A}$. Thus, if 
+$\frac{d\vect{A}}{dt}$  is entirely perpendicular to $\vect{A}$ for all time, then 
+$\vect{A}$ merely rotates and never changes its magnitude. \\ 
+
+\begin{fact}
+    
+    For any time-varying vector $\vect{r}(t)$ with velocity $\vect{v}(t)$, if
+    $\vect{r} \cdot \vect{v} = 0$ then the vector $\vect{r}$ undergoes only rotation for all time. 
+
+    
+\end{fact}
+
+We can use this intuition to develop a useful expression for $\frac{d\vect{A}}{dt}$. Consider once again 
+a time-varying vector $\vect{A}(t)$ such that $\vect{\Delta A} = \vect{\Delta A_{\parallel}} + \vect{\Delta A_{\perp}}$. 
+Let $\Delta \theta$ be the angle between $\vect{A}(t)$ and $\vect{A}(t + \Delta t)$. Using the above results, 
+for small $\Delta \theta$ we can write
+
+\begin{align*}
+    \Delta A_{\perp} &\approx A \Delta \theta \\
+    \Delta A_{\parallel} &\approx \Delta A
+\end{align*}
+
+Thus, by taking the derivative we have 
+
+\begin{align}
+    \frac{dA_{\perp}}{dt} &= A \frac{d\theta}{dt} = A\omega \\
+    \frac{dA_{\parallel}}{dt} &= \frac{dA}{dt}
+\end{align}
+
+If $\vect{A}(t)$ is only rotating, then $\frac{dA_{\parallel}}{dt} = 0$ and
+$\frac{dA}{dt} = \frac{dA_{\perp}}{dt} = A\omega$. In the language of position and velocity, 
+
+\[
+    \dot{r}(t) = v(t) = r\omega 
+\]
+
+
+
+\subsection{Motion in Polar Coordinates}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{img/polar.png}
+    \end{center}
+    \caption{A graphical representation of the polar coordinate system. }
+    \label{fig:polar}
+\end{figure}
+
+In a \emph{polar} coordinate system, each point in space is represented 
+as a tuple $(r, \theta)$ where $r$ is the distance from the origin and 
+$\theta$ is the angle between $\vect{r}$ and the x-axis. To transfer between
+Cartesian and polar points, we can use the following relations: 
+
+\begin{align*}
+    r &= \sqrt{x^2 + y^2}\\
+    \tan(\theta) &= \frac{y}{x} \\
+    x &= r\cos(\theta) \\
+    y &= r\sin(\theta) 
+\end{align*}
+
+In a polar coordinate system, we introduce two new unit vectors, $\rhat$ and $\tthat$.
+As in Figure \ref{fig:polar}, $\rhat$ points in the direction of increasing distance
+from the origin while $\tthat$ points in the direction of increasing $\theta$. The figure below
+illustrates the following relations between the unit vectors of the two coordinate systems:
+
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{img/rtheta.png}
+    \end{center}
+    \caption{}\label{fig:}
+\end{figure}
+
+\begin{definition}[Unit vectors in polar coordinates]
+    \begin{align*}
+        \rhat &= \cos(\theta)\ihat + \sin(\theta)\jhat \\
+        \tthat &= -\sin(\theta)\ihat + \cos(\theta)\jhat
+    \end{align*}
+
+    Thus a position vector in polar coordinates is of the form 
+
+    \[
+        \vect{r} = r\rhat(\theta)
+        \]
+
+    Where $r$ is a function of time.
+    
+\end{definition}
+
+It is important that $\rhat \cdot \tthat = 0$ to have an orthogonal basis
+for the coordinate system. We will now establish two useful results, the 
+derivatives of $\rhat$ and $\tthat$. These will be used to find expressions
+for the velocity and acceleration in polar coordinates. 
+
+
+\begin{align*}
+    \dv{\rhat}{t} &= -\sin(\theta) \dot{\theta} \ihat + \cos(\theta) \dot{\theta} \jhat \\
+                  &= \dot{\theta}\tthat 
+\end{align*}
+
+
+\begin{align*}
+    \dv{\tthat}{t} &= -\cos(\theta) \dot{\theta} \ihat - \sin(\theta) \dot{\theta} \jhat \\
+                     &= -\dot{\theta}\rhat
+\end{align*}
+
+
+To find the velocity, using the above expressions,
+
+\begin{align*}
+    \vect{v} = \dv{\vect{r}}{t} &= \dv{t}(r\rhat) = \dot{r}\rhat + r\dot{\theta}\tthat
+\end{align*}
+
+A similar derivation for acceleration in polar coordinates yields
+
+\begin{align*}
+    \vect{a} = \dv{\vect{v}}{t} &= \ddot{r}\rhat + \dot{r}\dot{\theta}\tthat + \dot{r}\dot{\theta}\tthat + r\ddot{\theta}\tthat + -r\dot{\theta}^2\rhat \\
+            &= (\ddot{r} - r\dot{\theta}^2)\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\tthat
+\end{align*}
+
+In summary, 
+
+\begin{definition}[Polar Acceleration and Velocity]
+
+    \label{def:test}
+    \begin{align*}
+        \vect{v} &= \dot{r}\rhat + r\dot{\theta}\tthat \\
+        \vect{a} &= (\ddot{r} - r\dot{\theta}^2)\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\tthat
+    \end{align*}
+\end{definition}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{img/polaraccel.png}
+    \end{center}
+    \caption{A geometric view of acceleration in polar coordinates.}\label{fig:polaraccel}
+\end{figure}
+
+(FIX THIS SECTION, USE VTHETA INSTEAD OF THE CRAP KK USES) Each of the terms in these equations has a physical interpretation. 
+The $\dot{r}\rhat$ and $\ddot{r}\rhat$ terms are called the \textbf{tangential
+velocity} and \textbf{acceleration}, respectively. These terms are related to 
+changes in magnitude speed and position along the radial direction. Additionally, 
+the $r\dot{\theta}$ and $r\dot{\theta}^2$ terms called the \textbf{centripetal}
+acceleration and velocity and are related to a change in the direction of the position 
+and speed. Finally, $2\dot{r}\dot{\theta}$ is the \textbf{Coriolis acceleration} while
+$r\ddot{\theta}$ is the acceleration due to a change in the tangential component of 
+the velocity. Figure \ref{fig:polaraccel} illustrates the radial and tangential components
+of the velocity vector, which can be used to derive \ref{def:test} from geometric principles, 
+as we did before with rotating vectors. 
+
+
+\section{Newton's Laws of Motion}
+
+\subsection{Newton's First Law}
+
+To describe motion it is essential to have a coordinate system. An \textbf{inertial} coordinate system is one which is moving at a constant velocity; not accelerating. 
+Luckily, it is always possible to find such a coordinate system, in which isolated bodies move uniformly. Newton's first law of motion 
+is merely the assertion that
+
+\begin{fact}[Newton's First Law of Motion]
+    Inertial coordinate systems, which are coordinate systems that move at constant velocity, exist.  
+\end{fact}
+
+\subsection{Mass, Force, and Newton's Second Law}
+
+Suppose you pull on a cart on an air track (which creates a near-frictionless surface)
+with a rubber band, and do so in such a way as to keep the length of the rubber band 
+constant. If you were to measure the position of the cart
+over time, you would find that the velocity of cart increases
+linearly with time (The rubber band is important here because, in order to keep the rubber 
+band stretched, a constant force, not velocity, must be applied to the cart). Thus, the cart must have a constant acceleration.
+If you were to change the cart for a heavier one, then naturally the length that the 
+rubber band would have to stretch in order to main the same acceleration as before would increase. 
+Thus, the acceleration of the cart depends not only on what we do to the cart, but also on an 
+inherent property of the cart itself: \textit{mass}. We can use 
+this experiment to operationally define mass. Let $m_1$ be the mass of the lighter cart. More specifically, we can define
+$m_1$ to be one unit of mass. Let $m_2$ be the mass of the heavier cart, and let $a_1$ and $a_2$ be their accelerations when
+pulled by the rubber band, respectively. Thus we let 
+
+\[
+    m_2 \defeq m_1 \frac{a_1}{a_2}
+\]
+
+Additionally, even if we were to change out the rubber band for a spring or some other object
+which creates a restoring force when pulled, we would find the same result, because the only things
+that matter in this experiment are the net acceleration of the cart and its "mass" which is defined
+irrespective of the length the rubber band is pulled. However, this makes 
+mass as something that is defined \textit{operationally} because it is contingent on this particular kind of 
+experiment, not any abstract concepts. This is undesirable in physics because these definitions are only useful 
+in places where the necessary experiments can be carried out. However, but most of the time it is overcome because you can establish
+relationships between operational quantities and other more easily-measurable quantities and thus measure the operational quantities
+indirectly. For example, the mass of a mountain can be measured by hanging a plumb bob to find the gravitational attraction of that 
+mountain. 
+
+
+We can operationally define force, in the context of this experiment, as the operation of acting on the cart (test mass)
+with the rubber band. Crucially, with only the assumption that the same rubber band applies the same "force", we can note
+that if we use two rubber bands to pull the cart instead of one, then we will find an acceleration of $2a$ rather than 
+$a$. Additionally, if we pull on both ends of the cart at once in opposite directions (with both rubber bands), we would
+find no acceleration. These seem to imply that forces add linearly, so if we define $F$ to be one unit of force, the $F$ units
+of force on the rubber band produce $F$ units of acceleration. Since we now know that $F$ units of force an $m$ units of mass
+produce $F * \frac{1}{m}$ units of acceleration, we can write $F = ma$. If we assume that $m$ is a scalar and that these
+relationships hold for multiple dimensions, we can write Newton's Second Law, 
+
+\begin{fact}[Newton's Second Law]
+    In an inertial system, 
+
+    \[
+        \vect{F} = m\vect{a} 
+    \]
+
+    where $[F] = \text{kg}\frac{\text{m}}{\text{s}^2}$
+\end{fact}
+
+Forces arise from physical \textit{interactions} between systems; accelerations are merely the consequence of that. 
+Thus, if something is accelerating, it is not a guarantee that there is a force acting upon it. 
+
+\subsection{Newton's Third Law of Motion}
+
+\begin{fact}[Newton's Third Law]
+
+    Suppose there are two bodies, $a$ and $b$. If body $b$ exerts  a force on $a$, $\vect{F_{ba}}$, then there is an equal and opposite
+    acting on $b$, $\vect{F_{ab}} = \vect{-F_{ba}}$
+
+\end{fact}
+
+The significance of this law is that there is never a force without it's corresponding pair in another system, which allows
+us to check if an acceleration is due to a force or something else. 
+
+\subsection{Fictitious Forces}
+
+While the surface of the Earth provides a reasonably good approximation of an inertial system, it is not exactly one
+due to it's rotation. This results in so-called \textit{fictitious forces}, which appear to not come from any outside system. 
+For systems moving with a constant acceleration vector, there is an easy way to account for these forces. Consider the following:
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{img/ficforce.png}
+    \end{center}
+    \caption{Position vectors of an inertial and non-inertial coordinate systems.}\label{fig:fictforce}
+\end{figure}
+
+Figure \ref{fig:fictforce} shows two coordinate systems, $(x, y, z)$ and $(x', y', z')$. The former is inertial, 
+while the latter moves with constant acceleration $\vect{R}$. The vector $\vect{r}$ shows the position of an accelerating 
+body with respect to the inertial coordinate system and the vector $\vect{r'}$ shows the position with respect 
+to the inertial coordinate system. Using vector addition, we see from the diagram that
+
+\[
+    \vect{r} = \vect{r'} + \vect{R} 
+\]
+
+Differentiating twice with respect to time, 
+
+\[
+    \vect{\ddot{r}} = \vect{\ddot{r'}} + \vect{\ddot{R}}
+\]
+
+Multiplying by the mass of the particle, 
+\[
+    m\vect{\ddot{r}} = m\vect{\ddot{r'}} + m\vect{\ddot{R}} \\
+\]
+Thus by Newton's Second Law, 
+\[    
+    \vect{F}_\text{true} = \vect{F}_\text{apparent} + m\vect{\ddot{R}} 
+\]
+
+Since we are interested in the force measured in the non-inertial frame, we can write
+
+
+\[    
+    \vect{F}_\text{apparent} = \vect{F}_\text{true} + \vect{F}_\text{fictitious} 
+\]
+
+where $\vect{F}_\text{fictitious} = -m\vect{\ddot{R}}$.
+
+\subsection{Applying Newton's Laws}
+
+The following procedure can be used to approach problems involving Newton's Laws: 
+
+\begin{enumerate}
+    \item \textbf{Isolate the masses. } Divide each system into collections of masses, each of which can be 
+        treated as a particle. 
+    \item \textbf{Draw a force diagram for each mass. } Represent each body by a point or symbol, and draw all the forces
+        acting \textit{on} each body as an arrow vector starting from the point/symbol. Even if you assume a force is in the wrong up/down 
+        direction, it will simply come out to having a negative sign in the final answer.
+    \item \textbf{Show a coordinate system on the force diagram. } Choose convenient directions for the coordinate axes. 
+    \item \textbf{Write down the equations of motion. } The equations will usually be of the form $F_1 + F_2 + \dots = ma$ For each component of the vectors there should be a separate equation.
+    \item \textbf{Write down the constraint equations. } These equations will come from geometric considerations, such as considering the relationship between the lengths or accelerations
+        of the bodies in the system. The total number of equations of motion and constraint equations should equal the number of unknowns in the problem. 
+\end{enumerate}
+
+\section{Forces and Equations of Motion}
+
+\subsection{Gravitational Forces, Acceleration due to Gravity, and Weight}
+
+This section will introduce new kinds of forces, which are primarily derived from electrostatic and gravitational interactions. 
+The first of these forces is the all-too familiar Law of Gravitation: 
+
+\begin{fact}[Newton's Law of Gravitation]
+    Consider two particles with masses $M_a$ and $M_b$ separated by a distance $r$. Let $\vect{F_{ba}}$ be the gravitational force exerted by particle
+    $b$ on particle $a$. Then 
+    \[
+        \vect{F_{ba}} = -\frac{G M_a M_b}{r^2}\rhat  
+    \]
+    Where $\vect{r} = \vect{r_a r_b}$ and $G$ is the \textbf{Gravitational Constant}. 
+\end{fact}
+
+A useful corrollary of this law is that
+
+\begin{fact}
+    The gravitational force at any point inside a spherical shell of mass is 0. Additionally, outside of the spherical shell, 
+    the shell produces a net gravitational force which is the same as if all its mass is produced at its center. More formally, 
+    suppose there is a particle of mass m and a uniform thin spherical shell of mass $M$ and radius $R$. Then 
+
+    \[
+        \vect{F} = \begin{cases}
+            0 & r < R \\
+            -\frac{G M m}{r^2}\rhat & r > R \\  
+        \end{cases} 
+    \]
+
+    where $\vect{r}$ is the vector pointing \textit{from} the center of the shell \textit{to} $m$.
+\end{fact}
+
+A rigorous proof of this fact will not be given here, but the intuitive idea is that the proportion of the shell's surface area containing mass a particle
+"sees" increases with the distance from the surface squared, but by the above equation, the gravitational force produced by a given part of that 
+surface area decreases as the distance squared. Thus, the forces from each segment of the surface cancel out. 
+\newpage
+
+\chapter{Special Relativity}
+\chapter{Electromagnetism}
+\chapter{Thermodynamics}
+These notes are taken from Schroeder's \textit{Introduction to Thermal Physics}.
+
+\section{Energy in Thermodynamics}
+\subsection{Thermal Equilibium}
+
+Consider a basic operational definition of temperature. When we measure 
+temperature with a thermometer, the mercury in the thermometer expands or contracts as it 
+changes temperature, and stops doing so when it is at the same temperature as the thing it it measuring
+the temperature of. Thus, we can initially say that \textbf{temperature} is a thing that's the same for two
+objects after they have been in contact long enough. Additionally we will define that two objects will be 
+in \textbf{thermal equilibrium} after they have been in contact long enough. Finally, the 
+\textbf{relaxation time} is the time required for a system to come to thermal equilibrium. 
+
+There are three kinds of equilibriums, not just thermal: 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ c c c }
+\toprule
+ Exchanged Quantity & Type of Equilbrium & Example \\ 
+\midrule
+ Energy & Thermal & Ice melting on a table \\  
+ Volume & Mechanical & Expansion of a balloon being blown into \\
+ Particles & Diffusive & Coffee spontaneously mixing with cream \\
+\end{tabular}
+\end{table}
+
+We say that, when two objects are able to exchange energy, the object which spontaneously gives up its energy is at a \textit{higher}
+temperature (while the one recieving is at a \textit{lower} temperature). This motivates a new definition of temperature: 
+
+\begin{definition}
+    \textbf{Temperature} is a measure of the tendency for an object to give up energy to its surroundings. 
+\end{definition}
+
+How does one define units of temperature? You can pick two convenient temperatures (such as freezing and boiling points of water)
+and then assign them arbitrary numbers such as 0 and 100, then mark every point in-between on a thermometer, taking
+advantage of the thermal expansion of the mercury in the thermometer. We will use Kelvins as the standard unit system for these
+notes.
+
+\subsection{The Ideal Gas}
+Starting from a simple scenario, we will derive the Ideal Gas Law and find an important relationship between temperature and energy. 
+Suppose there is a single particle in a closed box, that is allowed to bounce off the walls elastically. Additionally, the box
+must maintain a fixed volume and thus cannot expand upon collisions with the particle. A particle collision is illustrated in the 
+following figure:
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{img/particleinbox.png}
+    \end{center}
+    \caption{Diagram of a particle collision inside the box. Source: https://alvarofeito.com/articles/ideal-gas/}
+    \label{fig:particleinbox}
+\end{figure}
+
+
+The particle within the box has a velocity of $\vect{v} = (v_x, v_y, v_z)$. It is evident from this figure that, in order to prevent the particle from changing the size of the box, the rightmost wall must exert a force 
+of $\frac{-2mv_x}{\Delta t}$. Now suppose there are $N$ particles in the box which collide with the walls similarly. We are particularly
+interested in the number of rightward-moving particles that are close enough to hit the wall in a time $\Delta t$. Consider the region
+illustrated in the figure below, which contains all the particles that will hit the wall within $\Delta t$ seconds.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/collision_region.png}
+    \end{center}
+    \caption{}\label{fig:collision_region}
+\end{figure}
+
+Clearly, $d = v_x \Delta t$ and thus $V = v_x \Delta t A$. Let $N_{\rightarrow}$ be the number of particles that will hit the wall in time $\Delta t$. Then the total 
+force the wall exerts during this time is 
+
+\[
+    F_x = N_{\rightarrow} \frac{-2mv_x}{\Delta t}
+\]
+
+To find a useful expression for $N_{\rightarrow}$, we need to introduce some assumptions. First, we will assume that the density of particles in the box
+$\frac{N}{V_{total}}$ is uniform. Second, we assume the average velocity of the particles in the box is zero, thus having no preferred direction. This is implies that, for any given region in the box, half of the particles in that region are going right and half are going left. These assumptions 
+allow us to write 
+
+\[
+    N_{\rightarrow} = \frac{1}{2} N \frac{V}{V_{total}}
+\]
+
+Substituting this expression into the previous equation(s), we have
+\begin{align*}
+    F_x &= \frac{1}{2} N \frac{V}{V_{total}} \frac{-2mv_x}{\Delta t} \\
+        &= \frac{1}{2} N \frac{v_x \Delta t A}{V_{total}} \frac{-2mv_x}{\Delta t} \\
+        &= -nAmv_x^2
+\end{align*}
+
+where $n = \frac{N}{V_{\text{total}}}$ is the particle density per cubic meter. We can use this expression to relate pressure and 
+kinetic energy by dividing by $A$ and multiplying and dividing by $2$ on both sides: 
+
+\[
+    P_x = 2n (\frac{1}{2}mv_x^2)  
+\]
+
+Now we want to generalize this result to obtain a relation between the net pressure over all the walls and the average kinetic 
+energy in all directions. Recalling our assumption that the average velocity takes no preferred direction, this means that 
+
+\[
+    \langle v_x^2 \rangle = \langle v_y^2 \rangle = \langle v_z^2 \rangle 
+\]
+
+Where $\langle v \rangle$ denotes the \textbf{average} value of $v$. By considering the vector components of $\vect{v}$, by the 
+Pythagorean theorem $v_x^2 + v_y^2 + v_z^2 = v^2$, and, since all the components are the same, $\langle v_x^2 \rangle = \frac{1}{3}\langle v^2 \rangle$. 
+We can substitute this expression into the equation for pressure we derived earlier: 
+
+\begin{align}
+    P_x = P_y = P_z = P &= \frac{2}{3} \frac{N}{V_{\text{total}}} (\frac{1}{2}m\langle v^2 \rangle) \nonumber \\
+    \implies PV &= N (\frac{2}{3} KE) \label{eq:pv}
+\end{align}
+
+The final step to connect kinetic energy and temperature was established experimentally, showing that (by now we let $V_{\text{total}} = V$)
+\begin{align}
+    PV = NkT \label{eq:Nk} 
+\end{align}
+
+where $k$ is an experimentally-determined constant and $T$ is the temperature of the gas. 
+
+\begin{fact}[Ideal Gas Law]
+    The \textbf{Ideal Gas Law} states that 
+
+    \[
+        PV = nRT
+    \]
+
+    where $P$ is the pressure of the gas, $V$ is the volume, $n$ is the number of moles of gas, and $R$ is a universal constant. 
+    Note that $R = 8.31 \frac{\text{J}}{\text{mol} \cdot \text{K}}$ in SI units only (when pressure is in units of $\frac{\text{N}}{\text{m}^2}$. 
+
+    An alternate form of this equation is 
+
+    \[
+        PV = NkT
+    \]
+
+    where $N$ is the number of gas molecules and $k$ is \textbf{Boltzmann's constant}, equal to $\frac{R}{N_a}$
+\end{fact}
+
+[Do 1.2 problems!!]
+
+\subsection{Equipartition of Energy}
+
+Comparing \ref{eq:Nk} and \ref{eq:pv}, we find the useful relationship
+between kinetic energy and temperature: 
+
+\begin{align}
+    \text{KE}_{\text{avg}} = \frac{3}{2}kT  \label{eq:equi} 
+\end{align}
+
+This equation is a special case of the \textbf{Equipartition Theorem}:
+
+\begin{theorem}[Equipartition Theorem]
+    
+    At a given temperature $T$, the average any of any quadratic degree of freedom is $\frac{1}{2}kT$. Examples of quadratic degrees 
+    of freedom are: 
+    
+    \centering 
+    $\frac{1}{2}mv_x^2$, $\frac{1}{2}mv_y^2$, $\frac{1}{2}mv_z^2$, $\frac{1}{2}Iw_x^2$, $\dots$, $\frac{1}{2}k_s x^2$, etc.    
+    
+\end{theorem}
+
+Intuitively, degrees of freedom can be seen as independent ways a particle can "store" different kinds of energy: rotational, kinetic, etc. This theorem will be proven later on. An implication of this statement is that, for a system containing $N$ molecules with $f$ degrees
+of freedom, then the average \textit{total} thermal energy of the system is 
+
+\begin{align}
+    \label{eq:thermaldeg}
+    U_{\text{thermal}} = N f \frac{1}{2}kT
+\end{align}
+
+Because thermal energy is often not the only kind of energy present in a system (ex: chemical potential energy), it is safest
+to apply the Equipartition Theorem when there are changes in energy directly due to changes in temperature, and to avoid considering this
+when phase transitions occur. Additionally, there is also a difficulty in counting which degrees of freedom are counted (for some 
+molecules, such as $O_2$, certain rotational axes don't count do to quantum mechanics; additionally, some molecules can vibrate)
+
+\subsection{Heat and Work}
+
+By the conservation of energy, if a system gains energy, the surrounding environment must lose energy, and vice-versa. 
+There are two such mechanisms by which this can occur: \textbf{heat} and \textbf{work}. 
+
+\begin{definition}[Heat]
+    \textbf{Heat} is any \textit{spontaneous} flow of energy from one object to another caused by a difference in temperature 
+    between the objects. 
+\end{definition}
+
+The classical example of hot water heating up a cold ice cube is an example of heat transfer, but not work. 
+
+\begin{definition}[Work]
+    \textbf{Work} is any other transfer of energy besides heat that is into or out of a system.
+\end{definition}
+
+ For example, you do work when pushing a piston, stir a cup of coffee, or run current through a resistor. Additionally you do 
+ work, but don't add heat, when rubbing your hands together to warm them up. Another detail to note is that work is usually thought
+ of as \textit{not} being spontaneous, there is usually some sort of agent putting energy into the system. Since heat and work encompass all the kinds 
+ of energy transfer that could occur to a system, we can write 
+ \begin{fact}[First Law of Thermodynamics]
+        \label{fact:FirstLaw}
+     The \textbf{First Law of Thermodynamics} states that 
+\[
+    \Delta U = Q + W
+\]
+
+ where $U$ is the total energy of a system, $\Delta U$ is the change in total energy of a system, $Q$ is the heat added, 
+ and $W$ is the work done. 
+     
+\end{fact}
+
+ Note the convention of a positive sign which represents heat \textit{added} to the system and 
+ work done \textit{to} the system.
+
+ \indent Physicists classify several methods of heat transfer according to the mechanism involved, such as
+
+ \begin{itemize}
+     \item \textbf{Conduction:} the transfer of heat by molecular contact
+    \item \textbf{Convection:} the bulk motion of a gas or liquid, due to the tendency of warmer material to expand and rise
+        in a gravitational field
+    \item \textbf{Radiation:} the emission of electromagnetic waves (infrared for room temperature objects, visible light for 
+        hotter objects like the filament of a lightbulb)
+ \end{itemize}
+
+ \begin{fact}[Caloric Units]
+     One \textbf{calorie} is traditionally defined as the amount of heat (not work) it takes to increase the temperature of \textbf{one gram} of water by \textbf{one degree Celsius.}
+
+     Experiment found that 1 calorie of heat is equivalent to $4.2$ Joules of mechanical work.
+ \end{fact}
+
+
+ \subsection{Compression Work}
+
+ Recall from classical mechanics that 
+
+\[
+W = \int \vect{F} \cdot \vect{dr}
+\]
+
+Consider the work done in order to move a piston containing a gas at a constant speed (see diagram below). 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/piston.png}
+    \end{center}
+    \caption{A diagram of conducting work on a piston.}\label{fig:piston}
+\end{figure}
+
+The piston moving inwards causes a negative volume change $\Delta V$. In order to replace $F$ by $PA$, we need to assume
+that the gas, while being compressed, is always in a state of internal equilibrium so that its pressure is uniform (thus well
+-defined). This means that the speed at which the piston is compressing the gas must be sufficiently slow so the gas as time
+to equilibriate. This is called a \textbf{quasistatic} volume change. In practice this is usually a good approximation because
+gases equilibriate very quickly. Thus, we have 
+
+\begin{align}
+    W &= PA \Delta x  \nonumber \\
+      &= -P\Delta V \text{\indent (For quasistatic compression) } \label{eq:quasi} 
+\end{align}
+
+The problem with this derivation is that the pressure changes during the compression, because pressure is a function 
+of volume. Thus, we require a modification to \ref{eq:quasi} with
+calculus:
+
+\begin{align}
+    W = - \int_{V_i}^{V_f} P(V) dV \text{\indent (quasistatic)} \label{eq:quasiwork}
+\end{align}
+
+\subsection{Compression of an Ideal Gas}
+The temperature of a gas under compression is generally going to increase, because work is being done on the system. 
+However, if the gas is compressed sufficiently slowly, then the change in temperature will be negligible; thus, the 
+speed at which a gas is compressed matters. 
+There are two idealized ways to compress an ideal gas: \textbf{isothermal compression} is so slow that the temperature of the gas doesn't
+rise at all, while \textbf{adiabatic} compression is so fast that no heat escapes from the gas and thus the temperature changes. 
+
+\indent We will start by examining the simpler isothermal case. Since the temperature does not change, we can substitute the 
+ideal gas law into equation \ref{eq:quasiwork}:
+
+\begin{align}
+    W &= -\int_{V_i}^{V_f} P dV = -NkT \int_{V_i}^{V_f} \frac{1}{V} dV \nonumber \\
+      &= -NkT(\ln{V_f} - \ln{V_i}) = NkT \ln{\frac{V_i}{V_f}}
+\end{align}
+
+To find the amount of heat flowing out into the environment, consider the following reasoning. We know, by \ref{fact:FirstLaw}, 
+that 
+
+\[
+    \Delta U = Q + W = Q + NkT \ln{\frac{V_i}{V_f}} 
+\]
+
+But we know from \ref{eq:thermaldeg} that $U$ is proportional to the temperature. But since this is an isothermal process
+and temperature did not change, $\Delta U$ must be 0. Thus, 
+
+\[
+    Q + W = 0 \implies Q = -W = NkT \ln{\frac{V_f}{V_i}} 
+\]
+
+The heat output (negative because heat is \textit{leaving} the gas) is just the negative of the work done.
+Now we consider adiabatic compression. We still assume that compression is quasistatic. By the definition of adiabatic, 
+
+\[
+    \Delta U = Q + W = W \implies dU = dW
+\]
+
+Using \ref{eq:quasiwork} again, we have 
+
+\begin{align*}
+    U = \frac{1}{2}NfkT 
+    \implies dU = \frac{1}{2}NfkdT = -PdV 
+\end{align*}
+
+Then, using the Ideal Gas Law, 
+
+\begin{align*}
+    \frac{1}{2}NfkdT = -PdV
+    \implies \frac{f}{2} \frac{dT}{T} = -\frac{dV}{V}
+\end{align*}
+
+Integrating both sides gives
+
+\[
+    \frac{f}{2} \ln{\frac{T_f}{T_i}} = - \ln{\frac{V_f}{V_i}}
+    \implies V_f T_{f}^{f/2} = V_i T_{i}^{f/2}
+\]
+
+Thus, we have discovered an important fact: 
+\begin{fact}
+    For any volume and temperature, during an \textit{adiabatic} process the quantity 
+    $VT^{f/2}$ is constant; namely, 
+
+    \[
+        V_f T_{f}^{f/2} = V_i T_{i}^{f/2}
+    \]
+\end{fact}
+
+Using the Ideal Gas Law, you can write this equality in an alternate form: 
+
+
+\begin{align*}
+    V_f T_{f}^{f/2} &= V_i T_{i}^{f/2} \\
+    V_f (\frac{P_f V_f}{N_k})^{f/2} &= V_f (\frac{P_i V_i}{N_i})^{f/2} \\
+    V_f^{\frac{f+2}{f}} P_f &= V_i^{\frac{f+2}{f}} P_i \\
+    \therefore V_f^{\gamma} P_f &= V_i^{\gamma} P_i \\
+\end{align*}
+
+So the quantity $V^{\gamma} P$ is also constant under adiabatic compression.
+
+\subsection{Heat Capacities}
+
+\begin{definition}[Heat Capacity]
+
+     The \textbf{Heat Capacity} of an object is the amount of heat required to raise the temperature of an
+     object by one degree: 
+
+     \begin{align*}
+         C = \displaystyle\frac{Q}{\Delta T}
+     \end{align*}
+
+     Additionally, the \textbf{Specific Heat Capacity} is the heat capacity per unit mass: 
+
+
+     \begin{align*}
+         c = \displaystyle\frac{C}{m}
+     \end{align*}
+\end{definition}
+
+
+The heat capacity is ambiguous because $Q$ could be anything. However, there are a couple of useful special cases
+to examine. One is the \textbf{heat capacity at constant volume}, meaning that $W = -P\Delta V = 0$:
+
+
+\begin{align*}
+ C_v = \left( \displaystyle\frac{\Delta U}{\Delta T} \right)_{V} = \left( \displaystyle\frac{ \partial U}{\partial T}\right)_{V}
+\end{align*}
+
+
+Where the $V$ subscript denotes a constant volume. In most practical cases, however, materials expand when heated up, so work 
+is done in expansion. Thus, the \textbf{heat capacity at constant pressure} is : 
+
+
+\begin{align}
+    C_v = \left( \displaystyle\frac{\Delta U - (-P \Delta V)}{\Delta t} \right)_{P} = \left( \displaystyle\frac{ \partial U}{\partial T}\right)_{P} + P \left( \displaystyle\frac{\partial V}{\partial T} \right)_{P} \label{eq:hccp}
+\end{align}
+
+
+If the system stores thermal energy only in quadratic "degrees of freedom" ($U = \frac{1}{2} N f k T$) then
+
+\begin{align*}
+C_v = \displaystyle\frac{\partial U}{\partial T} = \displaystyle\frac{N f k}{2} 
+\end{align*}
+
+This equation is known as the \textbf{rule of Dulong and Petit}. It assumes that $f$ is independent of temperature; this
+is not the case as various degrees of freedom, such as rotational and vibrational, freeze out at lower temperatures.
+
+To find the heat capacities of ideal gases at constant pressure, we can find the second term in \ref{eq:hccp} using the Ideal Gas Law: 
+
+\begin{align*}
+    \left( \pdv{V}{T} \right) = \pdv{T}(\displaystyle\frac{N k T}{P}) = \displaystyle\frac{N k}{P}
+\implies C_P = C_V + Nk = C_V + nR
+\end{align*}
+
+So $C_P$ exceeds $C_V$ by $R$ per mole of gas. 
+
+\begin{fact}
+    For an ideal gas, 
+   
+    \begin{equation}
+          C_P = C_V + Nk = C_V + nR
+    \end{equation}
+\end{fact}
+
+
+
+\chapter{Fluid Dynamics}
+\end{document}
+
+
+
+
