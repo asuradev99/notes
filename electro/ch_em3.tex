@@ -1,0 +1,1010 @@
+%═══════════════════════════════════════════════════════════════════════════════
+\chapter{The Electric Potential}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\textit{(Chapter 2, Sections 2.1--2.8)}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Line Integral of the Electric Field}
+%───────────────────────────────────────────────────────────────────────────────
+
+Let $\vect{E}$ be some electric field and $P_1$, $P_2$ some points within it. Then the \emph{line integral} between these points is
+\[
+  W_{P_1}^{P_2} = \int_{P_1}^{P_2} \vect{E} \cdot d\vect{s}
+\]
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % Background field lines (rightward)
+  \foreach \y in {-1.2,-0.6,0,0.6,1.2} {
+    \draw[-{Stealth[length=4pt]}, gray!50] (-2.5,\y) -- (2.5,\y);
+  }
+  % Points
+  \filldraw[black] (-1.5,0) circle (3pt) node[below left]{$P_1$};
+  \filldraw[black] (1.5,0) circle (3pt) node[below right]{$P_2$};
+  % Path 1: straight
+  \draw[thick, blue!70!black, -{Stealth[length=5pt]}]
+    (-1.5,0) -- (1.5,0) node[midway, below=4pt]{Path 1};
+  % Path 2: curved above
+  \draw[thick, red!70!black, -{Stealth[length=5pt]}]
+    (-1.5,0) .. controls (-0.5,1.2) and (0.5,1.2) .. (1.5,0)
+    node[midway, above=4pt]{Path 2};
+  % Label: same integral
+  \node[font=\small] at (0,-1.8)
+    {$\displaystyle\int_{\text{Path 1}}\vect{E}\cdot d\vect{s} = \int_{\text{Path 2}}\vect{E}\cdot d\vect{s}$};
+\end{tikzpicture}
+\end{center}
+\caption{Two different paths from $P_1$ to $P_2$ through an electric field. Because $\vect{E}$ is conservative ($\curl\vect{E}=0$), the line integral is path-independent.}
+\end{figure}
+
+\begin{itemize}
+  \item Since the electric field is \emph{conservative}, the line integral is path-independent for all paths that begin the same and end the same.
+
+  \begin{fact}[Corollary]
+    $\displaystyle\oint \vect{E} \cdot d\vect{s} = 0$ around any closed path.
+  \end{fact}
+
+  \item The line integral is \emph{linear}: if $\vect{E} = \vect{E}_1 + \vect{E}_2 + \dots + \vect{E}_n$, then
+  \[
+    \int_{P_1}^{P_2} \vect{E} \cdot d\vect{s}
+    = \int_{P_1}^{P_2} \vect{E}_1 \cdot d\vect{s}
+    + \int_{P_1}^{P_2} \vect{E}_2 \cdot d\vect{s}
+    + \dots
+    + \int_{P_1}^{P_2} \vect{E}_n \cdot d\vect{s}
+  \]
+
+  \item You will never have an electric field that points in a circle.
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Potential Difference and the Potential Function}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{formula}[Electric potential difference]
+\[
+  \phi_{21} = -\int_{P_1}^{P_2} \vect{E} \cdot d\vect{s}
+\]
+Work/unit charge in moving a positive charge from $P_1$ to $P_2$, measured in volts $= \frac{1\,\text{J}}{1\,\text{C}}$ (also: $1\,\text{V} = 1\,\frac{\text{J}}{\text{C}}$, ``how hard it is to push 1 coulomb through'').
+\end{formula}
+
+\begin{itemize}
+  \item If you fix one point, $P_1$, the $\phi$ becomes a scalar function of $P_2$ $(x,y,z)$: $\phi(x,y,z)$.
+\end{itemize}
+
+\begin{formula}[Potential from a point charge at the origin]
+\[
+  \phi(r) = -\frac{1}{4\pi\varepsilon_0}\int_{\infty}^{r} \frac{Q}{r'^2}\,dr'
+           = \frac{1}{4\pi\varepsilon_0}\frac{Q}{r}
+\]
+\textit{Note: there is no negative sign!}
+\end{formula}
+
+\begin{itemize}
+  \item Don't confuse $\phi(r)$ with $U$: $\phi(r)$ is the potential function; $U$ is the total work required to assemble a system (not to move a test charge).
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection*{Example: Potential Due to a Uniform Sphere}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Potential of a uniformly charged sphere (radius $R$, volume charge density $\rho$)]
+Goal: find the potential for all values of $r$, both inside and outside the sphere.
+
+\begin{itemize}
+  \item Inside the sphere: $E(r) = \dfrac{\rho r}{3\varepsilon_0}$
+  \item Outside: $E(r) = \dfrac{\rho R^3}{3\varepsilon_0 r^2}$
+\end{itemize}
+
+Thus,
+\[
+  \phi_\text{out}(r) = -\int_\infty^r E(r')\,dr'
+  = -\int_\infty^r \frac{\rho R^3}{3\varepsilon_0 r'^2}\,dr'
+  = \frac{\rho R^3}{3\varepsilon_0 r}
+\]
+
+In terms of the total charge $Q = \frac{4}{3}\pi R^3 \rho$:
+\[
+  \phi_\text{out}(r) = \frac{Q}{4\pi\varepsilon_0 r} \quad \text{(as expected)}
+\]
+
+For $\phi_\text{in}$:
+\begin{align*}
+  \phi_\text{in}(r)
+  &= -\int_\infty^R E(r')\,dr' - \int_R^r E(r')\,dr' \\
+  &= -\int_\infty^R \frac{\rho R^3}{3\varepsilon_0 r'^2}\,dr'
+     - \int_R^r \frac{\rho r'}{3\varepsilon_0}\,dr' \\
+  &= \frac{\rho R^3}{3\varepsilon_0 R} - \frac{\rho}{6\varepsilon_0}(r^2 - R^2)
+   = \frac{\rho R^2}{\varepsilon_0} \cdot \frac{1}{2\varepsilon_0} - \frac{\rho r^2}{6\varepsilon_0}
+   = \frac{\rho R^2}{2\varepsilon_0} - \frac{\rho r^2}{6\varepsilon_0}
+\end{align*}
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Gradient of a Scalar Function}
+%───────────────────────────────────────────────────────────────────────────────
+
+\textit{(Linear small-volume geometry: Van der Graaff)}
+
+Using the potential function we can also go the other way and find the electric field:
+
+\begin{formula}[Gradient in Cartesian coordinates]
+\[
+  \grad f = \hat{x}\,\pdv{f}{x} + \hat{y}\,\pdv{f}{y} + \hat{z}\,\pdv{f}{z}
+\]
+\end{formula}
+
+\begin{itemize}
+  \item Tells how the function $f$ varies in a small neighbourhood.
+  \item The direction of the gradient is in the direction of steepest ascent.
+  \item If $f$ is a function of $r$ only, then the direction of steepest ascent is always along the radial direction.
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Derivation of the Field from the Potential}
+%───────────────────────────────────────────────────────────────────────────────
+
+Consider the value of $\phi$ at two nearby points $(x,y,z)$ and $(x+dx,\,y+dy,\,z+dz)$:
+\[
+  d\phi = \pdv{\phi}{x}\,dx + \pdv{\phi}{y}\,dy + \pdv{\phi}{z}\,dz
+  \quad \text{(to first order)}
+\]
+
+But $d\phi = -\vect{E}\cdot d\vect{s} = -\vect{E}\cdot(\hat{x}\,dx + \hat{y}\,dy + \hat{z}\,dz)$, thus:
+\[
+  E_x = -\pdv{\phi}{x}, \quad E_y = -\pdv{\phi}{y}, \quad E_z = -\pdv{\phi}{z}
+\]
+
+\begin{formula}[Field from potential]
+\[
+  \boxed{\vect{E} = -\grad\phi}
+\]
+\end{formula}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Equipotential Lines}
+%───────────────────────────────────────────────────────────────────────────────
+
+The condition for equipotentials is:
+\[
+  dx\,\pdv{\phi}{x} + dy\,\pdv{\phi}{y} + dz\,\pdv{\phi}{z} = 0
+  \implies \left(\pdv{\phi}{x}, \pdv{\phi}{y}\right)\cdot(dx,dy) = 0
+\]
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % Equipotential circles (dashed, blue)
+  \foreach \r in {0.6,1.0,1.4,1.9} {
+    \draw[dashed, blue!60!black, thick] (0,0) circle (\r);
+    \node[blue!60!black, font=\tiny] at ({(\r+0.15)*cos(20)},{(\r+0.15)*sin(20)}) {$\phi\!=\text{const}$};
+  }
+  % Radial field lines (red)
+  \foreach \angle in {0,45,90,135,180,225,270,315} {
+    \draw[-{Stealth[length=4pt]}, red!70!black, thick]
+      ({0.45*cos(\angle)},{0.45*sin(\angle)}) -- ({1.9*cos(\angle)},{1.9*sin(\angle)});
+  }
+  % Charge at center
+  \filldraw[black] (0,0) circle (3.5pt) node[below right, font=\small]{$+q$};
+  % Labels
+  \node[red!70!black, font=\small] at (2.5,-0.3) {$\vect{E}$ (radial)};
+  \node[blue!60!black, font=\small] at (-2.5,0.3) {equip.\ circles};
+\end{tikzpicture}
+\end{center}
+\caption{Equipotential surfaces (dashed circles, $\phi = Q/4\pi\varepsilon_0 r = \text{const}$) and radial electric field lines for a positive point charge. Field lines are always perpendicular to equipotentials.}
+\end{figure}
+
+\textbf{Methods to find equipotential lines:}
+\begin{enumerate}
+  \item Find equipotential lines directly from $\phi$.
+  \item Find $\dfrac{dy}{dx}$, then invert it to $-\dfrac{\partial\phi/\partial x}{\partial\phi/\partial y}$.
+  \item Integrate: $\dfrac{dy}{dx}$. \textbf{OR}
+  \item Set $\dfrac{dy}{dx} = \dfrac{E_y}{E_x}$ at every point if you have the field lines.
+\end{enumerate}
+
+\textbf{Finding field lines} (not equipotential lines): the ratios $dx:dy:dz = E_x:E_y:E_z$.
+
+\paragraph{Example:} $\phi(x,y) = 6\ln(x) - 6\ln(y)$
+
+\[
+  \frac{dy}{dx} = \frac{E_y}{E_x}
+  = \frac{6\ln(y)\cos(y)}{6\ln(y)\cos(x)} = \frac{\tan(x)}{\tan(y)}
+\]
+\[
+  \tan(y)\,dy = \tan(x)\,dx
+  \implies \ln(\cos(x)) = \ln(\cos(y)) + C
+  \implies y = \cos^{-1}(A\cos(x))
+\]
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Potential of a Charge Distribution}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{itemize}
+  \item The potential at any isolated point is $\dfrac{q}{4\pi\varepsilon_0 r}$.
+  \item Superposition works for potentials as well as fields.
+  \item If all the sources are confined in some finite region, it is simplest to put the zero of potential at infinite distance.
+\end{itemize}
+
+\begin{formula}[Potential from a continuous charge distribution]
+\[
+  \phi(x,y,z) = \int_\text{source} \frac{\rho(x',y',z')\,dx'\,dy'\,dz'}{4\pi\varepsilon_0\, r}
+\]
+where $r$ is the distance from the point $(x',y',z')$ (which the potential is being evaluated from) to $(x,y,z)$.
+\end{formula}
+
+\[
+  \phi_0 = \phi_0 + \phi_1 + \cdots
+\]
+
+\begin{itemize}
+  \item One caveat: for infinite systems such as an infinitely long line charge, the integral diverges.
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection*{Example: Potential of a Long Charged Wire}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Potential difference for an infinite line charge (linear charge density $\lambda$)]
+The field is $E(r) = \dfrac{\lambda}{2\pi\varepsilon_0 r}$.
+\begin{align*}
+  \phi_{21}
+  &= -\int_{P_1}^{P_2} \vect{E}\cdot d\vect{s}
+   = -\int_{r_1}^{r_2} \frac{\lambda}{2\pi\varepsilon_0 r}\,dr \\
+  &= -\frac{\lambda}{2\pi\varepsilon_0}\bigl(\ln(r_2) - \ln(r_1)\bigr) \\
+  &= -\frac{\lambda}{2\pi\varepsilon_0}\ln(r_2) + \text{constant}
+\end{align*}
+
+To verify: $\vect{E}(r) = -\grad\phi = -\dfrac{\lambda}{2\pi\varepsilon_0}\left(\pdv{\ln r}{x}, \pdv{\ln r}{y}, \pdv{\ln r}{z}\right)$
+
+\textbf{Note: blows up.}
+
+\[
+  = \frac{\lambda}{2\pi\varepsilon_0}\left(\frac{x}{r^2}, \frac{y}{r^2}, \frac{z}{r^2}\right)
+  = \frac{\lambda}{2\pi\varepsilon_0 r}\,\hat{r}
+  = \frac{\lambda}{2\pi\varepsilon_0}\hat{r}
+\]
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Uniformly Charged Disk}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{figure}[H]
+\centering
+\caption{Uniformly charged disk (surface charge density $\sigma$, radius $a$) with a field point $P_1$ on the axis at distance $y$.}
+\end{figure}
+
+Area of the ring segment:
+\[
+  dA = 2\pi s \, ds \implies d\phi_\text{ring} = \frac{\sigma\,dA}{2\pi\varepsilon_0\sqrt{y^2+s^2}}
+     = \frac{\sigma\,s\,ds}{2\varepsilon_0\sqrt{y^2+s^2}}
+\]
+
+Since each point is a distance $\sqrt{y^2+s^2}$ from each point on the ring, the contribution of the ring to the potential is $d\phi = \dfrac{\sigma\,s\,ds}{2\varepsilon_0\sqrt{y^2+s^2}}$.
+
+Thus,
+\[
+  \phi(0,y,0) = \int_0^a \frac{\sigma\,s\,ds}{2\varepsilon_0\sqrt{y^2+s^2}}
+  = \frac{\sigma}{2\varepsilon_0}\sqrt{y^2+s^2}\Big|_0^a
+\]
+
+\begin{formula}[Potential on the axis of a uniformly charged disk]
+\[
+  \phi(0,y,0) = \frac{\sigma}{2\varepsilon_0}\left(\sqrt{y^2+a^2} - y\right)
+  \quad \text{for } y > 0
+\]
+\end{formula}
+
+When $y=0$, there is a discontinuity in the graph of $\phi(y)$, so $\phi(0) = \dfrac{\sigma a}{2\varepsilon_0}$.
+
+When $y \gg a$, we can approximate $\sqrt{y^2+a^2} - y$ as:
+\[
+  \sqrt{y^2+a^2} - y
+  = y\left[\left(1+\frac{a^2}{y^2}\right)^{1/2} - 1\right]
+  = y\left[1 + \tfrac{1}{2}\left(\frac{a^2}{y^2}\right) + \dots - 1\right]
+  \approx \frac{a^2}{2y}
+\]
+Thus,
+\[
+  \phi(0,y,0) \approx \frac{\pi a^2 \sigma}{4\pi\varepsilon_0 y}
+  \quad \text{for } y \gg a
+\]
+which is the same as the expression for a point charge of the same magnitude.
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Dipoles}
+%───────────────────────────────────────────────────────────────────────────────
+
+Consider a setup with 2 equal/opposite charges; the test charge is at $r \gg \ell$.
+
+\begin{figure}[H]
+\centering
+\caption{Dipole: charge $-q$ at the origin, charge $+q$ at distance $\ell$, field point $P$ at $(r,\theta)$ with $r \gg \ell$.}
+\end{figure}
+
+\subsection{Calculation of $\phi$ and \texorpdfstring{$\vect{E}$}{E}}
+
+We will use polar coords ($\theta$, $r$); $\phi$ doesn't matter.
+
+The exact expression for the potential is:
+\[
+  \phi_p = \frac{kq}{r_+} - \frac{kq}{r_-} \tag{1}
+\]
+
+Instead of being exact of course, we will approximate $\hat{r}_+$ and $\hat{r}_-$ as being effectively parallel for $r \gg \ell$ in the limit.
+
+The picture becomes: we can see that $r_+ \approx r - \frac{\ell}{2}\cos\theta$ and $r_- \approx r + \frac{\ell}{2}\cos\theta$.
+
+Using the approximation $\frac{1}{1\pm\delta} \approx 1 \mp \delta$, (1) becomes:
+
+\begin{align*}
+  \phi(r,\theta)
+  &= \frac{kq}{r - \frac{\ell}{2}\cos\theta} - \frac{kq}{r + \frac{\ell}{2}\cos\theta} \\
+  &= \frac{kq}{r}\left(\frac{1}{1-\frac{\ell\cos\theta}{2r}} - \frac{1}{1+\frac{\ell\cos\theta}{2r}}\right) \\
+  &= \frac{kq}{r}\left(\left(1 + \frac{\ell\cos\theta}{2r}\right) - \left(1 - \frac{\ell\cos\theta}{2r}\right)\right) \\
+  &= \frac{kq\ell\cos\theta}{r^2} = \frac{q\ell\cos\theta}{4\pi\varepsilon_0 r^2}
+\end{align*}
+
+\begin{formula}[Dipole potential]
+\[
+  \phi(r,\theta) = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2}, \quad r \gg \ell
+\]
+where $p = q\ell$ is the \emph{dipole moment}.
+\end{formula}
+
+\begin{itemize}
+  \item Note that $\phi(r,\theta) \propto \frac{1}{r^2}$, not $\frac{1}{r}$.
+  \item Makes sense as the potentials from the two opposite charges nearly cancel.
+  \item There is no angular dependence on $\phi$.
+  \item Part of a general technique called \emph{multipole expansion}.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\caption{Multipole hierarchy: monopole (single charge), dipole (two opposite charges), bi-monopole, quadrupole.}
+\end{figure}
+
+\subsection{Finding \texorpdfstring{$\vect{E}$}{E} in a Dipole --- Derivation of Spherical Gradient}
+
+In spherical coordinates, ($\theta$ and $\phi$ must be kept separate):
+\[
+  \grad\phi = \pdv{\phi}{r}\,\hat{r} + \frac{1}{r}\pdv{\phi}{\theta}\,\hat{\theta}
+\]
+
+Thus,
+\begin{align*}
+  \vect{E}(r,\theta)
+  &= -\grad\phi
+   = -\pdv{}{r}\!\left(\frac{p\cos\theta}{4\pi\varepsilon_0 r^2}\right)\hat{r}
+     + \frac{1}{r}\pdv{}{\theta}\!\left(\frac{p\cos\theta}{4\pi\varepsilon_0 r^2}\right)\hat{\theta} \\
+  &= \frac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\hat{r} + \sin\theta\,\hat{\theta})
+\end{align*}
+
+\subsection{Field Lines for \texorpdfstring{$\vect{E}$}{E}}
+
+\begin{figure}[H]
+\centering
+\caption{Field lines for the dipole electric field (coloured circles represent equipotential lines $\theta = \pi/2$, field closes at small $r$). Equipotential lines are shown at $\theta = \pi/2$ (equatorial plane).}
+\end{figure}
+
+\subsection{Deriving Equations for Field Lines and Equipotential Lines}
+
+Let $\phi = \phi_0$ be constant, then:
+\[
+  \frac{kq\ell\cos\theta}{r^2} = \phi_0
+  \implies r^2 = \left(\frac{kq\ell}{\phi_0}\right)\cos\theta
+\]
+\[
+  r = r_0\sqrt{\cos\theta}, \quad r_0 = \sqrt{\frac{kq\ell}{\phi_0}}
+\]
+
+To account for $\cos\theta$ being negative in the other half of the dipole, use absolute values:
+\begin{formula}[Equipotential curves for a dipole]
+\[
+  r = r_0\sqrt{|\cos\theta|}, \quad r_0 = \sqrt{\frac{kq\ell}{\phi_0}}
+\]
+\end{formula}
+
+The slope in polar coordinates is $\dfrac{1}{r}\dfrac{dr}{d\theta}$:
+\[
+  \frac{1}{r}\frac{dr}{d\theta}
+  = \frac{1}{r_0\sqrt{\cos\theta}}\cdot\frac{d}{d\theta}(r_0\sqrt{\cos\theta})
+  = \frac{r_0}{r_0\sqrt{\cos\theta}}\cdot\frac{-\sin\theta}{2\sqrt{\cos\theta}}
+  = \frac{-\sin\theta}{2\cos\theta}
+\]
+
+\begin{itemize}
+  \item For $\theta = \pm\pi/2$, slope is $\to\infty$.
+\end{itemize}
+
+We can also go from field lines to equipotential lines:
+\begin{itemize}
+  \item Slope of the tangent $= \dfrac{E_r}{E_\theta} = \dfrac{2\cos\theta}{\sin\theta}$. Why is this the tangent?
+  \item To find the equation for the field-line curves, set
+    \[
+      \frac{1}{r}\frac{dr}{d\theta} = \frac{2\cos\theta}{\sin\theta}
+      \implies \int\frac{dr}{r} = \int\frac{2\cos\theta}{\sin\theta}\,d\theta
+    \]
+    \[
+      \ln(r) = 2\ln(\sin\theta) + C
+    \]
+    \[
+      \implies r = r_0 \sin^2\theta
+    \]
+    where $r_0 = e^C$ is the radius at $\theta = \frac{\pi}{2}$.
+\end{itemize}
+
+$\to$ \textit{Do Exercise 2.63 for practice!}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Divergence of a Vector Function}
+%───────────────────────────────────────────────────────────────────────────────
+
+For some arbitrary surface,
+\[
+  \Phi_\text{net} = \int_S \vect{F}\cdot d\vect{A}
+\]
+where $\hat{n}$ is normal to the surface and $dA$ is the area of the surface element.
+
+Now imagine dividing the volume into $N$ pieces.
+\begin{itemize}
+  \item Both volumes share the surface $S_2$: any flux going out of $S_2$ on one side is the flux coming out into the other side, so the internal contributions cancel.
+\end{itemize}
+
+Thus,
+\[
+  \sum_{i=1}^N \int_{S_i} \vect{F}\cdot d\vect{A}_i = \int_S \vect{F}\cdot d\vect{A} = \Phi
+\]
+
+\begin{itemize}
+  \item As $N\to\infty$ consider the ratio of $\displaystyle\int_{S_i}\vect{F}\cdot d\vect{A}$ and element size $\to 0$.
+  \item $\div \vect{F} \defeq \displaystyle\lim_{V_i\to 0} \frac{1}{V_i}\int_{S_i}\vect{F}\cdot d\vect{A}$: the flux out of $V_i$ per unit volume, as $V_i\to 0$.
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Gauss's Theorem and the Differential Form of Gauss's Law}
+%───────────────────────────────────────────────────────────────────────────────
+
+We can now turn our long back to the full integrals:
+\[
+  \int_S \vect{F}\cdot d\vect{A}
+  = \sum_{i=1}^N \int_{S_i}\vect{F}\cdot d\vect{A}_i
+  = \sum_{i=1}^N V_i \left(\frac{\int_{S_i}\vect{F}\cdot d\vect{A}_i}{V_i}\right)
+\]
+
+As $N\to\infty$ and $V_i\to 0$, the sum turns into an integral:
+
+\begin{formula}[Gauss's Theorem / Divergence Theorem]
+\[
+  \int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV
+\]
+(when $\vect{F}$ is any vector field over the volume $V$)
+\end{formula}
+
+We can also use the fact that:
+\[
+  \int_S \vect{E}\cdot d\vect{A} = \frac{Q}{\varepsilon_0} = \frac{1}{\varepsilon_0}\int_V \rho\,dV
+\]
+\[
+  \Rightarrow \int_V \div\vect{E}\,dV = \frac{1}{\varepsilon_0}\int_V \rho\,dV
+\]
+
+\begin{formula}[Differential (local) form of Gauss's Law]
+\[
+  \div\vect{E} = \frac{\rho(\vect{r})}{\varepsilon_0}
+  \quad\text{the divergence of the force field $= \rho/\varepsilon_0$ at any point}
+\]
+\end{formula}
+
+\begin{itemize}
+  \item Read the example on page 60!
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Derivation of Divergence in Cartesian Coordinates}
+%───────────────────────────────────────────────────────────────────────────────
+
+Let $\vect{F}$ be a vector function of $x$, $y$, $z$ coordinates. 3 scalar functions: $F_x(x,y,z)$, $F_y(x,y,z)$, $F_z(x,y,z)$.
+
+\begin{figure}[H]
+\centering
+\caption{Infinitesimal box of dimensions $\Delta x$, $\Delta y$, $\Delta z$ at $(x,y,z)$ used to derive divergence.}
+\end{figure}
+
+\begin{itemize}
+  \item Net flux through the top and bottom faces (in the $z$-direction):
+    \[
+      F_{z,\text{top}} - F_{z,\text{bottom}}
+    \]
+    This can be approximated as $\left(\pdv{F_z}{\Delta z}\right)\Delta z$.
+  \item The average value of $F_z$ on the bottom surface of the box (it is constant on the rectangle):
+    \[
+      \Rightarrow F_{z,\text{bottom}} = F_z(x,y,z) + \frac{\Delta x}{2}\pdv{F_z}{x} + \frac{\Delta y}{2}\pdv{F_z}{y}
+    \]
+  \item For the top face, the story is similar:
+    \[
+      F_{z,\text{top}} = F_z(x,y,z+\Delta z) + \frac{\Delta x}{2}\pdv{F_z}{x} + \frac{\Delta y}{2}\pdv{F_z}{y} + \Delta z\pdv{F_z}{\Delta z}
+    \]
+  \item Thus the net flux out of the box in the $z$-direction is:
+    \begin{align*}
+      \overrightarrow{\Phi}_z
+      &= \Delta x\Delta y\left[F_z(x,y,z+\Delta z) + \frac{\Delta x}{2}\pdv{F_z}{x}
+         + \frac{\Delta y}{2}\pdv{F_z}{y} + \Delta z\pdv{F_z}{z}\right] \\
+      &\quad - \Delta x\Delta y\left[F_z(x,y,z) + \dots\right] \\
+      &= \Delta x\Delta y\,\Delta z\left(\pdv{F_z}{z}\right)
+    \end{align*}
+\end{itemize}
+
+Thus, for all pairs of sides:
+\[
+  \Phi = \Delta x\,\Delta y\,\Delta z\left(\pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z}\right)
+\]
+\[
+  \Phi_\text{volume} = \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z}
+\]
+
+This works for arbitrary regions that divide into boxes, like the original argument for Gauss's Divergence Theorem. Thus,
+
+\begin{formula}[Divergence in Cartesian coordinates]
+\[
+  \div\vect{F} = \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z} = \nabla\cdot\vect{F} = \frac{\rho(r)}{\varepsilon_0}
+\]
+\end{formula}
+
+\subsection*{Divergence on a Uniform Sphere}
+
+By Gauss's law outside: $4\pi r^2 E_r = \dfrac{\frac{4}{3}\pi r^3 \rho}{\varepsilon_0}$,
+\[
+  \Rightarrow \vect{E} = \frac{\rho r}{3\varepsilon_0}\,\hat{r}
+\]
+
+For $r > a$, $\hat{r} = \frac{1}{r}(x,y,z)$, so:
+\[
+  E_x \approx \frac{\rho a^3}{3\varepsilon_0}\cdot\frac{x}{r^3}; \quad E_y, E_z \text{ are similar}
+\]
+
+\[
+  \pdv{E_x}{x} = \frac{\rho a^3}{3\varepsilon_0}\left(\frac{1}{r^3} - \frac{3x^2}{r^4}\cdot\frac{\partial r}{\partial x}\right)
+  = \frac{\rho a^3}{3\varepsilon_0}\left(\frac{1}{r^3} - \frac{3x^2}{r^5}\right)
+\]
+
+\[
+  \text{thus } {-\div\vect{E}} = \frac{\rho a^3}{3\varepsilon_0}\left(\frac{3}{r^3} - \frac{3}{r^3}\right) = 0
+\]
+
+For $r < a$, $E_x = \dfrac{\rho}{3\varepsilon_0} x$, $y$, $z$ --- same:
+\[
+  \pdv{E_x}{x} = \frac{\rho}{3\varepsilon_0}
+  \implies \div\vect{E} = \frac{\rho}{\varepsilon_0}
+\]
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection*{Van de Graaff Generator}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{figure}[H]
+\centering
+\caption{Van de Graaff generator diagram: charge accumulates on the outer sphere; no charge accumulates inside. The ground reference is at the voltage source.}
+\end{figure}
+
+\begin{itemize}
+  \item No charge accumulates inside.
+  \item If you have a cavity in a metal the electric field inside is zero.
+  \item Charge density is higher at a sharp point: used by lightning rods because it discharges charge into the air continuously, ionizing the air.
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{The Laplacian}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{align*}
+  \div\vect{E} &= -\div(\grad\phi)
+  = -\left(\pdv[2]{\phi}{x} + \pdv[2]{\phi}{y} + \pdv[2]{\phi}{z}\right)
+\end{align*}
+
+\begin{formula}[Laplacian and Poisson's equation]
+\[
+  \div\vect{E} = -\laplacian\phi, \quad
+  \text{where } \laplacian = \nabla\cdot\nabla
+  = \pdv[2]{}{x} + \pdv[2]{}{y} + \pdv[2]{}{z}
+\]
+Since we know $\div\vect{E} = -\dfrac{\rho}{\varepsilon_0}$:
+\[
+  \laplacian\phi = -\frac{\rho}{\varepsilon_0}
+\]
+\end{formula}
+
+\textbf{Useful equations to remember in spherical coordinates:}
+\[
+  \grad\phi = \frac{1}{r}\pdv{}{r}(r\phi), \qquad
+  \laplacian\phi = \frac{1}{r^2}\pdv{}{r}(r\phi)
+\]
+
+\subsection*{Example}
+
+Let $\phi(r) = \dfrac{q}{4\pi\varepsilon_0 r}\exp\!\left(-\dfrac{r}{r_0}\right)$.
+
+In spherical coordinates: $\nabla = \left(\pdv{}{r},\, \dfrac{1}{r}\pdv{}{\theta},\, \dfrac{1}{r\sin\theta}\pdv{}{\phi}\right)$.
+
+Thus $\grad\phi = \vect{E} = -\left(\pdv{\phi}{r}, 0, 0\right)$:
+\[
+  = \frac{q}{4\pi\varepsilon_0 r}\left(\frac{1}{r_0}\exp\!\left(-\frac{r}{r_0}\right)
+    + \exp\!\left(-\frac{r}{r_0}\right)\cdot\frac{-1}{r^2}\right)
+\]
+\[
+  = \frac{q}{4\pi\varepsilon_0 r^2}\left[\frac{1}{r^2} - \frac{1}{r_0 r}\right]\exp\!\left(-\frac{r}{r_0}\right)
+\]
+
+Working out $\div\vect{E}$ in spherical coordinates using the thin shell $[r, r+dr]$:
+\[
+  \Delta\Phi_E = 4\pi(r+dr)^2 E_r(r+dr) - 4\pi r^2 E_r(r)
+\]
+\[
+  \Delta\Phi_E = \pdv{}{r}\bigl(4\pi r^2 E_r\bigr)\,dr
+\]
+Thus,
+\[
+  \div\vect{E} = \frac{\pdv{}{r}(4\pi r^2 E_r)\,dr}{4\pi r^2\,dr}
+  = \frac{1}{r^2}\pdv{}{r}(r^2 E_r)
+\]
+
+So:
+\[
+  r^2 E_r = \frac{q}{4\pi\varepsilon_0}\left(1 + \frac{r}{r_0}\right)\exp\!\left(-\frac{r}{r_0}\right)
+\]
+
+\[
+  \Rightarrow \rho = \frac{-q}{4\pi r}\left(\frac{1}{r_0^2}\right)\exp\!\left(-\frac{r}{r_0}\right)
+\]
+
+\[
+  \int_0^\infty \rho(\vec{r})\,4\pi r^2\,dr = -q \quad ??
+\]
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Laplace's Equation}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{formula}[Laplace's equation]
+\[
+  \laplacian\phi = 0 \quad \text{whenever } \rho = 0, \text{ since there is no charge}
+\]
+\end{formula}
+
+\begin{itemize}
+  \item The class of functions that satisfy Laplace's equation are called \emph{harmonic functions}, and they have the following property:
+\end{itemize}
+
+\begin{theorem}[2.1]
+If $\phi(x,y,z)$ satisfies Laplace's equation, then the average value of $\phi$ over the surface of any sphere (not necessarily a small sphere) is equal to the value of $\phi$ at the \emph{centre} of the sphere.
+\end{theorem}
+
+\begin{proof}
+(For the special case for $\phi$ in regions containing no charge.)
+
+Consider a point charge $q$ and a spherical surface $S$ over which a charge $q'$ is uniformly distributed.
+\begin{itemize}
+  \item Let $q'$ be brought in from infinity to a distance $R$.
+  \item Thus, $W = \dfrac{qq'}{4\pi\varepsilon_0 R}$.
+\end{itemize}
+Now consider if the sphere was brought in from infinity:
+\begin{itemize}
+  \item Work is the same: $\dfrac{qq'}{4\pi\varepsilon_0 R}$.
+  \item Thus, the average value of $q'$ over the surface is $\dfrac{q}{4\pi\varepsilon_0 R}$, which is the same as the potential.
+\end{itemize}
+This proves the theorem for a single point charge, but by superposition it should also work for multiple charges, since the average of a sum is the sum of the averages.
+\end{proof}
+
+\begin{theorem}[Earnshaw's Theorem]
+It is impossible to construct an electrostatic field that will hold a charged particle in stable equilibrium in free (empty) space.
+\end{theorem}
+
+\begin{proof}
+Gauss's Law proof: Suppose we had an electric field in which, contrary to the theorem, there is a point $P$ such that $\phi$ is at a local minimum. But that means $\vect{E}$ must be pointing everywhere inward, so the flux on a small sphere surrounding $P$ is negative $\Rightarrow$ contradicts Gauss's Law (no charge $\Rightarrow$ flux $= 0$!).
+
+\textit{Second method:} A stable position must be one where $\phi$ is at a local minimum $\Rightarrow$ $\phi$ must be lower or equal than $\phi$ at neighbouring points. However, this is impossible when $\phi$ must be the average of its neighbouring ball.
+\end{proof}
+
+\subsection*{Distinguishing the Physics from the Mathematics}
+
+\begin{itemize}
+  \item Suppose that Coulomb's law is instead $\propto \dfrac{e^{-2r}}{r^2}$, which has an effectively finite range.
+  \item Then $\displaystyle\int_S \vect{E}\cdot d\vect{A} \neq \frac{1}{\varepsilon_0}\int_V \rho\,dV$, since the flux would go to 0 as the surface expands --- \textit{see this for yourself!}
+  \item However, $\displaystyle\int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV$ since that is a mathematical law.
+  \item $\div\vect{F} \neq \dfrac{\rho}{\varepsilon_0}$ because a region with 0 density of charge could still have a net flux due to the force field having a finite range (at order $\varepsilon_0$) --- some.
+  \item Remember that statements like $\laplacian\phi = -\dfrac{\rho}{\varepsilon_0}$ only make sense at a macroscopic scale since electrons are discrete.
+\end{itemize}
+
+\subsection*{Equation Graph}
+
+\begin{figure}[H]
+\centering
+\caption{Relationship diagram between charge density $\rho$, electric field $\vect{E}$, and electric potential $\phi$: $\vect{E} = \frac{1}{4\pi\varepsilon_0}\int\frac{\rho\,\hat{r}}{r^2}\,dV$ (via matter), $\vect{E} = -\grad\phi$, $\nabla\cdot\vect{E} = \div\vect{E} = \frac{\rho}{\varepsilon_0}$ (Coulomb/Gauss), $\phi = -\int\vect{E}\cdot d\vect{s}$, $-\laplacian\phi = \frac{\rho}{\varepsilon_0}$ (Poisson), $\phi = \frac{1}{4\pi\varepsilon_0}\int\frac{\rho}{r}\,dV$.}
+\end{figure}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section{Vector Curl: Stokes's Theorem}
+%───────────────────────────────────────────────────────────────────────────────
+
+Consider a closed path $C$ along some surface $S$.
+
+\begin{figure}[H]
+\centering
+\caption{Closed path $C$ on surface $S$, divided into two sub-paths by a bridge $B$; shared contributions of the line integrals cancel out.}
+\end{figure}
+
+Let $\Gamma = \displaystyle\int_C \vect{F}\cdot d\vect{s}$.
+
+\begin{itemize}
+  \item Now bridge $C$ using a new path $B$.
+  \item It is easy to see that $\Gamma = \Gamma_1 + \Gamma_2$: the shared contributions of the two line integrals cancel out.
+  \item In the limit we infinitely subdivide and consider the ratio of loop circulation to area; but here area is a vector $\hat{a}_i$, normal to $S$.
+  \item The limit becomes $\displaystyle\lim_{a_i\to 0}\frac{\Gamma_i}{a_i}$ or $\displaystyle\lim_{a_i\to 0}\frac{\int_{C_i}\vect{F}\cdot d\vect{s}}{a_i}$.
+\end{itemize}
+
+\begin{formula}[Curl]
+\[
+  \curl\vect{F}\cdot\hat{n} = \lim_{a_i\to 0}\frac{\int_{C_i}\vect{F}\cdot d\vect{s}}{a_i}
+\]
+where $\hat{n}$ is the unit vector normal to the curve.
+\end{formula}
+
+\subsection{Stokes's Theorem}
+
+\[
+  \Gamma = \int_C \vect{F}\cdot d\vect{s}
+  = \sum_{i=1}^N \Gamma_i
+  = \sum_{i=1}^N a_i\left(\frac{\Gamma_i}{a_i}\right)
+\]
+
+As $N\to\infty$, $\displaystyle\sum_{i=1}^N a_i\!\left(\frac{\Gamma_i}{a_i}\right) = \sum_{i=1}^N a_i(\curl\vect{F})\cdot\hat{n}_i \to \int_S \curl\vect{F}\cdot d\vect{A}$.
+
+Thus we find that:
+
+\begin{formula}[Stokes's Theorem]
+\[
+  \int_C \vect{F}\cdot d\vect{s} = \int_S \curl\vect{F}\cdot d\vect{A}
+\]
+\end{formula}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Curl in Cartesian Coordinates}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{figure}[H]
+\centering
+\caption{Small rectangle in the $xy$-plane with corners $A$, $B$, $C$, $D$ and dimensions $\Delta x$, $\Delta y$, used to derive the $z$-component of curl.}
+\end{figure}
+
+Computing the line integral around the small rectangle:
+\begin{align*}
+  \int_A^B \vect{F}\cdot d\vect{s}
+  &= F_x\!\left(x, y - \frac{\Delta y}{2}\right) \\
+  &= \left(F_x(x,y) - \pdv{F_x}{y}\frac{\Delta y}{2}\right)\Delta x
+\end{align*}
+\begin{align*}
+  \int_B^C \vect{F}\cdot d\vect{s}
+  &= \left(F_y(x,y) + \pdv{F_y}{x}\frac{\Delta x}{2}\right)\Delta y
+\end{align*}
+\begin{align*}
+  \int_C^D \vect{F}\cdot d\vect{s}
+  &= \left(F_z(x,y) + \pdv{F_z}{y}\frac{\Delta y}{2}\right)(-\Delta x)
+\end{align*}
+\begin{align*}
+  \int_D^A \vect{F}\cdot d\vect{s}
+  &= \left(F_y(x,y) + \pdv{F_y}{x}\frac{\Delta x}{2}\right)(-\Delta y)
+\end{align*}
+
+If you add these together you get:
+\[
+  \oint_\square \vect{F}\cdot d\vect{s}
+  = \Delta x\,\Delta y\left(\pdv{F_y}{x} - \pdv{F_x}{y}\right)
+\]
+
+Thus $(\curl\vect{F})_z = \left(\pdv{F_y}{x} - \pdv{F_x}{y}\right) = \nabla\times\vect{F}$
+
+\begin{formula}[Curl in Cartesian coordinates]
+\[
+  \curl\vect{F}
+  = \hat{x}\left(\pdv{F_z}{y} - \pdv{F_y}{z}\right)
+  + \hat{y}\left(\pdv{F_x}{z} - \pdv{F_z}{x}\right)
+  + \hat{z}\left(\pdv{F_y}{x} - \pdv{F_x}{y}\right)
+\]
+OR:
+\[
+  \curl\vect{F} = \nabla\times\vect{F}
+  = \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ \partial/\partial x & \partial/\partial y & \partial/\partial z \\ F_x & F_y & F_z\end{vmatrix}
+\]
+\end{formula}
+
+\paragraph{Example 1:} $\vect{F} = (ky, -kx, 0)$.
+\[
+  \curl\vect{F} = -2k\,\hat{z}
+\]
+(The field rotates like a vortex with field lines going: up-right, down-left pattern.)
+
+\paragraph{Example 2:} $\vect{E} = \dfrac{Q}{4\pi\varepsilon_0 r^2}\,\hat{r}$ ($|\vect{r}| < a$):
+\[
+  \curl\vect{E} =
+  \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ \partial/\partial x & \partial/\partial y & \partial/\partial z \\ x & y & z\end{vmatrix}
+  = \vec{0}
+\]
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Physical Meaning of Curl}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{itemize}
+  \item Imagine a velocity vector field $\vect{G}$, and suppose that $\curl\vect{G} \neq 0$.
+  \item Behaviours then go like: $\nearrow\swarrow$ or $\uparrow\downarrow$ (shear).
+  \item Things would have the tendency to rotate.
+  \item But for an \underline{electrostatic} field, curl must be zero because the path integral of any closed loop is 0!
+    \begin{itemize}
+      \item Thus by Stokes's theorem the total circulation is 0 over any surface $\Rightarrow$ the curl is 0 at every point.
+    \end{itemize}
+  \item If $\curl\vect{F} = 0$, then $\vect{F}$ is conservative ($\vect{F} = \grad\psi$) or ($\vect{E} = -\grad\phi$).
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Curl in Spherical Coordinates}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{formula}[$r$-component of curl in spherical coordinates]
+\[
+  (\nabla\times\vect{A})_r
+  = \frac{1}{r\sin\theta}\left(\pdv{A_\phi\sin\theta}{\theta} - \pdv{A_\theta}{\phi}\right)\hat{r}
+\]
+\end{formula}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section*{Chapter 2 Summary}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{itemize}
+  \item \textbf{Electric potential difference:}
+    \[
+      \phi_{21} = -\int_{P_1}^{P_2} \vect{E}\cdot d\vect{s}
+    \]
+    Relative to infinity, the potential due to a charge distribution is:
+    \[
+      \phi(x,y,z) = \int\frac{\rho(x',y',z')\,dx'\,dy'\,dz'}{4\pi\varepsilon_0 r}
+      \quad \text{or} \quad \sum_i \frac{q_i}{4\pi\varepsilon_0 r}
+    \]
+
+  \item \textbf{Cartesian gradient:}
+    \[
+      \grad f = \hat{x}\,\pdv{f}{x} + \hat{y}\,\pdv{f}{y} + \hat{z}\,\pdv{f}{z}
+      \quad\text{gives the direction of largest increase}
+    \]
+    \[
+      \vect{E} = -\grad\phi
+    \]
+    Implies that the lines of the electric field are perpendicular to the surfaces of constant potential.
+
+  \item Electrostatic potential energy difference of a charge $q$ between $P_1$, $P_2$ $= q\phi_{21}$.
+
+  \item Energy required to assemble a group of charges from infinity is:
+    \[
+      U = \frac{1}{2}\int \rho\phi\,dV
+      \quad\text{or}\quad
+      \frac{1}{2}\sum_{j=1}^N q_j \sum_{k\neq j}\frac{1}{4\pi\varepsilon_0}\frac{q_k}{r_{jk}}
+      \quad\text{(factor of $\frac{1}{2}$ for double counting)}
+    \]
+
+  \item \textbf{Dipole:} $\ominus\!\!-\!\!a\!\!-\!\!\oplus$, two charges at distance $a$ apart.
+    \begin{itemize}
+      \item Dipole moment: $p = q\ell$ (or $p = qa$).
+      \item $\phi(r,\theta) = \dfrac{p\cos\theta}{4\pi\varepsilon_0 r^2}$
+      \item $\vect{E}(r,\theta) = \dfrac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\hat{r} + \sin\theta\,\hat{\theta})$
+    \end{itemize}
+
+  \item \textbf{Divergence:}
+    \[
+      \div\vect{F} = \nabla\cdot\vect{F} = \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z}
+    \]
+    Gauss's Theorem / Divergence Theorem:
+    \[
+      \int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV
+    \]
+    Combining with Gauss's Law gives $\div\vect{E} = \dfrac{\rho}{\varepsilon_0}$.
+
+  \item \textbf{Laplacian} (Cartesian):
+    \[
+      \laplacian f = \pdv[2]{f}{x} + \pdv[2]{f}{y} + \pdv[2]{f}{z}
+    \]
+    \[
+      \boxed{\laplacian\phi = -\frac{\rho}{\varepsilon_0}} \quad \text{Poisson's equation}
+    \]
+    Special case: $\laplacian\phi = 0$ $\Rightarrow$ $\phi$ satisfies this equation if it is in a region with no charge density; see Earnshaw's theorem.
+
+  \item \textbf{Curl:}
+    \[
+      \curl\vect{F}
+      = \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ \partial/\partial x & \partial/\partial y & \partial/\partial z \\ F_x & F_y & F_z\end{vmatrix}
+    \]
+\end{itemize}
+
+%───────────────────────────────────────────────────────────────────────────────
+\section*{Recitation 3}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{figure}[H]
+\centering
+\caption{Sphere with a spherical hole (of radius $b$) inside. The two spheres share a centre. The field outside the hole region is due to the full sphere minus the hole.}
+\end{figure}
+
+\[
+  \vect{E} = \frac{\rho}{3\varepsilon_0}\,\vec{r} - \frac{\rho}{3\varepsilon_0}\,\vec{r'} = \frac{\rho}{3\varepsilon_0}(\vec{r}-\vec{r'})
+\]
+where $\vec{r} = \vec{b} + \vec{r'}$.
+
+\[
+  = \frac{\rho}{3\varepsilon_0}\vec{r} - \frac{\rho}{3\varepsilon_0}\vec{r'}
+  = \frac{\rho r}{3\varepsilon_0}\hat{r} - \frac{\rho}{3\varepsilon_0}\vec{r'}
+  = \frac{\rho}{3\varepsilon_0}\,(\text{constant})
+\]
+
+Thus the field inside a sphere with a hole is uniform! It doesn't even depend on the field outside.
+
+\subsection*{Energy of a uniformly charged sphere}
+
+Using $U = \dfrac{1}{2}\varepsilon_0 E^2$:
+
+\begin{align*}
+  \mathcal{E}
+  &= \frac{1}{2}\varepsilon_0\left(\frac{\rho}{3\varepsilon_0}\right)^2\int_0^a r^2\cdot 4\pi r^2\,dr
+   + \frac{1}{2}\varepsilon_0\frac{Q^2}{(4\pi\varepsilon_0)^2}\int_a^\infty \frac{1}{r^4}\cdot 4\pi r^2\,dr \\
+  &= \frac{2\pi\rho^2}{9\varepsilon_0}\cdot\frac{a^5}{5} + \frac{Q^2}{8\pi\varepsilon_0}\cdot\frac{1}{a} \\
+  &= \frac{2\pi}{9\varepsilon_0}\cdot\frac{Q^2}{16\pi^2 a^6 5}\cdot a^5 + \frac{Q^2}{8\pi\varepsilon_0 a} \\
+  &= \frac{Q^2}{40\pi\varepsilon_0 a} + \frac{Q^2}{8\pi\varepsilon_0 a}
+   = \frac{6Q^2}{40\pi\varepsilon_0 a}
+   = \frac{3}{5}\frac{Q^2}{4\pi\varepsilon_0 a}
+\end{align*}
+
+\paragraph{Method 2:}
+
+\begin{figure}[H]
+\centering
+\caption{Building the uniformly charged sphere shell by shell, each shell of charge $dq$ being brought in from infinity.}
+\end{figure}
+
+\[
+  dW = \int_{r=0}^{a} \frac{Q\!\left(\frac{r^3}{a^3}\right)}{4\pi\varepsilon_0 r}\cdot\frac{Q}{\frac{4}{3}\pi a^3}\,4\pi r^2\,dr
+\]
+\[
+  = \frac{Q^2}{\frac{4}{3}\pi a^6}\int_{r=0}^{r=a} r^4\,dr
+\]
+\[
+  W = \frac{Q^2}{\frac{4}{3}\pi\varepsilon_0 a^6}\cdot\frac{a^5}{5}
+    = \frac{3}{5}\frac{Q^2}{4\pi\varepsilon_0 a}
+\]
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection*{Proof of the Divergence Theorem}
+%───────────────────────────────────────────────────────────────────────────────
+
+\[
+  \div\vect{E} = \frac{\text{flux coming out of a small box } dV}{\text{volume}}
+\]
+
+Thus:
+\[
+  \int_{V_0} \div\vect{E}\,dV = \oint \vect{E}\cdot d\vect{A}
+  = \int \frac{\rho(\vec{r})}{\varepsilon_0}\,dV
+\]
+Thus, $\div\vect{E} = \dfrac{\rho(r)}{\varepsilon_0}$, and $\nabla\cdot\vect{E} = \dfrac{\rho(\vec{r})}{\varepsilon_0}$.
+
+\begin{figure}[H]
+\centering
+\caption{Flux going into sub-volume 2 equals flux coming out of sub-volume 1 through their shared surface; the internal fluxes cancel in the divergence theorem.}
+\end{figure}
+
+In spherical coordinates, for a thin shell $[r, r+dr]$:
+\begin{itemize}
+  \item Net flux on the ring $= 4\pi(r+dr)^2 E_r(r+dr) - 4\pi r^2 E_r(r)$.
+  \item Taking the derivative:
+    \[
+      \frac{1}{r^2}\pdv{}{r}\!\left(r^2 E_r\right) = \frac{\rho(r)}{\varepsilon_0}
+    \]
+\end{itemize}

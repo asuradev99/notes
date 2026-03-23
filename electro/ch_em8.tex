@@ -1,0 +1,549 @@
+\chapter{Electronics: Op-Amps, Transistors, LEDs, RC Filters, and 555 Timers}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Operational Amplifiers}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{definition}[Operational Amplifier (Op-Amp)]
+An \textbf{operational amplifier} is a high-gain differential voltage amplifier with two inputs and one output:
+\begin{itemize}
+  \item \textbf{Inverting input} ($V_-$, marked $-$)
+  \item \textbf{Non-inverting input} ($V_+$, marked $+$)
+  \item \textbf{Output} $V_\text{out}$
+\end{itemize}
+The open-loop output voltage is $V_\text{out} = A_\text{OL}(V_+ - V_-)$, where $A_\text{OL} \sim 10^5$--$10^6$.
+\end{definition}
+
+\begin{fact}[Ideal Op-Amp Model]
+For an ideal op-amp:
+\begin{enumerate}
+  \item \textbf{Infinite input impedance:} No current flows into either input terminal ($I_+ = I_- = 0$).
+  \item \textbf{Zero output impedance:} The output can source or sink any current without voltage drop.
+  \item \textbf{Infinite open-loop gain:} $A_\text{OL} \to \infty$.
+  \item \textbf{Infinite bandwidth:} The gain is flat for all frequencies.
+\end{enumerate}
+\end{fact}
+
+\begin{fact}[Golden Rules (with Negative Feedback)]
+When an op-amp is connected with \emph{negative feedback} (output fed back to $V_-$), two rules follow from the ideal model:
+\begin{enumerate}
+  \item \textbf{No input current:} $I_+ = I_- = 0$ (infinite input impedance).
+  \item \textbf{Virtual short:} The op-amp output drives itself until $V_+ = V_-$ (the inputs are forced to the same voltage).
+\end{enumerate}
+Rule 2 does \emph{not} mean the inputs are connected---it means the feedback loop enforces the equality.
+\end{fact}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Inverting Amplifier}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Inverting Amplifier]
+\textbf{Circuit:} $V_\text{in}$ connected through $R_\text{in}$ to $V_-$; feedback resistor $R_f$ from $V_\text{out}$ to $V_-$; $V_+$ grounded.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  \draw (0,0) node[op amp, yscale=-1] (opamp) {};
+  \draw (opamp.+) -- ++(-0.5,0) node[ground]{};
+  \draw (opamp.-) -- ++(-0.5,0) coordinate (minnode);
+  \draw (minnode) -- ++(-0.8,0) coordinate (Rin_right);
+  \draw (Rin_right) to[R, l=$R_\text{in}$, -*] ++(-1.6,0) node[left]{$V_\text{in}$};
+  \draw (minnode) -- ++(0,1.2) coordinate (top);
+  \draw (top) to[R, l=$R_f$] ++(2.6,0) coordinate (top_right);
+  \draw (top_right) -- ++(0,-1.2);
+  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
+\end{tikzpicture}
+\end{center}
+\caption{Inverting amplifier: $R_\text{in}$ at input, $R_f$ as feedback from output to $V_-$.}
+\end{figure}
+
+\textbf{Derivation using Golden Rules:}
+
+Since $V_+ = 0$ (grounded), Golden Rule 2 forces $V_- = 0$ (virtual ground).
+
+Since no current enters the op-amp input (Golden Rule 1), KCL at $V_-$:
+\[
+  \frac{V_\text{in} - 0}{R_\text{in}} + \frac{V_\text{out} - 0}{R_f} = 0
+\]
+Solving:
+\begin{formula}[Inverting Amplifier Gain]
+\[
+  \frac{V_\text{out}}{V_\text{in}} = -\frac{R_f}{R_\text{in}}
+\]
+\end{formula}
+The negative sign indicates phase inversion. Input impedance is $R_\text{in}$; output impedance is $\approx 0$.
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Non-Inverting Amplifier}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Non-Inverting Amplifier]
+\textbf{Circuit:} $V_\text{in}$ connected directly to $V_+$; $R_f$ from $V_\text{out}$ to $V_-$; $R_\text{in}$ from $V_-$ to ground.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  \draw (0,0) node[op amp] (opamp) {};
+  \draw (opamp.+) -- ++(-0.5,0) node[left]{$V_\text{in}$};
+  \draw (opamp.-) -- ++(-0.5,0) coordinate (minnode);
+  \draw (minnode) -- ++(0,-0.8) to[R, l=$R_\text{in}$] ++(0,-1.0) node[ground]{};
+  \draw (minnode) -- ++(0,1.2) coordinate (top);
+  \draw (top) to[R, l=$R_f$] ++(2.6,0) coordinate (top_right);
+  \draw (top_right) -- ++(0,-1.55);
+  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
+\end{tikzpicture}
+\end{center}
+\caption{Non-inverting amplifier: input at $V_+$, resistor divider $R_f/R_\text{in}$ sets gain.}
+\end{figure}
+
+\textbf{Derivation:}
+
+Golden Rule 2: $V_- = V_+ = V_\text{in}$.
+
+The voltage at $V_-$ is set by the resistor divider $R_f$, $R_\text{in}$:
+\[
+  V_- = V_\text{out}\cdot\frac{R_\text{in}}{R_f + R_\text{in}} = V_\text{in}
+\]
+\begin{formula}[Non-Inverting Amplifier Gain]
+\[
+  \frac{V_\text{out}}{V_\text{in}} = 1 + \frac{R_f}{R_\text{in}}
+\]
+\end{formula}
+Gain is always $\geq 1$. Input impedance is effectively infinite (connected to $V_+$).
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Voltage Follower (Buffer)}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Voltage Follower]
+\textbf{Circuit:} $V_\text{in}$ to $V_+$; output connected directly to $V_-$ (unity feedback).
+
+By Golden Rule 2: $V_- = V_+ = V_\text{in}$, and $V_\text{out} = V_-$, so:
+\begin{formula}[Voltage Follower]
+\[
+  V_\text{out} = V_\text{in} \qquad (\text{gain} = 1)
+\]
+\end{formula}
+\textbf{Purpose:} The follower acts as a buffer with near-infinite input impedance and near-zero output impedance. It allows a high-impedance source to drive a low-impedance load without loading the source.
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Summing Amplifier}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Summing Amplifier]
+\textbf{Circuit:} Multiple input voltages $V_1, V_2, \ldots$ each connected through their own resistors $R_1, R_2, \ldots$ to $V_-$; feedback $R_f$ from output to $V_-$; $V_+$ grounded.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  \draw (0,0) node[op amp, yscale=-1] (opamp) {};
+  \draw (opamp.+) -- ++(-0.5,0) node[ground]{};
+  \draw (opamp.-) -- ++(-0.5,0) coordinate (sumnode);
+  \draw (sumnode) -- ++(0,0.8) -- ++(-0.7,0) to[R, l=$R_1$] ++(-1.6,0) node[left]{$V_1$};
+  \draw (sumnode) -- ++(-0.7,0) to[R, l=$R_2$] ++(-1.6,0) node[left]{$V_2$};
+  \draw (sumnode) -- ++(0,-0.8) -- ++(-0.7,0) to[R, l=$R_3$] ++(-1.6,0) node[left]{$V_3$};
+  \draw (sumnode) -- ++(0,2.0) coordinate (top);
+  \draw (top) to[R, l=$R_f$] ++(2.6,0) coordinate (top_right);
+  \draw (top_right) -- ++(0,-2.3);
+  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
+\end{tikzpicture}
+\end{center}
+\caption{Summing amplifier: each input has its own resistor summing at the virtual ground node.}
+\end{figure}
+
+Since $V_- = 0$ (virtual ground), KCL at the summing node:
+\[
+  \frac{V_1}{R_1} + \frac{V_2}{R_2} + \frac{V_3}{R_3} + \frac{V_\text{out}}{R_f} = 0
+\]
+\begin{formula}[Summing Amplifier Output]
+\[
+  V_\text{out} = -R_f\!\left(\frac{V_1}{R_1} + \frac{V_2}{R_2} + \frac{V_3}{R_3}\right)
+\]
+\end{formula}
+If all input resistors are equal ($R_1 = R_2 = R_3 = R$), this simplifies to $V_\text{out} = -(R_f/R)(V_1 + V_2 + V_3)$. The summing amplifier implements a weighted sum of inputs.
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Difference Amplifier}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Difference Amplifier]
+\textbf{Circuit:} $V_1$ to $V_-$ through $R_1$, $V_2$ to $V_+$ through $R_2$; feedback $R_f$ from output to $V_-$; $R_g$ from $V_+$ to ground.
+
+Using superposition and Golden Rule 2:
+\[
+  V_+ = V_2 \cdot \frac{R_g}{R_2 + R_g}
+\]
+Setting $R_1 = R_2 = R$ and $R_f = R_g$:
+\begin{formula}[Difference Amplifier Output]
+\[
+  V_\text{out} = \frac{R_f}{R_1}(V_2 - V_1)
+\]
+\end{formula}
+This circuit amplifies the \emph{difference} between two signals while rejecting \emph{common-mode} signals (identical voltages on both inputs).
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Integrator}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Op-Amp Integrator]
+\textbf{Circuit:} $R$ at input (between $V_\text{in}$ and $V_-$); capacitor $C$ as feedback (from $V_\text{out}$ to $V_-$); $V_+$ grounded.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  \draw (0,0) node[op amp, yscale=-1] (opamp) {};
+  \draw (opamp.+) -- ++(-0.5,0) node[ground]{};
+  \draw (opamp.-) -- ++(-0.5,0) coordinate (minnode);
+  \draw (minnode) -- ++(-0.5,0) to[R, l=$R$] ++(-1.6,0) node[left]{$V_\text{in}$};
+  \draw (minnode) -- ++(0,1.2) coordinate (top);
+  \draw (top) to[C, l=$C$] ++(2.6,0) coordinate (top_right);
+  \draw (top_right) -- ++(0,-1.2);
+  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
+\end{tikzpicture}
+\end{center}
+\caption{Op-amp integrator: resistor at input, capacitor as feedback element.}
+\end{figure}
+
+\textbf{Derivation:}
+
+Virtual ground: $V_- = 0$, so $I_\text{in} = V_\text{in}/R$.
+
+Since no current enters the op-amp, all of $I_\text{in}$ flows through $C$:
+\[
+  I_C = C\frac{d(0 - V_\text{out})}{dt} = -C\frac{dV_\text{out}}{dt} = \frac{V_\text{in}}{R}
+\]
+\begin{formula}[Integrator Output]
+\[
+  V_\text{out}(t) = -\frac{1}{RC}\int_0^t V_\text{in}(\tau)\,d\tau + V_\text{out}(0)
+\]
+\end{formula}
+\textbf{Frequency domain:} The impedance of $C$ is $1/(j\omega C)$, so the gain is $-1/(j\omega RC)$, which falls at 20 dB/decade (integrating behavior). At low frequencies the capacitor blocks DC and the output saturates; a large resistor in parallel with $C$ stabilizes this.
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Differentiator}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Op-Amp Differentiator]
+\textbf{Circuit:} Capacitor $C$ at input (between $V_\text{in}$ and $V_-$); feedback resistor $R$ (from $V_\text{out}$ to $V_-$); $V_+$ grounded.
+
+This is the integrator circuit with $R$ and $C$ swapped.
+
+\textbf{Derivation:}
+
+Current through $C$: $I_C = C\,dV_\text{in}/dt$ (since $V_- = 0$, virtual ground).
+
+This current flows through $R$, producing:
+\begin{formula}[Differentiator Output]
+\[
+  V_\text{out} = -RC\,\frac{dV_\text{in}}{dt}
+\]
+\end{formula}
+\textbf{Caution:} The differentiator amplifies high-frequency noise (gain $\propto \omega$). In practice a small resistor in series with $C$ limits the high-frequency gain.
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Comparator and Schmitt Trigger}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Comparator]
+An op-amp used \emph{without} negative feedback. The output saturates to one of the supply rails:
+\[
+  V_\text{out} = \begin{cases} +V_\text{supply} & \text{if } V_+ > V_- \\ -V_\text{supply} & \text{if } V_+ < V_- \end{cases}
+\]
+Any small difference between inputs is amplified to the rail by the huge open-loop gain. Used to convert an analog signal to a digital 0/1.
+\end{definition}
+
+\begin{definition}[Schmitt Trigger]
+A comparator with \textbf{positive feedback}: the output is fed back to $V_+$ through a resistor divider. This introduces \textbf{hysteresis}---the threshold for switching from low to high is different from the threshold for switching from high to low:
+\[
+  V_{\text{threshold,up}} = V_\text{ref} + \frac{R_1}{R_1+R_2}(V_\text{sat,+} - V_\text{ref})
+\]
+\[
+  V_{\text{threshold,down}} = V_\text{ref} - \frac{R_1}{R_1+R_2}(V_\text{sat,+} - V_\text{ref})
+\]
+The hysteresis window prevents rapid chattering when the input is near the threshold due to noise.
+\end{definition}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Diodes and LEDs}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{definition}[Diode]
+A two-terminal semiconductor device (anode $+$, cathode $-$) that conducts current primarily in one direction. The \textbf{diode equation} is:
+\[
+  I = I_s\!\left(e^{V/nV_T} - 1\right)
+\]
+where $I_s$ is the saturation (reverse leakage) current, $n \approx 1$--$2$ is the ideality factor, and $V_T = kT/q \approx 26\,\text{mV}$ at room temperature. In the forward-biased regime, the voltage drop is approximately:
+\begin{itemize}
+  \item Silicon diode: $V_f \approx 0.6$--$0.7\,\text{V}$
+  \item LED (red/orange/yellow): $V_f \approx 1.8$--$2.2\,\text{V}$
+  \item LED (green/blue/white): $V_f \approx 2.8$--$3.5\,\text{V}$
+\end{itemize}
+\end{definition}
+
+\begin{fact}[Current-Limiting Resistor for an LED]
+LEDs are \textbf{current-controlled} devices; without current limiting they will burn out. The resistor must drop the remaining voltage:
+\begin{formula}[LED Current-Limiting Resistor]
+\[
+  R = \frac{V_\text{supply} - V_f}{I_\text{desired}}
+\]
+\end{formula}
+Typical desired current: $I_\text{desired} = 10$--$20\,\text{mA}$ for a standard LED.
+\end{fact}
+
+\begin{example}[Red LED from a 5 V Supply]
+A red LED has $V_f \approx 2.0\,\text{V}$. We want $I = 20\,\text{mA} = 0.020\,\text{A}$ from a $5\,\text{V}$ supply.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  % supply rail
+  \draw (0,2) -- (0,3) node[above]{$+5\,\text{V}$};
+  \draw (0,2) to[R, l=$R$] (0,0.8);
+  \draw (0,0.8) to[leDo, l=LED] (0,-0.5);
+  \draw (0,-0.5) -- (0,-1) node[ground]{};
+\end{tikzpicture}
+\end{center}
+\caption{LED circuit: $R$ limits current; LED forward voltage $V_f \approx 2\,\text{V}$.}
+\end{figure}
+
+\[
+  R = \frac{5\,\text{V} - 2\,\text{V}}{0.020\,\text{A}} = \frac{3\,\text{V}}{0.020\,\text{A}} = 150\,\Omega
+\]
+Choose the nearest standard value: $\mathbf{150\,\Omega}$ (or $180\,\Omega$ for a slightly dimmer but safer operation).
+\end{example}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Bipolar Junction Transistors (BJTs)}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{definition}[Bipolar Junction Transistor (BJT)]
+A three-terminal semiconductor device with terminals \textbf{Base} (B), \textbf{Collector} (C), and \textbf{Emitter} (E). Two types:
+\begin{itemize}
+  \item \textbf{NPN:} Conventional current flows \emph{into} base and collector, out of emitter.
+  \item \textbf{PNP:} Conventional current flows \emph{out} of base and collector, into emitter.
+\end{itemize}
+The B--E junction behaves as a diode ($V_{BE} \approx 0.7\,\text{V}$ for silicon NPN in the active region).
+\end{definition}
+
+\begin{fact}[BJT Operating Regions]
+Three regions of operation:
+\begin{enumerate}
+  \item \textbf{Cutoff:} $V_{BE} < 0.6\,\text{V}$; transistor is \emph{off}; $I_C \approx 0$.
+  \item \textbf{Active:} $V_{BE} \approx 0.7\,\text{V}$ and $V_{CE} > 0.2\,\text{V}$; current gain:
+        \[
+          I_C = \beta\, I_B, \quad \beta \approx 100\text{--}300
+        \]
+  \item \textbf{Saturation:} $V_{BE} > 0.7\,\text{V}$ and $V_{CE} \approx 0.1$--$0.2\,\text{V}$; transistor is fully \emph{on}; $I_C$ limited by the external circuit, not by $\beta$.
+\end{enumerate}
+\end{fact}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Transistor as a Switch}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Transistor Switch (NPN)]
+\textbf{Goal:} Use a microcontroller pin ($V_\text{ctrl}$, typically 3.3 V or 5 V, max 20 mA) to switch a load (e.g., LED array or relay) drawing $I_\text{load}$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  % NPN transistor switch
+  \draw (0,0) node[npn] (Q) {};
+  % collector load resistor to supply
+  \draw (Q.collector) -- ++(0,0.6) to[R, l=$R_C$] ++(0,1.4) -- ++(0,0.2) node[above]{$V_{CC}$};
+  % emitter to ground
+  \draw (Q.emitter) -- ++(0,-0.5) node[ground]{};
+  % base resistor
+  \draw (Q.base) -- ++(-0.5,0) to[R, l=$R_B$] ++(-1.8,0) node[left]{$V_\text{ctrl}$};
+  % output label
+  \draw (Q.collector) -- ++(0.5,0) node[right]{$V_\text{out}$};
+\end{tikzpicture}
+\end{center}
+\caption{NPN transistor switch: $R_B$ limits base current; load $R_C$ connected from $V_{CC}$ to collector.}
+\end{figure}
+
+\textbf{Design procedure:}
+\begin{enumerate}
+  \item Determine required collector current: $I_C = I_\text{load}$.
+  \item Ensure saturation: choose $I_B \geq I_C / \beta_\text{min}$. In practice, use $I_B \approx I_C / 10$ to guarantee saturation.
+  \item Choose $R_B$:
+        \[
+          R_B = \frac{V_\text{ctrl} - V_{BE}}{I_B} = \frac{V_\text{ctrl} - 0.7\,\text{V}}{I_C/10}
+        \]
+\end{enumerate}
+\textbf{Example:} Load draws $I_C = 100\,\text{mA}$ from $V_{CC} = 12\,\text{V}$; $V_\text{ctrl} = 5\,\text{V}$; $\beta = 100$.
+\[
+  I_B = 100\,\text{mA}/10 = 10\,\text{mA}, \qquad
+  R_B = \frac{5 - 0.7}{0.010} = 430\,\Omega
+\]
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Common-Emitter Amplifier}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[Common-Emitter Amplifier (Small Signal)]
+The transistor is biased in the active region (DC bias sets $I_{C,Q}$). For small AC signals superimposed on the DC bias:
+
+The transconductance of the transistor is:
+\[
+  g_m = \frac{I_{C,Q}}{V_T} \approx \frac{I_{C,Q}}{26\,\text{mV}}
+\]
+The intrinsic emitter resistance is $r_e = 1/g_m$.
+
+\begin{formula}[Common-Emitter Voltage Gain]
+\[
+  A_v = \frac{v_\text{out}}{v_\text{in}} \approx -\frac{R_C}{r_e} = -g_m R_C
+\]
+\end{formula}
+The negative sign indicates phase inversion (just like the inverting op-amp). At $I_{C,Q} = 1\,\text{mA}$: $r_e = 26\,\Omega$, so with $R_C = 2.6\,\text{k}\Omega$ the gain is $-100$.
+\end{example}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{RC Filters}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{definition}[RC Time Constant]
+For a resistor $R$ in series with a capacitor $C$:
+\[
+  \tau = RC \quad \text{(units: seconds, since }\Omega \cdot \text{F} = \text{s)}
+\]
+$\tau$ governs the timescale of charging and discharging:
+\[
+  V_C(t) = V_0\!\left(1 - e^{-t/\tau}\right) \quad \text{(charging from 0 to }V_0\text{)}
+\]
+\[
+  V_C(t) = V_0\, e^{-t/\tau} \quad \text{(discharging from }V_0\text{ to 0)}
+\]
+\end{definition}
+
+\begin{fact}[RC Filter Types]
+For an RC circuit with corner (cutoff) frequency $f_c = \dfrac{1}{2\pi RC}$:
+\begin{enumerate}
+  \item \textbf{Low-pass filter:} $R$ in series between input and output; $C$ from output to ground.
+        Voltage divider ratio:
+        \[
+          H(f) = \frac{V_\text{out}}{V_\text{in}} = \frac{1/j\omega C}{R + 1/j\omega C} = \frac{1}{1 + j\omega RC}
+        \]
+        $|H| \approx 1$ for $f \ll f_c$; $|H| \approx f_c/f \to 0$ for $f \gg f_c$ (attenuates high frequencies).
+
+  \item \textbf{High-pass filter:} $C$ in series; $R$ from output to ground.
+        \[
+          H(f) = \frac{R}{R + 1/j\omega C} = \frac{j\omega RC}{1 + j\omega RC}
+        \]
+        $|H| \approx 0$ for $f \ll f_c$; $|H| \approx 1$ for $f \gg f_c$ (attenuates low frequencies and blocks DC).
+\end{enumerate}
+At $f = f_c$: $|H| = 1/\sqrt{2} \approx 0.707$, i.e.\ the $-3\,\text{dB}$ point; signal power is halved.
+\end{fact}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  % Low-pass filter circuit
+  \draw (0,1.5) node[left]{$V_\text{in}$} -- (0,1.5)
+        to[R, l=$R$] (2.5,1.5)
+        to[short, -o] (3.5,1.5) node[right]{$V_\text{out}$};
+  \draw (2.5,1.5) to[C, l=$C$] (2.5,0) node[ground]{};
+  \draw (0,1.5) -- (0,1.5);
+  % labels
+  \node at (1.5,-0.7) {(a) Low-pass filter};
+  % High-pass filter circuit (shifted right)
+  \begin{scope}[xshift=6.5cm]
+    \draw (0,1.5) node[left]{$V_\text{in}$}
+          to[C, l=$C$] (2.5,1.5)
+          to[short, -o] (3.5,1.5) node[right]{$V_\text{out}$};
+    \draw (2.5,1.5) to[R, l=$R$] (2.5,0) node[ground]{};
+    \node at (1.5,-0.7) {(b) High-pass filter};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{RC filter circuits. (a) Low-pass: $R$ series, $C$ to ground. (b) High-pass: $C$ series, $R$ to ground.}
+\end{figure}
+
+\begin{fact}[Integrator / Differentiator Behavior in Time Domain]
+\begin{itemize}
+  \item \textbf{Integrator (low-pass, $f \gg f_c$):} When the input frequency is far above $f_c$, the capacitor does not fully charge in each cycle. The output is approximately the integral of the input:
+        $V_\text{out}(t) \approx \dfrac{1}{RC}\int V_\text{in}\,dt$.
+  \item \textbf{Differentiator (high-pass, $f \ll f_c$):} When the input frequency is far below $f_c$, the capacitor charges quickly and the voltage across $R$ tracks the rate of change:
+        $V_\text{out}(t) \approx RC\,\dfrac{dV_\text{in}}{dt}$.
+\end{itemize}
+\end{fact}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{The 555 Timer}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{definition}[555 Timer Internal Structure]
+The 555 timer IC contains:
+\begin{itemize}
+  \item A \textbf{voltage divider} of three equal resistors ($5\,\text{k}\Omega$ each, hence ``555'') setting reference voltages at $V_{CC}/3$ and $2V_{CC}/3$.
+  \item Two \textbf{comparators}: upper comparator triggers when pin 6 (threshold) $> 2V_{CC}/3$; lower comparator triggers when pin 2 (trigger) $< V_{CC}/3$.
+  \item An \textbf{SR latch} whose output drives the output stage and a \textbf{discharge transistor} (pin 7).
+  \item An \textbf{output buffer} that sinks or sources up to $\sim 200\,\text{mA}$.
+\end{itemize}
+\end{definition}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Monostable Mode (One-Shot)}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[555 in Monostable Mode]
+\textbf{Setup:} External resistor $R$ from $V_{CC}$ to pin 6/7 junction; capacitor $C$ from pin 6 to ground. A falling edge on pin 2 (trigger, $< V_{CC}/3$) starts the timing cycle.
+
+\textbf{Operation:}
+\begin{enumerate}
+  \item Trigger pulse: output goes HIGH, discharge transistor turns off.
+  \item $C$ charges through $R$ toward $V_{CC}$.
+  \item When $V_C = 2V_{CC}/3$: upper comparator resets the latch, output goes LOW, discharge transistor turns on and rapidly discharges $C$.
+\end{enumerate}
+
+\begin{formula}[Monostable Pulse Width]
+\[
+  T = 1.1 \cdot R \cdot C
+\]
+\end{formula}
+\textbf{Example:} $R = 100\,\text{k}\Omega$, $C = 10\,\mu\text{F}$:
+$T = 1.1 \times 10^5 \times 10^{-5} = 1.1\,\text{s}$.
+\end{example}
+
+%───────────────────────────────────────────────────────────────────────────────
+\subsection{Astable Mode (Free-Running Oscillator)}
+%───────────────────────────────────────────────────────────────────────────────
+
+\begin{example}[555 in Astable Mode]
+\textbf{Setup:} Resistors $R_A$ (from $V_{CC}$ to pin 7) and $R_B$ (from pin 7 to pin 6/2 junction); capacitor $C$ from pin 6/2 to ground.
+
+\textbf{Operation:}
+\begin{itemize}
+  \item $C$ charges through $R_A + R_B$: from $V_{CC}/3$ to $2V_{CC}/3$ (output HIGH).
+  \item $C$ discharges through $R_B$ only: from $2V_{CC}/3$ to $V_{CC}/3$ (output LOW).
+\end{itemize}
+
+\begin{formula}[555 Astable Frequency and Duty Cycle]
+\[
+  t_\text{HIGH} = 0.693\,(R_A + R_B)\,C, \qquad t_\text{LOW} = 0.693\,R_B\,C
+\]
+\[
+  T = t_\text{HIGH} + t_\text{LOW} = 0.693\,(R_A + 2R_B)\,C
+\]
+\[
+  f = \frac{1}{T} = \frac{1.44}{(R_A + 2R_B)\,C}
+\]
+\[
+  \text{Duty cycle} = \frac{t_\text{HIGH}}{T} = \frac{R_A + R_B}{R_A + 2R_B}
+\]
+\end{formula}
+Since $t_\text{HIGH} > t_\text{LOW}$ always (the duty cycle is always $> 50\%$), a $50\%$ duty cycle requires either $R_A \to 0$ (risky) or an external diode to bypass $R_A$ during discharge.
+
+\textbf{Example:} $R_A = 1\,\text{k}\Omega$, $R_B = 10\,\text{k}\Omega$, $C = 100\,\text{nF}$:
+\[
+  f = \frac{1.44}{(1000 + 20000)(100 \times 10^{-9})} = \frac{1.44}{0.0021} \approx 686\,\text{Hz}
+\]
+\end{example}

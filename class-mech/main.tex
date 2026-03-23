@@ -17,7 +17,10 @@
 \usepackage{bm}
 \usepackage{float}
 \usepackage{physics}
-
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, decorations.pathmorphing, patterns, calc, decorations.markings}
 
 
 \colorlet{LightGray}{White!90!Periwinkle}
@@ -42,6 +45,11 @@
 \declaretheoremstyle[name=Important Fact,]{factsty}
 \declaretheorem[style=factsty,numberlike=theorem]{fact}
 \tcolorboxenvironment{fact}{colback=LightGray}
+
+\colorlet{ExampleGray}{black!8}
+\declaretheoremstyle[name=Example,]{examsty}
+\declaretheorem[style=examsty,numberlike=theorem]{example}
+\tcolorboxenvironment{example}{colback=ExampleGray, colframe=ExampleGray, arc=6pt, boxrule=0pt}
 
 \setstretch{1.2}
 \geometry{
@@ -438,44 +446,13 @@ is merely the assertion that
 
 \section{Mass, Force, and Newton's Second Law}
 
-Suppose you pull on a cart on an air track (which creates a near-frictionless surface)
-with a rubber band, and do so in such a way as to keep the length of the rubber band 
-constant. If you were to measure the position of the cart
-over time, you would find that the velocity of cart increases
-linearly with time (The rubber band is important here because, in order to keep the rubber 
-band stretched, a constant force, not velocity, must be applied to the cart). Thus, the cart must have a constant acceleration.
-If you were to change the cart for a heavier one, then naturally the length that the 
-rubber band would have to stretch in order to main the same acceleration as before would increase. 
-Thus, the acceleration of the cart depends not only on what we do to the cart, but also on an 
-inherent property of the cart itself: \textit{mass}. We can use 
-this experiment to operationally define mass. Let $m_1$ be the mass of the lighter cart. More specifically, we can define
-$m_1$ to be one unit of mass. Let $m_2$ be the mass of the heavier cart, and let $a_1$ and $a_2$ be their accelerations when
-pulled by the rubber band, respectively. Thus we let 
+Consider pulling a cart on a frictionless track with a rubber band stretched to a constant length. The cart accelerates at a constant rate; a heavier cart accelerates less for the same applied force. This motivates an operational definition: if $m_1$ is one unit of mass, then a second cart with acceleration $a_2$ under the same force has mass
 
 \[
     m_2 \defeq m_1 \frac{a_1}{a_2}
 \]
 
-Additionally, even if we were to change out the rubber band for a spring or some other object
-which creates a restoring force when pulled, we would find the same result, because the only things
-that matter in this experiment are the net acceleration of the cart and its "mass" which is defined
-irrespective of the length the rubber band is pulled. However, this makes 
-mass as something that is defined \textit{operationally} because it is contingent on this particular kind of 
-experiment, not any abstract concepts. This is undesirable in physics because these definitions are only useful 
-in places where the necessary experiments can be carried out. However, but most of the time it is overcome because you can establish
-relationships between operational quantities and other more easily-measurable quantities and thus measure the operational quantities
-indirectly. For example, the mass of a mountain can be measured by hanging a plumb bob to find the gravitational attraction of that 
-mountain. 
-
-
-We can operationally define force, in the context of this experiment, as the operation of acting on the cart (test mass)
-with the rubber band. Crucially, with only the assumption that the same rubber band applies the same "force", we can note
-that if we use two rubber bands to pull the cart instead of one, then we will find an acceleration of $2a$ rather than 
-$a$. Additionally, if we pull on both ends of the cart at once in opposite directions (with both rubber bands), we would
-find no acceleration. These seem to imply that forces add linearly, so if we define $F$ to be one unit of force, the $F$ units
-of force on the rubber band produce $F$ units of acceleration. Since we now know that $F$ units of force an $m$ units of mass
-produce $F * \frac{1}{m}$ units of acceleration, we can write $F = ma$. If we assume that $m$ is a scalar and that these
-relationships hold for multiple dimensions, we can write Newton's Second Law, 
+Extending this reasoning, two rubber bands produce twice the acceleration, and pulling in opposite directions produces no acceleration, confirming that forces add as vectors. With $F = 1$ unit of force acting on $m$ units of mass producing acceleration $a = F/m$, we can write Newton's Second Law:
 
 \begin{fact}[Newton's Second Law]
     In an inertial system, 
@@ -602,6 +579,18 @@ A rigorous proof of this fact will not be given here, but the intuitive idea is 
 "sees" increases with the distance from the surface squared, but by the above equation, the gravitational force produced by a given part of that 
 surface area decreases as the distance squared. Thus, the forces from each segment of the surface cancel out. 
 \newpage
+
+\input{ch4}
+\input{ch5}
+\input{ch6}
+\input{ch7}
+\input{ch8}
+\input{ch9}
+\input{ch10}
+\input{ch11}
+\input{ch12}
+\input{ch13}
+
 \end{document}
 
 

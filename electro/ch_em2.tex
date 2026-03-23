@@ -1,0 +1,90 @@
+% Condensed: retained illustrative examples from Gauss's Law applications
+
+\section{Gauss's Law: Illustrative Examples}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  %--- (a) Spherical Gaussian surface ---
+  \begin{scope}[xshift=0cm]
+    \draw[dashed, blue!60!black, thick] (0,0) circle (1.5);
+    \draw[orange!70!black, thick] (0,0) circle (0.9);
+    \filldraw[orange!20, draw=orange!70!black] (0,0) circle (0.9);
+    \foreach \a in {0,60,120,180,240,300} {
+      \draw[-{Stealth[length=4pt]}, red!70!black]
+        ({1.1*cos(\a)},{1.1*sin(\a)}) -- ({1.55*cos(\a)},{1.55*sin(\a)});
+    }
+    \node[font=\small] at (0,-2.1) {(a) Spherical};
+    \draw[gray, thin, <->] (0,0) -- ({0.9*cos(60)},{0.9*sin(60)}) node[midway,right,font=\tiny]{$R$};
+    \draw[gray, thin, <->] (0,0) -- ({1.5*cos(-30)},{1.5*sin(-30)}) node[midway,below,font=\tiny]{$r$};
+  \end{scope}
+  %--- (b) Cylindrical Gaussian surface ---
+  \begin{scope}[xshift=4.5cm]
+    \draw[orange!70!black, thick] (0,1.2) ellipse (0.6 and 0.18);
+    \draw[orange!70!black, thick] (0,-1.2) ellipse (0.6 and 0.18);
+    \draw[orange!70!black, thick] (-0.6,-1.2) -- (-0.6,1.2);
+    \draw[orange!70!black, thick] (0.6,-1.2) -- (0.6,1.2);
+    \draw[dashed, blue!60!black, thick] (0,1.2) ellipse (1.1 and 0.33);
+    \draw[dashed, blue!60!black, thick] (0,-1.2) ellipse (1.1 and 0.33);
+    \draw[dashed, blue!60!black, thick] (-1.1,-1.2) -- (-1.1,1.2);
+    \draw[dashed, blue!60!black, thick] (1.1,-1.2) -- (1.1,1.2);
+    \draw[-{Stealth[length=4pt]}, red!70!black] (1.1,0.3) -- (1.7,0.3);
+    \draw[-{Stealth[length=4pt]}, red!70!black] (-1.1,0.3) -- (-1.7,0.3);
+    \node[font=\small] at (0,-2.1) {(b) Cylindrical};
+  \end{scope}
+  %--- (c) Pillbox (slab) ---
+  \begin{scope}[xshift=9.0cm]
+    \fill[orange!20] (-1.3,-0.5) rectangle (1.3,0.5);
+    \draw[orange!70!black, thick] (-1.3,-0.5) rectangle (1.3,0.5);
+    \draw[dashed, blue!60!black, thick] (-0.7,-1.2) rectangle (0.7,1.2);
+    \draw[-{Stealth[length=4pt]}, red!70!black] (0,1.2) -- (0,1.8);
+    \draw[-{Stealth[length=4pt]}, red!70!black] (0,-1.2) -- (0,-1.8);
+    \node[font=\small] at (0,-2.1) {(c) Slab pillbox};
+  \end{scope}
+  % Shared legend
+  \node[blue!60!black, font=\small] at (4.5,-2.6) {--- Gaussian surface};
+  \node[orange!70!black, font=\small] at (4.5,-3.1) {--- Charge distribution};
+\end{tikzpicture}
+\end{center}
+\caption{The three Gaussian surface geometries for Gauss's Law. (a) Spherical shell: Gaussian sphere of radius $r > R$. (b) Cylindrical shell: coaxial Gaussian cylinder. (c) Infinite slab: pillbox straddling the slab.}
+\end{figure}
+
+\begin{example}[Gauss's Law for Three Geometries]
+Apply Gauss's Law to find $\vect{E}$ outside three symmetric charge distributions.
+
+\textbf{(a) Spherical shell} of radius $R$, surface charge density $\sigma$ (Gaussian sphere of radius $r > R$):
+\[
+    4\pi r^2 E = \frac{4\pi R^2 \sigma}{\varepsilon_0}
+    \implies
+    E = \frac{\sigma R^2}{\varepsilon_0 r^2}.
+\]
+
+\textbf{(b) Infinite cylindrical shell} of radius $R$, surface charge per unit length $\lambda = 2\pi R\sigma$ (Gaussian cylinder of radius $r > R$, length $L$):
+\[
+    2\pi r L \, E = \frac{\lambda L}{\varepsilon_0}
+    \implies
+    E = \frac{\lambda}{2\pi\varepsilon_0 r}.
+\]
+
+\textbf{(c) Infinite slab} of half-thickness $R$, volume charge density $\rho$ (Gaussian pillbox of area $A$):
+\[
+    2AE = \frac{2AR\rho}{\varepsilon_0}
+    \implies
+    E = \frac{\rho R}{\varepsilon_0}.
+\]
+\end{example}
+
+\begin{example}[Self-Energy of a Spherical Shell]
+Find the electrostatic self-energy of a spherical shell of radius $R$ carrying total charge $Q$.
+
+The electric field vanishes for $r < R$ and equals $\dfrac{Q}{4\pi\varepsilon_0 r^2}$ for $r \ge R$. Using the field energy formula:
+\begin{align*}
+    U &= \frac{\varepsilon_0}{2}\int_R^{\infty} \left(\frac{Q}{4\pi\varepsilon_0 r^2}\right)^2 4\pi r^2\, dr
+      = \frac{1}{8\pi\varepsilon_0}\int_R^{\infty} \frac{Q^2}{r^2}\, dr.
+\end{align*}
+\begin{formula}[Self-energy of a spherical shell]
+\[
+    U = \frac{Q^2}{8\pi\varepsilon_0 R}.
+\]
+\end{formula}
+\end{example}

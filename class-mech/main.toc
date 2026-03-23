@@ -1,16 +1,374 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Kinematics}{5}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Position and Displacement}{5}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Velocity and Acceleration}{7}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Motion in Several Dimensions}{7}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Formal Solutions to the Kinematic Equation}{8}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Rotating Vectors and Acceleration}{8}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Motion in Polar Coordinates}{10}{section.1.6}%
-\contentsline {chapter}{\numberline {2}Newton's Laws of Motion}{13}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Newton's First Law}{13}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Mass, Force, and Newton's Second Law}{13}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Newton's Third Law of Motion}{14}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Fictitious Forces}{14}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Applying Newton's Laws}{15}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Forces and Equations of Motion}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Gravitational Forces, Acceleration due to Gravity, and Weight}{17}{section.3.1}%
+\contentsline {chapter}{\numberline {1}Kinematics}{13}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Position and Displacement}{13}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Velocity and Acceleration}{15}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Motion in Several Dimensions}{15}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Formal Solutions to the Kinematic Equation}{16}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Rotating Vectors and Acceleration}{16}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Motion in Polar Coordinates}{18}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Newton's Laws of Motion}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Newton's First Law}{21}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Mass, Force, and Newton's Second Law}{21}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Newton's Third Law of Motion}{22}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Fictitious Forces}{22}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Applying Newton's Laws}{23}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Forces and Equations of Motion}{25}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Gravitational Forces, Acceleration due to Gravity, and Weight}{25}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Inclined Plane (continued)}{26}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Atwood Machine}{26}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Polar Coordinates Example}{28}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Forces}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Friction}{29}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Types of Friction}{29}{subsection.4.1.1}%
+\contentsline {chapter}{\numberline {5}Dimensional Analysis and Order-of-Magnitude Estimates}{31}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Dimensional Analysis}{31}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Order-of-Magnitude / Back-of-the-Envelope Estimates}{31}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Gravity (Newton's Law of Gravitation)}{32}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Shell Theorem Results}{32}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Additional Notes on Gravity}{32}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Equivalence Principle}{33}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Electrostatic Force}{33}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Phenomenological Forces}{33}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Contact Forces}{33}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Tension}{33}{subsection.5.6.2}%
+\contentsline {chapter}{\numberline {6}Spring Force and Simple Harmonic Motion}{35}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Hooke's Law}{35}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Solving the Equation of Motion}{35}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Examples of Simple Harmonic Motion}{37}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Adding Springs}{40}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Springs in Series}{40}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Springs in Parallel}{40}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Hooke's Law Revisited}{41}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Block on Block with Friction}{42}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Synchronous Orbit}{43}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Momentum, Impulse, and Variable-Mass Systems}{45}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Example: Viscosity}{46}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Solving the Viscous ODE (No Gravity)}{47}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Connection to Damped Oscillator}{47}{subsection.7.1.2}%
+\contentsline {chapter}{\numberline {8}Momentum and Systems of Particles}{49}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Momentum}{49}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Dynamics of a System of Particles}{49}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Center of Mass}{50}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Continuous Center of Mass}{51}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Choosing Coordinates: CoM Frame}{52}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Example: Push Me Pull You (Two Equal Masses on a Spring)}{53}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Conservation of Momentum}{53}{section.8.7}%
+\contentsline {chapter}{\numberline {9}Differential Equations, Oscillators, and Recitation}{55}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Differential Equations}{55}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Types of DEs}{55}{subsection.9.1.1}%
+\contentsline {subsubsection}{(1) Separable DE}{55}{section*.8}%
+\contentsline {subsubsection}{(2) Simple Harmonic Oscillators}{56}{section*.9}%
+\contentsline {section}{\numberline {9.2}Conservation of Momentum}{57}{section.9.2}%
+\contentsline {chapter}{\numberline {10}Impulse}{59}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Impulse}{59}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Momentum and Flow of Mass}{60}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Rocket Motion}{60}{section.10.3}%
+\contentsline {subsection}{\numberline {10.3.1}Integrating the Rocket Equation}{61}{subsection.10.3.1}%
+\contentsline {chapter}{\numberline {11}Momentum Flow, Force, and Work-Energy Theorem}{63}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Momentum Flow and Force}{63}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Momentum Flux}{64}{section.11.2}%
+\contentsline {chapter}{\numberline {12}Work and Energy}{65}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Work-Energy Theorem (Review)}{65}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Definitions: Energy}{66}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Limitations of the Work-Energy Theorem}{67}{section.12.3}%
+\contentsline {chapter}{\numberline {13}Momentum Flow and Pressure}{69}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Momentum Flux Density}{69}{section.13.1}%
+\contentsline {chapter}{\numberline {14}Energy}{71}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Work–Energy Theorem in One Dimension}{71}{section.14.1}%
+\contentsline {subsection}{\numberline {14.1.1}Derivation of GPE near Earth's Surface}{71}{subsection.14.1.1}%
+\contentsline {subsection}{\numberline {14.1.2}Derivation of Spring Potential Energy}{72}{subsection.14.1.2}%
+\contentsline {section}{\numberline {14.2}Work and Energy}{72}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Integrating Motion in Several Directions}{72}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Applying the Work–Energy Theorem}{74}{section.14.4}%
+\contentsline {section}{\numberline {14.5}Conservation of Energy}{74}{section.14.5}%
+\contentsline {section}{\numberline {14.6}Energy Diagrams}{75}{section.14.6}%
+\contentsline {chapter}{\numberline {15}Additional Energy Examples}{77}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Minimum Height for Ball to Go Around a Loop}{77}{section.15.1}%
+\contentsline {subsection}{\numberline {15.1.1}Higgs Potential}{78}{subsection.15.1.1}%
+\contentsline {section}{\numberline {15.2}Integrating $\bm {\overrightarrow {F}}\cdot d\bm {\overrightarrow {r}}$}{78}{section.15.2}%
+\contentsline {subsection}{\numberline {15.2.1}Work Done by a Central Force}{78}{subsection.15.2.1}%
+\contentsline {subsection}{\numberline {15.2.2}Work Done by Friction}{78}{subsection.15.2.2}%
+\contentsline {section}{\numberline {15.3}Conservation of Mechanical Energy}{78}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Potential Energy}{79}{section.15.4}%
+\contentsline {subsection}{\numberline {15.4.1}Uniform Gravitational Field}{79}{subsection.15.4.1}%
+\contentsline {subsection}{\numberline {15.4.2}What Potential Tells Us About Force}{80}{subsection.15.4.2}%
+\contentsline {section}{\numberline {15.5}Energy Diagrams (Detailed)}{81}{section.15.5}%
+\contentsline {subsection}{\numberline {15.5.1}Non-Conservative Forces}{81}{subsection.15.5.1}%
+\contentsline {section}{\numberline {15.6}Energy Conservation and the Ideal Gas Law}{81}{section.15.6}%
+\contentsline {chapter}{\numberline {16}Gravitational Force on a Spherical Shell}{85}{chapter.16}%
+\contentsline {chapter}{\numberline {17}Strings and Tension}{87}{chapter.17}%
+\contentsline {section}{\numberline {17.1}Block and String}{87}{section.17.1}%
+\contentsline {section}{\numberline {17.2}Tension in a String}{87}{section.17.2}%
+\contentsline {subsection}{\numberline {17.2.1}Tension in a Rotating String}{88}{subsection.17.2.1}%
+\contentsline {chapter}{\numberline {18}Summary of Big Ideas: Units 3--5}{89}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Forces Summary}{89}{section.18.1}%
+\contentsline {subsection}{\numberline {18.1.1}Tension}{89}{subsection.18.1.1}%
+\contentsline {subsection}{\numberline {18.1.2}Friction}{89}{subsection.18.1.2}%
+\contentsline {subsection}{\numberline {18.1.3}Gravity}{89}{subsection.18.1.3}%
+\contentsline {subsection}{\numberline {18.1.4}Spring Force}{89}{subsection.18.1.4}%
+\contentsline {subsection}{\numberline {18.1.5}Viscosity}{90}{subsection.18.1.5}%
+\contentsline {section}{\numberline {18.2}Momentum}{90}{section.18.2}%
+\contentsline {subsection}{\numberline {18.2.1}Flux Density}{90}{subsection.18.2.1}%
+\contentsline {subsection}{\numberline {18.2.2}Momentum Flow}{90}{subsection.18.2.2}%
+\contentsline {subsection}{\numberline {18.2.3}Collisions}{90}{subsection.18.2.3}%
+\contentsline {section}{\numberline {18.3}Energy (Summary)}{90}{section.18.3}%
+\contentsline {section}{\numberline {18.4}Problem Set Solutions (Units 3--5)}{91}{section.18.4}%
+\contentsline {chapter}{\numberline {19}Collisions}{93}{chapter.19}%
+\contentsline {section}{\numberline {19.1}Collision Rules}{93}{section.19.1}%
+\contentsline {section}{\numberline {19.2}Collisions in COM vs.\ Lab Frame}{94}{section.19.2}%
+\contentsline {chapter}{\numberline {20}Collisions and Conservation Laws}{95}{chapter.20}%
+\contentsline {section}{\numberline {20.1}Two-Body Collisions}{95}{section.20.1}%
+\contentsline {subsection}{\numberline {20.1.1}Velocities in the COM Frame}{95}{subsection.20.1.1}%
+\contentsline {subsection}{\numberline {20.1.2}Elastic Collision Example — Collision of the Carts}{96}{subsection.20.1.2}%
+\contentsline {subsection}{\numberline {20.1.3}Inelastic Collision}{96}{subsection.20.1.3}%
+\contentsline {subsection}{\numberline {20.1.4}Elastic Scattering in the COM Frame — Example}{97}{subsection.20.1.4}%
+\contentsline {subsection}{\numberline {20.1.5}Bullet Hitting a Pendulum}{97}{subsection.20.1.5}%
+\contentsline {chapter}{\numberline {21}Angular Momentum and Rotation}{99}{chapter.21}%
+\contentsline {section}{\numberline {21.1}Angular Momentum}{99}{section.21.1}%
+\contentsline {subsection}{\numberline {21.1.1}DART Mission (Example)}{100}{subsection.21.1.1}%
+\contentsline {section}{\numberline {21.2}Chasles' Theorem}{100}{section.21.2}%
+\contentsline {section}{\numberline {21.3}Angular Momentum of a Particle}{100}{section.21.3}%
+\contentsline {section}{\numberline {21.4}Fixed-Axis Rotation}{101}{section.21.4}%
+\contentsline {section}{\numberline {21.5}Moment of Inertia}{102}{section.21.5}%
+\contentsline {subsection}{\numberline {21.5.1}Moment of Inertia of Common Objects}{102}{subsection.21.5.1}%
+\contentsline {subsubsection}{(1) Uniform Thin Ring}{102}{section*.26}%
+\contentsline {subsubsection}{(2) Uniform Thin Disk}{102}{section*.27}%
+\contentsline {subsubsection}{(3) Uniform Thin Stick (about centre)}{103}{section*.28}%
+\contentsline {subsubsection}{(4) Uniform Thin Stick (about perpendicular end axis)}{103}{section*.29}%
+\contentsline {subsubsection}{(5) Uniform Sphere}{103}{section*.30}%
+\contentsline {section}{\numberline {21.6}Parallel Axis Theorem}{103}{section.21.6}%
+\contentsline {section}{\numberline {21.7}Torque}{104}{section.21.7}%
+\contentsline {subsection}{\numberline {21.7.1}Example: Torque Due to Gravity}{104}{subsection.21.7.1}%
+\contentsline {section}{\numberline {21.8}Torque and Angular Momentum}{105}{section.21.8}%
+\contentsline {section}{\numberline {21.9}Conservation of Angular Momentum}{105}{section.21.9}%
+\contentsline {subsection}{\numberline {21.9.1}Example: Central Force Motion and Equal Areas}{106}{subsection.21.9.1}%
+\contentsline {subsection}{\numberline {21.9.2}Example: Capture Cross-Section of a Planet}{107}{subsection.21.9.2}%
+\contentsline {section}{\numberline {21.10}Dynamics of a Conical Pendulum}{108}{section.21.10}%
+\contentsline {chapter}{\numberline {22}Fixed Axis Rotation and Angular Momentum}{109}{chapter.22}%
+\contentsline {chapter}{\numberline {23}Angular Momentum 2}{111}{chapter.23}%
+\contentsline {section}{\numberline {23.1}Pendulum Revisited}{111}{section.23.1}%
+\contentsline {subsection}{\numberline {23.1.1}For a General Shape (Physical Pendulum)}{112}{subsection.23.1.1}%
+\contentsline {section}{\numberline {23.2}Dynamics of Fixed-Axis Rotation}{112}{section.23.2}%
+\contentsline {subsection}{\numberline {23.2.1}Atwood Machine with a Massive Pulley}{113}{subsection.23.2.1}%
+\contentsline {section}{\numberline {23.3}Motion Involving Translation and Rotation}{114}{section.23.3}%
+\contentsline {section}{\numberline {23.4}Work--Energy Theorem for Linear and Rotational Motion}{117}{section.23.4}%
+\contentsline {chapter}{\numberline {24}Rigid Body Motion}{119}{chapter.24}%
+\contentsline {section}{\numberline {24.1}Vector Nature of Angular Velocity and Angular Momentum}{119}{section.24.1}%
+\contentsline {section}{\numberline {24.2}Dynamics of Fixed-Axis Rotation (Review)}{120}{section.24.2}%
+\contentsline {subsection}{\numberline {24.2.1}Kinetic Energy of a Body Undergoing Pure Rotation}{120}{subsection.24.2.1}%
+\contentsline {subsection}{\numberline {24.2.2}Atwood's Machine with Massive Pulley (Review)}{120}{subsection.24.2.2}%
+\contentsline {section}{\numberline {24.3}Pendulum Motion and Fixed-Axis Rotation}{121}{section.24.3}%
+\contentsline {subsection}{\numberline {24.3.1}Simple Pendulum}{121}{subsection.24.3.1}%
+\contentsline {subsection}{\numberline {24.3.2}Physical Pendulum}{121}{subsection.24.3.2}%
+\contentsline {section}{\numberline {24.4}Motion Involving Translation and Rotation}{123}{section.24.4}%
+\contentsline {subsection}{\numberline {24.4.1}Proof}{123}{subsection.24.4.1}%
+\contentsline {subsection}{\numberline {24.4.2}Torque on a Moving Body}{124}{subsection.24.4.2}%
+\contentsline {subsection}{\numberline {24.4.3}Kinetic Energy: Translation + Rotation}{124}{subsection.24.4.3}%
+\contentsline {section}{\numberline {24.5}Work--Energy Theorem and Rotational Motion}{125}{section.24.5}%
+\contentsline {chapter}{\numberline {25}Central Force Motion}{127}{chapter.25}%
+\contentsline {section}{\numberline {25.1}10.1 Introduction: Central Force as a One-Body Problem}{127}{section.25.1}%
+\contentsline {section}{\numberline {25.2}Consequences of Angular Momentum Conservation}{128}{section.25.2}%
+\contentsline {subsection}{\numberline {25.2.1}A) Motion is Confined to a Plane}{128}{subsection.25.2.1}%
+\contentsline {subsection}{\numberline {25.2.2}B) Law of Equal Areas}{128}{subsection.25.2.2}%
+\contentsline {section}{\numberline {25.3}Consequences of Conservation of Energy}{128}{section.25.3}%
+\contentsline {subsection}{\numberline {25.3.1}Effective Potential}{129}{subsection.25.3.1}%
+\contentsline {section}{\numberline {25.4}Formal Solution for Central Force Motion}{129}{section.25.4}%
+\contentsline {subsection}{\numberline {25.4.1}Polar Coordinates: Shape of the Orbit}{130}{subsection.25.4.1}%
+\contentsline {section}{\numberline {25.5}Planetary Orbits}{131}{section.25.5}%
+\contentsline {section}{\numberline {25.6}Kepler's Laws}{131}{section.25.6}%
+\contentsline {subsection}{\numberline {25.6.1}Major Axis $A$}{131}{subsection.25.6.1}%
+\contentsline {subsection}{\numberline {25.6.2}Derivation of Kepler's Third Law}{132}{subsection.25.6.2}%
+\contentsline {chapter}{\numberline {26}Central Force Motion: Energy Diagrams and Orbits}{133}{chapter.26}%
+\contentsline {section}{\numberline {26.1}Energy Diagrams}{133}{section.26.1}%
+\contentsline {section}{\numberline {26.2}Energy Diagrams and Planetary Motion}{135}{section.26.2}%
+\contentsline {section}{\numberline {26.3}Perturbed Circular Orbit}{135}{section.26.3}%
+\contentsline {chapter}{\numberline {27}Planetary Motion}{137}{chapter.27}%
+\contentsline {section}{\numberline {27.1}Planetary Motion}{137}{section.27.1}%
+\contentsline {section}{\numberline {27.2}Implications of Eccentricity}{138}{section.27.2}%
+\contentsline {section}{\numberline {27.3}Hyperbolic Orbits}{138}{section.27.3}%
+\contentsline {subsection}{\numberline {27.3.1}Scattering Angle}{139}{subsection.27.3.1}%
+\contentsline {section}{\numberline {27.4}Elliptical Orbits and Planetary Motion}{139}{section.27.4}%
+\contentsline {section}{\numberline {27.5}Period of an Elliptic Orbit}{139}{section.27.5}%
+\contentsline {subsection}{\numberline {27.5.1}Simpler Way to Calculate Period}{140}{subsection.27.5.1}%
+\contentsline {section}{\numberline {27.6}Orbit Eccentricities}{140}{section.27.6}%
+\contentsline {chapter}{\numberline {28}Non-Inertial Systems and Fictitious Forces}{143}{chapter.28}%
+\contentsline {section}{\numberline {28.1}Non-Inertial Frames}{143}{section.28.1}%
+\contentsline {section}{\numberline {28.2}Accelerating Frame}{143}{section.28.2}%
+\contentsline {subsection}{\numberline {28.2.1}Pendulum in an Accelerating Frame}{144}{subsection.28.2.1}%
+\contentsline {section}{\numberline {28.3}Rotating Frames}{144}{section.28.3}%
+\contentsline {subsection}{\numberline {28.3.1}Rotational Coordinates}{144}{subsection.28.3.1}%
+\contentsline {subsubsection}{Rate of Change of a Rotating Vector}{144}{section*.67}%
+\contentsline {subsection}{\numberline {28.3.2}Derivative of a Rotating Vector}{145}{subsection.28.3.2}%
+\contentsline {section}{\numberline {28.4}Velocity and Acceleration in a Rotating Frame}{146}{section.28.4}%
+\contentsline {section}{\numberline {28.5}Fictitious Forces in a Rotating Coordinate System}{146}{section.28.5}%
+\contentsline {chapter}{\numberline {29}Non-Inertial Systems: Rotating Coordinates (9.1--9.5)}{149}{chapter.29}%
+\contentsline {section}{\numberline {29.1}Rate of Change of a Rotating Vector}{149}{section.29.1}%
+\contentsline {section}{\numberline {29.2}Time Derivative of a Vector in a Rotating Coordinate System}{149}{section.29.2}%
+\contentsline {section}{\numberline {29.3}Velocity and Acceleration in a Rotating Coordinate System}{150}{section.29.3}%
+\contentsline {subsection}{\numberline {29.3.1}Fictitious Forces}{150}{subsection.29.3.1}%
+\contentsline {chapter}{\numberline {30}Morin Chapter 2 Problems}{155}{chapter.30}%
+\contentsline {section}{\numberline {30.1}Galilean Transformation}{158}{section.30.1}%
+\contentsline {subsection}{\numberline {30.1.1}Principle of Relativity}{159}{subsection.30.1.1}%
+\contentsline {section}{\numberline {30.2}Uniformly-Accelerating Systems}{159}{section.30.2}%
+\contentsline {section}{\numberline {30.3}Principle of Equivalence}{160}{section.30.3}%
+\contentsline {chapter}{\numberline {31}Introduction to Lagrangian Mechanics}{163}{chapter.31}%
+\contentsline {section}{\numberline {31.1}Morin Problem 2.6 (Rope over a Pulley)}{163}{section.31.1}%
+\contentsline {section}{\numberline {31.2}Motivation}{164}{section.31.2}%
+\contentsline {subsection}{\numberline {31.2.1}Newtonian Picture}{164}{subsection.31.2.1}%
+\contentsline {subsection}{\numberline {31.2.2}Motivation: Refraction and Fermat's Principle}{164}{subsection.31.2.2}%
+\contentsline {subsection}{\numberline {31.2.3}Hamilton's Picture}{164}{subsection.31.2.3}%
+\contentsline {section}{\numberline {31.3}First Principles}{165}{section.31.3}%
+\contentsline {section}{\numberline {31.4}The 1-D Point Particle and the Action}{165}{section.31.4}%
+\contentsline {subsection}{\numberline {31.4.1}Examining the Postulates}{166}{subsection.31.4.1}%
+\contentsline {subsection}{\numberline {31.4.2}Determining the Free Lagrangian}{166}{subsection.31.4.2}%
+\contentsline {section}{\numberline {31.5}Extremising the Action: Euler–Lagrange Equation}{167}{section.31.5}%
+\contentsline {section}{\numberline {31.6}Two-Particle System}{167}{section.31.6}%
+\contentsline {chapter}{\numberline {32}Calculus of Variations}{169}{chapter.32}%
+\contentsline {section}{\numberline {32.1}Total vs.\ Partial Derivatives}{169}{section.32.1}%
+\contentsline {subsection}{\numberline {32.1.1}Partial Derivative $\partial f / \partial t$}{169}{subsection.32.1.1}%
+\contentsline {subsection}{\numberline {32.1.2}Local and Convective Derivative}{170}{subsection.32.1.2}%
+\contentsline {section}{\numberline {32.2}Calculus of Variations}{170}{section.32.2}%
+\contentsline {subsection}{\numberline {32.2.1}Computing the Variation}{170}{subsection.32.2.1}%
+\contentsline {subsubsection}{Taylor Series}{170}{section*.70}%
+\contentsline {chapter}{\numberline {33}Particle Interactions and Example Usage}{173}{chapter.33}%
+\contentsline {section}{\numberline {33.1}From Last Time}{173}{section.33.1}%
+\contentsline {section}{\numberline {33.2}Conservative Interactions}{173}{section.33.2}%
+\contentsline {section}{\numberline {33.3}Example: Using the Lagrangian}{174}{section.33.3}%
+\contentsline {section}{\numberline {33.4}Lagrangian in 3 Dimensions}{174}{section.33.4}%
+\contentsline {section}{\numberline {33.5}Example 2: Sphere Rolling on a Sliding Wedge}{174}{section.33.5}%
+\contentsline {subsection}{\numberline {33.5.1}Applying Euler--Lagrange}{175}{subsection.33.5.1}%
+\contentsline {section}{\numberline {33.6}Motivation for the Action (Quantum Mechanics)}{175}{section.33.6}%
+\contentsline {chapter}{\numberline {34}More Euler--Lagrange Examples}{177}{chapter.34}%
+\contentsline {section}{\numberline {34.1}Recap}{177}{section.34.1}%
+\contentsline {section}{\numberline {34.2}Example: Straight Line in Euclidean Space}{177}{section.34.2}%
+\contentsline {section}{\numberline {34.3}Example: Masses on a String}{178}{section.34.3}%
+\contentsline {subsection}{\numberline {34.3.1}Applying Euler--Lagrange}{179}{subsection.34.3.1}%
+\contentsline {chapter}{\numberline {35}Symmetry and Noether's Theorem}{181}{chapter.35}%
+\contentsline {section}{\numberline {35.1}Time Derivative of the Lagrangian}{181}{section.35.1}%
+\contentsline {section}{\numberline {35.2}Conservation of Momentum (Space-Translation Invariance)}{182}{section.35.2}%
+\contentsline {section}{\numberline {35.3}Conservation of Angular Momentum (Rotation Invariance)}{182}{section.35.3}%
+\contentsline {section}{\numberline {35.4}Reduced Action}{183}{section.35.4}%
+\contentsline {chapter}{\numberline {36}Non-Inertial Reference Frames}{185}{chapter.36}%
+\contentsline {section}{\numberline {36.1}Easiest Case: Linearly Accelerating Frame}{185}{section.36.1}%
+\contentsline {section}{\numberline {36.2}Hardest Case: Rotating Frame}{185}{section.36.2}%
+\contentsline {subsection}{\numberline {36.2.1}8.01 Approach}{186}{subsection.36.2.1}%
+\contentsline {subsection}{\numberline {36.2.2}Lagrangian Approach}{186}{subsection.36.2.2}%
+\contentsline {section}{\numberline {36.3}Example: Lagrange Points}{186}{section.36.3}%
+\contentsline {chapter}{\numberline {37}Double Pendulum}{189}{chapter.37}%
+\contentsline {section}{\numberline {37.1}Example: Double Pendulum}{189}{section.37.1}%
+\contentsline {chapter}{\numberline {38}Normal Modes, Gravity, and the Virial Theorem}{191}{chapter.38}%
+\contentsline {section}{\numberline {38.1}Normal Coordinates}{191}{section.38.1}%
+\contentsline {subsection}{\numberline {38.1.1}Example: Mechanical Vibrations in Molecules}{191}{subsection.38.1.1}%
+\contentsline {subsection}{\numberline {38.1.2}Example: CO\textsubscript {2} molecule ($\text {C} = \text {O} = \text {C}$)}{192}{subsection.38.1.2}%
+\contentsline {subsection}{\numberline {38.1.3}2D Molecule Modes}{193}{subsection.38.1.3}%
+\contentsline {chapter}{\numberline {39}Gravity and Orbital Mechanics}{195}{chapter.39}%
+\contentsline {section}{\numberline {39.1}Kepler's Laws (Empirical)}{195}{section.39.1}%
+\contentsline {section}{\numberline {39.2}Newton's Argument}{195}{section.39.2}%
+\contentsline {section}{\numberline {39.3}Two-Body Orbital Problem}{196}{section.39.3}%
+\contentsline {subsection}{\numberline {39.3.1}Conservation of Angular Momentum}{196}{subsection.39.3.1}%
+\contentsline {section}{\numberline {39.4}Finding Kepler's Laws}{197}{section.39.4}%
+\contentsline {subsection}{\numberline {39.4.1}Kepler's Second Law}{197}{subsection.39.4.1}%
+\contentsline {subsection}{\numberline {39.4.2}Lagrangian Equation for $r$}{197}{subsection.39.4.2}%
+\contentsline {section}{\numberline {39.5}Proving Kepler's 3rd Law}{197}{section.39.5}%
+\contentsline {section}{\numberline {39.6}Springs in a Plane (Recitation: COM Frame Example)}{198}{section.39.6}%
+\contentsline {section}{\numberline {39.7}Gravity Continued: Orbit Shape and General Central Potentials}{200}{section.39.7}%
+\contentsline {subsection}{\numberline {39.7.1}Recap: Orbit Equation}{200}{subsection.39.7.1}%
+\contentsline {subsection}{\numberline {39.7.2}Energy and Orbit Classification}{200}{subsection.39.7.2}%
+\contentsline {subsection}{\numberline {39.7.3}General Central Potentials}{200}{subsection.39.7.3}%
+\contentsline {section}{\numberline {39.8}Binary Mass Function (Recitation: Black Holes)}{202}{section.39.8}%
+\contentsline {subsection}{\numberline {39.8.1}Binary Relations}{203}{subsection.39.8.1}%
+\contentsline {chapter}{\numberline {40}The Virial Theorem}{205}{chapter.40}%
+\contentsline {subsection}{\numberline {40.0.1}Time Average of a Function}{205}{subsection.40.0.1}%
+\contentsline {subsection}{\numberline {40.0.2}Verifying for Gravity}{206}{subsection.40.0.2}%
+\contentsline {section}{\numberline {40.1}Applying the Virial Theorem to Galaxies}{206}{section.40.1}%
+\contentsline {subsection}{\numberline {40.1.1}Doppler Shifts}{206}{subsection.40.1.1}%
+\contentsline {subsection}{\numberline {40.1.2}Ergodicity}{207}{subsection.40.1.2}%
+\contentsline {subsection}{\numberline {40.1.3}Galaxy Rotation}{207}{subsection.40.1.3}%
+\contentsline {section}{\numberline {40.2}Virial Theorem: Sun's Lifetime (Recitation Example)}{208}{section.40.2}%
+\contentsline {chapter}{\numberline {41}Midterm Summary}{209}{chapter.41}%
+\contentsline {section}{\numberline {41.1}Exam Tips}{209}{section.41.1}%
+\contentsline {section}{\numberline {41.2}Class Summary}{209}{section.41.2}%
+\contentsline {section}{\numberline {41.3}Major Equations and Concepts}{209}{section.41.3}%
+\contentsline {subsection}{\numberline {41.3.1}Action and Hamilton's Principle}{209}{subsection.41.3.1}%
+\contentsline {subsection}{\numberline {41.3.2}Euler--Lagrange Equation}{210}{subsection.41.3.2}%
+\contentsline {subsection}{\numberline {41.3.3}Energy Conservation}{210}{subsection.41.3.3}%
+\contentsline {subsection}{\numberline {41.3.4}Finding Small Oscillations about Equilibrium}{210}{subsection.41.3.4}%
+\contentsline {subsection}{\numberline {41.3.5}Non-inertial Reference Frames}{210}{subsection.41.3.5}%
+\contentsline {subsection}{\numberline {41.3.6}Two-Body Orbital Problem}{211}{subsection.41.3.6}%
+\contentsline {subsection}{\numberline {41.3.7}General Central Potentials}{211}{subsection.41.3.7}%
+\contentsline {subsection}{\numberline {41.3.8}Virial Theorem}{212}{subsection.41.3.8}%
+\contentsline {subsection}{\numberline {41.3.9}Ergodic Hypothesis}{212}{subsection.41.3.9}%
+\contentsline {section}{\numberline {41.4}Rolling Wheel on an Incline (Recitation Problem)}{212}{section.41.4}%
+\contentsline {section}{\numberline {41.5}Gravitational Focusing (Cross-Section Calculation)}{213}{section.41.5}%
+\contentsline {chapter}{\numberline {42}Constrained Motion}{215}{chapter.42}%
+\contentsline {section}{\numberline {42.1}Holonomic Constraints}{215}{section.42.1}%
+\contentsline {section}{\numberline {42.2}Special Case: Semi-Holonomic}{217}{section.42.2}%
+\contentsline {section}{\numberline {42.3}Potentials \& Generalized Forces (Holonomic Case)}{218}{section.42.3}%
+\contentsline {subsection}{\numberline {42.3.1}Semi-Holonomic Case}{219}{subsection.42.3.1}%
+\contentsline {chapter}{\numberline {43}Hamiltonian Mechanics}{221}{chapter.43}%
+\contentsline {section}{\numberline {43.1}Legendre Transformation}{221}{section.43.1}%
+\contentsline {section}{\numberline {43.2}Canonical Momenta}{221}{section.43.2}%
+\contentsline {section}{\numberline {43.3}Finding Equations of Motion}{222}{section.43.3}%
+\contentsline {chapter}{\numberline {44}Canonical Transformations}{225}{chapter.44}%
+\contentsline {section}{\numberline {44.1}Procedure to Generate Canonical Transformations}{225}{section.44.1}%
+\contentsline {section}{\numberline {44.2}Infinitesimal Canonical Transformations}{227}{section.44.2}%
+\contentsline {section}{\numberline {44.3}Application: Quantum Mechanics}{228}{section.44.3}%
+\contentsline {section}{\numberline {44.4}Routhian Mechanics}{229}{section.44.4}%
+\contentsline {chapter}{\numberline {45}Liouville's Theorem}{231}{chapter.45}%
+\contentsline {section}{\numberline {45.1}Phase Space}{231}{section.45.1}%
+\contentsline {section}{\numberline {45.2}Non-Hamiltonian Forces}{232}{section.45.2}%
+\contentsline {section}{\numberline {45.3}Damped Harmonic Oscillator Example}{232}{section.45.3}%
+\contentsline {chapter}{\numberline {46}Poisson Brackets}{235}{chapter.46}%
+\contentsline {section}{\numberline {46.1}Showing Canonical Transformations are Conserved}{235}{section.46.1}%
+\contentsline {section}{\numberline {46.2}Another Useful Fact}{237}{section.46.2}%
+\contentsline {section}{\numberline {46.3}Another Example: Liouville's Theorem}{237}{section.46.3}%
+\contentsline {section}{\numberline {46.4}Application to Quantum Mechanics}{237}{section.46.4}%
+\contentsline {chapter}{\numberline {47}Poisson Brackets, Scattering, Rigid Body Motion, and Action-Angle Variables}{239}{chapter.47}%
+\contentsline {section}{\numberline {47.1}SHO Example (Recitation 11: Poisson Brackets Recap)}{239}{section.47.1}%
+\contentsline {subsection}{\numberline {47.1.1}SHO Example (1D)}{239}{subsection.47.1.1}%
+\contentsline {subsection}{\numberline {47.1.2}Poisson Brackets are Invariant Under Canonical Transformations}{240}{subsection.47.1.2}%
+\contentsline {chapter}{\numberline {48}Scattering Amplitudes}{241}{chapter.48}%
+\contentsline {section}{\numberline {48.1}Setup}{241}{section.48.1}%
+\contentsline {section}{\numberline {48.2}Differential Cross Section}{241}{section.48.2}%
+\contentsline {section}{\numberline {48.3}Nuclear Reactions}{242}{section.48.3}%
+\contentsline {chapter}{\numberline {49}Rutherford Scattering}{245}{chapter.49}%
+\contentsline {section}{\numberline {49.1}Scattering}{245}{section.49.1}%
+\contentsline {section}{\numberline {49.2}Energy Dissipation of a Charged Particle}{246}{section.49.2}%
+\contentsline {section}{\numberline {49.3}Central Force Potential Scattering (Recitation 15)}{248}{section.49.3}%
+\contentsline {subsection}{\numberline {49.3.1}Setup}{248}{subsection.49.3.1}%
+\contentsline {section}{\numberline {49.4}Central Force Potential}{249}{section.49.4}%
+\contentsline {subsection}{\numberline {49.4.1}Stability of Circular Orbits}{249}{subsection.49.4.1}%
+\contentsline {chapter}{\numberline {50}Principle Axes of Rotation and Rigid Body Motion}{251}{chapter.50}%
+\contentsline {section}{\numberline {50.1}General Body: Inertia Tensor}{251}{section.50.1}%
+\contentsline {section}{\numberline {50.2}Torque and Euler's Equations}{252}{section.50.2}%
+\contentsline {subsection}{\numberline {50.2.1}No Torque Situation}{253}{subsection.50.2.1}%
+\contentsline {section}{\numberline {50.3}Rigid Body Motion (Recitation 16)}{253}{section.50.3}%
+\contentsline {subsection}{\numberline {50.3.1}Angular Velocity with Euler Angles}{253}{subsection.50.3.1}%
+\contentsline {subsection}{\numberline {50.3.2}Example: Point Mass on a Disc}{254}{subsection.50.3.2}%
+\contentsline {chapter}{\numberline {51}Action-Angle Variables}{257}{chapter.51}%
+\contentsline {section}{\numberline {51.1}Canonical Transformation: $q,p,h \to Q,P,H$}{257}{section.51.1}%
+\contentsline {section}{\numberline {51.2}Action-Angle Principle}{257}{section.51.2}%
+\contentsline {subsection}{\numberline {51.2.1}Example: SHO}{258}{subsection.51.2.1}%
+\contentsline {subsection}{\numberline {51.2.2}Cycloid Problem}{259}{subsection.51.2.2}%
+\contentsline {chapter}{\numberline {52}Final Summary}{261}{chapter.52}%
+\contentsline {section}{\numberline {52.1}Constrained Motion}{261}{section.52.1}%
+\contentsline {section}{\numberline {52.2}Final Exam Review (Recitation 17)}{261}{section.52.2}%
+\contentsline {subsection}{\numberline {52.2.1}If Constraints:}{261}{subsection.52.2.1}%
+\contentsline {subsubsection}{(1) Holonomic Constraints}{261}{section*.104}%
+\contentsline {subsubsection}{(2) Semi-Holonomic}{261}{section*.105}%
+\contentsline {subsection}{\numberline {52.2.2}Hamiltonian}{262}{subsection.52.2.2}%
+\contentsline {subsection}{\numberline {52.2.3}Non-Hamiltonian Forces}{262}{subsection.52.2.3}%
+\contentsline {subsection}{\numberline {52.2.4}Poisson Brackets}{262}{subsection.52.2.4}%
+\contentsline {subsubsection}{Canonical Coordinate Transformation Requirements}{263}{section*.106}%
+\contentsline {subsubsection}{Useful Identities}{263}{section*.107}%
+\contentsline {section}{\numberline {52.3}Generating Canonical Transformations}{263}{section.52.3}%
+\contentsline {section}{\numberline {52.4}Infinitesimal Canonical Transformations}{264}{section.52.4}%
+\contentsline {section}{\numberline {52.5}Liouville's Theorem}{264}{section.52.5}%
+\contentsline {section}{\numberline {52.6}Scattering (Summary)}{264}{section.52.6}%
+\contentsline {subsection}{\numberline {52.6.1}Differential Cross Section}{265}{subsection.52.6.1}%
+\contentsline {subsection}{\numberline {52.6.2}Calculating Mean Free Path}{265}{subsection.52.6.2}%
+\contentsline {subsection}{\numberline {52.6.3}Handy Formula: Central Potential}{265}{subsection.52.6.3}%
+\contentsline {section}{\numberline {52.7}Rigid-Body Motion (Summary)}{265}{section.52.7}%
+\contentsline {section}{\numberline {52.8}Examples}{266}{section.52.8}%
+\contentsline {subsection}{\numberline {52.8.1}Canonical Transformation Example}{266}{subsection.52.8.1}%
+\contentsline {subsection}{\numberline {52.8.2}Constraints Example: Hoop Rolling on a Cylinder}{266}{subsection.52.8.2}%

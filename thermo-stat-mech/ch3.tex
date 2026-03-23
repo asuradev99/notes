@@ -6,142 +6,116 @@
 \section{Microstates, Macrostates, and Multiplicity}
 % ============================================================
 
-Irreversible processes are not logically forbidden by the laws of mechanics --- they are simply overwhelmingly probable. To understand why, we must count the number of ways a system can be arranged.
-
-Imagine flipping three distinguishable coins. There are $2^3 = 8$ possible outcomes, and these naturally organise into two levels of description.
+Irreversible processes are not logically forbidden --- they are simply overwhelmingly probable. To understand why, we count the number of ways a system can be arranged.
 
 \begin{definition}
-A \textbf{microstate} is a complete specification of the system --- for example, exactly which coins show heads and which show tails. A \textbf{macrostate} is a coarser description, specifying only a macroscopic quantity such as the total number of heads. The \textbf{multiplicity} $\Omega$ of a macrostate is the number of microstates consistent with it.
+A \textbf{microstate} is a complete specification of the system. A \textbf{macrostate} is a coarser description specifying only macroscopic quantities. The \textbf{multiplicity} $\Omega$ of a macrostate is the number of microstates consistent with it.
 \end{definition}
 
-For $N$ distinguishable objects of which $n$ are in a designated state, the multiplicity is the binomial coefficient
+For $N$ distinguishable objects of which $n$ are in a designated state:
 \[
     \Omega(N, n) = \binom{N}{n} = \frac{N!}{n!\,(N-n)!}.
 \]
 
 \begin{example}
-Flipping three distinguishable coins, the macrostate ``two heads'' has multiplicity $\Omega(3,2) = \binom{3}{2} = 3$, corresponding to the microstates HHT, HTH, THH. The macrostate ``zero heads'' has multiplicity $\Omega(3,0) = 1$ (only TTT). The macrostate with one head ($\Omega = 3$) is therefore three times more likely than the macrostate with zero heads ($\Omega = 1$), and for large $N$ the disparity becomes astronomically pronounced.
+Three coins: ``two heads'' has $\Omega(3,2) = 3$ (HHT, HTH, THH); ``zero heads'' has $\Omega(3,0) = 1$. For large $N$ such disparities become astronomical.
 \end{example}
 
 \begin{definition}[Fundamental Assumption of Statistical Mechanics]
 In an isolated system in thermal equilibrium, every accessible microstate is equally probable.
 \end{definition}
 
-This assumption implies that any microscopic process $X \to Y$ and its time-reverse $Y \to X$ occur at the same rate. It does \emph{not} mean all macrostates are equally likely: a macrostate with more microstates is simply more probable. For the assumption to be self-consistent, the system must have some mechanism --- however weak --- to explore all accessible microstates over time.
+This implies any process $X \to Y$ and its time-reverse occur at the same rate. Macrostates with more microstates are simply more probable.
 
 \subsection{Two-State Paramagnet}
 
-A paramagnet is a material whose constituent particles behave like tiny magnetic compass needles that tend to align parallel to an applied field, but only while the field is present (unlike a ferromagnet, which maintains alignment spontaneously). Each particle carries a magnetic \textbf{dipole} moment that may belong to a whole group of atoms, a single atom, or a single electron.
-
-In the idealised \textbf{two-state paramagnet}, each dipole is constrained to point either parallel ($\uparrow$) or antiparallel ($\downarrow$) to an applied field. With $N$ total dipoles and $N_\uparrow$ pointing up, the number of down-spins is $N_\downarrow = N - N_\uparrow$, and the multiplicity of a configuration with $N_\uparrow$ up-spins is
+In the idealised \textbf{two-state paramagnet}, each dipole points either parallel ($\uparrow$) or antiparallel ($\downarrow$) to an applied field. With $N$ total dipoles and $N_\uparrow$ up-spins, $N_\downarrow = N - N_\uparrow$, and the multiplicity is
 \[
     \Omega(N, N_\uparrow) = \binom{N}{N_\uparrow} = \frac{N!}{N_\uparrow!\, N_\downarrow!}.
 \]
-Parallel dipoles carry less (more negative) energy than antiparallel ones, because flipping a dipole against an external field requires work. Specifying $N_\uparrow$ is therefore sufficient to determine both the energy and the multiplicity of the macrostate.
+Specifying $N_\uparrow$ determines both the energy and the multiplicity.
 
 % ============================================================
 \section{The Einstein Model of Solids}
 % ============================================================
 
-Consider a solid modelled as a collection of quantum harmonic oscillators whose energies come in discrete units of size $\varepsilon = hf$, where $h = 6.63\times10^{-34}$~J$\cdot$s is Planck's constant and $f$ is the natural oscillation frequency. Classically the potential energy is the continuous function $\tfrac{1}{2}k_s x^2$, but quantum mechanics forces the allowed energies to be integer multiples of $hf$ above the zero-point energy $E_0 = \tfrac{1}{2}hf$.
+Model a solid as quantum harmonic oscillators with energies in discrete units $\varepsilon = hf$. In 3D, each atom has 3 independent oscillators, giving $N = 3N_{\text{atoms}}$ total.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Draw three parabolic wells side by side
   \foreach \ox in {0, 2.6, 5.2} {
-    % Parabola approximated by a V/U shape
     \draw[thick] (\ox+0.0, 2.0) -- (\ox+0.7, 0.1) -- (\ox+1.4, 2.0);
-    % Energy levels: n=0,1,2,3
     \draw[blue] (\ox+0.18, 0.40) -- (\ox+1.22, 0.40);
     \draw[blue] (\ox+0.10, 0.85) -- (\ox+1.30, 0.85);
     \draw[blue] (\ox+0.04, 1.35) -- (\ox+1.36, 1.35);
     \draw[blue] (\ox+0.00, 1.82) -- (\ox+1.40, 1.82);
-    % Dots representing quanta on levels
   }
-  % Dots on first well (n=0: 1 dot, n=1: 2 dots)
   \fill[red] (0.70, 0.40) circle (2.5pt);
   \fill[red] (0.50, 0.85) circle (2.5pt);
   \fill[red] (0.90, 0.85) circle (2.5pt);
-  % Dots on second well (n=0: 0, n=1: 1 dot, n=2: 1 dot)
   \fill[red] (3.30, 0.85) circle (2.5pt);
   \fill[red] (3.30, 1.35) circle (2.5pt);
-  % Dots on third well (n=0: 1 dot)
   \fill[red] (5.90, 0.40) circle (2.5pt);
-  % Level labels (right of first well)
   \node[right, font=\tiny] at (1.22, 0.40) {$\tfrac{1}{2}hf$};
   \node[right, font=\tiny] at (1.30, 0.85) {$\tfrac{3}{2}hf$};
   \node[right, font=\tiny] at (1.36, 1.35) {$\tfrac{5}{2}hf$};
   \node[right, font=\tiny] at (1.40, 1.82) {$\tfrac{7}{2}hf$};
-  % Label one well
   \node[below, font=\small] at (0.70, 0.0) {Oscillator $i$};
   \node[below, font=\small] at (3.30, 0.0) {Oscillator $j$};
   \node[below, font=\small] at (5.90, 0.0) {Oscillator $k$};
 \end{tikzpicture}\\[3pt]
-{\small\itshape Einstein solid model: each oscillator has equally spaced energy levels $E_n=(n+\tfrac{1}{2})hf$.}
+{\small\itshape Einstein solid: each oscillator has equally spaced levels $E_n=(n+\tfrac{1}{2})hf$.}
 \end{center}
 
-In a three-dimensional solid, each atom sits at a lattice site and vibrates independently along three orthogonal directions, giving $N_{\text{atoms}}$ atoms a total of $N = 3N_{\text{atoms}}$ independent oscillators. The central combinatorial question is: in how many ways can $q$ indistinguishable energy units be distributed among $N$ oscillators?
-
-This is a ``stars-and-bars'' problem. We want to distribute $q$ identical objects (stars) into $N$ bins separated by $N-1$ dividers (bars). The answer involves choosing the positions of the $N-1$ bars among $q + N - 1$ total slots.
+The number of ways to distribute $q$ indistinguishable energy units among $N$ oscillators is a stars-and-bars problem:
 
 \begin{formula}[Multiplicity of an Einstein Solid]
-The number of microstates consistent with having exactly $q$ energy units shared among $N$ oscillators is
 \[
     \Omega(N,q) = \binom{q+N-1}{q} = \frac{(q+N-1)!}{q!\,(N-1)!}.
 \]
 \end{formula}
 
 \begin{example}
-As a quick check: the arrangement $*\,|\,{*}{*}\,|\,|\,{*}{*}$ uses 3 bars and describes 4 oscillators carrying 5 energy units, consistent with $\Omega(4,5) = \binom{8}{5} = 56$.
+Check: $\Omega(4,5) = \binom{8}{5} = 56$.
 \end{example}
 
 \subsection{Interacting Einstein Solids and Equilibrium}
 
-Consider two Einstein solids, A and B, placed in thermal contact. They are \emph{weakly coupled}: energy can flow between them, but the rate of inter-solid exchange is much slower than intra-solid redistribution. Consequently, on short timescales the individual energies $U_A$ and $U_B$ are essentially fixed, while on long timescales only the total $U_{\text{tot}} = U_A + U_B$ is conserved. The macrostate of the combined system is specified by the pair $(q_A, q_B)$ with $q_A + q_B = q$ constant.
+Two Einstein solids A and B in thermal contact share total energy $q = q_A + q_B$. Their multiplicities multiply:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Outer dashed boundary (isolated system)
   \draw[dashed, thick] (-0.4, -0.5) rectangle (8.4, 2.0);
   \node[above, font=\small\itshape] at (4.0, 2.0) {Isolated system};
-  % Solid A box
   \draw[thick, fill=blue!10] (0.0, 0.0) rectangle (3.2, 1.5);
   \node[align=center, font=\small] at (1.6, 0.75)
     {Solid A\\$N_A$ oscillators\\energy $q_A$};
-  % Solid B box
   \draw[thick, fill=orange!10] (4.8, 0.0) rectangle (8.0, 1.5);
   \node[align=center, font=\small] at (6.4, 0.75)
     {Solid B\\$N_B$ oscillators\\energy $q_B$};
-  % Wavy double-headed arrow in between
   \draw[thick, <->, decorate, decoration={snake, amplitude=3pt, segment length=7pt}]
     (3.3, 0.75) -- (4.7, 0.75);
   \node[above, font=\small] at (4.0, 0.95) {Energy};
 \end{tikzpicture}\\[3pt]
-{\small\itshape Two Einstein solids sharing total energy $q=q_A+q_B$ in an isolated system.}
+{\small\itshape Two Einstein solids sharing total energy $q=q_A+q_B$.}
 \end{center}
 
-Each solid has its own multiplicity:
 \[
     \Omega_A = \binom{q_A + N_A - 1}{q_A}, \qquad
-    \Omega_B = \binom{q_B + N_B - 1}{q_B}.
-\]
-Because the two solids are statistically independent, the total multiplicity factorises:
-\[
+    \Omega_B = \binom{q_B + N_B - 1}{q_B}, \qquad
     \Omega_{\text{tot}} = \Omega_A \cdot \Omega_B.
 \]
-The distribution of $\Omega_{\text{tot}}$ over macrostates peaks sharply near $q_A = q_B = q/2$ for equal solids. If the system starts in an extreme macrostate with nearly all energy in one solid, it is overwhelmingly likely to evolve toward the peak. This is the statistical content of the second law: energy (heat) flows spontaneously from the hotter solid to the cooler one, because the macrostates near equilibrium carry the overwhelming majority of the total multiplicity.
+The distribution peaks sharply near $q_A = q_B = q/2$. This is the statistical content of the second law: systems evolve toward the macrostate of greatest multiplicity.
 
 % ============================================================
 \section{Large Systems and Stirling's Approximation}
 % ============================================================
 
-As $N$ and $q$ grow, the multiplicity distribution $\Omega_{\text{tot}}(q_A)$ becomes dramatically sharper relative to the total range of $q_A$. Two mathematical observations underlie everything that follows. First, when $\lambda \gg a$, we have $\lambda + a \approx \lambda$ (e.g., $10^{23} + 23 \approx 10^{23}$). Second, the Taylor expansion $\ln(1+x) \approx x$ for $|x| \ll 1$. Together with a large-$N$ approximation for factorials, these yield all the tools we need.
-
-Using Stirling's approximation ($\ln N! \approx N\ln N - N$, see Chapter~1), we can obtain compact closed-form expressions for $\ln\Omega$ in the limits where either energy units or oscillators dominate.
+Using Stirling's approximation ($\ln N! \approx N\ln N - N$), we obtain closed-form expressions for $\ln\Omega$ in limiting cases.
 
 \subsection{High-Temperature Limit ($q \gg N$)}
 
-When many more energy units are present than oscillators, each oscillator typically carries many quanta. In this regime we may approximate $(q + N - 1)! \approx (q+N)!$ and apply Stirling's approximation to $\ln\Omega$. Since $q \gg N$, we expand $\ln(q + N) = \ln q + \ln(1 + N/q) \approx \ln q + N/q$ and find, after collecting terms:
+When $q \gg N$, use $\ln(q+N) \approx \ln q + N/q$ and Stirling's approximation:
 \begin{align*}
     \ln\Omega
     &= (q+N)\ln(q+N) - q\ln q - N\ln N + \cdots \\
@@ -157,116 +131,95 @@ For $q \gg N$,
 
 \subsection{Low-Temperature Limit ($q \ll N$)}
 
-When few energy units are present, most oscillators sit in their ground state. Expanding $\ln(N + q) \approx \ln N + q/N$ and repeating the same steps yields
+For $q \ll N$, similarly:
 \[
-    \Omega(N,q) \approx \left(\frac{eN}{q}\right)^q \qquad (q \ll N).
+    \Omega(N,q) \approx \left(\frac{eN}{q}\right)^q.
 \]
-In both limits, and for the general case in between, the key feature is that $\Omega$ depends on $N$ and $q$ through the ratio $q/N$ --- the number of energy units per oscillator, which is directly proportional to the temperature.
 
 \subsection{Sharpness of the Multiplicity Peak}
 
 \begin{example}
-Consider two large, interacting Einstein solids each with $N$ oscillators sharing $q$ total energy units in the high-temperature limit $q \gg N$. Using the high-temperature formula for each solid:
+Two equal solids ($N$ oscillators each) sharing $q$ units in the high-$T$ limit:
 \[
-    \Omega_{\text{tot}} = \left(\frac{e}{N}\right)^{2N}(q_A q_B)^N.
+    \Omega_{\text{tot}} = \left(\frac{e}{N}\right)^{2N}(q_A q_B)^N,
 \]
-This is maximised when $q_A q_B$ is maximised subject to $q_A + q_B = q$, which occurs at $q_A = q_B = q/2$:
+maximised at $q_A = q_B = q/2$:
 \[
     \Omega_{\max} = \left(\frac{eq}{2N}\right)^{2N}.
 \]
-To quantify how sharply $\Omega_{\text{tot}}$ peaks, write $q_A = q/2 + x$ and $q_B = q/2 - x$ for small displacement $x$, so $q_A q_B = (q/2)^2 - x^2$. Using $\ln(1 - \epsilon) \approx -\epsilon$ for small $\epsilon = (2x/q)^2$:
+Writing $q_A = q/2 + x$, $q_B = q/2 - x$:
 
 \begin{formula}[Gaussian Form of the Multiplicity Peak]
-Near the maximum,
 \[
     \Omega_{\text{tot}}(x) = \Omega_{\max}\, \exp\!\left[-N\!\left(\frac{2x}{q}\right)^2\right].
 \]
-The distribution is a Gaussian in the displacement $x = q_A - q/2$ from the equilibrium energy partition.
 \end{formula}
 
-The $1/e$ half-width of the Gaussian follows from setting the exponent equal to $-1$:
-\[
-    N\!\left(\frac{2x}{q}\right)^2 = 1
-    \;\Longrightarrow\; \Delta x = \frac{q}{\sqrt{N}}.
-\]
-The relative width of the peak compared to the full range $q$ is therefore $\Delta x / q = 1/\sqrt{N}$. For a macroscopic solid $N \sim 10^{23}$, this ratio is $\sim 10^{-11.5}$ --- the peak is vanishingly narrow. In the \textbf{thermodynamic limit} ($N \to \infty$), random fluctuations away from the most probable macrostate are so improbable that they are unmeasurable in practice. The second law of thermodynamics is not a fundamental constraint on the possible microstates; it is a statement about probability in the thermodynamic limit.
+The $1/e$ half-width is $\Delta x = q/\sqrt{N}$, giving relative width $\Delta x/q = 1/\sqrt{N}$. For $N \sim 10^{23}$, this is $\sim 10^{-11.5}$: the peak is vanishingly narrow. The second law is a statement about probability in the thermodynamic limit.
 \end{example}
 
 % ============================================================
 \section{Density of States and Semi-Classical Phase Space}
 % ============================================================
 
-The multiplicity of a discrete system like the Einstein solid is a straightforward combinatorial count. For a continuous system like an ideal gas, we need a more careful procedure, since classical phase space is a continuum. The semi-classical approach bridges quantum mechanics and classical mechanics.
+For a continuous system like an ideal gas, we need a semi-classical procedure to count states.
 
 \subsection{State Counting and One Quantum State Per $h^3$}
 
-For a single particle confined to a cubic box of side $L$, solving the Schr\"{o}dinger equation gives energy eigenvalues
+For a single particle in a box of side $L$, energy eigenvalues are
 \[
-    E(n_1, n_2, n_3) = \frac{\pi^2\hbar^2}{2mL^2}(n_1^2 + n_2^2 + n_3^2),
+    E(n_1, n_2, n_3) = \frac{\pi^2\hbar^2}{2mL^2}(n_1^2 + n_2^2 + n_3^2).
 \]
-where $n_1, n_2, n_3 = 1, 2, 3, \ldots$ are positive integers. The cumulative number of states $N(E)$ up to energy $E$ counts the positive-integer lattice points inside a sphere of radius $C = \sqrt{2mL^2 E / (\pi^2\hbar^2)}$. Since the quantum level spacing ($\sim \pi^2\hbar^2/(2mL^2) \approx k_B \times 10^{-13}$~K for helium in a millimeter box) is many orders of magnitude smaller than $k_B T$ at any accessible temperature, we may replace the lattice sum by an integral over the positive octant of this sphere:
+Since level spacing $\ll k_B T$, replace the lattice sum by an integral over the positive octant:
 \[
-    N(E) = \frac{1}{8} \cdot \frac{4\pi}{3} C^3 = \frac{1}{6\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} V E^{3/2}.
+    N(E) = \frac{1}{8} \cdot \frac{4\pi}{3} C^3 = \frac{1}{6\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} V E^{3/2},
 \]
-where $V = L^3$. The density of states follows by differentiation:
+where $V = L^3$. The density of states:
 \begin{formula}
 \[
     \rho(E) \equiv \dv{N}{E} = \frac{1}{4\pi^2}\left(\frac{2m}{\hbar^2}\right)^{3/2} V\sqrt{E}.
 \]
 \end{formula}
-The density of states grows as $\sqrt{E}$ for a particle in three dimensions.
 
 \subsection{Semi-Classical Phase Space and the $h^3$ Cell}
 
-It is often more convenient to count states using the classical energy $E(\vb{x}, \vb{p})$ rather than quantum numbers. For a single particle, the phase space is six-dimensional: $\{x, y, z, p_x, p_y, p_z\}$. The classical integral over phase space is infinite (a continuum), but quantum mechanics provides a natural coarse-graining: each quantum state occupies a minimum volume in phase space, which we can determine by matching the classical and quantum counts.
+Matching the classical phase-space integral to the quantum count determines the volume per state:
+\[
+    N(E) = \frac{1}{\Delta}\int d^3x\int d^3p\;\Theta\!\bigl(E - E(\vb{x}, \vb{p})\bigr)
+         = \frac{V}{\Delta}\cdot\frac{4\pi}{3}(2mE)^{3/2}.
+\]
 
-The classical cumulative count up to energy $E$ is
-\[
-    N(E) = \frac{1}{\Delta}\int d^3x\int d^3p\;\Theta\!\bigl(E - E(\vb{x}, \vb{p})\bigr),
-\]
-where $\Delta$ is the phase-space volume per quantum state. For a particle in a box with $E = p^2/(2m)$, the spatial integral gives $V$ and the momentum integral gives the volume of the sphere $p^2 \leq 2mE$:
-\[
-    N(E) = \frac{V}{\Delta}\cdot\frac{4\pi}{3}(2mE)^{3/2}.
-\]
-Comparing to the quantum lattice result requires:
 \begin{formula}[Phase Space Volume Per Quantum State]
 \[
     \Delta = (2\pi\hbar)^3 = h^3.
 \]
 \end{formula}
-This follows directly from the Heisenberg uncertainty principle: $\Delta x\,\Delta p_x \sim \hbar$ per spatial direction, so a minimum-uncertainty cell in phase space has volume $(2\pi\hbar)^3$ in three dimensions.
+This follows from the Heisenberg uncertainty principle: $\Delta x\,\Delta p_x \sim \hbar$ per direction.
 
 \subsection{General $N$-Particle System}
 
-For an $N$-particle system with classical Hamiltonian $H(\vb{x}_1, \ldots, \vb{x}_N, \vb{p}_1, \ldots, \vb{p}_N)$, each quantum state occupies a volume $h^{3N}$ in $6N$-dimensional phase space. The total number of states with energy at most $U$ is:
+For $N$ particles, each state occupies $h^{3N}$ in $6N$-dimensional phase space:
 \begin{formula}
 \[
     N(U) = \frac{1}{(2\pi\hbar)^{3N}}\int d^{3N}x\int d^{3N}p\;\Theta\!\bigl(U - H(\vb{x}, \vb{p})\bigr).
 \]
 \end{formula}
-For identical particles, particle permutations produce physically indistinguishable configurations, so we must divide by $N!$ to avoid over-counting.
+For identical particles, divide by $N!$ to avoid over-counting permutations.
 
 % ============================================================
 \section{The Multiplicity of an Ideal Gas: Sackur-Tetrode}
 % ============================================================
 
-We now apply the semi-classical framework to compute the multiplicity and entropy of an ideal gas of $N$ identical monatomic particles in a box of volume $V$ with total energy $U$.
-
 \subsection{Volume of the $3N$-Dimensional Momentum Sphere}
 
-For a non-interacting gas, the Hamiltonian is $H = \sum_{j=1}^N \vb{p}_j^2/(2m)$, and the spatial integral over $d^{3N}x$ gives $V^N$. The momentum constraint $\sum_j \vb{p}_j^2 \leq 2mU$ restricts the $3N$-dimensional momentum vector to a ball of radius $\sqrt{2mU}$. The volume of the unit sphere in $d = 3N$ dimensions is
+For $N$ non-interacting particles, the spatial integral gives $V^N$ and the momentum integral is a $3N$-dimensional ball of radius $\sqrt{2mU}$:
 \[
-    V_{3N} = \frac{\pi^{3N/2}}{\Gamma\!\left(\frac{3N}{2} + 1\right)},
+    \Omega(U, V, N) \approx \frac{1}{N!}\cdot\frac{V^N}{h^{3N}}\cdot\frac{\pi^{3N/2}}{\left(\tfrac{3N}{2}\right)!}\,(2mU)^{3N/2}.
 \]
-where the Gamma function satisfies $\Gamma(n) = (n-1)!$ for positive integers and $\Gamma(n+1) = n\,\Gamma(n)$ in general. Putting it together and dividing by $h^{3N}$ (state counting) and $N!$ (indistinguishability):
-\[
-    \Omega(U, V, N) \approx \frac{1}{N!}\cdot\frac{V^N}{h^{3N}}\cdot\frac{\pi^{3N/2}}{\left(\tfrac{3N}{2}\right)!}\,(2mU)^{3N/2},
-\]
-where for large $3N$ we use $\Gamma\!\left(\tfrac{3N}{2}+1\right) \approx \left(\tfrac{3N}{2}\right)!$.
 
 \subsection{Derivation of the Sackur-Tetrode Equation}
 
-To find $S = k\ln\Omega$, we apply Stirling's approximation to both $\ln N!$ and $\ln\!\left(\tfrac{3N}{2}\right)!$. Writing $\ln N! \approx N\ln N - N$ and $\ln\!\left(\tfrac{3N}{2}\right)! \approx \tfrac{3N}{2}\ln\tfrac{3N}{2} - \tfrac{3N}{2}$ and collecting all terms:
+Applying Stirling's approximation to $\ln N!$ and $\ln\!\left(\tfrac{3N}{2}\right)!$:
 \begin{align*}
     \ln\Omega
     &= N\!\left[-\ln N + 1 + \ln V - 3\ln h + \frac{3}{2}\ln\pi + \frac{3}{2}\ln(2mU)
@@ -280,45 +233,37 @@ To find $S = k\ln\Omega$, we apply Stirling's approximation to both $\ln N!$ and
 \]
 \end{formula}
 
-Writing $c_0 = \tfrac{3}{2}\ln\!\left(\tfrac{4\pi m}{3h^2}\right) + \tfrac{5}{2}$ as a species-dependent constant, the entropy takes the compact form
+With species-dependent constant $c_0 = \tfrac{3}{2}\ln\!\left(\tfrac{4\pi m}{3h^2}\right) + \tfrac{5}{2}$:
 \[
     S = Nk\!\left[\ln\frac{V}{N} + \frac{3}{2}\ln\frac{U}{N} + c_0\right].
 \]
-The entropy increases with $N$, $V$, and $U$: more particles, more volume, or more energy each mean more accessible microstates.
 
 \subsection{The Gibbs Paradox and the $1/N!$ Factor}
 
-The $1/N!$ factor in the multiplicity is essential for the entropy to be \emph{extensive} (scaling linearly with system size). To see what goes wrong without it, consider doubling a gas from $(U, V, N)$ to $(2U, 2V, 2N)$. Without the $1/N!$ factor the entropy would scale as
+Without the $1/N!$ factor, doubling the system $(U,V,N) \to (2U,2V,2N)$ gives
 \[
     S(2U, 2V, 2N) = 2S(U, V, N) + 2kN\ln 2 \neq 2S(U,V,N).
 \]
-The spurious extra term $2kN\ln 2$ is the \textbf{Gibbs paradox}: an apparent entropy increase even when two portions of the \emph{same} gas are combined. This would imply that simply relabelling a partition position could create entropy, which is physically absurd.
-
-The resolution is that identical particles are genuinely indistinguishable. Swapping two helium atoms produces no new microstate, and the $1/N!$ corrects for this over-counting. With the correct factor, one can verify directly that the Sackur-Tetrode entropy is exactly extensive: substituting $(2U, 2V, 2N)$ gives $2S(U, V, N)$ with no remainder.
+The spurious $2kN\ln 2$ is the \textbf{Gibbs paradox}. The resolution: identical particles are genuinely indistinguishable, so swapping two produces no new microstate. With the correct $1/N!$, the Sackur-Tetrode entropy is exactly extensive.
 
 % ============================================================
 \section{Entropy: $S = k\ln\Omega$}
 % ============================================================
 
-The pattern across every system we have studied is that any large system will almost certainly be found in or very near the macrostate of greatest multiplicity. Fluctuations away from this peak are not forbidden, only exponentially suppressed. This observation is the statistical underpinning of the second law.
-
 \begin{definition}[Boltzmann's Entropy]
-The \textbf{entropy} of a macrostate with multiplicity $\Omega$ is
 \[
     S \equiv k\ln\Omega,
 \]
-with $k = 1.38\times10^{-23}$~J/K Boltzmann's constant. Since $\Omega \geq 1$, entropy is non-negative. Since $\Omega_{\text{tot}} = \Omega_A\Omega_B$ for independent subsystems, entropy is \textbf{additive}: $S_{\text{tot}} = S_A + S_B$.
+with $k = 1.38\times10^{-23}$~J/K. Since $\Omega_{\text{tot}} = \Omega_A\Omega_B$, entropy is \textbf{additive}: $S_{\text{tot}} = S_A + S_B$.
 \end{definition}
 
 \begin{theorem}[Second Law of Thermodynamics]
-The total entropy of an isolated system tends to increase (or remain constant) over time. Equivalently, the multiplicity tends to increase, because a randomly chosen microstate is overwhelmingly likely to belong to a high-multiplicity macrostate.
+The total entropy of an isolated system tends to increase, because a randomly chosen microstate overwhelmingly belongs to a high-multiplicity macrostate.
 \end{theorem}
-
-The connection to the thermodynamic (Clausius) entropy $dS = \dbar Q/T$ will be established in Section~\ref{sec:temperature-from-entropy}, where the statistical definition is shown to reproduce the correct ideal gas temperature and pressure, making the identification exact.
 
 \subsection{Entropy of Mixing}
 
-When two \emph{different} ideal gases, initially separated, are allowed to mix, each gas expands into the combined volume and the total entropy increases. If gas $A$ contains $(1-x)N$ molecules and gas $B$ contains $xN$ molecules, each initially at the same temperature and pressure in their respective partial volumes $(1-x)V$ and $xV$, then after mixing each species expands to occupy the full volume $V$:
+Two different ideal gases initially at the same $T$ and $P$ in volumes $(1-x)V$ and $xV$ mix into volume $V$:
 \[
     \Delta S_A = (1-x)Nk\ln\frac{1}{1-x}, \qquad \Delta S_B = xNk\ln\frac{1}{x}.
 \]
@@ -329,23 +274,18 @@ When two \emph{different} ideal gases, initially separated, are allowed to mix, 
 \]
 \end{formula}
 
-This result is non-negative for all $0 \leq x \leq 1$ (since both logarithm terms are non-positive), and vanishes only for pure species ($x = 0$ or $x = 1$). The combinatorial derivation is equally illuminating: we can derive this directly by noting that $\Delta S_{\text{mix}} = k\ln\binom{N}{N_A}$ counts the number of distinguishable ways to interleave $(1-x)N$ particles of species $A$ with $xN$ particles of species $B$, and applying Stirling's approximation to the binomial coefficient.
+Non-negative for all $0 \leq x \leq 1$; vanishes only for pure species. Equivalently, $\Delta S_{\text{mix}} = k\ln\binom{N}{N_A}$ by Stirling's approximation.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Box A
   \draw[thick, fill=blue!10] (0.0, 0.2) rectangle (1.8, 1.8);
   \node[align=center, font=\small] at (0.9, 1.0)
     {Gas A\\$T,\,P$};
-  % Box B
   \draw[thick, fill=orange!10] (2.2, 0.2) rectangle (4.0, 1.8);
   \node[align=center, font=\small] at (3.1, 1.0)
     {Gas B\\$T,\,P$};
-  % Arrow
   \draw[->, thick] (4.4, 1.0) -- (5.6, 1.0);
-  % Combined box
   \draw[thick, fill=green!10] (6.0, 0.2) rectangle (9.2, 1.8);
-  % Mixed dots
   \foreach \x/\y in {6.5/0.7, 6.9/1.4, 7.3/0.5, 7.7/1.2, 8.1/0.8, 8.5/1.5, 8.8/0.6}{
     \fill[blue!60] (\x, \y) circle (2pt);
   }
@@ -357,44 +297,33 @@ This result is non-negative for all $0 \leq x \leq 1$ (since both logarithm term
 {\small\itshape Mixing identical gases at the same $T$ and $P$ produces no entropy change (Gibbs paradox resolved).}
 \end{center}
 
-When the two gases are \emph{identical}, the same calculation gives $\Delta S_{\text{mix}} = 0$: combining two equal portions of the same gas at the same temperature and pressure creates no new entropy. This is guaranteed by the $1/N!$ factor in the Sackur-Tetrode multiplicity, which correctly encodes the indistinguishability of identical particles. Swapping two identical molecules produces no new microstate, so the system is already at its maximum entropy and no further equilibration is required.
+When the gases are \emph{identical}, $\Delta S_{\text{mix}} = 0$: the $1/N!$ factor correctly encodes indistinguishability.
 
 \subsection{Free Expansion}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  %--- Left panel: gas in left half, vacuum in right half ---
   \draw[thick] (0.0, 0.0) rectangle (3.6, 2.0);
-  % Dashed partition in the middle
   \draw[dashed, thick] (1.8, 0.0) -- (1.8, 2.0);
-  % Gas molecules (dots) in the left half
   \foreach \x/\y in {0.4/0.5, 0.9/1.2, 1.3/0.7, 0.6/1.6, 1.1/0.3, 1.5/1.5}{
     \fill[blue!70] (\x, \y) circle (2.5pt);
   }
-  % Label gas left, vacuum right
   \node[font=\small] at (0.9, -0.3) {gas};
   \node[font=\small] at (2.7, -0.3) {vacuum};
-  % Q=0, W=0 labels
   \node[font=\footnotesize] at (1.8, 2.25) {$Q=0,\;W=0$};
-
-  %--- Arrow between panels ---
   \draw[->, thick] (3.9, 1.0) -- (5.1, 1.0);
-
-  %--- Right panel: gas fills whole box ---
   \draw[thick] (5.4, 0.0) rectangle (9.0, 2.0);
-  % Gas molecules spread throughout
   \foreach \x/\y in {5.8/0.5, 6.3/1.3, 6.7/0.8, 7.1/1.7, 7.5/0.4,
                      7.9/1.1, 8.3/0.6, 8.6/1.5, 6.0/1.8, 7.3/1.0}{
     \fill[blue!70] (\x, \y) circle (2.5pt);
   }
   \node[font=\small] at (7.2, -0.3) {gas fills volume};
-  % Delta U = 0
   \node[font=\footnotesize] at (7.2, 2.25) {$\Delta U=0,\;\Delta S=Nk\ln 2>0$};
 \end{tikzpicture}\\[3pt]
-{\small\itshape Free expansion into vacuum: $Q=W=0$ so $\Delta U=0$, but entropy increases by $Nk_B\ln 2$.}
+{\small\itshape Free expansion: $Q=W=0$ so $\Delta U=0$, but entropy increases by $Nk_B\ln 2$.}
 \end{center}
 
-In a free expansion, a partition is removed and the gas expands into vacuum. No work is done ($W = 0$) and no heat is transferred ($Q = 0$), so the energy $U$ is unchanged. Yet the volume doubles, and the Sackur-Tetrode equation gives:
+$W = Q = 0$ so $\Delta U = 0$, yet the volume doubles. The Sackur-Tetrode equation gives:
 
 \begin{formula}
 \[
@@ -402,22 +331,17 @@ In a free expansion, a partition is removed and the gas expands into vacuum. No 
 \]
 \end{formula}
 
-This entropy increase is genuine: the process is irreversible, and entropy has been created. Unlike a quasistatic expansion against a piston --- which is reversible and for which $\Delta S = \dbar Q/T$ applies --- in free expansion there is no external reservoir to absorb entropy, and the process cannot be run in reverse without violating the second law.
-
 % ============================================================
 \section{Temperature and Pressure from Entropy}
 \label{sec:temperature-from-entropy}
 % ============================================================
 
-We have defined entropy $S = k\ln\Omega$ and seen that an isolated system tends toward its highest-entropy macrostate. We now derive how entropy relates to the familiar thermodynamic variables temperature and pressure.
-
 \subsection{The Statistical Definition of Temperature}
 
-Two objects are at the same temperature when they are in thermal equilibrium; two objects in thermal equilibrium simultaneously maximise the total entropy. Suppose subsystems $A$ and $B$ are in thermal contact, able to exchange energy $\dbar Q$ but not volume or particles, with $U_A + U_B = U_{\text{tot}}$ fixed. The condition for a maximum of $S_{\text{tot}} = S_A + S_B$ with respect to the energy split is
+Two subsystems A and B in thermal contact with $U_A + U_B$ fixed. The condition $\partial S_{\text{tot}}/\partial U_A = 0$ gives
 \[
-    \pdv{S_{\text{tot}}}{U_A} = 0 \quad\Longrightarrow\quad \left.\pdv{S_A}{U_A}\right|_{V_A,N_A} = \left.\pdv{S_B}{U_B}\right|_{V_B,N_B},
+    \left.\pdv{S_A}{U_A}\right|_{V_A,N_A} = \left.\pdv{S_B}{U_B}\right|_{V_B,N_B}.
 \]
-where we used $dU_A = -dU_B$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -434,45 +358,33 @@ where we used $dU_A = -dU_B$.
     every axis x label/.style={at={(axis description cs:1.02,0)}, anchor=west},
     every axis y label/.style={at={(axis description cs:0,1.02)}, anchor=south},
   ]
-    % S_A: increasing concave ~ ln(x+0.5)
     \addplot[thick, blue, domain=0.1:9.9, samples=80]
       {1.6*ln(x+0.5)};
     \node[right, blue, font=\small] at (axis cs: 9.8, 3.6) {$S_A$};
-
-    % S_B: decreasing ~ ln(10.5-x)
     \addplot[thick, red, domain=0.1:9.9, samples=80]
       {1.6*ln(10.5-x)};
     \node[right, red, font=\small] at (axis cs: 9.8, 0.6) {$S_B$};
-
-    % S_total = S_A + S_B
     \addplot[thick, black, domain=0.1:9.9, samples=80]
       {1.6*ln(x+0.5) + 1.6*ln(10.5-x)};
     \node[above, black, font=\small] at (axis cs: 5.0, 3.75) {$S_{\text{total}}$};
-
-    % Dashed vertical line at equilibrium (x=5)
     \addplot[dashed, gray, thick] coordinates {(5.0, 0) (5.0, 3.72)};
     \node[below, font=\small] at (axis cs: 5.0, 0) {equilibrium};
   \end{axis}
 \end{tikzpicture}\\[3pt]
-{\small\itshape $S_A$, $S_B$, and $S_\text{total}$ vs.\ energy $q_A$ in solid A; equilibrium is the maximum of $S_\text{total}$.}
+{\small\itshape $S_A$, $S_B$, and $S_\text{total}$ vs.\ $q_A$; equilibrium is the maximum of $S_\text{total}$.}
 \end{center}
 
-The intuition is as follows. At a point where $\partial S_A/\partial U_A > \partial S_B/\partial U_B$, transferring a small amount of energy from $B$ to $A$ increases the total entropy: the entropy gained by $A$ exceeds the entropy lost by $B$. Energy therefore flows from $B$ into $A$. A steeper $\partial S/\partial U$ corresponds to a colder object (it gains more entropy per unit energy received), while a shallower slope corresponds to a hotter object. This motivates:
+A steeper $\partial S/\partial U$ corresponds to a colder object (more entropy per unit energy received).
 
 \begin{definition}[Statistical Definition of Temperature]
 \[
     \frac{1}{T} \equiv \left(\pdv{S}{U}\right)_{V,N}.
 \]
-Equivalently, $dS = dU/T$ at constant $N$ and $V$.
 \end{definition}
 
 \subsection{Pressure from Entropy}
 
-By an exactly analogous argument, if two systems can exchange volume through a movable piston (at fixed total volume $V_A + V_B$ and fixed energies), the maximum-entropy condition is
-\[
-    \left.\pdv{S_A}{V_A}\right|_{U_A, N_A} = \left.\pdv{S_B}{V_B}\right|_{U_B, N_B}.
-\]
-This quantity must equal $P/T$ for consistency with the thermodynamic relation $dU = T\,dS - P\,dV$, giving:
+For systems exchanging volume at fixed total $V$ and fixed energies:
 \begin{formula}
 \[
     \frac{P}{T} = \left(\pdv{S}{V}\right)_{U,N}.
@@ -482,65 +394,51 @@ This quantity must equal $P/T$ for consistency with the thermodynamic relation $
 \subsection{Verification Against the Ideal Gas}
 
 \begin{example}
-The Sackur-Tetrode entropy has $U$-dependence $S = \tfrac{3}{2}Nk\ln U + (\text{function of }V, N)$, so
+From the Sackur-Tetrode entropy, $S \propto \tfrac{3}{2}Nk\ln U$:
 \[
     \frac{1}{T} = \left(\pdv{S}{U}\right)_{V,N} = \frac{3Nk}{2U}
     \qquad\Longrightarrow\qquad \boxed{U = \tfrac{3}{2}NkT.}
 \]
-This recovers the ideal gas internal energy law purely from counting microstates. The $V$-dependence of the Sackur-Tetrode entropy is $S = Nk\ln V + \cdots$, so
+From $S \propto Nk\ln V$:
 \[
     \frac{P}{T} = \left(\pdv{S}{V}\right)_{U,N} = \frac{Nk}{V}
     \qquad\Longrightarrow\qquad \boxed{PV = NkT.}
 \]
-The ideal gas law emerges as a consequence of counting microstates in phase space, with no additional assumptions. The definition $1/T = \partial S/\partial U$ is not circular: it is defined purely in terms of the entropy function $S(U,V,N)$ and reproduces the correct thermodynamics without free parameters.
+Both laws emerge from microstate counting alone.
 \end{example}
 
 \subsection{Connecting to Clausius: $dS = \dbar Q/T$}
 
-When a small amount of heat $\dbar Q$ is added to a system at constant volume (so no work is done), the first law gives $dU = \dbar Q$, and the temperature definition gives $dS = dU/T = \dbar Q/T$. This is exactly the Clausius entropy. For a reversible process one can integrate:
+At constant $V$, $dU = \dbar Q$ and $dS = dU/T = \dbar Q/T$ --- exactly the Clausius entropy. For a reversible process:
 \begin{formula}
 \[
-    \Delta S = \int_{T_i}^{T_f}\frac{C_V}{T}\,dT,
+    \Delta S = \int_{T_i}^{T_f}\frac{C_V}{T}\,dT.
 \]
 \end{formula}
-which allows entropy to be measured calorimetrically from $C_V(T)$ alone, without any microscopic model.
 
 \subsection{The Zeroth Law as a Corollary}
 
-The statistical definition immediately implies the Zeroth Law. If $A$ is in thermal equilibrium with $C$, both have the same $\partial S/\partial U = 1/T$. If $B$ is also in equilibrium with $C$, then $B$ shares the same $\partial S/\partial U$ as $C$, and hence the same as $A$. Therefore $A$ and $B$ are in mutual equilibrium.
-
 \begin{theorem}[Zeroth Law of Thermodynamics]
-If system $A$ is in thermal equilibrium with system $C$, and system $B$ is in thermal equilibrium with system $C$, then $A$ is in thermal equilibrium with $B$. This follows directly from the entropy-maximisation definition of temperature: $(\partial S_A/\partial U_A)_{V,N} = (\partial S_C/\partial U_C)_{V,N}$ and $(\partial S_B/\partial U_B)_{V,N} = (\partial S_C/\partial U_C)_{V,N}$ together imply $(\partial S_A/\partial U_A)_{V,N} = (\partial S_B/\partial U_B)_{V,N}$, so temperature is a transitive, equivalence-class-defining property of matter.
+If $A$ is in equilibrium with $C$, and $B$ is in equilibrium with $C$, then $A$ and $B$ are in mutual equilibrium. This follows directly: $(\partial S_A/\partial U_A)_{V,N} = (\partial S_C/\partial U_C)_{V,N}$ and $(\partial S_B/\partial U_B)_{V,N} = (\partial S_C/\partial U_C)_{V,N}$ imply $(\partial S_A/\partial U_A)_{V,N} = (\partial S_B/\partial U_B)_{V,N}$.
 \end{theorem}
 
-The Third Law also emerges naturally: at $T \to 0$, the system settles into its unique quantum ground state, so $\Omega \to 1$ and $S \to k\ln 1 = 0$.
+The Third Law also emerges: at $T \to 0$, $\Omega \to 1$ and $S \to k\ln 1 = 0$.
 
 % ============================================================
 \section{Paramagnetism}
 % ============================================================
 
-The two-state paramagnet is one of the simplest systems for which we can carry the microcanonical programme to completion, computing $U(T)$, $M(T)$, and $S(T)$ analytically from $S = k\ln\Omega$.
-
 \subsection{Setup and Multiplicity}
 
-We study a system of $N$ non-interacting spin-$\tfrac{1}{2}$ dipoles immersed in a constant external magnetic field $B$ in the $+\hat{z}$ direction. Each dipole can point either ``up'' ($+\hat{z}$, aligned with $B$, lower energy) or ``down'' ($-\hat{z}$, anti-aligned, higher energy), with energies
+$N$ non-interacting spin-$\tfrac{1}{2}$ dipoles in field $B$, with energies
 \[
-    \varepsilon_{\uparrow} = -\mu B \quad (\text{aligned, lower energy}), \qquad
-    \varepsilon_{\downarrow} = +\mu B \quad (\text{anti-aligned, higher energy}),
+    \varepsilon_{\uparrow} = -\mu B, \qquad \varepsilon_{\downarrow} = +\mu B.
 \]
-where $\mu > 0$ is the magnitude of the dipole's magnetic moment. With $N_\uparrow$ up-spins and $N_\downarrow = N - N_\uparrow$ down-spins, the total energy is
+Total energy and magnetization:
 \[
-    U = N_\uparrow(-\mu B) + N_\downarrow(\mu B) = \mu B(N - 2N_\uparrow).
+    U = \mu B(N - 2N_\uparrow), \qquad M \equiv \mu(N_\uparrow - N_\downarrow) = -\frac{U}{B}.
 \]
 
-\begin{definition}
-The \textbf{magnetization} $M$ is the total magnetic moment of the system:
-\[
-    M \equiv \mu(N_\uparrow - N_\downarrow) = -\frac{U}{B}.
-\]
-\end{definition}
-
-The multiplicity depends only on $N_\uparrow$ (equivalently on the energy or magnetization):
 \begin{formula}
 \[
     \Omega(N_\uparrow) = \binom{N}{N_\uparrow} = \frac{N!}{N_\uparrow!\,N_\downarrow!}.
@@ -549,15 +447,11 @@ The multiplicity depends only on $N_\uparrow$ (equivalently on the energy or mag
 
 \subsection{Temperature, Energy, and Magnetization}
 
-To find $U(T)$, we differentiate the entropy $S = k\ln\Omega$ with respect to $U$. Using Stirling's approximation,
-\[
-    S \approx k\!\left[N\ln N - N_\uparrow\ln N_\uparrow - N_\downarrow\ln N_\downarrow\right],
-\]
-where $N_\uparrow = (N - U/\mu B)/2$ and $N_\downarrow = (N + U/\mu B)/2$. Differentiating:
+Using Stirling's approximation on $S = k\ln\Omega$ and differentiating with respect to $U$:
 \[
     \frac{1}{T} = \pdv{S}{U} = \frac{k}{2\mu B}\ln\frac{N_\downarrow}{N_\uparrow}.
 \]
-Solving for the ratio $N_\uparrow / N_\downarrow = e^{2\mu B/kT}$ and using $N_\uparrow + N_\downarrow = N$, we find $N_\uparrow - N_\downarrow = N\tanh(\mu B/kT)$. Therefore:
+Solving gives $N_\uparrow/N_\downarrow = e^{2\mu B/kT}$, hence:
 
 \begin{formula}
 \[
@@ -566,14 +460,13 @@ Solving for the ratio $N_\uparrow / N_\downarrow = e^{2\mu B/kT}$ and using $N_\
 \]
 \end{formula}
 
-\subsection{Limiting Behaviour and the Saturation of Magnetization}
+\subsection{Limiting Behaviour}
 
 \begin{example}
-At low temperature ($kT \ll \mu B$), the $\tanh$ saturates to unity: $U \to -N\mu B$ (all spins aligned in the ground state) and $M \to N\mu$ (full saturation magnetization). At high temperature ($kT \gg \mu B$), $\tanh(\mu B/kT) \approx \mu B/kT$, giving
+At $kT \ll \mu B$: $\tanh \to 1$, so $U \to -N\mu B$ and $M \to N\mu$ (full saturation). At $kT \gg \mu B$: $\tanh(x) \approx x$, giving the \textbf{Curie law}:
 \[
-    M \approx \frac{N\mu^2 B}{kT} \quad (kT \gg \mu B).
+    M \approx \frac{N\mu^2 B}{kT}.
 \]
-This is the \textbf{Curie law}: magnetization is proportional to $B/T$ and falls off as temperature increases, because thermal fluctuations increasingly disorder the spins.
 \end{example}
 
 \begin{center}
@@ -592,31 +485,24 @@ This is the \textbf{Curie law}: magnetization is proportional to $B/T$ and falls
     every axis x label/.style={at={(axis description cs:1.02,0)}, anchor=west},
     every axis y label/.style={at={(axis description cs:0,1.05)}, anchor=south},
   ]
-    % M/Nmu = tanh(1/t) where t = kT/(muB)
     \addplot[thick, blue, domain=0.05:6, samples=120]
       {tanh(1/x)};
     \node[right, blue, font=\small] at (axis cs: 5.5, 0.22) {$\tanh(\mu B/k_BT)$};
-
-    % Curie law: M ~ 1/t (dashed)
     \addplot[thick, dashed, red, domain=0.5:6, samples=60]
       {1/x};
     \node[right, red, font=\small] at (axis cs: 5.5, 0.30) {Curie law $\propto 1/T$};
-
-    % Mark crossover region kT ~ muB at t=1
     \addplot[dotted, gray] coordinates {(1.0, 0) (1.0, 0.76)};
     \node[below, gray, font=\small] at (axis cs: 1.0, 0) {$k_BT\!\sim\!\mu B$};
-
-    % Saturation at T=0
     \node[left, font=\small] at (axis cs: 0, 1.0) {$1$};
   \end{axis}
 \end{tikzpicture}\\[3pt]
-{\small\itshape Paramagnet: magnetization saturates at low $T$ and follows Curie's law $M\propto 1/T$ at high $T$.}
+{\small\itshape Paramagnet: magnetization saturates at low $T$ and follows Curie's law at high $T$.}
 \end{center}
 
 \subsection{Entropy of the Paramagnet}
 
-Substituting $N_\uparrow/N = [1 + \tanh(\mu B/kT)]/2$ back into $S = k\ln\Omega$:
+Substituting $N_\uparrow/N = [1 + \tanh(\mu B/kT)]/2$ into $S = k\ln\Omega$:
 \[
     \frac{S}{Nk} = -\frac{1+t}{2}\ln\frac{1+t}{2} - \frac{1-t}{2}\ln\frac{1-t}{2}, \quad t \equiv \tanh\!\left(\frac{\mu B}{kT}\right).
 \]
-At $T = 0$ all spins are in the ground state ($N_\uparrow = N$, $\Omega = 1$), so $S = 0$ --- consistent with the Third Law. At $T \to \infty$ the two spin states become equally probable ($N_\uparrow = N_\downarrow = N/2$, $\Omega = \binom{N}{N/2} \approx 2^N$), and $S \to Nk\ln 2$. The entropy rises monotonically from zero to this maximum as thermal fluctuations progressively disorder the spin configuration, reflecting the growth of accessible microstates with increasing temperature.
+At $T = 0$: $\Omega = 1$, so $S = 0$ (Third Law). At $T \to \infty$: $\Omega \to 2^N$, so $S \to Nk\ln 2$.

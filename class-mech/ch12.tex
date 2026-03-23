@@ -1,0 +1,1085 @@
+% Lec. 7: Constrained Motion
+% Thursday, January 16, 2025
+
+\chapter{Constrained Motion}
+
+\begin{itemize}
+    \item Suppose we have a set of $n_a$ coordinates
+    \[
+        \{q_i\}_{i=1}^{n_a} \quad \text{with a set of constraints} \quad \{f_k(q_i) = 0\}_{k=1}^{n_c}
+    \]
+    \item You can reduce your coordinates to $\{q_i'\}_{i=1}^{n_a - n_c}$. We want a formal procedure to do this:
+    \[
+        \delta S = 0 = \delta \int dt \int dt\, L(q_i, \dot{q}_i, t) \quad \text{such that } f_k(q_i) = 0
+    \]
+    for $i = 1 \ldots n_a$.
+\end{itemize}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.1, >=Stealth]
+  % Contours of f (ellipses)
+  \foreach \r in {0.4,0.8,1.2,1.6} {
+    \draw[blue!50,thin] (1.5,1.2) ellipse[x radius=\r, y radius=0.65*\r];
+  }
+  \node[blue,scale=0.8] at (2.9,1.7) {$f = \text{const}$};
+  % Constraint curve g=0 (a line)
+  \draw[red,thick] (0.2,2.2) to[out=-30,in=170] (3.2,0.4);
+  \node[red,scale=0.8] at (3.0,0.7) {$g = 0$};
+  % Unconstrained minimum
+  \fill[blue] (1.5,1.2) circle[radius=0.06];
+  \node[above right,blue,scale=0.8] at (1.5,1.2) {unconstrained min};
+  % Constrained minimum (on curve)
+  \fill[ForestGreen] (1.7,1.7) circle[radius=0.07];
+  \node[above,ForestGreen,scale=0.8] at (1.7,1.7) {constrained min};
+  % Gradient arrows at constrained point
+  \draw[->,thick,blue] (1.7,1.7) -- (1.3,2.2) node[above,blue,scale=0.75]{$\nabla f$};
+  \draw[->,thick,red] (1.7,1.7) -- (1.3,2.2);  % parallel gradients
+  \node[right,red,scale=0.75] at (2.0,2.1) {$\nabla g \parallel \nabla f$};
+\end{tikzpicture}
+\end{center}
+\caption{Constrained minimization (Lagrange multipliers). The unconstrained minimum of $f$ (blue dot) lies off the constraint curve $g=0$ (red). The constrained minimum (green dot) occurs where $\nabla f = -\lambda\, \nabla g$, i.e.\ the gradients are parallel.}
+\label{fig:lagrange_mult}
+\end{figure}
+
+\[
+    \Rightarrow \vec{\nabla} f = -\lambda \vec{\nabla} g, \qquad \text{let } \mathcal{L} = f + \lambda g
+\]
+We want $\hat{\nabla} \mathcal{L} = 0 \Rightarrow \vec{\nabla} f + \lambda \vec{\nabla} g = \vec{0} \Rightarrow \nabla f = -\lambda \vec{\nabla} g$.
+
+\section{Holonomic Constraints}
+
+\[
+    L_\lambda(q_i, \dot{q}_i, t, \lambda_k) = L(q_i, \dot{q}_i, t) + \underbrace{\sum_k \lambda_k(t) f_k(q_i, t)}_{\text{sort of like an extra potential energy: } L = T - (U + U_c)}
+\]
+
+(Purely based on coordinates; if you had a mixed coordinate it would violate the idea that there are no constraints on the coordinate velocity at the endpoints.)
+
+\begin{itemize}
+    \item Minimizing the variation:
+\end{itemize}
+\[
+    \delta S = 0 = \int dt \left[\sum_i \delta q_i \left(\frac{\partial L}{\partial q_i} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i}\right) + \sum_k \left(\sum_i \lambda_k \frac{\partial f_k}{\partial q_i} \delta q_i + f_k \delta \lambda_k\right)\right]
+\]
+\[
+    = \int dt \left[\sum_i \delta q_i\left(\frac{\partial L}{\partial q_i} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} + \sum_k \lambda_k \frac{\partial f_k}{\partial q_i}\right) + \sum_k \underbrace{f_k \delta\lambda_k}_{\substack{\to\;\text{means all }f_k\text{'s must} \\ \text{be }0\text{ --- but this is the} \\ \text{definition of }f_k}}\right] = 0
+\]
+
+\begin{itemize}
+    \item $\lambda_k$: $f_k = 0$ \quad (become constraint forces!)
+    \item $q_i$:
+\end{itemize}
+
+\begin{formula}[Modified Euler--Lagrange Equation]
+\[
+    \frac{\partial L}{\partial q_i} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i} = \sum_k \lambda_k \frac{\partial f_k}{\partial q_i}
+\]
+\end{formula}
+
+\subsection*{Example: Pendulum with Holonomic Constraint}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.0, >=Stealth]
+  % Pivot
+  \fill[pattern=north east lines] (-0.4,3.0) rectangle (0.4,3.3);
+  \draw[thick] (-0.4,3.0) -- (0.4,3.0);
+  \fill (0,3.0) circle[radius=0.05];
+  % String
+  \draw[thick] (0,3.0) -- (1.0,1.5);
+  % Bob
+  \fill[gray!50] (1.0,1.3) circle[radius=0.18];
+  \draw[thick] (1.0,1.3) circle[radius=0.18];
+  \node[right] at (1.2,1.3) {$m$};
+  % Angle theta
+  \draw[dashed,gray] (0,3.0) -- (0,1.0);
+  \draw (0,2.3) arc[start angle=270,end angle=299,radius=0.7];
+  \node at (0.28,2.1) {$\theta$};
+  % r label
+  \node[left] at (0.35,2.25) {$r=\ell$};
+  % Constraint label
+  \node[below,red,scale=0.85] at (0.5,0.9) {constraint: $f(r,\theta) = r - \ell = 0$};
+\end{tikzpicture}
+\end{center}
+\caption{Pendulum with Lagrange multiplier constraint. Coordinates $(r,\theta)$ are used with constraint $f(r,\theta) = r-\ell = 0$. The multiplier $\lambda$ yields the tension as the constraint force.}
+\label{fig:constrained_pendulum}
+\end{figure}
+
+This time we use two dimensions but with the constraint that
+\[
+    f(r, \theta) = r - \ell = 0 \qquad \textcircled{\small 3}
+\]
+\[
+    L = \tfrac{1}{2}m(\dot{r}^2 + r^2 \dot{\theta}^2) + mgr\cos\theta
+\]
+
+EL equation for $r$:
+\[
+    \frac{\partial L}{\partial r} - \frac{d}{dt}\frac{\partial L}{\partial \dot{r}} = -\lambda \frac{\partial f}{\partial r}\bigg|^{1} = mr\dot{\theta}^2 + mg\cos\theta - m\ddot{r} \qquad \textcircled{\small 1}
+\]
+
+EL equation for $\theta$:
+\begin{align*}
+    \frac{\partial L}{\partial \theta} - \frac{d}{dt}\frac{\partial L}{\partial \dot{\theta}} &= -\lambda \frac{\partial f}{\partial \theta} = 0 = -mgr\sin\theta - \frac{d}{dt}\!\left[mr^2\dot{\theta}\right] \\
+    &= -mgr\sin\theta - r^2\ddot{\theta} - 2r\dot{r}\dot{\theta} \qquad \textcircled{\small 2}
+\end{align*}
+
+We have 3 unknowns and 3 variables.
+
+From \textcircled{\small 2}, $r = \ell$, $\dot{r} = 0$:
+\[
+    \ddot{\theta} = -\frac{g}{\ell}\sin\theta \quad \checkmark
+\]
+
+From \textcircled{\small 1}:
+\[
+    -\lambda = m\ell\dot{\theta}^2 + mg\cos\theta \implies \lambda = -m\ell\dot{\theta}^2 - mg\cos\theta
+\]
+$\lambda$ is the tension $T$!
+
+\begin{figure}[H]
+    \centering
+    \caption{Force diagram for the pendulum showing tension $T$ and components of gravity $mg$.}
+\end{figure}
+
+\section{Special Case: Semi-Holonomic}
+
+Occurs when you have a constraint equation that can be rewritten as only in terms of coordinates (no derivatives):
+\[
+    \text{ex: } f(q_i, \dot{q}_i, t) = \frac{d}{dt}\!\left[g(q_i, t)\right]
+\]
+(constraint)
+
+But not every $g$ can be integrated, so there is a test that doesn't require explicit integration:
+\[
+    \frac{d}{dt}g(q_i; t) = \frac{\partial g}{\partial t} + \sum_i \frac{\partial g}{\partial q_i}\dot{q}_i
+\]
+
+For $f$'s of the form $f = \sum_i \alpha_i(q_i, t)\dot{q}_i + \beta(q_i, t)$:
+\[
+    \Rightarrow \frac{\partial \beta}{\partial q_i} = \frac{\partial \alpha_i}{\partial t} \Bigg\} \text{(partials should be able to be changed)} \left(\frac{\partial g}{\partial \cdot}\right)
+\]
+\[
+    \frac{\partial \alpha_i}{\partial q_i} = \frac{\partial \alpha_j}{\partial q_i} \Bigg\} \quad \text{Clairaut--Schwarz Theorem?}
+\]
+\[
+    \frac{\partial g}{\partial q_i} = \frac{\partial f}{\partial \dot{q}_i} = \alpha
+\]
+
+Tip: if $f$ is nonlinear in $\dot{q}_i$'s, then it doesn't work.
+
+\section*{Example: Ball Rolling on Curved Track}
+
+\begin{figure}[H]
+    \centering
+    \caption{A ball of radius $a$ rolling inside a circular track of radius $R$, with angular positions $\theta$ (track) and $\phi$ (ball spin).}
+\end{figure}
+
+Initial conditions: $\dot{\theta}(0) = 0$, $\theta(0) = \tfrac{\pi}{2}$.
+
+Roll's without slipping: the point at the place of contact must have a velocity of 0. Compare velocity of center of mass to angular velocity.
+
+\begin{enumerate}
+    \item $f_1$: $r - R + a = 0 \to$ holonomic $\checkmark$
+    \item $f_2$: $(R+a)\dot{\theta} + a\dot{\phi} = 0 \to$ semi-holonomic $\checkmark$
+\end{enumerate}
+
+\[
+    L = \tfrac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) + \tfrac{1}{2}ma^2\dot{\phi}^2 - mgr\sin\theta
+\]
+
+Thus there are 5 constraints; we currently have 2 equations.
+
+EL for $r$:
+\[
+    \frac{\partial L}{\partial r} - \frac{d}{dt}\frac{\partial L}{\partial \dot{r}} = -\lambda_1 \frac{\partial f_1}{\partial r}^{1} - \lambda_2 \frac{\partial f_2}{\partial r}^{0}
+\]
+\[
+    mr\dot{\theta}^2 - mg\sin\theta - \frac{d}{dt}\!\left[m\dot{r}\right] = -\lambda_1 \implies \boxed{m(\ddot{r} - r\dot{\theta}^2) = \lambda_1 - mg\sin\theta} \quad (3)
+\]
+
+EL for $\theta$:
+\[
+    \frac{\partial L}{\partial \theta} - \frac{d}{dt}\frac{\partial L}{\partial \dot{\theta}} = -\lambda_1 \frac{\partial f_1}{\partial \theta}^{0} - \lambda_2 \frac{\partial f_2}{\partial \theta} = -mgr\cos\theta - \frac{d}{dt}\!\left[mr^2\dot{\theta}\right] = -\lambda_2(R+a)
+\]
+\[
+    \Rightarrow \boxed{m(r^2\ddot{\theta} + 2r\dot{r}\dot{\theta}) = \lambda_2(R+a) - mgr\cos\theta} \quad (4) \quad \leftarrow \text{friction}
+\]
+
+EL for $\phi$:
+\[
+    \frac{\partial L}{\partial \phi} - \frac{d}{dt}\frac{\partial L}{\partial \dot{\phi}} = -\lambda_1 \frac{\partial f_1}{\partial \phi}^{0} - \lambda_2 \frac{\partial f_2}{\partial \phi} \implies \frac{d}{dt}\!\left[ma^2\dot{\phi}\right] = \boxed{\lambda_2 a = ma\ddot{\phi}} \quad (5)
+\]
+(torque due to friction)
+
+Taking $(3)$: $-m(R+a)\dot{\theta}^2 + mg\sin\theta = \lambda_1$
+
+$(4)$: $m(R+a)^2\ddot{\theta} + mg(R+a)\cos\theta = \lambda_2(R+a) = mu\ddot{\phi}$ (from 5) $= -m(R+a)\ddot{\theta}$
+
+\[
+    \Rightarrow 2(R+a)\ddot{\theta} = -g\cos\theta
+\]
+\[
+    2(R+a)\dot{\theta}\ddot{\theta} = -g\cos\theta\,\dot{\theta}
+\]
+By inverse chain rule: $(R+a)\dot{\theta}^2 = g(1-\sin\theta)$
+
+Now going back to $(3)$: $-m(R+a)\dot{\theta}^2 + mg\sin\theta = \lambda_1$
+\[
+    \Rightarrow mg\sin\theta + mg\sin\theta - mg = mg(2\sin\theta - 1)
+\]
+\[
+    \Rightarrow \theta = 30^\circ
+\]
+
+\subsection*{When is this helpful?}
+\begin{enumerate}
+    \item Want magnitude of constraint forces
+    \item Constraint equations can't easily be applied/simplified
+\end{enumerate}
+
+\section{Potentials \& Generalized Forces (Holonomic Case)}
+
+\[
+    F_q = -\nabla_q U_c \quad \text{where } U_c = \sum_\alpha \lambda_\alpha F_\alpha
+\]
+\[
+    = -\sum_\alpha(-\lambda_\alpha F_\alpha) = \sum_\alpha \lambda_\alpha \nabla_q F_\alpha \quad \} \text{ vector normal to constraint surface}
+\]
+\[
+    \Rightarrow \frac{\partial L}{\partial q_i} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{q}_i}\right) = F_q
+\]
+
+\subsection{Semi-Holonomic Case}
+
+\[
+    g_\alpha = a_{j\alpha}(q_i, t)\dot{q}_j + \alpha_{t\alpha}(q_i, t) = 0
+\]
+\[
+    \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{q}_j}\right) - \frac{\partial L}{\partial q_j} = \sum_{\alpha=1}^{n} \lambda_\alpha \frac{\partial g_\alpha}{\partial \dot{q}_j}
+\]
+
+% -----------------------------------------------
+% Hamiltonian Mechanics
+% Tuesday, January 21, 2025
+% -----------------------------------------------
+
+\chapter{Hamiltonian Mechanics}
+
+\section{Legendre Transformation}
+
+Suppose you have some function
+\[
+    F(x,y) \implies dF = \frac{\partial F}{\partial x}dx + \frac{\partial F}{\partial y}dy
+\]
+where $u,v$ are now dependent variables (because they depend on $x,y$):
+\[
+    \frac{\partial F}{\partial x} = u, \qquad \frac{\partial F}{\partial y} = v
+\]
+
+\begin{definition}[Legendre Transformation]
+Let $G = F - vy$, then
+\[
+    dG = u\,dx + v\,dy - (v\,dy + y\,dv) = u\,dx - y\,dv
+\]
+($G$ doesn't change if $v$ changes!)
+\begin{itemize}
+    \item Now $y = -\dfrac{\partial G}{\partial v}$: $y$ is no longer an independent variable.
+\end{itemize}
+\end{definition}
+
+\section{Canonical Momenta}
+
+\[
+    p_i \equiv \frac{\partial L}{\partial \dot{q}_i} \qquad \text{(canonical momenta)}
+\]
+
+If $\dfrac{\partial L}{\partial t} = 0 \Rightarrow E = \sum_i \dfrac{\partial L}{\partial \dot{q}_i}\dot{q}_i - L$ is conserved.
+
+We just replace $L$ with $F$, $\dot{q}$ is $y$, and $\dfrac{\partial L}{\partial \dot{q}}$ is $\dfrac{\partial F}{\partial y} = v$. So this is the regime of the Legendre transformation.
+
+\begin{formula}[Hamiltonian]
+Thus we let
+\[
+    H(q_i, p_i, t) = \sum_i p_i \dot{q}_i - L(q_i, \dot{q}_i, t)
+\]
+(Legendre transformation means it depends on $p_i$, not $\dot{q}_i$.)
+\end{formula}
+
+\section{Finding Equations of Motion}
+
+\[
+    S = \int L(q, \dot{q}_i, t)\,dt = \int\!\left[\sum_i p_i\dot{q}_i - H(q_i, p_i, t)\right]dt
+\]
+\[
+    \delta S = 0 = \int dt\,\sum_i\!\left[p_i\,\delta\dot{q}_i + \dot{q}_i\,\delta p_i - \frac{\partial H}{\partial q_i}\delta q_i - \frac{\partial H}{\partial p_i}\delta p_i\right]
+\]
+
+Consider $\dfrac{d}{dt}\!\left[p_i\,\delta q_i\right] = p_i\,\delta\dot{q}_i + \dot{p}_i\,\delta q_i$:
+
+\[
+    \implies \int dt\,\sum_i\!\left[\delta p_i\!\left(\dot{q}_i - \frac{\partial H}{\partial p_i}\right) - \delta q_i\!\left(\dot{p}_i + \frac{\partial H}{\partial q_i}\right)\right] = 0
+\]
+
+\begin{formula}[Hamilton's Equations]
+\[
+    \frac{\partial H}{\partial p_i} = \dot{q}_i, \qquad \frac{\partial H}{\partial q_i} = -\dot{p}_i, \qquad \frac{\partial H}{\partial t} = -\frac{\partial L}{\partial t}
+\]
+\end{formula}
+
+For conservative systems, $H$ is always $K + U$.
+
+\subsection*{Example: Simple Harmonic Oscillator}
+
+\begin{figure}[H]
+    \centering
+    \caption{Mass on a spring: spring constant $k$, displacement $x$.}
+\end{figure}
+
+\[
+    L = \tfrac{1}{2}m\dot{x}^2 - \tfrac{1}{2}kx^2, \qquad p = \frac{\partial L}{\partial \dot{x}} = m\dot{x}
+\]
+\[
+    \Rightarrow H = p\dot{x} - L = \frac{p^2}{m} - \frac{p^2}{2m} + \tfrac{1}{2}kx^2 = \frac{p^2}{2m} + \tfrac{1}{2}kx^2 = E
+\]
+\[
+    \frac{\partial H}{\partial p} = \dot{x} = \frac{p}{m}, \qquad \frac{\partial H}{\partial x} = -\dot{p} = kx \implies \boxed{m\ddot{x} = -kx}
+\]
+
+\subsection*{Non-Conservative Example: Damped Oscillator}
+
+\[
+    L = e^{\gamma t}\!\left[\tfrac{1}{2}m\dot{x}^2 - \tfrac{1}{2}kx^2\right] \implies p = \frac{\partial L}{\partial \dot{x}} = m\dot{x}\,e^{\gamma t} \neq m\dot{x}!
+\]
+\[
+    \Rightarrow \dot{x} = \frac{p}{m}e^{\gamma t} \cdot e^{-\gamma t} = \frac{p}{m}e^{-\gamma t}
+\]
+\[
+    H = p\dot{x} - L = \frac{p^2}{m}e^{-\gamma t} - e^{\gamma t}\!\left[\frac{p^2}{2m}e^{-2\gamma t} - \tfrac{1}{2}kx^2\right]
+    = \frac{p^2}{2m}e^{-\gamma t} + \tfrac{1}{2}kx^2\,e^{\gamma t}
+\]
+
+Going back to $\dot{x}$'s temporarily:
+\[
+    H = p\dot{x} - L = m\dot{x}^2 - \left[\tfrac{1}{2}m\dot{x}^2\,e^{\gamma t} - \tfrac{1}{2}kx^2\,e^{\gamma t}\right] = e^{\gamma t}\!\left[\tfrac{1}{2}m\dot{x}^2 + \tfrac{1}{2}kx^2\right]
+\]
+\[
+    \frac{\partial H}{\partial p} = \dot{x} = \frac{p}{m}e^{-\gamma t}, \qquad \frac{\partial H}{\partial x} = -\dot{p} = -kx\,e^{\gamma t}
+\]
+\[
+    = m\gamma\dot{x}\,e^{\gamma t} + m\ddot{x}\,e^{\gamma t} = kx\,e^{\gamma t}
+\]
+\[
+    \Rightarrow m\gamma\dot{x} + m\ddot{x} = -kx
+\]
+
+\begin{itemize}
+    \item \textbf{Canonical momentum $\neq$ momentum! (In general)}
+    \item $H \neq E \neq K + U$
+\end{itemize}
+
+\subsection*{Example 2: Charged Particle in Electromagnetic Field}
+
+\[
+    L = \tfrac{1}{2}m|\dot{\vect{x}}|^2 - q\phi(\vect{x},t) + q\dot{\vect{x}}\cdot\vect{A}(\vect{x},t) \implies \text{system is \underline{not} conservative}
+\]
+\[
+    p_x = \frac{\partial L}{\partial \dot{x}} = m\dot{x} + qA_x, \qquad \Rightarrow \vect{p} = m\dot{\vect{x}} + q\vect{A}
+\]
+\[
+    H = \vect{p}\cdot\dot{\vect{x}} - L = m|\dot{\vect{x}}|^2 + q\dot{\vect{x}}\cdot\vect{A} - \tfrac{1}{2}m|\dot{\vect{x}}|^2 + q\phi - q\dot{\vect{x}}\cdot\vect{A}
+    = \tfrac{1}{2}m|\dot{\vect{x}}|^2 + q\phi
+    = \frac{1}{2m}|\vect{p} - q\vect{A}|^2 + q\phi
+\]
+
+\subsection*{Example 3: Particle on a Sphere}
+
+\begin{figure}[H]
+    \centering
+    \caption{Particle of mass $m$ constrained to a sphere of radius $R$, with spherical coordinates $(\theta,\phi)$. The spherical velocity has components along $\hat{\theta}$ and $\hat{\phi}$.}
+\end{figure}
+
+\[
+    L = \tfrac{1}{2}mR^2\!\left(\dot{\theta}^2 + \dot{\phi}^2\sin^2\!\theta\right)
+\]
+\[
+    p_\theta = \frac{\partial L}{\partial \dot{\theta}} = mR^2\dot{\theta}, \qquad p_\phi = \frac{\partial L}{\partial \dot{\phi}} = mR^2\dot{\phi}\sin^2\!\theta \equiv l_z
+\]
+\[
+    H = p_\theta\dot{\theta} + p_\phi\dot{\phi} - L = \tfrac{1}{2}p_\theta\dot{\theta} + \tfrac{1}{2}p_\phi\dot{\phi} = \frac{p_\theta^2}{2mR^2} + \frac{p_\phi^2}{2mR^2\sin^2\!\theta}
+\]
+
+\textbf{Applying Hamilton's equations:}
+\[
+    \dot{p}_\phi = -\frac{\partial H}{\partial \phi} = 0 \implies p_\phi \text{ constant / conserved}
+\]
+\[
+    \dot{\phi}(0) = 0 \implies p_\phi(0) = 0 \implies p_\phi(t) = 0
+\]
+
+% -----------------------------------------------
+% Recitation 8: Constraints + Lagrange Multipliers
+% Tuesday, January 21, 2025
+% -----------------------------------------------
+
+\section*{Example: Mass Sliding on Frictionless Wedge}
+
+\begin{figure}[H]
+    \centering
+    \caption{Mass $m_1$ at position $(x_1,y_1)$ sliding on a frictionless wedge of mass $m_2$ at position $(x_2, y_2)$, wedge angle $\alpha$, center of mass at $(x_\text{CoM}, y_0)$.}
+\end{figure}
+
+Constraints:
+\begin{enumerate}
+    \item Mass always on wedge: $\tan(\alpha) = \dfrac{y_1 - y_2}{x_1 - x_2}$
+    \[
+        \Rightarrow f_1 = (y_1 - y_2) - (x_1 - x_2)\tan\alpha = 0 \quad \checkmark \text{ holo.} \quad \textcircled{\small 5}
+    \]
+    \item Wedge always on the surface:
+    \[
+        f_2 = y_2 = 0 \quad \text{holo.} \quad \textcircled{\small 6}
+    \]
+\end{enumerate}
+
+\[
+    T = \tfrac{1}{2}m_1(\dot{x}_1^2 + \dot{y}_1^2) + \tfrac{1}{2}m_2(\dot{x}_2^2 + \dot{y}_2^2)
+\]
+\[
+    U = m_1 g y_1 + m_2 g y_2 + m_2 g y_0, \qquad \text{EL equations:}
+\]
+
+$x_1$:
+\[
+    \frac{\partial L}{\partial x_1} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}_1}\right) = -\sum_\alpha \lambda_\alpha \frac{\partial F_\alpha}{\partial x_1} = -\!\left(\lambda_1\frac{\partial F_1}{\partial x} + \lambda_2\underbrace{\frac{\partial F_2}{\partial x}}_{=0}\right)
+\]
+\[
+    \Rightarrow m_1\ddot{x}_1 = -\lambda_1\tan\alpha \qquad (1)
+\]
+
+$y_1$: $\quad m_1\ddot{y}_1 + m_1 g = \lambda_1 \qquad (2)$
+
+$x_2$: $\quad m_2\ddot{x}_2 = \lambda\tan\alpha \qquad (3)$
+
+$y_2$:
+\[
+    \frac{\partial L}{\partial y_2} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{y}_2}\right) = -\lambda_1\frac{\partial F_1}{\partial y_2} - \lambda_2\frac{\partial F_2}{\partial y_2}
+\]
+\[
+    \Rightarrow m_2\ddot{y}_2 + m_2 g = -\lambda_1 + \lambda_2 \qquad (4)
+\]
+
+\textcircled{\small 6} $\Rightarrow \ddot{y}_2 = 0 \Rightarrow m_2 g = \lambda_2 - \lambda_1$ \quad (normal force pushing up on wedge)
+
+$(1) + (3) \Rightarrow m_1\ddot{x}_1 + m_2\ddot{x}_2 = 0 \Rightarrow$ no net force on the system.
+
+\[
+    \frac{d^2}{dt^2}\textcircled{\small 5} = \left(\ddot{y}_1 - \underbrace{\ddot{y}_2}_{=0}\right) - (\ddot{x}_1 - \ddot{x}_2)\tan(\alpha) = 0
+\]
+
+$(1) \Rightarrow \ddot{x}_1 = -\dfrac{\tan\alpha}{m_1}\lambda_1$, \quad $(3) \Rightarrow \ddot{x}_2 = \dfrac{\tan\alpha}{m_2}\lambda_1$, \quad $(2) \Rightarrow \ddot{y}_1 = -g + \dfrac{\lambda_1}{m_1}$
+
+\[
+    \Rightarrow \lambda_1 = g\!\left[\frac{1}{m_1\cos^2\alpha} + \frac{\tan^2\alpha}{m_2}\right]^{-1}
+\]
+
+% -----------------------------------------------
+% Lecture 9: Canonical Transformations
+% Wednesday, January 22, 2025
+% -----------------------------------------------
+
+\chapter{Canonical Transformations}
+
+\begin{itemize}
+    \item Transforms some coordinate and its momentum:
+    \[
+        q, p \to Q, P
+    \]
+    \item The form of the Hamiltonian must be left intact:
+    \begin{align*}
+        h &= p\dot{q} - L(q,\dot{q}), \quad \frac{\partial h}{\partial p} = \dot{q},\quad \frac{\partial h}{\partial q} = -\dot{p} \qquad (1)\\
+        H &= P\dot{Q} - L(Q,\dot{Q}), \quad \frac{\partial H}{\partial P} = \dot{Q},\quad \frac{\partial H}{\partial Q} = -\dot{P} \qquad (2)
+    \end{align*}
+    \item If $Q \equiv Q(\vec{q})$ (only involves coordinates), then the transformation is canonical.
+\end{itemize}
+
+\section{Procedure to Generate Canonical Transformations}
+
+\begin{itemize}
+    \item Assume we start with $(1)$, $(2)$. Then
+    \[
+        \delta S = 0 = \delta\int(p\dot{q} - h)\,dt = \delta\int(P\dot{Q} - H)\,dt
+    \]
+    \item What ways can both expressions equal 0? One way is if
+    \[
+        p\dot{q} - h = P\dot{Q} - H + \frac{d}{dt}\!\left(G(q,Q,t)\right)
+    \]
+    (becomes a constant in the integral)
+    \item One possibility for $G$ is the Legendre transformation of some function $F$:
+    \[
+        G(q,Q) = F(q,p,t) - QP \quad \leftarrow \text{how is this a Legendre transform?}
+    \]
+    or $G(q,Q) = F(p,Q,t) - pQ$?
+    \item Taking the total time derivative of $G$:
+    \[
+        \frac{dG}{dt} = \frac{\partial G}{\partial t} + \frac{\partial G}{\partial Q}\dot{Q} + \frac{\partial G}{\partial p}\dot{p} + \frac{\partial G}{\partial q}\dot{q} = \frac{\partial F}{\partial t} - P\dot{Q} - Q\dot{P} + \frac{\partial F}{\partial p}\dot{p} + \frac{\partial F}{\partial q}\dot{q}
+    \]
+    \item Plugging back in we get:
+    \[
+        p\dot{q} - h = -H + \frac{\partial F}{\partial t} - Q\dot{P} + \frac{\partial F}{\partial p}\dot{p} + \frac{\partial F}{\partial q}\dot{q}
+    \]
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \caption{Matching terms: $-h$ cancels with part of $H$; we want the $Q\dot{P}$ term to cancel.}
+\end{figure}
+
+\begin{formula}[Generating Function Transformation]
+We can match terms to get (a solution, not all solutions):
+\[
+    p = \frac{\partial F}{\partial q}, \qquad Q = \frac{\partial F}{\partial p}, \qquad H = h + \frac{\partial F}{\partial t}
+\]
+\end{formula}
+
+\textbf{Application:} If you want to convert a system with difficult or impossible to solve EoMs into one where solutions to the EoM are known. Then once you have the solution, just do the inverse transform back to the original coordinates.
+
+\subsection*{Example: Damped Oscillator}
+
+Recall from previous lecture: $h = \dfrac{p^2}{2m}e^{-\gamma t} + \tfrac{1}{2}kx^2\,e^{\gamma t}$, $p = m\dot{x}\,e^{\gamma t}$.
+
+$\Rightarrow m\ddot{x} = -kx - \gamma m\dot{x}$
+
+Can we get rid of time-dependence in $h$? We want some $P$, $X$ such that $P^2 = p^2 e^{-\gamma t}$, $X^2 = x^2 e^{\gamma t}$:
+\[
+    \Rightarrow P = p\,e^{-\gamma t/2}, \qquad X = x\,e^{\gamma t/2}
+\]
+
+Thus, finding a generating function $F$, let $F = e^{\gamma t/2}\,x\,P$:
+\[
+    \Rightarrow p = \frac{\partial F}{\partial x} = P\,e^{\gamma t/2} = p \quad \checkmark
+\]
+\[
+    \Rightarrow X = \frac{\partial F}{\partial P} = e^{\gamma t/2}\,x = X \quad \checkmark
+\]
+
+The transformed Hamiltonian is:
+\[
+    H = h + \frac{\partial F}{\partial t} = \frac{P^2}{2m} + \tfrac{k}{2}X^2 + \tfrac{\gamma}{2}XP \qquad \left(\frac{\partial F}{\partial t} = \tfrac{\gamma}{2}e^{\gamma t/2}xP = \tfrac{\gamma}{2}XP\right)
+\]
+
+The equations of motion are:
+\[
+    \frac{\partial H}{\partial P} = \dot{X} = \frac{P}{m} + \frac{\gamma}{2}X, \qquad \frac{\partial H}{\partial X} = -\dot{P} = kX + \frac{\gamma}{2}P
+\]
+\[
+    \Rightarrow \ddot{X} = \frac{\dot{P}}{m} + \frac{\gamma}{2}\dot{X} = -\frac{kX + \frac{\gamma}{2}P}{m} + \frac{\gamma}{2}\!\left(\frac{P}{m} + \frac{\gamma}{2}X\right)
+\]
+\[
+    = -\frac{k}{m}X - \frac{\gamma P}{2m} + \frac{\gamma P}{2m} + \frac{\gamma^2}{4}X
+\]
+\[
+    \ddot{X} = \left(\frac{\gamma^2}{4} - \frac{k}{m}\right)X
+\]
+
+Solving and reversing the transformation:
+\[
+    X(t) = A\cos(\omega t) + B\sin(\omega t)
+\]
+\[
+    \Rightarrow x(t) = e^{-\gamma t/2}\!\left[A\cos(\omega t) + B\sin(\omega t)\right]
+\]
+
+\section{Infinitesimal Canonical Transformations}
+
+Consider $F$'s of the form
+\[
+    F = qP + \varepsilon f(q,p) \quad \text{where } \varepsilon \text{ is small}
+\]
+Thus:
+\[
+    p = \frac{\partial F}{\partial q} = P + \varepsilon\frac{\partial f}{\partial q}, \qquad Q = \frac{\partial F}{\partial P}
+\]
+\[
+    \Rightarrow P = p - \varepsilon\frac{\partial f}{\partial q} \qquad \Rightarrow Q = q + \varepsilon\frac{\partial f}{\partial p}
+\]
+
+These coordinates are small changes from the old ones.
+
+Note: $\dim[\varepsilon f] = \dim[qP] = \dim[\text{position} \times \text{momentum}] = \dim[\text{energy} \times \text{time}]$.
+
+\subsection*{Example: Time Translation}
+
+Consider $F = qP + h(q,p)\,\delta t$.
+
+From the previous, we know that $P = p - \delta t\,\dfrac{\partial h}{\partial q}$:
+\[
+    \Rightarrow h(q,p)\,\delta t \approx h(q,p)\,\delta t
+\]
+Thus $p = \dfrac{\partial F}{\partial q} = P + \delta t\,\dfrac{\partial h}{\partial q} = P - \dot{p}\,\delta t \Rightarrow p = p(t+\delta t)$?
+\[
+    Q = \frac{\partial F}{\partial P} = q + \delta t\,\frac{\partial h}{\partial P} \underset{\text{approx}}{\approx} q + \delta t\,\frac{\partial h}{\partial p} = q + \dot{q}\,\delta t \approx q(t+\delta t)
+\]
+
+\[
+    Q = \frac{\partial F}{\partial P} = q + \delta t\,\frac{\partial h}{\partial P} \underset{\approx}{\approx} q + \delta t\,\frac{\partial h}{\partial p} = q + \dot{q}\,\delta t \approx \boxed{q(t+\delta t)}
+\]
+
+$\Rightarrow$ Choosing the Hamiltonian as the generator function translates the system in time! (\textbf{Hamiltonian is the generator of time translations.})
+\begin{itemize}
+    \item Works regardless of whether energy is conserved.
+\end{itemize}
+
+\subsection*{Example F: Spatial Translation}
+
+Consider $F = qP + \delta q\, P \Rightarrow$
+\[
+    p = \frac{\partial F}{\partial q} = P, \qquad Q = \frac{\partial F}{\partial P} = q + \delta q: \text{ translates in space.}
+\]
+
+\begin{formula}[Momentum as Generator]
+Regardless of whether spatial translation is a symmetry, momentum is the generator of spatial translation!
+\end{formula}
+
+\subsection*{Final Example: Rotations}
+
+Consider now a generating function
+\[
+    F = \vect{x}\cdot\vect{P} + (\vect{x}\times\vect{P})_z\,\delta\phi = xP_x + yP_y + zP_z + (yP_x - xP_y)\,\delta\phi
+\]
+(angular momentum; small angle)
+
+\[
+    \Rightarrow P_z = \frac{\partial F}{\partial z} = P_z, \qquad Z = \frac{\partial F}{\partial P_z} = z \implies \text{no changes in } z \text{ or canonical } z\text{-momentum}
+\]
+\[
+    P_x = \frac{\partial F}{\partial x} = P_x - P_y\,\delta\phi, \qquad P_y = \frac{\partial F}{\partial y} = P_y + P_x\,\delta\phi
+\]
+\[
+    \Rightarrow P_X = P_x + P_y\,\delta\phi, \qquad P_Y = P_y - P_x\,\delta\phi
+\]
+
+\begin{formula}[Angular Momentum as Generator]
+Angular momentum is the generator of rotations!
+\end{formula}
+
+\section{Application: Quantum Mechanics}
+
+Two new postulates:
+\begin{enumerate}
+    \item Evolution from an initial to final state is described by a probability amplitude $\to$ dynamics no longer deterministic.
+    \item State evolution must be unitary; the sum of all the probabilities of each possibility must add to one.
+\end{enumerate}
+
+Now we can argue that the evolution of a quantum state must be of the form ($H\delta t$ is the generator for time translations; has to be unitary, so $e^{-iH\delta t}$):
+\[
+    \psi(t+\delta t) = e^{-iH\delta t/\hbar}\,\psi(t)
+\]
+\[
+    \psi(t+\delta t) = \psi(t) + \frac{-iH\delta t}{\hbar}\,\psi(t) \implies
+\]
+\[
+    \Rightarrow H\psi = i\hbar\,\frac{d\psi}{dt} \;?
+\]
+
+% -----------------------------------------------
+% Recitation 9: Hamiltonian Mechanics
+% Wednesday, January 22, 2025
+% -----------------------------------------------
+
+\section*{Recitation 9: Hamiltonian Mechanics Summary}
+
+\begin{itemize}
+    \item Canonical momenta: $p_i \equiv \dfrac{\partial L}{\partial \dot{q}_i}$, are now coordinates along with $q$'s.
+    \item Legendre Transformation: $L(q,\dot{q},t) \to H(q,p,t)$
+\end{itemize}
+
+\[
+    \underbrace{H(q_i, p_i, t)}_{\text{No velocities allowed!}} = \sum_i p_i\dot{q}_i - L(q_i, \dot{q}_i, t)
+\]
+
+\textbf{Hamilton--Jacobi Equations:}
+\[
+    \frac{\partial H}{\partial p_i} = \dot{q}_i, \qquad \frac{\partial H}{\partial q_i} = -\dot{p}_i
+\]
+
+Sometimes advantageous to use Lagrangian mechanics, sometimes advantageous to use Hamiltonians. (Not going to be tested in detail.)
+
+\section{Routhian Mechanics}
+
+\begin{itemize}
+    \item Start with a Lagrangian for $n$ generalized coordinates.
+    \item Legendre Transformation: $L(q,\dot{q},t) \to R(q_1,\ldots,q_n,p_1,\ldots,p_s,\dot{q}_{s+1},\ldots,\dot{q}_n,t)$
+\end{itemize}
+
+\[
+    R = \sum_{k=1}^{s} p_k\dot{q}_k - L(q_{1},\ldots,q_n,\dot{q}_1,\ldots,\dot{q}_n, t)
+\]
+(treat as Hamiltonian for indices $1\ldots s$)
+
+\begin{itemize}
+    \item $s+1 \leq j \leq n$: treat as Lagrangian
+\end{itemize}
+\[
+    \frac{\partial R}{\partial q_j} = -\frac{\partial L}{\partial q_j} \implies q_j \text{ satisfies EL}
+\]
+\[
+    \frac{\partial R}{\partial \dot{q}_j} = -\frac{\partial L}{\partial \dot{q}_j} \implies \frac{\partial R}{\partial q_j} = -\frac{\partial L}{\partial q_j} = \frac{d}{dt}\!\left(\frac{\partial R}{\partial \dot{q}_j}\right)
+\]
+
+\underline{$1 \leq i \leq s$: treat as Hamiltonian}
+
+\begin{align*}
+    \boxed{\frac{\partial R}{\partial p_i} = \dot{q}_i} \qquad \boxed{\frac{\partial R}{\partial q_i} = -\frac{\partial L}{\partial q_i} = -\dot{p}_i}
+\end{align*}
+
+Useful for systems with cyclic coordinates (in Hamiltonian approach, cyclic coordinates go away).
+
+% -----------------------------------------------
+% 8.223 Lecture 10: Liouville's Theorem
+% Thursday, January 23, 2025
+% -----------------------------------------------
+
+\chapter{Liouville's Theorem}
+
+\textbf{SHO Lagrangian:} $p = \dfrac{\partial L}{\partial \dot{x}} = m\dot{x}$, $H = \dfrac{p^2}{2m} + \tfrac{1}{2}kx^2 = E$
+
+\begin{itemize}
+    \item The trajectory of $(x,p)$ in phase space looks like an ellipse.
+\end{itemize}
+
+\section{Phase Space}
+
+\begin{definition}[Phase Space]
+Space formed by coordinates and canonical momenta.
+\begin{itemize}
+    \item Has twice the number of dimensions as the number of spatial coordinates.
+    \item Hamilton's equations tell a particle how to follow a phase space trajectory.
+    \item If trajectories cross, Hamilton's equations would not be able to tell which one to follow --- breaks determinism.
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+    \item For real-world systems like gases we only know summary statistics; there are infinite numbers of possible configurations that are consistent with the info we have.
+    \item We can try evolving every configuration probabilistically.
+\end{itemize}
+
+Start with uncertain initial conditions.
+
+\begin{figure}[H]
+    \centering
+    \caption{A patch of phase space with uncertain initial conditions. If we follow any one of the blue points, how does the density of points around it evolve?}
+\end{figure}
+
+\begin{itemize}
+    \item $\dfrac{dN}{dt} \equiv$ change in number of other points \hfill \textbf{Continuity Equation}
+    \item $\dfrac{dN}{dt} = -\oint \vec{J}\cdot d\vec{S} \implies \int\dfrac{\partial\rho}{\partial t}\,dV = -\int\vec{\nabla}\cdot\vec{J}\,dV \implies \dfrac{\partial\rho}{\partial t} + \vec{\nabla}\cdot\vec{J} = 0$
+
+    ($N \to \rho\,dV$; $\vec{J}\cdot d\vec{S} \to \vec{\nabla}\cdot\vec{J}\,dV$ by Divergence Theorem)
+    \item For the simple harmonic oscillator, $\vec{J} = \rho(\dot{x}\hat{x} + \dot{p}\hat{p})$ (why?)
+\end{itemize}
+
+\[
+    \Rightarrow \vec{\nabla}\cdot\vec{J} = \frac{\partial(\rho\dot{x})}{\partial x} + \frac{\partial(\rho\dot{p})}{\partial p}
+\]
+
+Generalizing:
+\[
+    \frac{\partial\rho}{\partial t} + \sum_i\!\left[\frac{\partial(\rho\dot{q}_i)}{\partial q_i} + \frac{\partial(\rho\dot{p}_i)}{\partial p_i}\right] = 0
+\]
+\[
+    \frac{\partial\rho}{\partial t} + \sum_i\!\left[\frac{\partial\rho}{\partial q_i}\dot{q}_i + \frac{\partial\dot{q}_i}{\partial q_i}\rho + \frac{\partial\rho}{\partial p_i}\dot{p}_i + \frac{\partial\dot{p}_i}{\partial p_i}\rho\right] = 0
+\]
+
+$\dot{q}$ is no longer an independent variable, so $\dfrac{\partial\dot{q}_i}{\partial q_i} \neq 0$ necessarily. But we know $\dot{q}_i = \dfrac{\partial H}{\partial p_i}$, so:
+\[
+    \frac{\partial\dot{q}_i}{\partial q_i} = \frac{\partial^2 H}{\partial q_i\,\partial p_i} = \frac{\partial^2 H}{\partial p_i\,\partial q_i} = -\frac{\partial\dot{p}_i}{\partial p_i}
+\]
+
+$\Rightarrow$ The bracketed terms \underline{cancel out}!
+\[
+    \Rightarrow \frac{\partial\rho}{\partial t} + \sum_i\!\left[\frac{\partial\rho}{\partial q_i}\dot{q}_i + \frac{\partial\rho}{\partial p_i}\dot{p}_i\right] = 0 \implies \boxed{\frac{d\rho}{dt} = 0}
+\]
+
+\begin{theorem}[Liouville's Theorem]
+The density of states in an ensemble of identical states with different initial conditions is constant along every trajectory in phase space (NOT at any fixed point).
+\begin{itemize}
+    \item If the forces are not smooth, they don't satisfy Liouville's theorem (ex: if a particle can radiate away energy or instantly change).
+\end{itemize}
+\end{theorem}
+
+\section{Non-Hamiltonian Forces}
+
+They can be added on to one of the equations of motion as
+\[
+    \dot{p}_i = -\frac{\partial H}{\partial q_i} + F_i \implies \text{continuity equation becomes: } \frac{\partial\rho}{\partial t} + \sum_i\frac{\partial F_i}{\partial p_i}\rho = 0
+\]
+
+$\Rightarrow$ Liouville's Theorem holds for non-Hamiltonian forces ONLY IF
+\[
+    \sum_i \frac{\partial F_i}{\partial p_i}\rho = 0 \quad (\vec{F} \text{ is divergence-free})
+\]
+
+\section{Damped Harmonic Oscillator Example}
+
+In the previous lecture we found $X(t) = A\,e^{-\gamma t/2}\sin(\omega t)$,
+\[
+    \dot{x}(t) = -\frac{\gamma}{2}A\,e^{-\gamma t/2}\sin(\omega t) + A\,e^{-\gamma t/2}\omega\cos(\omega t)
+    = A\,e^{-\gamma t/2}\!\left(\omega\cos\omega t - \frac{\gamma}{2}\sin\omega t\right)
+\]
+\[
+    \Rightarrow p = m\dot{x}\,e^{\gamma t} = mA\,e^{\gamma t/2}\!\left(\omega\cos(\omega t) - \frac{\gamma}{2}\sin\omega t\right)
+\]
+
+While oscillations of $x \to 0$, oscillations of $p \to \infty$.
+
+\begin{figure}[H]
+    \centering
+    \caption{Phase space portrait for the damped oscillator: phase space volume is not conserved as the ellipse shrinks in $x$ but expands in $p$.}
+\end{figure}
+
+Note that if we instead treated the damping force in the Hamiltonian, then $p = m\dot{x}$, $F_\text{damping} = -\gamma m\dot{x} = -\gamma p \Rightarrow \partial F/\partial p \neq 0 \Rightarrow$ Liouville's Theorem doesn't hold.
+
+Consider the canonical transformation from last time $x \to X$, $p \to P$:
+\[
+    P = p\,e^{\gamma t/2}, \quad X = x\,e^{\gamma t/2} \implies \Delta P\,\Delta X = \Delta p\,e^{\gamma t/2}\cdot \Delta x\,e^{\gamma t/2} = \Delta p\,\Delta x \;?
+\]
+
+$\Rightarrow$ \underline{Canonical transforms preserve phase space volumes!}
+
+% -----------------------------------------------
+% Recitation 10: Canonical Transformations Review
+% Thursday, January 23, 2025
+% -----------------------------------------------
+
+\section*{Recitation 10: Canonical Transformations Review}
+
+\[
+    q, p \to Q, P
+\]
+\[
+    \frac{\partial H}{\partial p} = \dot{q}, \quad -\frac{\partial H}{\partial q} = \dot{p} \quad \to \quad \frac{\partial H}{\partial P} = \dot{Q}, \quad -\frac{\partial H}{\partial Q} = \dot{P}
+\]
+
+\subsection*{Generating Function}
+
+$G(Q,P,q,p,t) \to$ generating function, relates new and old variables.
+\[
+    G(Q,P,q,p,t) = F_2(q,P,t) - QP
+\]
+\[
+    p_i = \frac{\partial F_2}{\partial q_i}, \qquad Q_i = \frac{\partial F_2}{\partial P_i}, \qquad K(Q,P,t) = H + \frac{\partial F_2}{\partial t}
+\]
+
+\subsection*{Examples of Generating Functions}
+
+\begin{center}
+\begin{tabular}{lll}
+    \textbf{Generating Function} & \textbf{Derivatives} & \textbf{Special Case (Simplest)} \\[6pt]
+    $F = F_1(q_i, Q, t)$ & $p_i = \dfrac{\partial F_1}{\partial q_i}$,\; $P_i = -\dfrac{\partial F_1}{\partial Q_i}$ & $F_1 = q_i Q_i$:\; $Q_i = p_i$,\; $P_i = -q_i$ \\[8pt]
+    $F = F_2(q, P, t) - Q_i P_i$ & $p_i = \dfrac{\partial F_2}{\partial q_i}$,\; $Q_i = \dfrac{\partial F_2}{\partial P_i}$ & $F_2 = q_i P_i$:\; $Q_i = q_i$,\; $P_i = p_i$ \\[8pt]
+    $F = F_3(p, Q, t) + q_i P_i$ & $q_i = -\dfrac{\partial F_3}{\partial p_i}$,\; $P_i = -\dfrac{\partial F_3}{\partial Q_i}$ & $F_3 = p_i Q_i$:\; $Q_i = -q_i$,\; $P_i = -p_i$ \\[8pt]
+    $F = F_4(p, P, t) + q_i p_i - Q_i P_i$ & $q_i = -\dfrac{\partial F_4}{\partial p_i}$,\; $Q_i = \dfrac{\partial F_4}{\partial P_i}$ & $F_4 = p_i P_i$:\; $Q_i = p_i$,\; $P_i = -q_i$ \\
+\end{tabular}
+\end{center}
+
+\subsection*{Simple Harmonic Oscillator Example}
+
+\[
+    H = \frac{p^2}{2m} + \tfrac{1}{2}m\omega^2 q^2 \to K(Q,P) = \frac{\alpha^2(P)}{2m}\cos^2(Q) + \frac{\tfrac{1}{2}m\omega^2\alpha^2(P)}{(m\omega)^2}\sin^2 Q
+\]
+
+Let $p = \alpha(P)\cos(Q)$, $q = \dfrac{\alpha(P)}{m\omega}\sin(Q)$:
+
+\[
+    = \frac{\alpha^2(P)}{2m} \implies Q \text{ is a cyclic coordinate in the Hamiltonian}
+\]
+
+Thus $\dfrac{\partial K}{\partial Q} = -\dot{P} = 0 \Rightarrow P$ is conserved. But can we find $\alpha(P)$?
+
+\[
+    \frac{p}{q} = \frac{\alpha(P)\cos(Q)}{\frac{\alpha(P)}{m\omega}\sin(Q)} \implies p = qm\omega\cot(Q) = \frac{\partial F_1}{\partial q}
+\]
+\[
+    F_1(q, Q, t) = \int p\,dq = \tfrac{1}{2}m\omega q^2\cot Q + h(Q)
+\]
+\[
+    P = -\frac{\partial F_1}{\partial Q} = \frac{\partial}{\partial Q}\!\left(\tfrac{1}{2}m\omega q^2\cot Q + h(Q)\right) = \tfrac{1}{2}mq^2\frac{1}{\sin^2 Q} - \frac{\partial h}{\partial Q}
+\]
+(just set $h(Q)=0$)
+
+Solving for $q$:
+\[
+    q(Q,P) = \sqrt{\left(P + \frac{\partial h}{\partial Q}\right)\sin^2 Q\,\frac{2}{m\omega}} \implies \sqrt{\frac{2P}{m\omega}}\sin Q = q
+\]
+\[
+    \frac{\alpha(P)}{m\omega} = \sqrt{\frac{2P}{m\omega}} \implies \boxed{\alpha(P) = \sqrt{2Pm\omega}}
+\]
+
+Thus $K(Q,P) = \dfrac{\alpha^2(P)}{2m} = \omega P$ --- much simpler than before.
+
+% -----------------------------------------------
+% Poisson Brackets
+% Thursday, January 23, 2025
+% -----------------------------------------------
+
+\chapter{Poisson Brackets}
+
+Assume $q$, $p$, $H$ satisfy
+
+\begin{definition}[Poisson Bracket]
+\[
+    [F, G] = \sum_i\!\left(\frac{\partial F}{\partial q_i}\frac{\partial G}{\partial p_i} - \frac{\partial F}{\partial p_i}\frac{\partial G}{\partial q_i}\right)
+\]
+\end{definition}
+
+\begin{itemize}
+    \item Note that $[F,G] = -[G,F]$ \quad (1)
+    \[
+        [q_i, q_j]_{q,p} = [p_i, p_j]_{q,p} = 0 \quad (2) \Bigg\} \text{ sufficient conditions for } q,p \text{ to be canonical}
+    \]
+    \item $[q_i, p_j]_{q,p} = \dfrac{\partial q_i}{\partial q_j}\dfrac{\partial p_i}{\partial p_i} = \delta_{ij}$
+    \item \textbf{Product/chain rule:} $[ab, c] = a[b,c] + b[a,c]$
+    \item \textbf{Summation rule:} $[a+b, c] = [a,c] + [b,c]$
+    \item \textbf{Jacobi Identity:} $[a,[b,c]] + [b,[c,a]] + [c,[a,b]] = 0$
+\end{itemize}
+
+\subsection*{With the Hamiltonian}
+
+\[
+    [q, H] = \frac{\partial q}{\partial q}\frac{\partial H}{\partial p} - 0 = \dot{q}
+\]
+\[
+    [p, H] = 0 - \frac{\partial p}{\partial p}\frac{\partial H}{\partial q}
+\]
+
+\section{Showing Canonical Transformations are Conserved}
+
+\begin{itemize}
+    \item $F(q,p) \to F(Q,P)$
+    \item $G(q,p) \to G(Q,P)$
+\end{itemize}
+Do commutation relations still hold?
+
+\[
+    [F,G] = \sum_{ij}\!\left[\frac{\partial F}{\partial q_i}\!\left(\frac{\partial G}{\partial Q_j}\frac{\partial Q_j}{\partial p_i} + \frac{\partial G}{\partial P_j}\frac{\partial P_j}{\partial p_i}\right) - \frac{\partial F}{\partial p_i}\!\left(\frac{\partial G}{\partial Q_j}\frac{\partial Q_j}{\partial q_i} + \frac{\partial G}{\partial P_j}\frac{\partial P_j}{\partial q_i}\right)\right]
+\]
+\[
+    = \sum_j\!\left(\frac{\partial G}{\partial Q_j}[F, Q_j] + \frac{\partial G}{\partial P_j}[F, P_j]\right)
+\]
+
+Note that ($Q_j$, $Q_k$ are a canonical transformation):
+\[
+    [Q_j, F] = \sum_k\!\left(\frac{\partial F}{\partial q_k}\underbrace{[Q_j, Q_k]}_{\delta_{jk}} + \frac{\partial F}{\partial p_k}\underbrace{[Q_j, P_k]}_{=0}\right)
+\]
+\[
+    \Rightarrow [F, Q_j] = -\frac{\partial F}{\partial P_j}
+\]
+
+Doing the same thing similarly:
+\[
+    [F, P_j] = \frac{\partial F}{\partial Q_j}
+\]
+
+\[
+    \Rightarrow [F, G]_{q,p} = \sum_j\!\left[\frac{\partial G}{\partial Q_j}\!\left(-\frac{\partial F}{\partial P_j}\right) + \frac{\partial G}{\partial P_j}\!\left(\frac{\partial F}{\partial Q_j}\right)\right] = [F,G]_{Q,P}
+\]
+
+\subsection*{Method 2 (Landau)}
+
+\[
+    \frac{df}{dt} = [f, g] \quad \leftarrow \text{must also not depend on coordinate choice?}
+\]
+(doesn't depend on coordinate choice)
+
+\begin{theorem}[Useful Theorem]
+\[
+    \frac{dF}{dt} = \frac{\partial F}{\partial t} + \sum_i\!\left(\frac{\partial F}{\partial q_i}\dot{q}_i + \frac{\partial F}{\partial p_i}\dot{p}_i\right)
+    = \frac{\partial F}{\partial t} + \sum_i\!\left(\frac{\partial F}{\partial q_i}\frac{\partial H}{\partial p_i} - \frac{\partial F}{\partial p_i}\frac{\partial H}{\partial q_i}\right)
+    = \frac{\partial F}{\partial t} + [F, H]
+\]
+\end{theorem}
+
+\begin{fact}[Conservation via Poisson Brackets]
+$F(q,p) \Rightarrow \dfrac{dF}{dt} = [F,H]$. If $= 0$, then $F$ is conserved.
+\end{fact}
+
+\subsection*{Example: Angular Momentum $z$-Component}
+
+\[
+    H = \frac{1}{2m}(p_x^2 + p_y^2 + p_z^2) + U(x,y,z), \qquad l_z = xp_y - yp_x
+\]
+\[
+    \frac{dl_z}{dt} = [l_z, H] = \frac{\partial l_z}{\partial x}\frac{\partial H}{\partial p_x} - \frac{\partial l_z}{\partial p_x}\frac{\partial H}{\partial x} + \frac{\partial l_z}{\partial y}\frac{\partial H}{\partial p_y} - \frac{\partial l_z}{\partial p_y}\frac{\partial H}{\partial y}
+\]
+\[
+    = \frac{p_y p_x}{m} + y\frac{\partial U}{\partial x} - \frac{p_x p_y}{m} - x\frac{\partial U}{\partial y}
+    = y\frac{\partial U}{\partial x} - x\frac{\partial U}{\partial y} = -yF_x + xF_y = |\vect{x}\times\vect{F}|_z \quad \checkmark
+\]
+
+\section{Another Useful Fact}
+
+Assume $[F,H] = [G,H] = 0$:
+\[
+    \frac{d}{dt}[F,G] = [[F,G], H]
+\]
+Now recall the Jacobi Identity:
+\[
+    [H,[F,G]] + [F,\underbrace{[G,H]}_{=0}] + [G,\underbrace{[H,F]}_{=0}] = 0
+\]
+\[
+    \Rightarrow \frac{d}{dt}[F,G] = 0 \implies [F,G] \text{ is also conserved!}
+\]
+
+\subsection*{Example: $l_x$, $l_y$ conserved}
+
+\[
+    [l_x, l_y] = [yp_z - zp_y,\; zp_x - xp_z]
+\]
+\[
+    = [yp_z, zp_x] - [yp_z, xp_z] - [zp_y, zp_x] + [zp_y, xp_z]
+\]
+\[
+    [yp_z, zp_x] = y[p_z, zp_x] + p_z[y, zp_x] = y\!\left([p_z, z]p_x + [p_z, p_x]z\right) + p_z\!\left([y,z]p_x + [y,p_x]z\right)
+\]
+\[
+    = y\bigl(\underbrace{[p_z, z]}_{-1}p_x + \underbrace{[p_z, p_x]}_{0}z\bigr) + p_z\bigl(\underbrace{[y,z]}_{0}p_x + \underbrace{[y,p_x]}_{0}z\bigr) = -yp_x + p_z y \cdot x = l_z
+\]
+
+If $l_x$, $l_y$ conserved, then it's conserved for the $z$-axis (can't be conserved for only $z$).
+
+\section{Another Example: Liouville's Theorem}
+
+\[
+    \frac{d\rho}{dt} = 0 = \frac{\partial\rho}{\partial t} + [\rho, H] \implies \frac{\partial\rho}{\partial t} = -[\rho, H]
+\]
+
+Suppose $\rho \propto e^{-H\beta}$, $\dim[\beta] = 1/E$:
+\[
+    \Rightarrow 0 = -\sum_i\!\left[\frac{\partial\rho}{\partial q_i}\frac{\partial H}{\partial p_i} - \frac{\partial\rho}{\partial p_i}\frac{\partial H}{\partial q_i}\right]
+    = -\sum_i\!\left[\frac{\partial\rho}{\partial H}\frac{\partial H}{\partial q_i}\frac{\partial H}{\partial p_i} - \frac{\partial\rho}{\partial H}\frac{\partial H}{\partial p_i}\frac{\partial H}{\partial q_i}\right] = 0 \quad \checkmark
+\]
+
+Thus $\mathrm{Prob}(E = E_i) \propto n_i\,e^{-E_i\beta}$ where $\beta = \dfrac{1}{kT}$.
+
+\section{Application to Quantum Mechanics}
+
+\[
+    [F,G]_\text{QM} \approx i\hbar[F,G]_\text{PB} = i\hbar \qquad \text{(Dirac)}
+\]
+(commutator) \quad (Poisson brackets)
+
+\[
+    \psi(t+\delta t) = e^{-iH\delta t/\hbar}\,\psi(t)
+\]
+\[
+    \to e^{-i\Sigma H\delta t/\hbar} \xrightarrow{\delta t \to 0} e^{-i\int H\,\delta t/\hbar}
+\]
+
+But $H \neq L$, $H = K(p) + U(x)$.
+\begin{itemize}
+    \item See slides for intuitive explanation of uncertainty principle.
+    \item We can't ask for both $x$, $p$:
+\end{itemize}
+\[
+    e^{-i\int L\,dt/\hbar} = e^{iS/\hbar}
+\]

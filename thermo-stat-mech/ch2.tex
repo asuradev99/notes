@@ -7,28 +7,17 @@
 % ============================================================
 
 \begin{definition}[Temperature]
-Temperature is the quantity that is equal for two objects that have been in thermal contact for
-sufficiently long, that is, that have reached \emph{thermal equilibrium}. Operationally, it
-measures the tendency of an object to give up energy to its surroundings: a hotter object
-transfers energy to a cooler one until equilibrium is reached and the two temperatures are equal.
+Temperature is the quantity equal for two objects in \emph{thermal equilibrium}. It measures the tendency to give up energy: a hotter object transfers energy to a cooler one until their temperatures equalize.
 \end{definition}
 
 \begin{definition}[Relaxation time]
-The \textbf{relaxation time} is the characteristic time required for two systems in contact to
-reach thermal equilibrium. It varies enormously between systems --- from femtoseconds in dense
-plasmas to geological timescales in some solids.
+The \textbf{relaxation time} is the characteristic time to reach thermal equilibrium. It varies enormously --- from femtoseconds in dense plasmas to geological timescales in some solids.
 \end{definition}
 
-Beyond thermal equilibrium, a system may also reach \textbf{mechanical equilibrium} (when all
-unbalanced forces and pressure gradients have vanished), and \textbf{diffusive equilibrium} (when
-the chemical potentials are equal so that no net flow of particles occurs). A system in all three
-kinds of equilibrium is said to be in \emph{thermodynamic equilibrium}.
+Beyond thermal equilibrium, a system may reach \textbf{mechanical equilibrium} (no net forces or pressure gradients) and \textbf{diffusive equilibrium} (equal chemical potentials, no net particle flow). All three together constitute \emph{thermodynamic equilibrium}.
 
 \begin{fact}[Zeroth Law of Thermodynamics]
-If object $A$ is in thermal equilibrium with object $C$, and object $B$ is also in thermal
-equilibrium with $C$, then $A$ and $B$ are in thermal equilibrium with each other. This
-transitivity is what makes temperature a well-defined, measurable quantity; a full thermodynamic
-treatment in terms of entropy is deferred to Chapter~3.
+If $A$ is in thermal equilibrium with $C$, and $B$ is also in thermal equilibrium with $C$, then $A$ and $B$ are in thermal equilibrium with each other. This transitivity makes temperature a well-defined, measurable quantity.
 \end{fact}
 
 % ============================================================
@@ -38,8 +27,7 @@ treatment in terms of entropy is deferred to Chapter~3.
 \subsection{Kinetic Derivation of the Ideal Gas Law}
 
 \begin{example}
-We derive the ideal gas law from first principles by computing the pressure exerted by $N$ point
-particles bouncing elastically inside a rectangular box of side length $L$ and volume $V = L^3$.
+We derive the ideal gas law for $N$ point particles bouncing elastically inside a box of side $L$ and volume $V = L^3$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -68,38 +56,24 @@ particles bouncing elastically inside a rectangular box of side length $L$ and v
 {\small\itshape Particle with velocity $v_x$ bouncing elastically off the right wall of a box of side $L$.}
 \end{center}
 
-Consider a single particle with velocity component $v_{xi}$ directed toward one wall. Upon
-elastic reflection only the normal component reverses, so the momentum transferred to the wall
-per collision is $\Delta p_{xi} = 2mv_{xi}$. The particle takes a time $\Delta t = 2L/v_{xi}$ to
-travel to the opposite wall and return, giving a time-averaged force from the $i$-th particle of
+Elastic reflection reverses only the normal component, so the momentum transferred per collision is $\Delta p_{xi} = 2mv_{xi}$. The round-trip time is $\Delta t = 2L/v_{xi}$, giving a time-averaged force from particle $i$:
 \begin{equation}
-    F_{xi} = \frac{\Delta p_{xi}}{\Delta t} = \frac{2mv_{xi}}{2L/v_{xi}} = \frac{mv_{xi}^2}{L}.
+    F_{xi} = \frac{\Delta p_{xi}}{\Delta t} = \frac{mv_{xi}^2}{L}.
 \end{equation}
-Summing over all $N$ particles, the total force on the wall is
+Summing over all $N$ particles and using isotropy $\langle v_x^2\rangle = \langle v_y^2\rangle = \langle v_z^2\rangle \equiv \tfrac{1}{3}\langle v^2\rangle$, the pressure $P = F_x/L^2$ is
 \begin{equation}
-    F_x = \frac{m}{L}\sum_{i=1}^{N} v_{xi}^2 = \frac{mN\langle v_x^2\rangle}{L}.
+    P = \frac{mN\langle v^2\rangle}{3V}.
 \end{equation}
-Because the gas is isotropic, there is no preferred direction, so
-$\langle v_x^2\rangle = \langle v_y^2\rangle = \langle v_z^2\rangle \equiv \langle v^2\rangle$.
-The pressure $P = F_x/L^2$ is therefore
-\begin{equation}
-    P = \frac{mN\langle v^2\rangle}{V}.
-\end{equation}
-Introducing temperature through $k_BT \equiv m\langle v^2\rangle$ --- which identifies temperature
-with mean kinetic energy per degree of freedom, consistent with the equipartition theorem
-discussed in Section~\ref{sec:equipartition} --- this becomes
+Setting $k_BT \equiv \tfrac{1}{3}m\langle v^2\rangle$ (consistent with the equipartition theorem, Section~\ref{sec:equipartition}):
 
 \begin{formula}[Ideal Gas Law]
 \begin{equation}
     PV = Nk_BT \qquad \text{or equivalently} \qquad PV = nRT,
 \end{equation}
-where $n$ is the number of moles, $R = 8.31\,\mathrm{J\,mol^{-1}\,K^{-1}}$ is the universal gas
-constant, and $k_B = R/N_A = 1.38\times10^{-23}\,\mathrm{J/K}$ is Boltzmann's constant.
+where $n$ is the number of moles, $R = 8.31\,\mathrm{J\,mol^{-1}\,K^{-1}}$, and $k_B = R/N_A = 1.38\times10^{-23}\,\mathrm{J/K}$.
 \end{formula}
 
-The average internal energy of an ideal gas follows immediately:
-$\langle U\rangle = \tfrac{3}{2}Nk_BT$. This energy is entirely kinetic (the particles do not
-interact), it is extensive in $N$, and temperature is intensive.
+The mean internal energy is $\langle U\rangle = \tfrac{3}{2}Nk_BT$, purely kinetic, extensive in $N$.
 \end{example}
 
 \begin{center}
@@ -139,8 +113,7 @@ interact), it is extensive in $N$, and temperature is intensive.
 \subsection{The Barometric Formula}
 
 \begin{example}
-The ideal gas law has a direct application in the vertical structure of the atmosphere. Consider
-a thin horizontal slab of air at height $z$, thickness $dz$, and cross-sectional area $A$.
+Consider a thin atmospheric slab at height $z$, thickness $dz$, area $A$. Vertical force balance gives $dP/dz = -\rho g$. Using $\rho = mP/(k_BT)$:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -170,13 +143,10 @@ a thin horizontal slab of air at height $z$, thickness $dz$, and cross-sectional
 {\small\itshape Force balance on an atmospheric slab of area $A$ and thickness $dz$ at height $z$.}
 \end{center}
 
-Vertical force balance on the slab gives $P(z)\,A = P(z+dz)\,A + \rho g\,A\,dz$, i.e.\
-$dP/dz = -\rho g$. Using the ideal gas law in the form $\rho = mP/(k_BT)$, where $m$ is the mean
-molecular mass:
 \begin{equation}
     \dv{P}{z} = -\frac{mg}{k_BT}\,P.
 \end{equation}
-At constant temperature this separable ODE integrates to the
+At constant $T$ this integrates to the
 
 \begin{formula}[Barometric Formula]
 \begin{equation}
@@ -184,20 +154,14 @@ At constant temperature this separable ODE integrates to the
 \end{equation}
 \end{formula}
 
-Pressure falls exponentially with altitude, with a characteristic scale height $H = k_BT/(mg)$.
-For air with mean molecular mass $\bar{M} \approx 29\,\mathrm{g/mol}$ at $T = 300\,\mathrm{K}$,
-the scale height is approximately $8.5\,\mathrm{km}$, consistent with the observed thinning of
-the atmosphere.
+Pressure falls exponentially with scale height $H = k_BT/(mg)$. For air ($\bar{M} \approx 29\,\mathrm{g/mol}$, $T = 300\,\mathrm{K}$), $H \approx 8.5\,\mathrm{km}$.
 \end{example}
 
 % ============================================================
 \section{The Van der Waals Gas}
 % ============================================================
 
-Real gases deviate from the ideal gas law because molecules have a finite size and interact with
-one another. At short range the interaction is strongly repulsive; at larger separations it is
-weakly attractive. The Van der Waals model captures both effects with two phenomenological
-parameters $a$ and $b$.
+Real gases deviate from the ideal gas law due to finite molecular size (short-range repulsion) and attractive interactions at larger separations. The Van der Waals model captures both with two parameters $a$ and $b$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -220,18 +184,11 @@ parameters $a$ and $b$.
 {\small\itshape Lennard-Jones-type intermolecular potential: hard-core repulsion at short range, attractive well near $r=R$.}
 \end{center}
 
-\textbf{Excluded volume.} Each molecule excludes other molecules from a volume $b$ around itself.
-With $N$ molecules in the container, the effective volume available to any one molecule is reduced
-from $V$ to $V - Nb$.
+\textbf{Excluded volume.} Each molecule excludes others from a volume $b$, reducing the available volume from $V$ to $V - Nb$.
 
-\textbf{Attractive interactions.} A molecule near the wall of the container is pulled back toward
-the interior by its neighbours. The number of neighbours within range scales as $N/V$, and the
-probability that each such neighbour is itself in a region of high density also scales as $N/V$,
-so the total cohesive potential energy scales as $(N/V)^2$. This reduces the effective pressure
-by $aN^2/V^2$.
+\textbf{Attractive interactions.} A molecule near the wall is pulled inward. The cohesive pressure correction scales as $(N/V)^2$, reducing effective pressure by $aN^2/V^2$.
 
-Substituting both corrections into the ideal gas law --- replacing $V$ by $V - Nb$ and $P$ by
-$P + aN^2/V^2$ --- yields the
+Substituting both corrections ($V \to V-Nb$, $P \to P + aN^2/V^2$) into the ideal gas law:
 
 \begin{formula}[Van der Waals Equation of State]
 \begin{equation}
@@ -239,8 +196,7 @@ $P + aN^2/V^2$ --- yields the
 \end{equation}
 \end{formula}
 
-In the dilute limit $Nb \ll V$ and $aN^2/V^2 \ll P$, the Van der Waals equation reduces to the
-ideal gas law.
+In the dilute limit $Nb \ll V$ and $aN^2/V^2 \ll P$, this reduces to the ideal gas law.
 
 % ============================================================
 \section{The Equipartition Theorem}
@@ -248,26 +204,15 @@ ideal gas law.
 % ============================================================
 
 \begin{theorem}[Equipartition Theorem]
-In classical thermal equilibrium at temperature $T$, the ensemble average of any energy term that
-is quadratic in a coordinate or momentum equals $\tfrac{1}{2}k_BT$. That is, for any degree of
-freedom $q$ with energy contribution $\tfrac{1}{2}\alpha q^2$,
+In classical thermal equilibrium at temperature $T$, the mean of any energy term quadratic in a coordinate or momentum is $\tfrac{1}{2}k_BT$:
 \begin{equation}
     \left\langle\tfrac{1}{2}\alpha q^2\right\rangle = \tfrac{1}{2}k_BT.
 \end{equation}
 \end{theorem}
 
-The theorem applies to translational kinetic energies $\tfrac{1}{2}mv_x^2$,
-$\tfrac{1}{2}mv_y^2$, $\tfrac{1}{2}mv_z^2$; to rotational kinetic energies
-$\tfrac{1}{2}I\omega^2$; and to both the kinetic and potential energies of a vibrational mode
-$\tfrac{1}{2}\mu\dot{r}^2$ and $\tfrac{1}{2}kr^2$. Each such quadratic term is a separate degree
-of freedom, and each contributes $\tfrac{1}{2}k_BT$ to the mean energy independently.
+This applies to translational kinetic energies $\tfrac{1}{2}mv_x^2$, $\tfrac{1}{2}mv_y^2$, $\tfrac{1}{2}mv_z^2$; rotational energies $\tfrac{1}{2}I\omega^2$; and both the kinetic $\tfrac{1}{2}\mu\dot{r}^2$ and potential $\tfrac{1}{2}kr^2$ terms of a vibrational mode.
 
-\textbf{Counting degrees of freedom.} A monatomic ideal gas has $f = 3$ translational degrees of
-freedom. A diatomic molecule has 3 translational, 2 rotational (the rotation along the bond axis
-is frozen out quantum mechanically because the moment of inertia about that axis is negligibly
-small), and 2 vibrational degrees (one kinetic, one potential), giving $f = 7$ classically.
-However, at room temperature the vibrational modes of most diatomic gases are not thermally
-activated, so in practice $f = 5$.
+\textbf{Counting degrees of freedom.} A monatomic ideal gas has $f = 3$ translational DOF. A diatomic molecule has 3 translational + 2 rotational (the bond-axis rotation is quantum mechanically frozen) + 2 vibrational = $f = 7$ classically; in practice $f = 5$ at room temperature since vibrational modes are not thermally activated.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -304,13 +249,7 @@ activated, so in practice $f = 5$.
 {\small\itshape Diatomic molecule: two rotational DOF perpendicular to bond axis (left); spring model for vibration (right).}
 \end{center}
 
-Quantum mechanics freezes out a mode when $k_BT \ll \hbar\omega$ for that mode, so the effective
-$f$ rises with temperature as successive modes become thermally accessible. This is why measured
-heat capacities of diatomic gases are temperature-dependent, transitioning from $f = 3$ at very
-low temperatures, through $f = 5$ at room temperature, toward $f = 7$ at very high temperatures.
-
-If $f$ denotes the total number of active quadratic degrees of freedom per particle, the total
-thermal energy of $N$ particles is
+A mode is frozen out when $k_BT \ll \hbar\omega$, so $f$ rises with temperature. Measured heat capacities of diatomic gases transition from $f=3$ at very low $T$, through $f=5$ at room temperature, toward $f=7$ at high $T$.
 
 \begin{formula}
 \begin{equation}
@@ -318,17 +257,13 @@ thermal energy of $N$ particles is
 \end{equation}
 \end{formula}
 
-Differentiating with respect to temperature at constant volume gives the heat capacity
-$C_V = \tfrac{f}{2}Nk_B$. For a crystalline solid, each atom participates in $3N$ vibrational
-normal modes, each contributing 2 quadratic terms, giving $f = 6$ per atom and
+Differentiating gives $C_V = \tfrac{f}{2}Nk_B$. For a crystal, each atom has $f=6$ (3 vibrational modes, each with 2 quadratic terms):
 
 \begin{theorem}[Dulong--Petit Law]
 \begin{equation}
     U = 3Nk_BT, \qquad C_V = 3Nk_B = 3nR.
 \end{equation}
-This prediction is in good agreement with measured room-temperature heat capacities of many
-elemental solids. It fails at low temperatures where quantum mechanics suppresses the vibrational
-modes, a regime treated by the Einstein and Debye models.
+This agrees well with measured room-temperature heat capacities of elemental solids; it fails at low $T$ where quantum mechanics suppresses vibrational modes.
 \end{theorem}
 
 % ============================================================
@@ -336,15 +271,10 @@ modes, a regime treated by the Einstein and Debye models.
 % ============================================================
 
 \begin{definition}[Heat and Work]
-\textbf{Heat} is any spontaneous flow of energy from one object to another caused by a temperature
-difference. \textbf{Work} is any transfer of energy other than heat. Both are processes (energy
-in transit), not properties of a state.
+\textbf{Heat} is energy flow driven by a temperature difference. \textbf{Work} is any other energy transfer. Both are processes, not state properties.
 \end{definition}
 
-Heat can be transferred by three mechanisms. \textbf{Conduction} is the transfer of thermal energy
-through direct molecular contact. \textbf{Convection} is driven by bulk motion of a fluid: warmer
-material expands, becomes less dense, and rises, continuously transporting energy. \textbf{Radiation}
-is the emission and absorption of electromagnetic waves and requires no material medium.
+Heat transfer mechanisms: \textbf{conduction} (direct molecular contact), \textbf{convection} (bulk fluid motion), \textbf{radiation} (electromagnetic emission/absorption, requires no medium).
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -372,22 +302,12 @@ is the emission and absorption of electromagnetic waves and requires no material
 \end{center}
 
 \begin{theorem}[First Law of Thermodynamics]
-For a closed system, the change in internal energy equals the sum of heat added to the system and
-work done on the system:
+For a closed system:
 \begin{equation}
     dU = \dbar Q + \dbar W.
 \end{equation}
-The internal energy $U$ is a \emph{state function}: its differential is exact, and the integral
-$\Delta U = U_f - U_i$ depends only on the endpoints. Heat $\dbar Q$ and work $\dbar W$ are
-\emph{inexact} differentials --- they are not the differentials of any state function, and their
-integrals over a process depend on the path taken, not merely on the endpoints.
+$U$ is a \emph{state function} (exact differential; $\Delta U$ depends only on endpoints). $\dbar Q$ and $\dbar W$ are \emph{inexact} differentials --- their integrals depend on the path, not just the endpoints.
 \end{theorem}
-
-The path-dependence of $\dbar Q$ and $\dbar W$ is the thermodynamic instance of the mathematical
-result discussed in Chapter~1: for an inexact differential, the loop integral
-$\oint \vec{V}\cdot d\vec{x}$ is in general non-zero (it equals the surface integral of the curl).
-In integrated form, the First Law says that for any process $\Delta U = Q + W$, where $Q$ and $W$
-are the total heat absorbed and total work done on the system, respectively.
 
 \subsection{Compression Work}
 
@@ -417,9 +337,7 @@ are the total heat absorbed and total work done on the system, respectively.
 {\small\itshape Quasistatic compression: piston of area $A$ moves inward by $dx$, reducing volume by $dV=A\,dx$.}
 \end{center}
 
-For a \textbf{quasistatic} process --- one slow enough that the gas remains in equilibrium at
-every instant and the pressure is spatially uniform --- the force on the piston equals $F = PA$.
-Moving the piston inward by $dx$ decreases the volume by $dV = -A\,dx$, giving
+For a \textbf{quasistatic} process (gas in equilibrium throughout), moving the piston inward by $dx$ decreases volume by $dV = -A\,dx$:
 
 \begin{formula}[Compression Work]
 \begin{equation}
@@ -427,23 +345,15 @@ Moving the piston inward by $dx$ decreases the volume by $dV = -A\,dx$, giving
 \end{equation}
 \end{formula}
 
-When the gas is compressed ($V_f < V_i$), this integral is negative so $W > 0$: positive work is
-done on the gas. When the gas expands, it does positive work on its surroundings ($W < 0$). For a
-non-quasistatic process, the pressure is not well-defined throughout, and one cannot evaluate the
-integral; only $\Delta U = U_f - U_i$ can be computed from the endpoint state functions.
+Compression gives $W > 0$; expansion gives $W < 0$. For non-quasistatic processes, only $\Delta U$ is well-defined.
 
 \subsection{Heat Capacities}
 
 \begin{definition}[Heat Capacity]
-The heat capacity $C$ is the heat required to raise the temperature of a system by $1\,\mathrm{K}$:
-$C = Q/\Delta T$. The specific heat capacity is $c = C/m$.
+$C = Q/\Delta T$; the specific heat capacity is $c = C/m$.
 \end{definition}
 
-Since $Q$ depends on the process, the heat capacity is not uniquely defined without specifying
-the conditions. The two canonical cases are:
-
-\textbf{Constant volume.} No work is done ($dV = 0$, $\dbar W = 0$), so the First Law gives
-$\dbar Q = dU$ and
+\textbf{Constant volume.} $dV = 0 \Rightarrow \dbar W = 0$, so $\dbar Q = dU$:
 
 \begin{formula}[Heat Capacity at Constant Volume]
 \begin{equation}
@@ -451,15 +361,13 @@ $\dbar Q = dU$ and
 \end{equation}
 \end{formula}
 
-For an ideal gas with $f$ active degrees of freedom, $C_V = \tfrac{f}{2}Nk_B$.
+For an ideal gas, $C_V = \tfrac{f}{2}Nk_B$.
 
-\textbf{Constant pressure.} The gas is free to expand when heated and does work on its
-surroundings. Starting from $\dbar Q = dU + P\,dV$ (First Law with $\dbar W = -P\,dV$):
+\textbf{Constant pressure.} From $\dbar Q = dU + P\,dV$:
 \begin{equation}
     C_P = \left.\pdv{U}{T}\right|_P + P\left.\pdv{V}{T}\right|_P.
 \end{equation}
-For an ideal gas, $(\partial U/\partial V)_T = 0$ (internal energy depends only on temperature)
-and $(\partial V/\partial T)_P = Nk_B/P$, so
+For an ideal gas, $(\partial U/\partial V)_T = 0$ and $(\partial V/\partial T)_P = Nk_B/P$, giving
 
 \begin{formula}[$C_P$ for an Ideal Gas (Mayer's Relation)]
 \begin{equation}
@@ -467,10 +375,7 @@ and $(\partial V/\partial T)_P = Nk_B/P$, so
 \end{equation}
 \end{formula}
 
-The extra $Nk_B$ accounts for the work of expansion against the atmosphere: some of the heat added
-at constant pressure goes into pushing back the surroundings rather than raising the temperature.
-Equivalently, since $dH = \dbar Q$ at constant pressure, one has $C_P = (\partial H/\partial T)_P$.
-The dimensionless ratio $\gamma = C_P/C_V = (f+2)/f$ is the adiabatic index.
+The extra $Nk_B$ is work done against the surroundings. The adiabatic index is $\gamma = C_P/C_V = (f+2)/f$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -517,33 +422,21 @@ The dimensionless ratio $\gamma = C_P/C_V = (f+2)/f$ is the adiabatic index.
 
 \subsection{Latent Heat}
 
-During a phase transition (melting, boiling), a system absorbs heat without any change in
-temperature. The ordinary definition $C = Q/\Delta T$ would give an infinite heat capacity,
-signalling that temperature is the wrong variable here.
+During a phase transition, heat is absorbed at constant temperature ($C \to \infty$).
 
 \begin{definition}[Latent Heat]
-The latent heat $L$ is the total heat required to convert a substance completely from one phase
-to another at constant pressure. The specific latent heat is $\ell = L/m$, measured in
-$\mathrm{J/kg}$.
+The specific latent heat $\ell = L/m$ ($\mathrm{J/kg}$) is the heat per unit mass for a phase change at constant $P$. The absorbed energy breaks bonds rather than increasing kinetic energy. Values: melting ice $333\,\mathrm{J/g}$; boiling water $2260\,\mathrm{J/g}$.
 \end{definition}
-
-The energy absorbed during a phase transition goes into breaking intermolecular bonds rather than
-increasing molecular kinetic energies, which is why the temperature remains constant throughout
-the transition. Representative values: melting ice, $\ell = 333\,\mathrm{J/g}$; boiling water,
-$\ell = 2260\,\mathrm{J/g}$.
 
 % ============================================================
 \section{Thermodynamic Processes}
 % ============================================================
 
-A quasi-static transformation moves the system along a definite path in state space; the path is
-called a \textbf{process}. For any such process, the total work and heat are found by integrating
-$\dbar W$ and $\dbar Q$ along the path, while $\Delta U = U_f - U_i$ is path-independent.
+A quasi-static transformation traces a definite path in state space. $\Delta U = U_f - U_i$ is path-independent; $W$ and $Q$ are obtained by integrating along the path.
 
 \subsection{Isothermal Compression}
 
-An isothermal process is carried out slowly enough that the gas remains in thermal contact with a
-reservoir and its temperature stays constant. With $T$ fixed and $PV = Nk_BT = \text{const}$:
+At constant $T$: $PV = Nk_BT = \text{const}$, so
 
 \begin{formula}[Isothermal Work, Ideal Gas]
 \begin{equation}
@@ -551,19 +444,17 @@ reservoir and its temperature stays constant. With $T$ fixed and $PV = Nk_BT = \
 \end{equation}
 \end{formula}
 
-Since $\Delta T = 0$, the internal energy is unchanged ($\Delta U = 0$), and the First Law gives
-$Q = -W$: all the work done on the gas flows out as heat to the reservoir.
+Since $\Delta U = 0$, the First Law gives $Q = -W$: all work done flows out as heat to the reservoir.
 
 \subsection{Adiabatic Compression}
 
-An adiabatic process is carried out so rapidly that no heat is exchanged: $\dbar Q = 0$. With
-$\dbar W = -P\,dV$ and $dU = C_V\,dT$, the First Law becomes
+No heat exchange: $\dbar Q = 0$. With $dU = C_V\,dT$ and $\dbar W = -P\,dV$:
 \begin{equation}
     \frac{f}{2}Nk_B\,dT = -\frac{Nk_BT}{V}\,dV
     \qquad\Longrightarrow\qquad
     \frac{f}{2}\frac{dT}{T} = -\frac{dV}{V}.
 \end{equation}
-Integrating and exponentiating yields
+Integrating:
 
 \begin{formula}[Adiabatic Constraints]
 \begin{equation}
@@ -571,10 +462,7 @@ Integrating and exponentiating yields
 \end{equation}
 \end{formula}
 
-The $PV^\gamma = \text{const}$ form is obtained by substituting $T = PV/(Nk_B)$ into the first
-relation. Since $\gamma > 1$, the adiabat $P \propto V^{-\gamma}$ is steeper than the isotherm
-$P \propto V^{-1}$ in the $P$--$V$ diagram: compressing the gas adiabatically raises its
-temperature (no heat escapes), causing a faster pressure rise.
+Since $\gamma > 1$, the adiabat $P \propto V^{-\gamma}$ is steeper than the isotherm $P \propto V^{-1}$: adiabatic compression raises temperature faster.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -603,8 +491,7 @@ temperature (no heat escapes), causing a faster pressure rise.
 {\small\itshape Adiabat (steep) vs.\ isotherm (shallow) in the $P$--$V$ plane: adiabatic compression raises temperature more.}
 \end{center}
 
-The work done on the gas in an adiabatic process is purely the change in internal energy
-($Q = 0$):
+The work done on the gas equals $\Delta U$ (since $Q=0$):
 \begin{equation}
     W_{\text{adiabat}} = \Delta U = \frac{f}{2}Nk_B(T_f - T_i)
     = \frac{Nk_BT_i}{\gamma - 1}\!\left[\!\left(\frac{V_f}{V_i}\right)^{1-\gamma} - 1\right].
@@ -612,31 +499,19 @@ The work done on the gas in an adiabatic process is purely the change in interna
 
 \subsection{Isochoric and Isobaric Processes}
 
-In an \textbf{isochoric} (constant-volume) process, $dV = 0$, no work is done, and the First Law
-reduces to $dU = \dbar Q$. All heat added goes entirely into raising the internal energy:
-$\Delta U = \int C_V\,dT$.
+\textbf{Isochoric} ($dV = 0$): no work done; $\Delta U = \int C_V\,dT$.
 
-In an \textbf{isobaric} (constant-pressure) process, the gas is free to expand. Work is done on
-the surroundings: $\Delta W = -P\Delta V$, and the heat absorbed is $\Delta Q = \int C_P\,dT$.
-On a $P$--$V$ diagram, the isobar is a horizontal line; the area below it between $V_i$ and $V_f$
-gives the work done by the gas.
+\textbf{Isobaric} (constant $P$): work $\Delta W = -P\Delta V$; heat $\Delta Q = \int C_P\,dT$. On a $P$--$V$ diagram, the isobar is horizontal; the area below gives the work done by the gas.
 
 % ============================================================
 \section{Enthalpy}
 % ============================================================
 
-Rather than tracking the internal energy alone, it is often convenient to account simultaneously
-for the work required to make room for a system against a constant external pressure. This
-motivates the definition of enthalpy.
-
 \begin{definition}[Enthalpy]
-The enthalpy of a system is
 \begin{equation}
     H \coloneq U + PV.
 \end{equation}
-Physically, $H$ represents the total energy cost to create the system from nothing: $U$ to
-assemble its internal energy, plus the work $PV$ done against the atmosphere to carve out the
-space it occupies.
+$H$ is the total energy to create the system: internal energy $U$ plus work $PV$ done against the atmosphere.
 \end{definition}
 
 \begin{center}
@@ -663,12 +538,11 @@ space it occupies.
 
 \subsection{Why Enthalpy is Convenient}
 
-Taking the differential of $H = U + PV$ and substituting the First Law
-$dU = \dbar Q - P\,dV + \dbar W_{\text{other}}$:
+Differentiating $H = U + PV$ and using $dU = \dbar Q - P\,dV + \dbar W_{\text{other}}$:
 \begin{equation}
-    dH = dU + P\,dV + V\,dP = \dbar Q + V\,dP + \dbar W_{\text{other}}.
+    dH = \dbar Q + V\,dP + \dbar W_{\text{other}}.
 \end{equation}
-At constant pressure ($dP = 0$) with no other work, the compression bookkeeping drops out:
+At constant $P$ with no other work:
 
 \begin{formula}
 \begin{equation}
@@ -676,14 +550,11 @@ At constant pressure ($dP = 0$) with no other work, the compression bookkeeping 
 \end{equation}
 \end{formula}
 
-Whenever a process occurs at constant pressure --- combustion, chemical reactions in open vessels,
-boiling or condensation --- the heat exchanged equals the enthalpy change, with no need to track
-the $P\Delta V$ expansion work separately. The more general statement is $\Delta H = Q + W_{\text{other}}$,
-where $W_{\text{other}}$ is any work beyond compression (electrical work, shaft work, etc.).
+More generally, $\Delta H = Q + W_{\text{other}}$.
 
 \subsection{Heat Capacity at Constant Pressure}
 
-Because $dH = \dbar Q$ at constant pressure, the heat capacity at constant pressure is simply
+Since $dH = \dbar Q$ at constant $P$:
 
 \begin{formula}
 \begin{equation}
@@ -691,42 +562,23 @@ Because $dH = \dbar Q$ at constant pressure, the heat capacity at constant press
 \end{equation}
 \end{formula}
 
-This makes the roles of $U$ and $H$ transparent: $U$ is the natural thermodynamic potential for
-constant-volume processes ($C_V = (\partial U/\partial T)_V$), while $H$ is the natural potential
-for constant-pressure processes ($C_P = (\partial H/\partial T)_P$).
 
 \subsection{Enthalpy of Formation}
 
 \begin{example}
-Standard enthalpy tables record the heat released or absorbed when compounds are formed from
-their constituent elements at constant pressure ($1\,\mathrm{atm}$, $298\,\mathrm{K}$). For
-example, the formation of liquid water,
+Standard enthalpy tables give the heat released or absorbed forming compounds from elements at $1\,\mathrm{atm}$, $298\,\mathrm{K}$. For liquid water:
 \begin{equation}
-    \mathrm{H_2} + \tfrac{1}{2}\,\mathrm{O_2} \longrightarrow \mathrm{H_2O}\,(\ell),
+    \mathrm{H_2} + \tfrac{1}{2}\,\mathrm{O_2} \longrightarrow \mathrm{H_2O}\,(\ell), \qquad \Delta H = -286\,\mathrm{kJ/mol}.
 \end{equation}
-has a standard enthalpy of formation $\Delta H = -286\,\mathrm{kJ/mol}$: forming one mole of
-liquid water releases $286\,\mathrm{kJ}$. Most of this energy comes from the internal chemical
-energy of the bonds; a small portion arises from the volume change as the gaseous reactants are
-consumed and the atmosphere does work to fill the vacated space.
-
-Boiling water at $373\,\mathrm{K}$ and $1\,\mathrm{atm}$ requires
-$\Delta H = 40{,}660\,\mathrm{J/mol}$. Of this, $PV = RT \approx 3100\,\mathrm{J/mol}$ goes
-into pushing the atmosphere back as steam occupies roughly $1600$ times the liquid volume,
-representing about $8\%$ of the total enthalpy of vaporisation.
+Boiling water at $373\,\mathrm{K}$, $1\,\mathrm{atm}$: $\Delta H = 40{,}660\,\mathrm{J/mol}$, of which $PV = RT \approx 3100\,\mathrm{J/mol}$ is $pV$ work.
 \end{example}
 
 % ============================================================
 \section{Rates of Processes}
 % ============================================================
 
-The preceding sections described what happens in thermodynamic processes. This section addresses
-how fast energy and matter are transported.
-
 \subsection{Heat Conduction and Fourier's Law}
 
-Heat flows spontaneously from hot regions to cold. Consider a slab of material of area $A$ and
-thickness $\Delta x$ separating a warm interior at temperature $T_2$ from a cooler exterior at
-$T_1 < T_2$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -756,36 +608,21 @@ $T_1 < T_2$.
 {\small\itshape Fourier's law: heat flux through a slab of thickness $\Delta x$ is proportional to the temperature gradient.}
 \end{center}
 
-By dimensional reasoning, the heat flow should scale with area, temperature gradient, and elapsed
-time, and depend on a material constant. This yields
-
 \begin{formula}[Fourier's Law of Heat Conduction]
 \begin{equation}
     \frac{Q}{\Delta t} = -k_t\,A\,\frac{\partial T}{\partial x},
 \end{equation}
-where $k_t$ is the \textbf{thermal conductivity} of the material. The negative sign ensures heat
-flows in the direction of decreasing temperature.
+where $k_t$ is the \textbf{thermal conductivity}. The negative sign ensures flow toward lower temperature.
 \end{formula}
 
-Thermal conductivities span four orders of magnitude across common materials (in
-$\mathrm{W\,m^{-1}K^{-1}}$): air ($0.026$), wood ($0.08$), water ($0.6$), glass ($0.8$), iron
-($80$), copper ($400$). Metals conduct heat efficiently because free electrons, which carry energy
-far more readily than lattice phonons, dominate the transport.
+Thermal conductivities (in $\mathrm{W\,m^{-1}K^{-1}}$): air ($0.026$), wood ($0.08$), water ($0.6$), glass ($0.8$), iron ($80$), copper ($400$). Metals conduct well because free electrons dominate transport over lattice phonons.
 
 \subsection{Thermal Conductivity from Kinetic Theory}
 
-In a gas, heat is transported by molecules carrying kinetic energy from hotter to cooler regions.
-The key length scale is the \textbf{mean free path} $\ell$ --- the average distance a molecule
-travels between successive collisions.
-
-\begin{definition}[Mean Free Path]
-Treating each molecule as a sphere of radius $r$, two molecules collide when their centres come
-within $2r$. The moving molecule sweeps an effective cylinder of radius $2r$; a collision becomes
-likely when the cylinder volume equals the average volume per molecule:
+The key scale is the \textbf{mean free path} $\ell$. For spheres of radius $r$, a collision requires centres within $2r$; setting the swept cylinder volume equal to the volume per molecule:
 \begin{equation}
     \ell \approx \frac{1}{4\pi r^2}\cdot\frac{V}{N}.
 \end{equation}
-\end{definition}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -817,15 +654,11 @@ likely when the cylinder volume equals the average volume per molecule:
 {\small\itshape Mean free path $\ell$: the cylinder of radius $2r$ swept before a collision becomes likely.}
 \end{center}
 
-To estimate $k_t$, consider two adjacent slabs of gas separated by an imaginary barrier. In one
-mean-free-time $\overline{\Delta t} = \ell/\bar{v}$, roughly half the molecules in each slab
-cross the barrier and carry their thermal energy with them. The net heat transferred from the
-hotter slab to the cooler one is
+In one mean-free-time $\overline{\Delta t} = \ell/\bar{v}$, roughly half the molecules in each slab cross the barrier. Net heat transferred:
 \begin{equation}
     Q \approx -\tfrac{1}{2}\,C_V\,(T_2 - T_1) = -\tfrac{1}{2}\,C_V\,\ell\,\frac{\partial T}{\partial x}.
 \end{equation}
-Comparing with Fourier's law and using $C_V/V = \tfrac{f}{2}Nk_B/V = \tfrac{f}{2}P/T$ (from the
-ideal gas law):
+Comparing with Fourier's law and using $C_V/V = \tfrac{f}{2}P/T$:
 
 \begin{formula}[Thermal Conductivity, Kinetic Theory]
 \begin{equation}
@@ -833,16 +666,11 @@ ideal gas law):
 \end{equation}
 \end{formula}
 
-Since $\bar{v} \propto T^{1/2}$ and $\ell \propto T/P$ (from the ideal gas law), the product
-$\bar{v}\,\ell \propto T^{3/2}/P$ and $k_t \propto T^{1/2}$, independent of pressure. This
-pressure-independence is confirmed experimentally over a wide range and is a non-trivial prediction
-of kinetic theory.
+Since $\bar{v} \propto T^{1/2}$ and $\ell \propto T/P$: $k_t \propto T^{1/2}$, independent of pressure.
 
 \subsection{Diffusion and Fick's Laws}
 
-While heat conduction transports energy, \textbf{diffusion} transports particles themselves, driven
-by a gradient in number density $n$ (particles per unit volume). The \textbf{flux} $J_x$ is the
-net number of particles crossing a unit area per unit time.
+\textbf{Diffusion} transports particles down a number density gradient $n$; $J_x$ is the flux (particles per unit area per unit time).
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -875,12 +703,10 @@ net number of particles crossing a unit area per unit time.
 \begin{equation}
     J_x = -D\,\frac{\partial n}{\partial x},
 \end{equation}
-where $D$ is the \textbf{diffusion coefficient}. The negative sign ensures flux is directed down
-the concentration gradient.
+where $D$ is the \textbf{diffusion coefficient}.
 \end{formula}
 
-Combining Fick's First Law with conservation of particle number
-($\partial n/\partial t = -\partial J_x/\partial x$) gives
+Combining with particle conservation ($\partial n/\partial t = -\partial J_x/\partial x$):
 
 \begin{formula}[Fick's Second Law]
 \begin{equation}
@@ -888,16 +714,8 @@ Combining Fick's First Law with conservation of particle number
 \end{equation}
 \end{formula}
 
-This diffusion equation predicts that an initially sharp concentration profile spreads out over
-time with a characteristic width growing as $\sqrt{Dt}$. By the same kinetic-theory argument as
-above, the diffusion coefficient scales as
-
-\begin{formula}
+A sharp profile spreads with width $\sim\sqrt{Dt}$. By the same kinetic argument:
 \begin{equation}
     D \sim \bar{v}\,\ell,
 \end{equation}
-\end{formula}
-
-so the same mean free path governs both energy transport (thermal conductivity) and particle
-transport (diffusion). The ratio $D\rho c_P/k_t$ --- the Lewis number --- is of order unity for
-gases, reflecting this shared microscopic origin.
+so the same mean free path governs both energy and particle transport.

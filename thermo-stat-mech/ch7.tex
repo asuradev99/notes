@@ -9,20 +9,13 @@
 \section{Quantum Particles: Bosons and Fermions}
 % ------------------------------------------------------------------
 
-A fundamental feature of quantum mechanics is that identical particles are
-truly indistinguishable: there is no experiment that can track which electron
-is which, or label one photon differently from another.  This indistinguishability
-has deep consequences for many-body wavefunctions and for statistical mechanics.
-
 \begin{definition}[Bosons and Fermions]
-All particles in nature fall into one of two classes.  \textbf{Fermions} have
-half-integer spin and their many-body wavefunction is \emph{antisymmetric} under
-the exchange of any two particles.  \textbf{Bosons} have integer spin and their
-many-body wavefunction is \emph{symmetric} under particle exchange.
+\textbf{Fermions} have half-integer spin; their many-body wavefunction is
+\emph{antisymmetric} under exchange of any two particles.  \textbf{Bosons}
+have integer spin; their wavefunction is \emph{symmetric} under exchange.
 \end{definition}
 
-For two single-particle states $\psi_{k_1}$ and $\psi_{k_2}$, the properly
-symmetrised two-particle wavefunctions read
+The properly symmetrised two-particle wavefunctions are
 \begin{align}
     \text{Bosons:}\quad
     \Psi_{k_1k_2}
@@ -33,68 +26,35 @@ symmetrised two-particle wavefunctions read
     &= \frac{1}{\sqrt{2}}\!\left[\psi_{k_1}(1)\psi_{k_2}(2)
        -\psi_{k_2}(1)\psi_{k_1}(2)\right].
 \end{align}
-For fermions the wavefunction vanishes identically when $k_1 = k_2$: two
-fermions cannot occupy the same quantum state.  This is the celebrated
+For fermions the wavefunction vanishes when $k_1 = k_2$: this is the
 \textbf{Pauli exclusion principle}.
 
 \begin{fact}
-For bosons the occupation number $n_k$ of any single-particle state $k$ can
-be any non-negative integer, $n_k = 0, 1, 2, \ldots$.  For fermions,
-$n_k \in \{0, 1\}$ only.
+Bosons: $n_k = 0, 1, 2, \ldots$ (unrestricted).
+Fermions: $n_k \in \{0, 1\}$ only.
 \end{fact}
 
-A general $N$-particle state is conveniently labelled in the
-\emph{occupation number representation} as $|n_1, n_2, \ldots, n_k, \ldots\rangle$,
-where $n_i$ counts the particles in single-particle state $i$ and the constraint
-$\sum_i n_i = N$ is imposed.  The total energy and total particle number of such
-a state are
-\begin{equation}
-    E = \sum_i \varepsilon_i n_i, \qquad N = \sum_i n_i.
-\end{equation}
+States are labelled by occupation numbers $|n_1, n_2, \ldots\rangle$ with $\sum_i n_i = N$; $E = \sum_i \varepsilon_i n_i$.
 
-To appreciate why quantum statistics matters, consider the canonical partition
-function at fixed $N$:
-\begin{equation}
-    Z_N = \sum_{\substack{n_1,n_2,\ldots \\ \sum_i n_i = N}}
-    e^{-\beta n_1\varepsilon_1}\,e^{-\beta n_2\varepsilon_2}\cdots.
-\end{equation}
-Because the occupation numbers must satisfy $\sum_i n_i = N$, they are
-\emph{coupled}, and the sum cannot be factored into independent single-mode
-sums.  The familiar high-temperature approximation $Z_N \approx Z_1^N / N!$
-is valid only when the typical occupancy of any state is much less than one,
-so that the Pauli constraint is rarely triggered and bosonic enhancement is
-negligible.  At lower temperatures, where occupancies of order unity become
-common, we need a more powerful framework.
+The canonical $Z_N$ cannot be factored because occupations are coupled by $\sum n_i = N$. The approximation $Z_N \approx Z_1^N/N!$ requires typical occupancies $\ll 1$; at lower $T$ we need the grand canonical framework.
 
 \begin{example}
-As a concrete illustration, consider three bosons distributed among harmonic
-oscillator levels $k = 0, 1, 2, \ldots$ with energies $(k + \tfrac{1}{2})\hbar\omega$.
-The allowed occupation-number states are tuples $(n_0, n_1, n_2, \ldots)$ with
-$\sum n_i = 3$.  At total energy $\tfrac{3}{2}\hbar\omega$ there is a single
-state (all three in $k = 0$); at higher energies the number of states grows
-rapidly as more ways of distributing excitations become available.  By contrast,
-three spin-$\tfrac{1}{2}$ fermions cannot all occupy the lowest level; the
-Pauli principle forces the lowest three available spin-states to be filled first.
+Three bosons among harmonic oscillator levels with energies $(k+\tfrac{1}{2})\hbar\omega$:
+the microstates are tuples $(n_0,n_1,n_2,\ldots)$ with $\sum n_i = 3$.
+Three fermions cannot all occupy the lowest level; the Pauli principle forces
+filling the lowest three available spin-states.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Draw three boson configurations side by side
-  % Each configuration: 4 horizontal energy levels, bosons as filled circles
-
-  % --- Config 1: (3,0,0,0), E = 3/2 hbar omega ---
   \foreach \lv in {0,1,2,3} {
     \draw[gray] (0, \lv*0.8) -- (1.4, \lv*0.8);
   }
-  % Three bosons on level 0
   \filldraw[blue!70!black] (0.35, 0.0) circle (3pt);
   \filldraw[blue!70!black] (0.70, 0.0) circle (3pt);
   \filldraw[blue!70!black] (1.05, 0.0) circle (3pt);
   \node[below, font=\small] at (0.70, -0.15) {$(3,0,0,0)$};
   \node[above, font=\scriptsize] at (0.70, 2.55) {$E=\tfrac{3}{2}\hbar\omega$};
 
-  % --- Config 2: (1,1,1,0), E = 3/2+1+2 = 9/2 hbar omega, actually (1,1,1,0) -> 3/2+1*1+1*2 hbar = 9/2---
-  % Relabel: zero-point is 1/2 hbar omega per level offset; use k*hbar*omega for simplicity
-  % Place at x offset 2.0
   \foreach \lv in {0,1,2,3} {
     \draw[gray] (2.0, \lv*0.8) -- (3.4, \lv*0.8);
   }
@@ -104,8 +64,6 @@ Pauli principle forces the lowest three available spin-states to be filled first
   \node[below, font=\small] at (2.70, -0.15) {$(1,1,1,0)$};
   \node[above, font=\scriptsize] at (2.70, 2.55) {$E=\tfrac{7}{2}\hbar\omega$};
 
-  % --- Config 3: (0,0,0,3), E = 3*3 + 3/2 = ... use (0,3,0,0) for variety ---
-  % Config 3: (2,1,0,0), E = 2*0 + 1*1 + 3/2 per particle offset -> just label energies
   \foreach \lv in {0,1,2,3} {
     \draw[gray] (4.0, \lv*0.8) -- (5.4, \lv*0.8);
   }
@@ -115,20 +73,14 @@ Pauli principle forces the lowest three available spin-states to be filled first
   \node[below, font=\small] at (4.70, -0.15) {$(2,1,0,0)$};
   \node[above, font=\scriptsize] at (4.70, 2.55) {$E=\tfrac{5}{2}\hbar\omega$};
 
-  % Energy axis labels on left
   \node[left, font=\scriptsize] at (-0.1, 0.0) {$\varepsilon_0$};
   \node[left, font=\scriptsize] at (-0.1, 0.8) {$\varepsilon_1$};
   \node[left, font=\scriptsize] at (-0.1, 1.6) {$\varepsilon_2$};
   \node[left, font=\scriptsize] at (-0.1, 2.4) {$\varepsilon_3$};
-
-  % Vertical energy axis
   \draw[->] (-0.1, -0.3) -- (-0.1, 3.0) node[above, font=\small] {$E$};
-
-  % Section title
   \node[above, font=\small\bfseries] at (2.70, 3.1) {Boson configurations ($N=3$)};
 \end{tikzpicture}\\[3pt]
-{\small\itshape Bosons: multiple particles may occupy the same energy level; occupation
-numbers $(n_0,n_1,\ldots)$ label each microstate.}
+{\small\itshape Bosons: multiple particles may occupy the same energy level.}
 \end{center}
 \end{example}
 
@@ -136,58 +88,35 @@ numbers $(n_0,n_1,\ldots)$ label each microstate.}
 \section{The Grand Canonical Ensemble}
 % ------------------------------------------------------------------
 
-The natural way to handle quantum statistics is to abandon the fixed-$N$
-constraint altogether.  We place the system in contact with a reservoir that
-fixes both temperature $T$ and chemical potential $\mu$, allowing both energy
-and particles to flow.
+Abandoning fixed $N$, the system exchanges both energy and particles with a reservoir.
 
 \begin{definition}[Grand Canonical Ensemble]
-In the \textbf{grand canonical ensemble} the system exchanges both energy and
-particles with a large reservoir characterised by temperature $T$ and chemical
-potential $\mu$.  The macroscopic variables held fixed are $V$, $T$, and $\mu$;
-the energy $U$ and particle number $N$ both fluctuate, with only their averages
-$\langle U\rangle$ and $\langle N\rangle$ determined by the reservoir parameters.
+The system exchanges energy and particles with a reservoir at temperature $T$
+and chemical potential $\mu$.  Fixed: $V$, $T$, $\mu$.  Fluctuating:
+$U$, $N$ (only averages $\langle U\rangle$, $\langle N\rangle$ are determined
+by the reservoir).
 \end{definition}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Column widths and row heights
-  \def\cA{0}   % left edge col 1
-  \def\cB{3.2} % left edge col 2
-  \def\cC{6.4} % left edge col 3
-  \def\cD{9.8} % right edge
-
-  \def\rTop{0}
-  \def\rOne{-0.85}
-  \def\rTwo{-1.70}
-  \def\rThree{-2.55}
-  \def\rBot{-3.40}
-
-  % Horizontal lines
+  \def\cA{0}   \def\cB{3.2} \def\cC{6.4} \def\cD{9.8}
+  \def\rTop{0} \def\rOne{-0.85} \def\rTwo{-1.70}
+  \def\rThree{-2.55} \def\rBot{-3.40}
   \foreach \y in {\rTop, \rOne, \rTwo, \rThree, \rBot} {
     \draw (\cA, \y) -- (\cD, \y);
   }
-  % Vertical lines
   \foreach \x in {\cA, \cB, \cC, \cD} {
     \draw (\x, \rTop) -- (\x, \rBot);
   }
-
-  % Header row
   \node[font=\small\bfseries] at ({(\cA+\cB)/2}, {(\rTop+\rOne)/2}) {Ensemble};
   \node[font=\small\bfseries] at ({(\cB+\cC)/2}, {(\rTop+\rOne)/2}) {Fixed};
   \node[font=\small\bfseries] at ({(\cC+\cD)/2}, {(\rTop+\rOne)/2}) {Fluctuates};
-
-  % Row 1
   \node[font=\small] at ({(\cA+\cB)/2}, {(\rOne+\rTwo)/2}) {Microcanonical};
   \node[font=\small] at ({(\cB+\cC)/2}, {(\rOne+\rTwo)/2}) {$V,\,N,\,U$};
   \node[font=\small] at ({(\cC+\cD)/2}, {(\rOne+\rTwo)/2}) {$T,\,P,\,\mu$};
-
-  % Row 2
   \node[font=\small] at ({(\cA+\cB)/2}, {(\rTwo+\rThree)/2}) {Canonical};
   \node[font=\small] at ({(\cB+\cC)/2}, {(\rTwo+\rThree)/2}) {$V,\,N,\,T$};
   \node[font=\small] at ({(\cC+\cD)/2}, {(\rTwo+\rThree)/2}) {$U$};
-
-  % Row 3
   \node[font=\small] at ({(\cA+\cB)/2}, {(\rThree+\rBot)/2}) {Grand canonical};
   \node[font=\small] at ({(\cB+\cC)/2}, {(\rThree+\rBot)/2}) {$V,\,\mu,\,T$};
   \node[font=\small] at ({(\cC+\cD)/2}, {(\rThree+\rBot)/2}) {$U$,\;$N$};
@@ -197,63 +126,37 @@ $\langle U\rangle$ and $\langle N\rangle$ determined by the reservoir parameters
 
 \subsection{Derivation of the Grand Canonical Distribution}
 
-The derivation follows the same logic as the canonical ensemble, extended to
-include particle exchange.  Consider a small system in contact with a large
-reservoir; the reservoir has conserved total energy $U_\text{tot}$ and total
-particle number $N_\text{tot}$.  If the system is in microstate $s_j$ with
-energy $E_j$ and particle number $N_j$, then the reservoir has energy
-$U_\text{tot} - E_j$ and particle number $N_\text{tot} - N_j$.  The probability
-of the system being in microstate $j$ is proportional to the number of reservoir
-microstates, which is $e^{S_R(U_\text{tot}-E_j,\, N_\text{tot}-N_j)/k_B}$.
-
-Since the reservoir is large, we Taylor expand its entropy in both arguments
-about $(U_\text{tot}, N_\text{tot})$:
+For microstate $j$ (energy $E_j$, particles $N_j$), $P_j \propto \Omega_R(U_\text{tot}-E_j, N_\text{tot}-N_j)$. Taylor-expanding the reservoir entropy:
 \begin{align}
     S_R(U_\text{tot} - E_j,\, N_\text{tot} - N_j)
     &\approx S_R(U_\text{tot}, N_\text{tot})
       - E_j\left.\pdv{S_R}{U}\right|_N
       - N_j\left.\pdv{S_R}{N}\right|_U.
 \end{align}
-Using the thermodynamic identities $(\partial S_R/\partial U)_N = 1/T$ and
-$(\partial S_R/\partial N)_U = -\mu/T$, we obtain
-\begin{equation}
-    S_R \approx S_R(U_\text{tot}, N_\text{tot}) - \frac{E_j}{T} + \frac{\mu N_j}{T}.
-\end{equation}
-Exponentiating and absorbing the (constant) factor $e^{S_R(U_\text{tot},N_\text{tot})/k_B}$
-into the normalisation gives the grand canonical probability:
+Using $(\partial S_R/\partial U)_N = 1/T$ and $(\partial S_R/\partial N)_U = -\mu/T$
+and exponentiating:
 
 \begin{formula}
 \begin{equation}
     P_j(E_j, N_j) = \frac{1}{\mathcal{Z}}\,e^{-\beta(E_j - \mu N_j)},
 \end{equation}
 \end{formula}
-where $\beta = 1/k_BT$ and the \textbf{grand partition function} is defined
-by the normalisation condition.
+where $\beta = 1/k_BT$ and $\mathcal{Z}$ is fixed by normalisation.
 
 \begin{definition}[Grand Partition Function]
 \begin{equation}
     \mathcal{Z} = \sum_j e^{-\beta(E_j - \mu N_j)} = \sum_j e^{-\beta E_j}\,e^{\beta\mu N_j}.
 \end{equation}
-The sum runs over all microstates $j$, each with its own energy $E_j$ and
-particle number $N_j$.
 \end{definition}
 
 \subsection{Grand Potential and Thermodynamic Derivatives}
 
-The connection to thermodynamics is made through the \textbf{grand potential}.
-
 \begin{definition}[Grand Potential]
 \begin{equation}
-    \Omega \equiv -k_BT\ln\mathcal{Z} = U - TS - \mu N.
-\end{equation}
-The grand potential is the analogue of the Helmholtz free energy when particle
-number is not conserved.  Its total differential follows from $dU = TdS - PdV + \mu\,dN$:
-\begin{equation}
-    d\Omega = -S\,dT - P\,dV - N\,d\mu.
+    \Omega \equiv -k_BT\ln\mathcal{Z} = U - TS - \mu N,
+    \qquad d\Omega = -S\,dT - P\,dV - N\,d\mu.
 \end{equation}
 \end{definition}
-
-From $d\Omega$ we read off the natural thermodynamic derivatives:
 
 \begin{formula}
 \begin{equation}
@@ -263,61 +166,40 @@ From $d\Omega$ we read off the natural thermodynamic derivatives:
 \end{equation}
 \end{formula}
 
-These can be verified directly from $\ln\mathcal{Z}$.  Differentiating with
-respect to $\beta$ at fixed $\beta\mu$:
+Differentiating $\ln\mathcal{Z}$ directly:
 \begin{equation}
-    \pdv{\ln\mathcal{Z}}{\beta}\bigg|_{\beta\mu} = \mu\langle N\rangle - \langle U\rangle.
-\end{equation}
-Differentiating with respect to $\beta\mu$ at fixed $\beta$:
-\begin{equation}
+    \pdv{\ln\mathcal{Z}}{\beta}\bigg|_{\beta\mu} = \mu\langle N\rangle - \langle U\rangle,
+    \qquad
     \pdv{\ln\mathcal{Z}}{(\beta\mu)}\bigg|_{\beta} = \langle N\rangle.
 \end{equation}
-The entropy is obtained from $S = -k_B\sum_j P_j \ln P_j$.  Substituting
-$\ln P_j = \beta\mu N_j - \beta E_j - \ln\mathcal{Z}$ and simplifying yields
+From $S = -k_B\sum_j P_j \ln P_j$, substituting $\ln P_j = \beta\mu N_j - \beta E_j - \ln\mathcal{Z}$:
 \begin{equation}
     S = \frac{\langle U\rangle - \mu\langle N\rangle}{T} + k_B\ln\mathcal{Z},
 \end{equation}
-which is entirely consistent with $\Omega = -k_BT\ln\mathcal{Z} = U - TS - \mu N$.
+consistent with $\Omega = U - TS - \mu N$.
 
 \subsection{The Modified First Law and Chemical Potential}
 
-The modification of the first law to include particle exchange is
 \begin{equation}
-    dU = T\,dS - P\,dV + \mu\,dN.
+    dU = T\,dS - P\,dV + \mu\,dN, \qquad \mu \defeq \left(\pdv{U}{N}\right)_{S,V}.
 \end{equation}
 
-The chemical potential $\mu \defeq (\partial U/\partial N)_{S,V}$ (defined in Chapter~5) plays the same role for particle exchange as temperature does for energy exchange:
-
-The physical intuition is clear: consider two subsystems that can exchange both
-energy and particles.  Maximising the total entropy with respect to energy
-exchange gives the condition $T_1 = T_2$ (thermal equilibrium), and maximising
-with respect to particle exchange gives
+Maximising total entropy over particle exchange gives equilibrium condition $\mu_1 = \mu_2$ (at equal $T$). Particles flow from high $\mu$ to low $\mu$:
 \begin{equation}
     \pdv{S_1}{N_1}\bigg|_{U,V} = \pdv{S_2}{N_2}\bigg|_{U,V}
     \implies \frac{\mu_1}{T_1} = \frac{\mu_2}{T_2}.
 \end{equation}
-At equal temperatures, equilibrium with respect to particle exchange therefore
-requires $\mu_1 = \mu_2$.  The chemical potential plays exactly the same role
-for particle exchange that temperature plays for energy exchange: particles flow
-from high $\mu$ to low $\mu$, just as heat flows from high $T$ to low $T$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % System box (small, left)
   \draw[thick] (0,0) rectangle (2.6, 2.0);
   \node[font=\small\bfseries] at (1.3, 1.55) {System};
   \node[font=\small] at (1.3, 1.0) {$E_j,\; N_j$};
-
-  % Reservoir box (large, right)
   \draw[thick] (4.2, -0.4) rectangle (8.2, 2.4);
   \node[font=\small\bfseries] at (6.2, 1.6) {Reservoir};
   \node[font=\small] at (6.2, 0.9) {at $T,\;\mu$};
-
-  % Energy arrow (solid, double-headed) — upper channel
   \draw[<->, thick] (2.6, 1.45) -- (4.2, 1.45)
         node[midway, above, font=\small] {energy};
-
-  % Particle arrow (dashed, double-headed) — lower channel
   \draw[<->, thick, dashed] (2.6, 0.55) -- (4.2, 0.55)
         node[midway, below, font=\small] {particles};
 \end{tikzpicture}\\[3pt]
@@ -331,46 +213,31 @@ a reservoir at $T$, $\mu$.}
 
 \subsection{Factorisation of the Grand Partition Function}
 
-For a system of non-interacting quantum particles, the grand partition function
-acquires an elegant factorised form.  Label the single-particle energy levels
-$\varepsilon_\alpha$ for $\alpha = 1, 2, 3, \ldots$.  A microstate of the
-many-body system is entirely specified by the occupation numbers $\{n_\alpha\}$,
-and the grand Boltzmann weight is
+For non-interacting quantum particles, label single-particle levels $\varepsilon_\alpha$.
+A many-body microstate is specified by occupation numbers $\{n_\alpha\}$, and
 \begin{equation}
     e^{-\beta(E_j - \mu N_j)}
-    = \exp\!\left(\sum_\alpha \beta(\mu - \varepsilon_\alpha)\,n_\alpha\right)
     = \prod_\alpha e^{\beta(\mu-\varepsilon_\alpha)n_\alpha}.
 \end{equation}
-Summing over all allowed configurations $\{n_\alpha\}$:
+Summing over all allowed $\{n_\alpha\}$:
 \begin{equation}
-    \mathcal{Z} = \sum_{\{n_\alpha\}} \prod_\alpha e^{\beta(\mu-\varepsilon_\alpha)n_\alpha}
-    = \prod_\alpha \sum_{n_\alpha} e^{\beta(\mu-\varepsilon_\alpha)n_\alpha}
+    \mathcal{Z} = \prod_\alpha \sum_{n_\alpha} e^{\beta(\mu-\varepsilon_\alpha)n_\alpha}
     \equiv \prod_\alpha \mathcal{Z}_\alpha.
 \end{equation}
-This factorisation is the key advantage of the grand canonical ensemble: because
-no fixed-$N$ constraint couples the levels, the sums over individual occupation
-numbers decouple completely.
+The grand canonical ensemble eliminates the fixed-$N$ constraint, so the occupation sums decouple.
 
 \subsection{Fermions: the Fermi--Dirac Distribution}
 
-For fermions, the Pauli exclusion principle restricts $n_\alpha \in \{0, 1\}$.
-The single-level sum is therefore just two terms:
+For fermions, $n_\alpha \in \{0,1\}$:
 \begin{equation}
     \mathcal{Z}_\alpha^{\text{(F)}} = 1 + e^{\beta(\mu-\varepsilon_\alpha)}.
 \end{equation}
-The full fermionic grand partition function is
 \begin{formula}
 \begin{equation}
     \mathcal{Z} = \prod_\alpha \Bigl(1 + e^{\beta(\mu-\varepsilon_\alpha)}\Bigr).
 \end{equation}
 \end{formula}
-To find the mean occupation of level $\alpha$, differentiate
-$\ln\mathcal{Z} = \sum_\alpha \ln(1 + e^{\beta(\mu-\varepsilon_\alpha)})$ with
-respect to $\mu$ at fixed $\beta$:
-\begin{equation}
-    \langle n_\alpha\rangle
-    = \frac{e^{\beta(\mu-\varepsilon_\alpha)}}{1 + e^{\beta(\mu-\varepsilon_\alpha)}}.
-\end{equation}
+Differentiating $\ln\mathcal{Z}$ with respect to $\mu$ at fixed $\beta$:
 
 \begin{formula}
 \textbf{Fermi--Dirac distribution:}
@@ -382,23 +249,19 @@ respect to $\mu$ at fixed $\beta$:
 
 \subsection{Bosons: the Bose--Einstein Distribution}
 
-For bosons there is no restriction on occupation numbers; each $n_\alpha$ ranges
-over all non-negative integers.  The single-level sum is a geometric series:
+For bosons $n_\alpha = 0,1,2,\ldots$; the single-level sum is a geometric series:
 \begin{equation}
     \mathcal{Z}_\alpha^{\text{(B)}}
     = \sum_{n_\alpha=0}^\infty e^{\beta(\mu-\varepsilon_\alpha)n_\alpha}
     = \frac{1}{1 - e^{\beta(\mu-\varepsilon_\alpha)}},
 \end{equation}
-which converges provided $\mu < \varepsilon_\alpha$ for all $\alpha$, i.e.\ the
-chemical potential must lie strictly below the ground-state energy.  The bosonic
-grand partition function is
+convergent provided $\mu < \varepsilon_\alpha$ for all $\alpha$.
 \begin{formula}
 \begin{equation}
     \mathcal{Z} = \prod_\alpha \frac{1}{1 - e^{\beta(\mu-\varepsilon_\alpha)}}.
 \end{equation}
 \end{formula}
-Differentiating $\ln\mathcal{Z} = -\sum_\alpha \ln(1 - e^{\beta(\mu-\varepsilon_\alpha)})$
-with respect to $\mu$ gives the mean occupation:
+Differentiating $\ln\mathcal{Z}$ with respect to $\mu$:
 
 \begin{formula}
 \textbf{Bose--Einstein distribution:}
@@ -410,72 +273,41 @@ with respect to $\mu$ gives the mean occupation:
 
 \subsection{Classical Limit and the Maxwell--Boltzmann Distribution}
 
-At high energies or high temperatures, $\varepsilon_\alpha \gg \mu$ and therefore
-$e^{\beta(\varepsilon_\alpha - \mu)} \gg 1$.  In this limit the $\pm 1$ in the
-denominator is negligible and both distributions reduce to
-\begin{equation}
-    \langle n_\alpha\rangle \approx e^{-\beta(\varepsilon_\alpha - \mu)},
-\end{equation}
-the classical Maxwell--Boltzmann result.  The quantum corrections are negligible
-when $\beta(\varepsilon - \mu) \gg 1$.
-
-Quantum statistics become relevant precisely when $\langle n_\alpha\rangle \sim 1$
-for the lowest-lying levels.  In the canonical approximation, the mean occupation
-of a state in a box of volume $V$ is roughly $N/Z_1 = N\lambda_\text{th}^3 / V$,
-where
-\begin{equation}
-    \lambda_\text{th} = \frac{h}{\sqrt{2\pi m k_BT}}
-\end{equation}
-is the thermal de Broglie wavelength.  When this ratio approaches unity, the
-quantum regime is entered.
+When $e^{\beta(\varepsilon_\alpha-\mu)} \gg 1$, both distributions reduce to the classical Maxwell--Boltzmann result $\langle n_\alpha\rangle \approx e^{-\beta(\varepsilon_\alpha - \mu)}$. Quantum corrections matter when $N\lambda_\text{th}^3/V \sim 1$.
 
 \begin{definition}[Quantum Degeneracy Criterion]
-A gas of $N$ particles in volume $V$ is \emph{quantum degenerate} when
+A gas is \emph{quantum degenerate} when
 \begin{equation}
     \frac{N}{V}\,\lambda_\text{th}^3 \sim 1.
 \end{equation}
-This condition is reached either by lowering the temperature (so that
-$\lambda_\text{th}$ grows) or by increasing the density.  In the opposite
-limit $N\lambda_\text{th}^3 \ll V$, the classical approximation $Z_N = Z_1^N/N!$
-is valid and quantum statistics can be ignored.
+In the opposite limit $N\lambda_\text{th}^3 \ll V$, the classical
+approximation $Z_N = Z_1^N/N!$ applies.
 \end{definition}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  %------------------------------------------------------------
-  % Left panel: quantum degenerate limit — FD and BE curves
-  %------------------------------------------------------------
-  % Axes
   \draw[->] (0,0) -- (3.8,0) node[right, font=\small] {$\varepsilon_\alpha$};
   \draw[->] (0,0) -- (0,3.0) node[above, font=\small] {$\langle n_\alpha\rangle$};
   \node[font=\small\bfseries] at (1.9, 3.3) {Quantum degenerate};
 
-  % FD curve: step-like, value ~1 below eps_F=1.8, then drops
   \draw[blue, thick] (0, 2.0) -- (1.8, 2.0)
                      .. controls (1.8,2.0) and (2.0,2.0) .. (2.0, 1.0)
                      .. controls (2.0,1.0) and (2.1,0.0) .. (2.3, 0.0)
                      -- (3.6, 0.0);
   \node[blue, right, font=\scriptsize] at (2.05, 1.6) {FD};
 
-  % BE curve: diverges at low eps, then decreases
   \draw[red!80!black, thick, domain=0.25:3.6, samples=60]
         plot (\x, {2.0 / (exp(2.5*(\x - 0.4)) - 1) > 2.8 ? 2.8 : 2.0 / (exp(2.5*(\x-0.4))-1)});
   \node[red!80!black, right, font=\scriptsize] at (1.0, 2.55) {BE};
 
-  % tick at eps_F
   \draw (1.8, -0.07) -- (1.8, 0.07);
   \node[below, font=\scriptsize] at (1.8, -0.07) {$\varepsilon_F$};
   \node[left, font=\scriptsize] at (0, 2.0) {$1$};
 
-  %------------------------------------------------------------
-  % Right panel: classical limit — Maxwell-Boltzmann
-  %------------------------------------------------------------
   \begin{scope}[xshift=5.2cm]
     \draw[->] (0,0) -- (3.8,0) node[right, font=\small] {$\varepsilon_\alpha$};
     \draw[->] (0,0) -- (0,3.0) node[above, font=\small] {$\langle n_\alpha\rangle$};
     \node[font=\small\bfseries] at (1.9, 3.3) {Classical limit};
-
-    % MB curve: exponential decay
     \draw[green!60!black, thick, domain=0:3.5, samples=60]
           plot (\x, {2.4 * exp(-1.2*\x)});
     \node[green!60!black, right, font=\scriptsize] at (0.5, 1.8) {MB};
@@ -493,49 +325,28 @@ Classical limit (right): Maxwell--Boltzmann.}
 
 \subsection{Physical Setup and Allowed Modes}
 
-Consider an empty cubic box of side $L$ held at temperature $T$.  The walls
-continuously absorb and emit photons, maintaining thermal equilibrium.  Photons
-are bosons with spin 1; crucially, the number of photons in the box is not
-conserved --- the walls act as a reservoir at fixed $T$ that can create or
-destroy photons at will.  This means the chemical potential of photons is
-$\mu = 0$, since there is no energy cost associated with changing the number.
+Photons are bosons with $\mu = 0$ (number not conserved). Allowed standing-wave modes in a cubic box of side $L$:
 
-To find the allowed modes, we solve Maxwell's equations in vacuum.  In the
-absence of charges or currents,
-\begin{align}
-    \left(\frac{1}{c^2}\partial_t^2 - \nabla^2\right)\vec{E} = 0, \qquad
-    \nabla\cdot\vec{E} = 0.
-\end{align}
-Seeking standing-wave solutions consistent with the conducting boundary condition
-$E_\parallel = 0$ at each wall gives
+Standing waves with conducting boundary conditions ($E_\parallel = 0$):
 \begin{align}
     E_x &= E_{x0}\cos(k_x x)\sin(k_y y)\sin(k_z z)\sin(\omega t),\notag\\
     E_y &= E_{y0}\sin(k_x x)\cos(k_y y)\sin(k_z z)\sin(\omega t),\\
     E_z &= E_{z0}\sin(k_x x)\sin(k_y y)\cos(k_z z)\sin(\omega t).\notag
 \end{align}
-The dispersion relation is $\omega = c|\vec{k}|$.  The transversality condition
-$\nabla\cdot\vec{E} = 0$ imposes $k_x E_{x0} + k_y E_{y0} + k_z E_{z0} = 0$,
-which removes one component of $\vec{E}_0$, leaving \emph{two} independent
-polarisation states per wavevector.
+Dispersion: $\omega = c|\vec{k}|$.  Transversality $\nabla\cdot\vec{E} = 0$
+leaves two independent polarisation states per wavevector.
 
 \begin{formula}
-The allowed wavevectors are
 \begin{equation}
     \vec{k} = \frac{\pi}{L}(n_x,\,n_y,\,n_z), \qquad n_x, n_y, n_z = 0, 1, 2, \ldots,
 \end{equation}
-with two independent polarisation modes for each $\vec{k}$.
+with two polarisation modes per $\vec{k}$.
 \end{formula}
 
-Each electromagnetic mode of wavevector $\vec{k}$ satisfies
-$\partial_t^2\vec{E} = -\omega^2\vec{E}$, which is the harmonic oscillator
-equation.  Quantising each mode, the energy levels are
-$\mathcal{E}_n(\vec{k}) = (n + \tfrac{1}{2})\hbar\omega(\vec{k})$, where $n$
-counts the number of photons in that mode.  The full state of the electromagnetic
-field is specified by the set of occupation numbers $\{n_{\vec{k},\lambda}\}$
-for every mode $(\vec{k},\lambda)$.
+Each mode is a quantum harmonic oscillator with energy levels
+$\mathcal{E}_n(\vec{k}) = (n+\tfrac{1}{2})\hbar\omega(\vec{k})$.
 
 \begin{definition}
-The \textbf{total energy of the electromagnetic field} in a given state is
 \begin{equation}
     E(\text{state}) = \sum_{\vec{k},\lambda}
     \left(n_{\vec{k},\lambda}+\tfrac{1}{2}\right)\hbar\omega(\vec{k}).
@@ -544,79 +355,60 @@ The \textbf{total energy of the electromagnetic field} in a given state is
 
 \subsection{Partition Function and Internal Energy}
 
-Because each mode is an independent quantum harmonic oscillator, the partition
-function factorises over modes.  Summing over all configurations
-$\{n_{\vec{k},\lambda}\}$:
+The partition function factorises over modes:
 \begin{equation}
     Z = \prod_{\vec{k},\lambda}\sum_{n=0}^{\infty}
     e^{-\beta(n+\frac{1}{2})\hbar\omega(\vec{k})}
     = \prod_{\vec{k},\lambda} Z_\omega(\vec{k}), \qquad
     Z_\omega = \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}.
 \end{equation}
-In the thermodynamic limit, the discrete sum over mode indices becomes an
-integral over the positive octant of $\vec{n}$-space.  Switching to spherical
-coordinates and changing variable to $\omega = \pi c n/L$, and including the
-factor of two for polarisations, gives
+In the thermodynamic limit (mode sum $\to$ integral, two polarisations):
 \begin{equation}
     \ln Z = \frac{V}{\pi^2 c^3}\int_0^\infty \omega^2
     \left[-\frac{\beta\hbar\omega}{2}
           -\ln\!\left(1-e^{-\beta\hbar\omega}\right)\right]d\omega.
 \end{equation}
-The zero-point term ($-\beta\hbar\omega/2$) contributes a temperature-independent
-(though divergent) constant to the free energy; since it has no observable
-thermodynamic consequence it is discarded.
+Dropping the temperature-independent zero-point term:
 
 \begin{formula}
-\textbf{Log-partition function of the photon gas (dropping zero-point energy):}
+\textbf{Log-partition function of the photon gas:}
 \begin{equation}
     \ln Z = -\frac{V}{\pi^2 c^3}\int_0^\infty \omega^2
     \ln\!\left(1-e^{-\beta\hbar\omega}\right)\,d\omega.
 \end{equation}
 \end{formula}
 
-The internal energy follows from $U = -\partial_\beta \ln Z$:
+The internal energy $U = -\partial_\beta \ln Z$:
 \begin{equation}
     U = \frac{V}{\pi^2 c^3}\int_0^\infty
     \underbrace{\omega^2}_{\text{density of modes}}\;
     \underbrace{\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}}_{\text{mean energy per mode}}
     \,d\omega.
 \end{equation}
-The integrand is the \textbf{Planck distribution}: each mode of frequency
-$\omega$ contributes mean energy $\hbar\omega/(e^{\beta\hbar\omega}-1)$, which
-is precisely $\hbar\omega$ times the Bose--Einstein occupation number with
-$\mu = 0$.
-
-To evaluate the total energy, substitute $\tau = \beta\hbar\omega$:
+Substituting $\tau = \beta\hbar\omega$:
 \begin{equation}
     U = \frac{\hbar V}{\pi^2 c^3}\!\left(\frac{k_BT}{\hbar}\right)^{\!4}
     \int_0^\infty \frac{\tau^3\,d\tau}{e^\tau-1}.
 \end{equation}
-The integral is a standard result expressible in terms of the Riemann zeta
-function.
 
 \begin{fact}
-\textbf{Riemann zeta function:} The identity
-$\int_0^\infty x^s (e^x - 1)^{-1}\,dx = s!\;\zeta(s+1)$ gives
+\textbf{Riemann zeta function:} $\int_0^\infty x^s (e^x - 1)^{-1}\,dx = s!\;\zeta(s+1)$, so
 \begin{equation}
     \int_0^\infty \frac{\tau^3\,d\tau}{e^\tau-1} = 3!\;\zeta(4)
     = 6\cdot\frac{\pi^4}{90} = \frac{\pi^4}{15}.
 \end{equation}
-The relevant zeta values are $\zeta(2) = \pi^2/6$, $\zeta(3)\approx 1.202$,
-$\zeta(4) = \pi^4/90$.
+Relevant values: $\zeta(2) = \pi^2/6$, $\zeta(3)\approx 1.202$, $\zeta(4) = \pi^4/90$.
 \end{fact}
 
-Inserting this result:
-
 \begin{formula}
-\textbf{Energy density of the electromagnetic field (Stefan's $T^4$ law):}
+\textbf{Stefan's $T^4$ law:}
 \begin{equation}
     \frac{U}{V} = \frac{\pi^2 k_B^4}{15\hbar^3 c^3}\,T^4 = \frac{4\sigma}{c}\,T^4,
     \qquad \sigma \equiv \frac{\pi^2 k_B^4}{60\hbar^3 c^2}.
 \end{equation}
 \end{formula}
 
-The free energy follows by integrating by parts in the frequency integral,
-giving $F = -U/3$.  From $dF = -S\,dT - P\,dV$ the pressure and entropy are
+From $F = -U/3$ (by integration by parts in the frequency integral):
 \begin{equation}
     P = -\pdv{F}{V}\bigg|_T = \frac{U}{3V} = \frac{4\sigma T^4}{3c},
 \end{equation}
@@ -626,28 +418,20 @@ giving $F = -U/3$.  From $dF = -S\,dT - P\,dV$ the pressure and entropy are
     S = -\pdv{F}{T}\bigg|_V = \frac{4U}{3T} = \frac{16\sigma T^3 V}{3c}.
 \end{equation}
 \end{formula}
-The heat capacity is $C_V = \partial U/\partial T|_V = 16\sigma T^3 V/c$, growing
-as $T^3$.  Radiation pressure equals one-third the energy density, precisely as
-for a classical gas of massless particles.  The number of photons scales as
-$N \propto T^3$: unlike conserved-particle systems, the photon number adjusts
-freely with temperature.
+Heat capacity $C_V \propto T^3$.  Radiation pressure equals $U/(3V)$, as for
+massless particles.  Photon number $N \propto T^3$ adjusts freely with temperature.
 
 \subsection{Stefan--Boltzmann Law and Spectral Radiance}
 
-Imagine a small hole in the box.  Photons incident on the hole from within
-a hemisphere escape; integrating over all directions and all frequencies
-yields the power emitted per unit area.  The spectral radiance per unit angular
-frequency is
+The spectral power per unit area escaping through a small hole:
 \begin{fact}
 \begin{equation}
     \frac{P/A}{\text{unit }\omega}
     = \frac{\hbar}{4\pi^2 c^2}\cdot\frac{\omega^3}{e^{\beta\hbar\omega}-1}.
 \end{equation}
 \end{fact}
-Integrating over $\omega$ and using $\int_0^\infty \tau^3/(e^\tau-1)\,d\tau = \pi^4/15$:
 
 \begin{theorem}[Stefan--Boltzmann Law]
-The total power per unit area emitted by a blackbody is
 \begin{equation}
     \frac{P}{A} = \sigma T^4, \qquad
     \sigma = \frac{\pi^2 k_B^4}{60\hbar^3 c^2} \approx 5.67\times 10^{-8}
@@ -655,49 +439,32 @@ The total power per unit area emitted by a blackbody is
 \end{equation}
 \end{theorem}
 
-One can also verify $P = U/(3V)$ mechanically: for a plane wave incident on a
-wall at angle $\theta$ to the wall normal, each photon imparts impulse
-$2\hbar|\vec{k}|\cos\theta$ to the wall upon reflection, and only the normal
-component contributes to pressure.  Averaging over the hemisphere gives
-$\langle\cos^2\theta\rangle = 1/3$, consistent with the thermodynamic result.
 
 \subsection{Classical Limit and the Ultraviolet Catastrophe}
 
-As $\hbar\to 0$, the Bose--Einstein denominator becomes
-$e^{\beta\hbar\omega} - 1 \approx \beta\hbar\omega$, so the mean energy per
-mode approaches $k_BT$ (the classical equipartition value).  The energy density
-then diverges:
+In the classical limit $e^{\beta\hbar\omega}-1 \approx \beta\hbar\omega$, each mode contributes $k_BT$:
 \begin{equation}
     U \to \frac{k_BTV}{\pi^2 c^3}\int_0^\infty \omega^2\,d\omega \to \infty.
 \end{equation}
-This is the \textbf{ultraviolet catastrophe}: the classical Rayleigh--Jeans
-law assigns $k_BT$ to every mode, and since there are infinitely many
-high-frequency modes, the total energy diverges.  Planck's resolution --- that
-each mode can only absorb or emit energy in quanta $\hbar\omega$ --- was a
-foundational step in the development of quantum mechanics.
+This \textbf{ultraviolet catastrophe} is cured by quantisation: high-frequency modes are exponentially frozen out.
 
 \subsection{Application: Equilibrium Temperature of the Earth}
 
 \begin{example}
-The Sun has surface temperature $T_0 \approx 5772\,\text{K}$ and radius
-$R_\odot \approx 6.96\times 10^8\,\text{m}$; the Earth--Sun distance is
-$a \approx 1.5\times 10^{11}\,\text{m}$.  The total solar luminosity is
-$P_\odot = 4\pi R_\odot^2\,\sigma T_0^4$, and the power intercepted by the
-Earth's cross-section $\pi R_E^2$ is
+Sun: $T_0 \approx 5772\,\text{K}$, $R_\odot \approx 6.96\times 10^8\,\text{m}$;
+Earth--Sun distance $a \approx 1.5\times 10^{11}\,\text{m}$.  Power intercepted
+by Earth's cross-section equals power radiated by its full surface:
 \begin{equation}
-    P_\text{in} = P_\odot \cdot \frac{\pi R_E^2}{4\pi a^2}.
+    P_\text{in} = 4\pi R_\odot^2\,\sigma T_0^4 \cdot \frac{\pi R_E^2}{4\pi a^2}
+    = P_\text{out} = 4\pi R_E^2\,\sigma T_E^4.
 \end{equation}
-Setting this equal to the power radiated by the Earth's entire surface,
-$P_\text{out} = 4\pi R_E^2\,\sigma T_E^4$, and cancelling $R_E$ gives:
 
 \begin{formula}
 \textbf{Earth's radiative equilibrium temperature:}
 \begin{equation}
     T_E = T_0\!\left(\frac{R_\odot}{2a}\right)^{\!1/2} \approx 278\,\text{K}.
 \end{equation}
-This is close to the observed mean surface temperature; the actual value is
-higher due to the greenhouse effect, which traps some of the emitted infrared
-radiation.
+The actual surface temperature is higher due to the greenhouse effect.
 \end{formula}
 \end{example}
 
@@ -707,7 +474,7 @@ radiation.
 
 \subsection{The Zero-Temperature Fermi Gas}
 
-At zero temperature the Fermi--Dirac distribution becomes a sharp step function:
+At $T = 0$, the Fermi--Dirac distribution is a sharp step:
 \begin{equation}
     \langle n_\alpha\rangle \xrightarrow{T\to 0}
     \begin{cases}
@@ -715,96 +482,69 @@ At zero temperature the Fermi--Dirac distribution becomes a sharp step function:
         0 & \varepsilon_\alpha > \mu.
     \end{cases}
 \end{equation}
-All single-particle states below the chemical potential are fully occupied and
-all states above are empty.  The chemical potential at $T = 0$ is called the
-\textbf{Fermi energy} $\varepsilon_F$, and the surface in energy space at
-$\varepsilon = \mu$ is the \textbf{Fermi surface}.
+The chemical potential at $T = 0$ is the \textbf{Fermi energy} $\varepsilon_F$;
+the surface in energy space at $\varepsilon = \mu$ is the \textbf{Fermi surface}.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Axes
   \draw[->] (0,0) -- (5.5,0) node[right, font=\small] {$\varepsilon_\alpha$};
   \draw[->] (0,0) -- (0,3.2) node[above, font=\small] {$\langle n_\alpha\rangle$};
 
-  % Fermi energy vertical dashed guide
   \draw[gray, dashed] (2.8, 0) -- (2.8, 2.4);
   \node[below, font=\small] at (2.8, 0) {$\varepsilon_F$};
 
-  % y-axis ticks
   \draw (-0.07, 2.0) -- (0.07, 2.0);
   \node[left, font=\small] at (0, 2.0) {$1$};
   \draw (-0.07, 1.0) -- (0.07, 1.0);
   \node[left, font=\small] at (0, 1.0) {$\tfrac{1}{2}$};
 
-  % T=0 step function (dashed rectangle)
   \draw[blue!80!black, thick, dashed]
         (0, 2.0) -- (2.8, 2.0) -- (2.8, 0.0) -- (5.2, 0.0);
   \node[blue!80!black, font=\small] at (1.2, 2.3) {$T=0$};
 
-  % T>0 smoothed Fermi-Dirac curve
   \draw[red!80!black, thick, domain=0.0:5.2, samples=120]
         plot (\x, {2.0 / (exp(4.0*(\x/2.8 - 1.0)) + 1)});
   \node[red!80!black, font=\small] at (4.2, 1.0) {$T>0$};
 
-  % Mark that <n> = 1/2 at eps_F for T>0
   \filldraw[red!80!black] (2.8, 1.0) circle (2.5pt);
 
-  % Thermal broadening brace annotation
   \draw[<->, thick] (2.0, -0.55) -- (3.6, -0.55);
   \node[below, font=\scriptsize] at (2.8, -0.55) {${\sim}k_BT$};
 \end{tikzpicture}\\[3pt]
-{\small\itshape Fermi--Dirac distribution: step function at $T=0$ (dashed), thermally
-broadened for $T>0$; $\langle n\rangle=\tfrac{1}{2}$ at $\varepsilon=\varepsilon_F$.}
+{\small\itshape Fermi--Dirac distribution: step at $T=0$ (dashed), thermally broadened
+for $T>0$; $\langle n\rangle=\tfrac{1}{2}$ at $\varepsilon=\varepsilon_F$.}
 \end{center}
 
-To find $\varepsilon_F$, we use the condition that all $N$ particles must fit
-into the states below $\varepsilon_F$.  For spin-$\tfrac{1}{2}$ particles
-(two spin states) in a box of volume $V$, the density of states in three
-dimensions is $g(\varepsilon) \propto \sqrt{\varepsilon}$, and the normalisation
-condition gives
+For spin-$\tfrac{1}{2}$ particles in a box of volume $V$, the density of
+states $g(\varepsilon) \propto \sqrt{\varepsilon}$ and normalisation gives
 \begin{equation}
-    N = \int_0^{\varepsilon_F} g(\varepsilon)\,d\varepsilon \propto \varepsilon_F^{3/2}.
+    N = \int_0^{\varepsilon_F} g(\varepsilon)\,d\varepsilon \propto \varepsilon_F^{3/2},
 \end{equation}
-This determines $\varepsilon_F \propto (N/V)^{2/3}$: the Fermi energy is higher
-for denser systems.  The physical picture at $T = 0$ is of a \emph{Fermi sea} of
-filled states up to the sharp Fermi surface.  Adding one more particle requires
-placing it just above the surface, costing energy $\varepsilon_F$: this is the
-chemical potential at zero temperature, $\mu(T=0) = \varepsilon_F$.  The total
-internal energy at $T = 0$ is large and extensive, since particles fill all states
-up to $\varepsilon_F$.
+so $\varepsilon_F \propto (N/V)^{2/3}$: denser systems have higher Fermi energies.
+At $T = 0$, $\mu(T=0) = \varepsilon_F$.
 
 \subsection{Low-Temperature Corrections: the Sommerfeld Expansion}
 
-At temperatures small compared to the Fermi temperature $T_F \equiv \varepsilon_F/k_B$,
-the Fermi--Dirac step is only slightly smeared.  A systematic expansion in
-powers of $k_BT/\varepsilon_F$ (the Sommerfeld expansion) yields low-temperature
-corrections to the thermodynamic quantities.  The internal energy acquires a
-leading correction
+For $T \ll T_F \equiv \varepsilon_F/k_B$, a systematic expansion in $k_BT/\varepsilon_F$
+gives
 \begin{equation}
     U(T) \approx U(0) + \frac{\pi^2}{6}g(\varepsilon_F)(k_BT)^2 + O(T^4),
 \end{equation}
-where $g(\varepsilon_F)$ is the density of states at the Fermi level.  This
-gives a heat capacity linear in temperature,
+and a heat capacity linear in temperature:
 \begin{equation}
     C_V \approx \frac{\pi^2}{3}k_B^2 T\, g(\varepsilon_F) \propto T,
 \end{equation}
-in stark contrast to the classical value $C_V = \tfrac{3}{2}Nk_B$ which is
-independent of temperature.  The linear-$T$ specific heat is a hallmark of a
-degenerate Fermi system and is observed experimentally in metals at low temperatures.
+in contrast to the classical $C_V = \tfrac{3}{2}Nk_B$.  This linear-$T$ specific
+heat is observed in metals at low temperatures.
 
 \begin{fact}
-\textbf{Conduction electrons in metals.}  The conduction electrons in a metal
-are well approximated as a degenerate Fermi gas.  For copper, the number density
-$n \approx 8.5\times10^{28}\,\text{m}^{-3}$ and $\varepsilon_F \approx 7\,\text{eV}$,
-corresponding to a Fermi temperature $T_F \approx 81\,000\,\text{K}$.  At room
-temperature $T \approx 300\,\text{K}$, we have $T/T_F \approx 0.004$, so the
-electron gas is deeply degenerate.  This explains why electrons contribute only
-a small, linearly temperature-dependent fraction to the heat capacity of metals:
-most electrons cannot be thermally excited because all nearby states are already
-occupied.  The same physics underlies the electrical and thermal conductivity
-of metals, and, on astrophysical scales, the stability of white dwarf stars
-(supported by electron degeneracy pressure) and neutron stars (supported by
-neutron degeneracy pressure).
+\textbf{Conduction electrons in metals.}
+For copper: $n \approx 8.5\times10^{28}\,\text{m}^{-3}$,
+$\varepsilon_F \approx 7\,\text{eV}$, $T_F \approx 81\,000\,\text{K}$.
+At room temperature $T/T_F \approx 0.004$: the electron gas is deeply degenerate.
+Most electrons cannot be thermally excited because nearby states are occupied.
+This physics also underlies the stability of white dwarf stars (electron degeneracy
+pressure) and neutron stars (neutron degeneracy pressure).
 \end{fact}
 
 % ------------------------------------------------------------------
@@ -813,111 +553,68 @@ neutron degeneracy pressure).
 
 \subsection{The Maximum Density of Excited States}
 
-The Bose--Einstein distribution requires $\mu < \varepsilon_0$ (where
-$\varepsilon_0$ is the ground-state energy, taken to be zero) for all occupation
-numbers to be positive and finite.  As $T$ decreases at fixed $N/V$, the chemical
-potential $\mu$ rises toward $0$.  We ask: how many particles can be accommodated
-in the excited states when $\mu = 0$, the maximum possible value?
-
-For a non-interacting Bose gas in a box of volume $V$, replacing the sum over
-states by an integral over the three-dimensional density of states
-$g(\varepsilon) \propto \sqrt{\varepsilon}$ and setting $\mu = 0$:
+The Bose--Einstein distribution requires $\mu < \varepsilon_0 = 0$.  As $T$
+decreases at fixed $N/V$, $\mu$ rises toward $0$.  Setting $\mu = 0$ in the
+integral over the three-dimensional density of states $g(\varepsilon) \propto \sqrt{\varepsilon}$:
 \begin{equation}
     \frac{N_\text{excited, max}}{V}
     = \frac{2}{\sqrt{\pi}}\cdot\frac{1}{\lambda_\text{th}^3}
       \int_0^\infty \frac{\sqrt{u}\,du}{e^u - 1}
     = \frac{\zeta(3/2)}{\lambda_\text{th}^3},
 \end{equation}
-where $\zeta(3/2) \approx 2.612$.  This integral converges because the density
-of states $g(\varepsilon) \propto \sqrt{\varepsilon}$ vanishes faster than the
-Bose--Einstein divergence at $\varepsilon \to 0$.  The result is remarkable: at
-any given temperature, the excited states can hold at most a \emph{finite} number
-density of particles.
-
-A subtle but important point is that the density of states $g(\varepsilon_0) = 0$
-at the ground-state energy, so the ground state is entirely absent from the
-continuum integral: a macroscopic occupation of the ground state cannot be captured
-by replacing sums with integrals.  The ground-state occupation must be treated as
-a separate term.
+where $\zeta(3/2) \approx 2.612$.  The integral converges because $g(\varepsilon)
+\propto \sqrt{\varepsilon}$ vanishes faster than the BE divergence at $\varepsilon \to 0$.
+At any $T$, excited states hold only a finite density of particles. Since $g(\varepsilon_0) = 0$, the ground state is absent from the continuum integral and must be treated separately.
 
 \subsection{Condensation and the Condensate Fraction}
 
-The total particle number is the sum of the ground-state occupation $n_0$ and
-the number in excited states:
+Total particle number:
 \begin{equation}
     N = n_0 + V\lambda_\text{th}^{-3}\,\zeta(3/2).
 \end{equation}
-When $N/V < \zeta(3/2)/\lambda_\text{th}^3$ (high temperature or low density),
-$\mu < 0$ adjusts to accommodate all particles in excited states and $n_0 \approx 0$:
-the system is not condensed.  But as $T$ is lowered at fixed $N/V$, $\lambda_\text{th}$
-grows, and eventually the excited states can no longer hold all $N$ particles.
-At that point $\mu$ saturates at $0$ and the remaining particles are forced into
-the ground state: this is \textbf{Bose--Einstein condensation}.
+When $N/V < \zeta(3/2)/\lambda_\text{th}^3$, all particles fit in excited states
+and $n_0 \approx 0$.  As $T$ decreases, $\lambda_\text{th}$ grows until excited
+states can no longer hold all $N$ particles; $\mu$ saturates at $0$ and the
+remainder condenses into the ground state.
 
 \begin{fact}[Bose--Einstein Condensation]
-When $N/V > \zeta(3/2)/\lambda_\text{th}^3$, a macroscopic fraction of the bosons
-condenses into the single-particle ground state.  The condensate fraction is
+When $N/V > \zeta(3/2)/\lambda_\text{th}^3$, a macroscopic fraction condenses
+into the ground state:
 \begin{equation}
-    \frac{n_0}{N} = 1 - \frac{V\lambda_\text{th}^{-3}\zeta(3/2)}{N}
-    = 1 - \left(\frac{T}{T_c}\right)^{3/2},
+    \frac{n_0}{N} = 1 - \left(\frac{T}{T_c}\right)^{3/2},
 \end{equation}
-where the \textbf{condensation temperature} $T_c$ is defined by
+where the \textbf{condensation temperature} satisfies
 \begin{equation}
     \frac{N}{V} = \frac{\zeta(3/2)}{\lambda_\text{th}^3(T_c)},
-    \qquad \text{i.e.} \quad
+    \qquad
     k_BT_c = \frac{2\pi\hbar^2}{m}\!\left(\frac{N}{V\,\zeta(3/2)}\right)^{\!2/3}.
 \end{equation}
-Below $T_c$, the condensate fraction grows continuously from zero, signalling a
-genuine phase transition driven entirely by quantum statistics rather than
-interactions.
+Below $T_c$, the condensate fraction grows continuously from zero: a phase
+transition driven purely by quantum statistics.
 \end{fact}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Axes
   \draw[->] (0,0) -- (5.5,0) node[right, font=\small] {$\varepsilon_\alpha$};
   \draw[->] (0,0) -- (0,4.2) node[above, font=\small] {$\langle n_\alpha\rangle$};
   \node[below, font=\small] at (0, 0) {$0$};
 
-  % Condensate spike at eps=0 (tall thin bar)
   \draw[blue!80!black, very thick] (0.0, 0.0) -- (0.0, 3.8);
   \draw[blue!80!black, ->, thick] (0.0, 3.8) -- (0.0, 4.0);
   \node[blue!80!black, right, font=\small] at (0.15, 3.6) {$N_0$};
   \node[blue!80!black, font=\scriptsize, right] at (0.15, 3.1) {(condensate)};
 
-  % BE thermal tail for eps > 0 (solid red curve)
   \draw[red!80!black, thick, domain=0.3:4.0, samples=80]
         plot (\x, {2.5 / (exp(1.5*\x) - 1)});
   \node[red!80!black, right, font=\small] at (0.8, 1.3) {thermal cloud (BE)};
 
-  % Maxwell-Boltzmann comparison (dashed green)
   \draw[green!60!black, thick, dashed, domain=0.0:5.2, samples=100]
         plot (\x, {2.3 * exp(-2.0*\x)});
   \node[green!60!black, font=\small] at (3.2, 0.65) {MB};
 
-  % y-axis reference
   \draw (-0.07, 1.0) -- (0.07, 1.0);
 \end{tikzpicture}\\[3pt]
-{\small\itshape Bose--Einstein condensate: macroscopic ground-state occupation $N_0$
-(spike) plus a thermal BE tail.}
+{\small\itshape BEC: macroscopic ground-state occupation $N_0$ (spike) plus a thermal BE tail.}
 \end{center}
 
-Unlike classical phase transitions, BEC occurs even in an ideal, non-interacting
-gas: it is a purely quantum-statistical effect, driven by the tendency of bosons
-to cluster in low-energy states.  The onset of condensation is associated with
-the development of long-range phase coherence across the macroscopic ground-state
-occupation.
-
-\begin{fact}[Experimental realisation]
-Bose--Einstein condensation was first observed experimentally in 1995 by Cornell,
-Wieman, and Ketterle in dilute gases of alkali atoms (rubidium and sodium) cooled
-to temperatures of order $100\,\text{nK}$ by laser cooling and evaporative
-cooling.  At these temperatures the thermal de Broglie wavelength becomes
-comparable to the inter-particle spacing, and a macroscopic fraction of the atoms
-piles up in the motional ground state of the trap.  The resulting condensate
-exhibits striking quantum coherence: two condensates interfere like laser beams,
-and vortices quantised in units of $\hbar$ can be nucleated in a rotating
-condensate.  Later experiments explored the crossover to fermionic superfluidity,
-connecting BEC to Bardeen--Cooper--Schrieffer (BCS) pairing, and establishing
-a unified picture of quantum degeneracy phenomena across both statistics.
-\end{fact}
+BEC is a purely quantum-statistical effect in an ideal gas, driven by bosonic clustering. First observed in 1995 (Cornell, Wieman, Ketterle) in dilute alkali gases at $\sim 100\,\text{nK}$; condensates show long-range phase coherence and quantised vortices.

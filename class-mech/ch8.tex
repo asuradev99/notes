@@ -1,0 +1,1158 @@
+% Unit 7: Fixed Axis Rotation and Angular Momentum
+% Thursday, November 16, 2023
+
+\chapter{Fixed Axis Rotation and Angular Momentum}
+
+% ── continuation from previous page (p.120) ──────────────────────────────────
+% Page 120 continues a conical-pendulum / torque example.
+% Point A is on the axis of rotation; point B is at the bob.
+
+At point $A$ (on the axis of rotation), the torque is
+\[
+    \vect{\tau}_A = \vect{r}_A \times \vect{F} = 0,
+\]
+and therefore
+\[
+    \dv{\vect{L}}{t} = 0.
+\]
+
+At point $B$ (the bob),
+\[
+    \vect{\tau}_B = \vect{r}_B \times \vect{F}
+    \implies
+    |\vect{\tau}_B| = \ell\cos\alpha \cdot T\sin\alpha = Mg\ell\sin\alpha,
+\]
+so
+\[
+    \vect{\tau}_B = Mg\ell\sin\alpha\,\hat{\theta}.
+\]
+
+To show that $\vect{\tau}_B = \dv{\vect{L}_B}{t}$: we know that $\vect{L}_B = M\ell r\omega$.
+
+% ─────────────────────────────────────────────────────────────────────────────
+
+
+% ── Unit 7 lecture 2: Angular Momentum 2 ─────────────────────────────────────
+% Tuesday, November 28, 2023
+
+\chapter{Angular Momentum 2}
+
+\section{Pendulum Revisited}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.0, >=Stealth]
+  % Pivot A
+  \fill[pattern=north east lines] (-0.4,3.3) rectangle (0.4,3.6);
+  \draw[thick] (-0.4,3.3) -- (0.4,3.3);
+  \fill (0,3.3) circle[radius=0.06]; \node[right] at (0.08,3.35) {\small$A$};
+  % Vertical reference
+  \draw[dashed,gray] (0,3.3) -- (0,0.9);
+  % String at angle phi
+  \draw[thick] (0,3.3) -- (0.9,1.6);
+  % Angle
+  \draw (0,2.5) arc[start angle=270,end angle=297,radius=0.8];
+  \node at (0.3,2.35) {$\phi$};
+  % Bob
+  \fill[gray!50] (0.9,1.4) circle[radius=0.18];
+  \draw[thick] (0.9,1.4) circle[radius=0.18];
+  \node[right] at (1.1,1.4) {$M$};
+  % String length label
+  \node[left] at (0.35,2.45) {$\ell$};
+  % Weight
+  \draw[->,thick,blue] (0.9,1.22) -- (0.9,0.5) node[below]{$Mg$};
+  % Tension
+  \draw[->,thick,red] (0.9,1.4) -- ++(117:1.0) node[above]{$T$};
+  % Torque arm
+  \draw[dashed,blue,thin] (0.9,1.4) -- (0.9,3.3);
+  \node[right,scale=0.8,blue] at (0.9,2.35) {$\ell\sin\phi$};
+\end{tikzpicture}
+\end{center}
+\caption{Simple pendulum of length $\ell$ and mass $M$ pivoting at $A$. The torque about $A$ is $\tau_A = -Mg\ell\sin\phi$.}
+\label{fig:pendulum_torque}
+\end{figure}
+
+Previous approaches: $F = ma$ and energy methods.
+
+\textbf{Using Torque:}
+
+The moment of inertia about the pivot $A$ (point mass):
+\[
+    I_A = M\ell^2.
+\]
+The torques about $A$:
+\begin{itemize}
+    \item Tension: $\vect{\tau}_T = \vec{0}$ (radial force, no moment arm).
+    \item Weight: $\vect{\tau}_W = \bigl(\ell\sin\phi\,\hat{x} - \ell\cos\phi\,\hat{y}\bigr)
+                  \times \bigl(0\,\hat{x} - mg\,\hat{y}\bigr)
+                  = -\ell\sin\phi\cdot Mg\,\hat{z}$.
+\end{itemize}
+
+\textbf{Torque equation:}
+\[
+    \sum\tau = I_A\,\alpha
+    \implies -Mg\ell\sin\phi = I_A\ddot{\phi} = M\ell^2\ddot{\phi}.
+\]
+
+\begin{formula}[Equation of Motion: Simple Pendulum]
+\[
+    \ddot{\phi} = -\frac{g}{\ell}\sin\phi.
+\]
+\end{formula}
+
+With the small-angle approximation $\sin\phi \approx \phi$:
+\[
+    \ddot{\phi} \approx -\frac{g}{\ell}\,\phi
+    \implies \omega = \sqrt{\frac{g}{\ell}}.
+\]
+\textit{Note: This frequency of oscillation $\omega$ is different from the angular velocity $\dot\phi$.}
+
+\subsection{For a General Shape (Physical Pendulum)}
+
+For a rigid body of arbitrary shape pivoting at $A$:
+\[
+    I_A = \int\rho^2\,d\rho.
+\]
+The torque equation gives $-Mg\ell\sin\phi = I_A\ddot{\phi}$, so
+\[
+    -\frac{Mg\ell}{I_A}\,\phi = \ddot{\phi}.
+\]
+\begin{formula}[Angular Frequency: Physical Pendulum]
+\[
+    \omega = \sqrt{\frac{Mg\ell}{I_A}}.
+\]
+\end{formula}
+
+\section{Dynamics of Fixed-Axis Rotation}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9, >=Stealth]
+  % Rotation axis (z, vertical)
+  \draw[->,gray,dashed] (0,-1.8) -- (0,2.0) node[above,scale=0.85]{$z$-axis};
+  \fill (0,0) circle[radius=0.05]; \node[left,scale=0.8] at (-0.1,0) {$A$};
+  % Rigid body (irregular blob)
+  \draw[thick,fill=gray!20] (0.2,0.1) to[out=80,in=190] (1.0,1.2)
+    to[out=10,in=100] (2.0,0.6) to[out=280,in=30] (1.8,-0.5)
+    to[out=210,in=300] (0.8,-0.8) to[out=120,in=260] (0.2,0.1);
+  % Mass element
+  \fill[red!70] (1.5,0.8) circle[radius=0.1]; \node[above right,red,scale=0.8] at (1.5,0.8) {$dm_j$};
+  % Rho vector (perpendicular distance to axis)
+  \draw[->,blue,thick] (0,0.8) -- (1.5,0.8) node[midway,above,scale=0.85,blue]{$\rho_j$};
+  % Velocity arrow (tangential)
+  \draw[->,ForestGreen,thick] (1.5,0.8) -- (1.5,1.5) node[right,scale=0.8]{$v_j = \omega\rho_j$};
+\end{tikzpicture}
+\end{center}
+\caption{Extended body rotating about a fixed axis through $A$. Each mass element $dm_j$ is at perpendicular distance $\rho_j$ from the axis and moves with tangential speed $v_j = \omega\rho_j$.}
+\label{fig:fixed_axis_rot}
+\end{figure}
+
+For a body rotating with angular speed $\omega$ about a fixed $z$-axis:
+\[
+    L_z = I\omega, \qquad \tau = I\alpha.
+\]
+
+\textbf{Kinetic energy:}
+\begin{align*}
+    K &= \sum_j \tfrac{1}{2}m_j v_j^2
+    = \sum_j \tfrac{1}{2}m_j(\rho_j\omega)^2 \quad \text{(same $\omega$ for all particles)}\\
+    &= \tfrac{1}{2}\sum_j(m_j\rho_j^2)\,\omega^2.
+\end{align*}
+\begin{formula}[Kinetic Energy: Pure Rotation]
+\[
+    K = \tfrac{1}{2}I\omega^2.
+\]
+\end{formula}
+
+\subsection{Atwood Machine with a Massive Pulley}
+
+\begin{figure}[H]
+    \centering
+    \caption{Atwood machine: masses $m_1$ and $m_2$ connected by a rope over a
+             massive pulley of radius $R$, mass $m_p$, and moment of inertia $I$.
+             Both masses accelerate with magnitude $a$; the tensions are $T_1$ and $T_2$.}
+\end{figure}
+
+\textbf{Force equations of motion:}
+\begin{align}
+    m_1 g - T_1 &= m_1 a, \tag{1}\\
+    m_2 g - T_2 &= -m_2 a, \tag{2}\\
+    N - T_1 - T_2 - m_p g &= 0. \tag{normal force on pulley, not needed}
+\end{align}
+
+\textbf{Torque equation:}
+\[
+    \sum\tau = \tau_{T_1} + \tau_{T_2} = T_1 R - T_2 R = I\alpha. \tag{3}
+\]
+
+\textbf{Constraint equation} (rope does not slip):
+\[
+    a = \alpha R. \tag{4}
+\]
+
+From (1): $T_1 = m_1(g-a)$. From (2): $T_2 = m_2(g+a)$.
+
+Substituting into (3) using the constraint:
+\begin{align*}
+    R^2(T_1 - T_2) &= Ia \\
+    R^2\bigl[m_1(g-a) - m_2(g+a)\bigr] &= Ia \\
+    R^2\bigl[(m_1-m_2)g - (m_1+m_2)a\bigr] &= Ia.
+\end{align*}
+
+\begin{formula}[Atwood Machine with Massive Pulley]
+\[
+    a = \frac{(m_1-m_2)g\,R^2}{I + (m_1+m_2)R^2}
+      = \frac{(m_1-m_2)g}{(m_1+m_2)+I/R^2}.
+\]
+\end{formula}
+
+\section{Motion Involving Translation and Rotation}
+
+If an object is both rotating and translating, we need to account for both. The $z$-component of angular momentum is
+\[
+    L_z = I_0\,\omega + \bigl(\vect{R}\times m\vect{v}\bigr)_z,
+\]
+where $\vect{R}$ is the distance to the COM. More generally, for a system of $N$ particles with $\vect{r}_j = \vect{R} + \vect{r}'_j$ (position relative to COM):
+\[
+    \vect{L} = \sum_{j=1}^{N}\bigl(\vect{r}_j\times m_j\dot{\vect{r}}_j\bigr).
+\]
+
+\begin{example}[Rolling Wheel]
+
+\begin{figure}[H]
+    \centering
+    \caption{Disk of radius $b$ and mass $M$ rolling to the right without slipping.
+             $\vect{R}$ is the position vector from reference point $B$ (on the ground)
+             to the wheel's center. $\omega$ is the spin angular velocity.}
+\end{figure}
+
+The angular momentum about point $B$:
+\[
+    \vect{L} = \vect{L}_0 + \bigl(\vect{R}\times m\vect{v}\bigr),
+    \quad L_0 = -I_0\omega = -\tfrac{1}{2}Mb^2\omega.
+\]
+
+Assuming rolling without slipping ($v = b\omega$):
+\begin{align*}
+    \vect{R}\times m\vect{v} &= \bigl(R\cos\beta\,\hat{x}+R\sin\beta\,\hat{y}\bigr)\times(mv\,\hat{x}) \\
+    &= -R\sin\beta\cdot mv\,\hat{z} = -mvb\,\hat{z}.
+\end{align*}
+Thus
+\begin{formula}[Angular Momentum: Rolling Wheel]
+\[
+    L_z = -\tfrac{1}{2}Mb^2\omega - Mbv = -\tfrac{3}{2}Mb^2\omega.
+\]
+\end{formula}
+\end{example}
+
+\begin{example}[Motion of a Disk on Ice]
+
+\begin{figure}[H]
+    \centering
+    \caption{Disk of radius $b$ and mass $M$ on a frictionless surface.
+             A force $\vect{F}$ is applied at the rim.
+             Point $A$ is a reference point fixed in the lab.}
+\end{figure}
+
+Motion can be solved in two ways:
+\begin{itemize}
+    \item Motion around the COM + motion of COM.
+    \item Generalized equation of motion.
+\end{itemize}
+
+\textbf{Method 1} (about COM):
+\[
+    \tau_0 = F\cdot b = I_0\alpha \implies \alpha = \frac{bF}{I_0}, \qquad a = \frac{F}{m}.
+\]
+
+\textbf{Method 2} (calculate $\vect{\tau}$ and $\vect{L}$ with respect to point $A$):
+\begin{align*}
+    \tau_z &= \tau_0 + \bigl(\vect{R}\times\vect{F}\bigr)_z \\
+    &= Fb + \bigl[(R_x\,\hat{x}+b\,\hat{y})\times F\,\hat{x}\bigr]_z \\
+    &= Fb - Fb = 0.
+\end{align*}
+Since torque $= 0$ about $A$, angular momentum about $A$ is conserved:
+\[
+    L_z = I_0\omega + \bigl(\vect{R}\times Mv\bigr)_z = I_0\omega - bMv.
+\]
+\[
+    \dv{L_z}{t} = 0 \implies \dv{}{t}\bigl[I_0\omega - bMv\bigr] = 0.
+\]
+\[
+    I_0\alpha - bMa = 0 \implies I_0\alpha = bMa = F \implies \alpha = \frac{bF}{I_0}.
+\]
+Both methods agree.
+\end{example}
+
+\begin{example}[Rolling Cylinder on an Inclined Plane]
+
+\begin{figure}[H]
+    \centering
+    \caption{Cylinder of radius $b$, mass $M$, and moment of inertia $I_0 = \tfrac{1}{2}Mb^2$
+             rolling without slipping down a plane inclined at angle $\theta$.
+             $f$ is the friction force; $N$ is the normal force; $W = Mg$.}
+\end{figure}
+
+\textbf{Method 1} (force and torque equations about COM):
+
+Force equations:
+\[
+    Mg\sin\theta - f = Ma, \qquad Mg\cos\theta = N.
+\]
+Torque equation (only friction $f$ exerts torque about COM):
+\[
+    fb = I_0\alpha = \tfrac{1}{2}Mb^2\alpha.
+\]
+Rolling constraint: $a = b\alpha$.
+
+From the system:
+\begin{align*}
+    \text{(i)}\quad &{-f + Mg\sin\theta = Ma,}\\
+    \text{(ii)}\quad &f = \frac{I_0\alpha}{b} = \frac{I_0 a}{b^2}.
+\end{align*}
+Substituting (ii) into (i):
+\[
+    -\frac{I_0 a}{b^2} + Mg\sin\theta = Ma
+    \implies a\!\left(M + \frac{I_0}{b^2}\right) = Mg\sin\theta.
+\]
+\begin{formula}[Rolling Cylinder: Acceleration (Method 1)]
+\[
+    a = \frac{Mg\sin\theta}{M + \tfrac{1}{2}M} = \tfrac{2}{3}g\sin\theta.
+\]
+\end{formula}
+
+\textbf{Method 2} (torque and angular momentum about point $A$ on the ground):
+
+Torque about $A$:
+\[
+    \tau_z = \tau_0 + \bigl(\vect{R}\times\vect{f}\bigr)_z = -fb + \bigl(\hat{z}\times(f + Mg\sin\theta\hat{x})\bigr) \cdot(\ldots) = -bMg\sin\theta.
+\]
+Angular momentum about $A$:
+\[
+    L_z = L_0 + \bigl(\vect{R}\times M\vect{v}\bigr)_z
+    = -I_0\omega - b^2 M\omega = -\tfrac{1}{2}Mb^2\omega - Mb^2\omega = -\tfrac{3}{2}Mb^2\omega.
+\]
+Since $\tau_z = \dv{L_z}{t}$:
+\[
+    -Mg\sin\theta \cdot b = \dv{}{t}\!\left[-\tfrac{3}{2}Mb^2\omega\right] = -\tfrac{3}{2}Mb^2\alpha.
+\]
+\[
+    g\sin\theta = \tfrac{3}{2}b\alpha = \tfrac{3}{2}a
+    \implies \boxed{a = \tfrac{2}{3}g\sin\theta.}
+\]
+
+\textbf{Method 3} (about contact point $A$ directly):
+\[
+    \tau_z = \sum_j(\vect{r}_j\times\vect{f}_j)_z = -bW\sin\theta.
+\]
+\[
+    I = Mb^2 + I_0 = Mb^2 + \tfrac{1}{2}Mb^2 = \tfrac{3}{2}Mb^2 \quad\text{(about contact point)}.
+\]
+Thus, using $a = -\alpha b$:
+\[
+    a = -\alpha b = b\,\frac{\tau_z}{I}
+    = \frac{b(-bW\sin\theta)}{\tfrac{3}{2}Mb^2} = \frac{-b^2 Mg\sin\theta}{\tfrac{3}{2}Mb^2}
+    = \boxed{\tfrac{2}{3}g\sin\theta.}
+\]
+\end{example}
+
+\section{Work--Energy Theorem for Linear and Rotational Motion}
+
+\textbf{Linear (translational) part:}
+\[
+    K_b - K_a = W_{ba} = \int_{\vect{r}_a}^{\vect{r}_b}\vect{F}\cdot d\vect{r}.
+\]
+
+\textbf{Rotational kinetic energy:} $\tfrac{1}{2}I_0\omega^2$.
+
+Starting from $\tau_0 = I_0\alpha = I_0\dv{\omega}{t}$:
+\begin{align*}
+    \tau_0\,d\theta &= I_0\dv{\omega}{t}\cdot d\theta
+    = I_0\dv{\omega}{t}(\omega\,dt)
+    = d\!\left(\tfrac{1}{2}I_0\omega^2\right).
+\end{align*}
+Integrating:
+\[
+    \int_{\theta_a}^{\theta_b}\tau_0\,d\theta = \tfrac{1}{2}I_0\omega_b^2 - \tfrac{1}{2}I_0\omega_a^2.
+\]
+
+\begin{formula}[Total Kinetic Energy: Translation + Rotation]
+\[
+    KE = \tfrac{1}{2}mv^2 + \tfrac{1}{2}I_0\omega^2.
+\]
+\end{formula}
+
+\begin{example}[Velocity of Rolling Cylinder after Falling Height $h$]
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9, >=Stealth]
+  % Incline
+  \draw[thick,fill=gray!10] (0,0) -- (5,0) -- (5,2.5) -- cycle;
+  \node at (0.8,0.15) {$\beta$};
+  \draw (0.7,0) arc[start angle=0,end angle=27,radius=0.7];
+  % Cylinder on slope
+  \def\cx{2.2}\def\cy{1.1}
+  \draw[thick,fill=gray!40] (\cx,\cy) circle[radius=0.5];
+  \fill (\cx,\cy) circle[radius=0.04];
+  % Rolling velocity arrow
+  \draw[->,thick,blue] (\cx,\cy) -- ++(27:1.2) node[above right]{$v$};
+  % Rotation arrow (curved)
+  \draw[->,thick,red] (\cx+0.35,\cy+0.35) arc[start angle=45,end angle=350,radius=0.4]
+    node[right,scale=0.8]{$\omega$};
+  % Contact point label
+  \fill (\cx-0.43,\cy-0.25) circle[radius=0.04];
+  \node[below left,scale=0.75] at (\cx-0.43,\cy-0.25) {contact};
+  % Forces
+  \draw[->,ForestGreen,thick] (\cx,\cy) -- (\cx,-0.2+\cy-0.7) node[below left,scale=0.8]{$f$ (friction)};
+  \draw[->,blue,thick] (\cx,\cy) -- ++(117:0.7) node[above,scale=0.8]{$N$};
+  % Height h
+  \draw[<->,gray] (5.2,0) -- (5.2,2.5) node[midway,right]{$h$};
+  % Rolling constraint label
+  \node[below] at (2.5,-0.1) {$v = b\omega$ (no slip)};
+\end{tikzpicture}
+\end{center}
+\caption{Cylinder (radius $b$, mass $M$) rolling without slipping down an incline at angle $\beta$. The rolling constraint $v = b\omega$ links translational and rotational motion. Friction $f$ provides the torque about the centre of mass.}
+\label{fig:rolling_cylinder}
+\end{figure}
+
+\textbf{Translational work--energy:}
+\[
+    (Mg\sin\beta - f)\,\ell = \tfrac{1}{2}mv^2.
+\]
+The distance along the incline is $\ell = h/\sin\beta$.
+
+\textbf{Rotational work--energy:}
+\[
+    \int_{\theta_a}^{\theta_b}\tau_0\,d\theta = \tfrac{1}{2}I_0\omega_b^2 - \tfrac{1}{2}I_0\omega_a^2.
+\]
+Using constraints $b\theta = \ell$ and $b\omega = v$:
+\begin{align*}
+    (Mg\sin\beta - f)\ell &= \tfrac{1}{2}mv^2, \\
+    f\ell &= \tfrac{1}{2}I_0\frac{v^2}{b^2} \implies f = \tfrac{1}{2}\frac{I_0 v^2}{b^2 \ell}.
+\end{align*}
+Substituting:
+\[
+    \tfrac{1}{2}mv^2 = \left(Mg\sin\beta - \tfrac{1}{2}\frac{I_0 v^2}{b^2\ell}\right)\ell
+    = Mg\sin\beta\cdot\ell - \tfrac{1}{2}\frac{I_0 v^2}{b^2}.
+\]
+Using $I_0 = \tfrac{1}{2}Mb^2$:
+\[
+    \tfrac{1}{2}mv^2 = Mg\sin\beta\cdot\ell - \tfrac{1}{4}mv^2.
+\]
+\[
+    \tfrac{3}{4}mv^2 = g\sin\beta\cdot\ell = g\sin\beta\cdot\frac{h}{\sin\beta} = gh.
+\]
+\begin{formula}[Final Speed of Rolling Cylinder]
+\[
+    v = \sqrt{\tfrac{4}{3}g h}.
+\]
+\end{formula}
+
+Note: Friction is \textit{not} dissipative here. Translational energy is shifted into rotational energy. (This is no longer true if slipping occurs.)
+\end{example}
+
+
+% ── Unit 7 lecture 3: Rigid Body Motion ──────────────────────────────────────
+% Thursday, November 30, 2023
+
+\chapter{Rigid Body Motion}
+
+Key idea: what happens if the axis of rotation is moving?
+
+\section{Vector Nature of Angular Velocity and Angular Momentum}
+
+Do rotation vectors commute? \underline{No!}
+
+(E.g.\ rotating first by $\theta_x$ then by $\theta_y$ is not the same as $\theta_y$ then $\theta_x$.)
+
+\textbf{Goal:} Determine a way to describe rotations via
+\[
+    \vect{\omega} = \omega_x\,\hat{x} + \omega_y\,\hat{y} + \omega_z\,\hat{z}.
+\]
+This is commutative because infinitesimal rotations are:
+\[
+    d\vect{\theta} = d\theta_x\,\hat{x} + d\theta_y\,\hat{y} + d\theta_z\,\hat{z},
+\]
+and $\lim_{\Delta\theta\to 0}\bigl(d\theta_x\,\hat{x} + d\theta_y\,\hat{y}\bigr) = d\theta_y\,\hat{y} + d\theta_x\,\hat{x}$.
+
+As a rigid body turns, a position vector $\vect{r}$ traces a cone. The radius of the cone is $r\sin\phi$. For a small rotation $\Delta\theta$:
+\[
+    |\Delta\vect{r}| = 2r\sin\phi\,\sin\!\left(\frac{\Delta\theta}{2}\right).
+\]
+For small $\Delta\theta$:
+\[
+    |\Delta\vect{r}| \approx r\sin\phi\,\Delta\theta.
+\]
+Therefore:
+\begin{formula}[Velocity from Rotation]
+\[
+    \left|\dv{\vect{r}}{t}\right| = r\sin\phi\,\dv{\theta}{t} = |\vect{\omega}\times\vect{r}|,
+    \implies \dot{\vect{r}} = \vect{\omega}\times\vect{r}.
+\]
+This allows us to discuss multiple rotations at the same time.
+\end{formula}
+
+% ── Unit 7 lecture 4 (review notes): Sections 7.6–7.9 ───────────────────────
+% Sunday, December 3, 2023
+
+\section{Dynamics of Fixed-Axis Rotation (Review)}
+
+\begin{itemize}
+    \item Assumption based on experimental evidence: internal torques cancel out.
+    \item Consider a body rotating with angular speed $\omega$.
+    \item $L_z = I\omega$.
+\end{itemize}
+
+\begin{align*}
+    \tau &= \dv{L}{t}, \quad
+    \tau_z = \dv{}{t}(I\omega) = I\dv{\omega}{t} = I\alpha,
+    \quad\text{where } \alpha = \dv{\omega}{t}.
+\end{align*}
+
+Since we only care about rotation around the $z$-axis:
+\begin{formula}[Torque--Angular Acceleration (Fixed Axis)]
+\[
+    \tau = \tau_z = I\alpha.
+\]
+\end{formula}
+
+\subsection{Kinetic Energy of a Body Undergoing Pure Rotation}
+
+\begin{align*}
+    K &= \sum_j\tfrac{1}{2}m_j v_j^2
+    = \sum_j\tfrac{1}{2}m_j\rho_j^2\omega^2.
+\end{align*}
+\begin{formula}[Kinetic Energy: Pure Rotation]
+\[
+    K = \tfrac{1}{2}I\omega^2.
+\]
+\end{formula}
+
+\subsection{Atwood's Machine with Massive Pulley (Review)}
+
+\begin{figure}[H]
+    \centering
+    \caption{Atwood's machine with a disk pulley of radius $R$, moment of inertia $I$,
+             and masses $M_1 > M_2$.}
+\end{figure}
+
+\textbf{Equations of motion:}
+\begin{align}
+    M_1 g - T_1 &= M_1 a, \tag{1}\\
+    T_2 - M_2 g &= M_2 a. \tag{2}
+\end{align}
+\textbf{Constraints:}
+\begin{align}
+    a_1 &= -a_2 = a \quad\text{(rope has fixed length)}, \tag{3}\\
+    \text{no slip} &\implies a_1 = R\alpha. \tag{4}
+\end{align}
+\textbf{Torque equation:}
+\[
+    RT_1 - RT_2 = \tau = I\alpha, \implies R(T_1-T_2) = I\alpha. \tag{5}
+\]
+Adding (1) and (2):
+\[
+    M_1 g - T_1 + T_2 - M_2 g = (M_1+M_2)a.
+\]
+\[
+    (M_1-M_2)g - (T_1-T_2) = (M_1+M_2)a.
+\]
+Using (5): $T_1-T_2 = \dfrac{Ia}{R^2}$:
+\[
+    (M_1-M_2)g - \frac{Ia}{R^2} = (M_1+M_2)a.
+\]
+\begin{formula}[Atwood's Machine: Acceleration]
+\[
+    a = \frac{(M_1-M_2)g}{(M_1+M_2)+\dfrac{I}{R^2}}.
+\]
+\end{formula}
+
+\section{Pendulum Motion and Fixed-Axis Rotation}
+
+\subsection{Simple Pendulum}
+
+\begin{figure}[H]
+    \centering
+    \caption{Simple pendulum: point mass $m$ on a massless string of length $\ell$,
+             pivoting at $a$. Angle $\phi$ measured from vertical.}
+\end{figure}
+
+Moment of inertia about pivot $a$:
+\[
+    I_a = M\ell^2.
+\]
+Torque about $a$:
+\[
+    \tau_a = -W_\perp\cdot r = -Wl\sin\phi.
+\]
+With small-angle approximation $\sin\phi \approx \phi$:
+\[
+    \tau_a \approx -W\ell\phi.
+\]
+Using $\tau_a = I\alpha$:
+\[
+    -mg\ell\phi = I\ddot\phi = m\ell^2\ddot\phi.
+\]
+\begin{formula}[Simple Pendulum Equation of Motion]
+\[
+    -\frac{g}{\ell}\phi = \ddot\phi \quad\Longrightarrow\quad \omega = \sqrt{\frac{g}{\ell}}.
+\]
+\end{formula}
+
+\subsection{Physical Pendulum}
+
+Using the general pendulum result:
+\[
+    \omega = \sqrt{\frac{Mg\ell}{I_a}}.
+\]
+Define the \textbf{radius of gyration} $k = \sqrt{I_0/m}$. Since $I_a = I_0 + M\ell^2 = m(k^2+\ell^2)$:
+
+\begin{formula}[Physical Pendulum Frequency]
+\[
+    \omega = \sqrt{\frac{g\ell}{k^2+\ell^2}}.
+\]
+For a simple pendulum $k=0$, so $\omega = \sqrt{g/\ell}$ as expected.
+\end{formula}
+
+\begin{example}[Crossing Gate]
+
+\begin{figure}[H]
+    \centering
+    \caption{A crossing gate of length $2L$ and mass $m_0$ pivots at one end.
+             A ball strikes the gate at distance $\ell$ from the pivot.
+             $F_{sv}$ is the force at the pivot (support); $F_{pv}$ is the force
+             from the ball on the gate.}
+\end{figure}
+
+Torques around the pivot:
+\[
+    \tau = M_0 gL - F_{sv}\cdot\ell = I_p\ddot\theta.
+\]
+For the short time $\Delta t$ of the collision, the gravity torque is negligible:
+\[
+    I_p\dot\theta \approx (M_0 gL - F_{sv}\ell)\,\Delta t \approx -F_{sv}\ell\,\Delta t.
+\]
+Applying Newton's second law to the gate:
+\[
+    M\dv{v}{t} = -(F_{sv}+F_{pv}) + Mg.
+\]
+Integrating over the collision:
+\[
+    Mv = ML\dot\theta = -(F_{sv}+F_{pv})\,\Delta t.
+\]
+From equation above: $F_{sv}\Delta t = -\dfrac{I_p\dot\theta}{\ell}$.
+
+Substituting into the integrated Newton's law:
+\[
+    ML\dot\theta = +\frac{I_p\dot\theta}{\ell} - F_{pv}\Delta t
+    \implies F_{pv}\Delta t = \left(\frac{I_p}{\ell}-ML\right)\dot\theta.
+\]
+We want to minimize $F_{pv}\Delta t$ (to protect the pivot), so set it to zero:
+\[
+    \frac{I_p}{\ell} = ML \implies \ell = \frac{I_p}{ML} = \frac{\tfrac{1}{3}m_0(2L)^2}{m_0 L}.
+\]
+\begin{formula}[Center of Percussion]
+\[
+    \ell = \frac{4L}{3}.
+\]
+$\ell$ is called the \textbf{center of percussion}.
+\end{formula}
+\end{example}
+
+\section{Motion Involving Translation and Rotation}
+
+\begin{theorem}[Chasles' Theorem]
+Any motion of a rigid body can be described by both a translation and a rotation.
+\end{theorem}
+
+Now we allow the axis to translate. The $z$-component of angular momentum $L_z$ can be written as:
+\[
+    L_z = I_0\omega + \bigl(\vect{R}\times m\vect{v}\bigr)_z,
+\]
+where $\vect{v} = \dot{\vect{R}}$ is the velocity of the COM.
+
+\subsection{Proof}
+
+Consider a body as an aggregate of $N$ particles. Then
+\[
+    \vect{L} = \sum_{j=1}^{N}\bigl(\vect{r}_j\times m_j\dot{\vect{r}}_j\bigr),
+    \quad \vect{R} = \frac{\sum m_j\vect{r}_j}{M}.
+\]
+Using COM coordinates $\vect{r}_j = \vect{R}+\vect{r}'_j$:
+\begin{align*}
+    \vect{L} &= \sum\bigl(\vect{R}+\vect{r}'_j\bigr)\times m_j\bigl(\dot{\vect{R}}+\dot{\vect{r}}'_j\bigr) \\
+    &= \vect{R}\times\sum m_j\dot{\vect{R}}
+     + \underbrace{\sum m_j\vect{r}'_j}_{=0}\times\dot{\vect{R}}
+     + \vect{R}\times\underbrace{\sum m_j\dot{\vect{r}}'_j}_{=0}
+     + \sum\bigl(m_j\vect{r}'_j\times\dot{\vect{r}}'_j\bigr) \\
+    &= \vect{R}\times M\vect{V} + \sum\bigl(m_j\vect{r}'_j\times\dot{\vect{r}}'_j\bigr).
+\end{align*}
+The cross terms vanish because $\sum m_j\vect{r}'_j = 0$ (COM definition).
+
+Since we only care about $z$-rotation:
+\[
+    L_z = \bigl(\vect{R}\times M\vect{V}\bigr)_z + \sum m_j\rho'^2_j\,\omega = \bigl(\vect{R}\times M\vect{V}\bigr)_z + I_0\omega.
+\]
+
+\begin{formula}[Angular Momentum: Translation + Rotation]
+\[
+    L_z = I_0\omega + \bigl(\vect{R}\times M\vect{v}\bigr)_z.
+\]
+The first term is the \textbf{spin term}; the second is the \textbf{orbital term}.
+\end{formula}
+
+\begin{example}[Angular Momentum of a Rolling Wheel]
+\begin{figure}[H]
+    \centering
+    \caption{Disk of radius $b$ and mass $M$ rolling without slipping.
+             $\vect{R}$ is the position of the center from reference point $B$.}
+\end{figure}
+\[
+    I_0 = \tfrac{1}{2}Mb^2 \implies L_0 = -\tfrac{1}{2}Mb^2\omega.
+\]
+\[
+    \bigl(\vect{R}\times M\vect{v}\bigr)_z = -Mbv = -Mb^2\omega.
+\]
+By the above theorem:
+\begin{align*}
+    L_z &= -\tfrac{1}{2}Mb^2\omega - MbV \\
+    &= -\tfrac{1}{2}Mb^2\omega - Mb^2\omega.
+\end{align*}
+\begin{formula}[Rolling Wheel Angular Momentum]
+\[
+    L_z = -\tfrac{3}{2}Mb^2\omega.
+\]
+\end{formula}
+\end{example}
+
+\subsection{Torque on a Moving Body}
+
+\begin{align*}
+    \tau &= \sum\vect{r}_j\times\vect{F}_j
+    = \sum\bigl(\vect{r}'_j+\vect{R}\bigr)\times\vect{F}_j \\
+    &= \sum\bigl(\vect{r}'_j\times\vect{F}_j\bigr) + \vect{R}\times\vect{F},
+\end{align*}
+where $\vect{F} = \sum\vect{F}_j$ is the total applied force.
+
+\begin{formula}[Torque on a Moving Body]
+\[
+    \tau = \tau_0 + \bigl(\vect{R}\times\vect{F}\bigr)_z,
+    \quad\text{where } \tau_0 = I\alpha.
+\]
+Note: $\tau_0 = I\alpha$ is \textbf{totally independent of linear motion}.
+\end{formula}
+
+\subsection{Kinetic Energy: Translation + Rotation}
+
+The same separation applies for kinetic energy:
+\begin{align*}
+    K &= \tfrac{1}{2}\sum m_j v_j^2
+    = \tfrac{1}{2}\sum m_j\bigl(\vect{v}+\dot{\vect{r}}'_j\bigr)^2 \\
+    &= \tfrac{1}{2}\sum m_j\bigl(v^2 + 2\vect{v}\cdot\dot{\vect{r}}'_j + \dot{r}'^2_j\bigr) \\
+    &= \tfrac{1}{2}Mv^2 + \underbrace{\Bigl(\sum m_j\dot{\vect{r}}'_j\Bigr)}_{\displaystyle=0}\cdot 2\vect{v}
+       + \tfrac{1}{2}\sum m_j\dot{r}'^2_j.
+\end{align*}
+\begin{formula}[Total Kinetic Energy]
+\[
+    KE = \tfrac{1}{2}Mv^2 + \tfrac{1}{2}I_0\omega^2.
+\]
+\end{formula}
+
+\begin{example}[Drum Rolling Down a Plane]
+
+\begin{figure}[H]
+    \centering
+    \caption{Drum of radius $b$, mass $M$, $I_0 = \tfrac{1}{2}Mb^2$ rolling
+             without slipping down a plane inclined at angle $\theta$.
+             Friction $f$ acts at the contact point $A$.
+             Reference point $A$ is on the inclined plane.}
+\end{figure}
+
+\textbf{Goal:} Find the drum's acceleration along the plane.
+
+\textbf{Method 1} (force and torque):
+\[
+    Wg\sin\theta - f = Ma, \quad\text{only friction exerts torque about COM,}
+\]
+\[
+    bf = I_0\alpha = \tfrac{1}{2}Mb^2\alpha, \quad a = b\alpha.
+\]
+\[
+    f = \tfrac{1}{2}Mb\alpha = \tfrac{1}{2}ma.
+\]
+\[
+    Mg\sin\theta = \tfrac{3}{2}Ma \implies \boxed{a = \tfrac{2}{3}g\sin\theta.}
+\]
+
+\textbf{Method 2} (angular momentum about $A$):
+
+Torque about $A$:
+\[
+    \tau_s = \bigl(\vect{R}\times\vect{F}\bigr)_z = -bW\sin\theta.
+\]
+(Why not $Wg\sin\theta - f$? Because friction acts at $A$ and has zero moment arm about $A$.)
+
+Angular momentum about $A$:
+\[
+    L_z = -I_0\omega + \bigl(\vect{R}\times M\vect{v}\bigr)_z
+    = -\tfrac{1}{2}Mb^2\omega - Mb^2\omega = -\tfrac{3}{2}Mb^2\omega
+    \quad (v = b\omega\text{ no-slip}).
+\]
+Since $\tau_z = \dv{L_z}{t}$:
+\[
+    -bMg\sin\theta = \dv{}{t}\!\left[-\tfrac{3}{2}Mb^2\omega\right] = -\tfrac{3}{2}Mb^2\alpha.
+\]
+\[
+    g\sin\theta = \tfrac{3}{2}b\alpha = \tfrac{3}{2}a \implies \boxed{a = \tfrac{2}{3}g\sin\theta.}
+\]
+
+\textbf{Method 3} (about contact point $A$, using parallel axis theorem):
+\[
+    I = Mb^2 + I_0 = Mb^2 + \tfrac{1}{2}Mb^2 = \tfrac{3}{2}Mb^2.
+\]
+\[
+    a = -\alpha b = b\,\frac{\tau_z}{I}
+    = \frac{b(-bW\sin\theta)}{\tfrac{3}{2}Mb^2} = \boxed{\tfrac{2}{3}g\sin\theta.}
+\]
+\end{example}
+
+\section{Work--Energy Theorem and Rotational Motion}
+
+Recall $K_b - K_a = W_{ba}$ where $W_{ba} = \displaystyle\int_m^{r_b}\vect{F}\cdot d\vect{r}$.
+
+For a rigid body this divides into two parts:
+
+\textbf{(1) Translational part:}
+
+Net force on COM: $\vect{F} = M\dv{\vect{v}}{t}$.
+
+Using $d\vect{R} = \vect{v}\,dt$:
+\[
+    \vect{F}\cdot d\vect{R} = M\dv{\vect{v}}{t}\cdot\vect{v}\,dt = d\!\left(\tfrac{1}{2}Mv^2\right).
+\]
+Integrating:
+\[
+    \int_{R_a}^{R_b}\vect{F}\cdot d\vect{R} = \tfrac{1}{2}Mv_b^2 - \tfrac{1}{2}Mv_a^2.
+\]
+
+\textbf{(2) Rotational part:}
+
+$\tau_0 = I_0\alpha = I_0\dv{\omega}{t}$. Using $d\theta = \omega\,dt$:
+\[
+    \tau_0\,d\theta = I_0\dv{\omega}{t}\cdot\omega\,dt = d\!\left(\tfrac{1}{2}I_0\omega^2\right).
+\]
+\[
+    \int_{\theta_a}^{\theta_b}\tau_0\,d\theta = \tfrac{1}{2}I_0\omega_b^2 - \tfrac{1}{2}I_0\omega_a^2.
+\]
+
+\begin{formula}[Work--Energy Theorem: Rigid Body]
+\[
+    K_b - K_a = W_{ba},
+    \quad\text{where } K = \tfrac{1}{2}Mv^2 + \tfrac{1}{2}I_0\omega^2.
+\]
+\end{formula}
+
+\subsection*{Summary of Key Ideas}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Pure Rotation} & \textbf{Rotation and Translation} \\
+\hline
+$L = I\omega$ & $L_z = I_0\omega + (\vect{R}\times M\vect{v})_z$ \\
+$\tau = I\alpha$ & $\tau_z = \tau_0 + (\vect{R}\times\vect{F})_z$ \\
+$K = \tfrac{1}{2}I\omega^2$ & $\tau_0 = I_0\alpha$ \\
+& $K = \tfrac{1}{2}I_0\omega^2 + \tfrac{1}{2}Mv^2$ \\
+\hline
+\end{tabular}
+\end{center}
+
+
+% ── Unit 10: Central Force / One-Body Problem ─────────────────────────────────
+% Wednesday, November 15, 2023
+
+\chapter{Central Force Motion}
+
+\section{10.1 Introduction: Central Force as a One-Body Problem}
+
+Consider two isolated particles $m_1$ and $m_2$.
+
+\begin{figure}[H]
+    \centering
+    \caption{Two-body system. $\vect{r} = \vect{r}_1 - \vect{r}_2$ is the relative
+             position vector; $r = |\vect{r}| = |\vect{r}_1 - \vect{r}_2|$.}
+\end{figure}
+
+\textbf{Equations of motion:}
+\begin{align}
+    m_1\ddot{\vect{r}}_1 &= f(r)\hat{r}, \tag{1}\\
+    m_2\ddot{\vect{r}}_2 &= -f(r)\hat{r}. \tag{2}
+\end{align}
+
+\textbf{Apply the COM:}
+\[
+    \vect{R} = \frac{m_1\vect{r}_1 + m_2\vect{r}_2}{m_1+m_2}.
+\]
+It can be shown (exercise) that $\ddot{\vect{R}} = 0$, so the COM moves at constant velocity. Setting $\vect{R}_0$ at the origin with a stationary COM: $\vect{R} = 0$.
+
+Subtracting (1) by (2):
+\[
+    \ddot{\vect{r}}_1 = \frac{f(r)}{m_1}, \quad \ddot{\vect{r}}_2 = \frac{-f(r)}{m_2}.
+\]
+\[
+    \ddot{\vect{r}}_1 - \ddot{\vect{r}}_2 = \left(\frac{1}{m_1}+\frac{1}{m_2}\right)f(r)\hat{r}.
+\]
+\[
+    \implies \left(\frac{m_1 m_2}{m_1+m_2}\right)\bigl(\ddot{\vect{r}}_1-\ddot{\vect{r}}_2\bigr) = f(r)\hat{r}.
+\]
+Let $\mu = \dfrac{m_1 m_2}{m_1+m_2}$, called the \textbf{reduced mass}. Then
+\[
+    \mu(\ddot{\vect{r}}_1-\ddot{\vect{r}}_2) = f(r)\hat{r}
+    \implies \mu\ddot{\vect{r}} = f(r)\hat{r}.
+\]
+Working backwards to find $\vect{r}_1$ and $\vect{r}_2$:
+\[
+    \vect{r} = \vect{r}_1-\vect{r}_2, \quad \vect{R} = \frac{m_1\vect{r}_1+m_2\vect{r}_2}{m_1+m_2}.
+\]
+Solving:
+\begin{formula}[Individual Positions from COM and Relative Coordinates]
+\[
+    \vect{r}_1 = \vect{R} + \left(\frac{m_2}{m_1+m_2}\right)\vect{r},
+    \qquad
+    \vect{r}_2 = \vect{R} - \left(\frac{m_2}{m_1+m_2}\right)\vect{r}.
+\]
+\end{formula}
+
+\section{Consequences of Angular Momentum Conservation}
+
+Since $f(r)\hat{r}$ is along $\vect{r}$ and cannot exert a torque on $\mu$, the angular momentum $\vect{L}$ is constant.
+
+\subsection{A) Motion is Confined to a Plane}
+
+\textbf{Proof:} $\vect{L} = \mu(\vect{r}\times\dot{\vect{r}})$. Since $\vect{L}\perp\vect{r}$ for all $t$, and $\vect{L}$ is fixed, $\vect{r}$ stays in a plane. Thus, we introduce polar coordinates:
+
+\begin{formula}[Equations of Motion in Polar Coordinates]
+\[
+    \mu(\ddot{r} - r\dot\theta^2) = f(r),
+    \qquad
+    \mu(r\ddot\theta + 2\dot{r}\dot\theta) = 0.
+\]
+\end{formula}
+
+\subsection{B) Law of Equal Areas}
+
+Since there is no net torque, the angular momentum is $L = \mu r^2\dot\theta = \text{const}$.
+
+The area swept out by $\vect{r}$ in time $dt$ is $dA = \tfrac{1}{2}r^2\,d\theta$, so:
+
+\begin{formula}[Law of Equal Areas (Kepler's Second Law)]
+\[
+    \dv{A}{t} = \tfrac{1}{2}r^2\dot\theta = \frac{L}{2\mu} = \text{constant}.
+\]
+\end{formula}
+
+Thus, areas swept out by $\vect{r}$ are the same for equal time intervals.
+\begin{itemize}
+    \item Holds for \underline{all central forces} and \underline{open and closed} orbits.
+\end{itemize}
+
+\section{Consequences of Conservation of Energy}
+
+The kinetic energy of $\mu$:
+\begin{align*}
+    KE &= \tfrac{1}{2}\mu v^2
+    = \tfrac{1}{2}\mu\bigl(\dot{r}\hat{r}+r\dot\theta\hat\theta\bigr)^2
+    = \tfrac{1}{2}\mu\bigl(\dot{r}^2+r^2\dot\theta^2\bigr)
+    \quad (\hat{r}\text{ and }\hat\theta\text{ are orthogonal}).
+\end{align*}
+Since all central forces are conservative,
+\[
+    U(r) - U(r_0) = -\int_{r_0}^{r}f(r')\,dr'.
+\]
+By the work--energy theorem, $E = K + U(r)$:
+\begin{align*}
+    E &= \tfrac{1}{2}\mu v^2 + U(r) \\
+    &= \tfrac{1}{2}\mu(\dot{r}^2+r^2\dot\theta^2) + U(r) \\
+    &= \tfrac{1}{2}\mu\dot{r}^2 + \tfrac{1}{2}\mu r^2\dot\theta^2 + U(r).
+\end{align*}
+Using $L = \mu r^2\dot\theta$:
+\begin{formula}[Energy in Central Force Motion]
+\[
+    E = \tfrac{1}{2}\mu\dot{r}^2 + \frac{L^2}{2\mu r^2} + U(r).
+\]
+\end{formula}
+
+\subsection{Effective Potential}
+
+Define the \textbf{effective potential} (which includes a centrifugal term):
+\[
+    U_{\text{eff}}(r) \defeq \frac{L^2}{2\mu r^2} + U(r).
+\]
+Then:
+\begin{formula}[Energy with Effective Potential]
+\[
+    E = \tfrac{1}{2}\mu\dot{r}^2 + U_{\text{eff}}(r).
+\]
+\end{formula}
+This allows us to use simple energy diagrams to describe central force motion qualitatively.
+
+\begin{itemize}
+    \item If $E > 0$: \textbf{unbound orbit}.
+    \item If $E < 0$: \textbf{bound orbit}.
+    \item If $E = E_{\min}$: \textbf{circular orbit} ($\varepsilon = 0$).
+\end{itemize}
+
+\section{Formal Solution for Central Force Motion}
+
+Starting from
+\[
+    E = \tfrac{1}{2}\mu\dot{r}^2 + U_{\text{eff}}(r),
+\]
+\[
+    \dv{r}{t} = \sqrt{\frac{2}{\mu}\bigl(E - U_{\text{eff}}(r)\bigr)}.
+\]
+\begin{formula}[Time as Function of $r$]
+\[
+    \int_{r_0}^{r}\frac{dr'}{\sqrt{\tfrac{2}{\mu}(E-U_{\text{eff}})}} = t - t_0.
+\]
+\end{formula}
+Solving gives $r$ as a function of $t$.
+
+To find $\theta$ as a function of time, use $L = \mu r^2\dot\theta$:
+\[
+    \dv{\theta}{t} = \frac{L}{\mu r^2}, \qquad
+    \theta - \theta_0 = \frac{1}{\mu}\int_{t_0}^{t}\frac{dt'}{r^2}.
+\]
+We are also interested in $r$ as a function of $\theta$:
+\[
+    \dv{\theta}{r} = \dv{\theta}{t}\cdot\dv{t}{r}
+    = \frac{L}{\mu r^2}\cdot\sqrt{\frac{\mu}{2(E-U_{\text{eff}})}}.
+\]
+
+\subsection{Polar Coordinates: Shape of the Orbit}
+
+\[
+    \dv{r}{\theta} = \dv{r}{t}\cdot\dv{t}{\theta} = \left|\dv{r}{\theta}\right|\cdot\frac{L}{\mu r^2}.
+\]
+\[
+    \dv{r}{\theta} = \frac{\mu r^2}{L}\sqrt{\frac{2}{\mu}\bigl(E-U_{\text{eff}}\bigr)}.
+\]
+\[
+    \int_{r_1}^{r}\frac{L\,dr'}{r'^2\sqrt{2\mu(E-U_{\text{eff}})}} = \int_{\theta_0}^{\theta}d\theta.
+\]
+For the gravitational potential $U(r) = -\dfrac{Gm_1 m_2}{r}$, solving the integral gives:
+\[
+    r(\theta) = \frac{L^2}{\mu G m_1 m_2}
+    \left(1 - \sqrt{1+\frac{2EL^2}{\mu(Gm_1 m_2)^2}}\sin(\theta-\theta_0)\right)^{-1}.
+\]
+With the convention $\theta_0 = -\pi/2$, and defining $\varepsilon$:
+
+\begin{formula}[Orbit Equation (Conic Section)]
+\[
+    r(\theta) = \frac{r_0}{1 - \varepsilon\cos\theta},
+\]
+where $r_0 = \dfrac{L^2}{\mu G m_1 m_2}$ and $\varepsilon = \sqrt{1+\dfrac{2EL^2}{\mu(Gm_1 m_2)^2}}$.
+\end{formula}
+
+\textbf{Implications:}
+\begin{itemize}
+    \item $\varepsilon = 0 \implies$ \textbf{circle}.
+    \item $0 < \varepsilon < 1 \implies$ \textbf{ellipse} (closed orbit).
+    \item $\varepsilon = 1 \implies$ \textbf{parabola} (open orbit).
+    \item $\varepsilon > 1 \implies$ \textbf{hyperbola} (open orbit).
+\end{itemize}
+
+For a bound orbit ($0 < \varepsilon < 1$):
+\[
+    0 < 1 + \frac{2EL^2}{\mu(Gm_1 m_2)^2} < 1
+    \implies -1 < \frac{2EL^2}{\mu(Gm_1 m_2)^2} < 0.
+\]
+
+\begin{formula}[Ellipse Energy Result]
+\[
+    -\frac{\mu(Gm_1 m_2)^2}{2L^2} < E < 0.
+\]
+The minimum energy $E_{\min} = -\dfrac{\mu(Gm_1 m_2)^2}{2L^2}$ corresponds to a circular orbit.
+\end{formula}
+
+\section{Planetary Orbits}
+
+Bound (elliptical) orbits have $0 < \varepsilon < 1$.
+
+\begin{figure}[H]
+    \centering
+    \caption{Elliptical orbit with the Sun at one focus.
+             $r_{\min}$ (periapsis/perihelion) and $r_{\max}$ (apoapsis/aphelion)
+             are the closest and farthest distances.}
+\end{figure}
+
+From the orbit equation:
+\[
+    r_{\min} = \frac{r_0}{1+\varepsilon}, \qquad r_{\max} = \frac{r_0}{1-\varepsilon}.
+\]
+
+\section{Kepler's Laws}
+
+\begin{theorem}[Kepler's Laws]
+\begin{enumerate}
+    \item Every planet moves in an ellipse with the Sun at one focus.
+    \item Equal areas are covered in equal times.
+    \item The period of revolution $T$ of a planet about the Sun is related to the major axis $A$ of the ellipse by $T^2 = kA^3$.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Major Axis $A$}
+
+\[
+    A = r_{\min} + r_{\max} = r_0\!\left(\frac{1}{1+\varepsilon}+\frac{1}{1-\varepsilon}\right)
+    = \frac{2r_0}{1-\varepsilon^2}.
+\]
+
+\textbf{Goal:} relate $A$ to $T$.
+
+The eccentricity:
+\[
+    \varepsilon = \sqrt{1+\frac{2EL^2}{\mu(Gm_1 m_2)^2}}.
+\]
+Thus $r_0 = \dfrac{L^2}{\mu G m_1 m_2}$, and
+\[
+    A = \frac{2\cdot\dfrac{L^2}{\mu Gm_1 m_2}}{1-\!\left(1+\dfrac{2EL^2}{\mu(Gm_1 m_2)^2}\right)}
+    = -\frac{Gm_1 m_2}{E}.
+\]
+\begin{formula}[Semi-Major Axis and Energy]
+\[
+    E = -\frac{Gm_1 m_2}{A}.
+\]
+\end{formula}
+
+\subsection{Derivation of Kepler's Third Law}
+
+To find $T$, use $\dv{r}{t}$:
+\[
+    t_b - t_a = \mu\int_{r_a}^{r_b}\frac{r\,dr}{\sqrt{2\mu E r^2 + 2\mu G r - L^2}}.
+\]
+Skipping to the solution (integration by parts), letting $C = Gm_1 m_2$:
+\[
+    T = \left(\frac{\pi\mu C}{-E}\right)\frac{1}{\sqrt{-2\mu E}},
+\]
+\[
+    T^2 = \frac{\pi^2\mu^2 C^2}{-E^2\cdot 2\mu E} = \frac{\pi^2\mu C^2}{-2E^3}.
+\]
+Since $E = -C/A$:
+\begin{align*}
+    T^2 &= \frac{\pi^2\mu C^2}{-2(-C/A)^3}
+    = \frac{\pi^2\mu C^2 A^3}{2C^3}
+    = \frac{\pi^2\mu}{2C} A^3.
+\end{align*}
+\begin{formula}[Kepler's Third Law]
+\[
+    T^2 = \frac{\pi^2\mu}{2Gm_1 m_2}\,A^3.
+\]
+\end{formula}
+
+\textit{Why does this hold for all planets?} Recall $\mu = \dfrac{m_1 m_2}{m_1+m_2}$, so
+\[
+    \frac{\mu}{m_1 m_2} = \frac{1}{m_1+m_2}.
+\]
+The Sun is much bigger than any planet, so $m_1 \gg m_2$, giving $m_1+m_2 \approx m_1$. This is basically the same for all planets, so $T^2 \propto A^3$ holds universally.

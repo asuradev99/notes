@@ -1,0 +1,522 @@
+\chapter{Current}
+
+\textit{Section 4.1--4.5 \quad Monday, March 4, 2024}
+
+\section{Electric Current}
+
+\begin{itemize}
+    \item Electric current = charge in motion; often analogous to $\vect{E}$.
+    \item 1 ampere $= 1\,\dfrac{\text{Coulomb}}{\text{second}}$.
+\end{itemize}
+
+\textbf{Key quantities:}
+\begin{itemize}
+    \item $\vect{u}$: charge velocity vector
+    \item $\vect{a}$: cross-sectional area vector
+    \item $n$: number of particles per $\text{m}^3$
+    \item $q$: charge per particle
+\end{itemize}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % Frame (parallelogram to show tilt)
+  \draw[thick, blue!70!black]
+    (0,0) -- (2.5,0) -- (3.0,1.5) -- (0.5,1.5) -- cycle;
+  % Normal vector
+  \draw[-{Stealth[length=6pt]}, thick, green!60!black]
+    (1.5,0.75) -- (2.8,1.8) node[right]{$\hat{n}$ ($\vect{a}$)};
+  % Velocity arrows (slanted)
+  \foreach \x/\y in {-1.5/0, -1.0/0.5, -0.5/1.0, -0.5/-0.3} {
+    \draw[-{Stealth[length=4pt]}, thick, red!70!black]
+      (\x,\y) -- (\x+1.0, \y+0.4);
+  }
+  \node[red!70!black] at (-1.5,1.2) {$\vect{u}$};
+  % theta angle label
+  \node[font=\small] at (2.0,1.6) {$\theta$};
+  % Area label
+  \node[blue!60!black, font=\small] at (1.5,0.2) {area $A$};
+\end{tikzpicture}
+\end{center}
+\caption{A frame of area $A$ with particles streaming through at velocity $\vect{u}$ at angle $\theta$ to the normal $\hat{n}$. In time $\Delta t$, the volume passing through is $A u\Delta t\cos\theta = \vect{a}\cdot\vect{u}\,\Delta t$.}
+\end{figure}
+
+\begin{itemize}
+    \item Consider the amount of charge passing through the frame.
+    \item Volume of the frame: $|a|u\Delta t\cos\theta = \vect{a}\cdot\vect{u}\Delta t$.
+    \item Average number of particles found in this volume: $n(\vect{a}\cdot\vect{u}\Delta t)$.
+    \item Current passing through the frame:
+\end{itemize}
+
+\begin{formula}[Current through a frame]
+\[
+    I_a = \frac{q\!\left(n\,\vect{a}\cdot\vect{u}\,\Delta t\right)}{\Delta t} = nq\,\vect{a}\cdot\vect{u}
+\]
+\end{formula}
+
+If there are multiple kinds of particles moving in the same direction:
+\[
+    I_a = n_1 q_1\,\vect{a}\cdot\vect{u}_1 + n_2 q_2\,\vect{a}\cdot\vect{u}_2 + \cdots
+    = \vect{a}\cdot\sum_k n_k q_k \vect{u}_k
+\]
+
+\begin{definition}[Current Density]
+\[
+    \vect{J} \defeq \sum_k n_k q_k \vect{u}_k
+\]
+\begin{itemize}
+    \item Units: $\dfrac{\text{Amperes}}{\text{m}^2}$
+    \item Thus $I_a = \vect{a}\cdot\vect{J}$
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+    \item In a typical conductor, electrons will be moving in every direction.
+    \item The average velocity of all electrons is the weighted average:
+\end{itemize}
+
+\begin{formula}[Mean electron velocity]
+\[
+    \bar{\vect{u}} = \frac{1}{N_e}\sum_k n_k \vect{u}_k
+\]
+where $N_e$ is the number of electrons per unit volume (total).
+\end{formula}
+
+Combining this with the definition of $\vect{J}$:
+
+\begin{formula}[Electron current density]
+\[
+    \vect{J}_e = -eN_e\bar{\vect{u}}_e
+\]
+Units: $\dfrac{\text{charge}}{\text{area}}\cdot\dfrac{\text{m}}{\text{s}}$.
+\end{formula}
+
+\section{Steady Currents and Charge Conservation}
+
+\begin{itemize}
+    \item If you add up all the current density vectors, you get:
+\end{itemize}
+
+\begin{formula}[Total current through a surface]
+\[
+    I = \int_S \vect{J}\cdot d\vect{a}
+\]
+\end{formula}
+
+\begin{figure}[H]
+\centering
+\caption{Current density vectors $\vect{J}$ flowing outward from a closed surface in all directions.}
+\end{figure}
+
+\begin{itemize}
+    \item A \textbf{steady/stationary current system} is one where the $\vect{J}$ vectors stay constant over time.
+    \item For these distributions:
+\end{itemize}
+
+\begin{formula}[Divergence-free condition for steady currents]
+\[
+    \div\vect{J} = 0 \quad\text{at every point in space}
+\]
+\end{formula}
+
+\textbf{Why?} In steady-state: $\oint \vect{J}\cdot d\vect{a} = 0$.
+
+By Gauss's theorem:
+\[
+    \int \nabla\cdot\vect{J}\,dV = \oint \vect{J}\cdot d\vect{a}
+    \quad\Rightarrow\quad \nabla\cdot\vect{J} = 0
+\]
+
+More generally, if $J$ is \emph{not} steady:
+\[
+    \int_S \vect{J}\cdot d\vect{a} = -\dv{}{t}\int_V \rho\,dV = -\dv{Q}{t}
+\]
+
+By Gauss's theorem:
+
+\begin{formula}[Continuity Equation]
+\[
+    \div\vect{J} = -\pdv{\rho}{t}
+\]
+\end{formula}
+
+Note: $\rho = \dot\rho \neq 0 \Rightarrow I \neq 0$.
+
+\section{Ohm's Law}
+
+\begin{itemize}
+    \item It is empirically common that:
+\end{itemize}
+
+\begin{formula}[Ohm's Law (microscopic)]
+\[
+    \vect{J} = \sigma\vect{E}
+    \quad\text{where } \sigma = \text{conductivity},\quad [\sigma] = \frac{[J]}{[E]} = \Omega^{-1}\text{m}^{-1}
+\]
+\end{formula}
+
+\begin{itemize}
+    \item The field inside a conductor \emph{with moving charge} is \textbf{not zero}!
+    \item Isotropic materials: electrical conductivity is the same in all directions.
+    \item $I \propto J$ when $J$ is constant, and $V \propto E$.
+    \item Therefore, if $\vect{J}\propto\vect{E}$, then $I \propto V$:
+\end{itemize}
+
+\[
+    V = IR \quad\text{--- resistance of the conductor; depends on size and shape}
+\]
+
+\textbf{Deriving resistance} (for a bar of cross-section $A$ and length $L$):
+
+\begin{formula}[Resistance of a bar]
+\[
+    R = \frac{V}{I} = \frac{EL}{AJ} = \frac{L}{A\sigma}
+\]
+\end{formula}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Bar (rectangular prism approximation)
+  % Front face
+  \fill[blue!10] (0,0) rectangle (4.0,1.5);
+  \draw[thick] (0,0) rectangle (4.0,1.5);
+  % Top face (3D effect)
+  \fill[blue!20] (0,1.5) -- (0.5,2.0) -- (4.5,2.0) -- (4.0,1.5) -- cycle;
+  \draw[thick] (0,1.5) -- (0.5,2.0) -- (4.5,2.0) -- (4.0,1.5);
+  % Right face
+  \fill[blue!15] (4.0,0) -- (4.5,0.5) -- (4.5,2.0) -- (4.0,1.5) -- cycle;
+  \draw[thick] (4.0,0) -- (4.5,0.5) -- (4.5,2.0);
+  % Current arrows (rightward)
+  \foreach \y in {0.35,0.75,1.15} {
+    \draw[-{Stealth[length=5pt]}, thick, red!70!black]
+      (0.4,\y) -- (3.6,\y);
+  }
+  \node[red!70!black] at (2.0,0.75) {$\vect{J}$};
+  % Length label
+  \draw[<->, gray] (0,-0.4) -- (4.0,-0.4) node[midway, below]{$L$};
+  % Area label
+  \draw[<->, gray] (4.7,0) -- (4.7,1.5) node[midway, right]{$A$};
+  % Field label
+  \node[orange!80!black] at (-0.8,0.75) {$\vect{E}\!\to$};
+\end{tikzpicture}
+\end{center}
+\caption{A conducting bar of length $L$ and cross-sectional area $A$ carrying current density $\vect{J} = \sigma\vect{E}$ uniformly. The resistance is $R = L/(\sigma A)$.}
+\end{figure}
+
+\textbf{Assumptions:}
+\begin{itemize}
+    \item Assumes current density is uniform over the area.
+    \item Assumes $J$ is kept at uniform magnitude near the edges.
+    \item Assumes the bar is surrounded by a non-conducting medium.
+\end{itemize}
+
+\begin{itemize}
+    \item If $\sigma$ is constant, $\div\vect{J}=0$, and thus since $J\propto E$, $\div\vect{E}=0 \Rightarrow$ the charge density within the region of interest is 0.
+    \item If $\sigma$ is not constant, there will be some surface charge built up.
+\end{itemize}
+
+\begin{example}[Bar made of different conductivity]
+$\sigma_1 > \sigma_2$.
+
+\begin{figure}[H]
+\centering
+\caption{Current $I$ flowing through a two-segment bar with conductivities $\sigma_1$ and $\sigma_2$, fields $\vect{E}_1$ and $\vect{E}_2$.}
+\end{figure}
+
+\begin{itemize}
+    \item Current density must be the same on both sides.
+    \item $\Rightarrow \vect{E}$ must be different in the two regions.
+\end{itemize}
+\end{example}
+
+\begin{definition}[Resistivity]
+Resistivity is the reciprocal of conductivity:
+\[
+    \rho = \frac{1}{\sigma}
+\]
+Thus:
+\[
+    R = \frac{\rho L}{A},
+    \quad [R] = \text{Ohm} = \frac{1\,\text{volt}}{1\,\text{ampere}},
+    \quad [\rho] = \text{Ohm}\cdot\text{meter}
+\]
+\end{definition}
+
+\begin{itemize}
+    \item When dealing with current in wires, we generally assume the wire is neutral, but actually it is not.
+\end{itemize}
+
+\section{The Physics of Electrical Conduction}
+
+\subsection{Currents and Ions}
+
+\begin{itemize}
+    \item Neutral atoms produce zero electric charge.
+    \item \textbf{Ions} are the mobile charge carriers:
+    \begin{itemize}
+        \item In water there are a few $\text{H}_3\text{O}^+/\text{OH}^-$ ions.
+        \item In a gas there are hardly any, created by ionizing radiation.
+    \end{itemize}
+    \item How is conductivity determined given a concentration of positive/negative ions?
+\end{itemize}
+
+\subsection{Motion in Zero Electric Field}
+
+\begin{itemize}
+    \item On the molecular scale, the molecules/ions are flying with velocities appropriate to the temperature (for a gas).
+    \item \textbf{Mean free path:} average distance a molecule has before colliding with its neighbor: several hundred molecules wide.
+    \item There is some time interval $\tau$, characteristic of a given system, such that an interval of $\tau$ leads to a loss of correlation of $v_f$ with $v_i$ after a collision.
+\end{itemize}
+
+\subsection{Motion in a Non-Zero Electric Field}
+
+\begin{itemize}
+    \item Apply a uniform $\vect{E}$ to the gas.
+    \item Let $u^c$ be the velocity of an atom after a collision.
+    \item After a time $t$, the momentum of the particle is now:
+\end{itemize}
+
+\[
+    m u^c + \vect{E}et = \underbrace{mu^c}_{mv_i} + \underbrace{\vect{E}et}_{F\cdot\delta t}
+\]
+
+\begin{itemize}
+    \item If the second term is small compared to the first, it is as if $\vect{E}$ didn't exist.
+    \item Average momentum of all $N$ positive ions is therefore:
+\end{itemize}
+
+\[
+    M\bar{u}_+ = \frac{1}{N}\sum_j \!\left(mu_j^c + e\vect{E}t_j\right)
+    \quad\longrightarrow\quad\text{first term averages to 0}
+\]
+
+\begin{formula}[Mean drift velocity of positive ions]
+\[
+    \bar{u}_+ = \frac{e\vect{E}}{m}\,\frac{1}{N}\sum_j t_j = \frac{e\vect{E}\bar{\tau}}{m}
+\]
+(See footnote on page 192 for why.)
+\end{formula}
+
+\begin{itemize}
+    \item Note that $\bar{u}$ is proportional to $\vect{E}$.
+    \item Generalized formula taking into account $+$ and $-$ charge carriers:
+\end{itemize}
+
+\begin{formula}[Current density with both carrier types]
+\[
+    \vect{J} = N_e\!\left(\frac{e\vect{E}\bar{\tau}_+}{m_+}\right) - N_e\!\left(\frac{-e\vect{E}\bar{\tau}_-}{m_-}\right)
+    = N_e^2\!\left(\frac{\bar{\tau}_+}{m_+}+\frac{\bar{\tau}_-}{m_-}\right)\vect{u}
+\]
+\end{formula}
+
+Using $\vect{J}=\sigma\vect{E}$:
+
+\begin{formula}[Conductivity in terms of carrier properties]
+\[
+    \sigma \approx e^2\!\left(\frac{N_+\tau_+}{m_+}+\frac{N_-\tau_-}{m_-}\right)
+\]
+\end{formula}
+
+\subsection{Types of Materials}
+
+\begin{itemize}
+    \item Glass is a good insulator at room temperature, but starts to conduct at higher temperatures.
+    \item Silicon and germanium are \textbf{semiconductors}.
+    \item Conductivity varies across a huge order of magnitude with temperature in a given material.
+    \item Metals' conductivity \textbf{decreases} with temperature.
+    \item $V=IR$ fails when $\vect{E}$ is very strong, because the mean time between collisions is no longer the same.
+    \item A \textbf{spark} occurs when an electron knocks another electron out of its valence shell, causing a reaction.
+\end{itemize}
+
+\subsection{Conduction in Metals}
+
+\begin{itemize}
+    \item The charge carriers in metals are the outer valence electrons.
+    \item The atoms become positive ions and form an orderly array.
+    \item Electrons behave more like a wave than a particle.
+    \item For the average case, Ohm's law is extremely accurate.
+\end{itemize}
+
+\subsection{Semiconductors}
+
+\begin{itemize}
+    \item In a silicon crystal each atom has 4 nearest neighbours.
+    \item Ordinarily it is an insulator, but we can free electrons from it to create \textbf{two} mobile charges (the hole and the electron).
+    \item The electron occupies an energy state in the \textbf{conduction band}.
+    \item The hole is a quasiparticle that goes in the direction of $\vect{E}$, not against it.
+    \item \textbf{Energy gap:} energy difference between the valence and conduction bands.
+    \begin{itemize}
+        \item No intermediate state --- two electrons can never have the same quantum state.
+        \item Thus, even at $T=0$ all valence states are occupied.
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\caption{Left: band diagram at $T=0$, $\sigma=0$. No electrons in conduction band; no states in energy gap ($\Delta E = 1.12\,\text{eV}$ for Si); valence electrons fill below. Right: after thermal excitation, $10^{15}$ conduction electrons/cm$^3$ and $10^{15}$ mobile holes/cm$^3$.}
+\end{figure}
+
+\begin{itemize}
+    \item Thermal energy can raise some electrons from the valence to the conduction band; expressed by the Boltzmann exponential factor:
+\end{itemize}
+
+\[
+    \frac{p_2}{p_1} = e^{-\Delta E/kT}
+    \quad\text{where $p_1,\,p_2$ is the probability of an electron entering a certain state}
+\]
+
+\begin{itemize}
+    \item The number of conductors in silicon can be increased/decreased by \textbf{doping}:
+    \begin{itemize}
+        \item \textbf{n-type doping}: donates electrons to the conduction band (e.g.\ phosphorus)
+        \item \textbf{p-type doping}: removes electrons / donates holes to the conduction band
+        \item Both make the material a better conductor $\rightarrow$ \textit{Why p-type doping?}
+    \end{itemize}
+\end{itemize}
+
+% ============================================================
+% Pages 146--147 recapitulate earlier derivations; key new results below.
+
+\subsection{Recapitulation: Current, Continuity, Ohm's Law}
+
+\begin{itemize}
+    \item Thus the current:
+\end{itemize}
+\[
+    I_a = \frac{q(n\,\vect{a}\cdot\vect{u}\,\Delta t)}{\Delta t} = q(n\,\vect{a}\cdot u)
+\]
+\begin{itemize}
+    \item More generalized version:
+\end{itemize}
+\[
+    I_a = \sum_k \vect{a}\cdot q_k n_k \vect{u}_k,
+    \qquad
+    \vect{J} = qn\vect{u}, \quad I = \vect{J}\cdot\vect{a}
+\]
+\[
+    \text{``current density''}\quad\text{``charge density''}
+\]
+\[
+    I = \int_\text{surface}\vect{J}\cdot d\vect{a} \quad\longrightarrow\quad\text{looks like flux!}\quad = \dv{Q}{t}
+\]
+
+In steady-state: $\oint \vect{J}\cdot d\vect{a}=0$.
+
+By Gauss's theorem:
+\[
+    \int\nabla\cdot\vect{J}\,dV = \oint\vect{J}\cdot d\vect{a}
+    \quad\Rightarrow\quad \nabla\cdot\vect{J}=0
+\]
+\[
+    \oint\vect{J}\cdot d\vect{a} = -\pdv{Q}{t} = -\pdv{}{t}\int\rho\,dV
+\]
+\[
+    \boxed{\nabla\cdot\vect{J} = -\pdv{\rho}{t}} \quad\text{Continuity Equation}
+\]
+
+\subsubsection*{Ohm's Empirical Law}
+
+\[
+    \vect{J} = \sigma\vect{E}(\vect{r}) \quad\text{(conductivity $\sigma$)}
+\]
+
+For a cylindrical bar of area $A$ and length $\ell$:
+\[
+    I = J\cdot A = \sigma EA = \frac{\sigma A}{\ell}\,V
+    \quad\Rightarrow\quad
+    \boxed{R = \frac{\ell}{\sigma A} = \frac{\rho\ell}{A} \quad\text{Resistance}}
+\]
+\[
+    \vect{J} = \frac{1}{\rho}\,\vect{E}
+\]
+
+\begin{example}[Spherical capacitor filled with conductor]
+
+\begin{figure}[H]
+\centering
+\caption{Spherical capacitor: inner conductor at potential $V_0$ (radius $a$), outer shell at $V=0$ (radius $b$), filled with material of conductivity $\sigma$.}
+\end{figure}
+
+\textbf{Assumption:} current flow doesn't affect the electric field inside.
+
+\textbf{Guess:}
+\[
+    \phi = V\!\left(\frac{1}{r}-\frac{1}{b}\right)
+\]
+From boundary conditions ($\phi = 0$ at $r=b$):
+\[
+    \phi = \frac{V\!\left(\dfrac{1}{r}-\dfrac{1}{b}\right)}{\dfrac{1}{a}-\dfrac{1}{b}}
+\]
+\[
+    \vect{E} = -\pdv{\phi}{r}\,\rhat = \frac{ab}{b-a}\!\left(\frac{V}{r^2}\right)\rhat
+\]
+\[
+    J = \sigma E, \qquad I = J\cdot 4\pi r^2 = \boxed{\frac{\sigma ab}{b-a}\,4\pi V}
+\]
+This is then Ohm's law with $R = \dfrac{b-a}{\sigma ab\,4\pi}= \dfrac{1}{R}$ (i.e.\ $I = V/R$).
+\end{example}
+
+\subsection{Intuition for Ohm's Law}
+
+\textbf{Mean velocity:}
+\[
+    \bar{\vect{u}} = \left(\frac{q\vect{E}}{m}\right)\tau
+    \quad\text{($\tau$ = mean time between collisions)}
+\]
+\[
+    \vect{J} = qn\bar{\vect{u}} = \frac{q^2 nE\tau}{m} = \frac{nq^2\tau}{m}\,\vect{E}
+    \quad\text{(constant)}
+\]
+\begin{itemize}
+    \item When temperature rises, conductivity goes down (more collisions, smaller $\tau$).
+\end{itemize}
+
+\begin{example}[Interface between two conductivities]
+
+\begin{figure}[H]
+\centering
+\caption{Current $I$ flowing through a two-segment bar: region 1 with $\sigma_1$, region 2 with $\sigma_2$.}
+\end{figure}
+
+\[
+    I = \sigma_1 E_1 A = \sigma_2 E_2 A
+    \quad\Rightarrow\quad E_1 \neq E_2,\quad E_2 = \frac{\sigma_1}{\sigma_2}E_1
+\]
+\[
+    E_1 \to \text{(interface)} \to E_2 \quad\Rightarrow\quad\text{interface has surface charge}
+\]
+\[
+    (E_2-E_1)A = \frac{Q_\text{enc}}{\epsilon_0}
+    \quad\Rightarrow\quad\left(\frac{I}{\sigma_2}-\frac{I}{\sigma_1}\right) = \frac{Q}{\epsilon_0}
+\]
+\[
+    Q = \epsilon_0 I\!\left(\frac{1}{\sigma_2}-\frac{1}{\sigma_1}\right) = \epsilon_0 I(\rho_2-\rho_1)
+\]
+\end{example}
+
+\begin{itemize}
+    \item For steady currents:
+\end{itemize}
+\[
+    \nabla\cdot\vect{J}=0,\quad \vect{J}=\sigma\vect{E}
+    \quad\Rightarrow\quad \nabla\cdot\sigma\vect{E}=0
+\]
+\[
+    0 = \nabla\cdot(\sigma\vect{E}) = \sigma(\nabla\cdot\vect{E}) + \vect{E}\cdot\nabla\sigma
+    = \sigma\!\left(\frac{\rho}{\epsilon_0}\right) + \vect{E}\cdot\nabla\sigma
+\]
+\[
+    \Rightarrow\quad \frac{\rho\sigma}{\epsilon_0} + \vect{E}\cdot\nabla\sigma = 0
+    \quad\Rightarrow\quad
+    \boxed{\rho = -\frac{\epsilon_0}{\sigma}\!\left(\vect{E}\cdot\nabla\sigma\right)}
+\]
+
+We can have charge accumulation only if there is a \textbf{non-uniform conductivity}.
+
+\subsection{Applications: Diodes and Transistors}
+
+\begin{figure}[H]
+\centering
+\caption{Left: $I$-$V$ curve for a diode (exponential, passes only in one direction). Right: CMOS structure with p and n regions; Field-Effect Transistor with metal gate, insulator, n-p-n structure forming a conduction band when gate voltage is applied.}
+\end{figure}

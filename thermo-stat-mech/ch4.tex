@@ -6,10 +6,10 @@
 
 \subsection{Macroscopic Statement}
 
-The pattern that emerges from studying every large system is that any isolated system will almost certainly be found in or very near the macrostate of greatest multiplicity. Fluctuations away from this peak are not forbidden, only exponentially suppressed. This observation is the statistical underpinning of the second law of thermodynamics.
+Any isolated system will almost certainly be found in or near the macrostate of greatest multiplicity. Fluctuations away from this peak are exponentially suppressed. This is the statistical underpinning of the second law.
 
 \begin{theorem}[Second Law of Thermodynamics]
-The entropy of an isolated system never decreases. Equivalently, the total multiplicity of an isolated system tends to increase (or remain constant) over time:
+The entropy of an isolated system never decreases:
 \[
     \dv{S}{t} \geq 0.
 \]
@@ -17,7 +17,7 @@ The entropy of an isolated system never decreases. Equivalently, the total multi
 
 \subsection{Microscopic Origin: Phase-Space Argument}
 
-The second law does not emerge from any individual microscopic equation of motion, which is time-reversal invariant. Instead it is a statement about \emph{ensembles} of microstates. Consider the phase space of a system --- the $6N$-dimensional space of positions and momenta. An initial macrostate corresponds to a small blob of phase space. As time progresses, this blob deforms dramatically --- stretching and folding --- while conserving its volume (by Liouville's theorem). The key point is that the final blob, despite having the same phase-space volume, now overlaps with an overwhelmingly larger number of distinct macrostates. It is this overlap, not any change in volume, that causes entropy to grow.
+The second law is not a consequence of any individual microscopic equation of motion (which is time-reversal invariant) but a statement about \emph{ensembles} of microstates. An initial macrostate corresponds to a compact blob in the $6N$-dimensional phase space. By Liouville's theorem, the blob's volume is conserved as it evolves, but it stretches and folds to overlap with an overwhelmingly larger number of macrostates --- entropy grows because of this increased overlap, not any change in volume.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -60,7 +60,7 @@ The second law does not emerge from any individual microscopic equation of motio
 \end{center}
 
 \begin{example}
-The free expansion of a gas provides the cleanest illustration. When $N$ atoms confined to the left half of an insulated box are released and expand to fill the whole box, no work is done and no heat is exchanged, so the internal energy is unchanged. Nevertheless, each atom now has access to double the spatial volume, so the multiplicity of the final state is $\Omega_{\text{new}} = \Omega_{\text{old}} \times 2^N$. In terms of entropy,
+In free expansion, $N$ atoms confined to the left half of an insulated box expand to fill the whole box. No work is done and no heat is exchanged ($\Delta U = 0$), but each atom now has access to double the volume, so
 
 \begin{formula}
 \[
@@ -68,46 +68,41 @@ The free expansion of a gas provides the cleanest illustration. When $N$ atoms c
 \]
 \end{formula}
 
-The ratio $\Omega_{\text{new}}/\Omega_{\text{old}} = 2^N \approx 2^{10^{23}}$ is an astronomically large number, which makes the entropy increase for all practical purposes irreversible. The process \emph{could} spontaneously reverse --- all $N$ atoms could simultaneously wander back to the left half --- but the probability is $2^{-N}$, utterly negligible for any macroscopic $N$.
+The ratio $\Omega_{\text{new}}/\Omega_{\text{old}} = 2^N$ makes spontaneous reversal (probability $2^{-N}$) utterly negligible for macroscopic $N$.
 \end{example}
 
 \begin{fact}
-Isolated systems may only increase entropy. Most systems relax toward the macrostate of maximum entropy, and fluctuations away from that state are suppressed by a factor of $e^{-\Delta S / k_B}$.
+Isolated systems may only increase entropy. Fluctuations away from maximum entropy are suppressed by $e^{-\Delta S / k_B}$.
 \end{fact}
 
 \subsection{Ergodic Hypothesis}
 
-To compute macroscopic observables from a microscopic model, one needs a prescription for averaging over microstates. Two natural procedures present themselves: a time average, obtained by following a single microstate as it evolves and averaging $f$ over a long time; and an ensemble average, obtained by averaging $f$ over all microstates compatible with the given macrostate at a single instant.
-
 \begin{definition}[Ergodic Hypothesis]
 The time average of any macroscopic observable equals the ensemble average:
 \[
-    \langle f \rangle = \sum_{\{S_i\}} f(S_i)\, p(S_i) = \frac{1}{\tau}\int_0^\tau f(t)\,dt,
+    \langle f \rangle = \sum_{\{S_i\}} f(S_i)\, p(S_i) = \frac{1}{\tau}\int_0^\tau f(t)\,dt.
 \]
-where $p(S_i)$ is the probability of being in microstate $S_i$ and the integral is taken over a sufficiently long time $\tau$.
 \end{definition}
 
-The ergodic hypothesis is \emph{not} universally true. Certain systems --- glassy systems, systems with conserved charges that partition phase space, or systems with many-body localization --- are not ergodic. However, a system in thermal equilibrium samples every accessible microstate with the appropriate probability, and the ergodic hypothesis holds to excellent approximation in that case. For an isolated system in equilibrium, every accessible microstate is equally likely, giving $S = k_B \ln \Omega$.
+The ergodic hypothesis fails for glassy systems, systems with conserved charges partitioning phase space, and many-body localized systems. For a system in thermal equilibrium it holds to excellent approximation; for an isolated system in equilibrium every accessible microstate is equally likely, giving $S = k_B \ln \Omega$.
 
 \subsection{Reversible and Irreversible Processes}
 
 \begin{definition}
-An \textbf{irreversible} process increases the total entropy of the universe; a \textbf{reversible} (or quasi-static) process leaves the total entropy unchanged. A reversible process is one that can be reversed by an infinitesimally small change in the external parameters; the system remains arbitrarily close to equilibrium throughout.
+An \textbf{irreversible} process increases the total entropy of the universe; a \textbf{reversible} (quasi-static) process leaves it unchanged. A reversible process can be undone by an infinitesimally small change in external parameters, with the system remaining arbitrarily close to equilibrium throughout.
 \end{definition}
 
-Free expansion and heat flow across a finite temperature difference are irreversible: they create entropy without any compensating decrease elsewhere. A slow, quasi-static compression, by contrast, is reversible: the gas is always in equilibrium, and any entropy that enters or leaves does so in a way that can be exactly undone by reversing the process.
-
-For a \emph{reversible} infinitesimal process in which heat $\dbar Q$ is exchanged at temperature $T$, the entropy change of the system is
+Free expansion and heat flow across a finite temperature difference are irreversible. For a reversible infinitesimal process exchanging heat $\dbar Q$ at temperature $T$:
 \begin{formula}
 \[
     dS = \frac{\dbar Q}{T} \qquad (\text{reversible}).
 \]
 \end{formula}
-For an \emph{irreversible} process, the same heat transfer produces a larger entropy increase in the universe, so the system's entropy change satisfies a strict inequality $dS > \dbar Q / T$.
+For an irreversible process, $dS > \dbar Q / T$.
 
 \subsection{The Clausius Inequality}
 
-Consider an engine (or any device) executing a cyclic process while exchanging heat with reservoirs. Because the engine returns to its initial state, its entropy change over a cycle vanishes. The entropy changes of the reservoirs are $-\dbar Q_i / T_i$ for each infinitesimal heat exchange $\dbar Q_i$ at temperature $T_i$ (with the convention that $\dbar Q_i$ is heat added to the system). The second law then requires the total entropy of the universe to be non-decreasing:
+For a cyclic device, $\Delta S_\text{engine} = 0$ over a full cycle. The second law requires the total entropy change of the universe to be non-negative:
 
 \begin{formula}[Clausius Inequality]
 \[
@@ -116,75 +111,64 @@ Consider an engine (or any device) executing a cyclic process while exchanging h
 with equality if and only if the cycle is reversible.
 \end{formula}
 
-This inequality encodes the second law in a form directly applicable to cyclic processes. It immediately implies that an engine cannot convert heat entirely into work without rejecting some waste heat to a cold reservoir.
-
 \begin{example}
-As a concrete illustration of irreversibility, consider a fixed quantity of heat $Q$ flowing from a hot reservoir at $T_H$ to a cold reservoir at $T_C < T_H$. The entropy of the hot reservoir decreases by $Q/T_H$ and that of the cold reservoir increases by $Q/T_C$. The net entropy change of the universe is
+Heat $Q$ flowing from $T_H$ to $T_C < T_H$ gives
 \[
     \Delta S_\text{univ} = Q\!\left(\frac{1}{T_C} - \frac{1}{T_H}\right) > 0,
 \]
-which is strictly positive whenever $T_C < T_H$, confirming that irreversible heat flow always raises total entropy. In the quasi-static reversible limit, where the temperature difference approaches zero ($dT \to 0$), this entropy production vanishes as $dT/T^2 \to 0$.
+strictly positive for $T_C < T_H$. As $dT \to 0$ the entropy production vanishes.
 \end{example}
 
 \section{Entropy Changes in Thermodynamic Processes}
 
 \subsection{General Formula}
 
-The fundamental thermodynamic identity, valid for reversible changes,
-\[
-    dU = T\,dS - p\,dV,
-\]
-can be rearranged to give the entropy change:
+From the fundamental identity $dU = T\,dS - p\,dV$:
 \begin{formula}
 \[
     dS = \frac{1}{T}\,dU + \frac{p}{T}\,dV.
 \]
 \end{formula}
-For an ideal gas, $dU = C_V\,dT$ and $p = Nk_B T / V$, so this becomes
+For an ideal gas ($dU = C_V\,dT$, $p = Nk_B T / V$):
 \[
     dS = \frac{C_V\,dT}{T} + \frac{Nk_B}{V}\,dV.
 \]
-Integrating this expression along different types of paths gives the entropy changes in the standard processes.
 
 \subsection{Isochoric (Constant-Volume) Heating}
 
-With $dV = 0$, all the entropy change is due to the temperature change:
 \begin{formula}
 \[
-    \Delta S_\text{isochoric} = \int_{T_A}^{T_B} \frac{C_V\,dT}{T} = C_V \ln\frac{T_B}{T_A} = \frac{3}{2}Nk_B \ln\frac{T_B}{T_A}.
+    \Delta S_\text{isochoric} = C_V \ln\frac{T_B}{T_A} = \frac{3}{2}Nk_B \ln\frac{T_B}{T_A}.
 \]
 \end{formula}
-No work is done, so all the heat added equals the change in internal energy: $\Delta Q = C_V(T_B - T_A) = \Delta U$.
+No work is done; $\Delta Q = \Delta U = C_V(T_B - T_A)$.
 
 \subsection{Isobaric (Constant-Pressure) Heating}
 
-At constant pressure, $\dbar Q = C_P\,dT$, and the entropy change is larger than in the isochoric case because the gas must also do $p\,dV$ work while heating:
 \begin{formula}
 \[
-    \Delta S_\text{isobaric} = \int_{T_A}^{T_B} \frac{C_P\,dT}{T} = C_P \ln\frac{T_B}{T_A} = \frac{5}{2}Nk_B\ln\frac{T_B}{T_A}.
+    \Delta S_\text{isobaric} = C_P \ln\frac{T_B}{T_A} = \frac{5}{2}Nk_B\ln\frac{T_B}{T_A}.
 \]
 \end{formula}
-Since $C_P > C_V$, we have $\Delta S_\text{isobaric} > \Delta S_\text{isochoric}$ for the same temperature interval.
+Since $C_P > C_V$, $\Delta S_\text{isobaric} > \Delta S_\text{isochoric}$ for the same temperature interval.
 
 \subsection{Isothermal Expansion}
 
-At constant temperature, $\Delta U = 0$ for an ideal gas, so all the entropy change comes from the volume change:
+For an ideal gas at constant $T$, $\Delta U = 0$ and:
 \begin{formula}
 \[
-    \Delta S_\text{isothermal} = \int \frac{Nk_B}{V}\,dV = Nk_B \ln\frac{V_B}{V_A}.
+    \Delta S_\text{isothermal} = Nk_B \ln\frac{V_B}{V_A}.
 \]
 \end{formula}
-This is positive for expansion ($V_B > V_A$). For a \emph{reversible} isothermal expansion, the heat absorbed from the reservoir equals $T\,\Delta S = Nk_BT\ln(V_B/V_A)$, consistent with the work done by the gas. For an \emph{irreversible} isothermal expansion (such as free expansion into vacuum), the same entropy increase occurs but no heat is exchanged at all --- the formula $\Delta S = Q/T$ does not apply to irreversible processes; only the state-function formula $\Delta S = Nk_B\ln(V_B/V_A)$ is universally valid.
+For a \emph{reversible} isothermal expansion the heat absorbed is $T\,\Delta S = Nk_BT\ln(V_B/V_A)$. For an \emph{irreversible} isothermal expansion (e.g.\ free expansion into vacuum), the same entropy increase occurs but $\Delta Q = 0$; the formula $\Delta S = Q/T$ does not apply to irreversible processes.
 
 \subsection{Adiabatic Process}
 
-For a reversible adiabatic process, $\dbar Q = 0$, so $dS = 0$ identically. Such a process is isentropic: entropy is unchanged. This is the condition used to trace the adiabatic legs of the Carnot cycle (see Section~\ref{sec:carnot}).
+For a reversible adiabatic process, $\dbar Q = 0$, so $dS = 0$: the process is isentropic. Because $S$ is a state function, $\oint dS = 0$ around any closed cycle.
 
-Because $S$ is a state function, the total entropy change around any closed cycle in state space must be zero, $\oint dS = 0$, regardless of the processes involved.
+\subsection{Reversible Heating}
 
-\subsection{How to Reversibly Heat a System}
-
-Raising a cold body at temperature $T_C$ to a hot temperature $T_H$ by direct contact with a reservoir at $T_H$ is irreversible: heat flows across a finite temperature difference, generating entropy. To heat the body \emph{reversibly}, one must bring it into contact with a sequence of intermediate reservoirs at temperatures $T_C,\, T_C + dT,\, T_C + 2\,dT, \ldots, T_H$, each infinitesimally hotter than the last. At each step the body is in near-equilibrium with the reservoir it contacts, and the entropy production per step is of order $(dT)^2/T^2 \to 0$.
+Directly contacting a cold body at $T_C$ with a reservoir at $T_H > T_C$ is irreversible. Reversible heating requires a sequence of intermediate reservoirs at $T_C, T_C+dT, \ldots, T_H$; entropy production per step is $O((dT)^2/T^2) \to 0$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -217,26 +201,20 @@ Raising a cold body at temperature $T_C$ to a hot temperature $T_H$ by direct co
 {\small\itshape Reversible heating: system contacts reservoirs at incrementally higher temperatures $T_C\to T_H$.}
 \end{center}
 
-In practical devices such as heat pumps and refrigerators, this is implemented by cycling a working fluid through a series of states that approximates a continuous sequence of reservoir temperatures.
-
 \section{The Third Law}
 
 \subsection{Three Equivalent Statements}
-
-The third law of thermodynamics addresses the behavior of entropy as temperature approaches absolute zero. It has three equivalent formulations.
 
 \begin{theorem}[Third Law of Thermodynamics]
 The following statements are equivalent:
 \begin{enumerate}
     \item As $T \to 0$, the entropy of a perfect crystal approaches zero: $S \to 0$.
-    \item As $T \to 0$, the heat capacity also approaches zero: $C_V \to 0$.
+    \item As $T \to 0$, the heat capacity vanishes: $C_V \to 0$.
     \item It is impossible to cool a system to absolute zero in a finite number of processes.
 \end{enumerate}
 \end{theorem}
 
-The equivalence of statements 1 and 2 follows from the integral relation $S(T) = S(0) + \int_0^T C(T')/T'\,dT'$. For this integral to converge as $T' \to 0$ (required if $S(0)$ is to be finite), the integrand $C(T')/T'$ must remain integrable, which forces $C(T') \to 0$ as $T' \to 0$. If $C$ approached a positive constant at low temperatures, the integral would diverge logarithmically, making $S$ unbounded.
-
-The equivalence with statement 3 is illustrated by considering any cooling protocol that alternates isothermal compression (which removes entropy) with adiabatic expansion (which lowers temperature at fixed entropy). As $T \to 0$, the entropy of the system becomes vanishingly small, so each isothermal step can only remove a vanishingly small amount of entropy. The corresponding temperature reduction in the subsequent adiabatic step becomes vanishingly small as well. The temperature converges to zero only asymptotically: absolute zero is unreachable in any finite number of steps.
+Statements 1 and 2 are linked by $S(T) = S(0) + \int_0^T C(T')/T'\,dT'$: convergence of this integral as $T' \to 0$ requires $C(T') \to 0$. Statement 3 follows because as $T \to 0$ each isothermal step can remove only a vanishingly small amount of entropy, so each subsequent adiabatic temperature drop also vanishes --- absolute zero is approached only asymptotically.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -245,17 +223,6 @@ The equivalence with statement 3 is illustrated by considering any cooling proto
   \draw[->,thick] (0,0) -- (0,5.0) node[above] {$T$};
   \node[left] at (0,0) {$0$};
 
-  % Staircase steps converging toward origin
-  % Each step: horizontal (isothermal, remove entropy) then vertical (adiabatic, lower T)
-  % Steps: (S, T) coordinates, decreasing
-  \def\steps{
-    {5.8, 4.2}, {4.0, 4.2},
-    {4.0, 3.0}, {2.7, 3.0},
-    {2.7, 2.1}, {1.7, 2.1},
-    {1.7, 1.4}, {1.05, 1.4},
-    {1.05, 0.85}, {0.6, 0.85},
-    {0.6, 0.45}, {0.32, 0.45}
-  }
   % Draw staircase
   \draw[thick,blue!70!black]
     (5.8,4.2) -- (4.0,4.2) node[midway,above] {\tiny isothermal}
@@ -279,15 +246,11 @@ The equivalence with statement 3 is illustrated by considering any cooling proto
 
 \subsection{Physical Origin: Ground-State Degeneracy and Residual Entropy}
 
-For a perfect crystal at $T \to 0$, every atom settles into the unique ground-state arrangement, giving $\Omega = 1$ and $S = k_B \ln 1 = 0$. More generally, if the ground state has degeneracy $g$, then $S \to k_B \ln g$ rather than zero. The Third Law strictly requires $S \to \text{const}$ as $T \to 0$ and applies rigorously only to true equilibrium states.
-
-In practice, many real systems possess \textbf{residual entropy}: entropy that remains nonzero at low temperature because certain degrees of freedom cannot equilibrate on laboratory timescales. Physical sources of residual entropy include isotope disorder (natural carbon is a mixture of ${}^{12}$C at $98.93\%$ and ${}^{13}$C at $1.07\%$; each lattice site randomly accommodates either isotope, giving a residual entropy per site of $-k_B \sum_j p_j \ln p_j$), frozen molecular orientations in molecular crystals, and randomly distributed nuclear spins. Because these degrees of freedom are quenched at low temperature, they do not contribute to $C_V$ but do contribute a finite offset to the zero-temperature entropy.
-
-A further physical consequence of $C_V \to 0$ as $T \to 0$ is that quantum degrees of freedom (rotational, vibrational, electronic) ``freeze out'' one by one as the temperature falls below the associated energy gap $\hbar\omega$; they can no longer be thermally excited and cease contributing to $U(T)$. This is the quantum origin of the vanishing heat capacity.
+For a perfect crystal at $T \to 0$, $\Omega = 1$ and $S = k_B \ln 1 = 0$. If the ground state has degeneracy $g$, then $S \to k_B \ln g$. Many real systems exhibit \textbf{residual entropy} --- nonzero entropy at low temperature from degrees of freedom (isotope disorder, frozen molecular orientations, random nuclear spins) that cannot equilibrate on laboratory timescales and are quenched without contributing to $C_V$. The vanishing of $C_V$ at low $T$ reflects quantum degrees of freedom freezing out as $T$ drops below the gap $\hbar\omega$.
 
 \subsection{Macroscopic View of Entropy}
 
-The relation $dS = \dbar Q / T$ was the \emph{original} definition of entropy, introduced by Clausius before any microscopic interpretation existed. From this perspective, energy behaves like a fluid that is conserved as it flows between systems, but entropy behaves differently: it is \emph{created} wherever heat flows irreversibly. A packet of energy $\dbar Q$ flowing from a hot body at temperature $T_H$ to a cold body at $T_C$ carries entropy $\dbar Q / T_H$ out of the hot body but deposits $\dbar Q / T_C > \dbar Q / T_H$ into the cold body. The net entropy creation per unit heat transferred is $\dbar Q (1/T_C - 1/T_H) > 0$. The total entropy of the universe therefore never decreases --- this is the macroscopic content of the second law.
+The relation $dS = \dbar Q / T$ was Clausius's original definition of entropy. Energy flowing irreversibly from $T_H$ to $T_C$ carries entropy $\dbar Q / T_H$ out of the hot body but deposits $\dbar Q / T_C > \dbar Q / T_H$ into the cold body; net entropy creation per unit heat is $\dbar Q(1/T_C - 1/T_H) > 0$.
 
 \section{Heat Engines and the Carnot Bound}
 \label{sec:carnot}
@@ -295,7 +258,7 @@ The relation $dS = \dbar Q / T$ was the \emph{original} definition of entropy, i
 \subsection{Definition of a Heat Engine}
 
 \begin{definition}[Heat engine]
-A heat engine is a device that operates cyclically, absorbing heat $Q_+$ from a high-temperature reservoir at $T_+$, doing net mechanical work $W$, and rejecting waste heat $Q_-$ to a low-temperature reservoir at $T_-$. Because the working substance executes a closed path in state space and returns to its initial state at the end of each cycle, the change in any state function (including internal energy) over a cycle is zero: $\oint dU = 0$.
+A heat engine operates cyclically, absorbing heat $Q_+$ from a reservoir at $T_+$, doing net work $W$, and rejecting waste heat $Q_-$ to a reservoir at $T_-$. Since $\oint dU = 0$, energy conservation gives $W = Q_+ - Q_-$.
 \end{definition}
 
 \begin{center}
@@ -327,18 +290,17 @@ A heat engine is a device that operates cyclically, absorbing heat $Q_+$ from a 
 {\small\itshape Heat engine: absorbs $Q_+$ from hot reservoir, produces work $W$, rejects $Q_-$ to cold reservoir.}
 \end{center}
 
-Since $\oint dU = 0$, energy conservation requires $W = Q_+ - Q_-$: the net work output equals the difference between heat in and heat out. The net work per cycle also equals the enclosed area in a $P$-$V$ diagram, $W = \oint p\,dV$. It is impossible to convert heat entirely into work without rejecting any waste heat; some heat must always be deposited in the cold reservoir.
+The net work per cycle equals the area enclosed in a $P$-$V$ diagram.
 
 \begin{definition}[Thermal efficiency]
-The efficiency of a heat engine is
 \[
-    \eta = \frac{W}{Q_+} = \frac{Q_+ - Q_-}{Q_+} = 1 - \frac{Q_-}{Q_+}.
+    \eta = \frac{W}{Q_+} = 1 - \frac{Q_-}{Q_+}.
 \]
 \end{definition}
 
 \subsection{The Carnot Cycle: Four Steps}
 
-The Carnot cycle is the canonical reversible heat engine. It operates between two reservoirs at $T_+$ (hot) and $T_-$ (cold) using four quasi-static steps.
+The Carnot cycle is the canonical reversible heat engine operating between $T_+$ and $T_-$ via four quasi-static steps.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -419,33 +381,20 @@ The Carnot cycle is the canonical reversible heat engine. It operates between tw
 {\small\itshape Carnot cycle: $P$--$V$ diagram (left) and $T$--$S$ diagram (right, a rectangle).}
 \end{center}
 
-\textbf{Step 1 --- Isothermal expansion at $T_+$ (A $\to$ B).} The gas expands from volume $V_A$ to $V_B$ while in thermal contact with the hot reservoir at $T_+$. Since the temperature is constant, the internal energy of an ideal gas does not change: $\Delta U_1 = 0$. By the first law, the heat absorbed from the hot reservoir equals the work done by the gas:
+\textbf{Step 1 --- Isothermal expansion at $T_+$ (A $\to$ B).} At constant $T$, $\Delta U_1 = 0$, so
 \[
-    Q_+ = W_1 = \int_{V_A}^{V_B} p\,dV = Nk_B T_+ \ln\frac{V_B}{V_A} > 0.
+    Q_+ = W_1 = Nk_B T_+ \ln\frac{V_B}{V_A} > 0; \qquad \Delta S_1 = \frac{Q_+}{T_+}.
 \]
-The entropy of the gas increases by $\Delta S_1 = Q_+ / T_+ = Nk_B \ln(V_B/V_A)$.
 
-\textbf{Step 2 --- Adiabatic expansion (B $\to$ C).} The gas is thermally isolated and expands from $V_B$ to $V_C$, cooling from $T_+$ to $T_-$. No heat is exchanged ($\Delta Q_2 = 0$), so $dS = 0$ throughout. The pressure satisfies $p V^\gamma = \text{const}$, giving
-\[
-    W_2 = \int_{V_B}^{V_C} p\,dV = \frac{Nk_B T_+}{1-\gamma}\left[\left(\frac{V_C}{V_B}\right)^{1-\gamma} - 1\right] > 0.
-\]
-The adiabatic constraint also gives $T_+ V_B^{\gamma-1} = T_- V_C^{\gamma-1}$.
+\textbf{Step 2 --- Adiabatic expansion (B $\to$ C).} $\Delta Q_2 = 0$, $dS = 0$; gas cools from $T_+$ to $T_-$ with $T_+ V_B^{\gamma-1} = T_- V_C^{\gamma-1}$.
 
-\textbf{Step 3 --- Isothermal compression at $T_-$ (C $\to$ D).} The gas is compressed from $V_C$ to $V_D$ while in contact with the cold reservoir at $T_-$. Again $\Delta U_3 = 0$, so
-\[
-    Q_\text{out} = -W_3 = Nk_B T_- \ln\frac{V_C}{V_D} > 0,
-\]
-meaning heat $Q_- \equiv Q_\text{out}$ is expelled to the cold reservoir. The entropy of the gas decreases by $Q_-/T_-$.
+\textbf{Step 3 --- Isothermal compression at $T_-$ (C $\to$ D).} $\Delta U_3 = 0$; heat $Q_- = Nk_B T_- \ln(V_C/V_D)$ is expelled to the cold reservoir.
 
-\textbf{Step 4 --- Adiabatic compression (D $\to$ A).} The gas is compressed adiabatically from $V_D$ back to $V_A$, warming from $T_-$ to $T_+$ and closing the cycle. No heat is exchanged and entropy is unchanged. The adiabatic constraint gives $T_- V_D^{\gamma-1} = T_+ V_A^{\gamma-1}$.
+\textbf{Step 4 --- Adiabatic compression (D $\to$ A).} $\Delta Q_4 = 0$, $dS = 0$; gas warms back to $T_+$ with $T_- V_D^{\gamma-1} = T_+ V_A^{\gamma-1}$.
 
 \subsection{Full Ideal-Gas Derivation of the Carnot Efficiency}
 
-The net work output is $W = W_1 + W_2 + W_3 + W_4$. Dividing the two adiabatic constraints by each other gives the key geometric relation
-\[
-    \frac{V_B}{V_A} = \frac{V_C}{V_D},
-\]
-which means $\ln(V_B/V_A) = \ln(V_C/V_D)$. With this relation one can show explicitly that the two adiabatic work contributions $W_2 + W_4$ cancel exactly, because the adiabatic expansion work (gained while cooling from $T_+$ to $T_-$) is precisely equal and opposite to the adiabatic compression work (expended while warming from $T_-$ to $T_+$). The net work then simplifies to
+Dividing the two adiabatic constraints gives $V_B/V_A = V_C/V_D$, so the two adiabatic work contributions cancel and the net work simplifies to
 
 \begin{formula}
 \[
@@ -453,49 +402,37 @@ which means $\ln(V_B/V_A) = \ln(V_C/V_D)$. With this relation one can show expli
 \]
 \end{formula}
 
-Since $Q_+ = Nk_B T_+ \ln(V_B/V_A)$, the efficiency is
+Since $Q_+ = Nk_B T_+ \ln(V_B/V_A)$, the volume factors cancel:
 
 \begin{formula}[Carnot efficiency]
 \[
-    \eta_\text{Carnot} = \frac{W_\text{net}}{Q_+} = \frac{Nk_B(T_+ - T_-)\ln(V_B/V_A)}{Nk_B T_+\ln(V_B/V_A)} = 1 - \frac{T_-}{T_+}.
+    \eta_\text{Carnot} = \frac{W_\text{net}}{Q_+} = 1 - \frac{T_-}{T_+}.
 \]
 \end{formula}
 
-The logarithmic volume factors cancel completely, so the efficiency depends only on the two reservoir temperatures and not on the volume ratio or the amount of working gas.
-
 \begin{example}
-With $T_+ = 600\ \text{K}$ and $T_- = 300\ \text{K}$ the Carnot efficiency is $\eta_\text{Carnot} = 1 - 300/600 = 50\%$.
+With $T_+ = 600\ \text{K}$ and $T_- = 300\ \text{K}$: $\eta_\text{Carnot} = 50\%$.
 \end{example}
 
 \subsection{Efficiency from the Second Law}
 
-The same result follows more directly from the second law alone, without specifying the working substance. The engine returns to its starting state each cycle, so $\Delta S_\text{engine} = 0$. The entropy changes of the reservoirs are
+Without specifying the working substance, $\Delta S_\text{engine} = 0$ per cycle, so the second law requires
 \[
-    \Delta S_\text{hot} = -\frac{Q_+}{T_+}, \qquad \Delta S_\text{cold} = \frac{Q_-}{T_-}.
+    \frac{Q_-}{T_-} \geq \frac{Q_+}{T_+} \implies \frac{Q_-}{Q_+} \geq \frac{T_-}{T_+},
 \]
-The second law requires $\Delta S_\text{universe} = \Delta S_\text{hot} + \Delta S_\text{cold} \geq 0$, giving
-\[
-    \frac{Q_-}{T_-} \geq \frac{Q_+}{T_+} \implies \frac{Q_-}{Q_+} \geq \frac{T_-}{T_+}.
-\]
-Substituting into the efficiency formula yields
-\[
-    \eta = 1 - \frac{Q_-}{Q_+} \leq 1 - \frac{T_-}{T_+} = \eta_\text{Carnot},
-\]
-with equality if and only if all heat exchange occurs reversibly. In the $T$-$S$ diagram, the reversibility condition $Q_+/T_+ = Q_-/T_-$ ensures that the entropy gained from the hot reservoir on the upper isothermal leg is exactly returned to the cold reservoir on the lower isothermal leg, so $\Delta S_\text{gas} = 0$ over the full cycle and the $T$-$S$ diagram is a rectangle.
+giving $\eta = 1 - Q_-/Q_+ \leq 1 - T_-/T_+ = \eta_\text{Carnot}$, with equality iff all heat exchange is reversible. In the $T$-$S$ diagram the reversibility condition $Q_+/T_+ = Q_-/T_-$ makes the cycle a rectangle.
 
 \subsection{Carnot's Theorem: No Engine Can Exceed Carnot Efficiency}
 
 \begin{theorem}[Carnot's Theorem]
-No heat engine operating between a hot reservoir at $T_+$ and a cold reservoir at $T_-$ can have an efficiency greater than the Carnot efficiency $1 - T_-/T_+$. All reversible engines operating between the same two temperatures have exactly this efficiency, regardless of the working substance or design details.
+No heat engine operating between $T_+$ and $T_-$ can have efficiency greater than $\eta_\text{Carnot} = 1 - T_-/T_+$. All reversible engines between the same two temperatures achieve exactly this efficiency.
 \end{theorem}
 
-The proof is by contradiction. Suppose a super-Carnot engine $X$ has efficiency $\eta_X > \eta_\text{Carnot}$. Couple $X$ to a Carnot refrigerator (the Carnot engine running in reverse), using the work output of $X$ to drive the refrigerator. Choose the coupling so that the refrigerator returns exactly the waste heat $Q_-$ that $X$ exhausts to the cold reservoir, depositing it back into the hot reservoir. The combined device then draws zero net heat from the cold reservoir and does positive net work per cycle, sourced entirely from the hot reservoir. This is a perpetual-motion machine of the second kind --- a device that converts heat entirely into work with no cold reservoir --- which violates the second law. The assumption $\eta_X > \eta_\text{Carnot}$ is therefore false.
-
-The optimality of the Carnot cycle can also be seen directly in the $T$-$S$ diagram. Any modified cycle that adds heat at an intermediate temperature $T_i$ with $T_- < T_i < T_+$ increases the heat input $Q_+'$ for the same net work output, since the extra heat is delivered at a temperature below $T_+$ and is therefore less thermodynamically valuable. The efficiency $\eta' = W/Q_+' < W/Q_+ = \eta_\text{Carnot}$ for any such modification.
+Proof by contradiction: suppose engine $X$ has $\eta_X > \eta_\text{Carnot}$. Couple $X$ to a reversed Carnot refrigerator, using $X$'s work output to drive it, tuned so the refrigerator returns to the hot reservoir exactly the waste heat $Q_-$ that $X$ exhausts. The combined device then extracts net heat from the hot reservoir alone and converts it entirely into work --- a perpetual-motion machine of the second kind, violating the second law.
 
 \section{Refrigerators and Heat Pumps}
 
-Running the Carnot cycle in reverse transforms the engine into a refrigerator or heat pump. Work $W_\text{in}$ is supplied, heat $Q_-$ is absorbed from the cold reservoir (the interior of a fridge, or the outdoor air), and heat $Q_+ = Q_- + W_\text{in}$ is expelled to the hot reservoir (the room, or the building interior).
+Running the Carnot cycle in reverse: work $W_\text{in}$ is supplied, heat $Q_-$ is absorbed from the cold reservoir, and $Q_+ = Q_- + W_\text{in}$ is expelled to the hot reservoir.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -526,40 +463,35 @@ Running the Carnot cycle in reverse transforms the engine into a refrigerator or
 {\small\itshape Refrigerator/heat pump: work input $W_\text{in}$ pumps heat from cold to hot reservoir.}
 \end{center}
 
-For a \textbf{refrigerator}, the figure of merit is the coefficient of performance (COP), defined as the ratio of heat removed from the cold reservoir to the work consumed:
-
 \begin{definition}[COP of a refrigerator]
 \[
-    \text{COP}_\text{refrig} = \frac{Q_-}{W_\text{in}} = \frac{Q_-}{Q_+ - Q_-} = \frac{T_-}{T_+ - T_-},
+    \text{COP}_\text{refrig} = \frac{Q_-}{W_\text{in}} = \frac{T_-}{T_+ - T_-} \quad \text{(ideal Carnot)}.
 \]
-where the last equality holds for an ideal (Carnot) refrigerator.
 \end{definition}
 
 \begin{example}
-For typical household conditions ($T_+ \approx 308\ \text{K}$, $T_- \approx 278\ \text{K}$), the ideal COP is $278/30 \approx 9$, meaning a perfect refrigerator moves roughly nine times as much thermal energy as the electrical work it consumes. Real refrigerators have lower COPs due to irreversibilities, but still substantially above 1.
+For $T_+ \approx 308\ \text{K}$, $T_- \approx 278\ \text{K}$: ideal COP $\approx 9$, meaning a perfect refrigerator moves nine times as much thermal energy as the electrical work it consumes.
 \end{example}
-
-For a \textbf{heat pump}, the figure of merit is the ratio of heat delivered to the hot reservoir to the work consumed:
 
 \begin{definition}[COP of a heat pump]
 \[
-    \text{COP}_\text{pump} = \frac{Q_+}{W_\text{in}} = \frac{Q_+}{Q_+ - Q_-} = \frac{T_+}{T_+ - T_-}.
+    \text{COP}_\text{pump} = \frac{Q_+}{W_\text{in}} = \frac{T_+}{T_+ - T_-}.
 \]
 \end{definition}
 
-Note that $\text{COP}_\text{pump} = \text{COP}_\text{refrig} + 1 > 1$ always, so a heat pump always delivers more thermal energy to the building than the work it consumes.
+Note $\text{COP}_\text{pump} = \text{COP}_\text{refrig} + 1 > 1$ always; a heat pump always delivers more thermal energy than the work it consumes.
 
 \begin{example}
-For a building maintained at $T_+ = 293\ \text{K}$ drawing on outside air at $T_- = 268\ \text{K}$, the ideal COP is $293/25 \approx 12$. This makes heat pumps substantially more energy-efficient than direct electric heating.
+For $T_+ = 293\ \text{K}$, $T_- = 268\ \text{K}$: ideal COP $\approx 12$, substantially more efficient than direct electric heating.
 \end{example}
 
-Both COPs can be written in terms of the Carnot efficiency as $\text{COP}_\text{refrig} = (1-\eta)/\eta$ and $\text{COP}_\text{pump} = 1/\eta$, so maximizing the COP is equivalent to minimizing irreversibilities in the cycle.
+In terms of Carnot efficiency: $\text{COP}_\text{refrig} = (1-\eta)/\eta$ and $\text{COP}_\text{pump} = 1/\eta$.
 
 \section{The Stirling Engine}
 
 \subsection{Four Steps of the Stirling Cycle}
 
-The Stirling engine is a practical alternative to the Carnot cycle that replaces the two adiabatic legs --- which require perfectly insulated, arbitrarily slow expansions --- with \emph{isochoric} (constant-volume) heating and cooling steps. The cycle still operates between the same two temperatures $T_+$ and $T_-$.
+The Stirling cycle replaces the Carnot's adiabatic legs with \emph{isochoric} (constant-volume) steps, operating between the same $T_+$ and $T_-$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
@@ -636,44 +568,38 @@ The Stirling engine is a practical alternative to the Carnot cycle that replaces
 {\small\itshape Stirling cycle: $P$--$V$ (left) and $T$--$S$ (right) diagrams; the Carnot rectangle is shown dashed.}
 \end{center}
 
-In Step 1 (isothermal expansion at $T_+$), the gas expands from $V_A$ to $V_C$ at constant temperature, doing work $W_1 = Nk_BT_+\ln(V_C/V_A)$ and absorbing the same quantity of heat from the hot reservoir. In Step 2 (isochoric cooling from $T_+$ to $T_-$), the volume is held fixed at $V_C$ while the gas cools; no work is done and the gas releases heat $C_V(T_+ - T_-)$ to its surroundings. In Step 3 (isothermal compression at $T_-$), the gas is compressed from $V_C$ back to $V_A$ at constant temperature; work $Nk_BT_-\ln(V_A/V_C)$ is done on the gas and heat $Nk_BT_-\ln(V_C/V_A)$ is expelled to the cold reservoir. In Step 4 (isochoric heating from $T_-$ to $T_+$), the volume is held fixed at $V_A$ while the gas is heated; no work is done and the gas absorbs heat $C_V(T_+ - T_-)$.
+\textbf{Step 1} (isothermal expansion at $T_+$, $V_A \to V_C$): work $W_1 = Nk_BT_+\ln(V_C/V_A)$, same heat absorbed from hot reservoir.
+\textbf{Step 2} (isochoric cooling $T_+ \to T_-$ at $V_C$): no work; gas releases $C_V(T_+ - T_-)$.
+\textbf{Step 3} (isothermal compression at $T_-$, $V_C \to V_A$): heat $Q_- = Nk_BT_-\ln(V_C/V_A)$ expelled.
+\textbf{Step 4} (isochoric heating $T_- \to T_+$ at $V_A$): no work; gas absorbs $C_V(T_+ - T_-)$.
 
 \subsection{Net Work and Efficiency Without a Regenerator}
 
-The net work per cycle comes entirely from the two isothermal steps (the isochoric steps do no $p\,dV$ work):
+Net work comes only from the isothermal steps:
 \[
     W_\text{net} = Nk_B(T_+ - T_-)\ln\frac{V_C}{V_A}.
 \]
-This is the same formula as the Carnot net work for the same volume ratio and temperatures. However, the heat input is larger because the isochoric heating step (Step 4) must also be fueled:
+This equals the Carnot net work for the same temperatures and volume ratio, but the total heat input is larger since Step 4 must be fueled externally:
 \[
     Q_\text{in} = Nk_BT_+\ln\frac{V_C}{V_A} + C_V(T_+ - T_-).
 \]
-The efficiency without a regenerator is therefore
 
 \begin{formula}
 \[
-    \eta_\text{Stirling} = \frac{Nk_B(T_+-T_-)\ln(V_C/V_A)}{Nk_BT_+\ln(V_C/V_A) + C_V(T_+-T_-)},
+    \eta_\text{Stirling} = \frac{Nk_B(T_+-T_-)\ln(V_C/V_A)}{Nk_BT_+\ln(V_C/V_A) + C_V(T_+-T_-)} < \eta_\text{Carnot}.
 \]
 \end{formula}
 
-which is strictly less than $\eta_\text{Carnot} = 1 - T_-/T_+$ because of the extra positive term $C_V(T_+ - T_-)$ in the denominator.
-
 \begin{example}
-Despite its lower efficiency, the Stirling engine can produce more net work per cycle than a Carnot engine at the same volume ratio because the Carnot cycle's isothermal expansion spans only a fraction of $V_A$ to $V_C$ (the adiabatic legs limit the effective volume ratio). For $T_+/T_- = 2$ and $V_C/V_A = 10$ with $\gamma = 1.4$, the ratio $W_\text{Stirling}/W_\text{Carnot} \approx 4$, at the cost of lower efficiency.
+Despite lower efficiency, the Stirling engine can produce more net work per cycle than a Carnot engine at the same volume ratio, since Carnot's adiabatic legs limit the effective isothermal volume range. For $T_+/T_- = 2$, $V_C/V_A = 10$, $\gamma = 1.4$: $W_\text{Stirling}/W_\text{Carnot} \approx 4$.
 \end{example}
 
 \subsection{The Regenerator and Why $\eta_\text{Stirling} = \eta_\text{Carnot}$ with It}
 
-The efficiency penalty arises entirely from the isochoric heat exchanges: Step 2 rejects heat $C_V(T_+ - T_-)$ while Step 4 requires the same amount to be supplied. Because these two quantities are equal in magnitude, the heat rejected in Step 2 could in principle be stored and returned in Step 4, eliminating the need for any external heat supply during the isochoric heating.
-
-This is the function of a \textbf{regenerator}: a thermally massive medium --- typically a porous wire mesh or packed bed --- that sits between the hot and cold ends of the engine. During the isochoric cooling (Step 2), the gas passes through the regenerator from the hot end to the cold end, depositing its excess heat $C_V(T_+ - T_-)$ into the regenerator material. During the isochoric heating (Step 4), the gas passes back through the regenerator in the reverse direction and reclaims the stored heat.
+The efficiency penalty arises entirely from the isochoric heat exchanges: Step 2 rejects $C_V(T_+ - T_-)$ while Step 4 requires the same amount. A \textbf{regenerator} --- a thermally massive medium (porous mesh or packed bed) between the hot and cold ends --- stores the heat rejected in Step 2 and returns it in Step 4, eliminating the need for external supply during isochoric heating.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.85]
-  % Helper: draw a simple cylinder cross-section as a rectangle
-  % Panel layout: 2x2 grid, each panel 4.5 wide x 3.5 tall, gap 0.5
-  % Positions: (0,3.8) top-left, (5.0,3.8) top-right, (0,0) bottom-left, (5.0,0) bottom-right
-
   %--- Panel 1: Isothermal expansion T+ (top-left) ---
   \begin{scope}[xshift=0cm, yshift=3.8cm]
     \draw[thick] (0,0) rectangle (4.0,2.8);
@@ -757,13 +683,13 @@ This is the function of a \textbf{regenerator}: a thermally massive medium --- t
 {\small\itshape Stirling engine four-step cycle; the regenerator (hatched) stores and returns heat during isochoric steps.}
 \end{center}
 
-With an ideal regenerator, the heat that must be supplied externally during Step 4 is zero --- the regenerator provides it entirely. The net external heat input reduces to $Q_\text{in} = Nk_BT_+\ln(V_C/V_A)$, identical to what the Carnot engine absorbs from the hot reservoir. Therefore:
+With an ideal regenerator, the external heat input reduces to $Q_\text{in} = Nk_BT_+\ln(V_C/V_A)$, identical to the Carnot case.
 
 \begin{theorem}[Stirling Engine with Perfect Regenerator]
-A Stirling engine equipped with a perfect regenerator achieves the Carnot efficiency:
+A Stirling engine with a perfect regenerator achieves the Carnot efficiency:
 \[
     \eta_\text{Stirling\,(with regenerator)} = 1 - \frac{T_-}{T_+} = \eta_\text{Carnot}.
 \]
 \end{theorem}
 
-The regenerator internalises all isochoric heat exchange so that from the perspective of the external reservoirs the cycle appears identical to a Carnot cycle. The hot reservoir supplies heat only during the isothermal expansion and the cold reservoir absorbs heat only during the isothermal compression, exactly as in the Carnot case.
+The regenerator internalises all isochoric heat exchange; from the perspective of the external reservoirs the cycle is identical to Carnot.
