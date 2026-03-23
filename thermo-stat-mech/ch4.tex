@@ -19,8 +19,47 @@ The entropy of an isolated system never decreases. Equivalently, the total multi
 
 The second law does not emerge from any individual microscopic equation of motion, which is time-reversal invariant. Instead it is a statement about \emph{ensembles} of microstates. Consider the phase space of a system --- the $6N$-dimensional space of positions and momenta. An initial macrostate corresponds to a small blob of phase space. As time progresses, this blob deforms dramatically --- stretching and folding --- while conserving its volume (by Liouville's theorem). The key point is that the final blob, despite having the same phase-space volume, now overlaps with an overwhelmingly larger number of distinct macrostates. It is this overlap, not any change in volume, that causes entropy to grow.
 
-\begin{center}[DIAGRAM: A tube in phase space showing an initial ensemble (compact blob of microstates at an early time slice) evolving forward in time to a later slice where the evolved blob has spread and folded to shadow a vastly larger region; the volume of the blob is conserved by Liouville's theorem but the effective number of accessible macrostates grows.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Time axis (vertical)
+  \draw[->,thick] (0,0) -- (0,5.2) node[left] {time};
 
+  % Lower time slice label
+  \node[left] at (-0.2, 0.7) {$t_0$};
+  \draw[dashed,gray] (-0.1,0.7) -- (7.5,0.7);
+
+  % Upper time slice label
+  \node[left] at (-0.2, 4.0) {$t_1$};
+  \draw[dashed,gray] (-0.1,4.0) -- (7.5,4.0);
+
+  % Lower blob (compact, roughly circular)
+  \draw[thick,fill=blue!20] (3.5,0.7) ellipse (0.55 and 0.42);
+  \node at (3.5,0.7) {\small blob};
+
+  % Upper blob (spread/elongated, same area)
+  \draw[thick,fill=orange!25]
+    (1.2,4.0) .. controls (1.5,4.55) and (2.6,4.55) .. (3.3,4.05)
+    .. controls (4.0,4.55) and (5.5,4.55) .. (6.0,4.0)
+    .. controls (5.5,3.5)  and (4.0,3.45) .. (3.3,3.95)
+    .. controls (2.6,3.45) and (1.5,3.45) .. (1.2,4.0);
+  \node at (3.6,4.0) {\small same volume};
+
+  % Annotation
+  \node[align=center,text width=4.2cm] at (5.5,2.4)
+    {\small same volume,\\ more macrostates\\ overlapped};
+
+  % Flow arrows
+  \draw[->,thick,blue!60] (2.8,1.15) -- (2.0,3.55);
+  \draw[->,thick,blue!60] (3.5,1.15) -- (3.5,3.5);
+  \draw[->,thick,blue!60] (4.2,1.15) -- (5.1,3.55);
+
+  % Phase-space axis labels
+  \node[below] at (3.5,0.3) {\small phase-space coordinates $(q,p)$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Liouville's theorem: the phase-space blob (same volume) spreads to shadow vastly more macrostates over time.}
+\end{center}
+
+\begin{example}
 The free expansion of a gas provides the cleanest illustration. When $N$ atoms confined to the left half of an insulated box are released and expand to fill the whole box, no work is done and no heat is exchanged, so the internal energy is unchanged. Nevertheless, each atom now has access to double the spatial volume, so the multiplicity of the final state is $\Omega_{\text{new}} = \Omega_{\text{old}} \times 2^N$. In terms of entropy,
 
 \begin{formula}
@@ -30,6 +69,7 @@ The free expansion of a gas provides the cleanest illustration. When $N$ atoms c
 \end{formula}
 
 The ratio $\Omega_{\text{new}}/\Omega_{\text{old}} = 2^N \approx 2^{10^{23}}$ is an astronomically large number, which makes the entropy increase for all practical purposes irreversible. The process \emph{could} spontaneously reverse --- all $N$ atoms could simultaneously wander back to the left half --- but the probability is $2^{-N}$, utterly negligible for any macroscopic $N$.
+\end{example}
 
 \begin{fact}
 Isolated systems may only increase entropy. Most systems relax toward the macrostate of maximum entropy, and fluctuations away from that state are suppressed by a factor of $e^{-\Delta S / k_B}$.
@@ -78,12 +118,13 @@ with equality if and only if the cycle is reversible.
 
 This inequality encodes the second law in a form directly applicable to cyclic processes. It immediately implies that an engine cannot convert heat entirely into work without rejecting some waste heat to a cold reservoir.
 
+\begin{example}
 As a concrete illustration of irreversibility, consider a fixed quantity of heat $Q$ flowing from a hot reservoir at $T_H$ to a cold reservoir at $T_C < T_H$. The entropy of the hot reservoir decreases by $Q/T_H$ and that of the cold reservoir increases by $Q/T_C$. The net entropy change of the universe is
 \[
     \Delta S_\text{univ} = Q\!\left(\frac{1}{T_C} - \frac{1}{T_H}\right) > 0,
 \]
 which is strictly positive whenever $T_C < T_H$, confirming that irreversible heat flow always raises total entropy. In the quasi-static reversible limit, where the temperature difference approaches zero ($dT \to 0$), this entropy production vanishes as $dT/T^2 \to 0$.
-
+\end{example}
 
 \section{Entropy Changes in Thermodynamic Processes}
 
@@ -145,10 +186,38 @@ Because $S$ is a state function, the total entropy change around any closed cycl
 
 Raising a cold body at temperature $T_C$ to a hot temperature $T_H$ by direct contact with a reservoir at $T_H$ is irreversible: heat flows across a finite temperature difference, generating entropy. To heat the body \emph{reversibly}, one must bring it into contact with a sequence of intermediate reservoirs at temperatures $T_C,\, T_C + dT,\, T_C + 2\,dT, \ldots, T_H$, each infinitesimally hotter than the last. At each step the body is in near-equilibrium with the reservoir it contacts, and the entropy production per step is of order $(dT)^2/T^2 \to 0$.
 
-\begin{center}[DIAGRAM: A sequence of reservoirs at temperatures $T_C, T_C + dT, T_C + 2\,dT, \ldots, T_H$ arranged from left (cold) to right (hot); arrows indicating incremental heat transfer at each stage; the body is brought into contact with each reservoir in turn.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Reservoir rectangles and labels
+  \foreach \i/\lbl in {0/$T_C$, 1/$T_C{+}dT$, 2/$T_C{+}2dT$, 3/$\cdots$, 4/$T_H$} {
+    \draw[thick,fill=blue!\the\numexpr 15+14*\i\relax!red!30]
+      (\i*2.1, 0) rectangle (\i*2.1+1.6, 1.0);
+    \node at (\i*2.1+0.8, 0.5) {\small\lbl};
+  }
+
+  % System circles between reservoirs
+  \foreach \i in {0,1,2,3} {
+    \draw[thick,fill=yellow!50] (\i*2.1+1.6+0.25, 0.5) circle (0.22);
+    \node at (\i*2.1+1.6+0.25, 0.5) {\tiny S};
+  }
+
+  % Heat-flow arrows (downward into system from each reservoir)
+  \foreach \i in {0,1,2,3} {
+    \draw[->,red!70!black,thick] (\i*2.1+0.8, 0) -- (\i*2.1+1.6+0.25-0.18, 0.42);
+  }
+
+  % Process label
+  \node[above] at (4.2, 1.0) {\small reversible heating};
+  \draw[->] (0.8,1.0) -- (8.4+0.8,1.0) node[right] {};
+
+  % Cold/Hot labels
+  \node[below] at (0.8,-0.15) {\small cold};
+  \node[below] at (8.4+0.8-0.6,-0.15) {\small hot};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Reversible heating: system contacts reservoirs at incrementally higher temperatures $T_C\to T_H$.}
+\end{center}
 
 In practical devices such as heat pumps and refrigerators, this is implemented by cycling a working fluid through a series of states that approximates a continuous sequence of reservoir temperatures.
-
 
 \section{The Third Law}
 
@@ -169,7 +238,44 @@ The equivalence of statements 1 and 2 follows from the integral relation $S(T) =
 
 The equivalence with statement 3 is illustrated by considering any cooling protocol that alternates isothermal compression (which removes entropy) with adiabatic expansion (which lowers temperature at fixed entropy). As $T \to 0$, the entropy of the system becomes vanishingly small, so each isothermal step can only remove a vanishingly small amount of entropy. The corresponding temperature reduction in the subsequent adiabatic step becomes vanishingly small as well. The temperature converges to zero only asymptotically: absolute zero is unreachable in any finite number of steps.
 
-\begin{center}[DIAGRAM: $T$ vs.\ $S$ plot showing alternating isothermal (horizontal) steps and adiabatic (vertical) steps converging asymptotically toward $T = 0$ on the left.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->,thick] (0,0) -- (6.5,0) node[right] {$S$};
+  \draw[->,thick] (0,0) -- (0,5.0) node[above] {$T$};
+  \node[left] at (0,0) {$0$};
+
+  % Staircase steps converging toward origin
+  % Each step: horizontal (isothermal, remove entropy) then vertical (adiabatic, lower T)
+  % Steps: (S, T) coordinates, decreasing
+  \def\steps{
+    {5.8, 4.2}, {4.0, 4.2},
+    {4.0, 3.0}, {2.7, 3.0},
+    {2.7, 2.1}, {1.7, 2.1},
+    {1.7, 1.4}, {1.05, 1.4},
+    {1.05, 0.85}, {0.6, 0.85},
+    {0.6, 0.45}, {0.32, 0.45}
+  }
+  % Draw staircase
+  \draw[thick,blue!70!black]
+    (5.8,4.2) -- (4.0,4.2) node[midway,above] {\tiny isothermal}
+              -- (4.0,3.0) node[midway,right] {\tiny adiabatic}
+              -- (2.7,3.0) -- (2.7,2.1) -- (1.7,2.1) -- (1.7,1.4)
+              -- (1.05,1.4) -- (1.05,0.85) -- (0.6,0.85)
+              -- (0.6,0.45) -- (0.32,0.45) -- (0.32,0.22);
+
+  % Asymptote label
+  \draw[dashed,gray] (0,0) -- (0.5,0);
+  \node[below right,gray] at (0.05,0.05) {\small $T=0$};
+
+  % Annotation arrows for first step labels
+  \draw[->] (4.9,4.55) -- (4.5,4.25);
+  \node[right] at (4.9,4.6) {\footnotesize isothermal};
+  \draw[->] (4.5,3.6) -- (4.15,3.4);
+  \node[right] at (4.5,3.65) {\footnotesize adiabatic};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Third law: alternating isothermal and adiabatic steps converge asymptotically to $T=0$, never reaching it.}
+\end{center}
 
 \subsection{Physical Origin: Ground-State Degeneracy and Residual Entropy}
 
@@ -183,7 +289,6 @@ A further physical consequence of $C_V \to 0$ as $T \to 0$ is that quantum degre
 
 The relation $dS = \dbar Q / T$ was the \emph{original} definition of entropy, introduced by Clausius before any microscopic interpretation existed. From this perspective, energy behaves like a fluid that is conserved as it flows between systems, but entropy behaves differently: it is \emph{created} wherever heat flows irreversibly. A packet of energy $\dbar Q$ flowing from a hot body at temperature $T_H$ to a cold body at $T_C$ carries entropy $\dbar Q / T_H$ out of the hot body but deposits $\dbar Q / T_C > \dbar Q / T_H$ into the cold body. The net entropy creation per unit heat transferred is $\dbar Q (1/T_C - 1/T_H) > 0$. The total entropy of the universe therefore never decreases --- this is the macroscopic content of the second law.
 
-
 \section{Heat Engines and the Carnot Bound}
 \label{sec:carnot}
 
@@ -193,7 +298,34 @@ The relation $dS = \dbar Q / T$ was the \emph{original} definition of entropy, i
 A heat engine is a device that operates cyclically, absorbing heat $Q_+$ from a high-temperature reservoir at $T_+$, doing net mechanical work $W$, and rejecting waste heat $Q_-$ to a low-temperature reservoir at $T_-$. Because the working substance executes a closed path in state space and returns to its initial state at the end of each cycle, the change in any state function (including internal energy) over a cycle is zero: $\oint dU = 0$.
 \end{definition}
 
-\begin{center}[DIAGRAM: Engine schematic showing the hot reservoir $T_+$ at the top providing $Q_+$, the engine in the middle producing net work $W$, and the cold reservoir $T_-$ at the bottom receiving $Q_-$.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Hot reservoir (top)
+  \draw[thick,fill=red!20] (1.5,4.0) rectangle (5.5,5.2);
+  \node at (3.5,4.6) {\textbf{Hot reservoir} $T_+$};
+
+  % Engine (middle)
+  \draw[thick,fill=yellow!30] (2.0,2.0) rectangle (5.0,3.4);
+  \node at (3.5,2.7) {\textbf{Engine}};
+
+  % Cold reservoir (bottom)
+  \draw[thick,fill=blue!15] (1.5,0.0) rectangle (5.5,1.2);
+  \node at (3.5,0.6) {\textbf{Cold reservoir} $T_-$};
+
+  % Arrow: Q+ from hot reservoir down to engine
+  \draw[->,very thick,red!70!black] (3.5,4.0) -- (3.5,3.4);
+  \node[right] at (3.6,3.7) {$Q_+$};
+
+  % Arrow: Q- from engine down to cold reservoir
+  \draw[->,very thick,blue!70!black] (3.5,2.0) -- (3.5,1.2);
+  \node[right] at (3.6,1.6) {$Q_-$};
+
+  % Arrow: W output to the right
+  \draw[->,very thick,green!50!black] (5.0,2.7) -- (6.4,2.7);
+  \node[above] at (5.7,2.75) {$W$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Heat engine: absorbs $Q_+$ from hot reservoir, produces work $W$, rejects $Q_-$ to cold reservoir.}
+\end{center}
 
 Since $\oint dU = 0$, energy conservation requires $W = Q_+ - Q_-$: the net work output equals the difference between heat in and heat out. The net work per cycle also equals the enclosed area in a $P$-$V$ diagram, $W = \oint p\,dV$. It is impossible to convert heat entirely into work without rejecting any waste heat; some heat must always be deposited in the cold reservoir.
 
@@ -208,7 +340,84 @@ The efficiency of a heat engine is
 
 The Carnot cycle is the canonical reversible heat engine. It operates between two reservoirs at $T_+$ (hot) and $T_-$ (cold) using four quasi-static steps.
 
-\begin{center}[DIAGRAM: Left: $P$-$V$ diagram of the Carnot cycle with four labeled segments: (A$\to$B) isothermal expansion at $T_+$ (upper isotherm, absorbing $Q_+$), (B$\to$C) adiabatic expansion connecting $T_+$ to $T_-$, (C$\to$D) isothermal compression at $T_-$ (lower isotherm, rejecting $Q_-$), (D$\to$A) adiabatic compression reconnecting $T_-$ to $T_+$; the enclosed area is shaded and labeled $W$. Right: $T$-$S$ diagram showing the cycle as a rectangle; the upper edge at $T_+$ has width $\Delta S = Q_+/T_+$; the lower edge at $T_-$ has width $\Delta S = Q_-/T_-$; the area of the rectangle equals $W = (T_+ - T_-)\Delta S$.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  %--- LEFT: P-V diagram ---
+  \begin{scope}[xshift=0cm]
+    \draw[->,thick] (0,0) -- (5.2,0) node[right] {$V$};
+    \draw[->,thick] (0,0) -- (0,4.8) node[above] {$P$};
+
+    % Carnot cycle: A(top-left), B(top-right), C(bottom-right), D(bottom-left)
+    % Upper isotherm A->B (convex down)
+    \draw[thick,blue!70!black] (0.7,3.8) .. controls (1.8,3.0) and (2.8,2.6) .. (3.8,2.2)
+      node[midway,above=2pt] {\tiny $T_+$, absorbs $Q_+$};
+    % Adiabatic expansion B->C (steeper)
+    \draw[thick,green!50!black] (3.8,2.2) .. controls (4.2,1.5) and (4.4,1.0) .. (4.5,0.7);
+    % Lower isotherm C->D
+    \draw[thick,red!70!black] (4.5,0.7) .. controls (3.5,0.9) and (2.3,1.1) .. (1.2,1.4)
+      node[midway,below=2pt] {\tiny $T_-$, rejects $Q_-$};
+    % Adiabatic compression D->A
+    \draw[thick,green!50!black] (1.2,1.4) .. controls (0.9,2.2) and (0.75,3.0) .. (0.7,3.8);
+
+    % Shaded enclosed area
+    \begin{scope}
+      \clip (0.7,3.8) .. controls (1.8,3.0) and (2.8,2.6) .. (3.8,2.2)
+            .. controls (4.2,1.5) and (4.4,1.0) .. (4.5,0.7)
+            .. controls (3.5,0.9) and (2.3,1.1) .. (1.2,1.4)
+            .. controls (0.9,2.2) and (0.75,3.0) .. (0.7,3.8);
+      \fill[gray!25] (0,0) rectangle (5.2,4.8);
+    \end{scope}
+    \node at (2.5,2.2) {$W$};
+
+    % Point labels
+    \node[above left]  at (0.7,3.8)  {A};
+    \node[above right] at (3.8,2.2)  {B};
+    \node[below right] at (4.5,0.7)  {C};
+    \node[below left]  at (1.2,1.4)  {D};
+
+    % Arrows on segments
+    \draw[->,thick,blue!70!black]    (1.6,3.43) -- (1.65,3.4);
+    \draw[->,thick,green!50!black]   (4.15,1.4) -- (4.17,1.35);
+    \draw[->,thick,red!70!black]     (3.0,1.0)  -- (2.95,1.01);
+    \draw[->,thick,green!50!black]   (0.88,2.4) -- (0.86,2.45);
+  \end{scope}
+
+  %--- RIGHT: T-S diagram ---
+  \begin{scope}[xshift=6.5cm]
+    \draw[->,thick] (0,0) -- (4.5,0) node[right] {$S$};
+    \draw[->,thick] (0,0) -- (0,4.8) node[above] {$T$};
+
+    % Rectangle: lower-left (S1,T-) to upper-right (S2,T+)
+    \def\Sa{0.6} \def\Sb{3.8} \def\Tm{1.0} \def\Tp{3.8}
+    \fill[gray!25] (\Sa,\Tm) rectangle (\Sb,\Tp);
+    \draw[thick,blue!70!black]   (\Sa,\Tp) -- (\Sb,\Tp) node[midway,above] {\tiny absorbs $Q_+$};
+    \draw[thick,red!70!black]    (\Sb,\Tm) -- (\Sa,\Tm) node[midway,below] {\tiny rejects $Q_-$};
+    \draw[thick,green!50!black]  (\Sa,\Tm) -- (\Sa,\Tp);
+    \draw[thick,green!50!black]  (\Sb,\Tp) -- (\Sb,\Tm);
+
+    % T labels
+    \node[left] at (0,\Tp) {$T_+$};
+    \node[left] at (0,\Tm) {$T_-$};
+    \draw[dashed,gray] (0,\Tp) -- (\Sa,\Tp);
+    \draw[dashed,gray] (0,\Tm) -- (\Sa,\Tm);
+
+    % S labels
+    \node[below] at (\Sa,0) {$S_1$};
+    \node[below] at (\Sb,0) {$S_2$};
+    \draw[dashed,gray] (\Sa,0) -- (\Sa,\Tm);
+    \draw[dashed,gray] (\Sb,0) -- (\Sb,\Tm);
+
+    % Area label
+    \node[align=center] at (2.2,2.4) {$W$};
+    \node[align=center,font=\tiny] at (2.2,1.9) {$=(T_+-T_-)\Delta S$};
+
+    % Adiabatic labels
+    \node[left,font=\tiny]  at (\Sa,2.4) {adiab.};
+    \node[right,font=\tiny] at (\Sb,2.4) {adiab.};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Carnot cycle: $P$--$V$ diagram (left) and $T$--$S$ diagram (right, a rectangle).}
+\end{center}
 
 \textbf{Step 1 --- Isothermal expansion at $T_+$ (A $\to$ B).} The gas expands from volume $V_A$ to $V_B$ while in thermal contact with the hot reservoir at $T_+$. Since the temperature is constant, the internal energy of an ideal gas does not change: $\Delta U_1 = 0$. By the first law, the heat absorbed from the hot reservoir equals the work done by the gas:
 \[
@@ -252,7 +461,11 @@ Since $Q_+ = Nk_B T_+ \ln(V_B/V_A)$, the efficiency is
 \]
 \end{formula}
 
-The logarithmic volume factors cancel completely, so the efficiency depends only on the two reservoir temperatures and not on the volume ratio or the amount of working gas. As a numerical example, with $T_+ = 600\ \text{K}$ and $T_- = 300\ \text{K}$ the Carnot efficiency is $50\%$.
+The logarithmic volume factors cancel completely, so the efficiency depends only on the two reservoir temperatures and not on the volume ratio or the amount of working gas.
+
+\begin{example}
+With $T_+ = 600\ \text{K}$ and $T_- = 300\ \text{K}$ the Carnot efficiency is $\eta_\text{Carnot} = 1 - 300/600 = 50\%$.
+\end{example}
 
 \subsection{Efficiency from the Second Law}
 
@@ -280,12 +493,38 @@ The proof is by contradiction. Suppose a super-Carnot engine $X$ has efficiency 
 
 The optimality of the Carnot cycle can also be seen directly in the $T$-$S$ diagram. Any modified cycle that adds heat at an intermediate temperature $T_i$ with $T_- < T_i < T_+$ increases the heat input $Q_+'$ for the same net work output, since the extra heat is delivered at a temperature below $T_+$ and is therefore less thermodynamically valuable. The efficiency $\eta' = W/Q_+' < W/Q_+ = \eta_\text{Carnot}$ for any such modification.
 
-
 \section{Refrigerators and Heat Pumps}
 
 Running the Carnot cycle in reverse transforms the engine into a refrigerator or heat pump. Work $W_\text{in}$ is supplied, heat $Q_-$ is absorbed from the cold reservoir (the interior of a fridge, or the outdoor air), and heat $Q_+ = Q_- + W_\text{in}$ is expelled to the hot reservoir (the room, or the building interior).
 
-\begin{center}[DIAGRAM: Reverse-cycle schematic: work $W_\text{in}$ enters; heat $Q_-$ is drawn from the cold reservoir $T_-$ (food compartment or outside air) and heat $Q_+ = Q_- + W_\text{in}$ is expelled to the hot reservoir $T_+$ (room or building interior).]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Hot reservoir (top)
+  \draw[thick,fill=red!20] (1.5,4.0) rectangle (5.5,5.2);
+  \node at (3.5,4.6) {\textbf{Hot reservoir} $T_+$};
+
+  % Device (middle)
+  \draw[thick,fill=yellow!30] (2.0,2.0) rectangle (5.0,3.4);
+  \node at (3.5,2.7) {\textbf{Device}};
+
+  % Cold reservoir (bottom)
+  \draw[thick,fill=blue!15] (1.5,0.0) rectangle (5.5,1.2);
+  \node at (3.5,0.6) {\textbf{Cold reservoir} $T_-$};
+
+  % Arrow: Q+ leaving device upward to hot reservoir
+  \draw[->,very thick,red!70!black] (3.5,3.4) -- (3.5,4.0);
+  \node[right] at (3.6,3.7) {$Q_+{=}Q_-{+}W_\text{in}$};
+
+  % Arrow: Q- rising from cold reservoir into device
+  \draw[->,very thick,blue!70!black] (3.5,1.2) -- (3.5,2.0);
+  \node[right] at (3.6,1.6) {$Q_-$};
+
+  % Arrow: W_in entering from the right
+  \draw[->,very thick,green!50!black] (6.4,2.7) -- (5.0,2.7);
+  \node[above] at (5.7,2.75) {$W_\text{in}$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Refrigerator/heat pump: work input $W_\text{in}$ pumps heat from cold to hot reservoir.}
+\end{center}
 
 For a \textbf{refrigerator}, the figure of merit is the coefficient of performance (COP), defined as the ratio of heat removed from the cold reservoir to the work consumed:
 
@@ -296,7 +535,9 @@ For a \textbf{refrigerator}, the figure of merit is the coefficient of performan
 where the last equality holds for an ideal (Carnot) refrigerator.
 \end{definition}
 
+\begin{example}
 For typical household conditions ($T_+ \approx 308\ \text{K}$, $T_- \approx 278\ \text{K}$), the ideal COP is $278/30 \approx 9$, meaning a perfect refrigerator moves roughly nine times as much thermal energy as the electrical work it consumes. Real refrigerators have lower COPs due to irreversibilities, but still substantially above 1.
+\end{example}
 
 For a \textbf{heat pump}, the figure of merit is the ratio of heat delivered to the hot reservoir to the work consumed:
 
@@ -306,8 +547,13 @@ For a \textbf{heat pump}, the figure of merit is the ratio of heat delivered to 
 \]
 \end{definition}
 
-Note that $\text{COP}_\text{pump} = \text{COP}_\text{refrig} + 1 > 1$ always, so a heat pump always delivers more thermal energy to the building than the work it consumes. For a building maintained at $T_+ = 293\ \text{K}$ drawing on outside air at $T_- = 268\ \text{K}$, the ideal COP is $293/25 \approx 12$. This makes heat pumps substantially more energy-efficient than direct electric heating. Both COPs can be written in terms of the Carnot efficiency as $\text{COP}_\text{refrig} = (1-\eta)/\eta$ and $\text{COP}_\text{pump} = 1/\eta$, so maximizing the COP is equivalent to minimizing irreversibilities in the cycle.
+Note that $\text{COP}_\text{pump} = \text{COP}_\text{refrig} + 1 > 1$ always, so a heat pump always delivers more thermal energy to the building than the work it consumes.
 
+\begin{example}
+For a building maintained at $T_+ = 293\ \text{K}$ drawing on outside air at $T_- = 268\ \text{K}$, the ideal COP is $293/25 \approx 12$. This makes heat pumps substantially more energy-efficient than direct electric heating.
+\end{example}
+
+Both COPs can be written in terms of the Carnot efficiency as $\text{COP}_\text{refrig} = (1-\eta)/\eta$ and $\text{COP}_\text{pump} = 1/\eta$, so maximizing the COP is equivalent to minimizing irreversibilities in the cycle.
 
 \section{The Stirling Engine}
 
@@ -315,7 +561,80 @@ Note that $\text{COP}_\text{pump} = \text{COP}_\text{refrig} + 1 > 1$ always, so
 
 The Stirling engine is a practical alternative to the Carnot cycle that replaces the two adiabatic legs --- which require perfectly insulated, arbitrarily slow expansions --- with \emph{isochoric} (constant-volume) heating and cooling steps. The cycle still operates between the same two temperatures $T_+$ and $T_-$.
 
-\begin{center}[DIAGRAM: Left: $p$-$V$ diagram of the Stirling cycle showing two vertical isochoric segments (at volumes $V_A$ and $V_C$) connecting two isothermal segments (at temperatures $T_+$ and $T_-$); the enclosed area is the net work. Right: $T$-$S$ diagram showing the Stirling cycle as a wider rectangle compared to the Carnot rectangle (dashed), with the extra isochoric heat exchanges labeled on the sides.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  %--- LEFT: P-V diagram ---
+  \begin{scope}[xshift=0cm]
+    \draw[->,thick] (0,0) -- (5.2,0) node[right] {$V$};
+    \draw[->,thick] (0,0) -- (0,4.8) node[above] {$P$};
+
+    % Vertical dashed lines at V_A and V_C
+    \draw[dashed,gray] (1.0,0) node[below]{\small $V_A$} -- (1.0,4.3);
+    \draw[dashed,gray] (4.0,0) node[below]{\small $V_C$} -- (4.0,2.0);
+
+    % Upper isotherm at T+ from V_A to V_C
+    \draw[thick,blue!70!black]
+      (1.0,4.3) .. controls (2.0,3.0) and (3.2,2.4) .. (4.0,2.0)
+      node[midway,above=3pt] {\small isothermal $T_+$};
+
+    % Right isochoric: V_C, from T+ isotherm down to T- isotherm
+    \draw[thick,orange!80!black] (4.0,2.0) -- (4.0,0.9)
+      node[midway,right] {\small isochoric};
+
+    % Lower isotherm at T- from V_C back to V_A
+    \draw[thick,red!70!black]
+      (4.0,0.9) .. controls (3.0,1.1) and (1.8,1.3) .. (1.0,1.6)
+      node[midway,below=3pt] {\small isothermal $T_-$};
+
+    % Left isochoric: V_A, from T- isotherm up to T+ isotherm
+    \draw[thick,orange!80!black] (1.0,1.6) -- (1.0,4.3)
+      node[midway,left] {\small isochoric};
+
+    % Shade enclosed area
+    \begin{scope}
+      \clip (1.0,4.3) .. controls (2.0,3.0) and (3.2,2.4) .. (4.0,2.0)
+            -- (4.0,0.9) .. controls (3.0,1.1) and (1.8,1.3) .. (1.0,1.6) -- cycle;
+      \fill[gray!25] (0,0) rectangle (5.2,4.8);
+    \end{scope}
+    \node at (2.5,2.5) {$W$};
+
+    % Arrows
+    \draw[->,thick,blue!70!black]  (2.3,3.35) -- (2.35,3.3);
+    \draw[->,thick,red!70!black]   (2.7,0.98) -- (2.65,0.99);
+    \draw[->,thick,orange!80!black](4.0,1.45)  -- (4.0,1.42);
+    \draw[->,thick,orange!80!black](1.0,3.0)   -- (1.0,3.03);
+  \end{scope}
+
+  %--- RIGHT: T-S diagram ---
+  \begin{scope}[xshift=6.5cm]
+    \draw[->,thick] (0,0) -- (5.0,0) node[right] {$S$};
+    \draw[->,thick] (0,0) -- (0,4.8) node[above] {$T$};
+
+    % Stirling rectangle (wider)
+    \def\Sa{0.4} \def\Sb{4.4} \def\Tm{1.0} \def\Tp{3.8}
+    \fill[gray!20] (\Sa,\Tm) rectangle (\Sb,\Tp);
+    \draw[thick,blue!70!black]  (\Sa,\Tp) -- (\Sb,\Tp) node[midway,above]{\tiny isothermal $T_+$};
+    \draw[thick,red!70!black]   (\Sb,\Tm) -- (\Sa,\Tm) node[midway,below]{\tiny isothermal $T_-$};
+    \draw[thick,orange!80!black](\Sa,\Tm) -- (\Sa,\Tp) node[midway,left,align=right,font=\tiny]{isochoric\\$C_V(T_+-T_-)$};
+    \draw[thick,orange!80!black](\Sb,\Tp) -- (\Sb,\Tm) node[midway,right,align=left,font=\tiny]{isochoric\\$C_V(T_+-T_-)$};
+
+    % T axis labels
+    \node[left] at (0,\Tp) {$T_+$};
+    \node[left] at (0,\Tm) {$T_-$};
+    \draw[dashed,gray] (0,\Tp) -- (\Sa,\Tp);
+    \draw[dashed,gray] (0,\Tm) -- (\Sa,\Tm);
+
+    % Dashed Carnot rectangle for comparison
+    \def\Sc{1.5} \def\Sd{3.3}
+    \draw[dashed,gray!70,thick] (\Sc,\Tm) rectangle (\Sd,\Tp);
+    \node[gray!70,font=\tiny] at (2.4,2.4) {Carnot};
+
+    \node at (2.4,2.4) {};
+    \node[font=\small] at (2.4,2.4) {$W$};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Stirling cycle: $P$--$V$ (left) and $T$--$S$ (right) diagrams; the Carnot rectangle is shown dashed.}
+\end{center}
 
 In Step 1 (isothermal expansion at $T_+$), the gas expands from $V_A$ to $V_C$ at constant temperature, doing work $W_1 = Nk_BT_+\ln(V_C/V_A)$ and absorbing the same quantity of heat from the hot reservoir. In Step 2 (isochoric cooling from $T_+$ to $T_-$), the volume is held fixed at $V_C$ while the gas cools; no work is done and the gas releases heat $C_V(T_+ - T_-)$ to its surroundings. In Step 3 (isothermal compression at $T_-$), the gas is compressed from $V_C$ back to $V_A$ at constant temperature; work $Nk_BT_-\ln(V_A/V_C)$ is done on the gas and heat $Nk_BT_-\ln(V_C/V_A)$ is expelled to the cold reservoir. In Step 4 (isochoric heating from $T_-$ to $T_+$), the volume is held fixed at $V_A$ while the gas is heated; no work is done and the gas absorbs heat $C_V(T_+ - T_-)$.
 
@@ -337,7 +656,11 @@ The efficiency without a regenerator is therefore
 \]
 \end{formula}
 
-which is strictly less than $\eta_\text{Carnot} = 1 - T_-/T_+$ because of the extra positive term $C_V(T_+ - T_-)$ in the denominator. Despite its lower efficiency, the Stirling engine can produce more net work per cycle than a Carnot engine at the same volume ratio because the Carnot cycle's isothermal expansion spans only a fraction of $V_A$ to $V_C$ (the adiabatic legs limit the effective volume ratio). For $T_+/T_- = 2$ and $V_C/V_A = 10$ with $\gamma = 1.4$, the ratio $W_\text{Stirling}/W_\text{Carnot} \approx 4$, at the cost of lower efficiency.
+which is strictly less than $\eta_\text{Carnot} = 1 - T_-/T_+$ because of the extra positive term $C_V(T_+ - T_-)$ in the denominator.
+
+\begin{example}
+Despite its lower efficiency, the Stirling engine can produce more net work per cycle than a Carnot engine at the same volume ratio because the Carnot cycle's isothermal expansion spans only a fraction of $V_A$ to $V_C$ (the adiabatic legs limit the effective volume ratio). For $T_+/T_- = 2$ and $V_C/V_A = 10$ with $\gamma = 1.4$, the ratio $W_\text{Stirling}/W_\text{Carnot} \approx 4$, at the cost of lower efficiency.
+\end{example}
 
 \subsection{The Regenerator and Why $\eta_\text{Stirling} = \eta_\text{Carnot}$ with It}
 
@@ -345,7 +668,94 @@ The efficiency penalty arises entirely from the isochoric heat exchanges: Step 2
 
 This is the function of a \textbf{regenerator}: a thermally massive medium --- typically a porous wire mesh or packed bed --- that sits between the hot and cold ends of the engine. During the isochoric cooling (Step 2), the gas passes through the regenerator from the hot end to the cold end, depositing its excess heat $C_V(T_+ - T_-)$ into the regenerator material. During the isochoric heating (Step 4), the gas passes back through the regenerator in the reverse direction and reclaims the stored heat.
 
-\begin{center}[DIAGRAM: Four-panel schematic of the Stirling engine cycle. Panel 1 (isothermal expansion at $T_+$): gas in the hot cylinder does work. Panel 2 (isochoric cooling): gas is driven through the regenerator (hatched region) from hot to cold end, depositing heat. Panel 3 (isothermal compression at $T_-$): gas in the cold cylinder is compressed. Panel 4 (isochoric heating): gas is driven back through the regenerator, recovering the stored heat.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Helper: draw a simple cylinder cross-section as a rectangle
+  % Panel layout: 2x2 grid, each panel 4.5 wide x 3.5 tall, gap 0.5
+  % Positions: (0,3.8) top-left, (5.0,3.8) top-right, (0,0) bottom-left, (5.0,0) bottom-right
+
+  %--- Panel 1: Isothermal expansion T+ (top-left) ---
+  \begin{scope}[xshift=0cm, yshift=3.8cm]
+    \draw[thick] (0,0) rectangle (4.0,2.8);
+    % Piston (moving right)
+    \draw[thick,fill=gray!40] (2.2,0) rectangle (2.5,2.8);
+    % Arrow showing piston moving right
+    \draw[->,very thick] (2.5,1.4) -- (3.3,1.4) node[right]{\tiny expand};
+    % Heat arrow entering from top
+    \draw[->,red!70!black,thick] (1.0,2.8) -- (1.0,2.1) node[below,font=\tiny]{$Q_+$ in};
+    % Label
+    \node[above,font=\small\bfseries] at (2.0,2.8) {1. Isothermal exp.\ $T_+$};
+    % Gas shading (left of piston)
+    \fill[blue!10] (0,0) rectangle (2.2,2.8);
+  \end{scope}
+
+  %--- Panel 2: Isochoric cooling through regenerator (top-right) ---
+  \begin{scope}[xshift=5.0cm, yshift=3.8cm]
+    \draw[thick] (0,0) rectangle (4.0,2.8);
+    % Regenerator (hatched block in the middle)
+    \fill[pattern=north east lines, pattern color=gray!70] (1.6,0.4) rectangle (2.4,2.4);
+    \draw[thick] (1.6,0.4) rectangle (2.4,2.4);
+    \node[font=\tiny] at (2.0,1.4) {regen.};
+    % Hot side label
+    \node[font=\tiny,red!70!black] at (0.7,1.4) {hot};
+    % Cold side label
+    \node[font=\tiny,blue!70!black] at (3.3,1.4) {cold};
+    % Gas flow arrows (left to right through regenerator)
+    \draw[->,orange!80!black,thick] (0.2,1.8) -- (1.5,1.8);
+    \draw[->,orange!80!black,thick] (2.5,1.8) -- (3.8,1.8);
+    \draw[->,orange!80!black,thick] (0.2,1.0) -- (1.5,1.0);
+    \draw[->,orange!80!black,thick] (2.5,1.0) -- (3.8,1.0);
+    % Heat deposited into regenerator
+    \draw[->,gray!60,thick] (2.0,1.9) -- (2.0,2.3) node[above,font=\tiny]{heat stored};
+    % Label
+    \node[above,font=\small\bfseries] at (2.0,2.8) {2. Isochoric cooling};
+  \end{scope}
+
+  %--- Panel 3: Isothermal compression T- (bottom-left) ---
+  \begin{scope}[xshift=0cm, yshift=0cm]
+    \draw[thick] (0,0) rectangle (4.0,2.8);
+    % Piston (moving left, more compressed)
+    \draw[thick,fill=gray!40] (1.3,0) rectangle (1.6,2.8);
+    % Arrow showing piston moving left
+    \draw[->,very thick] (1.3,1.4) -- (0.5,1.4) node[left]{\tiny compress};
+    % Heat arrow leaving at bottom
+    \draw[->,blue!70!black,thick] (2.8,0.7) -- (2.8,0) node[below,font=\tiny]{$Q_-$ out};
+    % Gas shading (left of piston)
+    \fill[blue!10] (0,0) rectangle (1.3,2.8);
+    % Label
+    \node[above,font=\small\bfseries] at (2.0,2.8) {3. Isothermal comp.\ $T_-$};
+  \end{scope}
+
+  %--- Panel 4: Isochoric heating through regenerator (bottom-right) ---
+  \begin{scope}[xshift=5.0cm, yshift=0cm]
+    \draw[thick] (0,0) rectangle (4.0,2.8);
+    % Regenerator (hatched block)
+    \fill[pattern=north east lines, pattern color=gray!70] (1.6,0.4) rectangle (2.4,2.4);
+    \draw[thick] (1.6,0.4) rectangle (2.4,2.4);
+    \node[font=\tiny] at (2.0,1.4) {regen.};
+    % Cold side label
+    \node[font=\tiny,blue!70!black] at (0.7,1.4) {cold};
+    % Hot side label
+    \node[font=\tiny,red!70!black]  at (3.3,1.4) {hot};
+    % Gas flow arrows (right to left through regenerator)
+    \draw[->,orange!80!black,thick] (3.8,1.8) -- (2.5,1.8);
+    \draw[->,orange!80!black,thick] (1.5,1.8) -- (0.2,1.8);
+    \draw[->,orange!80!black,thick] (3.8,1.0) -- (2.5,1.0);
+    \draw[->,orange!80!black,thick] (1.5,1.0) -- (0.2,1.0);
+    % Heat recovered from regenerator
+    \draw[->,gray!60,thick] (2.0,2.3) -- (2.0,1.9) node[below,font=\tiny]{heat returned};
+    % Label
+    \node[above,font=\small\bfseries] at (2.0,2.8) {4. Isochoric heating};
+  \end{scope}
+
+  % Cycle arrows between panels
+  \draw[->,thick,gray!80] (4.0+0.0,5.2) -- (5.0,5.2);   % 1->2
+  \draw[->,thick,gray!80] (7.0,3.8) -- (7.0,2.8+0.1);   % 2->3 (right side going down)
+  \draw[->,thick,gray!80] (4.0,1.4) -- (5.0,1.4);        % 3->4
+  \draw[->,thick,gray!80] (2.0,3.8) -- (2.0,2.8+0.1);   % top to bottom on left
+\end{tikzpicture}\\[3pt]
+{\small\itshape Stirling engine four-step cycle; the regenerator (hatched) stores and returns heat during isochoric steps.}
+\end{center}
 
 With an ideal regenerator, the heat that must be supplied externally during Step 4 is zero --- the regenerator provides it entirely. The net external heat input reduces to $Q_\text{in} = Nk_BT_+\ln(V_C/V_A)$, identical to what the Carnot engine absorbs from the hot reservoir. Therefore:
 

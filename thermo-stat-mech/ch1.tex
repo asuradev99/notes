@@ -79,7 +79,21 @@ This vanishes — making the integral path-independent — if and only if $df$ i
 \section{The Dirac Delta Function}
 % ============================================================
 
-\begin{center}[DIAGRAM: narrow spike of unit area centred at $x = x_0$, representing $\delta(x - x_0)$]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (-2.5,0) -- (2.5,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,2.8) node[above] {$\delta(x-x_0)$};
+  % Spike at x0
+  \draw[very thick] (1.0,0) -- (1.0,2.5);
+  \draw[very thick,->] (1.0,0) -- (1.0,2.6);
+  % Base tick marks
+  \draw (1.0,0.06) -- (1.0,-0.06) node[below] {$x_0$};
+  % Axis tick
+  \draw (0,0.06) -- (0,-0.06) node[below] {$0$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape The Dirac delta $\delta(x-x_0)$: a unit-area spike at $x=x_0$.}
+\end{center}
 
 \begin{definition}[Dirac delta function]
 The Dirac delta $\delta(x - a)$ is defined by the two conditions
@@ -122,7 +136,33 @@ This generalisation is used heavily when transforming probability distributions,
 
 \subsection{The Heaviside Step Function}
 
-\begin{center}[DIAGRAM: left panel shows the step function $\theta(x)$ (zero for $x<0$, one for $x>0$); right panel shows the corresponding spike representing $\delta(x)$]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % --- Left panel: step function theta(x) ---
+  \begin{scope}[xshift=-3.0cm]
+    \draw[->] (-1.8,0) -- (1.8,0) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,1.6) node[above] {$\theta(x)$};
+    % Step function
+    \draw[thick,blue] (-1.7,0) -- (0,0);
+    \draw[thick,blue] (0,1.0) -- (1.6,1.0);
+    \draw[thick,blue,dashed] (0,0) -- (0,1.0);
+    % Labels
+    \draw (-0.08,1.0) -- (0.08,1.0) node[right] {$1$};
+    \draw (0.06,0) -- (-0.06,0) node[below left] {$0$};
+    \fill[blue] (0,1.0) circle (1.5pt);
+    \fill[white] (0,0) circle (1.5pt);
+    \draw[blue] (0,0) circle (1.5pt);
+  \end{scope}
+  % --- Right panel: delta function spike ---
+  \begin{scope}[xshift=2.0cm]
+    \draw[->] (-1.8,0) -- (1.8,0) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,2.0) node[above] {$\delta(x)$};
+    \draw[very thick,blue,->] (0,0) -- (0,1.9);
+    \draw (0.06,0) -- (-0.06,0) node[below left] {$0$};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Left: Heaviside step function $\theta(x)$. Right: its derivative $\delta(x)$.}
+\end{center}
 
 Integrating the delta function from $-\infty$ to $x$ produces the \emph{Heaviside step function} $\theta(x)$:
 \begin{equation}
@@ -159,7 +199,30 @@ For a continuous random variable it is not meaningful to speak of the probabilit
 where $p(x) \ge 0$ and $\int_{-\infty}^\infty p(x)\,dx = 1$. The probability that $X$ lies in $[x_1, x_2]$ is $\int_{x_1}^{x_2} p(x)\,dx$.
 \end{definition}
 
-\begin{center}[DIAGRAM: smooth bell-shaped curve $p(x)$ with a shaded strip of width $dx$ at $x_0$ indicating $dP = p(x_0)dx$, and a shaded region from $x_1$ to $x_2$ indicating the probability of being in that range]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,2.4) node[above] {$p(x)$};
+  % Bell curve (Gaussian-like)
+  \draw[thick,domain=-3.2:3.2,smooth,samples=80]
+    plot (\x, {2.0*exp(-\x*\x/1.5)});
+  % Shaded region from x1 to x2
+  \fill[gray!30,domain=-1.8:-0.6,samples=40]
+    plot (\x, {2.0*exp(-\x*\x/1.5)}) -- (-0.6,0) -- (-1.8,0) -- cycle;
+  \draw[dashed] (-1.8,0) node[below] {$x_1$} -- (-1.8,{2.0*exp(-1.8*1.8/1.5)});
+  \draw[dashed] (-0.6,0) node[below] {$x_2$} -- (-0.6,{2.0*exp(-0.6*0.6/1.5)});
+  % Narrow strip at x0
+  \fill[gray!70] (1.2,0) rectangle (1.45,{2.0*exp(-1.2*1.2/1.5)});
+  \draw (1.2,0) -- (1.2,{2.0*exp(-1.2*1.2/1.5)});
+  \draw (1.45,0) -- (1.45,{2.0*exp(-1.2*1.2/1.5)});
+  \draw[<->] (1.2,-0.35) -- (1.45,-0.35) node[midway,below] {$dx$};
+  \draw (1.32,0) -- (1.32,-0.06) node[below=0.25cm] {$x_0$};
+  % p(x) label on curve
+  \node[right] at (2.0,{2.0*exp(-2.0*2.0/1.5)+0.2}) {$p(x)$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Probability density $p(x)$: the strip $p(x_0)\,dx$ (narrow, dark) and the integral $\int_{x_1}^{x_2} p(x)\,dx$ (light shaded region).}
+\end{center}
 
 The \emph{cumulative distribution function} (CDF) is
 \begin{definition}[CDF]
@@ -202,7 +265,24 @@ The Gaussian (normal) distribution is the continuous probability density
 where $a$ is the mean and $\sigma^2$ is the variance.
 \end{definition}
 
-\begin{center}[DIAGRAM: bell-shaped Gaussian curve symmetric about the peak at $x = a$, with the peak marked by a dashed vertical line]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,2.5) node[above] {$p(x)$};
+  % Gaussian bell curve centred at a=0 (shifted for display)
+  \draw[thick,domain=-3.2:3.2,smooth,samples=80]
+    plot (\x, {2.1*exp(-\x*\x/1.2)});
+  % Dashed vertical at peak (a)
+  \draw[dashed] (0,0) -- (0,2.1);
+  % Label peak
+  \node[below] at (0,0) {$a$};
+  \node[right] at (0.1,2.15) {peak};
+  % Arrow annotation
+  \node[right] at (2.2,1.2) {$p(x)\!\propto\! e^{-(x-a)^2/2\sigma^2}$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Gaussian distribution $p(x)\propto e^{-(x-a)^2/2\sigma^2}$ centred at $x=a$.}
+\end{center}
 
 The normalization is verified by the substitution $u = (x-a)/\sqrt{2}\,\sigma$, which brings the integral to $\pi^{-1/2}\int_{-\infty}^{\infty} e^{-u^2}\,du = 1$, using the standard result $\int_{-\infty}^{\infty} e^{-u^2}\,du = \sqrt{\pi}$. Higher moments follow by repeated differentiation under the integral sign; in particular,
 \begin{equation}
@@ -229,7 +309,34 @@ The parameter $\sigma$ sets the natural scale for the width. Integrating $p(x)$ 
 \end{align}
 The $5\sigma$ criterion is the standard threshold for a discovery claim in particle physics; the probability of a false positive at that level is less than one in a million.
 
-\begin{center}[DIAGRAM: Gaussian bell curve with the central $1\sigma$ band shaded and labeled 68\%, the $2\sigma$ band labeled 95\%]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,2.5) node[above] {$p(x)$};
+  % 2-sigma shaded band (light gray)
+  \fill[gray!20,domain=-2.0:2.0,samples=60]
+    plot (\x, {2.1*exp(-\x*\x/2)}) -- (2.0,0) -- (-2.0,0) -- cycle;
+  % 1-sigma shaded band (medium gray)
+  \fill[gray!50,domain=-1.0:1.0,samples=40]
+    plot (\x, {2.1*exp(-\x*\x/2)}) -- (1.0,0) -- (-1.0,0) -- cycle;
+  % Bell curve
+  \draw[thick,domain=-3.2:3.2,smooth,samples=80]
+    plot (\x, {2.1*exp(-\x*\x/2)});
+  % Dashed vertical at peak
+  \draw[dashed] (0,0) -- (0,2.1);
+  \node[below] at (0,0) {$a$};
+  % sigma tick marks
+  \draw (1.0,0.06) -- (1.0,-0.06) node[below] {$a{+}\sigma$};
+  \draw (-1.0,0.06) -- (-1.0,-0.06) node[below] {$a{-}\sigma$};
+  \draw (2.0,0.06) -- (2.0,-0.06) node[below] {$a{+}2\sigma$};
+  \draw (-2.0,0.06) -- (-2.0,-0.06) node[below] {$a{-}2\sigma$};
+  % Labels
+  \node at (0,0.55) {68\%};
+  \node at (1.55,0.25) {95\%};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Gaussian: 68\% of probability lies within $\pm\sigma$, 95\% within $\pm 2\sigma$.}
+\end{center}
 
 \subsection{The Poisson Distribution}
 
@@ -289,7 +396,28 @@ The relative spread $\sigma/\langle n\rangle = \sqrt{(1-a)/(Na)} \to 0$ as $N\to
 \end{equation}
 again an instance of the Central Limit Theorem: the binomial is the sum of $N$ independent Bernoulli random variables.
 
-\begin{center}[DIAGRAM: discrete number line with steps marked left and right; arrow indicating a single step to the right with probability $a$ and a step to the left with probability $b = 1-a$]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Number line
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {position};
+  % Tick marks
+  \foreach \x in {-3,-2,-1,0,1,2,3} {
+    \draw (\x,0.07) -- (\x,-0.07);
+  }
+  % Dot at current position n
+  \fill[black] (0,0) circle (4pt);
+  \node[below=6pt] at (0,0) {$n$};
+  % Right arrow: +1 with prob a
+  \draw[->,thick,blue] (0,0.25) -- (1,0.25)
+    node[midway,above] {$+1$};
+  \node[blue,above right] at (1,0.3) {prob $a$};
+  % Left arrow: -1 with prob b
+  \draw[->,thick,red] (0,-0.25) -- (-1,-0.25)
+    node[midway,below] {$-1$};
+  \node[red,below left] at (-1,-0.3) {prob $b=1{-}a$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Single random-walk step: move right with probability $a$ or left with probability $b=1-a$.}
+\end{center}
 
 \subsection{Joint Distributions, Marginals, and Statistical Independence}
 
@@ -327,7 +455,8 @@ Since the joint distribution is symmetric, $p(x,y) = p(x|y)\,p(y) = p(y|x)\,p(x)
 \end{theorem}
 This allows one to update a prior belief $p(y)$ about $y$ given new evidence $x$, using the likelihood $p(x|y)$.
 
-\textbf{Example: Medical Testing.} A disease affects 1 in every million people, so $\Pr(D) = 10^{-6}$. A diagnostic test has sensitivity $\Pr(+|D) = 99\%$ and a false-positive rate of $1\%$, so $\Pr(+|\bar{D}) = 0.01$. If a randomly chosen person tests positive, what is $\Pr(D|+)$?
+\begin{example}[Medical Testing]
+A disease affects 1 in every million people, so $\Pr(D) = 10^{-6}$. A diagnostic test has sensitivity $\Pr(+|D) = 99\%$ and a false-positive rate of $1\%$, so $\Pr(+|\bar{D}) = 0.01$. If a randomly chosen person tests positive, what is $\Pr(D|+)$?
 
 By Bayes' theorem, $\Pr(D|+) = \Pr(+|D)\,\Pr(D)/\Pr(+)$. The total probability of testing positive is
 \begin{equation}
@@ -338,6 +467,7 @@ therefore
     \Pr(D|+) \approx \frac{0.99\times 10^{-6}}{0.01} \approx 10^{-4}.
 \end{equation}
 Despite a 99\% accurate test, a positive result corresponds to only about a $0.01\%$ chance of actually having the disease. The result is counterintuitive precisely because the disease is so rare: almost all positive tests come from false positives among the vast healthy population. This illustrates why base rates are essential in medical statistics.
+\end{example}
 
 % ============================================================
 \section{Functions of Random Variables}
@@ -367,6 +497,7 @@ The sum over all pre-images $x_i$ automatically accounts for multi-valuedness; e
 
 \subsection{Worked Example: Kinetic Energy from the Maxwell Speed Distribution}
 
+\begin{example}[Kinetic energy from the Maxwell speed distribution]
 Consider a one-dimensional gas whose molecules have velocity $v$ drawn from the Maxwell distribution $p(v) = A\,e^{-Mv^2/2k_BT}$. We want the density $p(E)$ for the kinetic energy $E = \tfrac{1}{2}mv^2$.
 
 The map $f(v) = \tfrac{1}{2}mv^2$ is two-to-one: both $v = +\sqrt{2E/m}$ and $v = -\sqrt{2E/m}$ give the same energy $E$. Since $f'(v) = mv$, the delta-function formula gives
@@ -377,9 +508,11 @@ The map $f(v) = \tfrac{1}{2}mv^2$ is two-to-one: both $v = +\sqrt{2E/m}$ and $v 
           = \frac{A}{\sqrt{2mE}}\cdot 2\,e^{-E/k_BT}.
 \end{align}
 Both roots contribute equally in magnitude, supplying the factor of $2$ that the naive chain-rule approach misses.
+\end{example}
 
 \subsection{Worked Example: Sum of Two Uniform Variables}
 
+\begin{example}[Sum of two uniform random variables]
 For $X, Y \sim \mathrm{Uniform}[0,1]$ independently, $p(x,y) = 1$ on the unit square and zero elsewhere, and we want $p(z)$ for $Z = X + Y$. Writing the step functions explicitly to enforce the unit square,
 \begin{equation}
     p(z) = \int_0^1 dx\int_{-\infty}^{\infty} dy\;\theta(y)\,\theta(1-y)\,\delta(z-x-y).
@@ -391,7 +524,28 @@ Integrating over $y$ sets $y = z - x$, and the step functions restrict the $x$-i
 \end{align}
 The result is the \emph{triangular distribution} on $[0,2]$, peaking at $z = 1$.
 
-\begin{center}[DIAGRAM: triangular probability density $p(z)$, rising linearly from 0 to 1 as $z$ goes from 0 to 1, then falling linearly back to 0 at $z = 2$, with peak value 1]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (-0.3,0) -- (2.6,0) node[right] {$z$};
+  \draw[->] (0,-0.2) -- (0,1.5) node[above] {$p(z)$};
+  % Filled triangle
+  \fill[gray!30] (0,0) -- (1,1) -- (2,0) -- cycle;
+  % Triangle outline
+  \draw[thick] (0,0) -- (1,1) -- (2,0);
+  % Axis labels
+  \node[below] at (0,0) {$0$};
+  \node[below] at (1,0) {$1$};
+  \node[below] at (2,0) {$2$};
+  % Peak label
+  \draw[dashed] (1,0) -- (1,1);
+  \node[right] at (1.05,1.0) {$(1,1)$};
+  % y-axis tick
+  \draw (-0.06,1.0) -- (0.06,1.0) node[left=4pt] {$1$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Triangular PDF of $z=x_1+x_2$ where $x_1,x_2\sim\mathrm{Uniform}[0,1]$.}
+\end{center}
+\end{example}
 
 % ============================================================
 \section{Sums of Random Variables and the Central Limit Theorem}
@@ -415,7 +569,35 @@ If $x_1, \ldots, x_n$ are statistically independent, then
 \end{theorem}
 When all variables are drawn from the same distribution $p(x)$, the sample mean $\bar{x} = S_n/n$ satisfies $\langle\bar{x}\rangle = \langle x\rangle$ and $\sigma(\bar{x}) = \sigma(x)/\sqrt{n}$. Repeating a measurement $n$ times and averaging reduces the standard deviation by a factor of $\sqrt{n}$: this is why precision improves with repetition.
 
-\begin{center}[DIAGRAM: left panel, broad $p(x)$ distribution with mean $\langle x\rangle$ and width $\sigma$; right panel, much narrower distribution of $\bar{x}$ with width $\sigma/\sqrt{n}$]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % --- Left panel: broad distribution p(x) ---
+  \begin{scope}[xshift=-3.2cm]
+    \draw[->] (-2.4,0) -- (2.4,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,2.2) node[above] {$p(x)$};
+    % Broad Gaussian (sigma ~ 1.0)
+    \draw[thick,domain=-2.2:2.2,smooth,samples=60]
+      plot (\x, {1.6*exp(-\x*\x/2.0)});
+    \draw[dashed] (0,0) -- (0,1.6);
+    \node[below] at (0,0) {$\langle x\rangle$};
+    % sigma arrow
+    \draw[<->] (0,-0.5) -- (1.0,-0.5) node[midway,below] {$\sigma$};
+  \end{scope}
+  % --- Right panel: narrow distribution p(xbar) ---
+  \begin{scope}[xshift=2.8cm]
+    \draw[->] (-2.4,0) -- (2.4,0) node[right] {$\bar{x}$};
+    \draw[->] (0,-0.2) -- (0,2.2) node[above] {$p(\bar{x})$};
+    % Narrow Gaussian (sigma/sqrt(n) ~ 0.3)
+    \draw[thick,domain=-2.2:2.2,smooth,samples=60]
+      plot (\x, {2.0*exp(-\x*\x/0.18)});
+    \draw[dashed] (0,0) -- (0,2.0);
+    \node[below] at (0,0) {$\langle x\rangle$};
+    % sigma/sqrt(n) arrow
+    \draw[<->] (0,-0.5) -- (0.3,-0.5) node[midway,below] {$\tfrac{\sigma}{\sqrt{n}}$};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape CLT: the distribution of the sample mean $\bar{x}$ has standard deviation $\sigma/\sqrt{n}\ll\sigma$.}
+\end{center}
 
 \subsection{Convolutions}
 
@@ -453,14 +635,32 @@ The requirement of \emph{finite variance} is essential: Lorentzian distributions
 
 The width-to-mean ratio scales as $\sigma_{S_n}/\langle S_n\rangle \sim 1/\sqrt{n}$, so relative fluctuations vanish as $n\to\infty$ for any distribution with finite variance.
 
-\textbf{Example: Total Energy of an Ideal Gas.} For a single atom in a one-dimensional ideal gas, the kinetic energy $E = p^2/(2m)$ has mean $\langle E\rangle = \tfrac{1}{2}k_B T$ and $\mathrm{Var}(E) = \tfrac{1}{4}(k_B T)^2$. The total energy of $N$ atoms is $E_{\text{tot}} = \sum_{i=1}^{N} E_i$, giving $\langle E_{\text{tot}}\rangle = \tfrac{1}{2}Nk_B T$ and $\mathrm{Var}(E_{\text{tot}}) = \tfrac{1}{4}N(k_B T)^2$. By the CLT, $p(E_{\text{tot}})$ becomes a sharply peaked Gaussian with relative width
+\begin{example}[Total energy of an ideal gas]
+For a single atom in a one-dimensional ideal gas, the kinetic energy $E = p^2/(2m)$ has mean $\langle E\rangle = \tfrac{1}{2}k_B T$ and $\mathrm{Var}(E) = \tfrac{1}{4}(k_B T)^2$. The total energy of $N$ atoms is $E_{\text{tot}} = \sum_{i=1}^{N} E_i$, giving $\langle E_{\text{tot}}\rangle = \tfrac{1}{2}Nk_B T$ and $\mathrm{Var}(E_{\text{tot}}) = \tfrac{1}{4}N(k_B T)^2$. By the CLT, $p(E_{\text{tot}})$ becomes a sharply peaked Gaussian with relative width
 
-\begin{center}[DIAGRAM: narrow Gaussian peak for $p(E_{\text{tot}})$ centred on $\langle E_{\text{tot}}\rangle$; the width-to-mean ratio $\sigma(E_{\text{tot}})/\langle E_{\text{tot}}\rangle \sim N^{-1/2}$ is indicated]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {$E_{\text{tot}}$};
+  \draw[->] (0,-0.2) -- (0,2.8) node[above] {$p(E_{\text{tot}})$};
+  % Very narrow Gaussian (width ~ 0.15)
+  \draw[thick,domain=-3.2:3.2,smooth,samples=100]
+    plot (\x, {2.5*exp(-\x*\x/0.04)});
+  % Dashed vertical at mean
+  \draw[dashed] (0,0) -- (0,2.5);
+  \node[below] at (0,0) {$\langle E_{\text{tot}}\rangle$};
+  % Width annotation
+  \draw[<->] (-0.2,1.2) -- (0.2,1.2)
+    node[right=3pt] {$\sim N^{-1/2}\langle E_{\text{tot}}\rangle$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape The total energy of $N$ particles has extremely sharp distribution: $\sigma(E)/\langle E\rangle\sim N^{-1/2}$.}
+\end{center}
 
 \begin{equation}
     \frac{\sigma(E_{\text{tot}})}{\langle E_{\text{tot}}\rangle} = \frac{1}{\sqrt{N}} \approx 10^{-12} \quad \text{for } N \sim 10^{24}.
 \end{equation}
 This is an astronomically narrow peak. It is why thermodynamics deals in certainties rather than distributions: for $\sim 10^{24}$ particles, the total energy is essentially deterministic and relative fluctuations are utterly negligible. We will see this ``concentration of measure'' quantified rigorously when we derive thermodynamic entropy from counting microstates.
+\end{example}
 
 % ============================================================
 \section{The Gamma Function}
@@ -537,9 +737,47 @@ The minimum average number of bits needed to transmit a signal drawn from an ens
 The quantity $\sigma$ is called the \emph{Shannon entropy} of the ensemble.
 \end{theorem}
 
-\textbf{Example: Biased Coin.} For $p_A = \tfrac{3}{4}$ and $p_B = \tfrac{1}{4}$, Shannon gives $\sigma = -\tfrac{3}{4}\log_2\tfrac{3}{4} - \tfrac{1}{4}\log_2\tfrac{1}{4} \approx 0.811$ bits per symbol. Encoding \emph{pairs} of symbols with a prefix-free binary tree (assigning $AA \to 0$, $AB \to 10$, $BA \to 110$, $BB \to 111$) achieves an average of $27/16 \approx 1.688$ bits per pair, or $\approx 0.844$ bits per symbol — close to the Shannon bound.
+\begin{example}[Biased coin]
+For $p_A = \tfrac{3}{4}$ and $p_B = \tfrac{1}{4}$, Shannon gives $\sigma = -\tfrac{3}{4}\log_2\tfrac{3}{4} - \tfrac{1}{4}\log_2\tfrac{1}{4} \approx 0.811$ bits per symbol. Encoding \emph{pairs} of symbols with a prefix-free binary tree (assigning $AA \to 0$, $AB \to 10$, $BA \to 110$, $BB \to 111$) achieves an average of $27/16 \approx 1.688$ bits per pair, or $\approx 0.844$ bits per symbol — close to the Shannon bound.
 
-\begin{center}[DIAGRAM: binary decision tree with root splitting into branches for $A$ (left, bit 0) and $B$ (right, bit 1); further branches encode $AA$, $AB$, $BA$, $BB$]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85,
+  every node/.style={font=\small},
+  level 1/.style={sibling distance=4.0cm, level distance=1.4cm},
+  level 2/.style={sibling distance=2.0cm, level distance=1.4cm},
+  level 3/.style={sibling distance=1.4cm, level distance=1.4cm}]
+  % Root
+  \node[circle,draw,inner sep=2pt] (root) {}
+    child {
+      node[draw,rounded corners,inner sep=3pt] {$A$}
+      edge from parent node[left] {$0$}
+    }
+    child {
+      node[circle,draw,inner sep=2pt] {}
+        child {
+          node[draw,rounded corners,inner sep=3pt] {$B$}
+          edge from parent node[left] {$0$}
+        }
+        child {
+          node[circle,draw,inner sep=2pt] {}
+            child {
+              node[draw,rounded corners,inner sep=3pt] {$C$}
+              edge from parent node[left] {$0$}
+            }
+            child {
+              node[draw,rounded corners,inner sep=3pt] {$D$}
+              edge from parent node[right] {$1$}
+            }
+          edge from parent node[right] {$1$}
+        }
+      edge from parent node[right] {$1$}
+    };
+  % Codeword labels
+  \node[gray,right=4pt] at (root.east) {root};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Prefix-free code for a biased source: $A\to0$, $B\to10$, $C\to110$, $D\to111$.}
+\end{center}
+\end{example}
 
 \subsection{Derivation of the Shannon Formula}
 

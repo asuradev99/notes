@@ -37,11 +37,36 @@ treatment in terms of entropy is deferred to Chapter~3.
 
 \subsection{Kinetic Derivation of the Ideal Gas Law}
 
+\begin{example}
 We derive the ideal gas law from first principles by computing the pressure exerted by $N$ point
 particles bouncing elastically inside a rectangular box of side length $L$ and volume $V = L^3$.
 
-\begin{center}[DIAGRAM: A rectangular box of side $L$; a single particle with velocity components
-labelled $v_{xi}$, reflecting elastically off the right wall.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Back face of box
+  \draw[gray!60] (0.5,0.5) -- (2.5,0.5) -- (2.5,2.5) -- (0.5,2.5) -- cycle;
+  \draw[gray!60] (0.5,0.5) -- (0,0);
+  \draw[gray!60] (2.5,0.5) -- (2,0);
+  \draw[gray!60] (2.5,2.5) -- (2,2);
+  \draw[gray!60] (0.5,2.5) -- (0,2);
+  % Front face of box
+  \draw[thick] (0,0) -- (2,0) -- (2,2) -- (0,2) -- cycle;
+  % Right wall highlighted
+  \draw[thick, blue!70!black, line width=2pt] (2,0) -- (2,2);
+  % Depth edges
+  \draw[gray!60] (0,0) -- (0.5,0.5);
+  \draw[gray!60] (2,0) -- (2.5,0.5);
+  \draw[gray!60] (2,2) -- (2.5,2.5);
+  \draw[gray!60] (0,2) -- (0.5,2.5);
+  % Particle
+  \filldraw[black] (0.9,1.0) circle (0.08);
+  % Velocity arrow
+  \draw[->, thick, red] (0.9,1.0) -- (1.75,1.0) node[midway, above] {$v_x$};
+  % Side length label
+  \draw[<->] (0,-0.3) -- (2,-0.3) node[midway, below] {$L$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Particle with velocity $v_x$ bouncing elastically off the right wall of a box of side $L$.}
+\end{center}
 
 Consider a single particle with velocity component $v_{xi}$ directed toward one wall. Upon
 elastic reflection only the normal component reverses, so the momentum transferred to the wall
@@ -75,20 +100,75 @@ constant, and $k_B = R/N_A = 1.38\times10^{-23}\,\mathrm{J/K}$ is Boltzmann's co
 The average internal energy of an ideal gas follows immediately:
 $\langle U\rangle = \tfrac{3}{2}Nk_BT$. This energy is entirely kinetic (the particles do not
 interact), it is extensive in $N$, and temperature is intensive.
+\end{example}
 
-\begin{center}[DIAGRAM: Three $P$--$V$--$T$ diagrams side by side. Isotherms: $P$--$V$ plot
-showing hyperbolic curves $P \propto 1/V$ labelled by increasing temperature. Isochores: $P$--$T$
-plot showing straight lines $P \propto T$ through the origin. Isobars: $V$--$T$ plot showing
-straight lines $V \propto T$ through the origin.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Panel (a): P vs V isotherms
+  \begin{scope}[xshift=0cm]
+    \draw[->] (0,0) -- (2.4,0) node[right] {$V$};
+    \draw[->] (0,0) -- (0,2.4) node[above] {$P$};
+    \draw[blue,  domain=0.35:2.1, samples=60, thick] plot (\x, {0.6/\x}) node[right,font=\small] {$T_1$};
+    \draw[red,   domain=0.55:2.1, samples=60, thick] plot (\x, {1.1/\x}) node[right,font=\small] {$T_2$};
+    \node[font=\small] at (1.2,-0.55) {(a)};
+    \node[font=\scriptsize, blue] at (1.9,0.55) {};
+    \draw[<-,gray,font=\scriptsize] (0.95,1.16) -- ++(0.35,0.35) node[right,font=\scriptsize] {$T_1{<}T_2$};
+  \end{scope}
+  % Panel (b): P vs T isochores
+  \begin{scope}[xshift=3.2cm]
+    \draw[->] (0,0) -- (2.4,0) node[right] {$T$};
+    \draw[->] (0,0) -- (0,2.4) node[above] {$P$};
+    \draw[blue,  thick] (0,0) -- (2.1,1.5) node[right,font=\small] {$V_1$};
+    \draw[red,   thick] (0,0) -- (2.1,2.1) node[right,font=\small] {$V_2$};
+    \draw[<-,gray] (1.05,0.75) -- ++(0.3,0.5) node[right,font=\scriptsize] {$V_1{<}V_2$};
+    \node[font=\small] at (1.2,-0.55) {(b)};
+  \end{scope}
+  % Panel (c): V vs T isobars
+  \begin{scope}[xshift=6.4cm]
+    \draw[->] (0,0) -- (2.4,0) node[right] {$T$};
+    \draw[->] (0,0) -- (0,2.4) node[above] {$V$};
+    \draw[blue,  thick] (0,0) -- (2.1,1.5) node[right,font=\small] {$P_1$};
+    \draw[red,   thick] (0,0) -- (2.1,2.1) node[right,font=\small] {$P_2$};
+    \draw[<-,gray] (1.05,0.75) -- ++(0.3,0.5) node[right,font=\scriptsize] {$P_1{<}P_2$};
+    \node[font=\small] at (1.2,-0.55) {(c)};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Ideal gas: (a) isotherms in $P$--$V$, (b) isochores in $P$--$T$, (c) isobars in $V$--$T$.}
+\end{center}
 
 \subsection{The Barometric Formula}
 
+\begin{example}
 The ideal gas law has a direct application in the vertical structure of the atmosphere. Consider
 a thin horizontal slab of air at height $z$, thickness $dz$, and cross-sectional area $A$.
 
-\begin{center}[DIAGRAM: Thin atmospheric slab of area $A$ and thickness $dz$ at height $z$;
-pressure $P(z+dz)$ acting downward from above and $P(z)$ acting upward from below; weight
-$\rho g A\,dz$ acting downward.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Slab rectangle
+  \fill[gray!20] (0,1.0) rectangle (3.0,1.8);
+  \draw[thick] (0,1.0) rectangle (3.0,1.8);
+  % Area label
+  \node at (1.5,1.4) {$A$};
+  % Thickness label
+  \draw[<->] (3.3,1.0) -- (3.3,1.8) node[midway, right] {$dz$};
+  % Height label
+  \draw[<->] (-0.5,0) -- (-0.5,1.0) node[midway, left] {$z$};
+  \draw[dashed, gray] (0,0) -- (-0.3,0);
+  \draw[dashed, gray] (0,1.0) -- (-0.3,1.0);
+  % Ground line
+  \draw[thick] (-0.3,0) -- (3.3,0);
+  % P(z) arrow upward from below
+  \draw[->, thick, blue!70!black, line width=1.5pt] (1.5,0.3) -- (1.5,1.0)
+    node[midway, right] {$P(z)\,A$};
+  % P(z+dz) arrow downward from above
+  \draw[->, thick, red!70!black, line width=1.5pt] (1.5,2.5) -- (1.5,1.8)
+    node[midway, right] {$P(z{+}dz)\,A$};
+  % Weight arrow
+  \draw[->, thick, black!70, line width=1.5pt] (0.6,1.8) -- (0.6,1.0)
+    node[midway, left] {$\rho g A\,dz$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Force balance on an atmospheric slab of area $A$ and thickness $dz$ at height $z$.}
+\end{center}
 
 Vertical force balance on the slab gives $P(z)\,A = P(z+dz)\,A + \rho g\,A\,dz$, i.e.\
 $dP/dz = -\rho g$. Using the ideal gas law in the form $\rho = mP/(k_BT)$, where $m$ is the mean
@@ -108,6 +188,7 @@ Pressure falls exponentially with altitude, with a characteristic scale height $
 For air with mean molecular mass $\bar{M} \approx 29\,\mathrm{g/mol}$ at $T = 300\,\mathrm{K}$,
 the scale height is approximately $8.5\,\mathrm{km}$, consistent with the observed thinning of
 the atmosphere.
+\end{example}
 
 % ============================================================
 \section{The Van der Waals Gas}
@@ -118,9 +199,26 @@ one another. At short range the interaction is strongly repulsive; at larger sep
 weakly attractive. The Van der Waals model captures both effects with two phenomenological
 parameters $a$ and $b$.
 
-\begin{center}[DIAGRAM: Lennard-Jones-type potential energy curve $V(r)$ versus separation $r$:
-steeply repulsive for $r < R$, a potential well near $r = R$, and gradual approach to zero at
-large $r$.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \draw[->] (0,-1.6) -- (0,2.8) node[above] {$V(r)$};
+  \draw[->] (0,0) -- (5.2,0) node[right] {$r$};
+  % Lennard-Jones-like curve: repulsive wall, well near r=R, approaches 0
+  \draw[thick, blue!80!black, domain=0.72:4.8, samples=120]
+    plot (\x, { 0.8/(\x-0.5)^2 - 1.2/(\x+0.1) + 0.18 });
+  % Zero dashed line
+  \draw[dashed, gray] (0,0) -- (5.0,0);
+  % Mark well minimum near r=R (approximately x=1.4)
+  \draw[dashed, gray] (1.55,-1.25) -- (1.55,0);
+  \node[below] at (1.55,0) {$R$};
+  % Well depth annotation
+  \draw[<->] (2.4,-1.25) -- (2.4,0) node[midway, right] {\small well depth};
+  \draw[dashed, gray] (1.55,-1.25) -- (2.4,-1.25);
+  % Label approaching zero
+  \node[right, font=\small] at (4.2,0.15) {$V\to 0$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Lennard-Jones-type intermolecular potential: hard-core repulsion at short range, attractive well near $r=R$.}
+\end{center}
 
 \textbf{Excluded volume.} Each molecule excludes other molecules from a volume $b$ around itself.
 With $N$ molecules in the container, the effective volume available to any one molecule is reduced
@@ -171,9 +269,40 @@ small), and 2 vibrational degrees (one kinetic, one potential), giving $f = 7$ c
 However, at room temperature the vibrational modes of most diatomic gases are not thermally
 activated, so in practice $f = 5$.
 
-\begin{center}[DIAGRAM: Left, a diatomic dumbbell with two rotational arrows perpendicular to the
-bond axis; right, the same molecule modelled as two masses on a spring, with the vibrational
-kinetic energy $\tfrac{1}{2}\mu\dot{r}^2$ and potential energy $\tfrac{1}{2}kr^2$ labelled.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % === Left: Dumbbell with rotational arrows ===
+  % Bond axis (horizontal)
+  \draw[thick] (0,0) -- (2.0,0);
+  % Atoms
+  \filldraw[gray!40, draw=black, thick] (0,0) circle (0.28);
+  \filldraw[gray!40, draw=black, thick] (2.0,0) circle (0.28);
+  % Rotation arrow 1 (perpendicular: in the plane, curving around vertical axis through center)
+  \draw[->, thick, blue!70!black] (1.0, 0.4) arc (90:350:0.42 and 0.35)
+    node[above right, font=\small] {};
+  % Rotation arrow 2 (out of plane: dashed arc)
+  \draw[->, thick, red!70!black, dashed] (1.0,-0.05) ellipse (0.42 and 0.20);
+  \node[font=\small] at (1.0,-0.85) {rotation};
+
+  % === Right: Spring model ===
+  \begin{scope}[xshift=4.5cm]
+    % Left mass
+    \filldraw[gray!40, draw=black, thick] (0,0) circle (0.28);
+    % Spring (zigzag)
+    \draw[thick, decorate, decoration={coil, segment length=4pt, amplitude=4pt}]
+      (0.28,0) -- (1.72,0);
+    % Right mass
+    \filldraw[gray!40, draw=black, thick] (2.0,0) circle (0.28);
+    % Labels
+    \node[font=\small, below] at (1.0,-0.35) {$\tfrac{1}{2}\mu\dot{r}^2 + \tfrac{1}{2}kr^2$};
+    \node[font=\small] at (1.0,-0.85) {vibration};
+  \end{scope}
+
+  % Dividing line
+  \draw[gray, dashed] (3.5,-1.2) -- (3.5,1.0);
+\end{tikzpicture}\\[3pt]
+{\small\itshape Diatomic molecule: two rotational DOF perpendicular to bond axis (left); spring model for vibration (right).}
+\end{center}
 
 Quantum mechanics freezes out a mode when $k_BT \ll \hbar\omega$ for that mode, so the effective
 $f$ rises with temperature as successive modes become thermally accessible. This is why measured
@@ -217,8 +346,30 @@ through direct molecular contact. \textbf{Convection} is driven by bulk motion o
 material expands, becomes less dense, and rises, continuously transporting energy. \textbf{Radiation}
 is the emission and absorption of electromagnetic waves and requires no material medium.
 
-\begin{center}[DIAGRAM: Two blocks in thermal contact --- one hot, one cold --- with wavy arrows
-indicating heat flowing from the hotter to the cooler block.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Hot block
+  \fill[red!25] (0,0) rectangle (2.0,1.6);
+  \draw[thick, red!60!black] (0,0) rectangle (2.0,1.6);
+  \node[font=\small, align=center] at (1.0,0.8) {Hot\\$T_2$};
+  % Cold block
+  \fill[blue!15] (3.0,0) rectangle (5.0,1.6);
+  \draw[thick, blue!60!black] (3.0,0) rectangle (5.0,1.6);
+  \node[font=\small, align=center] at (4.0,0.8) {Cold\\$T_1 < T_2$};
+  % Wavy arrows from hot to cold
+  \draw[->, thick, orange!80!black, decorate,
+        decoration={snake, amplitude=2.5pt, segment length=7pt}]
+    (2.0,1.1) -- (3.0,1.1);
+  \draw[->, thick, orange!80!black, decorate,
+        decoration={snake, amplitude=2.5pt, segment length=7pt}]
+    (2.0,0.8) -- (3.0,0.8);
+  \draw[->, thick, orange!80!black, decorate,
+        decoration={snake, amplitude=2.5pt, segment length=7pt}]
+    (2.0,0.5) -- (3.0,0.5);
+  \node[above, font=\small] at (2.5,1.3) {$Q$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Spontaneous heat flow from hot to cold by conduction.}
+\end{center}
 
 \begin{theorem}[First Law of Thermodynamics]
 For a closed system, the change in internal energy equals the sum of heat added to the system and
@@ -240,8 +391,31 @@ are the total heat absorbed and total work done on the system, respectively.
 
 \subsection{Compression Work}
 
-\begin{center}[DIAGRAM: A piston of area $A$ pushed inward by force $F = PA$ through displacement
-$dx$, compressing gas in a cylinder; the volume change is $dV = -A\,dx$.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Cylinder walls (top and bottom)
+  \draw[thick] (0,0) -- (3.8,0);
+  \draw[thick] (0,2.0) -- (3.8,2.0);
+  % Left closed end
+  \draw[thick] (0,0) -- (0,2.0);
+  % Gas fill
+  \fill[blue!10] (0,0) rectangle (2.8,2.0);
+  \node[font=\small] at (1.3,1.0) {Gas};
+  % Piston (thick vertical line)
+  \fill[gray!60] (2.8,0) rectangle (3.1,2.0);
+  \draw[thick] (2.8,0) -- (2.8,2.0);
+  \draw[thick] (3.1,0) -- (3.1,2.0);
+  % Force arrow pointing left
+  \draw[->, very thick, red!70!black] (4.5,1.0) -- (3.1,1.0)
+    node[midway, above] {$F = PA$};
+  % Displacement arrow dx pointing left (smaller, below)
+  \draw[<-, thick, black!60] (2.4,0.3) -- (2.8,0.3)
+    node[midway, below, font=\small] {$dx$};
+  % dV label
+  \node[font=\small, above] at (1.3,2.05) {$dV = -A\,dx$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Quasistatic compression: piston of area $A$ moves inward by $dx$, reducing volume by $dV=A\,dx$.}
+\end{center}
 
 For a \textbf{quasistatic} process --- one slow enough that the gas remains in equilibrium at
 every instant and the pressure is spatially uniform --- the force on the piston equals $F = PA$.
@@ -298,9 +472,48 @@ at constant pressure goes into pushing back the surroundings rather than raising
 Equivalently, since $dH = \dbar Q$ at constant pressure, one has $C_P = (\partial H/\partial T)_P$.
 The dimensionless ratio $\gamma = C_P/C_V = (f+2)/f$ is the adiabatic index.
 
-\begin{center}[DIAGRAM: Left panel (isochoric): rigid container with heat flowing in, all of which
-raises $U$. Right panel (isobaric): piston-cylinder with heat flowing in; some goes into raising
-$U$, the rest into work $P\,dV$ as the piston rises.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  %% Left panel: Isochoric (rigid container)
+  \begin{scope}[xshift=0cm]
+    % Rigid container
+    \fill[blue!10] (0,0) rectangle (2.0,2.0);
+    \draw[very thick] (0,0) rectangle (2.0,2.0);
+    \node[font=\small, align=center] at (1.0,1.3) {all heat\\$\to \Delta U$};
+    % Heat arrow in from below
+    \draw[->, thick, orange!80!black, decorate,
+          decoration={snake, amplitude=2.5pt, segment length=6pt}]
+      (1.0,-0.7) -- (1.0,0.0);
+    \node[below, font=\small] at (1.0,-0.75) {$Q$};
+    \node[below, font=\small] at (1.0,-1.2) {Isochoric};
+  \end{scope}
+
+  %% Right panel: Isobaric (piston-cylinder)
+  \begin{scope}[xshift=3.8cm]
+    % Cylinder walls and gas
+    \fill[blue!10] (0,0) rectangle (2.0,1.5);
+    \draw[thick] (0,0) -- (2.0,0);
+    \draw[thick] (0,0) -- (0,2.4);
+    \draw[thick] (2.0,0) -- (2.0,2.4);
+    % Piston
+    \fill[gray!50] (0,1.5) rectangle (2.0,1.75);
+    \draw[thick] (0,1.5) -- (2.0,1.5);
+    \draw[thick] (0,1.75) -- (2.0,1.75);
+    % Piston rising arrow
+    \draw[->, thick, black] (1.0,1.75) -- (1.0,2.3)
+      node[right, font=\small] {$P\,dV$};
+    % Internal energy label
+    \node[font=\small] at (1.0,0.75) {$\Delta U$};
+    % Heat arrow in from below
+    \draw[->, thick, orange!80!black, decorate,
+          decoration={snake, amplitude=2.5pt, segment length=6pt}]
+      (1.0,-0.7) -- (1.0,0.0);
+    \node[below, font=\small] at (1.0,-0.75) {$Q$};
+    \node[below, font=\small] at (1.0,-1.2) {Isobaric};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Isochoric: all heat becomes internal energy. Isobaric: heat splits between $\Delta U$ and $P\,dV$ work.}
+\end{center}
 
 \subsection{Latent Heat}
 
@@ -363,10 +576,32 @@ relation. Since $\gamma > 1$, the adiabat $P \propto V^{-\gamma}$ is steeper tha
 $P \propto V^{-1}$ in the $P$--$V$ diagram: compressing the gas adiabatically raises its
 temperature (no heat escapes), causing a faster pressure rise.
 
-\begin{center}[DIAGRAM: $P$--$V$ diagram showing an isotherm ($P \propto 1/V$, shallower curve)
-and an adiabat ($P \propto V^{-\gamma}$, steeper curve) both passing through the same initial
-point $(V_i, P_i)$ and ending at the same final volume $V_f$; the adiabat reaches a higher final
-pressure, illustrating adiabatic heating during compression.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \draw[->] (0,0) -- (4.5,0) node[right] {$V$};
+  \draw[->] (0,0) -- (0,4.0) node[above] {$P$};
+  % Initial point at (Vi, Pi) = (3.5, 0.9)
+  % Final volume Vf = 1.3
+  % Isotherm: P*V = const => P = 3.15/V  (passes through (3.5,0.9))
+  \draw[thick, blue!70!black, domain=1.1:3.8, samples=80]
+    plot (\x, {3.15/\x}) node[right, font=\small] {Isotherm $P\propto V^{-1}$};
+  % Adiabat: P*V^gamma = const, gamma=5/3 => P = 3.15 * 3.5^(2/3) / V^(5/3)
+  % At V=3.5: P=0.9 (same start). Constant = 0.9*3.5^(5/3) = 0.9*8.02 = 7.22
+  \draw[thick, red!70!black, domain=1.1:3.8, samples=80]
+    plot (\x, {7.22/(\x^1.667)}) node[right, font=\small] {Adiabat $P\propto V^{-\gamma}$};
+  % Mark initial point
+  \filldraw (3.5,0.9) circle (0.07) node[above right, font=\small] {$(V_i,P_i)$};
+  % Mark Vf dashed line
+  \draw[dashed, gray] (1.3,0) node[below, font=\small] {$V_f$} -- (1.3,3.5);
+  % Mark endpoints at Vf
+  \filldraw[blue!70!black] (1.3, {3.15/1.3}) circle (0.06);
+  \filldraw[red!70!black]  (1.3, {7.22/1.3^1.667}) circle (0.06);
+  % Annotate that adiabat is higher
+  \draw[<-, gray, font=\scriptsize] (1.3,3.3) -- ++(0.6,0.3)
+    node[right, font=\scriptsize] {adiabat ends higher};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Adiabat (steep) vs.\ isotherm (shallow) in the $P$--$V$ plane: adiabatic compression raises temperature more.}
+\end{center}
 
 The work done on the gas in an adiabatic process is purely the change in internal energy
 ($Q = 0$):
@@ -404,8 +639,27 @@ assemble its internal energy, plus the work $PV$ done against the atmosphere to 
 space it occupies.
 \end{definition}
 
-\begin{center}[DIAGRAM: An empty container being pushed open against atmospheric pressure $P$ to
-accommodate a gas of volume $V$, with the expansion work $W = PV$ labelled.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Atmosphere region (background)
+  \fill[blue!8] (-0.5,-0.3) rectangle (5.5,2.3);
+  \node[font=\small, gray] at (4.5,1.8) {atmosphere $P$};
+  % Container (open box: left, bottom, right walls)
+  \fill[white] (1.2,0) rectangle (3.8,2.0);
+  \draw[very thick] (1.2,0) -- (1.2,2.0);
+  \draw[very thick] (1.2,0) -- (3.8,0);
+  \draw[very thick] (3.8,0) -- (3.8,2.0);
+  % Dashed top (open top or being pushed in)
+  \draw[dashed, thick] (1.2,2.0) -- (3.8,2.0);
+  % Volume label inside
+  \node[font=\small] at (2.5,1.0) {Volume $V$};
+  % Arrow showing atmosphere pressing (from right)
+  \draw[->, very thick, red!70!black] (4.8,1.0) -- (3.8,1.0)
+    node[midway, above, font=\small] {$W = PV$};
+  \node[right, font=\small, red!70!black] at (4.8,1.0) {$P$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Enthalpy includes the work $PV$ done against atmosphere to make room for the system.}
+\end{center}
 
 \subsection{Why Enthalpy is Convenient}
 
@@ -443,6 +697,7 @@ for constant-pressure processes ($C_P = (\partial H/\partial T)_P$).
 
 \subsection{Enthalpy of Formation}
 
+\begin{example}
 Standard enthalpy tables record the heat released or absorbed when compounds are formed from
 their constituent elements at constant pressure ($1\,\mathrm{atm}$, $298\,\mathrm{K}$). For
 example, the formation of liquid water,
@@ -458,6 +713,7 @@ Boiling water at $373\,\mathrm{K}$ and $1\,\mathrm{atm}$ requires
 $\Delta H = 40{,}660\,\mathrm{J/mol}$. Of this, $PV = RT \approx 3100\,\mathrm{J/mol}$ goes
 into pushing the atmosphere back as steam occupies roughly $1600$ times the liquid volume,
 representing about $8\%$ of the total enthalpy of vaporisation.
+\end{example}
 
 % ============================================================
 \section{Rates of Processes}
@@ -472,9 +728,33 @@ Heat flows spontaneously from hot regions to cold. Consider a slab of material o
 thickness $\Delta x$ separating a warm interior at temperature $T_2$ from a cooler exterior at
 $T_1 < T_2$.
 
-\begin{center}[DIAGRAM: A barrier of thickness $\Delta x$ and area $A$ separating an outside
-region at temperature $T_1$ from an inside region at temperature $T_2$, with an arrow showing
-heat $Q$ flowing through the barrier in time $\Delta t$.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Hot side (left)
+  \fill[red!15] (0,0) rectangle (1.3,2.4);
+  \node[font=\small, align=center] at (0.65,1.2) {Hot\\$T_2$};
+  % Slab (wall)
+  \fill[gray!35] (1.3,0) rectangle (2.7,2.4);
+  \draw[thick] (1.3,0) rectangle (2.7,2.4);
+  \node[font=\small, align=center] at (2.0,1.2) {slab\\$\Delta x$};
+  % Cold side (right)
+  \fill[blue!15] (2.7,0) rectangle (4.0,2.4);
+  \node[font=\small, align=center] at (3.35,1.2) {Cold\\$T_1$};
+  % Boundary lines
+  \draw[thick] (0,0) -- (0,2.4);
+  \draw[thick] (0,0) -- (4.0,0);
+  \draw[thick] (0,2.4) -- (4.0,2.4);
+  \draw[thick] (4.0,0) -- (4.0,2.4);
+  % Thickness label
+  \draw[<->] (1.3,-0.4) -- (2.7,-0.4) node[midway, below, font=\small] {$\Delta x$};
+  % Area label
+  \draw[<->] (4.3,0) -- (4.3,2.4) node[midway, right, font=\small] {$A$};
+  % Heat flow arrow
+  \draw[->, very thick, orange!80!black] (1.3,1.2) -- (2.7,1.2)
+    node[midway, above, font=\small] {$Q/\Delta t$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Fourier's law: heat flux through a slab of thickness $\Delta x$ is proportional to the temperature gradient.}
+\end{center}
 
 By dimensional reasoning, the heat flow should scale with area, temperature gradient, and elapsed
 time, and depend on a material constant. This yields
@@ -507,8 +787,35 @@ likely when the cylinder volume equals the average volume per molecule:
 \end{equation}
 \end{definition}
 
-\begin{center}[DIAGRAM: Two circles of radius $r$ equivalent to a collision cross-section of
-radius $2r$; the moving molecule sweeps a cylinder of radius $2r$ and length $\ell$.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Draw the cylinder (shown as an ellipse + rectangle for 3D effect)
+  % Cylinder axis is horizontal, radius 2r, length ell
+  % Front ellipse at right end
+  \fill[blue!12] (4.5,1.0) ellipse (0.22 and 0.7);
+  \draw[thick] (4.5,1.0) ellipse (0.22 and 0.7);
+  % Top and bottom edges of cylinder
+  \draw[thick] (0.5, 1.7) -- (4.5, 1.7);
+  \draw[thick] (0.5, 0.3) -- (4.5, 0.3);
+  % Fill interior
+  \fill[blue!8] (0.5,0.3) rectangle (4.5,1.7);
+  \draw[dashed, blue!60] (0.5,1.0) ellipse (0.22 and 0.7);
+  % Cross-section circle at left (the collision cross section)
+  \fill[gray!30] (0.5,1.0) ellipse (0.22 and 0.7);
+  \draw[thick] (0.5,1.0) ellipse (0.22 and 0.7);
+  % Label 2r on the cross section
+  \draw[<->] (0.5,1.0) -- (0.5,1.7) node[midway, left, font=\small] {$2r$};
+  % Length label
+  \draw[<->] (0.5,2.2) -- (4.5,2.2) node[midway, above, font=\small] {$\ell$};
+  % Moving molecule (dot at right face center)
+  \filldraw[red!70!black] (4.5,1.0) circle (0.09);
+  % Velocity arrow
+  \draw[->, thick, red!70!black] (4.5,1.0) -- (5.5,1.0) node[right, font=\small] {$\bar{v}$};
+  % Label swept volume
+  \node[font=\small, blue!70!black] at (2.5,1.0) {swept volume};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Mean free path $\ell$: the cylinder of radius $2r$ swept before a collision becomes likely.}
+\end{center}
 
 To estimate $k_t$, consider two adjacent slabs of gas separated by an imaginary barrier. In one
 mean-free-time $\overline{\Delta t} = \ell/\bar{v}$, roughly half the molecules in each slab
@@ -537,8 +844,32 @@ While heat conduction transports energy, \textbf{diffusion} transports particles
 by a gradient in number density $n$ (particles per unit volume). The \textbf{flux} $J_x$ is the
 net number of particles crossing a unit area per unit time.
 
-\begin{center}[DIAGRAM: A box with higher particle concentration on the left than on the right,
-illustrating a concentration gradient that drives net particle flow to the right.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Outer box
+  \draw[thick] (0,0) rectangle (5.0,2.4);
+  % Dividing line
+  \draw[dashed, gray] (2.5,0) -- (2.5,2.4);
+  % Left half label (high concentration) with dots
+  \node[font=\small, above] at (1.25,2.4) {high $n$};
+  % Many dots on left
+  \foreach \x/\y in {0.35/0.4, 0.8/1.1, 0.5/1.8, 1.1/0.7, 1.5/1.5,
+                      0.7/2.0, 1.2/2.1, 1.8/0.3, 2.0/1.0, 1.9/1.9,
+                      0.4/1.3, 1.6/0.9, 0.9/0.5, 1.3/1.2, 2.1/0.6}{
+    \filldraw[black] (\x,\y) circle (0.06);
+  }
+  % Right half label (low concentration) with fewer dots
+  \node[font=\small, above] at (3.75,2.4) {low $n$};
+  % Fewer dots on right
+  \foreach \x/\y in {2.8/1.2, 3.5/0.5, 4.2/1.8, 3.0/2.0, 4.6/0.8}{
+    \filldraw[black] (\x,\y) circle (0.06);
+  }
+  % Net flux arrow
+  \draw[->, very thick, red!70!black] (2.5,1.2) -- (3.8,1.2)
+    node[right, font=\small] {$J_x$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Diffusion: net particle flux $J_x$ flows down the concentration gradient.}
+\end{center}
 
 \begin{formula}[Fick's First Law]
 \begin{equation}

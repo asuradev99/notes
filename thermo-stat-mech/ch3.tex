@@ -18,7 +18,10 @@ For $N$ distinguishable objects of which $n$ are in a designated state, the mult
 \[
     \Omega(N, n) = \binom{N}{n} = \frac{N!}{n!\,(N-n)!}.
 \]
-Systems evolve toward macrostates of higher multiplicity because there are simply more ways to be in them. The macrostate with one head out of three coins ($\Omega = 3$) is three times more likely than the macrostate with zero heads ($\Omega = 1$), and for large $N$ the disparity becomes astronomically pronounced.
+
+\begin{example}
+Flipping three distinguishable coins, the macrostate ``two heads'' has multiplicity $\Omega(3,2) = \binom{3}{2} = 3$, corresponding to the microstates HHT, HTH, THH. The macrostate ``zero heads'' has multiplicity $\Omega(3,0) = 1$ (only TTT). The macrostate with one head ($\Omega = 3$) is therefore three times more likely than the macrostate with zero heads ($\Omega = 1$), and for large $N$ the disparity becomes astronomically pronounced.
+\end{example}
 
 \begin{definition}[Fundamental Assumption of Statistical Mechanics]
 In an isolated system in thermal equilibrium, every accessible microstate is equally probable.
@@ -43,7 +46,38 @@ Parallel dipoles carry less (more negative) energy than antiparallel ones, becau
 Consider a solid modelled as a collection of quantum harmonic oscillators whose energies come in discrete units of size $\varepsilon = hf$, where $h = 6.63\times10^{-34}$~J$\cdot$s is Planck's constant and $f$ is the natural oscillation frequency. Classically the potential energy is the continuous function $\tfrac{1}{2}k_s x^2$, but quantum mechanics forces the allowed energies to be integer multiples of $hf$ above the zero-point energy $E_0 = \tfrac{1}{2}hf$.
 
 \begin{center}
-[DIAGRAM: Several identical harmonic-oscillator potential wells drawn side by side, with horizontal lines marking equally-spaced energy levels $E_0 = \tfrac{1}{2}hf$, $\tfrac{3}{2}hf$, $\tfrac{5}{2}hf$, \ldots\ inside each well, labeled ``Oscillators''.]
+\begin{tikzpicture}[scale=0.85]
+  % Draw three parabolic wells side by side
+  \foreach \ox in {0, 2.6, 5.2} {
+    % Parabola approximated by a V/U shape
+    \draw[thick] (\ox+0.0, 2.0) -- (\ox+0.7, 0.1) -- (\ox+1.4, 2.0);
+    % Energy levels: n=0,1,2,3
+    \draw[blue] (\ox+0.18, 0.40) -- (\ox+1.22, 0.40);
+    \draw[blue] (\ox+0.10, 0.85) -- (\ox+1.30, 0.85);
+    \draw[blue] (\ox+0.04, 1.35) -- (\ox+1.36, 1.35);
+    \draw[blue] (\ox+0.00, 1.82) -- (\ox+1.40, 1.82);
+    % Dots representing quanta on levels
+  }
+  % Dots on first well (n=0: 1 dot, n=1: 2 dots)
+  \fill[red] (0.70, 0.40) circle (2.5pt);
+  \fill[red] (0.50, 0.85) circle (2.5pt);
+  \fill[red] (0.90, 0.85) circle (2.5pt);
+  % Dots on second well (n=0: 0, n=1: 1 dot, n=2: 1 dot)
+  \fill[red] (3.30, 0.85) circle (2.5pt);
+  \fill[red] (3.30, 1.35) circle (2.5pt);
+  % Dots on third well (n=0: 1 dot)
+  \fill[red] (5.90, 0.40) circle (2.5pt);
+  % Level labels (right of first well)
+  \node[right, font=\tiny] at (1.22, 0.40) {$\tfrac{1}{2}hf$};
+  \node[right, font=\tiny] at (1.30, 0.85) {$\tfrac{3}{2}hf$};
+  \node[right, font=\tiny] at (1.36, 1.35) {$\tfrac{5}{2}hf$};
+  \node[right, font=\tiny] at (1.40, 1.82) {$\tfrac{7}{2}hf$};
+  % Label one well
+  \node[below, font=\small] at (0.70, 0.0) {Oscillator $i$};
+  \node[below, font=\small] at (3.30, 0.0) {Oscillator $j$};
+  \node[below, font=\small] at (5.90, 0.0) {Oscillator $k$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Einstein solid model: each oscillator has equally spaced energy levels $E_n=(n+\tfrac{1}{2})hf$.}
 \end{center}
 
 In a three-dimensional solid, each atom sits at a lattice site and vibrates independently along three orthogonal directions, giving $N_{\text{atoms}}$ atoms a total of $N = 3N_{\text{atoms}}$ independent oscillators. The central combinatorial question is: in how many ways can $q$ indistinguishable energy units be distributed among $N$ oscillators?
@@ -57,14 +91,33 @@ The number of microstates consistent with having exactly $q$ energy units shared
 \]
 \end{formula}
 
+\begin{example}
 As a quick check: the arrangement $*\,|\,{*}{*}\,|\,|\,{*}{*}$ uses 3 bars and describes 4 oscillators carrying 5 energy units, consistent with $\Omega(4,5) = \binom{8}{5} = 56$.
+\end{example}
 
 \subsection{Interacting Einstein Solids and Equilibrium}
 
 Consider two Einstein solids, A and B, placed in thermal contact. They are \emph{weakly coupled}: energy can flow between them, but the rate of inter-solid exchange is much slower than intra-solid redistribution. Consequently, on short timescales the individual energies $U_A$ and $U_B$ are essentially fixed, while on long timescales only the total $U_{\text{tot}} = U_A + U_B$ is conserved. The macrostate of the combined system is specified by the pair $(q_A, q_B)$ with $q_A + q_B = q$ constant.
 
 \begin{center}
-[DIAGRAM: Two rectangular boxes labeled ``Solid A, $N_A$, $q_A$'' and ``Solid B, $N_B$, $q_B$'' connected by a wavy arrow labeled ``Energy'', enclosed in a dashed rectangle labeled ``Isolated system''.]
+\begin{tikzpicture}[scale=0.85]
+  % Outer dashed boundary (isolated system)
+  \draw[dashed, thick] (-0.4, -0.5) rectangle (8.4, 2.0);
+  \node[above, font=\small\itshape] at (4.0, 2.0) {Isolated system};
+  % Solid A box
+  \draw[thick, fill=blue!10] (0.0, 0.0) rectangle (3.2, 1.5);
+  \node[align=center, font=\small] at (1.6, 0.75)
+    {Solid A\\$N_A$ oscillators\\energy $q_A$};
+  % Solid B box
+  \draw[thick, fill=orange!10] (4.8, 0.0) rectangle (8.0, 1.5);
+  \node[align=center, font=\small] at (6.4, 0.75)
+    {Solid B\\$N_B$ oscillators\\energy $q_B$};
+  % Wavy double-headed arrow in between
+  \draw[thick, <->, decorate, decoration={snake, amplitude=3pt, segment length=7pt}]
+    (3.3, 0.75) -- (4.7, 0.75);
+  \node[above, font=\small] at (4.0, 0.95) {Energy};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Two Einstein solids sharing total energy $q=q_A+q_B$ in an isolated system.}
 \end{center}
 
 Each solid has its own multiplicity:
@@ -84,15 +137,7 @@ The distribution of $\Omega_{\text{tot}}$ over macrostates peaks sharply near $q
 
 As $N$ and $q$ grow, the multiplicity distribution $\Omega_{\text{tot}}(q_A)$ becomes dramatically sharper relative to the total range of $q_A$. Two mathematical observations underlie everything that follows. First, when $\lambda \gg a$, we have $\lambda + a \approx \lambda$ (e.g., $10^{23} + 23 \approx 10^{23}$). Second, the Taylor expansion $\ln(1+x) \approx x$ for $|x| \ll 1$. Together with a large-$N$ approximation for factorials, these yield all the tools we need.
 
-\begin{formula}[Stirling's Approximation]
-For $N \gg 1$,
-\[
-    N! \approx N^N e^{-N} \sqrt{2\pi N},
-    \qquad \text{equivalently,} \qquad
-    \ln(N!) \approx N\ln N - N.
-\]
-The logarithmic form follows from approximating the sum $\ln N! = \sum_{k=1}^N \ln k$ by the integral $\int_1^N \ln x\,dx = [x\ln x - x]_1^N \approx N\ln N - N$. The subleading term $\tfrac{1}{2}\ln(2\pi N)$ arises from a saddle-point correction and is significant when one needs the prefactor.
-\end{formula}
+Using Stirling's approximation ($\ln N! \approx N\ln N - N$, see Chapter~1), we can obtain compact closed-form expressions for $\ln\Omega$ in the limits where either energy units or oscillators dominate.
 
 \subsection{High-Temperature Limit ($q \gg N$)}
 
@@ -120,6 +165,7 @@ In both limits, and for the general case in between, the key feature is that $\O
 
 \subsection{Sharpness of the Multiplicity Peak}
 
+\begin{example}
 Consider two large, interacting Einstein solids each with $N$ oscillators sharing $q$ total energy units in the high-temperature limit $q \gg N$. Using the high-temperature formula for each solid:
 \[
     \Omega_{\text{tot}} = \left(\frac{e}{N}\right)^{2N}(q_A q_B)^N.
@@ -144,6 +190,7 @@ The $1/e$ half-width of the Gaussian follows from setting the exponent equal to 
     \;\Longrightarrow\; \Delta x = \frac{q}{\sqrt{N}}.
 \]
 The relative width of the peak compared to the full range $q$ is therefore $\Delta x / q = 1/\sqrt{N}$. For a macroscopic solid $N \sim 10^{23}$, this ratio is $\sim 10^{-11.5}$ --- the peak is vanishingly narrow. In the \textbf{thermodynamic limit} ($N \to \infty$), random fluctuations away from the most probable macrostate are so improbable that they are unmeasurable in practice. The second law of thermodynamics is not a fundamental constraint on the possible microstates; it is a statement about probability in the thermodynamic limit.
+\end{example}
 
 % ============================================================
 \section{Density of States and Semi-Classical Phase Space}
@@ -285,7 +332,29 @@ When two \emph{different} ideal gases, initially separated, are allowed to mix, 
 This result is non-negative for all $0 \leq x \leq 1$ (since both logarithm terms are non-positive), and vanishes only for pure species ($x = 0$ or $x = 1$). The combinatorial derivation is equally illuminating: we can derive this directly by noting that $\Delta S_{\text{mix}} = k\ln\binom{N}{N_A}$ counts the number of distinguishable ways to interleave $(1-x)N$ particles of species $A$ with $xN$ particles of species $B$, and applying Stirling's approximation to the binomial coefficient.
 
 \begin{center}
-[DIAGRAM: Two separate boxes (gas $A$ left, gas $B$ right, both at same $T$ and $P$) with an arrow to a single combined box containing both gases mixed.]
+\begin{tikzpicture}[scale=0.85]
+  % Box A
+  \draw[thick, fill=blue!10] (0.0, 0.2) rectangle (1.8, 1.8);
+  \node[align=center, font=\small] at (0.9, 1.0)
+    {Gas A\\$T,\,P$};
+  % Box B
+  \draw[thick, fill=orange!10] (2.2, 0.2) rectangle (4.0, 1.8);
+  \node[align=center, font=\small] at (3.1, 1.0)
+    {Gas B\\$T,\,P$};
+  % Arrow
+  \draw[->, thick] (4.4, 1.0) -- (5.6, 1.0);
+  % Combined box
+  \draw[thick, fill=green!10] (6.0, 0.2) rectangle (9.2, 1.8);
+  % Mixed dots
+  \foreach \x/\y in {6.5/0.7, 6.9/1.4, 7.3/0.5, 7.7/1.2, 8.1/0.8, 8.5/1.5, 8.8/0.6}{
+    \fill[blue!60] (\x, \y) circle (2pt);
+  }
+  \foreach \x/\y in {6.7/1.2, 7.1/0.6, 7.5/1.5, 7.9/0.4, 8.3/1.3, 8.7/1.0, 9.0/0.4}{
+    \fill[orange!80] (\x, \y) circle (2pt);
+  }
+  \node[below, font=\small] at (7.6, 0.2) {Mixed, same $T$, $P$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Mixing identical gases at the same $T$ and $P$ produces no entropy change (Gibbs paradox resolved).}
 \end{center}
 
 When the two gases are \emph{identical}, the same calculation gives $\Delta S_{\text{mix}} = 0$: combining two equal portions of the same gas at the same temperature and pressure creates no new entropy. This is guaranteed by the $1/N!$ factor in the Sackur-Tetrode multiplicity, which correctly encodes the indistinguishability of identical particles. Swapping two identical molecules produces no new microstate, so the system is already at its maximum entropy and no further equilibration is required.
@@ -293,7 +362,36 @@ When the two gases are \emph{identical}, the same calculation gives $\Delta S_{\
 \subsection{Free Expansion}
 
 \begin{center}
-[DIAGRAM: Gas confined to the left half of an insulated box by a removable partition; arrow; gas fills the entire box after partition removal. The walls are insulated ($Q = 0$) and the right side is vacuum ($W = 0$).]
+\begin{tikzpicture}[scale=0.85]
+  %--- Left panel: gas in left half, vacuum in right half ---
+  \draw[thick] (0.0, 0.0) rectangle (3.6, 2.0);
+  % Dashed partition in the middle
+  \draw[dashed, thick] (1.8, 0.0) -- (1.8, 2.0);
+  % Gas molecules (dots) in the left half
+  \foreach \x/\y in {0.4/0.5, 0.9/1.2, 1.3/0.7, 0.6/1.6, 1.1/0.3, 1.5/1.5}{
+    \fill[blue!70] (\x, \y) circle (2.5pt);
+  }
+  % Label gas left, vacuum right
+  \node[font=\small] at (0.9, -0.3) {gas};
+  \node[font=\small] at (2.7, -0.3) {vacuum};
+  % Q=0, W=0 labels
+  \node[font=\footnotesize] at (1.8, 2.25) {$Q=0,\;W=0$};
+
+  %--- Arrow between panels ---
+  \draw[->, thick] (3.9, 1.0) -- (5.1, 1.0);
+
+  %--- Right panel: gas fills whole box ---
+  \draw[thick] (5.4, 0.0) rectangle (9.0, 2.0);
+  % Gas molecules spread throughout
+  \foreach \x/\y in {5.8/0.5, 6.3/1.3, 6.7/0.8, 7.1/1.7, 7.5/0.4,
+                     7.9/1.1, 8.3/0.6, 8.6/1.5, 6.0/1.8, 7.3/1.0}{
+    \fill[blue!70] (\x, \y) circle (2.5pt);
+  }
+  \node[font=\small] at (7.2, -0.3) {gas fills volume};
+  % Delta U = 0
+  \node[font=\footnotesize] at (7.2, 2.25) {$\Delta U=0,\;\Delta S=Nk\ln 2>0$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Free expansion into vacuum: $Q=W=0$ so $\Delta U=0$, but entropy increases by $Nk_B\ln 2$.}
 \end{center}
 
 In a free expansion, a partition is removed and the gas expands into vacuum. No work is done ($W = 0$) and no heat is transferred ($Q = 0$), so the energy $U$ is unchanged. Yet the volume doubles, and the Sackur-Tetrode equation gives:
@@ -322,7 +420,41 @@ Two objects are at the same temperature when they are in thermal equilibrium; tw
 where we used $dU_A = -dU_B$.
 
 \begin{center}
-[DIAGRAM: Graph of $S_A$, $S_B$, and $S_{\text{total}}$ as functions of $q_A$ (energy in solid $A$). $S_A$ increases monotonically, $S_B$ decreases monotonically, $S_{\text{total}}$ has a smooth maximum. The equilibrium point is where the slopes of $S_A$ and $S_B$ are equal in magnitude.]
+\begin{tikzpicture}[scale=0.85]
+  \begin{axis}[
+    width=8cm, height=6cm,
+    xlabel={$q_A$},
+    ylabel={$S$},
+    xmin=0, xmax=10,
+    ymin=0, ymax=3.8,
+    xtick=\empty,
+    ytick=\empty,
+    axis lines=left,
+    clip=false,
+    every axis x label/.style={at={(axis description cs:1.02,0)}, anchor=west},
+    every axis y label/.style={at={(axis description cs:0,1.02)}, anchor=south},
+  ]
+    % S_A: increasing concave ~ ln(x+0.5)
+    \addplot[thick, blue, domain=0.1:9.9, samples=80]
+      {1.6*ln(x+0.5)};
+    \node[right, blue, font=\small] at (axis cs: 9.8, 3.6) {$S_A$};
+
+    % S_B: decreasing ~ ln(10.5-x)
+    \addplot[thick, red, domain=0.1:9.9, samples=80]
+      {1.6*ln(10.5-x)};
+    \node[right, red, font=\small] at (axis cs: 9.8, 0.6) {$S_B$};
+
+    % S_total = S_A + S_B
+    \addplot[thick, black, domain=0.1:9.9, samples=80]
+      {1.6*ln(x+0.5) + 1.6*ln(10.5-x)};
+    \node[above, black, font=\small] at (axis cs: 5.0, 3.75) {$S_{\text{total}}$};
+
+    % Dashed vertical line at equilibrium (x=5)
+    \addplot[dashed, gray, thick] coordinates {(5.0, 0) (5.0, 3.72)};
+    \node[below, font=\small] at (axis cs: 5.0, 0) {equilibrium};
+  \end{axis}
+\end{tikzpicture}\\[3pt]
+{\small\itshape $S_A$, $S_B$, and $S_\text{total}$ vs.\ energy $q_A$ in solid A; equilibrium is the maximum of $S_\text{total}$.}
 \end{center}
 
 The intuition is as follows. At a point where $\partial S_A/\partial U_A > \partial S_B/\partial U_B$, transferring a small amount of energy from $B$ to $A$ increases the total entropy: the entropy gained by $A$ exceeds the entropy lost by $B$. Energy therefore flows from $B$ into $A$. A steeper $\partial S/\partial U$ corresponds to a colder object (it gains more entropy per unit energy received), while a shallower slope corresponds to a hotter object. This motivates:
@@ -349,6 +481,7 @@ This quantity must equal $P/T$ for consistency with the thermodynamic relation $
 
 \subsection{Verification Against the Ideal Gas}
 
+\begin{example}
 The Sackur-Tetrode entropy has $U$-dependence $S = \tfrac{3}{2}Nk\ln U + (\text{function of }V, N)$, so
 \[
     \frac{1}{T} = \left(\pdv{S}{U}\right)_{V,N} = \frac{3Nk}{2U}
@@ -360,6 +493,7 @@ This recovers the ideal gas internal energy law purely from counting microstates
     \qquad\Longrightarrow\qquad \boxed{PV = NkT.}
 \]
 The ideal gas law emerges as a consequence of counting microstates in phase space, with no additional assumptions. The definition $1/T = \partial S/\partial U$ is not circular: it is defined purely in terms of the entropy function $S(U,V,N)$ and reproduces the correct thermodynamics without free parameters.
+\end{example}
 
 \subsection{Connecting to Clausius: $dS = \dbar Q/T$}
 
@@ -434,14 +568,49 @@ Solving for the ratio $N_\uparrow / N_\downarrow = e^{2\mu B/kT}$ and using $N_\
 
 \subsection{Limiting Behaviour and the Saturation of Magnetization}
 
+\begin{example}
 At low temperature ($kT \ll \mu B$), the $\tanh$ saturates to unity: $U \to -N\mu B$ (all spins aligned in the ground state) and $M \to N\mu$ (full saturation magnetization). At high temperature ($kT \gg \mu B$), $\tanh(\mu B/kT) \approx \mu B/kT$, giving
 \[
     M \approx \frac{N\mu^2 B}{kT} \quad (kT \gg \mu B).
 \]
 This is the \textbf{Curie law}: magnetization is proportional to $B/T$ and falls off as temperature increases, because thermal fluctuations increasingly disorder the spins.
+\end{example}
 
 \begin{center}
-[DIAGRAM: Plot of $M(T)/(N\mu)$ vs.\ $kT/(\mu B)$. The curve starts at 1 for $T = 0$ (saturation), decreases monotonically, and approaches zero as $T \to \infty$ following the Curie law $M \propto 1/T$ (shown as a dashed asymptote).]
+\begin{tikzpicture}[scale=0.85]
+  \begin{axis}[
+    width=8cm, height=6cm,
+    xlabel={$k_B T / (\mu B)$},
+    ylabel={$M / (N\mu)$},
+    xmin=0, xmax=6,
+    ymin=0, ymax=1.15,
+    xtick={0,1,2,3,4,5,6},
+    ytick={0,0.5,1.0},
+    yticklabels={$0$, $0.5$, $1$},
+    axis lines=left,
+    clip=false,
+    every axis x label/.style={at={(axis description cs:1.02,0)}, anchor=west},
+    every axis y label/.style={at={(axis description cs:0,1.05)}, anchor=south},
+  ]
+    % M/Nmu = tanh(1/t) where t = kT/(muB)
+    \addplot[thick, blue, domain=0.05:6, samples=120]
+      {tanh(1/x)};
+    \node[right, blue, font=\small] at (axis cs: 5.5, 0.22) {$\tanh(\mu B/k_BT)$};
+
+    % Curie law: M ~ 1/t (dashed)
+    \addplot[thick, dashed, red, domain=0.5:6, samples=60]
+      {1/x};
+    \node[right, red, font=\small] at (axis cs: 5.5, 0.30) {Curie law $\propto 1/T$};
+
+    % Mark crossover region kT ~ muB at t=1
+    \addplot[dotted, gray] coordinates {(1.0, 0) (1.0, 0.76)};
+    \node[below, gray, font=\small] at (axis cs: 1.0, 0) {$k_BT\!\sim\!\mu B$};
+
+    % Saturation at T=0
+    \node[left, font=\small] at (axis cs: 0, 1.0) {$1$};
+  \end{axis}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Paramagnet: magnetization saturates at low $T$ and follows Curie's law $M\propto 1/T$ at high $T$.}
 \end{center}
 
 \subsection{Entropy of the Paramagnet}

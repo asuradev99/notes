@@ -49,6 +49,11 @@
 \declaretheorem[style=factsty,numberlike=theorem]{fact}
 \tcolorboxenvironment{fact}{colback=LightGray}
 
+\colorlet{ExampleGray}{black!8}
+\declaretheoremstyle[name=Example,]{examsty}
+\declaretheorem[style=examsty,numberlike=theorem]{example}
+\tcolorboxenvironment{example}{colback=ExampleGray, colframe=ExampleGray, arc=6pt, boxrule=0pt}
+
 \setstretch{1.2}
 \geometry{
     textheight=9in,

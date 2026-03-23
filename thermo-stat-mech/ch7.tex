@@ -66,6 +66,7 @@ so that the Pauli constraint is rarely triggered and bosonic enhancement is
 negligible.  At lower temperatures, where occupancies of order unity become
 common, we need a more powerful framework.
 
+\begin{example}
 As a concrete illustration, consider three bosons distributed among harmonic
 oscillator levels $k = 0, 1, 2, \ldots$ with energies $(k + \tfrac{1}{2})\hbar\omega$.
 The allowed occupation-number states are tuples $(n_0, n_1, n_2, \ldots)$ with
@@ -76,13 +77,60 @@ three spin-$\tfrac{1}{2}$ fermions cannot all occupy the lowest level; the
 Pauli principle forces the lowest three available spin-states to be filled first.
 
 \begin{center}
-[DIAGRAM: Energy-level diagram ($k=0,1,2,3$ horizontal lines) showing boson
-configurations (three particles on levels) labelled by occupation tuples
-$(n_0,n_1,n_2,\ldots)$ and the corresponding total energies $\tfrac{3}{2}\hbar\omega$,
-$\tfrac{5}{2}\hbar\omega$, $\tfrac{7}{2}\hbar\omega$, $\tfrac{9}{2}\hbar\omega$
-on the left; corresponding fermion configurations with up/down arrows for
-spin-$\tfrac{1}{2}$ states on the right]
+\begin{tikzpicture}[scale=0.85]
+  % Draw three boson configurations side by side
+  % Each configuration: 4 horizontal energy levels, bosons as filled circles
+
+  % --- Config 1: (3,0,0,0), E = 3/2 hbar omega ---
+  \foreach \lv in {0,1,2,3} {
+    \draw[gray] (0, \lv*0.8) -- (1.4, \lv*0.8);
+  }
+  % Three bosons on level 0
+  \filldraw[blue!70!black] (0.35, 0.0) circle (3pt);
+  \filldraw[blue!70!black] (0.70, 0.0) circle (3pt);
+  \filldraw[blue!70!black] (1.05, 0.0) circle (3pt);
+  \node[below, font=\small] at (0.70, -0.15) {$(3,0,0,0)$};
+  \node[above, font=\scriptsize] at (0.70, 2.55) {$E=\tfrac{3}{2}\hbar\omega$};
+
+  % --- Config 2: (1,1,1,0), E = 3/2+1+2 = 9/2 hbar omega, actually (1,1,1,0) -> 3/2+1*1+1*2 hbar = 9/2---
+  % Relabel: zero-point is 1/2 hbar omega per level offset; use k*hbar*omega for simplicity
+  % Place at x offset 2.0
+  \foreach \lv in {0,1,2,3} {
+    \draw[gray] (2.0, \lv*0.8) -- (3.4, \lv*0.8);
+  }
+  \filldraw[blue!70!black] (2.70, 0.0) circle (3pt);
+  \filldraw[blue!70!black] (2.70, 0.8) circle (3pt);
+  \filldraw[blue!70!black] (2.70, 1.6) circle (3pt);
+  \node[below, font=\small] at (2.70, -0.15) {$(1,1,1,0)$};
+  \node[above, font=\scriptsize] at (2.70, 2.55) {$E=\tfrac{7}{2}\hbar\omega$};
+
+  % --- Config 3: (0,0,0,3), E = 3*3 + 3/2 = ... use (0,3,0,0) for variety ---
+  % Config 3: (2,1,0,0), E = 2*0 + 1*1 + 3/2 per particle offset -> just label energies
+  \foreach \lv in {0,1,2,3} {
+    \draw[gray] (4.0, \lv*0.8) -- (5.4, \lv*0.8);
+  }
+  \filldraw[blue!70!black] (4.50, 0.0) circle (3pt);
+  \filldraw[blue!70!black] (4.90, 0.0) circle (3pt);
+  \filldraw[blue!70!black] (4.70, 0.8) circle (3pt);
+  \node[below, font=\small] at (4.70, -0.15) {$(2,1,0,0)$};
+  \node[above, font=\scriptsize] at (4.70, 2.55) {$E=\tfrac{5}{2}\hbar\omega$};
+
+  % Energy axis labels on left
+  \node[left, font=\scriptsize] at (-0.1, 0.0) {$\varepsilon_0$};
+  \node[left, font=\scriptsize] at (-0.1, 0.8) {$\varepsilon_1$};
+  \node[left, font=\scriptsize] at (-0.1, 1.6) {$\varepsilon_2$};
+  \node[left, font=\scriptsize] at (-0.1, 2.4) {$\varepsilon_3$};
+
+  % Vertical energy axis
+  \draw[->] (-0.1, -0.3) -- (-0.1, 3.0) node[above, font=\small] {$E$};
+
+  % Section title
+  \node[above, font=\small\bfseries] at (2.70, 3.1) {Boson configurations ($N=3$)};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Bosons: multiple particles may occupy the same energy level; occupation
+numbers $(n_0,n_1,\ldots)$ label each microstate.}
 \end{center}
+\end{example}
 
 % ------------------------------------------------------------------
 \section{The Grand Canonical Ensemble}
@@ -102,9 +150,49 @@ $\langle U\rangle$ and $\langle N\rangle$ determined by the reservoir parameters
 \end{definition}
 
 \begin{center}
-[DIAGRAM: Table comparing microcanonical ($V,N,U$ fixed; $T,P,\mu$ derived),
-canonical ($V,N,T$ fixed; $U$ fluctuates), and grand canonical ($V,\mu,T$ fixed;
-$U$ and $N$ fluctuate)]
+\begin{tikzpicture}[scale=0.85]
+  % Column widths and row heights
+  \def\cA{0}   % left edge col 1
+  \def\cB{3.2} % left edge col 2
+  \def\cC{6.4} % left edge col 3
+  \def\cD{9.8} % right edge
+
+  \def\rTop{0}
+  \def\rOne{-0.85}
+  \def\rTwo{-1.70}
+  \def\rThree{-2.55}
+  \def\rBot{-3.40}
+
+  % Horizontal lines
+  \foreach \y in {\rTop, \rOne, \rTwo, \rThree, \rBot} {
+    \draw (\cA, \y) -- (\cD, \y);
+  }
+  % Vertical lines
+  \foreach \x in {\cA, \cB, \cC, \cD} {
+    \draw (\x, \rTop) -- (\x, \rBot);
+  }
+
+  % Header row
+  \node[font=\small\bfseries] at ({(\cA+\cB)/2}, {(\rTop+\rOne)/2}) {Ensemble};
+  \node[font=\small\bfseries] at ({(\cB+\cC)/2}, {(\rTop+\rOne)/2}) {Fixed};
+  \node[font=\small\bfseries] at ({(\cC+\cD)/2}, {(\rTop+\rOne)/2}) {Fluctuates};
+
+  % Row 1
+  \node[font=\small] at ({(\cA+\cB)/2}, {(\rOne+\rTwo)/2}) {Microcanonical};
+  \node[font=\small] at ({(\cB+\cC)/2}, {(\rOne+\rTwo)/2}) {$V,\,N,\,U$};
+  \node[font=\small] at ({(\cC+\cD)/2}, {(\rOne+\rTwo)/2}) {$T,\,P,\,\mu$};
+
+  % Row 2
+  \node[font=\small] at ({(\cA+\cB)/2}, {(\rTwo+\rThree)/2}) {Canonical};
+  \node[font=\small] at ({(\cB+\cC)/2}, {(\rTwo+\rThree)/2}) {$V,\,N,\,T$};
+  \node[font=\small] at ({(\cC+\cD)/2}, {(\rTwo+\rThree)/2}) {$U$};
+
+  % Row 3
+  \node[font=\small] at ({(\cA+\cB)/2}, {(\rThree+\rBot)/2}) {Grand canonical};
+  \node[font=\small] at ({(\cB+\cC)/2}, {(\rThree+\rBot)/2}) {$V,\,\mu,\,T$};
+  \node[font=\small] at ({(\cC+\cD)/2}, {(\rThree+\rBot)/2}) {$U$,\;$N$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape The three standard ensembles and their fixed vs.\ fluctuating quantities.}
 \end{center}
 
 \subsection{Derivation of the Grand Canonical Distribution}
@@ -198,13 +286,7 @@ The modification of the first law to include particle exchange is
     dU = T\,dS - P\,dV + \mu\,dN.
 \end{equation}
 
-\begin{definition}[Chemical Potential]
-The \textbf{chemical potential} $\mu$ is the energy cost of adding one particle
-to the system at fixed entropy and volume:
-\begin{equation}
-    \mu = \pdv{U}{N}\bigg|_{S,V} = -T\pdv{S}{N}\bigg|_{U,V}.
-\end{equation}
-\end{definition}
+The chemical potential $\mu \defeq (\partial U/\partial N)_{S,V}$ (defined in Chapter~5) plays the same role for particle exchange as temperature does for energy exchange:
 
 The physical intuition is clear: consider two subsystems that can exchange both
 energy and particles.  Maximising the total entropy with respect to energy
@@ -220,9 +302,27 @@ for particle exchange that temperature plays for energy exchange: particles flow
 from high $\mu$ to low $\mu$, just as heat flows from high $T$ to low $T$.
 
 \begin{center}
-[DIAGRAM: Two boxes connected by a permeable membrane; left box labelled
-``system'' with energy $E_j$ and particle number $N_j$; right box labelled
-``reservoir at $T$, $\mu$''; arrows indicating energy and particle flow]
+\begin{tikzpicture}[scale=0.85]
+  % System box (small, left)
+  \draw[thick] (0,0) rectangle (2.6, 2.0);
+  \node[font=\small\bfseries] at (1.3, 1.55) {System};
+  \node[font=\small] at (1.3, 1.0) {$E_j,\; N_j$};
+
+  % Reservoir box (large, right)
+  \draw[thick] (4.2, -0.4) rectangle (8.2, 2.4);
+  \node[font=\small\bfseries] at (6.2, 1.6) {Reservoir};
+  \node[font=\small] at (6.2, 0.9) {at $T,\;\mu$};
+
+  % Energy arrow (solid, double-headed) — upper channel
+  \draw[<->, thick] (2.6, 1.45) -- (4.2, 1.45)
+        node[midway, above, font=\small] {energy};
+
+  % Particle arrow (dashed, double-headed) — lower channel
+  \draw[<->, thick, dashed] (2.6, 0.55) -- (4.2, 0.55)
+        node[midway, below, font=\small] {particles};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Grand canonical ensemble: system exchanges both energy and particles with
+a reservoir at $T$, $\mu$.}
 \end{center}
 
 % ------------------------------------------------------------------
@@ -341,11 +441,50 @@ is valid and quantum statistics can be ignored.
 \end{definition}
 
 \begin{center}
-[DIAGRAM: two sketches of $\langle n_\alpha\rangle$ vs.\ $\varepsilon_\alpha$:
-left panel shows the quantum degenerate limit ($N\lambda_\text{th}^3/V \gtrsim 1$)
-with the FD step function or BE low-energy enhancement; right panel shows
-the high-temperature classical limit where both distributions collapse to the
-exponential Maxwell--Boltzmann tail]
+\begin{tikzpicture}[scale=0.85]
+  %------------------------------------------------------------
+  % Left panel: quantum degenerate limit — FD and BE curves
+  %------------------------------------------------------------
+  % Axes
+  \draw[->] (0,0) -- (3.8,0) node[right, font=\small] {$\varepsilon_\alpha$};
+  \draw[->] (0,0) -- (0,3.0) node[above, font=\small] {$\langle n_\alpha\rangle$};
+  \node[font=\small\bfseries] at (1.9, 3.3) {Quantum degenerate};
+
+  % FD curve: step-like, value ~1 below eps_F=1.8, then drops
+  \draw[blue, thick] (0, 2.0) -- (1.8, 2.0)
+                     .. controls (1.8,2.0) and (2.0,2.0) .. (2.0, 1.0)
+                     .. controls (2.0,1.0) and (2.1,0.0) .. (2.3, 0.0)
+                     -- (3.6, 0.0);
+  \node[blue, right, font=\scriptsize] at (2.05, 1.6) {FD};
+
+  % BE curve: diverges at low eps, then decreases
+  \draw[red!80!black, thick, domain=0.25:3.6, samples=60]
+        plot (\x, {2.0 / (exp(2.5*(\x - 0.4)) - 1) > 2.8 ? 2.8 : 2.0 / (exp(2.5*(\x-0.4))-1)});
+  \node[red!80!black, right, font=\scriptsize] at (1.0, 2.55) {BE};
+
+  % tick at eps_F
+  \draw (1.8, -0.07) -- (1.8, 0.07);
+  \node[below, font=\scriptsize] at (1.8, -0.07) {$\varepsilon_F$};
+  \node[left, font=\scriptsize] at (0, 2.0) {$1$};
+
+  %------------------------------------------------------------
+  % Right panel: classical limit — Maxwell-Boltzmann
+  %------------------------------------------------------------
+  \begin{scope}[xshift=5.2cm]
+    \draw[->] (0,0) -- (3.8,0) node[right, font=\small] {$\varepsilon_\alpha$};
+    \draw[->] (0,0) -- (0,3.0) node[above, font=\small] {$\langle n_\alpha\rangle$};
+    \node[font=\small\bfseries] at (1.9, 3.3) {Classical limit};
+
+    % MB curve: exponential decay
+    \draw[green!60!black, thick, domain=0:3.5, samples=60]
+          plot (\x, {2.4 * exp(-1.2*\x)});
+    \node[green!60!black, right, font=\scriptsize] at (0.5, 1.8) {MB};
+    \node[green!60!black, font=\scriptsize] at (2.2, 0.6)
+          {$e^{-\beta\varepsilon}$};
+  \end{scope}
+\end{tikzpicture}\\[3pt]
+{\small\itshape Quantum degenerate limit (left): FD step function and BE enhancement.
+Classical limit (right): Maxwell--Boltzmann.}
 \end{center}
 
 % ------------------------------------------------------------------
@@ -539,6 +678,7 @@ foundational step in the development of quantum mechanics.
 
 \subsection{Application: Equilibrium Temperature of the Earth}
 
+\begin{example}
 The Sun has surface temperature $T_0 \approx 5772\,\text{K}$ and radius
 $R_\odot \approx 6.96\times 10^8\,\text{m}$; the Earth--Sun distance is
 $a \approx 1.5\times 10^{11}\,\text{m}$.  The total solar luminosity is
@@ -559,6 +699,7 @@ This is close to the observed mean surface temperature; the actual value is
 higher due to the greenhouse effect, which traps some of the emitted infrared
 radiation.
 \end{formula}
+\end{example}
 
 % ------------------------------------------------------------------
 \section{Degenerate Fermi Systems}
@@ -580,11 +721,40 @@ all states above are empty.  The chemical potential at $T = 0$ is called the
 $\varepsilon = \mu$ is the \textbf{Fermi surface}.
 
 \begin{center}
-[DIAGRAM: Fermi--Dirac occupation $\langle n_\alpha\rangle$ vs.\ energy
-$\varepsilon_\alpha$; step function at $T=0$ with value 1 for $\varepsilon <
-\varepsilon_F$ and 0 for $\varepsilon > \varepsilon_F$; thermally broadened
-curve at finite $T \ll \varepsilon_F/k_B$ showing rounding over a window
-$\sim k_BT$ near $\varepsilon_F$]
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (0,0) -- (5.5,0) node[right, font=\small] {$\varepsilon_\alpha$};
+  \draw[->] (0,0) -- (0,3.2) node[above, font=\small] {$\langle n_\alpha\rangle$};
+
+  % Fermi energy vertical dashed guide
+  \draw[gray, dashed] (2.8, 0) -- (2.8, 2.4);
+  \node[below, font=\small] at (2.8, 0) {$\varepsilon_F$};
+
+  % y-axis ticks
+  \draw (-0.07, 2.0) -- (0.07, 2.0);
+  \node[left, font=\small] at (0, 2.0) {$1$};
+  \draw (-0.07, 1.0) -- (0.07, 1.0);
+  \node[left, font=\small] at (0, 1.0) {$\tfrac{1}{2}$};
+
+  % T=0 step function (dashed rectangle)
+  \draw[blue!80!black, thick, dashed]
+        (0, 2.0) -- (2.8, 2.0) -- (2.8, 0.0) -- (5.2, 0.0);
+  \node[blue!80!black, font=\small] at (1.2, 2.3) {$T=0$};
+
+  % T>0 smoothed Fermi-Dirac curve
+  \draw[red!80!black, thick, domain=0.0:5.2, samples=120]
+        plot (\x, {2.0 / (exp(4.0*(\x/2.8 - 1.0)) + 1)});
+  \node[red!80!black, font=\small] at (4.2, 1.0) {$T>0$};
+
+  % Mark that <n> = 1/2 at eps_F for T>0
+  \filldraw[red!80!black] (2.8, 1.0) circle (2.5pt);
+
+  % Thermal broadening brace annotation
+  \draw[<->, thick] (2.0, -0.55) -- (3.6, -0.55);
+  \node[below, font=\scriptsize] at (2.8, -0.55) {${\sim}k_BT$};
+\end{tikzpicture}\\[3pt]
+{\small\itshape Fermi--Dirac distribution: step function at $T=0$ (dashed), thermally
+broadened for $T>0$; $\langle n\rangle=\tfrac{1}{2}$ at $\varepsilon=\varepsilon_F$.}
 \end{center}
 
 To find $\varepsilon_F$, we use the condition that all $N$ particles must fit
@@ -703,10 +873,33 @@ interactions.
 \end{fact}
 
 \begin{center}
-[DIAGRAM: occupation $\langle n_\alpha\rangle$ vs.\ $\varepsilon$ in the condensed
-regime: macroscopic spike at $\varepsilon = 0$ representing the condensate,
-with a smooth Bose--Einstein tail at $\varepsilon > 0$; Maxwell--Boltzmann
-distribution shown for comparison as a dashed curve]
+\begin{tikzpicture}[scale=0.85]
+  % Axes
+  \draw[->] (0,0) -- (5.5,0) node[right, font=\small] {$\varepsilon_\alpha$};
+  \draw[->] (0,0) -- (0,4.2) node[above, font=\small] {$\langle n_\alpha\rangle$};
+  \node[below, font=\small] at (0, 0) {$0$};
+
+  % Condensate spike at eps=0 (tall thin bar)
+  \draw[blue!80!black, very thick] (0.0, 0.0) -- (0.0, 3.8);
+  \draw[blue!80!black, ->, thick] (0.0, 3.8) -- (0.0, 4.0);
+  \node[blue!80!black, right, font=\small] at (0.15, 3.6) {$N_0$};
+  \node[blue!80!black, font=\scriptsize, right] at (0.15, 3.1) {(condensate)};
+
+  % BE thermal tail for eps > 0 (solid red curve)
+  \draw[red!80!black, thick, domain=0.3:4.0, samples=80]
+        plot (\x, {2.5 / (exp(1.5*\x) - 1)});
+  \node[red!80!black, right, font=\small] at (0.8, 1.3) {thermal cloud (BE)};
+
+  % Maxwell-Boltzmann comparison (dashed green)
+  \draw[green!60!black, thick, dashed, domain=0.0:5.2, samples=100]
+        plot (\x, {2.3 * exp(-2.0*\x)});
+  \node[green!60!black, font=\small] at (3.2, 0.65) {MB};
+
+  % y-axis reference
+  \draw (-0.07, 1.0) -- (0.07, 1.0);
+\end{tikzpicture}\\[3pt]
+{\small\itshape Bose--Einstein condensate: macroscopic ground-state occupation $N_0$
+(spike) plus a thermal BE tail.}
 \end{center}
 
 Unlike classical phase transitions, BEC occurs even in an ideal, non-interacting

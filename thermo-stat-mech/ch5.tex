@@ -8,7 +8,34 @@ Most laboratory systems, however, are not isolated. They sit in thermal contact 
 
 \subsection*{At Fixed $T$ and $V$: Helmholtz Free Energy}
 
-\begin{center}[DIAGRAM: A reservoir at temperature $T$ connected to a system with fixed volume $V$ and variable internal energy $U$. Heat $\Delta Q$ flows from reservoir to system; any non-$pV$ work $W$ is done by the system on the outside world.]\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Reservoir box (larger, on the left)
+  \draw[thick] (-4.2,-1.2) rectangle (-0.6,1.2);
+  \node[align=center] at (-2.4,0.4) {Reservoir};
+  \node[align=center] at (-2.4,-0.1) {at $T$};
+  % Thermometer symbol inside reservoir
+  \draw[thick] (-2.4,-0.85) circle (0.22);
+  \draw[thick] (-2.4,-0.63) -- (-2.4,-0.3);
+  \draw[thick] (-2.17,-0.3) -- (-2.63,-0.3);
+
+  % System box (smaller, on the right)
+  \draw[thick] (0.6,-1.0) rectangle (3.2,1.0);
+  \node[align=center] at (1.9,0.35) {System,};
+  \node[align=center] at (1.9,-0.1) {fixed $V$};
+  \node at (1.9,-0.62) {$U$};
+
+  % Wavy heat-flow arrow between the boxes
+  \draw[thick,<->,decorate,decoration={snake,amplitude=3pt,segment length=7pt}]
+    (-0.6,0) -- (0.6,0)
+    node[midway, above=4pt] {$\Delta Q$};
+
+  % Rightward arrow for work exiting the system
+  \draw[thick,->] (3.2,0) -- (4.5,0)
+    node[right] {$W$ (non-$pV$ work)};
+\end{tikzpicture}\\[3pt]
+{\small\itshape System at fixed $T$ and $V$ in contact with a large heat reservoir; work $W$ may be extracted.}
+\end{center}
 
 Consider a system at fixed volume in contact with a large heat reservoir at temperature $T$. The system is allowed to do non-$pV$ work $W$ on the outside world. The total entropy of the universe (system plus reservoir) must not decrease, so
 \begin{equation}
@@ -137,6 +164,7 @@ The power of these relations lies in connecting quantities that are experimental
 
 \subsection*{Application: Internal Pressure}
 
+\begin{example}
 How does the internal energy of a gas depend on volume at fixed temperature? Begin from $dU = T\,dS - P\,dV$ and divide by $dV$ at constant $T$:
 \begin{equation}
     \left.\pdv{U}{V}\right|_T = T\left.\pdv{S}{V}\right|_T - P.
@@ -150,9 +178,11 @@ The quantity $\left.\pdv{S}{V}\right|_T$ is not directly measurable, but the Max
 \end{formula}
 
 This is the \emph{internal pressure}. For an ideal gas, $P = Nk_BT/V$ gives $\left.\pdv{P}{T}\right|_V = P/T$, so the internal pressure is $T(P/T) - P = 0$. The internal energy of an ideal gas is independent of volume, as expected from the absence of intermolecular interactions. For a van der Waals gas or any real gas with attractive interactions, the internal pressure is positive: expanding the gas stretches intermolecular bonds and increases $U$.
+\end{example}
 
 \section{Example: The Hydrogen Fuel Cell}
 
+\begin{example}
 A hydrogen fuel cell converts chemical energy directly into electrical work at fixed temperature and pressure, making it a natural setting for Gibbs free energy. The reaction is
 \begin{equation}
     \mathrm{H_2} + \tfrac{1}{2}\mathrm{O_2} \;\longrightarrow\; \mathrm{H_2O}.
@@ -176,3 +206,4 @@ For comparison, consider burning hydrogen in a heat engine. The flame temperatur
     \eta_{\mathrm{Carnot}} = 1 - \frac{T_-}{T_+} = 1 - \frac{300}{1760} \approx 83\%.
 \end{equation}
 The numerical coincidence is striking: the fuel cell and the Carnot engine achieve the same limiting efficiency, but they do so in very different ways. The Carnot bound is set by the ratio of reservoir temperatures; the fuel cell bound is set by the ratio $|\Delta G|/|\Delta H|$, which reflects the thermodynamics of the chemical reaction itself at room temperature. In practice, fuel cells operate at much lower temperatures than combustion engines and avoid the irreversibilities associated with burning, making them a more tractable route to high efficiency in real devices.
+\end{example}
