@@ -1,4 +1,6 @@
-\chapter{Introduction to Relativity}
+\chapter{Special Relativity}
+
+Special relativity is not a detour: it is the key that unlocks magnetism. Purcell's central insight is that magnetism is a relativistic consequence of Coulomb's law — what one observer sees as a purely electric force, another (moving) observer sees as a combination of electric and magnetic forces. This approach reveals that $\vect{E}$ and $\vect{B}$ are not independent entities but two aspects of a single electromagnetic field.
 
 \section{Einstein's Postulates}
 
@@ -7,33 +9,25 @@
   \item In all reference frames, the speed of light is constant.
 \end{enumerate}
 
+These two postulates, together with the principle that space is homogeneous and isotropic, uniquely determine the Lorentz transformation.
+
 \subsection*{Time Dilation}
 
 Consider a light clock on a train moving with speed $v$.
 
-\begin{figure}[H]
-  \centering
-  \caption{Light clock on train (top) and as seen from ground (bottom). On the train, the light travels straight up and back a height $h$; on the ground the light travels a diagonal path.}
-\end{figure}
-
-\begin{itemize}
-  \item On the train:
-  \[
-    \Delta t_{\text{train}} = \frac{h}{c}
-  \]
-  \item On the ground, the total distance travelled by the light beam is
-  \[
-    d_{\text{total}} = \sqrt{h^2 + (v\,\Delta t_g)^2}
-  \]
-  \[
-    \text{thus}\quad \Delta t_g = \frac{\sqrt{h^2 + (v\,\Delta t_g)^2}}{c} > \Delta t_{\text{train}}
-  \]
-  \item In general:
-  \[
-    \Delta t = \frac{\Delta t'}{\sqrt{1 - \dfrac{v^2}{c^2}}} = \gamma\,\Delta t'
-  \]
-  where $\Delta t' = h/c$ (train clock) and $\Delta t = \tfrac{1}{c}\sqrt{h^2+(v\Delta t)^2}$ (ground clock).
-\end{itemize}
+On the train, the light travels straight up and back a distance $h$, taking
+\[
+  \Delta t_{\text{train}} = \frac{h}{c}.
+\]
+Seen from the ground, the light traces a longer diagonal path of length $d_{\text{total}} = \sqrt{h^2 + (v\,\Delta t_g)^2}$, so
+\[
+  \Delta t_g = \frac{\sqrt{h^2 + (v\,\Delta t_g)^2}}{c} > \Delta t_{\text{train}}.
+\]
+Setting the light-travel time equal in both frames gives
+\[
+  \Delta t = \frac{\Delta t'}{\sqrt{1 - \dfrac{v^2}{c^2}}} = \gamma\,\Delta t'
+\]
+where $\Delta t' = h/c$ (train clock) and $\Delta t = \tfrac{1}{c}\sqrt{h^2+(v\Delta t)^2}$ (ground clock).
 
 \subsection*{Clock Synchronization}
 
@@ -47,11 +41,6 @@ In the train's reference frame:
   \qquad\Longleftrightarrow\qquad
   t = \gamma\,\frac{v}{c^2}\,x'
 \]
-
-\begin{figure}[H]
-  \centering
-  \caption{Clock synchronization diagrams showing how clock readings differ between ground and train frames.}
-\end{figure}
 
 \subsection*{Length Contraction (Train)}
 
@@ -85,29 +74,13 @@ From this:
   \Rightarrow\quad \Delta x = \Delta x'\sqrt{1 - \frac{v^2}{c^2}}
 \]
 
-\begin{figure}[H]
-  \centering
-  \caption{Diagram showing a wire carrying current $I$ to the right, with positive ions fixed and electrons moving, producing a magnetic field $\vect{B}$ (out of page). A positive charge to the left experiences a downward force $\vect{F} = q\vect{v}\times\vect{B}$. For a segment of wire: $\vect{F} = An\,q\vect{v}\times\vect{B} = I\vect{\ell}\times\vect{B}$.}
-\end{figure}
-
-%───────────────────────────────────────────────────────────────────
-% RECITATION 12: SPECIAL RELATIVITY REVIEW  (p. 205)
-%───────────────────────────────────────────────────────────────────
-
-\section{Recitation 12: Special Relativity Review}
-
-\begin{itemize}
-  \item Maxwell predicted speed of light.
-  \item Inertial frame: constant speed.
-\end{itemize}
-
 %───────────────────────────────────────────────────────────────────
 % SECTIONS 5.1--5.5: RELATIVITY AND MOVING CHARGES  (pp. 206--214)
 %───────────────────────────────────────────────────────────────────
 
-\chapter{Relativity and Moving Charges}
+\chapter{Relativity and Electromagnetism}
 
-\section{5.2: Magnetic Forces}
+\section{Magnetic Forces}
 
 The entire force on a particle carrying a charge $q$ is given by
 \begin{formula}[Lorentz Force]
@@ -140,19 +113,11 @@ where the first term is the electric force and the second is the magnetic force.
 \caption{A positive charge $+q$ moving to the right with velocity $\vect{v}$ in a field $\vect{B}$ directed into the page. By the right-hand rule, $\vect{F} = q\vect{v}\times\vect{B}$ points upward.}
 \end{figure}
 
-\textbf{How do we find $\vect{B}$?}
-\begin{itemize}
-  \item Using Eq.\ 5.1, first find $\vect{E}$ by measuring the force on a charge particle at rest (so $v=0$).
-  \item Then measure the force on a particle when its velocity is $\vect{v}$, repeat this 2 times, and find a $\vect{B}$ that matches.
-\end{itemize}
+\textbf{How do we find $\vect{B}$?} First determine $\vect{E}$ from the force on a stationary test charge (so $v=0$). Then measure the additional force on a moving charge for at least two independent velocity directions; the unique $\vect{B}$ that accounts for both additional forces is the magnetic field.
 
-\section{5.3: Measurement of Charge in Motion}
+\section{Measurement of Charge in Motion}
 
-\begin{itemize}
-  \item The electric charge of a moving particle is not well defined, because we get charge from forces on test particles in the static case.
-  \item Suppose we define $Q$ by arranging sensors in all directions while $Q$ is moving. Imagine an still-at-infinite test-charge ``sensor'' array that sense their electric field $\vect{E}$ when $Q$ passes through center.
-  \item Gauss's law is the natural way to do this.
-\end{itemize}
+The electric charge of a moving particle is not obviously well-defined, since we ordinarily extract charge from the force on a stationary test particle. The natural extension is to define $Q$ using Gauss's law: place a closed sensor surface $S$ around the region and measure the total flux when $Q$ passes through.
 
 \subsection*{Charge in a Moving Frame}
 
@@ -160,173 +125,89 @@ where the first term is the electric force and the second is the magnetic force.
   Q = \epsilon_0 \int_{S(t)} \vect{E}\cdot d\vect{a}
 \]
 
-\begin{itemize}
-  \item The surface $S$ is fixed in a frame $F$, while $Q$ is moving in frame $F$.
-  \item Luckily, Gauss's law is invariant when charge is moving.
-\end{itemize}
+Here $S$ is fixed in frame $F$ while $Q$ moves through it. Gauss's law remains valid even when the charge is moving, which is the content of charge invariance.
 
 \section*{Invariance of Charge}
 
-\begin{itemize}
-  \item The total charge in a system is conserved whether the charges are moving or not.
-  \item This has been experimentally validated to many orders of precision.
-  \item Mass is \textit{not} invariant in the same way.
-  \item $\oint_S \vect{E}\cdot d\vect{a}$ depends only on the number and \underline{variety of charged particles inside $S$}.
-    \begin{itemize}
-      \item True for any inertial frame of reference.
-    \end{itemize}
-  \item Thus if $F'$ is some frame moving w/ respect to $F$, then
-  \[
-    \int_{S(t)} \vect{E}\cdot d\vect{a} = \int_{S'(t')} \vect{E}'\cdot d\vect{a}'
-  \]
-  (different times due to relativistic time dilation)
-  \item Invariance of charge is \emph{not} the same as charge conservation.
-\end{itemize}
+Charge invariance means the total charge in a system is the same number in all inertial frames — not just conserved in time, but frame-independent. This is stronger than conservation; mass, by contrast, is not invariant in the same way. Crucially, it is charge invariance (not merely conservation) that allows Gauss's law to hold in all frames and guarantees that the field transformations are consistent:
+\[
+  \int_{S(t)} \vect{E}\cdot d\vect{a} = \int_{S'(t')} \vect{E}'\cdot d\vect{a}'
+\]
+(measured at different times due to relativistic time dilation). The experimental support for charge invariance is extensive and precise.
 
-\section{5.5: Electric Field Measured in Different Frames of Reference}
+\section{Electric Field in Different Frames}
 
-\begin{itemize}
-  \item If charge is invariant under Lorentz transformations, the electric field $\vect{E}$ has to transform in a particular way.
-  \item Answers the question: if an observer in a certain inertial frame $F$ measures $\vect{E}$ at $(x,y)$, what field will be measured at the same spacetime point in $F'$?
-  \item Consider the example: two stationary sheets of charge $\sigma$ and $-\sigma$.
-\end{itemize}
+If charge is invariant under Lorentz transformations, the electric field $\vect{E}$ must transform in a specific way. The question is: if an observer in frame $F$ measures $\vect{E}$ at $(x,y)$, what field is measured at the same spacetime point in $F'$? We answer this by considering two stationary sheets of charge $\sigma$ and $-\sigma$.
 
-\begin{figure}[H]
-  \centering
-  \caption{Two parallel charge sheets of surface charge density $\sigma$ and $-\sigma$ separated by distance $b$, shown in inertial frame $F$. The electric field between them is $E_y = \sigma/\epsilon_0$ (field in inertial frame $F$).}
-\end{figure}
-
-\begin{itemize}
-  \item Consider an inertial frame $F'$ that moves to the left of $F$ with speed $v$.
-  \item Charged sheets are no longer square in $F'$ (length contraction).
-  \item In the $x'$ dimension, $b$ is contracted into $b' = \dfrac{b}{\sqrt{1-\beta^2}} = \gamma b$, where $\gamma = \dfrac{1}{\sqrt{1-\beta^2}}$.
-  \item But since total charge is conserved, $\sigma$ must change by a factor of $\sqrt{1-\beta^2}$:
-  \[
-    \sigma' = \sqrt{1-\beta^2}\cdot\sigma \quad\Rightarrow\quad \sigma'\cdot A' = \sigma\cdot A
-  \]
-  \item We can apply Gauss's law to a stationary box in frame $F'$:
-  \[
-    E_1 = 0 \text{ so the only force $\perp$ to the box is } E_2 \Rightarrow
-    \frac{\sigma'}{E_2} = \frac{\sigma'}{\epsilon_0} = \frac{\sigma}{\sqrt{1-\beta^2}\,\epsilon_0}
-  \]
-\end{itemize}
-
-\begin{figure}[H]
-  \centering
-  \caption{If the sheets in $F$ are perpendicular to the $x$-axis, then $\sigma = \sigma'$ since $v$ is $\perp$ to the area of charge.}
-\end{figure}
+In frame $F'$ moving to the left with speed $v$, the sheets undergo length contraction: the separation contracts to $b' = \gamma b$. Since total charge is invariant, the surface charge density must change by the inverse factor, $\sigma' = \sigma/\gamma = \sqrt{1-\beta^2}\,\sigma$ (so that $\sigma' A' = \sigma A$). Applying Gauss's law to a stationary box in $F'$ gives
+\[
+  E_2' = \frac{\sigma'}{\epsilon_0} = \frac{\sigma}{\sqrt{1-\beta^2}\,\epsilon_0} = \gamma\,\frac{\sigma}{\epsilon_0} = \gamma E_2.
+\]
 
 \begin{theorem}[Transformation of Electric Field]
-More generally:
-\begin{itemize}
-  \item Notice that the only component of $\vect{E}$ that changes is the one $\perp$ to $\vect{v}$:
-  \begin{align*}
-    E'_{\parallel} &= E_{\parallel} \\
-    E'_{\perp} &= \gamma E_{\perp}
-  \end{align*}
-  \item The transverse component of the electric field is \emph{smaller} in the frame of the sources (where they are not moving) than in any other frame, largest in the frame of the particle.
-\end{itemize}
+The component of $\vect{E}$ parallel to the relative velocity is unchanged, while the transverse component is enhanced by $\gamma$:
+\begin{align*}
+  E'_{\parallel} &= E_{\parallel} \\
+  E'_{\perp} &= \gamma E_{\perp}
+\end{align*}
 \end{theorem}
+
+This asymmetry is the seed of the magnetic field: a purely electric field in one frame has a transverse magnetic component in another. The transverse component is smallest in the rest frame of the sources and grows in any frame where the sources move.
 
 \subsection*{Example: Tilted Sheet ($v = 0.6c$)}
 
-\begin{figure}[H]
-  \centering
-  \caption{A charged sheet tilted at 45 degrees ($d = \sqrt{2}\,\ell$) in frame $F$, and its appearance in the moving frame $F'$ ($d' = \sqrt{14/15}\,\ell$). The sheet has surface charge density $\sigma$.}
-\end{figure}
+Find the surface charge density $\sigma'$ and the electric field. For $v = 0.6c$ we have $\gamma = 4/3$. The parallel length of the sheet is contracted while the perpendicular extent is unchanged, so $\sigma' = (1.1043)\,\sigma$ by charge conservation. The field in $F$ is $\vect{E}_F = \sigma/(2\epsilon_0)$ perpendicular to the sheet; decomposing into parallel and transverse components relative to the boost direction and applying the transformation rules,
+\[
+  E'_{\parallel} = E_{\parallel} = \frac{E}{\sqrt{2}},
+  \qquad
+  E'_{\perp} = \gamma E_{\perp} = \gamma\,\frac{E}{\sqrt{2}}.
+\]
+The magnitude of the transformed field is:
+\[
+  |E'| = \sqrt{E_\parallel'^2 + E_\perp'^2} = \frac{E}{\sqrt{2}}\sqrt{1 + \left(\frac{5}{4}\right)^2} = 1.1319\,E.
+\]
 
-Find the surface charge density $\sigma'$ and the electric field.
+\section{Field of a Moving Point Charge}
 
-\begin{itemize}
-  \item $\gamma$ associated with $v = 0.6c$ is $\gamma = \dfrac{4}{3}$.
-  \item Thus the length of a given segment does not change from $\ell\ell$ to $\sqrt{1+(4/5)^2}\,\ell$.
-  \item By charge conservation: $\sigma' = (1.1043)\,\sigma$.
-  \item To find the electric field in $F'$:
-  \[
-    \vect{E}_F = \frac{\sigma}{2\epsilon_0}
-    \quad\Rightarrow\quad
-    E'_{\parallel} = E_{\parallel} = \frac{E}{\sqrt{2}}
-    \qquad
-    E'_{\perp} = \gamma E_{\perp} = \gamma\,\frac{E}{\sqrt{2}}
-  \]
-  \item To go further, find $|E'|$:
-  \[
-    |E'| = \sqrt{E_T'^2 + E_N'^2} = \frac{E}{\sqrt{2}}\sqrt{1 + \left(\frac{5}{4}\right)^2} = 1.1319\,E
-  \]
-\end{itemize}
+Suppose there is a point charge $Q$ at rest at the origin in reference frame $F$. In $F$:
+\begin{align*}
+  E_x &= \frac{Q}{4\pi\epsilon_0 r^2}\cos\theta = \frac{Qx}{4\pi\epsilon_0(x^2+z^2)^{3/2}} \\
+  E_z &= \frac{Q}{4\pi\epsilon_0 r^2}\sin\theta = \frac{Qz}{4\pi\epsilon_0(y^2+z^2)^{3/2}}
+\end{align*}
+Let event $A$ (when $F$ and $F'$ coincide at the origin) be $(0,0,0,0)$ and event $B$ be $(x,y,z,t)$. Expressing $x$, $z$ in terms of primed coordinates via the Lorentz transformation ($x = \gamma x' - \gamma\beta ct'$, $y = y'$, $z = z'$) and applying the field transformation rules $E'_x = E_x$, $E'_z = \gamma E_z$ at $t'=0$:
+\begin{align*}
+  E'_x = E_x &= \frac{Q(\gamma x')}{4\pi\epsilon_0\left[(\gamma x')^2 + z'^2\right]^{3/2}} \\
+  E'_z = \gamma E_z &= \frac{\gamma(Qz')}{4\pi\epsilon_0\left[(\gamma x')^2 + z'^2\right]^{3/2}}
+\end{align*}
+Since $E'_z/E'_x = z'/x'$, the field $\vect{E}'$ points radially outward from the instantaneous position of $Q$. Combining components gives:
 
-\section{5.6: Field of a Point Charge with Constant Velocity}
+\begin{formula}[Field of a Moving Point Charge]
+\[
+  E' = \frac{Q}{4\pi\epsilon_0 r'^2}\left(\frac{1-\beta^2}{(1-\beta^2\sin^2\theta')^{3/2}}\right)
+\]
+where $\theta'$ is the angle between the radius vector and the velocity direction.
+\end{formula}
 
-Suppose there is a point charge $Q$ at rest at the origin in reference frame $F$.
+\section{Force on a Moving Charge}
 
-\begin{itemize}
-  \item In $F$:
-  \begin{align*}
-    E_x &= \frac{Q}{4\pi\epsilon_0 r^2}\cos\theta = \frac{Qx}{4\pi\epsilon_0(x^2+z^2)^{3/2}} \\
-    E_z &= \frac{Q}{4\pi\epsilon_0 r^2}\sin\theta = \frac{Qz}{4\pi\epsilon_0(y^2+z^2)^{3/2}}
-  \end{align*}
+Consider a test charge moving with velocity $\vect{v}$ in a field produced by sources at rest in the lab frame $F$. The test charge has its own rest frame $F'$. The momentum components transform as
+\[
+  \frac{dp_{\parallel}}{dt} = \frac{dp'_{\parallel}}{dt}, \qquad
+  \frac{dp_{\perp}}{dt} = \frac{1}{\gamma}\frac{dp'_{\perp}}{dt}
+  \quad \text{(for a particle at rest in } F').
+\]
+The transverse force is larger in the particle's frame $F'$ because in $F'$ the sources are moving and appear Lorentz-contracted, enhancing the transverse field: $E'_\perp = \gamma E_\perp$, $E'_\parallel = E_\parallel$. The net effect is that the transverse force seen in the lab is $F_\perp = F'_\perp/\gamma$, which is smaller — the field enhancement and the momentum transformation factor of $1/\gamma$ work in opposite directions.
 
-  \item Let event $A$ (when $F$, $F'$ coincide at the origin) be $(x_A, y_A, z_A, t_A) = (0,0,0,0)$.
-  \item Event $B$ is $(x, y, z, t)$.
-  \item We need to express $x$, $z$ in terms of $x'$, $z'$.
-  \item We have:
-  \[
-    x = \gamma x' - \gamma\beta c t', \quad y = y', \quad z = z', \quad t = \gamma t' + \frac{\gamma\beta x'}{c}
-  \]
-  \item Additionally, $E'_z = \gamma E_z$, $E'_x = E_x$.
-  \item Substituting (using $t' = 0$):
-  \begin{align*}
-    E'_x = E_x &= \frac{Q(\gamma x')}{4\pi\epsilon_0\left[(\gamma x')^2 + z'^2\right]^{3/2}} \\
-    E'_z = \gamma E_z &= \frac{\gamma(Qz')}{4\pi\epsilon_0\left[(\gamma x')^2 + z'^2\right]^{3/2}}
-  \end{align*}
-  \[
-    \Rightarrow \frac{E'_z}{E'_x} = \frac{z'}{x'} \Rightarrow \vect{E}' \text{ points radially outward}
-  \]
-  \item Using algebra, the total field is:
-  \begin{formula}[Field of a Moving Point Charge]
-  \[
-    E' = \frac{Q}{4\pi\epsilon_0 r'^2}\left(\frac{1-\beta^2}{(1-\beta^2\sin^2\theta')^{3/2}}\right)
-  \]
-  where $\theta'$ is the angle between the radius and velocity vector (location of the point).
-  \end{formula}
-\end{itemize}
-
-\section{5.8: Force on a Moving Charge}
-
-\begin{itemize}
-  \item Case of a charged particle moving in a field produced by stationary charges.
-  \item Sources are at rest in $F$: ``lab frame''.
-  \item A test charge is moving with speed $\vect{v}$ with respect to $F$, has its own frame $F'$.
-  \item Recall that:
-  \[
-    \frac{dp_{\parallel}}{dt} = \frac{dp'_{\parallel}}{dt}, \qquad
-    \frac{dp_{\perp}}{dt} = \frac{1}{\gamma}\frac{dp'_{\perp}}{dt}
-    \quad \text{(for a particle at rest in } F')
-  \]
-  \item The transverse component of the force on a particle is \emph{larger} in the frame of the particle than in any other field, because the source is moving and then gets Lorentz-contracted.
-  \[
-    \Rightarrow E'_{\perp} = \gamma E_{\perp}, \qquad E'_{\parallel} = E_{\parallel}
-  \]
-  \item The electric field in the stationary frame is independent of velocity.
-  \item \textbf{Why is this the opposite for field and force? ($\gamma$)}
-\end{itemize}
-
-\section{5.9: Interaction Between Moving Charges}
+\section{Interaction Between Moving Charges}
 
 Why do wires going in opposite directions repel?
 \[
   I = -\lambda_0 v_0
 \]
 
-\begin{figure}[H]
-  \centering
-  \caption{Two parallel wires carrying currents in opposite directions repel each other.}
-\end{figure}
+Two key facts govern this: (1) the transverse electric field due to a charge is smallest in the frame of that charge, and (2) the transverse force on a particle is largest in the frame of that particle. Together, they determine how forces transform between frames.
 
-\begin{itemize}
-  \item[(1)] The transverse electric field due to a charge is the \emph{smallest} in the frame of that charge.
-  \item[(2)] The transverse \emph{force} on a particle is \emph{largest} in the frame of that particle.
-\end{itemize}
+This is the origin of the magnetic force between parallel wires. In the rest frame of one set of charge carriers, there is a net electric field that attracts or repels the wire. Boosting back to the lab frame, this becomes the familiar magnetic force $\vect{F} = I\vect{\ell}\times\vect{B}$.
 
 \section*{Chapter Summary}
 
@@ -347,36 +228,17 @@ Why do wires going in opposite directions repel?
   \item If a charge is moving with respect to other charges that are also moving in the lab frame (e.g.\ in a wire), then the charge experiences a magnetic force.
 \end{itemize}
 
+The magnetic field is not a separate entity introduced ad hoc — it is the relativistic transform of the electric field, required by the invariance of charge.
+
 %───────────────────────────────────────────────────────────────────
 % TEXTBOOK: SPECIAL RELATIVITY REVIEW  (pp. 211--214)
 %───────────────────────────────────────────────────────────────────
 
-\chapter{Special Relativity Review (Textbook)}
-
-\section*{Special Relativity Review}
-
-\begin{itemize}
-  \item \textbf{Frame of Reference:} Coordinate system with measuring rods and \underline{stationary} clocks.
-  \item Assumptions about space: it is \underline{homogeneous} and \underline{isotropic}.
-  \item All clocks in a reference frame must be synchronized.
-  \item \textbf{Event:} Something that happens in some chosen reference frame.
-    \begin{itemize}
-      \item Identified as coordinates $(x, y, z, t)$.
-    \end{itemize}
-  \item \textbf{Inertial frame:} Frame in which \underline{Newton's first law is obeyed}.
-  \item Special relativity says that no frame is ``better'' than the other.
-\end{itemize}
+A \textbf{frame of reference} is a coordinate system equipped with measuring rods and stationary synchronized clocks; space is assumed \underline{homogeneous} and \underline{isotropic}. An \textbf{event} is something that happens at a definite location and time, identified by coordinates $(x, y, z, t)$. An \textbf{inertial frame} is one in which Newton's first law holds. Special relativity asserts that no inertial frame is privileged over any other.
 
 \section{Lorentz Transformations}
 
-\begin{itemize}
-  \item Consider two events $A$ and $B$ observed in an inertial frame $F$; the events are measured w/ respect to a clock/measuring rod in $F$.
-  \item Thus the displacement of one event to another is given by:
-  \[
-    \Delta x_F = (x_B - x_A,\; y_B - y_A,\; z_B - z_A,\; t_B - t_A)
-  \]
-  \item But in $F'$, a moving frame (moving with speed $v$ in the $\hat{x}$ direction):
-\end{itemize}
+Consider two events $A$ and $B$ observed in an inertial frame $F$. The spacetime displacement is $\Delta x_F = (x_B - x_A,\; y_B - y_A,\; z_B - z_A,\; t_B - t_A)$. In frame $F'$ moving with speed $v$ in the $\hat{x}$ direction, the same displacement is related by:
 
 \begin{formula}[Lorentz Transformation]
 \begin{align*}
@@ -388,22 +250,14 @@ Why do wires going in opposite directions repel?
 where $c$ is the speed of light, $\beta = \dfrac{v}{c}$, $\gamma = \dfrac{1}{\sqrt{1-\beta^2}}$.
 \end{formula}
 
-\begin{itemize}
-  \item The inverse transformation is the same, just switch the prime with unprime (and replace $v \to -v$, i.e.\ swap ``$'$'' with ``$\phantom{'}$'').
-  \item Two events $A$, $B$ are \underline{simultaneous} in $F$ if $t_B - t_A = 0$, but that does \emph{not} imply $t'_B - t'_A = 0$ unless $x_B - x_A = 0$.
-\end{itemize}
+The inverse transformation is identical with $v \to -v$ (swap primed and unprimed). Two events that are simultaneous in $F$ ($t_B - t_A = 0$) are generally not simultaneous in $F'$ unless they also share the same $x$-coordinate ($x_B - x_A = 0$).
 
 \begin{example}[Length Contraction via Lorentz]
-Consider a rod in $F'$ parallel to the $x'$ axis, going from $x'_A$ to $x'_B$.
-
-\begin{itemize}
-  \item Length in $F'$ is just $x'_B - x'_A$.
-  \item In frame $F$, the length is defined as the distance between two points that the ends of the rod pass through \emph{simultaneously}, thus $t_B - t_A = 0$.
-  \[
-    \Rightarrow\quad x_B - x_A = \frac{1}{\gamma}(x'_B - x'_A)
-  \]
-  \item Thus the length \underline{contracts}; this is called \textbf{Lorentz contraction}.
-\end{itemize}
+Consider a rod in $F'$ parallel to the $x'$ axis, going from $x'_A$ to $x'_B$, so its rest length is $x'_B - x'_A$. In frame $F$, the length is defined as the distance between two points that the rod's ends pass through simultaneously ($t_B - t_A = 0$), giving:
+\[
+  x_B - x_A = \frac{1}{\gamma}(x'_B - x'_A).
+\]
+The moving rod is thus shorter in $F$ by a factor of $1/\gamma$ — this is \textbf{Lorentz contraction}.
 \end{example}
 
 Now consider one of the clocks in $F'$. Suppose it records itself passing two clocks in $F$ at times $t'_A$ and $t'_B$, while those clocks record $t_A$ and $t_B$. Thus, since in $F'$ we know that $x_B - x_A = v(t_B - t_A)$:
@@ -417,22 +271,18 @@ Now consider one of the clocks in $F'$. Suppose it records itself passing two cl
 
 In summary: \underline{moving clocks run slowly by a factor of $\dfrac{1}{\gamma}$} ($0 < \tfrac{1}{\gamma} < 1$, in the stationary frame $F$) and moving objects are shortened by $\dfrac{1}{\gamma}$.
 
-\section{6.3: Velocity Addition Formulas}
+\section{Velocity Addition}
 
 Suppose an object is moving in the positive $x$ direction in frame $F$ with velocity $u_x$; what is its velocity in frame $F'$?
 
-\begin{itemize}
-  \item To simplify, let $x = 0$ at $t = 0 \Rightarrow$ coordinates in $F$: $x = u_x t$. Then, plugging into (1) and (4):
-  \begin{align*}
-    x' &= \gamma x - \beta\gamma ct, \qquad t' = \gamma t - \beta\gamma\frac{x}{c} \\
-    \Rightarrow\quad x' &= \gamma u_x t - \beta\gamma ct, \qquad t' = \gamma t - \beta\gamma\frac{u_x t}{c}
-  \end{align*}
-  \item Thus:
-  \[
-    u'_x = \frac{x'}{t'} = \frac{u_x - \beta c}{1 - \beta u_x/c} = \frac{u_x - v}{1 - \dfrac{u_x v}{c^2}}
-    \quad\to \text{relative velocities at times}
-  \]
-\end{itemize}
+Setting $x = 0$ at $t = 0$, the object's coordinates in $F$ are $x = u_x t$. Substituting into the Lorentz transformation equations (1) and (4):
+\begin{align*}
+  x' &= \gamma u_x t - \beta\gamma ct, \qquad t' = \gamma t - \beta\gamma\frac{u_x t}{c}.
+\end{align*}
+Dividing:
+\[
+  u'_x = \frac{x'}{t'} = \frac{u_x - v}{1 - \dfrac{u_x v}{c^2}}.
+\]
 
 \begin{formula}[Velocity Transformation Formula]
 \[
@@ -440,24 +290,17 @@ Suppose an object is moving in the positive $x$ direction in frame $F$ with velo
 \]
 \end{formula}
 
-\begin{itemize}
-  \item The inverse is \emph{not} the same since $u_x$ becomes $-u'_x$, so:
-  \[
-    u_x = \frac{u'_x + v}{1 - \dfrac{u_x v}{c^2}}
-  \]
-  \item If there is a velocity component perpendicular to $v$, the transformation is different!
-  \[
-    y' = y = u_y t, \qquad t' = \gamma t - \beta\gamma\frac{u_x t}{c}
-  \]
-  (where $u_y$ = normal velocity in frame)
-  \[
-    \text{then}\quad \frac{y'}{t'} = \frac{u_y}{\gamma(1 - \beta u_x/c)}
-    \quad\Rightarrow\quad
-    u'_y = \frac{u_y}{\gamma(1 - u_x v/c^2)}
-  \]
-\end{itemize}
+The inverse transformation is not simply $v \to -v$ for the velocity (since $u_x \neq -u'_x$); instead:
+\[
+  u_x = \frac{u'_x + v}{1 - \dfrac{u'_x v}{c^2}}.
+\]
+If there is also a perpendicular velocity component $u_y$, it transforms differently: since $y' = y = u_y t$ and $t' = \gamma t(1 - \beta u_x/c)$,
+\[
+  u'_y = \frac{u_y}{\gamma(1 - u_x v/c^2)}.
+\]
+The perpendicular velocity is reduced by a factor of $\gamma$ compared with the parallel formula.
 
-\section{6.4: Energy, Momentum, Force}
+\section{Relativistic Energy and Momentum}
 
 If a particle is moving with velocity $\vect{u}$ in an inertial frame $F_1$:
 
@@ -483,26 +326,18 @@ This $E$ is relativistic energy; \emph{not} kinetic or potential energy.
 \end{align*}
 These form a \textit{four-vector}.
 
-\begin{itemize}
-  \item Since $F = \dfrac{d\vect{p}}{dt}$, where $\vect{p}$ is relative to some frame of reference, and $t$ is measured in that frame.
-  \item Consider a particle of mass $m_0$ initially at rest in frame $F$.
-  \item A force $f$ acts upon it for a short time $\Delta t$.
-  \item We need to find $\dfrac{dp'}{dt}$, i.e.\ in $F'$.
-  \item In time $\Delta t$, $p_x: 0 \to f_x\,\Delta t$.
-  \[
-    \Delta x: 0 \to \frac{1}{2}\left(\frac{f_x}{m}\right)(\Delta t)^2
-  \]
-  \[
-    \Delta E = \frac{(f_x \Delta t)^2}{2m_0}
-    \quad\text{(assuming the particle's speed is so small that Newtonian mechanics applies)}
-  \]
-\end{itemize}
+Force is $F = d\vect{p}/dt$ where $\vect{p}$ and $t$ are both measured in the same frame. Consider a particle of rest mass $m_0$ initially at rest in frame $F$; a force $f_x$ acts for a short time $\Delta t$. In that interval $p_x$ grows from $0$ to $f_x\,\Delta t$, the displacement is $\Delta x \approx \tfrac{1}{2}(f_x/m_0)(\Delta t)^2$, and the kinetic energy gained is
+\[
+  \Delta E = \frac{(f_x \Delta t)^2}{2m_0}
+  \quad\text{(valid when the speed is small enough for Newtonian mechanics).}
+\]
+To find $dp'/dt$ in $F'$, one uses the momentum transformation rules together with these expressions.
 
 %───────────────────────────────────────────────────────────────────
 % RECITATION 14: AMPERE'S LAW  (p. 215)
 %───────────────────────────────────────────────────────────────────
 
-\chapter{Recitation 14: Ampere's Law}
+\chapter{The Magnetic Field}
 
 \section*{Ampere's Law}
 
@@ -514,11 +349,6 @@ These form a \textit{four-vector}.
 
 \textbf{Important:} direction defined by right-hand rule.
 
-\begin{figure}[H]
-  \centering
-  \caption{A current $J$ through a surface $S$ bounded by a closed loop $\partial S$, with normal $\hat{n}$. Right-hand rule conventions: current into page ($\otimes$), current out of page ($\odot$).}
-\end{figure}
-
 \section*{Symmetry}
 
 By symmetry for a long straight wire:
@@ -528,17 +358,7 @@ By symmetry for a long straight wire:
   |\vect{B}| = \frac{\mu_0 I}{2\pi r}\,\hat{\phi}
 \]
 
-\begin{figure}[H]
-  \centering
-  \caption{Cross-section of thick wire (radius $R$) with Amperian loop of radius $a < R$ inside. We can use superposition.}
-\end{figure}
-
 First, solve the $\vect{B}$ field of a solid cylindrical wire:
-
-\begin{figure}[H]
-  \centering
-  \caption{Solid cylinder of radius $R$ carrying current $I$ (uniform current density $J$). Amperian loop of radius $r < R$ inside.}
-\end{figure}
 
 \begin{align*}
   \oint \vect{B}\cdot d\vect{\ell} &= \mu_0 I_{\text{enc}} \\
@@ -548,18 +368,11 @@ First, solve the $\vect{B}$ field of a solid cylindrical wire:
              &= \frac{\mu_0}{2}\vect{J}\times\vect{r}
 \end{align*}
 
-\begin{figure}[H]
-  \centering
-  \caption{Rectangular Amperian loop of width $w$ and length $2d$ used for a planar current sheet. The field $|\vect{B}|$ points in opposite directions above and below the sheet.}
-\end{figure}
-
 %───────────────────────────────────────────────────────────────────
 % SECTIONS 6.1--6.5: THE MAGNETIC FIELD  (pp. 217--221)
 %───────────────────────────────────────────────────────────────────
 
-\chapter{The Magnetic Field}
-
-\section{6.1--6.5: Definition of the Magnetic Field}
+\section{Definition of the Magnetic Field}
 
 \begin{definition}[Magnetic Field]
 \[
@@ -582,11 +395,6 @@ $\vect{B}$ is the magnetic field at that same time and place; $\vect{E}$ is the 
 
 \subsection*{Example: Calculating Magnetic Field Between Two Wires}
 
-\begin{figure}[H]
-  \centering
-  \caption{Two parallel wires separated by distance $r$, each of length $\ell$. Wire 1 carries current $I_1$ producing field $B_1$; wire 2 carries current $I_2$.}
-\end{figure}
-
 \begin{align*}
   B_1 &= \frac{\mu_0 I_1}{2\pi r} \\
   I_2 &= n_2\, q_2\, v_2
@@ -605,34 +413,20 @@ Thus the force on a length $\ell$ of wire 2 is:
 
 \subsection*{Force on a Small Current-Carrying Wire}
 
-\begin{itemize}
-  \item Length of the small piece $= d\ell$.
-  \item Linear charge density $\lambda\,d\ell$.
-  \item $dq = \lambda\,d\ell$, $I = \lambda v$.
-  \item Thus:
-  \[
-    dF = dq\,\vect{v}\times\vect{B} = (\lambda\,d\ell)(v\,\hat{v}\times\vect{B})
-  \]
-  \begin{formula}[Force on a Current Element]
-  \[
+For a small element of wire of length $d\ell$ carrying current $I = \lambda v$, the charge in that element is $dq = \lambda\,d\ell$. The magnetic force is $dF = dq\,\vect{v}\times\vect{B}$, which gives:
+
+\begin{formula}[Force on a Current Element]
+\[
     d\vect{F} = \lambda v\,d\vect{\ell}\times\vect{B} = I\,d\vect{\ell}\times\vect{B}
-  \]
-  where $d\vect{\ell}$ gives direction and magnitude of the small piece.
-  \end{formula}
-  \item $F = I_2 B_1 \ell$: special result.
-\end{itemize}
+\]
+where $d\vect{\ell}$ gives the direction and magnitude of the small piece.
+\end{formula}
+
+For two parallel wires this yields the special result $F = I_2 B_1 \ell$.
 
 \section{Properties of the Magnetic Field}
 
-\begin{figure}[H]
-  \centering
-  \caption{Magnetic field lines wrapping around a wire carrying current $I$.}
-\end{figure}
-
-\begin{itemize}
-  \item Remember: $\hat{z}$ direction is with respect to the plane created by the point of interest, not a minimal $\hat{z}$.
-  \item The line integral of a path that does not enclose any current is $0$.
-\end{itemize}
+The $\hat{z}$ direction is defined with respect to the plane created by the current and the point of interest. The line integral of $\vect{B}$ around any closed path that does not enclose current is zero.
 
 \begin{formula}[Ampere's Law]
 \[
@@ -641,58 +435,32 @@ Thus the force on a length $\ell$ of wire 2 is:
 \]
 \end{formula}
 
-\begin{itemize}
-  \item Be careful to make sure the current has the right sign: clockwise into the page $=$ positive; clockwise out of the page $=$ negative.
-\end{itemize}
+Note the sign convention: by the right-hand rule, current going into the page (clockwise loop) is positive; current out of the page (counter-clockwise loop) is negative.
 
 \subsection*{More General Ampere's Law}
 
-\begin{itemize}
-  \item Recall $\div \vect{J} = 0$.
-  \item Recall current enclosed: $I_c = \mu_0 \displaystyle\int_S \vect{J}\cdot d\vect{a}$.
-  \[
-    \Rightarrow\quad \oint_C \vect{B}\cdot d\vect{s} = \mu_0\int_S \vect{J}\cdot d\vect{a}
-  \]
-  \[
-    \Rightarrow\quad \boxed{\curl\vect{B} = \mu_0\vect{J}}
-    \quad\to\quad\text{Differential form of Ampere's Law} \quad (1)
-  \]
-  \item Another important fact:
-  \[
-    \boxed{\div\vect{B} = 0}
-    \quad\text{(at least for charge distributions of wires)} \quad (2)
-  \]
-\end{itemize}
+Since $\div\vect{J}=0$ in magnetostatics and the enclosed current is $I_c = \int_S \vect{J}\cdot d\vect{a}$, the integral form $\oint_C \vect{B}\cdot d\vect{s} = \mu_0 I_c$ leads directly to the differential form:
+\[
+  \boxed{\curl\vect{B} = \mu_0\vect{J}} \quad (1)
+\]
+Together with the no-monopole condition:
+\[
+  \boxed{\div\vect{B} = 0} \quad (2)
+\]
+these two equations, given $\vect{J}$, uniquely determine $\vect{B}$ (by the Helmholtz theorem, provided $\vect{B}$ vanishes at infinity).
 
 \begin{theorem}[Uniqueness Theorem]
-Assuming $\vect{B}$ vanishes at infinity, (1) and (2) determine $\vect{B}$, if $\vect{J}$ is given --- special case of the \underline{Helmholtz Theorem}.
-\begin{itemize}
-  \item Proof: see page 292.
-\end{itemize}
+Assuming $\vect{B}$ vanishes at infinity, (1) and (2) determine $\vect{B}$, if $\vect{J}$ is given --- a special case of the \underline{Helmholtz Theorem}. (Proof: see Purcell p.\ 292.)
 \end{theorem}
 
 \section*{Vector Potential}
 
-\begin{itemize}
-  \item Represents $\vect{B}$ as $\curl\vect{A}$ (analogue of $\vect{E} = -\grad f$).
-  \item Use the definition of curl to find $\vect{A}$ (cylindrical, rectangular, etc.).
-  \item We want an $\vect{A}$ such that $\curl(\curl\vect{A}) = \mu_0\vect{J}$.
-  \item Similar to the solution to the Laplace equation:
-  \[
-    \vect{A}(x_1,y_1,z_1) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(x_2,y_2,z_2)\,dV_2}{r_{12}}
-  \]
-  \[
-    \text{or}\quad \vect{A} = \frac{\mu_0}{4\pi}\int\frac{\vect{J}\,dV}{r}
-    \qquad\text{or}\quad d\vect{A} = \frac{\mu_0\vect{J}\,dV}{4\pi\,b}
-  \]
-\end{itemize}
+The vector potential $\vect{A}$ represents $\vect{B}$ as $\curl\vect{A}$ (analogue of $\vect{E} = -\grad\phi$). In the Coulomb gauge $\div\vect{A}=0$, the condition $\curl(\curl\vect{A}) = \mu_0\vect{J}$ reduces to $\laplacian\vect{A} = -\mu_0\vect{J}$, whose solution is directly analogous to the electrostatic potential:
+\[
+  \vect{A}(x_1,y_1,z_1) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(x_2,y_2,z_2)\,dV_2}{r_{12}}.
+\]
 
-\section{6.4: Field of Any Current-Carrying Wire}
-
-\begin{figure}[H]
-  \centering
-  \caption{An arbitrary loop of wire carrying current $I$. A small element $d\vect{\ell}$ contributes to the vector potential $\vect{A}$.}
-\end{figure}
+\section{Field of Any Current-Carrying Wire}
 
 For an arbitrary loop of wire:
 \[
@@ -722,16 +490,9 @@ In the $\hat{\phi}$ direction (at a point $(x, y, 0)$):
 \]
 \end{formula}
 
-\begin{itemize}
-  \item Can be added to any function that gives $0$ when integrated around a closed path ($\curl f = 0$).
-\end{itemize}
+The gauge freedom in $\vect{A}$ means one can add any gradient $\grad\psi$ (which gives zero when integrated around a closed path, since $\curl(\grad\psi)=0$) without changing $\vect{B}$.
 
-\section{6.5: Fields of Rings and Coils}
-
-\begin{figure}[H]
-  \centering
-  \caption{A current ring of radius $b$ (left) and a solenoid with $n$ turns per unit length (right).}
-\end{figure}
+\section{Fields of Rings and Coils}
 
 At the center of the ring:
 \[
@@ -742,11 +503,6 @@ Solenoid: equivalent to a stack of current rings.
 \[
   r = \frac{b}{2n\theta}
 \]
-
-\begin{figure}[H]
-  \centering
-  \caption{Geometry for computing the field of a solenoid at a point on its axis. The element $dI = I\cdot n\,rd\theta/\sin\theta$ is used. The angle $\theta$ goes from $\theta_1$ to $\theta_2$.}
-\end{figure}
 
 Using the geometry: $x = r\,d\theta$, $\sin\theta = x/r$, so $h = x/\sin\theta$:
 \[
@@ -767,11 +523,6 @@ If $\theta_1 = 0$ and $\theta_2 = \pi$ (infinite coil):
 \]
 
 \subsection*{Class Notes: Plane of Current}
-
-\begin{figure}[H]
-  \centering
-  \caption{An infinite plane of current flowing to the right (current per unit width $= I/w$). The field above the sheet points out of the page and below points into the page. A point at height $y$ above the sheet.}
-\end{figure}
 
 Current per unit length is $I/w$. A strip of width $dx$ carries current $dI = I\,d\vec{\ell} = \dfrac{I}{w}\,dx$.
 

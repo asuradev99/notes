@@ -1,4 +1,4 @@
-\documentclass{book}
+\documentclass[openany,oneside]{book}
 
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage{mathtools}
@@ -21,6 +21,8 @@
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usetikzlibrary{arrows.meta, decorations.markings, patterns, calc, angles, quotes}
+\usepackage{titlesec}
+\usepackage{enumitem}
 
 
 \colorlet{LightGray}{White!90!Periwinkle}
@@ -50,6 +52,20 @@
 \declaretheoremstyle[name=Example,]{examsty}
 \declaretheorem[style=examsty,numberlike=theorem]{example}
 \tcolorboxenvironment{example}{colback=ExampleGray, colframe=ExampleGray, arc=6pt, boxrule=0pt}
+
+\tcbset{before skip=8pt, after skip=8pt}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {12pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{20pt}{16pt}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
+
+\setlist{noitemsep, topsep=4pt, parsep=2pt}
 
 \setstretch{1.2}
 \geometry{
@@ -104,10 +120,8 @@
 
 % ------------------------------------------------------------------------------
 \input{ch_em1}
-\input{ch_em2}
 \input{ch_em3}
 \input{ch_em4}
-\input{ch_em5}
 \input{ch_em6}
 \input{ch_em7}
 \input{ch_em8}

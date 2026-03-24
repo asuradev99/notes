@@ -1,7 +1,3 @@
-% Pages 222--244: Magnetic Field (continued), Field Transformations, Practice Test, Electromagnetic Induction intro
-
-\chapter{Magnetic Field (Continued)}
-
 \section{Magnetic Field of a Single Infinite Sheet (Derivation)}
 
 Continuing from the infinite-sheet calculation. The field from a single infinite current sheet with surface current density $K$ (in the $x$-direction):
@@ -128,31 +124,15 @@ where $n$ is the number of turns per unit length.
 \caption{Hall effect: current $I$ flows right in a conductor; field $\vect{B}$ is directed into the page. Charge carriers deflect downward (for electrons), building up $E_H$ until $eE_H = evB$. The Hall voltage $V_H = BIh/(neh\ell) = BI/(ne\ell)$ measures charge carrier density $n$.}
 \end{figure}
 
-In steady state the electric force exactly cancels the magnetic force:
+In the Hall effect, a transverse magnetic field deflects current carriers to one side of the conductor, building up a transverse electric field that balances the magnetic force. In steady state the electric force exactly cancels the magnetic force:
 \[
-    eE = e\,\vect{v} \times \vect{B}
+    eE_H = ev B \quad \Rightarrow \quad E_H = vB.
 \]
-The current density is:
+The current density $\vect{J} = -ne\vect{v}$ gives the drift speed $v = J/(ne) = I/(neh\ell)$, and the Hall voltage $V_H = E_H \ell$ becomes:
 \[
-    \vect{J} = -ne\vect{v}
+    V_H = \left(\frac{B}{neh}\right) I.
 \]
-
-The drift speed is:
-\[
-    v = \frac{J}{ne} = \frac{I}{neh\ell}
-\]
-
-\textbf{Hall voltage:} $V_H = |\vect{E}|\,\ell$
-
-With $I = Jh\ell$:
-\[
-    V_H = EL \quad \xrightarrow{\text{defines}} \quad R_{\text{Hall}}
-\]
-\[
-    V_H = \left(\frac{B}{neh}\right) I
-\]
-
-The Hall effect tells you the charge density $n$.
+The sign of the Hall voltage reveals the sign of the charge carriers, and its magnitude measures the carrier density $n$.
 
 \section{Maxwell's Equations So Far}
 
@@ -165,7 +145,7 @@ The Hall effect tells you the charge density $n$.
 
 \section{Magnetic Vector Potential}
 
-Let $\vect{B} = \curl \vect{A}$ (the \emph{magnetic vector potential}). Then $\div\vect{B} = 0$ is automatically satisfied because $\div(\curl \vect{A}) = 0$.
+Let $\vect{B} = \curl \vect{A}$ (the \emph{magnetic vector potential}). Then $\div\vect{B} = 0$ is automatically satisfied because $\div(\curl \vect{A}) = 0$. The vector potential $\vect{A}$ is not uniquely defined: adding any gradient $\grad f$ to $\vect{A}$ leaves $\vect{B}$ unchanged (gauge freedom). The Coulomb gauge $\div\vect{A}=0$ is the standard choice in magnetostatics; it leads to $\laplacian\vect{A} = -\mu_0\vect{J}$, a vector Poisson equation analogous to the scalar Poisson equation $\laplacian\phi = -\rho/\epsilon_0$.
 
 In component form:
 \[
@@ -266,6 +246,8 @@ So $\vect{A} = (A_x, 0, 0)$ and $\vect{B} = \curl\vect{A}$.
 
 \section{Biot--Savart Law from the Vector Potential}
 
+Biot-Savart gives the magnetic field produced by a steady current element $Id\vect{\ell}$ at displacement $\vect{r}$. Note the cross product: the field circles around the current element, unlike the radial Coulomb field.
+
 \[
     d\vect{B} = \curl(d\vect{A}), \quad \text{where} \quad d\vect{A} = \frac{\mu_0 I}{4\pi r}\,d\vect{\ell}
 \]
@@ -344,8 +326,6 @@ Integrating from $-L/2$ to $L/2$:
     \vect{B} = \mu_0 n I \frac{L}{\sqrt{L^2 + 4R^2}}\,\hat{z}
 \]
 
-\chapter{Recitation 13: Magnetic Force}
-% Thursday, March 21, 2024
 
 \section{Lorentz Force}
 
@@ -362,11 +342,6 @@ For a long straight wire, the field is:
 
 \subsection{Example: Wien's Filter (Velocity Selector)}
 
-\begin{figure}[H]
-    \centering
-    \caption{A Wien filter: crossed electric ($\vect{E}$, vertical) and magnetic ($\vect{B}$, into page) fields. Only particles with speed $v = E/B$ pass through undeflected.}
-\end{figure}
-
 Force balance:
 \[
     \vect{F} = q(\vect{E} + \vect{v}\times\vect{B}) = q(E + vB) = 0
@@ -374,6 +349,8 @@ Force balance:
 \[
     \Rightarrow \quad E = -vB \quad \Rightarrow \quad v = \frac{E}{B}
 \]
+
+The Wien filter balances electric and magnetic forces so that only particles with $v = E/B$ pass straight through. It selects a single speed regardless of the charge or mass of the particle.
 
 
 \section{Force on a Current-Carrying Wire}
@@ -384,11 +361,6 @@ The force on a current element $dq\,\vect{v} = dq\,\frac{d\vect{s}}{dt} = I\,d\v
 \]
 
 \subsection{Example: Current Loop Levitated by Magnetic Force}
-
-\begin{figure}[H]
-    \centering
-    \caption{A square current loop of side $\ell$ and mass $m$ carrying current $I$ in a uniform magnetic field $\vect{B}$ (into the page). Gravity pulls down; the magnetic force on the bottom wire balances gravity.}
-\end{figure}
 
 Equilibrium condition $\vect{F}_g + \vect{F}_B = 0$ with $\vect{F}_g = m\vect{g} = -mg\,\hat{z}$:
 
@@ -410,11 +382,6 @@ In the continuum limit (many wires $\to$ a sheet), the surface current density i
     K = \text{line current density} = \frac{I}{\ell}
 \]
 The current in a strip of width $dx$ is $dI = K\,dx$.
-
-\begin{figure}[H]
-    \centering
-    \caption{Infinite current sheet in the $xz$-plane with surface current $K$ in the $z$-direction. The $dB$ from each strip is perpendicular to the position vector. Symmetry says only the $x$-component survives.}
-\end{figure}
 
 \[
     dB_x = \frac{\mu_0 I}{2\pi r} \cdot \frac{K\,dx}{r} \cdot \cos\theta, \qquad \cos\theta = \frac{y}{r}
@@ -447,15 +414,9 @@ Using a rectangular Amp\`{e}rian loop of width $\ell$ straddling the sheet:
     2B\ell = K\ell \quad \Rightarrow \quad |\vect{B}| = \frac{\mu_0 K}{2}
 \]
 
-\chapter{Section 6.7: How the Fields Transform}
-% Wednesday, April 3, 2024
+\section{How the Fields Transform}
 
-\section{Field Transformation Under a Lorentz Boost}
-
-\begin{figure}[H]
-    \centering
-    \caption{Two reference frames: the lab frame and a frame moving with velocity $v_0$ to the left. The charge density transforms as $\sigma' = \sigma\gamma_0 / \gamma_c$.}
-\end{figure}
+\subsection{Field Transformation Under a Lorentz Boost}
 
 \subsection{Summary of Field Transformations}
 
@@ -468,15 +429,9 @@ Using a rectangular Amp\`{e}rian loop of width $\ell$ straddling the sheet:
 
 where $\|$ and $\perp$ refer to directions parallel and perpendicular to the boost velocity $\vect{v}$.
 
-\chapter{Chapter 7: Electromagnetic Induction}
-% 7.1--7.5 Textbook Summary, Saturday, April 13, 2024
+\chapter{Electromagnetic Induction}
 
-\section{7.2: Conducting Rod Moving Through a Uniform Magnetic Field}
-
-\begin{figure}[H]
-    \centering
-    \caption{A conducting rod of length $\ell$ moving with velocity $v$ to the right through a uniform magnetic field $\vect{B}$ pointing upward. The magnetic force on positive charges pushes them to one end, creating a charge separation.}
-\end{figure}
+\section{Conducting Rod in a Magnetic Field}
 
 The charges inside the moving rod experience a force $\vect{F} = q\vect{v}\times\vect{B}$ (not a force from $\vect{E}$). This creates a charge separation (positive charges accumulate at one end).
 
@@ -486,12 +441,10 @@ The charges inside the moving rod experience a force $\vect{F} = q\vect{v}\times
 \[
     \mathcal{E} \equiv \frac{1}{q}\oint \vect{f}\cdot d\vect{s}
 \]
-The EMF is the electromotive force (not actually a force --- it has units of electric potential).
-\begin{itemize}
-    \item \textbf{emf}: any influence that causes charge to circulate around a closed path.
-    \item EMF must be non-electrostatic ($\curl\vect{E} = 0$ for electrostatic fields, which cannot drive a current around a closed loop).
-\end{itemize}
+The EMF is the electromotive force (not actually a force --- it has units of electric potential). It is any influence that causes charge to circulate around a closed path. EMF must be non-electrostatic, since $\curl\vect{E} = 0$ for electrostatic fields and a conservative field cannot drive a current around a closed loop.
 \end{definition}
+
+Electromagnetic induction arises when the magnetic flux through a circuit changes, whether by moving the circuit, changing the current in a nearby circuit, or changing $\vect{B}$ in time. The induced EMF is $\mathcal{E} = -d\Phi_B/dt$ (Faraday's law).
 
 \begin{fact}[Useful Unit Conversion]
 \[
@@ -499,4 +452,3 @@ The EMF is the electromotive force (not actually a force --- it has units of ele
 \]
 \end{fact}
 
-% Page 244: Section 7.6--7.10 header only (blank page, no content)

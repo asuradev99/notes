@@ -1,5 +1,4 @@
 \chapter{Batteries and Circuits}
-% Monday, March 11, 2024 (4.6--4.12)
 
 \section{Batteries}
 
@@ -12,12 +11,14 @@ The electromotive force (EMF) is defined as the line integral of the electric fi
 \]
 \end{definition}
 
+EMF is the work per unit charge done by non-electrostatic forces (chemical, mechanical) around a circuit. It drives current against the resistance of the circuit. A battery maintains a potential difference by doing chemical work on charges, transporting them from low to high potential inside the cell.
+
 \section{Circuits}
 
 \subsection{Kirchhoff's Rules}
 
 \begin{theorem}[Kirchhoff's Voltage Law (Rule 2)]
-The sum of EMFs and potential drops around any closed loop must add up to zero. This comes from the fact that $\oint \vect{E}\cdot d\vect{s} = 0$.
+The sum of EMFs and potential drops around any closed loop must add up to zero. This comes from the fact that $\oint \vect{E}\cdot d\vect{s} = 0$ for the electrostatic field — equivalently, energy is conserved around any loop.
 \[
     \mathcal{E} = IR
 \]
@@ -38,7 +39,7 @@ Resistors in series add up: $R_\text{eff} = R_1 + R_2$.
 \subsection{Resistors in Parallel}
 
 \begin{theorem}[Kirchhoff's Current Law (Rule 1)]
-At any current junction: $I = I_1 + I_2$.
+At any current junction: $I = I_1 + I_2$. This follows from charge conservation: in steady state $\div\vect{J}=0$, so no charge accumulates at a node.
 \end{theorem}
 
 Using the first rule:
@@ -80,11 +81,7 @@ Because the voltages and currents are governed by linear equations, a superposit
 
 \section{Energy Dissipation in Current Flow}
 
-\begin{itemize}
-    \item Power done to push an electron through an electric field $\vect{E}$ is $q\vect{E}\cdot\vect{v}$ (charge $\times$ force/second).
-    \item This energy is eventually transferred to heat in the form of kinetic energy.
-    \item Suppose a current $I$ travels in an electric field $\vect{E}$ in a resistor $R$ at voltage $V$. Then the net work done in $\Delta t$ is:
-\end{itemize}
+The power delivered to push a charge through a field $\vect{E}$ is $q\vect{E}\cdot\vect{v}$, and this energy is ultimately transferred to heat via lattice collisions. For a current $I$ through a resistor $R$ at voltage $V$, the net work done in $\Delta t$ is:
 \[
     q_\text{total}\,\Delta\phi = (I\,\Delta t)\,V - I^2 R\,\Delta t
     \quad\Rightarrow\quad \boxed{\frac{dW}{dt} = I^2 R = P}
@@ -94,20 +91,13 @@ Because the voltages and currents are governed by linear equations, a superposit
 
 \section{Electromotive Force and Voltaic Cells}
 
-\begin{itemize}
-    \item EMF transports charge carriers in the \emph{opposite} direction to the direction they are supposed to be going in.
-    \item Ex: Van de Graaff generator --- energy needs to be put into the system to crank the charges up the shaft; potential is $V_0$.
-    \item In batteries, charge carriers move to higher energy because doing so expends less chemical energy than not.
-\end{itemize}
+EMF transports charge carriers in the \emph{opposite} direction to what the electric field alone would drive them. In a Van de Graaff generator, mechanical work cranks charges up the shaft to potential $V_0$; in a battery, charge carriers move to higher energy because doing so releases more chemical energy than it costs.
 
 \subsection{Example: Voltaic Cells}
 
-\begin{itemize}
-    \item Chemical source of EMF.
-    \item Ex: lead-sulfuric acid cell.
-\end{itemize}
+A voltaic cell is a chemical source of EMF; the lead-sulfuric acid cell is a classic example in which redox reactions drive charge separation between the electrodes.
 
-\section{4.10: Networks with Voltage Sources}
+\section{Networks with Voltage Sources}
 
 \subsection{Applying Kirchhoff's Rules}
 
@@ -138,24 +128,14 @@ The result is:
 Any two-terminal ``black box'' circuit (no matter how complicated) is equivalent to a resistor $R_\text{eq}$ and a battery $\mathcal{E}_\text{eq}$ in series.
 \end{theorem}
 
-\begin{itemize}
-    \item If we don't know what is in the box, we can determine $\mathcal{E}_\text{eq}$ and $R_\text{eq}$ by:
-    \begin{enumerate}
-        \item Measuring the ``open circuit'' voltage between terminals A and B with a multimeter --- the voltage $= \mathcal{E}_\text{eq}$.
-        \item Measuring the ``short circuit'' current by connecting them via an ammeter of negligible resistance.
-    \end{enumerate}
-    \[
-        \boxed{R_\text{eq} \cong \frac{\mathcal{E}_\text{eq}}{I_\text{eq}}}
-    \]
-\end{itemize}
+If we don't know what is in the box, we determine $\mathcal{E}_\text{eq}$ and $R_\text{eq}$ by measuring the open-circuit voltage between A and B (which equals $\mathcal{E}_\text{eq}$) and the short-circuit current through an ammeter of negligible resistance:
+\[
+    \boxed{R_\text{eq} \cong \frac{\mathcal{E}_\text{eq}}{I_\text{eq}}}
+\]
 
 \subsection{If We Do Know the Box}
 
-\begin{itemize}
-    \item $\mathcal{E}_\text{eq}$ ($= V_\text{TH}$): Calculate the open-circuit voltage between the two terminals, having removed the load connected to A and B off the circuit.
-    \item $R_\text{eq}$: Connect terminals by a wire and calculate the ``short-circuit'' current $I_\text{sc}$ through this wire; then $R_\text{eq} = \mathcal{E}_\text{eq}/I_\text{sc}$ between the two ports.
-    \item OR: Calculate $R_\text{eq}$ by making the internal EMFs zero (removing all the batteries) and then plug in $\mathcal{E}_\text{eq}$ and $R_\text{eq}$ into the Thevenin circuit.
-\end{itemize}
+Calculate $\mathcal{E}_\text{eq}$ ($= V_\text{TH}$) as the open-circuit voltage at A and B with the load removed. For $R_\text{eq}$, either short the terminals and compute $I_\text{sc}$ (then $R_\text{eq} = \mathcal{E}_\text{eq}/I_\text{sc}$), or zero all internal EMFs (remove batteries) and compute the resistance seen at the port directly.
 
 \section{Variable Currents in Capacitors and Resistors}
 
@@ -223,6 +203,8 @@ The resistance of the path is $R = \rho s / A$, so:
     RC = \frac{\rho s}{A}\cdot\frac{\varepsilon_0 A}{s} = \varepsilon_0\rho
     \quad\to\quad \text{does not depend on size or shape of the capacitor!}
 \]
+
+The time constant $\tau = RC = \varepsilon_0/\sigma$ is a material property of the leaky dielectric alone, independent of geometry — a direct connection between circuit and material parameters.
 
 \begin{fact}[Why doesn't $RC$ depend on $s$?]
 In the relaxed state, the entire population of negative charge carriers redistributes itself to neutralize the charge.
@@ -341,8 +323,6 @@ Now we can find the voltage across the capacitor:
 \end{enumerate}
 
 % ============================================================
-\chapter{Circuits (Continued)}
-% Tuesday, March 12, 2024
 
 \section{Combining Capacitors}
 
