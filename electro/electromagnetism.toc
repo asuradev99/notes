@@ -1,0 +1,190 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Electromagnetism}{6}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Electrostatics}{6}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Conservation of Charge}{6}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Quantization of Charge}{6}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Coulomb's Law}{7}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Units and the Constant $k$}{7}{subsection.1.2.1}%
+\contentsline {paragraph}{Gaussian System.}{7}{subsection.1.2.1}%
+\contentsline {paragraph}{SI System.}{7}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Significance of Coulomb's Law: Additivity}{7}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Energy in a System of Charges}{8}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Electrical Energy in a Crystal Lattice}{8}{subsection.1.3.1}%
+\contentsline {section}{\numberline {1.4}Electric Fields}{9}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Visualizing Electric Fields}{9}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Electric Force on a Test Charge}{10}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Continuous Charge Distributions}{10}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Example: Field Due to a Hemisphere (Finite)}{10}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Example: Field on a Ring}{11}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Example: Uniform Disk}{11}{subsection.1.5.3}%
+\contentsline {paragraph}{Infinite plane limit ($R\to \infty $):}{11}{example.1.5.5}%
+\contentsline {paragraph}{Far-field limit ($x \gg R$, finite disk):}{11}{example.1.5.5}%
+\contentsline {section}{\numberline {1.6}Flux and Gauss's Law}{12}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Flux}{12}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Derivation of Gauss's Law from Coulomb's Law}{12}{subsection.1.6.2}%
+\contentsline {paragraph}{Surprising fact:}{12}{figure.1.2}%
+\contentsline {subsection}{\numberline {1.6.3}Applying Gauss's Law: Only 3 Useful Cases}{13}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}Example: Gauss's Law on a Spherical Surface}{13}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Example: Gauss's Law on a Spherical Charge Distribution}{14}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.6}Electric Field on a Line Charge}{15}{subsection.1.6.6}%
+\contentsline {subsection}{\numberline {1.6.7}Electric Field of an Infinite Flat Sheet of Charge}{16}{subsection.1.6.7}%
+\contentsline {section}{\numberline {1.7}Force on a Layer of Charge}{16}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Energy Density of the Electric Field}{17}{section.1.8}%
+\contentsline {paragraph}{Squeezing the sphere:}{17}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Example: Potential Energy of a Uniform Sphere}{18}{subsection.1.8.1}%
+\contentsline {section}{\numberline {1.9}Gauss's Law: Illustrative Examples}{18}{section.1.9}%
+\contentsline {section}{\numberline {1.10}Chapter Summary}{19}{section.1.10}%
+\contentsline {subsection}{\numberline {1.10.1}Forces Between Two Charges}{19}{subsection.1.10.1}%
+\contentsline {subsection}{\numberline {1.10.2}Potential Energy of a System of Charges}{19}{subsection.1.10.2}%
+\contentsline {subsection}{\numberline {1.10.3}Electric Field Due to a Charge Distribution}{20}{subsection.1.10.3}%
+\contentsline {subsection}{\numberline {1.10.4}Flux of an Electric Field through Surface $S$}{20}{subsection.1.10.4}%
+\contentsline {subsection}{\numberline {1.10.5}Handy Trig Substitutions}{20}{subsection.1.10.5}%
+\contentsline {section}{\numberline {1.11}Selected Problems}{21}{section.1.11}%
+\contentsline {subsection}{\numberline {1.11.1}Problem 1.13 --- Hole in a Plane}{21}{subsection.1.11.1}%
+\contentsline {chapter}{\numberline {2}The Electric Potential}{22}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Line Integral of the Electric Field}{22}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Potential Difference and the Potential Function}{23}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Gradient of a Scalar Function}{24}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Derivation of the Field from the Potential}{24}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Equipotential Lines}{24}{subsection.2.3.2}%
+\contentsline {paragraph}{Example:}{25}{figure.2.2}%
+\contentsline {subsection}{\numberline {2.3.3}Potential of a Charge Distribution}{25}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Uniformly Charged Disk}{26}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Dipoles}{26}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Calculation of $\phi $ and $\bm {\overrightarrow {E}}$}{26}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Finding $\bm {\overrightarrow {E}}$ in a Dipole --- Derivation of Spherical Gradient}{27}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Field Lines for $\bm {\overrightarrow {E}}$}{27}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Deriving Equations for Field Lines and Equipotential Lines}{27}{subsection.2.5.4}%
+\contentsline {section}{\numberline {2.6}Divergence of a Vector Function}{28}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Gauss's Theorem and the Differential Form of Gauss's Law}{29}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Derivation of Divergence in Cartesian Coordinates}{29}{section.2.8}%
+\contentsline {section}{\numberline {2.9}The Laplacian}{31}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Laplace's Equation}{32}{section.2.10}%
+\contentsline {section}{\numberline {2.11}Vector Curl: Stokes's Theorem}{33}{section.2.11}%
+\contentsline {subsection}{\numberline {2.11.1}Stokes's Theorem}{33}{subsection.2.11.1}%
+\contentsline {subsection}{\numberline {2.11.2}Curl in Cartesian Coordinates}{33}{subsection.2.11.2}%
+\contentsline {paragraph}{Example 1:}{34}{formula.2.11.3}%
+\contentsline {paragraph}{Example 2:}{34}{formula.2.11.3}%
+\contentsline {subsection}{\numberline {2.11.3}Physical Meaning of Curl}{34}{subsection.2.11.3}%
+\contentsline {subsection}{\numberline {2.11.4}Curl in Spherical Coordinates}{35}{subsection.2.11.4}%
+\contentsline {section}{\numberline {2.12}Divergence of the Field of a Point Charge}{35}{section.2.12}%
+\contentsline {subsection}{\numberline {2.12.1}Electric Potential as a Summary of the Vector Field}{36}{subsection.2.12.1}%
+\contentsline {section}{\numberline {2.13}Interesting Result: Mean Value Theorem for the Potential}{36}{section.2.13}%
+\contentsline {paragraph}{Method 2:}{38}{theorem.2.13.1}%
+\contentsline {chapter}{\numberline {3}Conductors and Capacitance}{40}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Conductors in an Electrostatic Field}{40}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Summary of Conductor Facts}{40}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}General Electrostatic Problem \& Uniqueness Theorem}{41}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Why There Are No Field Lines Inside a Conductor}{41}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Image Charge Technique (Method)}{42}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}General Strategy for the Image Charge Method}{42}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Capacitance}{42}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Capacitance for Multiple Conductors}{43}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Potentials and Charges on Several Conductors}{44}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Energy Stored in a Capacitor}{44}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Force Required to Keep Capacitor Plates Apart}{44}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Conductors and Current Density (Introduction)}{45}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}System of Simple Conductors (Concentric Spherical Shells)}{45}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Spherical Capacitor}{45}{subsection.3.8.2}%
+\contentsline {section}{\numberline {3.9}Image Charge: Additional Details}{46}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Other Image Charges}{46}{subsection.3.9.1}%
+\contentsline {section}{\numberline {3.10}Conductors}{46}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Capacitance: Further Examples}{47}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Energy Stored per Unit Length (Coaxial Capacitor)}{47}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Capacitor Paradox}{47}{subsection.3.11.2}%
+\contentsline {chapter}{\numberline {4}Current}{48}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Electric Current}{48}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Steady Currents and Charge Conservation}{49}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Ohm's Law}{50}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Batteries and Circuits}{52}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Batteries}{52}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}EMF: Electromotive Force}{52}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Circuits}{52}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Kirchhoff's Rules}{52}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Resistors in Series}{52}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Resistors in Parallel}{52}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Energy Dissipation}{53}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Linearity of DC Networks}{53}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Energy Dissipation in Current Flow}{53}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Electromotive Force and Voltaic Cells}{53}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Example: Voltaic Cells}{53}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}Networks with Voltage Sources}{54}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Applying Kirchhoff's Rules}{54}{subsection.5.6.1}%
+\contentsline {section}{\numberline {5.7}Thevenin's Theorem}{54}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}If We Do Know the Box}{54}{subsection.5.7.1}%
+\contentsline {section}{\numberline {5.8}Variable Currents in Capacitors and Resistors}{54}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Characteristic Time Constant in General}{55}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Voltage Divider}{56}{section.5.10}%
+\contentsline {section}{\numberline {5.11}Variable Currents with Capacitors (Charging)}{56}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Charging with Battery (High-Pass Filter)}{57}{subsection.5.11.1}%
+\contentsline {section}{\numberline {5.12}Relaxation Oscillator}{57}{section.5.12}%
+\contentsline {section}{\numberline {5.13}Weird Example: Thevenin Equivalence}{57}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Steps to Find Thevenin Equivalent}{57}{subsection.5.13.1}%
+\contentsline {section}{\numberline {5.14}Combining Capacitors}{58}{section.5.14}%
+\contentsline {subsection}{\numberline {5.14.1}In Series}{58}{subsection.5.14.1}%
+\contentsline {subsection}{\numberline {5.14.2}In Parallel}{58}{subsection.5.14.2}%
+\contentsline {subsection}{\numberline {5.14.3}Kirchhoff's Rules for Loops}{58}{subsection.5.14.3}%
+\contentsline {subsection}{\numberline {5.14.4}Sign Rules for Capacitors and Resistors}{58}{subsection.5.14.4}%
+\contentsline {subsection}{\numberline {5.14.5}Example 1: Three-Loop Circuit}{59}{subsection.5.14.5}%
+\contentsline {subsection}{\numberline {5.14.6}Capacitors in Loop Analysis}{59}{subsection.5.14.6}%
+\contentsline {chapter}{\numberline {6}Electronics: Op-Amps, Transistors, LEDs, RC Filters, and 555 Timers}{60}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Operational Amplifiers}{60}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Inverting Amplifier}{61}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Non-Inverting Amplifier}{62}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Voltage Follower (Buffer)}{62}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.1.4}Summing Amplifier}{63}{subsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.1.5}Difference Amplifier}{64}{subsection.6.1.5}%
+\contentsline {subsection}{\numberline {6.1.6}Integrator}{65}{subsection.6.1.6}%
+\contentsline {subsection}{\numberline {6.1.7}Differentiator}{66}{subsection.6.1.7}%
+\contentsline {subsection}{\numberline {6.1.8}Comparator and Schmitt Trigger}{66}{subsection.6.1.8}%
+\contentsline {section}{\numberline {6.2}Diodes and LEDs}{67}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Bipolar Junction Transistors (BJTs)}{68}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Transistor as a Switch}{69}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Common-Emitter Amplifier}{70}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}RC Filters}{70}{section.6.4}%
+\contentsline {section}{\numberline {6.5}The 555 Timer}{71}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Monostable Mode (One-Shot)}{72}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Astable Mode (Free-Running Oscillator)}{72}{subsection.6.5.2}%
+\contentsline {chapter}{\numberline {7}Special Relativity}{73}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Einstein's Postulates}{73}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Relativity and Electromagnetism}{75}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Magnetic Forces}{75}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Measurement of Charge in Motion}{75}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Electric Field in Different Frames}{76}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Field of a Moving Point Charge}{77}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Force on a Moving Charge}{77}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Interaction Between Moving Charges}{78}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Lorentz Transformations}{78}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Velocity Addition}{79}{section.8.8}%
+\contentsline {section}{\numberline {8.9}Relativistic Energy and Momentum}{80}{section.8.9}%
+\contentsline {chapter}{\numberline {9}The Magnetic Field}{82}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Definition of the Magnetic Field}{82}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Properties of the Magnetic Field}{83}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Field of Any Current-Carrying Wire}{84}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Fields of Rings and Coils}{85}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Magnetic Field of a Single Infinite Sheet (Derivation)}{85}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Magnetic Field of Two Parallel Planes}{86}{section.9.6}%
+\contentsline {subsection}{\numberline {9.6.1}Amp\`{e}re's Law for an Infinite Sheet}{86}{subsection.9.6.1}%
+\contentsline {subsection}{\numberline {9.6.2}Solenoid}{86}{subsection.9.6.2}%
+\contentsline {section}{\numberline {9.7}Hall Effect}{87}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Maxwell's Equations So Far}{87}{section.9.8}%
+\contentsline {section}{\numberline {9.9}Magnetic Vector Potential}{87}{section.9.9}%
+\contentsline {subsection}{\numberline {9.9.1}Is $\bm {\overrightarrow {A}}$ Unique? (Gauge Freedom)}{88}{subsection.9.9.1}%
+\contentsline {subsection}{\numberline {9.9.2}Uniform Magnetic Field and the Vector Potential Poisson Equation}{88}{subsection.9.9.2}%
+\contentsline {section}{\numberline {9.10}Solution for $\bm {\overrightarrow {A}}$: Analogy with Electrostatics}{89}{section.9.10}%
+\contentsline {subsection}{\numberline {9.10.1}Example: Long Wire}{89}{subsection.9.10.1}%
+\contentsline {section}{\numberline {9.11}Biot--Savart Law from the Vector Potential}{89}{section.9.11}%
+\contentsline {subsection}{\numberline {9.11.1}Field on Axis of a Circular Loop}{90}{subsection.9.11.1}%
+\contentsline {subsection}{\numberline {9.11.2}Field on Axis of a Finite Solenoid}{90}{subsection.9.11.2}%
+\contentsline {section}{\numberline {9.12}Lorentz Force}{90}{section.9.12}%
+\contentsline {subsection}{\numberline {9.12.1}Example: Wien's Filter (Velocity Selector)}{91}{subsection.9.12.1}%
+\contentsline {section}{\numberline {9.13}Force on a Current-Carrying Wire}{91}{section.9.13}%
+\contentsline {subsection}{\numberline {9.13.1}Example: Current Loop Levitated by Magnetic Force}{91}{subsection.9.13.1}%
+\contentsline {section}{\numberline {9.14}Example: Field of a Plane Current Sheet}{91}{section.9.14}%
+\contentsline {subsection}{\numberline {9.14.1}Amp\`{e}re's Law Verification}{92}{subsection.9.14.1}%
+\contentsline {section}{\numberline {9.15}How the Fields Transform}{92}{section.9.15}%
+\contentsline {subsection}{\numberline {9.15.1}Field Transformation Under a Lorentz Boost}{92}{subsection.9.15.1}%
+\contentsline {subsection}{\numberline {9.15.2}Summary of Field Transformations}{92}{subsection.9.15.2}%
+\contentsline {chapter}{\numberline {10}Electromagnetic Induction}{93}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Conducting Rod in a Magnetic Field}{93}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}Electromotive Force (EMF)}{93}{subsection.10.1.1}%

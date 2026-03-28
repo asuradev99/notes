@@ -13,10 +13,17 @@ Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`,
 Run from within the subject directory:
 
 ```bash
-latexmk -pdf main.tex   # compile to PDF
+latexmk -pdf main.tex   # compile to PDF (output name set by .latexmkrc)
 latexmk -c              # clean build artifacts
-pdflatex main.tex       # single-pass compile
+pdflatex main.tex       # single-pass compile (outputs main.pdf)
 ```
+
+Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF name:
+- `thermo-stat-mech/` → `thermodynamics-and-statistical-mechanics.pdf`
+- `class-mech/` → `classical-mechanics.pdf`
+- `electro/` → `electromagnetism.pdf`
+- `methods/` → `mathematical-methods.pdf`
+- `waves/` → `waves-and-optics.pdf`
 
 ## Document Structure
 
