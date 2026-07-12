@@ -33,6 +33,11 @@
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 
+% breakable lets theorem/definition/formula/fact/example boxes split
+% across a page boundary instead of being pushed whole onto the next
+% page (a major source of the blank vertical space fixed below).
+\tcbset{breakable, before skip=8pt, after skip=8pt}
+
 \declaretheoremstyle[name=Theorem,]{thmsty}
 \declaretheorem[style=thmsty,numberwithin=section]{theorem}
 \tcolorboxenvironment{theorem}{colback=LightGray}
@@ -53,8 +58,6 @@
 \declaretheoremstyle[name=Example,]{examsty}
 \declaretheorem[style=examsty,numberlike=theorem]{example}
 \tcolorboxenvironment{example}{colback=ExampleGray, colframe=ExampleGray, arc=6pt, boxrule=0pt}
-
-\tcbset{before skip=8pt, after skip=8pt}
 
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries}
