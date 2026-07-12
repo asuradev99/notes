@@ -27,15 +27,16 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 
 ## Document Structure
 
-`shared/preamble.tex` is the single source of truth for formatting shared across all subjects: `\documentclass[openany,oneside]{book}`, all common packages, colors, the `theorem`/`definition`/`formula`/`fact`/`example` environments (via `tcolorbox` + `thmtools`, all numbered `within=section`), chapter/section spacing (`titlesec`), list spacing (`enumitem`'s `\setlist{noitemsep, topsep=4pt, parsep=2pt}`), `\geometry{...}`, and the custom commands (`\vect`, `\svect`, `\uvect`, unit vectors `\ihat`/`\jhat`/`\khat`/`\rhat`/`\tthat`, `\defeq`).
+`shared/preamble.tex` is the single source of truth for formatting shared across all subjects: all common packages, colors, the `theorem`/`definition`/`formula`/`fact`/`example` environments (via `tcolorbox` + `thmtools`, all numbered `within=section`, all breakable across pages), chapter/section spacing (`titlesec`), list spacing (`enumitem`'s `\setlist{noitemsep, topsep=4pt, parsep=2pt}`), `\geometry{...}`, `\raggedbottom`/`\allowdisplaybreaks`, and the custom commands (`\vect`, `\svect`, `\uvect`, unit vectors `\ihat`/`\jhat`/`\khat`/`\rhat`/`\tthat`, `\defeq`).
 
-Every subject's `main.tex` starts with a single line pulling this in:
+Every subject's `main.tex` starts with:
 
 ```latex
+\documentclass[openany,oneside]{book}
 \input{../shared/preamble}
 ```
 
-followed by whatever packages/commands that subject alone needs, then `\begin{document}`. **Never re-add a `\documentclass` or redefine these shared environments/commands directly in a subject's `main.tex`** — edit `shared/preamble.tex` instead so the change propagates everywhere. In particular, don't drop `oneside,openany`: `book` defaults to `twoside`, which mirrors margins between odd/even pages (alternating left/right margins) — that's why this option is there.
+followed by whatever packages/commands that subject alone needs, then `\begin{document}`. `\documentclass` is declared individually in each `main.tex` (it must come first in the compiled file, and this keeps every subject's top line self-explanatory) — **never redefine the shared environments/commands directly in a subject's `main.tex`**, edit `shared/preamble.tex` instead so the change propagates everywhere. In particular, don't drop `oneside,openany` from any subject's `\documentclass`: `book` defaults to `twoside`, which mirrors margins between odd/even pages (alternating left/right margins) — that's why this option is there.
 
 Per-subject additions (content-driven, intentionally differ):
 - `thermo-stat-mech`, `class-mech`, `waves`: load `tikz`/`pgfplots` for diagrams/plots.
