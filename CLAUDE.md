@@ -27,14 +27,16 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 
 ## Document Structure
 
-All subjects share the same `\documentclass{book}` preamble pattern with:
+All subjects share the same `\documentclass[openany,oneside]{book}` preamble pattern with:
 
+- **`oneside,openany`** so every subject uses symmetric left/right margins and lets chapters start on any page — do not drop these options or the pages revert to alternating (mirrored) margins.
 - **Custom environments** (via `tcolorbox` + `thmtools`): `theorem`, `definition`, `formula`, `fact`, `example`
 - **Custom vector commands**: `\vect{}` (arrow bold), `\svect{}` (small arrow bold), `\uvect{}` (hat bold), unit vectors `\ihat`, `\jhat`, `\khat`, `\rhat`, `\tthat`
 - **`\defeq`** for definitional equality (`:=`)
 - **`physics` package** providing `\dd`, `\pdv`, `\dv`, `\grad`, `\curl`, `\div`, `\laplacian`, `\bra`, `\ket`, etc.
+- **Shared chapter/section spacing and list spacing** via `titlesec` (`\titleformat{\chapter}`, `\titlespacing*` for chapter/section/subsection/subsubsection) and `enumitem` (`\setlist{noitemsep, topsep=4pt, parsep=2pt}`)
 
-`thermo-stat-mech` additionally defines `\dbar` (inexact differential) and loads `tikz`/`pgfplots` for diagrams.
+`thermo-stat-mech` additionally defines `\dbar` (inexact differential). `thermo-stat-mech`, `class-mech`, and `waves` load `tikz`/`pgfplots` for diagrams/plots; `electro` loads `tikz`/`circuitikz` for circuit diagrams instead. `methods` doesn't currently need `tikz` at all. These package choices are content-driven and intentionally differ per subject — only the shared formatting layer above should stay identical across all five.
 
 ## Chapter File Organization
 
@@ -46,5 +48,5 @@ Content is split across files differently per subject:
 
 ## Theorem Numbering
 
-- `thermo-stat-mech` and `electro`: environments numbered `within=section`
-- `class-mech`: environments numbered `within=chapter`
+- `thermo-stat-mech`, `electro`, and `waves`: environments numbered `within=section`
+- `class-mech` and `methods`: environments numbered `within=chapter`
