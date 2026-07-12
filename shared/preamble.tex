@@ -78,6 +78,19 @@
     footskip=30pt
 }
 
+% book defaults to \flushbottom, which stretches interline glue to make
+% every page exactly textheight tall; with tcolorbox environments using
+% fixed (non-stretchable) before/after skips, that stretch concentrates
+% into large uneven gaps between ordinary paragraphs. Let pages end
+% wherever the content ends instead.
+\raggedbottom
+
+% Without this, amsmath refuses to break a multi-line align/gather
+% across a page boundary, so a long derivation that doesn't quite fit
+% gets pushed whole onto the next page, leaving a large blank remainder
+% at the bottom of the current one.
+\allowdisplaybreaks
+
 \newcommand{\ihat}{\boldsymbol{\hat{\textbf{i}}}}
 \newcommand{\jhat}{\boldsymbol{\hat{\textbf{j}}}}
 \newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
