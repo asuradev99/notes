@@ -661,6 +661,14 @@ each with its magnetic partner $\vect{B} = \hat{k}\times\vect{E}/v$. Because the
 \end{equation}
 \end{formula}
 
+\emph{Tangential $\vect{B}$.} The same loop argument applied to $\oint (\vect{B}/\mu)\cdot d\vect{\ell} = \mu_0 I_{\text{enc}}$, with no free surface current and $\mu_1=\mu_2=\mu_0$ for ordinary dielectrics, gives
+\begin{formula}[BC3]
+\begin{equation}
+    B_{L,\parallel} = B_{R,\parallel}.
+\end{equation}
+\end{formula}
+Building each wave's $\vect{B}$ from Faraday's law, $\vect{B}=\hat{k}\times\vect{E}/v$, is convenient here: the reflected wave's relative sign then comes out automatically, since its $k_x$ is the only one that flips.
+
 \subsection{$p$-Polarization: Amplitude Coefficients}
 
 For $p$-polarized (in-plane) light, $\vect{E}$ has components both perpendicular and parallel to the boundary. Applying BC1 with the geometry $|\vect{E}_{0I}|\sin\theta_I - |\vect{E}_{0R}|\sin\theta_I = (\varepsilon_2/\varepsilon_1)|\vect{E}_{0T}|\sin\theta_T$, and simplifying with Snell's law,
@@ -680,6 +688,25 @@ Solving the two together yields the Fresnel amplitude ratios:
     T = \frac{|\vect{E}_{0T}|}{|\vect{E}_{0I}|} = \frac{2}{\alpha + \beta}.
 \end{equation}
 \end{formula}
+
+\subsection{$s$-Polarization: Amplitude Coefficients}
+
+For $s$-polarized (out-of-plane) light, $\vect{E} = E_0\hat{z}$ for all three waves, so $\vect{E}$ is already purely tangential and BC1 is trivial. It is BC3 that does the work here: with $\vect{B} = (n/c)E_0(\sin\theta\,\hat{x} \mp \cos\theta\,\hat{y})$ for each wave (the sign of the $\hat{y}$-term flipping between incident/transmitted and reflected, since $k_x^{(R)} = -k_x^{(I)}$), the tangential ($\hat{y}$) component of BC3 reads
+\begin{equation}
+    n_1\cos\theta_I\,(E_{0I} - E_{0R}) = n_2\cos\theta_T\,E_{0T}.
+\end{equation}
+Together with BC2, which for this polarization is simply $E_{0I} + E_{0R} = E_{0T}$, eliminate $E_{0R} = E_{0T} - E_{0I}$ and substitute in:
+\begin{equation}
+    2n_1\cos\theta_I\,E_{0I} = (n_1\cos\theta_I + n_2\cos\theta_T)\,E_{0T},
+\end{equation}
+giving the Fresnel amplitude ratios for $s$-polarization:
+\begin{formula}[Fresnel coefficients, $s$-polarization]
+\begin{equation}
+    R_s = \frac{n_1\cos\theta_I - n_2\cos\theta_T}{n_1\cos\theta_I + n_2\cos\theta_T}, \qquad
+    T_s = \frac{2n_1\cos\theta_I}{n_1\cos\theta_I + n_2\cos\theta_T}.
+\end{equation}
+\end{formula}
+For $n_2 > n_1$, $R_s < 0$: a $\pi$ phase shift on reflection off a denser medium, the same sign flip seen for the perfectly-conducting boundary above. Notice that $R_s = 0$ would require $n_1\cos\theta_I = n_2\cos\theta_T$; dividing by Snell's law leaves $\theta_I = \theta_T$, forcing $n_1 = n_2$ --- no real interface. So unlike $p$-polarized light, \emph{$s$-polarized light has no Brewster's angle}: some of it is always reflected, for exactly the reason given in the physical picture below.
 
 \subsection{Brewster's Angle}
 
@@ -725,12 +752,14 @@ At this special incidence angle the reflected and refracted rays are exactly per
   \draw pic["\small$\theta_B$",draw,angle radius=15,angle eccentricity=1.6]{angle=R--O--Nu};
   \draw pic["\small$\theta_T$",draw,angle radius=15,angle eccentricity=1.7]{angle=Nd--O--T};
   \draw pic["\small$90^\circ$",draw,angle radius=32,angle eccentricity=1.35]{angle=T--O--R};
+  \draw[very thick,violet,<->] (0.53,-1.68) -- (1.36,-1.12);
+  \node[violet,below right] at (1.36,-1.12){\small dipole axis};
 \end{tikzpicture}
-\caption{Brewster's angle. When $\theta_B + \theta_T = \pi/2$ the reflected and refracted rays are perpendicular, and the reflected $p$-polarized wave vanishes.}
+\caption{Brewster's angle. When $\theta_B + \theta_T = \pi/2$ the reflected and refracted rays are perpendicular, and the reflected $p$-polarized wave vanishes. The dipole axis (violet, $\perp$ to the transmitted ray) then points exactly along the reflected direction --- a dipole radiates nothing along its own axis, so $R=0$.}
 \label{fig:brewster}
 \end{figure}
 
-\emph{Physical picture.} The transmitted wave drives the medium's electrons into dipole oscillation along $\vect{E}_T$, and it is this oscillating dipole that re-radiates the reflected wave. But a dipole cannot radiate along its own axis. At Brewster's angle the direction the reflected ray would have to travel is exactly along the dipole axis, so no reflected wave can be emitted --- which is why $R$ vanishes.
+\emph{Physical picture.} The reflected wave is radiation from electrons in medium 2 driven by $\vect{E}_T$ --- not $\vect{E}_I$, since the incident wave never itself enters medium 2 --- oscillating along an axis $\perp\vect{k}_T$, in the plane of incidence. A dipole radiates zero power along its own axis, and at Brewster's angle that axis coincides exactly with the reflected direction (violet, Figure~\ref{fig:brewster}), so no $p$-polarized light is reflected. For $s$-polarization the dipole axis is always $\perp$ to the whole plane of incidence, never aligned with any in-plane direction, which is why $R_s$ has no analogous zero.
 
 % ============================================================
 \section{Radiation from an Accelerating Charge}
