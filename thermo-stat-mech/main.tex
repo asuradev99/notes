@@ -1,98 +1,11 @@
-\documentclass[openany,oneside]{book}
+\input{../shared/preamble}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts}
-\usepackage{mathtools}
-\usepackage{booktabs}
-\usepackage{thmtools}
-\usepackage{graphicx}
-\usepackage{setspace}
-\usepackage{geometry}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage{framed}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tcolorbox}
-\usepackage{bm}
-\usepackage{float}
-\usepackage{physics}
-\usepackage{enumitem}
-\usepackage{cancel}
-\usepackage{titlesec}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows.meta, decorations.pathmorphing, patterns, calc}
 
-\colorlet{LightGray}{White!90!Periwinkle}
-\colorlet{LightOrange}{Orange!15}
-\colorlet{LightGreen}{Green!15}
-
-\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
-
-\declaretheoremstyle[name=Theorem,]{thmsty}
-\declaretheorem[style=thmsty,numberwithin=section]{theorem}
-\tcolorboxenvironment{theorem}{colback=LightGray}
-
-\declaretheoremstyle[name=Definition,]{defsty}
-\declaretheorem[style=defsty,numberlike=theorem]{definition}
-\tcolorboxenvironment{definition}{colback=LightGray}
-
-\declaretheoremstyle[name=Formula,]{formsty}
-\declaretheorem[style=formsty,numberlike=theorem]{formula}
-\tcolorboxenvironment{formula}{colback=LightGray}
-
-
-\declaretheoremstyle[name=Important Fact,]{factsty}
-\declaretheorem[style=factsty,numberlike=theorem]{fact}
-\tcolorboxenvironment{fact}{colback=LightGray}
-
-\colorlet{ExampleGray}{black!8}
-\declaretheoremstyle[name=Example,]{examsty}
-\declaretheorem[style=examsty,numberlike=theorem]{example}
-\tcolorboxenvironment{example}{colback=ExampleGray, colframe=ExampleGray, arc=6pt, boxrule=0pt}
-
-\tcbset{before skip=8pt, after skip=8pt}
-
-\titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries}
-  {\chaptertitlename\ \thechapter}
-  {12pt}
-  {\Huge}
-\titlespacing*{\chapter}{0pt}{20pt}{16pt}
-\titlespacing*{\section}{0pt}{10pt}{4pt}
-\titlespacing*{\subsection}{0pt}{8pt}{3pt}
-\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
-
-\setlist{noitemsep, topsep=4pt, parsep=2pt}
-
-\setstretch{1.2}
-\geometry{
-    textheight=9in,
-    textwidth=6.5in,
-    top=1in,
-    headheight=12pt,
-    headsep=25pt,
-    footskip=30pt
-}
-
-% Definitions
-
-\newcommand{\ihat}{\boldsymbol{\hat{\textbf{i}}}}
-\newcommand{\jhat}{\boldsymbol{\hat{\textbf{j}}}}
-\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
-
-\newcommand{\rhat}{\boldsymbol{\hat{\textbf{r}}}}
-\newcommand{\tthat}{\hat{\boldsymbol{\theta}}}
-
-\newcommand{\vect}[1]{\boldsymbol{\overrightarrow{#1}}}
-\newcommand{\svect}[1]{\boldsymbol{\vec{#1}}}
-\newcommand{\uvect}[1]{\boldsymbol{\hat{\textbf{#1}}}}
-
-\newcommand{\defeq}{\vcentcolon=}
 \newcommand{\dbar}{\mathchar'26\mkern-12mu d}
-
 
 % ------------------------------------------------------------------------------
 
@@ -109,7 +22,7 @@
 		\HRule{2.0pt} \\ [0.6cm] \LARGE{Compiled from 8.012, 8.022, and other miscellaneous textbook} \vspace*{10\baselineskip}}
 		}
 \date{}
-\author{\textbf{Ethan Suresh} \\ 
+\author{\textbf{Ethan Suresh} \\
 		MIT \\
 		2024}
 
@@ -132,7 +45,3 @@
 \input{ch7}
 
 \end{document}
-
-
-
-

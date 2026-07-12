@@ -27,16 +27,21 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 
 ## Document Structure
 
-All subjects share the same `\documentclass[openany,oneside]{book}` preamble pattern with:
+`shared/preamble.tex` is the single source of truth for formatting shared across all subjects: `\documentclass[openany,oneside]{book}`, all common packages, colors, the `theorem`/`definition`/`formula`/`fact`/`example` environments (via `tcolorbox` + `thmtools`, all numbered `within=section`), chapter/section spacing (`titlesec`), list spacing (`enumitem`'s `\setlist{noitemsep, topsep=4pt, parsep=2pt}`), `\geometry{...}`, and the custom commands (`\vect`, `\svect`, `\uvect`, unit vectors `\ihat`/`\jhat`/`\khat`/`\rhat`/`\tthat`, `\defeq`).
 
-- **`oneside,openany`** so every subject uses symmetric left/right margins and lets chapters start on any page — do not drop these options or the pages revert to alternating (mirrored) margins.
-- **Custom environments** (via `tcolorbox` + `thmtools`): `theorem`, `definition`, `formula`, `fact`, `example`
-- **Custom vector commands**: `\vect{}` (arrow bold), `\svect{}` (small arrow bold), `\uvect{}` (hat bold), unit vectors `\ihat`, `\jhat`, `\khat`, `\rhat`, `\tthat`
-- **`\defeq`** for definitional equality (`:=`)
-- **`physics` package** providing `\dd`, `\pdv`, `\dv`, `\grad`, `\curl`, `\div`, `\laplacian`, `\bra`, `\ket`, etc.
-- **Shared chapter/section spacing and list spacing** via `titlesec` (`\titleformat{\chapter}`, `\titlespacing*` for chapter/section/subsection/subsubsection) and `enumitem` (`\setlist{noitemsep, topsep=4pt, parsep=2pt}`)
+Every subject's `main.tex` starts with a single line pulling this in:
 
-`thermo-stat-mech` additionally defines `\dbar` (inexact differential). `thermo-stat-mech`, `class-mech`, and `waves` load `tikz`/`pgfplots` for diagrams/plots; `electro` loads `tikz`/`circuitikz` for circuit diagrams instead. `methods` doesn't currently need `tikz` at all. These package choices are content-driven and intentionally differ per subject — only the shared formatting layer above should stay identical across all five.
+```latex
+\input{../shared/preamble}
+```
+
+followed by whatever packages/commands that subject alone needs, then `\begin{document}`. **Never re-add a `\documentclass` or redefine these shared environments/commands directly in a subject's `main.tex`** — edit `shared/preamble.tex` instead so the change propagates everywhere. In particular, don't drop `oneside,openany`: `book` defaults to `twoside`, which mirrors margins between odd/even pages (alternating left/right margins) — that's why this option is there.
+
+Per-subject additions (content-driven, intentionally differ):
+- `thermo-stat-mech`, `class-mech`, `waves`: load `tikz`/`pgfplots` for diagrams/plots.
+- `electro`: loads `tikz`/`circuitikz` for circuit diagrams instead.
+- `methods`: needs no extra packages beyond the shared preamble.
+- `thermo-stat-mech` additionally defines `\dbar` (inexact differential).
 
 ## Chapter File Organization
 
@@ -48,5 +53,4 @@ Content is split across files differently per subject:
 
 ## Theorem Numbering
 
-- `thermo-stat-mech`, `electro`, and `waves`: environments numbered `within=section`
-- `class-mech` and `methods`: environments numbered `within=chapter`
+All subjects number `theorem`/`definition`/`formula`/`fact`/`example` `within=section`, set once in `shared/preamble.tex`.
