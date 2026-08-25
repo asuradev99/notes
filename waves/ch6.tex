@@ -673,6 +673,52 @@ Building each wave's $\vect{B}$ from Faraday's law, $\vect{B}=\hat{k}\times\vect
 
 \subsection{$p$-Polarization: Amplitude Coefficients}
 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1]
+  \coordinate (O) at (0,0);
+  \coordinate (Nu) at (0,2.4);
+  \coordinate (Nd) at (0,-2.4);
+  \coordinate (I) at (-2.2,2.2);
+  \coordinate (R) at (2.2,2.2);
+  \coordinate (T) at (1.22,-2.29);
+  \fill[LightOrange] (-3.6,0) rectangle (3.6,2.6);
+  \fill[LightGray] (-3.6,-2.6) rectangle (3.6,0);
+  \draw[thick] (-3.6,0)--(3.6,0);
+  \draw[dashed] (0,-2.4)--(0,2.4);
+  \draw[very thick,->] (I) -- (O);
+  \draw[very thick,->] (O) -- (R);
+  \draw[very thick,->] (O) -- (T);
+  \node at (-3.1,1.3){\small$n_1$};
+  \node at (-3.1,-1.3){\small$n_2$};
+  \node[above right] at (R){\small reflected};
+  \node[below right] at (T){\small transmitted};
+  \node[above left] at (I){\small incident};
+  \draw pic["\small$\theta_I$",draw,angle radius=16,angle eccentricity=1.5] {angle=Nu--O--I};
+  \draw pic["\small$\theta_R$",draw,angle radius=16,angle eccentricity=1.5] {angle=R--O--Nu};
+  \draw pic["\small$\theta_T$",draw,angle radius=24,angle eccentricity=1.4] {angle=Nd--O--T};
+  % E (red, in-plane, perpendicular to each ray)
+  \draw[red,thick,<->] (-1.226,0.974) -- (-0.974,1.226);
+  \node[red] at (-0.75,1.5) {\small$\vect{E}_I$};
+  \draw[red,thick,<->] (0.974,1.226) -- (1.226,0.974);
+  \node[red] at (0.75,1.5) {\small$\vect{E}_R$};
+  \draw[red,thick,<->] (0.4,-1.226) -- (0.82,-1.064);
+  \node[red] at (1.1,-0.75) {\small$\vect{E}_T$};
+  % B (blue, out of the page)
+  \draw[blue,thick] (-1.4,0.75) circle (5.5pt);
+  \filldraw[blue] (-1.4,0.75) circle (1pt);
+  \node[blue] at (-1.4,0.4) {\small$\vect{B}_I$};
+  \draw[blue,thick] (1.4,0.75) circle (5.5pt);
+  \filldraw[blue] (1.4,0.75) circle (1pt);
+  \node[blue] at (1.4,0.4) {\small$\vect{B}_R$};
+  \draw[blue,thick] (0.95,-1.4) circle (5.5pt);
+  \filldraw[blue] (0.95,-1.4) circle (1pt);
+  \node[blue] at (1.35,-1.4) {\small$\vect{B}_T$};
+\end{tikzpicture}
+\caption{Field geometry for $p$-polarization: $\vect{E}$ (red) lies in the plane of incidence, tilted to stay perpendicular to each ray, while $\vect{B}$ (blue, $\odot$ for out of the page) is perpendicular to that plane for all three waves.}
+\label{fig:p-pol-fields}
+\end{figure}
+
 For $p$-polarized (in-plane) light, $\vect{E}$ has components both perpendicular and parallel to the boundary. Applying BC1 with the geometry $|\vect{E}_{0I}|\sin\theta_I - |\vect{E}_{0R}|\sin\theta_I = (\varepsilon_2/\varepsilon_1)|\vect{E}_{0T}|\sin\theta_T$, and simplifying with Snell's law,
 \begin{equation}
     |\vect{E}_{0I}| - |\vect{E}_{0R}| = \beta|\vect{E}_{0T}|, \qquad
@@ -692,6 +738,52 @@ Solving the two together yields the Fresnel amplitude ratios:
 \end{formula}
 
 \subsection{$s$-Polarization: Amplitude Coefficients}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1]
+  \coordinate (O) at (0,0);
+  \coordinate (Nu) at (0,2.4);
+  \coordinate (Nd) at (0,-2.4);
+  \coordinate (I) at (-2.2,2.2);
+  \coordinate (R) at (2.2,2.2);
+  \coordinate (T) at (1.22,-2.29);
+  \fill[LightOrange] (-3.6,0) rectangle (3.6,2.6);
+  \fill[LightGray] (-3.6,-2.6) rectangle (3.6,0);
+  \draw[thick] (-3.6,0)--(3.6,0);
+  \draw[dashed] (0,-2.4)--(0,2.4);
+  \draw[very thick,->] (I) -- (O);
+  \draw[very thick,->] (O) -- (R);
+  \draw[very thick,->] (O) -- (T);
+  \node at (-3.1,1.3){\small$n_1$};
+  \node at (-3.1,-1.3){\small$n_2$};
+  \node[above right] at (R){\small reflected};
+  \node[below right] at (T){\small transmitted};
+  \node[above left] at (I){\small incident};
+  \draw pic["\small$\theta_I$",draw,angle radius=16,angle eccentricity=1.5] {angle=Nu--O--I};
+  \draw pic["\small$\theta_R$",draw,angle radius=16,angle eccentricity=1.5] {angle=R--O--Nu};
+  \draw pic["\small$\theta_T$",draw,angle radius=24,angle eccentricity=1.4] {angle=Nd--O--T};
+  % E (red, out of the page for all three waves)
+  \draw[red,thick] (-1.4,0.75) circle (5.5pt);
+  \filldraw[red] (-1.4,0.75) circle (1pt);
+  \node[red] at (-1.4,0.4) {\small$\vect{E}_I$};
+  \draw[red,thick] (1.4,0.75) circle (5.5pt);
+  \filldraw[red] (1.4,0.75) circle (1pt);
+  \node[red] at (1.4,0.4) {\small$\vect{E}_R$};
+  \draw[red,thick] (0.95,-1.4) circle (5.5pt);
+  \filldraw[red] (0.95,-1.4) circle (1pt);
+  \node[red] at (1.35,-1.4) {\small$\vect{E}_T$};
+  % B (blue, in-plane, perpendicular to each ray)
+  \draw[blue,thick,<->] (-1.226,0.974) -- (-0.974,1.226);
+  \node[blue] at (-0.75,1.5) {\small$\vect{B}_I$};
+  \draw[blue,thick,<->] (0.974,1.226) -- (1.226,0.974);
+  \node[blue] at (0.75,1.5) {\small$\vect{B}_R$};
+  \draw[blue,thick,<->] (0.4,-1.226) -- (0.82,-1.064);
+  \node[blue] at (1.1,-0.75) {\small$\vect{B}_T$};
+\end{tikzpicture}
+\caption{Field geometry for $s$-polarization: $\vect{E}$ (red, $\odot$ for out of the page) points along $\hat{z}$ for all three waves, while $\vect{B}$ (blue) lies in the plane of incidence, perpendicular to each ray --- the mirror image of the $p$-polarization geometry in Figure~\ref{fig:p-pol-fields}.}
+\label{fig:s-pol-fields}
+\end{figure}
 
 For $s$-polarized (out-of-plane) light, $\vect{E} = E_0\hat{z}$ for all three waves, so $\vect{E}$ is already purely tangential and BC1 is trivial. It is BC3 that does the work here: with $\vect{B} = (n/c)E_0(\sin\theta\,\hat{x} \mp \cos\theta\,\hat{y})$ for each wave (the sign of the $\hat{y}$-term flipping between incident/transmitted and reflected, since $k_x^{(R)} = -k_x^{(I)}$), the tangential ($\hat{y}$) component of BC3 reads
 \begin{equation}
