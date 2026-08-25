@@ -29,6 +29,8 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 
 `shared/preamble.tex` is the single source of truth for formatting shared across all subjects: all common packages, colors, the `theorem`/`definition`/`formula`/`fact`/`example` environments (via `tcolorbox` + `thmtools`, all numbered `within=section`, all breakable across pages), chapter/section spacing (`titlesec`), list spacing (`enumitem`'s `\setlist{noitemsep, topsep=4pt, parsep=2pt}`), `\geometry{...}`, `\raggedbottom`/`\allowdisplaybreaks`, and the custom commands (`\vect`, `\svect`, `\uvect`, unit vectors `\ihat`/`\jhat`/`\khat`/`\rhat`/`\tthat`, `\defeq`).
 
+**Vector notation:** `\vect{#1}`/`\svect{#1}` render their argument bold and uppercased with no arrow (e.g. `\vect{r}` → bold **R**), following the convention of bold capital letters for vectors vs. plain lowercase italics for the corresponding scalar magnitude (e.g. `$r = |\vect{r}|$`). This is implemented via `\MakeUppercase`, which only touches literal single-character tokens, so it leaves Greek letters (`\omega`, `\tau`, `\theta`, ...) and control sequences (`\Delta`, `\ddot{}`, `\ell`, ...) unchanged — only bare Latin letters in the argument get capitalized. `\uvect` (unit vectors) keeps its lowercase hat notation and is unaffected.
+
 Every subject's `main.tex` starts with:
 
 ```latex
