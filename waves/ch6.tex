@@ -639,13 +639,29 @@ Beyond $\theta_c$ there is no real refraction angle at all: no light can escape,
 \section{Amplitude Ratios and Brewster's Angle}
 % ============================================================
 
-Snell's law and the law of reflection fix the \emph{directions} of the reflected and transmitted waves, but say nothing about how the incident energy is divided between them. To find the amplitudes we must impose the electromagnetic boundary conditions at the interface. Write the three waves as
+Snell's law and the law of reflection fix the \emph{directions} of the reflected and transmitted waves, but say nothing about how the incident energy is divided between them. To find the amplitudes we must impose the electromagnetic boundary conditions at the interface, which requires being careful about two facts used silently below: that all three waves share one common frequency $\omega$, and that each one's wavenumber $k$ is fixed by that $\omega$ together with the index of refraction of the medium it occupies.
+
+\emph{Why the frequency is shared.} The boundary conditions matching $\vect{E}$ and $\vect{B}$ across the interface must hold at every point on it for \emph{all time} $t$, not just momentarily. If the incident, reflected, and transmitted waves oscillated at different frequencies $\omega_I,\omega_R,\omega_T$, the matching condition at the interface would be an equation relating $e^{-i\omega_I t}$, $e^{-i\omega_R t}$, and $e^{-i\omega_T t}$ that must hold for every $t$ --- but sinusoids of different frequencies are linearly independent functions of $t$, so the only way such a relation can hold identically is if the frequencies coincide:
+\[
+\omega_I = \omega_R = \omega_T \equiv \omega.
+\]
+Physically, this is energy conservation one photon at a time ($E = \hbar\omega$): a static, lossless interface can redirect and redistribute the wave, but it has no mechanism to shift its frequency.
+
+\emph{Why $k$ scales with $n$.} Within a single medium of phase velocity $v$, a wave obeys the same dispersion relation as in vacuum with $c\to v$, namely $\omega = vk$, so $k = \omega/v$. Writing $v = c/n$ in terms of the index of refraction,
+\begin{formula}[Wavenumber in a medium]
+\begin{equation}
+    k = \frac{n\omega}{c}.
+\end{equation}
+\end{formula}
+Since $\omega$ is now common to all three waves, $k$ is fixed purely by which medium a wave lives in: the incident and reflected waves travel in the same medium at the same speed, so $k_I = k_R = n_1\omega/c$, while the transmitted wave has the different magnitude $k_T = n_2\omega/c$. This is also the missing ingredient behind Snell's law: matching the tangential component of $\vect{k}$ across the interface, $k_I\sin\theta_I = k_T\sin\theta_T$, becomes $n_1\sin\theta_I = n_2\sin\theta_T$ the moment the common factor of $\omega/c$ cancels --- the same law derived earlier from pure path-difference interference, now recovered from the wave equation directly.
+
+With a single shared $\omega$ established, write the three waves as
 \begin{equation}
     \vect{E}_I = \vect{E}_{0I}\, e^{i(\vect{k}_I\cdot\vect{r} - \omega t)}, \quad
     \vect{E}_R = \vect{E}_{0R}\, e^{i(\vect{k}_R\cdot\vect{r} - \omega t)}, \quad
     \vect{E}_T = \vect{E}_{0T}\, e^{i(\vect{k}_T\cdot\vect{r} - \omega t)},
 \end{equation}
-each with its magnetic partner $\vect{B} = \hat{k}\times\vect{E}/v$. Because the phases already match along the interface (that was Snell's law), it remains only to balance the amplitude vectors $\vect{E}_{\text{left}} = \vect{E}_{0I} + \vect{E}_{0R}$ and $\vect{E}_{\text{right}} = \vect{E}_{0T}$.
+each with its magnetic partner $\vect{B} = \hat{k}\times\vect{E}/v$. Because the phases already match along the interface (that was Snell's law, just derived again above from $k=n\omega/c$), it remains only to balance the amplitude vectors $\vect{E}_{\text{left}} = \vect{E}_{0I} + \vect{E}_{0R}$ and $\vect{E}_{\text{right}} = \vect{E}_{0T}$.
 
 \subsection{Boundary Conditions from Maxwell}
 
