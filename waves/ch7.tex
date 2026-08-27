@@ -55,8 +55,6 @@ Here $d$ is measured from the center of one slit to the center of the next, not 
     \label{fig:multislit-geometry}
 \end{figure}
 
-\subsection{Summing the Fields}
-
 Because $\theta_1\approx\theta_2\approx\cdots\approx\theta$ in the far field, all slits contribute with essentially the same amplitude and wave vector, differing only by the accumulated phase $\delta$ per slit. The total field is then a geometric series:
 \begin{equation}
     \vect{E}_{\text{tot}} = \vect{E}_0\, e^{i(\omega t - \vect{k}\cdot\vect{r})} \sum_{m=0}^{N-1} e^{-i m \delta}
@@ -134,6 +132,26 @@ The principal maxima at $\delta = 2\pi n$ still sit at $\sin\theta = n\lambda/d$
 about $11\%$ of the principal maximum. Adding just one slit already dramatically shifts intensity into the principal fringes, previewing the resolving power of true gratings.
 \end{example}
 
+\begin{example}[Four narrow slits]
+Take $N=4$ slits with $a \ll d$ so slits are effectively narrow. Then
+\begin{equation}
+    I(\theta) = I_0 \left[\frac{\sin(4\delta/2)}{\sin(\delta/2)}\right]^2 = I_0 \left[\frac{\sin(2\delta)}{\sin(\delta/2)}\right]^2, \qquad \delta = \frac{2\pi d \sin\theta}{\lambda}.
+\end{equation}
+Principal maxima occur where $\sin(\delta/2) = 0$, i.e.\ $\delta = 2\pi n$, which gives $\sin\theta = n\lambda/d$. Minima occur where $\sin(2\delta) = 0$ but $\sin(\delta/2) \ne 0$:
+\begin{equation}
+    \delta = \frac{m\pi}{2}, \qquad m \ne \text{multiple of }4,
+\end{equation}
+so $\sin\theta = m\lambda/(4d)$ for $m = 1, 2, 3, 5, 6, 7, \ldots$. Between consecutive principal maxima there are $N-2 = 2$ small secondary maxima. As $\delta/2 \to 0$, $I \to 16 I_0 = N^2 I_0$, four times the two-slit peak.
+\end{example}
+
+\begin{example}[Widening the slit spacing: $d \to 3d$]
+If the spacing is tripled while keeping the two-slit form, the phase becomes $\delta' = 6\pi d\sin\theta/\lambda$, and
+\begin{equation}
+    I = 4 I_0 \cos^2(\delta'/2).
+\end{equation}
+Minima occur where $\cos(3\pi d\sin\theta/\lambda) = 0$, i.e.\ $\sin\theta = (2n-1)\lambda/(6d)$; the sequence $\lambda/6d,\, \lambda/2d,\, 5\lambda/6d,\, 7\lambda/6d,\ldots$. Maxima are at $\sin\theta = m\lambda/(3d)$. Whenever $m$ is a multiple of $3$, these maxima coincide with the original ($d$-spacing) principal maxima --- the two patterns overlap there.
+\end{example}
+
 % ============================================================
 \section{Single-Slit Diffraction as Infinite-Beam Interference}
 % ============================================================
@@ -149,8 +167,6 @@ More generally, an aperture with transmission function $S(y')$ gives
 \end{equation}
 \end{formula}
 This is exactly the Fourier transform of the aperture function evaluated at spatial frequency $\xi$. Every diffraction pattern is, at heart, a Fourier transform.
-
-\subsection{The Sinc Pattern}
 
 Evaluating the integral for the rectangular slit $S(y') = 1$ for $|y'|\le a/2$ and $0$ otherwise,
 \begin{equation}
@@ -257,39 +273,7 @@ The generalization to $N$ finite-width slits is immediate, since the multi-slit 
 \end{equation}
 again a product of a single-slit envelope and a multi-slit interference factor.
 
-% ============================================================
-\section{Worked Examples}
-% ============================================================
-
-With the general machinery in place, it is worth working through a few concrete cases. Each one exercises the same two ingredients --- the interference factor set by the spacing $d$ and the envelope set by the width $a$ --- but in a slightly different regime, and together they illustrate how principal maxima, minima, and missing orders are read off directly from the formulas.
-
-\subsection{Four Narrow Slits}
-
-\begin{example}
-Take $N=4$ slits with $a \ll d$ so slits are effectively narrow. Then
-\begin{equation}
-    I(\theta) = I_0 \left[\frac{\sin(4\delta/2)}{\sin(\delta/2)}\right]^2 = I_0 \left[\frac{\sin(2\delta)}{\sin(\delta/2)}\right]^2, \qquad \delta = \frac{2\pi d \sin\theta}{\lambda}.
-\end{equation}
-Principal maxima occur where $\sin(\delta/2) = 0$, i.e.\ $\delta = 2\pi n$, which gives $\sin\theta = n\lambda/d$. Minima occur where $\sin(2\delta) = 0$ but $\sin(\delta/2) \ne 0$:
-\begin{equation}
-    \delta = \frac{m\pi}{2}, \qquad m \ne \text{multiple of }4,
-\end{equation}
-so $\sin\theta = m\lambda/(4d)$ for $m = 1, 2, 3, 5, 6, 7, \ldots$. Between consecutive principal maxima there are $N-2 = 2$ small secondary maxima. As $\delta/2 \to 0$, $I \to 16 I_0 = N^2 I_0$, four times the two-slit peak.
-\end{example}
-
-\subsection{Widening the Slit Spacing: $d \to 3d$}
-
-\begin{example}
-If the spacing is tripled while keeping the two-slit form, the phase becomes $\delta' = 6\pi d\sin\theta/\lambda$, and
-\begin{equation}
-    I = 4 I_0 \cos^2(\delta'/2).
-\end{equation}
-Minima occur where $\cos(3\pi d\sin\theta/\lambda) = 0$, i.e.\ $\sin\theta = (2n-1)\lambda/(6d)$; the sequence $\lambda/6d,\, \lambda/2d,\, 5\lambda/6d,\, 7\lambda/6d,\ldots$. Maxima are at $\sin\theta = m\lambda/(3d)$. Whenever $m$ is a multiple of $3$, these maxima coincide with the original ($d$-spacing) principal maxima --- the two patterns overlap there.
-\end{example}
-
-\subsection{A Missing Order}
-
-\begin{example}
+\begin{example}[A missing order]
 Consider $D = d/5$ slit width and the intensity pattern
 \begin{equation}
     I(\theta) \propto I_0 \left[\frac{\sin(2\delta)}{\sin(\delta)}\right]\left(\frac{\sin\beta}{\beta}\right)^2, \qquad \beta = \frac{D\pi \sin\theta}{\lambda} = \frac{d\pi \sin\theta}{5\lambda}.
@@ -301,9 +285,7 @@ The envelope has minima when $\beta = \ell\pi$, i.e.\ $\sin\theta = 5\ell\lambda
 The lowest principal maximum lost is $n = 5$ (with $\ell = 1$): the fifth-order fringe from center is killed by the single-slit envelope. This is the general ``missing orders'' rule for a grating: order $n$ is missing whenever $n/d = \ell/D$.
 \end{example}
 
-\subsection{Double-Slit with Finite Width}
-
-\begin{example}
+\begin{example}[Double-slit with finite width]
 Two slits of width $a = 0.04\,\text{mm}$ separated by $d = 0.20\,\text{mm}$ are illuminated by $\lambda = 500\,\text{nm}$ light. How many bright interference fringes lie inside the central diffraction envelope? The first envelope zeros sit at $\sin\theta = \pm\lambda/a$, while the interference maxima occur at $\sin\theta = n\lambda/d$. The largest $|n|$ satisfying $|n|\lambda/d < \lambda/a$ is
 \begin{equation}
     |n| < \frac{d}{a} = \frac{0.20}{0.04} = 5,
@@ -326,8 +308,6 @@ which is (up to overall constants) the Fourier transform $\mathcal{F}[S](\xi)$. 
 \begin{theorem}[Diffraction/Fourier correspondence]
 Convolution of aperture functions in the object plane becomes multiplication of diffraction patterns on the screen. Two-slit-with-width patterns are the product of the single-slit envelope and the two-slit fringe. Structure on scale $a$ in the aperture produces angular structure on scale $\lambda/a$ on the screen --- the aperture-side and screen-side widths are reciprocal, in exact analogy with the position--momentum uncertainty relation.
 \end{theorem}
-
-\subsection{Complementary Apertures}
 
 A striking corollary follows from the linearity of the Fourier transform. If $S(y')$ describes an aperture, its complement is $1 - S(y')$ (a solid barrier with a stopper where the aperture had transmission). Since the Fourier transform of $1$ is $\delta(\xi)$, the complementary field is
 \begin{equation}
@@ -383,6 +363,32 @@ Two wavelengths $\lambda$ and $\lambda + \Delta\lambda$ are just resolved at ord
 \end{equation}
 More lines and higher order both improve resolution.
 \end{fact}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.85\textwidth, height=6cm,
+    trig format plots=rad,
+    xlabel={angular position}, ylabel={$I/I_0$},
+    domain=-2:4.2, samples=900,
+    xtick=\empty,
+    ytick={0,0.5,1}, ymin=0, ymax=1.15,
+    enlargelimits=false, clip=true,
+    axis lines=left,
+    legend style={draw=none, fill=none, at={(0.98,0.97)}, anchor=north east, font=\small},
+]
+    \addplot[dashed, blue!70!black, thick] {(sin(3*x)/sin(x/2+0.0000001))^2/36};
+    \addlegendentry{$\lambda$}
+    \addplot[dashed, red!70!black, thick] {(sin(3*(x-1.0472))/sin((x-1.0472)/2+0.0000001))^2/36};
+    \addlegendentry{$\lambda+\Delta\lambda$}
+    \addplot[black, very thick] {(sin(3*x)/sin(x/2+0.0000001))^2/36 + (sin(3*(x-1.0472))/sin((x-1.0472)/2+0.0000001))^2/36};
+    \addlegendentry{combined}
+\end{axis}
+\end{tikzpicture}
+\caption{The Rayleigh criterion illustrated with two nearby principal maxima (dashed), each of the $N$-slit shape $[\sin(N\delta/2)/\sin(\delta/2)]^2$ ($N=6$ here), separated by exactly the resolution limit $\Delta\delta = 2\pi/N$ --- the principal maximum of one sits on the first minimum of the other. The combined intensity actually observed (solid) still shows a shallow dip between the two peaks: this is the threshold at which the two wavelengths (or two point sources, in the imaging version of the same criterion) are ``just resolved.'' Any closer and the dip disappears into a single unresolved peak.}
+\label{fig:rayleigh}
+\end{figure}
 
 The overall angular envelope $\sin^2\beta/\beta^2$ set by the individual slit width still modulates the intensities of the grating orders, so orders that fall near envelope zeros are dim or absent; this is why grating designs often shape the slit profile (blazing) to push power into a desired order.
 
