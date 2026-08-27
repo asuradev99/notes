@@ -72,21 +72,19 @@ The intensity is $\langle I \rangle \propto |E|^2$, and the leftover exponential
 \end{equation}
 \end{formula}
 
+\begin{fact}[Maxima and minima of the $N$-slit pattern]
+Every feature of this pattern comes directly from the zeros of its numerator and denominator. \emph{Principal maxima} sit at $\delta_{\max} = 2\pi n$ (equivalently $d\sin\theta = n\lambda$) --- independent of $N$ --- where numerator and denominator vanish together and L'H\^opital's rule gives $\langle I\rangle \to N^2 I_0$. Between two consecutive principal maxima the numerator alone produces $N-1$ \emph{minima}, at $\delta_{\min} = 2\pi n/N$; squeezed between those minima are $N-2$ much smaller \emph{secondary maxima} (which, being sandwiched between minima, can never coincide with one) that carry very little of the total power. For $N=2$ this collapses to the familiar two-slit case, with no minima or secondary maxima between principal maxima at all.
+\end{fact}
+
 \subsection{Sanity Checks and Structure}
 
-Before extracting general features, it is reassuring to check that this reduces to something familiar. Setting $N=2$ and using $\sin(\delta) = 2\sin(\delta/2)\cos(\delta/2)$ recovers the two-slit pattern:
+As a check, setting $N=2$ and using $\sin(\delta) = 2\sin(\delta/2)\cos(\delta/2)$ recovers the two-slit pattern:
 \begin{equation}
     \langle I \rangle = I_0\left[\frac{2\sin(\delta/2)\cos(\delta/2)}{\sin(\delta/2)}\right]^2 = 4 I_0 \cos^2(\delta/2),
 \end{equation}
 as expected.
 
-For $N>2$ the structure of the pattern is richer, but every feature comes directly from the zeros of the numerator and denominator.
-
-\begin{fact}[Structure of the $N$-slit pattern]
-For $N > 2$ the intensity exhibits \emph{principal maxima} at $\delta = 2\pi n$ (equivalently $d\sin\theta = n\lambda$), where the numerator and denominator vanish together so that L'H\^opital's rule gives $\langle I\rangle \to N^2 I_0$. Between two consecutive principal maxima the numerator produces $N-1$ minima (zeros not shared with the denominator), and squeezed between those minima are $N-2$ much smaller \emph{secondary maxima} that carry very little of the total power.
-\end{fact}
-
-Figure~\ref{fig:nslit-intensity} plots this pattern for $N=6$. The tall principal maxima are pinned to $\delta = 2\pi n$ and reach $N^2 I_0$, while the low ripples between them are the $N-2$ secondary maxima --- so faint that on the scale of the principal peaks they are barely visible.
+Figure~\ref{fig:nslit-intensity} plots the general pattern for $N=6$. The tall principal maxima are pinned to $\delta = 2\pi n$ and reach $N^2 I_0$, while the low ripples between them are the $N-2$ secondary maxima --- so faint that on the scale of the principal peaks they are barely visible.
 
 \begin{figure}[ht]
     \centering
@@ -115,10 +113,6 @@ The width of a principal maximum is set by the location of the first adjacent mi
     \Delta\delta = \frac{4\pi}{N} \propto \frac{1}{N}.
 \end{equation}
 So more slits gives sharper principal maxima while their \emph{locations} are unchanged. This narrowing-with-$N$ is exactly the Fourier-transform behavior of a longer aperture producing a narrower spot: more slits equals more light through equals a tighter spot on the screen.
-
-\begin{fact}[Two useful bookkeeping facts]
-The minima positions $\delta_{\min} = 2\pi n/N$ depend on $N$. The principal maxima positions $\delta_{\max} = 2\pi m$ do \emph{not} depend on $N$. Secondary (modulation) maxima cannot occur where minima occur.
-\end{fact}
 
 \begin{example}[Three-slit vs.\ two-slit pattern]
 Consider $N=3$ narrow slits with spacing $d$, illuminated by light of wavelength $\lambda$. The intensity is
@@ -184,7 +178,11 @@ the field amplitude is proportional to $\sin(\beta)/\beta = \operatorname{sinc}(
 \end{equation}
 \end{formula}
 
-The behavior of this function, plotted in Figure~\ref{fig:sinc}, is worth pausing on. Its zeros sit at $\beta = m\pi$, i.e.\ at $\sin\theta = m\lambda/a$ for nonzero integer $m$, and its central lobe has angular half-width $\lambda/a$ --- so the full central peak spans $2\lambda/a$ between the first zeros.
+\begin{fact}[Maxima and minima of the single-slit pattern]
+There is a single \emph{central maximum} at $\beta = 0$ ($\theta = 0$), where $\langle I\rangle = I_0$. \emph{Minima} (zeros) sit at $\beta = m\pi$ for nonzero integer $m$, i.e.\ $\sin\theta = m\lambda/a$; the central lobe therefore spans $2\lambda/a$ between the first two minima, twice the angular width of every other lobe. Between consecutive minima sit much weaker \emph{secondary maxima}, located only approximately midway at $\beta \approx (m+\tfrac{1}{2})\pi$, whose heights fall off rapidly as $1/\beta^2$.
+\end{fact}
+
+This behavior is plotted in Figure~\ref{fig:sinc}.
 
 \begin{figure}[ht]
     \centering
@@ -240,7 +238,11 @@ Real slits have both a separation $d$ and a nonzero width $a$. The aperture func
 \end{formula}
 where $\beta = \pi a \sin\theta/\lambda$ and the second factor equals $\cos^2(\delta/2)$ with $\delta = 2\pi d\sin\theta/\lambda$.
 
-The physical interpretation follows the two length scales in the aperture. Because $a \ll d$ in most experiments, the $\sin^2\beta/\beta^2$ envelope varies slowly with $\theta$ and encodes information about the slit \emph{width}, while the $\cos^2$ factor oscillates rapidly and encodes the slit \emph{spacing}. The peaks of the fast interference pattern are modulated by the slow single-slit envelope, as Figure~\ref{fig:combined} shows, and whenever a two-slit maximum happens to fall at a single-slit minimum, that particular fringe is extinguished --- a ``missing order.''
+The physical interpretation follows the two length scales in the aperture. Because $a \ll d$ in most experiments, the $\sin^2\beta/\beta^2$ envelope varies slowly with $\theta$ and encodes information about the slit \emph{width}, while the $\cos^2$ factor oscillates rapidly and encodes the slit \emph{spacing}. The peaks of the fast interference pattern are modulated by the slow single-slit envelope, as Figure~\ref{fig:combined} shows.
+
+\begin{fact}[Maxima and minima of the finite-width double-slit pattern]
+Candidate \emph{maxima} come from the fast interference factor, at $\sin\theta = n\lambda/d$, but each is scaled by the slow envelope $\sin^2\beta/\beta^2$ evaluated at that same angle. Whenever a candidate maximum coincides with an envelope \emph{minimum} $\sin\theta = m\lambda/a$, it is extinguished entirely --- a \emph{missing order}. The pattern's true \emph{minima} sit wherever either factor vanishes: at $\sin\theta = (n+\tfrac12)\lambda/d$ from the interference factor, or $\sin\theta = m\lambda/a$ from the envelope.
+\end{fact}
 
 \begin{figure}[ht]
     \centering
@@ -271,7 +273,7 @@ The generalization to $N$ finite-width slits is immediate, since the multi-slit 
 \begin{equation}
     I(\theta) = I_0 \left(\frac{\sin\beta}{\beta}\right)^2 \left[\frac{\sin(N\delta/2)}{\sin(\delta/2)}\right]^2,
 \end{equation}
-again a product of a single-slit envelope and a multi-slit interference factor.
+again a product of a single-slit envelope and a multi-slit interference factor. The maxima and minima follow the same rule as above with the $N$-slit factor in place of the two-slit one: principal maxima at $\sin\theta = n\lambda/d$ (unless nulled by an envelope zero, again a missing order), $N-1$ minima between each pair of them from the interference factor, and additional minima at every envelope zero $\sin\theta = m\lambda/a$.
 
 \begin{example}[A missing order]
 Consider $D = d/5$ slit width and the intensity pattern
@@ -325,7 +327,7 @@ A diffraction grating is just a multi-slit apparatus with $N$ very large. The pr
     d\sin\theta_n = n\lambda,
 \end{equation}
 \end{formula}
-so different wavelengths appear at different angles: the grating disperses light into a spectrum, as sketched in Figure~\ref{fig:grating-dispersion}. Because the width of each principal maximum scales as $1/N$, a grating with many rulings produces very sharp spectral lines and thus high wavelength resolution --- the reason gratings replaced prisms in serious spectroscopy.
+so different wavelengths appear at different angles: the grating disperses light into a spectrum, as sketched in Figure~\ref{fig:grating-dispersion}. The minima and secondary maxima between orders are exactly the $N-1$ minima and $N-2$ secondary maxima of the $N$-slit pattern derived earlier, just with $N$ now in the thousands: the secondary maxima are utterly negligible, and the principal maxima are correspondingly razor-sharp. Because the width of each principal maximum scales as $1/N$, a grating with many rulings produces very sharp spectral lines and thus high wavelength resolution --- the reason gratings replaced prisms in serious spectroscopy.
 
 \begin{figure}[ht]
     \centering
