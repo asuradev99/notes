@@ -376,12 +376,22 @@ so different wavelengths appear at different angles: the grating disperses light
 \end{figure}
 
 \begin{fact}[Rayleigh resolution criterion]
-Two wavelengths $\lambda$ and $\lambda + \Delta\lambda$ are just resolved at order $n$ when the principal maximum of one falls on the first minimum of the other. Since the principal maximum width in $\delta$ is $2\pi/N$, this gives the resolving power
 \begin{equation}
-    \frac{\lambda}{\Delta\lambda} = n N.
+    R \equiv \frac{\lambda}{\Delta\lambda} = nN.
 \end{equation}
-More lines and higher order both improve resolution.
 \end{fact}
+
+Two wavelengths $\lambda$ and $\lambda+\Delta\lambda$ are \emph{just resolved} at order $n$ when the principal maximum of one coincides with the first minimum of the other; more lines or a higher order both tighten the resolving power $R$.
+
+\begin{example}[Deriving the resolving power $R = nN$]
+The order-$n$ principal maximum of wavelength $\lambda$ sits at $d\sin\theta = n\lambda$. Its first minima sit a half-width away at $d\sin\theta = n\lambda \pm \lambda/N$, the $\delta = 2\pi/N$ half-width derived above translated into $d\sin\theta$ via $\delta = 2\pi d\sin\theta/\lambda$. The same order for a second wavelength $\lambda+\Delta\lambda$ sits at $d\sin\theta = n(\lambda+\Delta\lambda)$. Setting this exactly on the first minimum of the first pattern,
+\[
+    n(\lambda + \Delta\lambda) = n\lambda + \frac{\lambda}{N}
+    \quad\Longrightarrow\quad
+    n\,\Delta\lambda = \frac{\lambda}{N},
+\]
+which is exactly $R = \lambda/\Delta\lambda = nN$.
+\end{example}
 
 \begin{figure}[ht]
 \centering
