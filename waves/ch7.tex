@@ -72,9 +72,17 @@ The intensity is $\langle I \rangle \propto |E|^2$, and the leftover exponential
 \end{equation}
 \end{formula}
 
+Every feature of this pattern comes directly from the zeros of its numerator and denominator: numerator and denominator vanishing together gives a principal maximum (L'H\^opital's rule then gives its height $N^2I_0$), while a lone numerator zero gives a minimum.
+
 \begin{fact}[Maxima and minima of the $N$-slit pattern]
-Every feature of this pattern comes directly from the zeros of its numerator and denominator. \emph{Principal maxima} sit at $\delta_{\max} = 2\pi n$ (equivalently $d\sin\theta = n\lambda$) --- independent of $N$ --- where numerator and denominator vanish together and L'H\^opital's rule gives $\langle I\rangle \to N^2 I_0$. Between two consecutive principal maxima the numerator alone produces $N-1$ \emph{minima}, at $\delta_{\min} = 2\pi n/N$; squeezed between those minima are $N-2$ much smaller \emph{secondary maxima} (which, being sandwiched between minima, can never coincide with one) that carry very little of the total power. For $N=2$ this collapses to the familiar two-slit case, with no minima or secondary maxima between principal maxima at all.
+\begin{align}
+    \delta_{\max} &= 2\pi n \quad (d\sin\theta = n\lambda), & \langle I \rangle_{\max} &= N^2 I_0, \\
+    \delta_{\min} &= \frac{2\pi n}{N}. &&
+\end{align}
+Between consecutive principal maxima: $N-1$ minima and $N-2$ secondary maxima.
 \end{fact}
+
+These secondary maxima, sandwiched between minima, can never coincide with one, and carry very little of the total power. For $N=2$ the pattern collapses to the familiar two-slit case, with no minima or secondary maxima between principal maxima at all.
 
 \subsection{Sanity Checks and Structure}
 
@@ -179,10 +187,14 @@ the field amplitude is proportional to $\sin(\beta)/\beta = \operatorname{sinc}(
 \end{formula}
 
 \begin{fact}[Maxima and minima of the single-slit pattern]
-There is a single \emph{central maximum} at $\beta = 0$ ($\theta = 0$), where $\langle I\rangle = I_0$. \emph{Minima} (zeros) sit at $\beta = m\pi$ for nonzero integer $m$, i.e.\ $\sin\theta = m\lambda/a$; the central lobe therefore spans $2\lambda/a$ between the first two minima, twice the angular width of every other lobe. Between consecutive minima sit much weaker \emph{secondary maxima}, located only approximately midway at $\beta \approx (m+\tfrac{1}{2})\pi$, whose heights fall off rapidly as $1/\beta^2$.
+\begin{align}
+    \beta_{\max} &= 0 \quad (\theta=0), & \langle I\rangle_{\max} &= I_0, \\
+    \beta_{\min} &= m\pi \quad (m\ne 0) \quad (\sin\theta = m\lambda/a), \\
+    \beta_{\text{sec}} &\approx \left(m+\tfrac{1}{2}\right)\pi.
+\end{align}
 \end{fact}
 
-This behavior is plotted in Figure~\ref{fig:sinc}.
+The zeros of $\sin\beta$ give the minima directly; the central lobe spans $2\lambda/a$ between the first two, twice the angular width of every other lobe. The secondary maxima sit only approximately midway between consecutive minima (setting the derivative to zero gives $\tan\beta=\beta$, whose roots are close to but not exactly at half-integer multiples of $\pi$), and their heights fall off rapidly as $1/\beta^2$. This behavior is plotted in Figure~\ref{fig:sinc}.
 
 \begin{figure}[ht]
     \centering
@@ -241,8 +253,13 @@ where $\beta = \pi a \sin\theta/\lambda$ and the second factor equals $\cos^2(\d
 The physical interpretation follows the two length scales in the aperture. Because $a \ll d$ in most experiments, the $\sin^2\beta/\beta^2$ envelope varies slowly with $\theta$ and encodes information about the slit \emph{width}, while the $\cos^2$ factor oscillates rapidly and encodes the slit \emph{spacing}. The peaks of the fast interference pattern are modulated by the slow single-slit envelope, as Figure~\ref{fig:combined} shows.
 
 \begin{fact}[Maxima and minima of the finite-width double-slit pattern]
-Candidate \emph{maxima} come from the fast interference factor, at $\sin\theta = n\lambda/d$, but each is scaled by the slow envelope $\sin^2\beta/\beta^2$ evaluated at that same angle. Whenever a candidate maximum coincides with an envelope \emph{minimum} $\sin\theta = m\lambda/a$, it is extinguished entirely --- a \emph{missing order}. The pattern's true \emph{minima} sit wherever either factor vanishes: at $\sin\theta = (n+\tfrac12)\lambda/d$ from the interference factor, or $\sin\theta = m\lambda/a$ from the envelope.
+\begin{align}
+    \sin\theta_{\max} &= \frac{n\lambda}{d}, \\
+    \sin\theta_{\min} &= \frac{(n+\tfrac12)\lambda}{d} \quad \text{or} \quad \frac{m\lambda}{a}.
+\end{align}
 \end{fact}
+
+The interference factor sets the candidate maxima, but each is scaled by the envelope $\sin^2\beta/\beta^2$ evaluated at that same angle; whenever a candidate maximum coincides with an envelope minimum, it is extinguished entirely --- a \emph{missing order}. The pattern's true minima sit wherever either factor vanishes, hence the two cases above.
 
 \begin{figure}[ht]
     \centering
