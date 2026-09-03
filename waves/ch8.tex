@@ -3,7 +3,7 @@
 Every chapter so far has taken the wave nature of light seriously: interference, diffraction, polarization. Geometric optics is the opposite limit --- the $\lambda \to 0$ limit of the same theory --- in which light may be treated as travelling along \emph{rays}, the curves orthogonal to the wavefronts. Nothing new is postulated here. Every apparent peculiarity below (virtual images, signed distances, reversibility) is inherited from the wave theory already developed.
 
 % ============================================================
-\section{Domain of Validity and Terminology}
+\section{Domain of Validity, Terminology, and Sign Conventions}
 % ============================================================
 
 The single-slit result of Section~\ref{sec:single-slit} fixes exactly when ray language is safe. Light passing an aperture of size $a$ spreads by an angle $\sim\lambda/a$; only when every relevant dimension --- aperture, lens, mirror, object --- greatly exceeds $\lambda$ is that spreading negligible and the beam's edges sharp enough to call a ray. A lens $5\,$cm across passing visible light has $\lambda/a \sim 10^{-5}$, utterly negligible; the same light through a $10\,\mu$m pinhole spreads by several degrees, and ray optics fails outright.
@@ -16,6 +16,24 @@ The vocabulary is worth fixing before the derivations:
     \item \textbf{Paraxial} (Gaussian, first-order) \textbf{optics}: the approximation keeping only the leading order in ray height and angle. Departures from it are \textbf{aberrations}.
     \item \textbf{Real image}: rays physically converge there, so it can be caught on a screen. \textbf{Virtual image}: rays only appear to diverge from it.
 \end{itemize}
+
+Every distance appearing below is signed, and one rule fixes them all: \textbf{positive means on the side where the light actually is}. Worth fixing now, since every equation from the next section onward depends on it.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Quantity & Positive & Negative \\
+\midrule
+$s_o$ & object on incoming side & virtual object \\
+$s_i$ & image on outgoing side (real) & image on incoming side (virtual) \\
+$f$ (lens) & converging & diverging \\
+$f$ (mirror) & concave & convex \\
+$R$ & centre of curvature on outgoing side & otherwise \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A reliable anchor when memory fails: a biconvex lens in air must converge, so $f > 0$, which forces $R_1 > 0$ and $R_2 < 0$.
 
 % ============================================================
 \section{Foundational Principles}
@@ -289,26 +307,8 @@ so paraxially $f = R/2$, and the thin-lens equation $1/s_o + 1/s_i = 1/f$ applie
 The cure is to abandon the sphere. Each conic section images exactly one conjugate pair stigmatically: a \emph{paraboloid} for an object at infinity, since by the focus--directrix property every axis-parallel ray has the same OPL to the focus --- hence parabolic telescope primaries; an \emph{ellipsoid} between its two finite foci; a \emph{hyperboloid} for one real and one virtual focus. Spheres are exact for no pair at all, and survive only because they are enormously easier to grind.
 
 % ============================================================
-\section{Sign Conventions and Magnification}
+\section{Magnification}
 % ============================================================
-
-Every formula above is signed, and the convention is one rule: \textbf{positive means on the side where the light actually is}.
-
-\begin{center}
-\begin{tabular}{lll}
-\toprule
-Quantity & Positive & Negative \\
-\midrule
-$s_o$ & object on incoming side & virtual object \\
-$s_i$ & image on outgoing side (real) & image on incoming side (virtual) \\
-$f$ (lens) & converging & diverging \\
-$f$ (mirror) & concave & convex \\
-$R$ & centre of curvature on outgoing side & otherwise \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-A reliable anchor when memory fails: a biconvex lens in air must converge, so $f > 0$, which forces $R_1 > 0$ and $R_2 < 0$.
 
 Similar triangles on the ray through the lens centre --- undeviated, because a thin lens there is a parallel-faced slab of vanishing thickness --- give the transverse magnification:
 \begin{formula}[Transverse magnification]
@@ -319,106 +319,14 @@ Similar triangles on the ray through the lens centre --- undeviated, because a t
 Positive $m$ is upright, negative inverted, and for a compound system the magnifications simply multiply, $m_{\text{tot}} = \prod_k m_k$. Note that a real object imaged really ($s_o, s_i > 0$) forces $m < 0$: such an image is \emph{always} inverted, by geometry rather than by convention.
 
 % ============================================================
-\section{Ray Tracing and Compound Systems}
+\section{Compound Systems}
 % ============================================================
-
-Locating an image needs no algebra at all. Three rays leaving the object tip have known behaviour, drawn in Figure~\ref{fig:ray-trace}:
-\begin{enumerate}
-    \item a ray parallel to the axis refracts through the far focal point;
-    \item a ray through the near focal point emerges parallel to the axis;
-    \item a ray through the lens centre passes undeviated.
-\end{enumerate}
-Any two locate the image; the third is a check. For mirrors the analogues reflect rather than refract.
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[>=Stealth, scale=0.95]
-  \def\f{2}
-  \def\so{5}
-  \def\ho{1.5}
-  \pgfmathsetmacro{\si}{1/(1/\f-1/\so)}
-  \pgfmathsetmacro{\hi}{-\ho*\si/\so}
-  % axis and lens
-  \draw[dashed] (-6.2,0) -- (5.2,0);
-  \draw[thick,fill=blue!10] (0,0) ellipse (0.22 and 2.25);
-  % foci
-  \filldraw (-\f,0) circle (1.6pt) node[below] {\small$F$};
-  \filldraw (\f,0) circle (1.6pt) node[below right] {\small$F$};
-  % object and image: both stand on the optical axis (base at y=0)
-  \draw[very thick,Green,->] (-\so,0) -- (-\so,\ho);
-  \filldraw[Green] (-\so,0) circle (1.8pt);
-  \node[Green] at (-\so,{\ho+0.35}) {\small object};
-  \draw[very thick,RedOrange,->] (\si,0) -- (\si,\hi);
-  \filldraw[RedOrange] (\si,0) circle (1.8pt);
-  \node[RedOrange] at ({\si+1.1},{\hi+0.55}) {\small image};
-  % ray 1: parallel then through far focus
-  \draw[blue!70!black,thick,->] (-\so,\ho) -- (0,\ho);
-  \draw[blue!70!black,thick] (0,\ho) -- (\si,\hi);
-  \draw[blue!70!black,thick,->] (\si,\hi) -- ($(0,\ho)!1.22!(\si,\hi)$);
-  % ray 2: through near focus then parallel
-  \draw[red!75!black,thick,->] (-\so,\ho) -- (0,\hi);
-  \draw[red!75!black,thick,->] (0,\hi) -- (4.6,\hi);
-  % ray 3: through centre
-  \draw[green!45!black,thick,->] (-\so,\ho) -- (\si,\hi);
-  \draw[green!45!black,thick,->] (\si,\hi) -- ($(-\so,\ho)!1.18!(\si,\hi)$);
-  % distance markers
-  \draw[<->] (-\so,-2.85) -- (0,-2.85) node[midway,fill=white,inner sep=1pt] {\small$s_o$};
-  \draw[<->] (0,-2.85) -- (\si,-2.85) node[midway,fill=white,inner sep=1pt] {\small$s_i$};
-\end{tikzpicture}
-\caption{Ray tracing through a thin converging lens. The parallel ray (blue) refracts through the far focus, the focal ray (red) emerges parallel, and the central ray (green) passes undeviated. All three meet at the image tip, which here is real and inverted, as $s_o > f$ requires.}
-\label{fig:ray-trace}
-\end{figure}
-
-When the object sits \emph{inside} the focal length the same three rays no longer converge on the outgoing side: they diverge, and only their backward extensions meet. That intersection is a virtual image --- upright, magnified, on the same side as the object --- which is exactly how a magnifying glass works, and is drawn in Figure~\ref{fig:virtual-image}.
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[>=Stealth, scale=0.95]
-  \def\f{3}
-  \def\so{1.8}
-  \def\ho{1.0}
-  \pgfmathsetmacro{\si}{1/(1/\f-1/\so)}   % negative: virtual
-  \pgfmathsetmacro{\hi}{-\ho*\si/\so}
-  \draw[dashed] (-6.6,0) -- (4.6,0);
-  \draw[thick,fill=blue!10] (0,0) ellipse (0.22 and 2.5);
-  \filldraw (-\f,0) circle (1.6pt) node[below] {\small$F$};
-  \filldraw (\f,0) circle (1.6pt) node[below] {\small$F$};
-  % object and virtual image: both stand on the optical axis (base at y=0)
-  \draw[very thick,Green,->] (-\so,0) -- (-\so,\ho);
-  \filldraw[Green] (-\so,0) circle (1.8pt);
-  \node[Green,left] at ({-\so-0.12},{\ho*0.55}) {\small object};
-  \draw[very thick,RedOrange,->] (\si,0) -- (\si,\hi);
-  \filldraw[RedOrange] (\si,0) circle (1.8pt);
-  \node[RedOrange] at (\si,{\hi+0.35}) {\small virtual image};
-  % parallel ray -> through far focus
-  \draw[blue!70!black,thick,->] (-\so,\ho) -- (0,\ho);
-  \draw[blue!70!black,thick,->] (0,\ho) -- (4.4,{\ho-\ho*4.4/\f});
-  \draw[blue!70!black,thick,dotted] (0,\ho) -- (\si,\hi);
-  % central ray
-  \draw[green!45!black,thick,->] (-\so,\ho) -- (3.6,{-\ho*3.6/\so});
-  \draw[green!45!black,thick,dotted] (0,0) -- (\si,\hi);
-  \node[align=center,gray] at (-4.3,-1.6)
-    {\small dotted: backward extensions,\\ \small meeting at the virtual image};
-\end{tikzpicture}
-\caption{Object inside the focal length ($s_o < f$). The refracted rays diverge, so no real image forms; their backward extensions (dotted) meet at an upright, magnified virtual image on the object's own side, with $s_i < 0$ and $m > 1$ --- the magnifying glass.}
-\label{fig:virtual-image}
-\end{figure}
 
 Compound systems need no new machinery: apply the single-element equation in sequence, letting the image of element $k$ be the object of element $k+1$. With a separation $L$ between them,
 \begin{equation}
     s_{o,k+1} = L - s_{i,k}.
 \end{equation}
 A negative result here is a \textbf{virtual object} --- converging rays intercepted by the next element before they ever formed an image --- and the sign convention handles it without modification.
-
-% ============================================================
-\section{Dispersion and Chromatic Effects}
-% ============================================================
-
-Section~\ref{sec:dispersion} derived why $n$ depends on frequency at all, tracing it to driven bound electrons and the Sellmeier form $n^2(\omega)$. In the visible, between resonances, $n$ rises gently with $\omega$: blue light refracts more strongly than red. Everything in this chapter that involves refraction therefore acquires a colour dependence.
-
-Three consequences matter. A prism separates white light into a spectrum with violet deviated most. The primary rainbow, formed by one internal reflection inside a spherical droplet, sits at about $42^\circ$ from the antisolar point with red on the outside. And any lens has a focal length that varies with colour --- \textbf{chromatic aberration} --- since the lensmaker's equation carries $n$ explicitly and $f \propto 1/(n-1)$.
-
-Mirrors escape this entirely: the law of reflection contains no index at all, so $f = R/2$ holds for every wavelength equally. That immunity, together with the freedom to make a paraboloid stigmatic on axis, is why every large telescope is built around a mirror rather than a lens.
 
 % ============================================================
 \section{Summary}
