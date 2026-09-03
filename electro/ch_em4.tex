@@ -52,6 +52,40 @@ Inside the material of a conductor $\vect{E} = 0$, and likewise $\rho = 0$ there
 
 \begin{example}[Spherically Symmetric Field --- Neutral Conducting Spherical Shell]
 Consider a neutral conducting spherical shell enclosing a point charge $q$. A Gaussian surface drawn inside the shell material encloses zero flux, so zero net charge; since the enclosed charge $q$ is already there, the inner surface must carry $-q$. The outer surface then carries $+q$ to keep the conductor neutral overall. The external field is purely radial, identical to that of a point charge $+q$ at the center --- even if $q$ is off-center inside.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Shell material (annulus)
+  \fill[gray!25, even odd rule] (0,0) circle (2.4) (0,0) circle (1.6);
+  \draw[thick] (0,0) circle (2.4);
+  \draw[thick] (0,0) circle (1.6);
+  % Point charge inside the cavity, deliberately off-centre
+  \filldraw[red] (-0.55,0.35) circle (2.5pt);
+  \node[red, font=\small, right] at (-0.42,0.38) {$q$};
+  % Induced charge: -q on the inner surface, +q on the outer surface
+  \foreach \a in {0,40,...,320} {\node[red, font=\small] at (\a:1.78) {$-$};}
+  \foreach \a in {0,30,...,330} {\node[blue!70!black, font=\small] at (\a:2.24) {$+$};}
+  % Gaussian surface drawn wholly inside the metal
+  \draw[dashed, black!60] (0,0) circle (2.02);
+  % External field: purely radial
+  \foreach \a in {45,90,135,180,225,270,315} {
+    \draw[-{Stealth[length=4pt]}, thick, orange!80!black] (\a:2.55) -- (\a:3.3);
+  }
+  % Labels
+  \draw[->, gray] (3.6,2.3) -- (34:2.4);
+  \node[font=\small, right] at (3.55,2.35) {outer surface: $+q$};
+  \draw[->, gray] (3.6,-2.3) -- (-38:1.6);
+  \node[font=\small, right] at (3.55,-2.35) {inner surface: $-q$};
+  \draw[->, gray] (-3.9,-2.3) -- (-1.55,-1.35);
+  \node[font=\small, left] at (-3.85,-2.35) {Gaussian surface};
+  \draw[->, gray] (-3.9,1.9) -- (-2.02,1.0);
+  \node[font=\small, left] at (-3.85,1.95) {metal: $\vect{E}=0$};
+  \node[font=\small, orange!80!black] at (0,-3.95) {outside: $\vect{E}$ radial, as for $+q$ at the center};
+\end{tikzpicture}
+\end{center}
+\caption{Point charge $q$ inside a neutral conducting shell: the inner surface carries $-q$, the outer surface $+q$, and the outside field is that of $+q$ at the center.}
+\end{figure}
 \end{example}
 
 \section{General Electrostatic Problem \& Uniqueness Theorem}
@@ -206,6 +240,39 @@ Consider two concentric conductors. By Gauss's law, $Q_\text{outer}^\text{inner}
 \[
     C = \frac{Q_1}{\phi_1 - \phi_2}
 \]
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Outer conductor (annulus), at potential phi_2
+  \fill[gray!25, even odd rule] (0,0) circle (2.8) (0,0) circle (2.1);
+  \draw[thick] (0,0) circle (2.8);
+  \draw[thick] (0,0) circle (2.1);
+  % Inner conductor, charge Q_1 at potential phi_1
+  \fill[gray!45] (0,0) circle (1.0);
+  \draw[thick] (0,0) circle (1.0);
+  \node[font=\small] at (0,0) {$Q_1,\ \phi_1$};
+  % Charge on the inner surface of the outer conductor: -Q_1
+  \foreach \a in {0,40,...,320} {\node[red, font=\small] at (\a:2.28) {$-$};}
+  % Charge on the inner conductor's surface
+  \foreach \a in {0,45,...,315} {\node[blue!70!black, font=\small] at (\a:1.15) {$+$};}
+  % Field in the gap, set by Q_1 alone
+  \foreach \a in {20,70,...,340} {
+    \draw[-{Stealth[length=4pt]}, thick, orange!80!black] (\a:1.35) -- (\a:1.95);
+  }
+  % Labels
+  \draw[->, gray] (4.3,1.9) -- (2.45,1.35);
+  \node[font=\small, right, align=left] at (4.25,1.95)
+    {outer conductor, $\phi_2$:\\ inner surface $-Q_1$};
+  \draw[->, gray] (4.3,-1.9) -- (1.55,-1.05);
+  \node[font=\small, right] at (4.25,-1.95) {gap field set by $Q_1$ only};
+  \draw[->, gray] (-4.3,-1.9) -- (-2.6,-1.15);
+  \node[font=\small, left] at (-4.25,-1.95) {$Q_2^{\text{outer}}$: no field inside};
+\end{tikzpicture}
+\end{center}
+\caption{Nested conductors: the outer conductor's inner surface carries $-Q_1$, so only $Q_1$ sets the field in the gap and hence $C = Q_1/(\phi_1-\phi_2)$.}
+\end{figure}
+
 \emph{Why does it not affect $Q_2$?} Because $Q_2^\text{outer}$ is irrelevant because (by superposition) a charge ring on the outer conductor doesn't produce any electric field inside.
 
 \textit{Ex: Capacitance of two spherical shells --- see page 146.}
@@ -416,6 +483,35 @@ A capacitor consists of two conductors with potentials $\phi_1$ and $\phi_2$, ch
 \begin{example}[Coaxial Cylindrical Capacitor]
 Inner radius $a$ (charge $+Q$), outer radius $b$ (charge $-Q$), length $L\to\infty$;
 linear charge density $\lambda = Q/L$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % Outer conductor at radius b, charge -Q
+  \draw[thick] (0,0) circle (2.2);
+  \foreach \a in {0,30,...,330} {\node[red, font=\small] at (\a:2.02) {$-$};}
+  % Inner conductor at radius a, charge +Q
+  \fill[gray!35] (0,0) circle (0.8);
+  \draw[thick] (0,0) circle (0.8);
+  \foreach \a in {0,45,...,315} {\node[blue!70!black, font=\small] at (\a:0.95) {$+$};}
+  % Gaussian cylinder of radius r
+  \draw[dashed, black!60] (0,0) circle (1.5);
+  % Radial field between the conductors
+  \foreach \a in {15,60,105,150,195,240,285,330} {
+    \draw[-{Stealth[length=4pt]}, thick, orange!80!black] (\a:1.05) -- (\a:1.9);
+  }
+  % Radii
+  \draw[->, gray] (0,0) -- (250:0.8) node[midway, left, font=\small]{$a$};
+  \draw[->, gray] (0,0) -- (290:2.2) node[pos=0.75, right, font=\small]{$b$};
+  \draw[->, gray] (0,0) -- (95:1.5) node[pos=0.7, left, font=\small]{$r$};
+  % Labels
+  \node[font=\small, blue!70!black, right] at (2.5,1.3) {inner: $+Q$, $\lambda = Q/L$};
+  \node[font=\small, red, right] at (2.5,-1.3) {outer: $-Q$};
+  \node[font=\small, black!60] at (0,-2.7) {Gaussian cylinder of radius $r$, length $L$};
+\end{tikzpicture}
+\end{center}
+\caption{Cross-section of the coaxial capacitor: inner radius $a$ carrying $\lambda = Q/L$, outer radius $b$ carrying $-\lambda$, with radial $\vect{E}$ in between.}
+\end{figure}
 
 By Gauss's law:
 \[

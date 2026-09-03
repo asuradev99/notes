@@ -221,7 +221,7 @@ Consider a uniformly charged hemisphere with surface charge density $\sigma$.
   % Symmetry axis
   \draw[-{Stealth[length=5pt]}, dashed, gray] (0,-1.3) -- (0,2.6) node[above, black]{$z$};
   % Radius of the hemisphere
-  \draw[<->, thin, gray] (0,0) -- (135:2) node[midway, above left, font=\small]{$R$};
+  \draw[<->, thin, gray] (0,0) -- (135:2) node[midway, fill=white, inner sep=1pt, font=\small]{$R$};
   % Ring element at radius r, polar angle theta
   \draw[dashed, blue!60!black] (0,0.964) ellipse (1.149 and 0.30);
   \draw[thin, gray] (0,0) -- (40:1.5) node[midway, below right, font=\small]{$r$};
@@ -257,6 +257,35 @@ Using spherical coordinates, the area element is $d\sigma = r^2\sin\theta\,d\the
 \begin{example}[Uniform Ring]
 A ring of charge $Q$ and radius $R$. Find the field at a point $P$ on the axis at distance $x$ from the center.
 
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+  % Ring of total charge Q, seen edge-on
+  \draw[thick, orange!70!black] (0,0) ellipse (0.55 and 1.4);
+  \node[orange!70!black, font=\small] at (-0.95,1.25) {$Q$};
+  % Axis and distance x
+  \draw[dashed, gray] (-1.2,0) -- (4.6,0);
+  \draw[<->, thin, gray] (0,-0.25) -- (3.4,-0.25) node[midway, below, font=\small]{$x$};
+  % Radius R
+  \draw[<->, thin, gray] (0,0) -- (0,1.4) node[midway, fill=white, inner sep=1pt, font=\small]{$R$};
+  % Charge element and its distance to P
+  \filldraw[orange!70!black] (0,1.4) circle (2pt) node[above, black, font=\small]{$dQ$};
+  \filldraw[orange!70!black] (0,-1.4) circle (2pt);
+  \draw[thin, gray] (0,1.4) -- (3.4,0) node[pos=0.45, fill=white, inner sep=1pt, font=\small]{$\sqrt{R^2+x^2}$};
+  \draw[thin, gray] (0,-1.4) -- (3.4,0);
+  % Field contributions at P
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (3.4,0) -- (4.42,-0.42)
+    node[below right, font=\small]{$d\vect{E}$};
+  \draw[-{Stealth[length=5pt]}, thin, red!40!black] (3.4,0) -- (4.42,0.42);
+  \draw[-{Stealth[length=6pt]}, thick, blue!70!black] (3.4,0) -- (4.5,0)
+    node[above right, font=\small]{$dE_x$};
+  \filldraw[black] (3.4,0) circle (1.6pt) node[above left, font=\small]{$P$};
+  \filldraw[black] (0,0) circle (1.6pt);
+\end{tikzpicture}
+\end{center}
+\caption{Ring of radius $R$ and total charge $Q$ viewed edge-on: diametrically opposite elements $dQ$ give fields at $P$ whose transverse parts cancel, leaving only $dE_x$ along the axis.}
+\end{figure}
+
 \[
     |d\vect{E}| = \frac{dQ}{4\pi\varepsilon_0}\cdot\frac{1}{R^2 + x^2}.
 \]
@@ -279,6 +308,36 @@ Integrating over the full ring ($\int dQ = Q$):
 Surface charge density $\sigma = Q/(\pi R^2)$.
 
 Build the disk from rings of radius $r$ and width $dr$: $dQ = \sigma \cdot 2\pi r\,dr$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+  % Disk of radius R, surface density sigma, seen at an angle
+  \filldraw[orange!15, draw=orange!70!black, thick] (0,0) ellipse (0.7 and 1.6);
+  \node[orange!70!black, font=\small] at (0,1.95) {$\sigma$};
+  % Ring element of radius r and width dr
+  \draw[dashed, blue!60!black] (0,0) ellipse (0.44 and 1.0);
+  \draw[dashed, blue!60!black] (0,0) ellipse (0.53 and 1.2);
+  \node[blue!60!black, font=\small, above right] at (0.35,1.15) {$dQ = \sigma\,2\pi r\,dr$};
+  \draw[<->, thin, gray] (-0.95,1.0) -- (-0.95,1.2);
+  \draw[thin, gray] (-0.55,1.0) -- (-0.9,1.0);
+  \draw[thin, gray] (-0.47,1.2) -- (-0.9,1.2);
+  \node[font=\small, left] at (-1.0,1.1) {$dr$};
+  % Axis, radii and field point
+  \draw[dashed, gray] (-1.6,0) -- (4.7,0);
+  \draw[<->, thin, gray] (0,0.05) -- (0,0.95)
+    node[midway, fill=white, inner sep=1pt, font=\small]{$r$};
+  \draw[<->, thin, gray] (0,-0.05) -- (0,-1.6)
+    node[midway, fill=white, inner sep=1pt, font=\small]{$R$};
+  \draw[<->, thin, gray] (0,-1.85) -- (3.6,-1.85) node[midway, below, font=\small]{$x$};
+  \draw[-{Stealth[length=6pt]}, thick, red!70!black] (3.6,0) -- (4.6,0)
+    node[above, font=\small]{$\vect{E} = E_x\,\ihat$};
+  \filldraw[black] (3.6,0) circle (1.6pt) node[above left, font=\small]{$P$};
+  \filldraw[black] (0,0) circle (1.6pt);
+\end{tikzpicture}
+\end{center}
+\caption{Disk of radius $R$ and surface density $\sigma$ built from concentric rings of radius $r$ and width $dr$; each ring contributes an axial field at the point $P$ a distance $x$ along the axis.}
+\end{figure}
 
 Using the ring result:
 \[
@@ -400,6 +459,32 @@ That leaves just three geometries symmetric enough to extract $E$ this way --- t
 
 \begin{example}[Point Charge Inside a Hollow Sphere]
 Find the charge on a point inside a hollow sphere with $\rho = Q/(\frac{4}{3}\pi R^3)$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.15]
+  % Uniformly charged sphere of radius R
+  \filldraw[orange!15, draw=orange!70!black, thick] (0,0) circle (2);
+  \node[orange!70!black, font=\small, left] at (200:2.15) {$\rho = \dfrac{Q}{\frac{4}{3}\pi R^3}$};
+  % Gaussian sphere of radius r_1 < R
+  \draw[dashed, thick, blue!60!black] (0,0) circle (1.15);
+  \draw[thin, blue!60!black] (100:1.15) -- (100:2.6);
+  \node[blue!60!black, font=\small, above] at (100:2.6) {Gaussian surface};
+  % Radial field on the Gaussian surface
+  \foreach \a in {0,60,120,180,240,300} {
+    \draw[-{Stealth[length=5pt]}, thick, red!70!black]
+      ({1.15*cos(\a)},{1.15*sin(\a)}) -- ({1.75*cos(\a)},{1.75*sin(\a)});
+  }
+  \node[red!70!black, font=\small] at (0:2.45) {$E_r$};
+  % Radii
+  \draw[<->, thin, gray] (0,0) -- (-40:1.15) node[midway, below left, font=\small]{$r_1$};
+  \draw[<->, thin, gray] (0,0) -- (-90:2) node[midway, fill=white, inner sep=1pt, font=\small]{$R$};
+  \node[font=\small] at (0,0.45) {$Q_\text{enc} = Q\dfrac{r_1^3}{R^3}$};
+  \filldraw[black] (0,0) circle (1.4pt);
+\end{tikzpicture}
+\end{center}
+\caption{Gaussian sphere of radius $r_1 < R$ inside a uniformly charged sphere: only the charge $Q r_1^3/R^3$ within it contributes, so $E_r$ grows linearly with $r_1$.}
+\end{figure}
 
 By Gauss's Law, for a Gaussian sphere of radius $r_1$:
 \[
@@ -792,6 +877,29 @@ For integrals of the form $\dfrac{1}{(x^2+a^2)^n}$, use $x = a\tan(u)$:
 
 \begin{example}[Hole in a Plane]
 An infinite plane with a hole of radius $R$. Find the field at a point $z$ above the hole.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+  % Charged plane, seen edge-on, with a circular hole of radius R
+  \fill[orange!20] (-3.4,-0.09) rectangle (-1.3,0.09);
+  \fill[orange!20] (1.3,-0.09) rectangle (3.4,0.09);
+  \draw[thick, orange!70!black] (-3.4,0) -- (-1.3,0);
+  \draw[thick, orange!70!black] (1.3,0) -- (3.4,0) node[right]{$\sigma$};
+  % Rim of the hole
+  \draw[dashed, blue!60!black, thick] (0,0) ellipse (1.3 and 0.34);
+  \draw[<->, thin, gray] (0,-0.55) -- (1.3,-0.55) node[midway, below, font=\small]{$R$};
+  % Field point a height z above the centre of the hole
+  \draw[dashed, gray] (0,0) -- (0,2.1);
+  \node[font=\small, left] at (-0.1,1.1) {$z$};
+  \draw[-{Stealth[length=6pt]}, thick, red!70!black] (0,2.1) -- (0,3.0)
+    node[right, font=\small]{$\vect{E}_\text{hole}$};
+  \filldraw[black] (0,2.1) circle (1.6pt) node[right, font=\small]{$P$};
+  \filldraw[black] (0,0) circle (1.4pt);
+\end{tikzpicture}
+\end{center}
+\caption{Infinite sheet of charge density $\sigma$ with a hole of radius $R$; the axial field at the point $P$, a height $z$ above the centre, is the full sheet's field minus that of a disk of radius $R$.}
+\end{figure}
 
 \textbf{Strategy:} Find the field due to the entire plane, then subtract the field from the disk of radius $R$.
 

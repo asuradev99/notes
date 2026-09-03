@@ -249,6 +249,38 @@ Consider a rod in $F'$ parallel to the $x'$ axis, going from $x'_A$ to $x'_B$, s
 \[
   x_B - x_A = \frac{1}{\gamma}(x'_B - x'_A).
 \]
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+  % ---- Frame F': rod at rest ----
+  \draw[->] (0,2.6) -- (6.6,2.6) node[right, font=\small]{$x'$};
+  \node[font=\small, left] at (0,3.15) {$F'$};
+  \draw[line width=3pt, blue!60!black] (1.2,3.1) -- (4.8,3.1);
+  \draw[dashed, gray] (1.2,2.6) -- (1.2,3.35);
+  \draw[dashed, gray] (4.8,2.6) -- (4.8,3.35);
+  \node[font=\small, below] at (1.2,2.55) {$x'_A$};
+  \node[font=\small, below] at (4.8,2.55) {$x'_B$};
+  \draw[<->, gray] (1.2,3.6) -- (4.8,3.6)
+    node[midway, above, font=\small]{$x'_B - x'_A$ (rest length)};
+  % ---- Frame F: rod moving with speed v ----
+  \draw[->] (0,0) -- (6.6,0) node[right, font=\small]{$x$};
+  \node[font=\small, left] at (0,0.55) {$F$};
+  \draw[line width=3pt, blue!60!black] (1.8,0.5) -- (4.2,0.5);
+  \draw[dashed, gray] (1.8,0) -- (1.8,0.75);
+  \draw[dashed, gray] (4.2,0) -- (4.2,0.75);
+  \node[font=\small, below] at (1.8,-0.05) {$x_A$};
+  \node[font=\small, below] at (4.2,-0.05) {$x_B$};
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (3.0,1.15) -- (4.4,1.15)
+    node[right, font=\small]{$v$};
+  \draw[<->, gray] (1.8,-0.75) -- (4.2,-0.75)
+    node[midway, below, font=\small]{$x_B - x_A = \frac{1}{\gamma}(x'_B - x'_A)$};
+  \node[font=\small, gray] at (3.3,-1.7) {both ends located at the same instant: $t_B - t_A = 0$};
+\end{tikzpicture}
+\end{center}
+\caption{The rod has rest length $x'_B - x'_A$ in $F'$; in $F$ it moves at $v$ and its simultaneously-marked ends are $1/\gamma$ times as far apart.}
+\end{figure}
+
 The moving rod is thus shorter in $F$ by a factor of $1/\gamma$ — this is \textbf{Lorentz contraction}.
 \end{example}
 

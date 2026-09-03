@@ -172,6 +172,42 @@ This assumes the current density is uniform over the cross-section, $J$ is unifo
 \begin{example}[Bar made of different conductivity]
 $\sigma_1 > \sigma_2$.
 
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Two segments of the bar
+  \fill[blue!10] (0,0) rectangle (2.6,1.5);
+  \fill[blue!25] (2.6,0) rectangle (5.2,1.5);
+  \draw[thick] (0,0) rectangle (5.2,1.5);
+  \draw[thick] (2.6,0) -- (2.6,1.5);
+  \node[font=\small] at (1.3,1.85) {$\sigma_1$};
+  \node[font=\small] at (3.9,1.85) {$\sigma_2$};
+  % Current in and out
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (-1.2,0.75) -- (-0.05,0.75);
+  \node[font=\small, red!70!black, above] at (-0.6,0.8) {$I$};
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (5.25,0.75) -- (6.4,0.75);
+  \node[font=\small, red!70!black, above] at (5.85,0.8) {$I$};
+  % J is the same in both segments
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (0.4,1.15) -- (1.5,1.15);
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (3.0,1.15) -- (4.1,1.15);
+  \node[font=\small, red!70!black, above] at (1.9,1.1) {$\vect{J}$};
+  \node[font=\small, red!70!black, above] at (4.5,1.1) {$\vect{J}$};
+  % E is larger where sigma is smaller
+  \draw[-{Stealth[length=5pt]}, thick, orange!80!black] (0.4,0.45) -- (1.1,0.45);
+  \node[font=\small, orange!80!black, above] at (0.75,0.52) {$\vect{E}_1$};
+  \draw[-{Stealth[length=5pt]}, thick, orange!80!black] (3.0,0.45) -- (4.4,0.45);
+  \node[font=\small, orange!80!black, above] at (3.7,0.52) {$\vect{E}_2$};
+  % Surface charge at the interface
+  \foreach \y in {0.3,0.75,1.2} {\node[blue!70!black, font=\small] at (2.78,\y) {$+$};}
+  \draw[->, gray] (2.6,-1.3) -- (2.72,-0.05);
+  \node[font=\small] at (2.6,-1.55) {surface charge at the interface};
+  % Relation
+  \node[font=\small] at (2.6,2.4) {same $\vect{J}$ in both $\Rightarrow$ $\vect{E}_1 = \vect{E}_2\,\sigma_2/\sigma_1$};
+\end{tikzpicture}
+\end{center}
+\caption{Bar of two conductivities with $\sigma_1 > \sigma_2$: the same $\vect{J}$ flows through both, so the field is larger in the poorer conductor and surface charge sits at the interface.}
+\end{figure}
+
 Current density must be the same on both sides, so $\vect{E}$ must differ between the two regions: $\vect{E}_1 = \vect{E}_2\,\sigma_2/\sigma_1$.
 \end{example}
 
