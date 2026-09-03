@@ -102,12 +102,40 @@ A voltaic cell is a chemical source of EMF; the lead-sulfuric acid cell is a cla
 \subsection{Applying Kirchhoff's Rules}
 
 \begin{example}[Multi-loop network]
-Consider a circuit with EMFs $\mathcal{E}_1$, $\mathcal{E}_2$ and resistors $R$, $R_2$, $R_3$, and currents $I_1$, $I_2$, $I_3$. The equations from Kirchhoff's rules are:
+Consider a circuit with EMFs $\mathcal{E}_1$, $\mathcal{E}_2$ and resistors $R_1$, $R_2$, $R_3$, and currents $I_1$, $I_2$, $I_3$. The equations from Kirchhoff's rules are:
 \begin{align*}
     I_1 &= I_2 + I_3 \\
     \mathcal{E}_1 - I_1 R_1 - I_3 R_3 &= 0 \\
     I_3 R_3 - I_2 R_2 + \mathcal{E}_2 &= 0
 \end{align*}
+
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  % left branch: E_1 and R_1 carry I_1 into the top junction
+  \draw (0,0) -- (0,1.0);
+  \draw (0,2.0) to[battery1, l=$\mathcal{E}_1$] (0,1.0);
+  \node[left, font=\small] at (-0.05,1.65) {$+$};
+  \draw (0,2.0) -- (0,3) to[R, l^=$R_1$] (3,3);
+  % middle branch: R_3 carries I_3 down
+  \draw (3,3) to[R, l_=$R_3$] (3,0);
+  % right branch: R_2 then E_2 carry I_2 back down
+  \draw (3,3) to[R, l^=$R_2$] (6,3);
+  \draw (6,3) -- (6,2.0);
+  \draw (6,0) to[battery1, l=$\mathcal{E}_2$] (6,2.0);
+  \node[right, font=\small] at (6.05,0.85) {$+$};
+  % bottom rail
+  \draw (0,0) -- (6,0);
+  \filldraw (3,3) circle (2pt);
+  \filldraw (3,0) circle (2pt);
+  % branch currents
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (0.15,3.25) -- (0.7,3.25) node[above]{$I_1$};
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (3.15,3.25) -- (3.7,3.25) node[above]{$I_2$};
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (3.25,2.8) -- (3.25,2.35) node[right]{$I_3$};
+\end{circuitikz}
+\end{center}
+\caption{Multi-loop network: $I_1$ enters the top junction through $\mathcal{E}_1$ and $R_1$ and splits into $I_3$ (down $R_3$) and $I_2$ (through $R_2$ and $\mathcal{E}_2$).}
+\end{figure}
 \end{example}
 
 Using the more efficient loop-current method:
@@ -299,6 +327,24 @@ A circuit composed of a battery, resistor, and capacitor (with a spark gap) prod
 
 \begin{example}[Thevenin equivalent of voltage divider with capacitor]
 Consider a circuit with battery $V_B$, resistors $R_1$ and $R_2$, and a capacitor $C$. Remove the capacitor branch to find the Thevenin equivalent:
+
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,3) to[battery1, l=$V_B$] (0,0);
+  \node[left, font=\small] at (-0.05,1.65) {$+$};
+  \draw (0,3) -- (2,3) to[R, l_=$R_1$] (2,1.5) coordinate (M);
+  \draw (M) to[R, l_=$R_2$] (2,0);
+  \draw (M) -- (4,1.5) to[C, l=$C$] (4,0);
+  \draw (0,0) -- (4,0);
+  \filldraw (M) circle (2pt);
+  \filldraw (2,0) circle (2pt);
+  \node[left, font=\small] at (3.5,0.75) {$V_C$};
+\end{circuitikz}
+\end{center}
+\caption{Divider $R_1$--$R_2$ across $V_B$ with $C$ hung on the midpoint; pulling the $C$ branch off leaves a source $V_B R_2/(R_1+R_2)$ behind $R_\text{TH} = R_1R_2/(R_1+R_2)$.}
+\end{figure}
+
 \[
     V_\text{out} = V_\text{in}\!\left(\frac{R_2}{R_1+R_2}\right)
 \]
@@ -385,6 +431,27 @@ If current flows out of the $+$ plate:
 \begin{example}[Two capacitors in two loops]
 Initial conditions: $Q_1 = Q_0$, $Q_2 = 0$.
 
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,2) to[C, l={$C,\ Q_1$}] (0,0);
+  \node[left, font=\small] at (-0.05,1.15) {$+$};
+  \draw (0,2) to[R, l^=$R$] (3,2);
+  \draw (3,2) to[R, l^=$R$] (6,2);
+  \draw (6,2) to[C, l={$C,\ Q_2$}] (6,0);
+  \node[left, font=\small] at (5.95,1.15) {$+$};
+  % shared branch is a bare wire
+  \draw (3,2) -- (3,0);
+  \draw (0,0) -- (6,0);
+  \filldraw (3,2) circle (2pt);
+  \filldraw (3,0) circle (2pt);
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (0.75,2.25) -- (0.2,2.25) node[above]{$I_1$};
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (5.85,2.25) -- (5.3,2.25) node[above]{$I_2$};
+\end{circuitikz}
+\end{center}
+\caption{Two $RC$ loops joined only by a bare wire: $I_1$ flows into the $+$ plate of the $Q_1$ capacitor and $I_2$ out of the $+$ plate of the $Q_2$ one, so with no shared device the loops do not couple.}
+\end{figure}
+
 For the first loop:
 \[
     \begin{cases}
@@ -402,6 +469,24 @@ No coupling because there are no shared devices. You can collapse a straight lin
 \end{example}
 
 \begin{example}[Capacitor in parallel with resistor, battery circuit]
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,3) to[battery1, l=$\mathcal{E}$] (0,0);
+  \node[left, font=\small] at (-0.05,1.65) {$+$};
+  \draw (0,3) to[R, l^=$R$] (2,3);
+  \draw (2,3) to[R, l_=$R$] (2,0);
+  \draw (2,3) -- (4,3) to[C, l_=$C$] (4,0);
+  \draw (0,0) -- (4,0);
+  \filldraw (2,3) circle (2pt);
+  \filldraw (2,0) circle (2pt);
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (2.25,2.8) -- (2.25,2.4) node[right]{$I_R$};
+  \draw[-{Stealth[length=5pt]}, thick, red!70!black] (4.25,2.8) -- (4.25,2.4) node[right]{$I_C$};
+\end{circuitikz}
+\end{center}
+\caption{Series $R$ from $\mathcal{E}$ feeding $C$ in parallel with a second $R$: at $t=0$ the capacitor shorts that resistor, at $t\to\infty$ it is an open circuit.}
+\end{figure}
+
 At $t=0$, all current goes through the capacitor (it acts as a wire):
 \[
     I_C = \frac{\mathcal{E}}{R}, \qquad I_R = 0

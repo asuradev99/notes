@@ -103,6 +103,21 @@ Gain is always $\geq 1$. Input impedance is effectively infinite (connected to $
 \begin{example}[Voltage Follower]
 \textbf{Circuit:} $V_\text{in}$ to $V_+$; output connected directly to $V_-$ (unity feedback).
 
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,0) node[op amp] (opamp) {};
+  \coordinate (aux) at (0,1.8);
+  \draw (opamp.+) -- ++(-0.8,0) node[left]{$V_\text{in}$};
+  \draw (opamp.out) -- ++(0.6,0) coordinate (fb) -- ++(0.5,0) node[right]{$V_\text{out}$};
+  \draw (opamp.-) -- ++(-0.5,0) coordinate (m);
+  \draw (m) -- (m |- aux) -- (fb |- aux) -- (fb);
+  \filldraw (fb) circle (2pt);
+\end{circuitikz}
+\end{center}
+\caption{Voltage follower: the output is wired straight back to $V_-$, so $V_\text{out} = V_\text{in}$.}
+\end{figure}
+
 By Golden Rule 2: $V_- = V_+ = V_\text{in}$, and $V_\text{out} = V_-$, so:
 \begin{formula}[Voltage Follower]
 \[
@@ -121,18 +136,22 @@ By Golden Rule 2: $V_- = V_+ = V_\text{in}$, and $V_\text{out} = V_-$, so:
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}
-  \draw (0,0) node[op amp, yscale=-1] (opamp) {};
-  \draw (opamp.+) -- ++(-0.5,0) node[ground]{};
-  \draw (opamp.-) -- ++(-0.5,0) coordinate (sumnode);
-  \draw (sumnode) -- ++(0,0.8) -- ++(-0.7,0) to[R, l=$R_1$] ++(-1.6,0) node[left]{$V_1$};
-  \draw (sumnode) -- ++(-0.7,0) to[R, l=$R_2$] ++(-1.6,0) node[left]{$V_2$};
-  \draw (sumnode) -- ++(0,-0.8) -- ++(-0.7,0) to[R, l=$R_3$] ++(-1.6,0) node[left]{$V_3$};
-  \draw (sumnode) -- ++(0,2.0) coordinate (top);
-  \draw (top) to[R, l=$R_f$] ++(2.6,0) coordinate (top_right);
-  \draw (top_right) -- ++(0,-2.3);
-  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
-\end{tikzpicture}
+\begin{circuitikz}[american]
+  \draw (0,0) node[op amp] (opamp) {};
+  \coordinate (aux) at (0,2.2);
+  \draw (opamp.+) -- ++(-0.35,0) node[ground]{};
+  \draw (opamp.-) -- ++(-0.9,0) coordinate (s1);
+  \draw (s1) to[R, l=$R_1$] ++(-2.2,0) node[left]{$V_1$};
+  \draw (s1) -- ++(0,-1.2) coordinate (s2);
+  \draw (s2) to[R, l=$R_2$] ++(-2.2,0) node[left]{$V_2$};
+  \draw (s2) -- ++(0,-1.2) coordinate (s3);
+  \draw (s3) to[R, l=$R_3$] ++(-2.2,0) node[left]{$V_3$};
+  \draw (opamp.out) -- ++(0.6,0) coordinate (fb) -- ++(0.5,0) node[right]{$V_\text{out}$};
+  \draw (s1) -- (s1 |- aux) to[R, l=$R_f$] (fb |- aux) -- (fb);
+  \filldraw (s1) circle (2pt);
+  \filldraw (s2) circle (2pt);
+  \filldraw (fb) circle (2pt);
+\end{circuitikz}
 \end{center}
 \caption{Summing amplifier: each input has its own resistor summing at the virtual ground node.}
 \end{figure}
@@ -156,6 +175,26 @@ If all input resistors are equal ($R_1 = R_2 = R_3 = R$), this simplifies to $V_
 \begin{example}[Difference Amplifier]
 \textbf{Circuit:} $V_1$ to $V_-$ through $R_1$, $V_2$ to $V_+$ through $R_2$; feedback $R_f$ from output to $V_-$; $R_g$ from $V_+$ to ground.
 
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,0) node[op amp] (opamp) {};
+  \coordinate (aux) at (0,1.9);
+  \draw (opamp.-) -- ++(-0.5,0) coordinate (m);
+  \draw (m) to[R, l=$R_1$] ++(-2.0,0) node[left]{$V_1$};
+  \draw (opamp.+) -- ++(-0.5,0) coordinate (p);
+  \draw (p) to[R, l=$R_2$] ++(-2.0,0) node[left]{$V_2$};
+  \draw (p) to[R, l_=$R_g$] ++(0,-1.7) node[ground]{};
+  \draw (opamp.out) -- ++(0.6,0) coordinate (fb) -- ++(0.5,0) node[right]{$V_\text{out}$};
+  \draw (m) -- (m |- aux) to[R, l=$R_f$] (fb |- aux) -- (fb);
+  \filldraw (m) circle (2pt);
+  \filldraw (p) circle (2pt);
+  \filldraw (fb) circle (2pt);
+\end{circuitikz}
+\end{center}
+\caption{Difference amplifier: $V_1$ into $V_-$ through $R_1$ with feedback $R_f$, $V_2$ into $V_+$ through $R_2$ with $R_g$ to ground.}
+\end{figure}
+
 Using superposition and Golden Rule 2:
 \[
   V_+ = V_2 \cdot \frac{R_g}{R_2 + R_g}
@@ -178,16 +217,17 @@ This circuit amplifies the \emph{difference} between two signals while rejecting
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}
-  \draw (0,0) node[op amp, yscale=-1] (opamp) {};
-  \draw (opamp.+) -- ++(-0.5,0) node[ground]{};
-  \draw (opamp.-) -- ++(-0.5,0) coordinate (minnode);
-  \draw (minnode) -- ++(-0.5,0) to[R, l=$R$] ++(-1.6,0) node[left]{$V_\text{in}$};
-  \draw (minnode) -- ++(0,1.2) coordinate (top);
-  \draw (top) to[C, l=$C$] ++(2.6,0) coordinate (top_right);
-  \draw (top_right) -- ++(0,-1.2);
-  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
-\end{tikzpicture}
+\begin{circuitikz}[american]
+  \draw (0,0) node[op amp] (opamp) {};
+  \coordinate (aux) at (0,1.9);
+  \draw (opamp.+) -- ++(-0.6,0) node[ground]{};
+  \draw (opamp.-) -- ++(-0.9,0) coordinate (m);
+  \draw (m) to[R, l=$R$] ++(-2.2,0) node[left]{$V_\text{in}$};
+  \draw (opamp.out) -- ++(0.6,0) coordinate (fb) -- ++(0.5,0) node[right]{$V_\text{out}$};
+  \draw (m) -- (m |- aux) to[C, l=$C$] (fb |- aux) -- (fb);
+  \filldraw (m) circle (2pt);
+  \filldraw (fb) circle (2pt);
+\end{circuitikz}
 \end{center}
 \caption{Op-amp integrator: resistor at input, capacitor as feedback element.}
 \end{figure}
@@ -216,6 +256,23 @@ Since no current enters the op-amp, all of $I_\text{in}$ flows through $C$:
 \textbf{Circuit:} Capacitor $C$ at input (between $V_\text{in}$ and $V_-$); feedback resistor $R$ (from $V_\text{out}$ to $V_-$); $V_+$ grounded.
 
 This is the integrator circuit with $R$ and $C$ swapped.
+
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,0) node[op amp] (opamp) {};
+  \coordinate (aux) at (0,1.9);
+  \draw (opamp.+) -- ++(-0.6,0) node[ground]{};
+  \draw (opamp.-) -- ++(-0.9,0) coordinate (m);
+  \draw (m) to[C, l=$C$] ++(-2.2,0) node[left]{$V_\text{in}$};
+  \draw (opamp.out) -- ++(0.6,0) coordinate (fb) -- ++(0.5,0) node[right]{$V_\text{out}$};
+  \draw (m) -- (m |- aux) to[R, l=$R$] (fb |- aux) -- (fb);
+  \filldraw (m) circle (2pt);
+  \filldraw (fb) circle (2pt);
+\end{circuitikz}
+\end{center}
+\caption{Op-amp differentiator: capacitor at the input, resistor as the feedback element.}
+\end{figure}
 
 \textbf{Derivation:}
 
@@ -356,6 +413,21 @@ so the device acts as a linear amplifier. In \textbf{saturation}, $V_{BE} > 0.7\
 \begin{example}[Common-Emitter Amplifier (Small Signal)]
 The transistor is biased in the active region (DC bias sets $I_{C,Q}$). For small AC signals superimposed on the DC bias:
 
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \draw (0,0) node[npn] (Q) {};
+  \draw (Q.collector) -- ++(0,0.6) coordinate (cnode)
+        to[R, l=$R_C$] ++(0,1.4) -- ++(0,0.2) node[above]{$V_{CC}$};
+  \draw (Q.emitter) -- ++(0,-0.5) node[ground]{};
+  \draw (Q.base) -- ++(-1.4,0) node[left]{$v_\text{in}$};
+  \draw (cnode) -- ++(0.9,0) node[right]{$v_\text{out}$};
+  \filldraw (cnode) circle (2pt);
+\end{circuitikz}
+\end{center}
+\caption{Common-emitter stage: $R_C$ from $V_{CC}$ to the collector, emitter at ground, output at the collector (DC bias network not drawn).}
+\end{figure}
+
 The transconductance of the transistor is:
 \[
   g_m = \frac{I_{C,Q}}{V_T} \approx \frac{I_{C,Q}}{26\,\text{mV}}
@@ -450,6 +522,36 @@ The 555 timer IC is built around a \textbf{voltage divider} of three equal resis
 \begin{example}[555 in Monostable Mode]
 \textbf{Setup:} External resistor $R$ from $V_{CC}$ to pin 6/7 junction; capacitor $C$ from pin 6 to ground. A falling edge on pin 2 (trigger, $< V_{CC}/3$) starts the timing cycle.
 
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \node[draw, minimum width=2.8cm, minimum height=3.6cm, font=\bfseries] (IC) at (0,0) {555};
+  \node[right, font=\scriptsize] at (-1.4,1.2) {7 DIS};
+  \node[right, font=\scriptsize] at (-1.4,-0.3) {6 THR};
+  \node[right, font=\scriptsize] at (-1.4,-1.1) {2 TRIG};
+  \node[left, font=\scriptsize] at (1.4,0.6) {OUT 3};
+  \node[below right, font=\scriptsize] at (0.05,1.8) {8};
+  \node[above right, font=\scriptsize] at (0.05,-1.8) {1};
+  % supply rail and timing resistor
+  \draw (0,1.8) -- (0,2.8) node[above]{$V_{CC}$};
+  \draw (0,2.8) -- (-3.0,2.8);
+  \draw (-3.0,2.8) to[R, l_=$R$] (-3.0,1.2);
+  % pins 6 and 7 tied to the timing node, C to ground
+  \draw (-1.4,1.2) -- (-3.0,1.2);
+  \draw (-1.4,-0.3) -- (-3.0,-0.3);
+  \draw (-3.0,1.2) -- (-3.0,-0.3);
+  \draw (-3.0,-0.3) to[C, l_=$C$] (-3.0,-1.5) node[ground]{};
+  \filldraw (-3.0,1.2) circle (2pt);
+  \filldraw (-3.0,-0.3) circle (2pt);
+  % trigger in, output out, ground pin
+  \draw (-1.4,-1.1) -- (-2.2,-1.1) node[below, font=\small]{trigger};
+  \draw (1.4,0.6) -- (2.3,0.6) node[right]{$V_\text{out}$};
+  \draw (0,-1.8) -- (0,-2.3) node[ground]{};
+\end{circuitikz}
+\end{center}
+\caption{555 monostable: $R$ charges $C$ from $V_{CC}$ with pins 6 and 7 tied together, giving a pulse of width $T = 1.1RC$ after a falling edge on pin 2.}
+\end{figure}
+
 \textbf{Operation:} the trigger pulse first sends the output HIGH and turns the discharge transistor off, which frees $C$ to charge through $R$ toward $V_{CC}$. When $V_C$ reaches $2V_{CC}/3$ the upper comparator resets the latch, the output goes LOW, and the discharge transistor turns back on and rapidly dumps the charge on $C$, leaving the circuit ready for the next trigger.
 
 \begin{formula}[Monostable Pulse Width]
@@ -467,6 +569,36 @@ $T = 1.1 \times 10^5 \times 10^{-5} = 1.1\,\text{s}$.
 
 \begin{example}[555 in Astable Mode]
 \textbf{Setup:} Resistors $R_A$ (from $V_{CC}$ to pin 7) and $R_B$ (from pin 7 to pin 6/2 junction); capacitor $C$ from pin 6/2 to ground.
+
+\begin{figure}[H]
+\begin{center}
+\begin{circuitikz}[american]
+  \node[draw, minimum width=2.8cm, minimum height=3.6cm, font=\bfseries] (IC) at (0,0) {555};
+  \node[right, font=\scriptsize] at (-1.4,1.2) {7 DIS};
+  \node[right, font=\scriptsize] at (-1.4,-0.3) {6 THR};
+  \node[right, font=\scriptsize] at (-1.4,-1.1) {2 TRIG};
+  \node[left, font=\scriptsize] at (1.4,0.6) {OUT 3};
+  \node[below right, font=\scriptsize] at (0.05,1.8) {8};
+  \node[above right, font=\scriptsize] at (0.05,-1.8) {1};
+  % supply rail, R_A to pin 7, R_B from pin 7 down to pins 6/2
+  \draw (0,1.8) -- (0,2.8) node[above]{$V_{CC}$};
+  \draw (0,2.8) -- (-3.0,2.8);
+  \draw (-3.0,2.8) to[R, l_=$R_A$] (-3.0,1.2);
+  \draw (-3.0,1.2) to[R, l_=$R_B$] (-3.0,-0.3);
+  \draw (-1.4,1.2) -- (-3.0,1.2);
+  \draw (-1.4,-0.3) -- (-3.0,-0.3);
+  \draw (-1.4,-1.1) -- (-3.0,-1.1);
+  \draw (-3.0,-0.3) -- (-3.0,-1.1);
+  \draw (-3.0,-1.1) to[C, l_=$C$] (-3.0,-2.3) node[ground]{};
+  \filldraw (-3.0,1.2) circle (2pt);
+  \filldraw (-3.0,-0.3) circle (2pt);
+  \filldraw (-3.0,-1.1) circle (2pt);
+  \draw (1.4,0.6) -- (2.3,0.6) node[right]{$V_\text{out}$};
+  \draw (0,-1.8) -- (0,-2.3) node[ground]{};
+\end{circuitikz}
+\end{center}
+\caption{555 astable: $C$ charges through $R_A + R_B$ and discharges through $R_B$ into pin 7, cycling between $V_{CC}/3$ and $2V_{CC}/3$.}
+\end{figure}
 
 \textbf{Operation:} the capacitor cycles endlessly between the two comparator thresholds. It charges through $R_A + R_B$ from $V_{CC}/3$ up to $2V_{CC}/3$ with the output HIGH, then discharges through $R_B$ alone from $2V_{CC}/3$ back down to $V_{CC}/3$ with the output LOW.
 
