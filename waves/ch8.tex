@@ -142,7 +142,97 @@ Setting $R \to \infty$ flattens the surface into a plane interface and leaves $s
 \section{Thin Lenses}
 % ============================================================
 
-A lens is two spherical surfaces in series. Applying the paraxial single-surface equation to each in turn, with the image formed by the first serving as the object for the second, and then letting the thickness $t \to 0$, gives the two central results for a lens of index $n$ in air:
+A lens is two spherical surfaces in series, and nothing beyond the paraxial single-surface equation is needed to handle it. The construction is shown in Figure~\ref{fig:lensmaker}: a lens of index $n_l$ and thickness $d$, with vertices $V_1$ and $V_2$ and radii $R_1$ and $R_2$, sits in a surrounding medium $n_m$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.05]
+  \def\Ra{3.5}
+  % lens body: two arcs, centres at (3.05,0) and (-3.05,0)
+  \fill[blue!8]
+      plot[domain=153.71:206.29,samples=60] ({3.05+\Ra*cos(\x)},{\Ra*sin(\x)}) --
+      plot[domain=-26.29:26.29,samples=60] ({-3.05+\Ra*cos(\x)},{\Ra*sin(\x)}) -- cycle;
+  \draw[very thick] plot[domain=153.71:206.29,samples=60] ({3.05+\Ra*cos(\x)},{\Ra*sin(\x)});
+  \draw[very thick] plot[domain=-26.29:26.29,samples=60] ({-3.05+\Ra*cos(\x)},{\Ra*sin(\x)});
+  % axis
+  \draw[dashed] (-8.3,0) -- (7.1,0);
+  % key points
+  \coordinate (S)  at (-5,0);
+  \coordinate (Pp) at (-7.5,0);
+  \coordinate (P)  at (6,0);
+  \coordinate (A)  at (-0.289,1.05);
+  \coordinate (B)  at (0.262,1.13);
+  % ray: S -> A (in n_m), A -> B (in n_l), B -> P (in n_m)
+  \draw[very thick,blue!70!black,->] (S) -- ($(S)!0.75!(A)$);
+  \draw[very thick,blue!70!black] (S) -- (A);
+  \draw[very thick,Green] (A) -- (B);
+  \draw[very thick,red!75!black,->] (B) -- ($(B)!0.72!(P)$);
+  \draw[very thick,red!75!black] (B) -- (P);
+  % backward extension of the in-lens ray to the virtual intermediate image
+  \draw[thick,Green,dashed] (A) -- (Pp);
+  % labelled points
+  \foreach \p/\n/\pos in {S/$S$/below,Pp/$P'$/below,P/$P$/below}{
+      \filldraw (\p) circle (2pt); \node[\pos] at (\p) {\small\n};
+  }
+  \filldraw (-0.45,0) circle (1.6pt); \node[above left] at (-0.47,0.02) {\small$V_1$};
+  \filldraw (0.45,0) circle (1.6pt);  \node[above right] at (0.47,0.02) {\small$V_2$};
+  \filldraw (3.05,0) circle (1.6pt);  \node[below] at (3.05,-0.08) {\small$C_1$};
+  \filldraw (-3.05,0) circle (1.6pt); \node[below] at (-3.05,-0.08) {\small$C_2$};
+  % media
+  \node at (-4.3,1.9) {\small$n_m$};
+  \node at (3.9,1.9) {\small$n_m$};
+  \node at (0,-0.85) {\scriptsize$n_l$};
+  % distance brackets
+  \draw[<->] (-0.45,-2.05) -- (0.45,-2.05);
+  \node[below] at (0,-2.07) {\small$d$};
+  \draw[<->] (-5,-2.65) -- (-0.45,-2.65) node[midway,fill=white,inner sep=1pt] {\small$s_{o1}$};
+  \draw[<->] (0.45,-2.65) -- (6,-2.65) node[midway,fill=white,inner sep=1pt] {\small$s_{i2}$};
+  \draw[<->] (-7.5,-3.2) -- (-0.45,-3.2) node[midway,fill=white,inner sep=1pt] {\small$|s_{i1}|$};
+  \draw[<->] (-7.5,-3.75) -- (0.45,-3.75) node[midway,fill=white,inner sep=1pt] {\small$s_{o2}$};
+  % thin drop lines
+  \foreach \x in {-7.5,-5,-0.45,0.45,6}{\draw[gray!55,thin] (\x,0) -- (\x,-3.82);}
+\end{tikzpicture}
+\caption{The two-surface construction behind the lensmaker's equation. The first surface alone would image $S$ at $P'$; here the rays inside the glass are still diverging, so $P'$ is virtual and lies to the \emph{left}, giving $s_{i1} < 0$. Whether real or virtual, $P'$ is the object seen by the second surface, at distance $s_{o2} = d - s_{i1}$ from $V_2$.}
+\label{fig:lensmaker}
+\end{figure}
+
+\emph{First surface.} Light crosses from $n_m$ into $n_l$ over radius $R_1$, so the paraxial single-surface equation reads
+\begin{equation}
+    \frac{n_m}{s_{o1}} + \frac{n_l}{s_{i1}} = \frac{n_l - n_m}{R_1}.
+    \label{eq:lens-surf1}
+\end{equation}
+
+\emph{Handing off to the second surface.} The image $P'$ that the first surface would form is the object the second surface sees --- whether or not the light ever physically converges there. Measuring from $V_2$, a distance $d$ farther along the axis,
+\begin{equation}
+    s_{o2} = d - s_{i1}.
+\end{equation}
+This one relation carries the whole sign convention. In Figure~\ref{fig:lensmaker} the rays inside the glass still diverge, so $P'$ is virtual, $s_{i1} < 0$, and $s_{o2} = d + |s_{i1}| > 0$: a perfectly ordinary real object for the second surface. Had the first surface instead converged the light to a real image lying beyond $V_2$, then $s_{i1} > d$ would give $s_{o2} < 0$, correctly flagging a virtual object. No case analysis is needed --- the formula handles both.
+
+\emph{Second surface.} Light crosses back from $n_l$ into $n_m$ over radius $R_2$:
+\begin{equation}
+    \frac{n_l}{d - s_{i1}} + \frac{n_m}{s_{i2}} = \frac{n_m - n_l}{R_2}.
+    \label{eq:lens-surf2}
+\end{equation}
+
+\emph{Adding the two.} Summing \eqref{eq:lens-surf1} and \eqref{eq:lens-surf2}, the right-hand sides combine into a single factor of $(n_l - n_m)$, while the two terms carrying $s_{i1}$ --- the only trace of the intermediate image --- collapse over a common denominator:
+\begin{equation}
+    \frac{n_l}{s_{i1}} + \frac{n_l}{d - s_{i1}}
+    = n_l\,\frac{(d - s_{i1}) + s_{i1}}{s_{i1}(d - s_{i1})}
+    = \frac{n_l\, d}{s_{i1}(d - s_{i1})}.
+\end{equation}
+The intermediate image distance therefore survives only in a single term, and only multiplied by the thickness:
+\begin{equation}
+    \frac{n_m}{s_{o1}} + \frac{n_m}{s_{i2}} + \frac{n_l\, d}{s_{i1}(d - s_{i1})}
+    = (n_l - n_m)\left(\frac{1}{R_1} - \frac{1}{R_2}\right).
+    \label{eq:thick-lens}
+\end{equation}
+Nothing has been approximated beyond the paraxial assumption already built into each surface equation: \eqref{eq:thick-lens} is the exact thick-lens result.
+
+\emph{The thin-lens limit.} Letting $d \to 0$ kills the middle term outright, and with it every reference to $s_{i1}$ --- which is why a thin lens can be characterized without ever locating the intermediate image. Writing $s_o \equiv s_{o1}$ and $s_i \equiv s_{i2}$, both now measured from the single plane the lens has collapsed onto,
+\begin{equation}
+    \frac{1}{s_o} + \frac{1}{s_i} = \frac{n_l - n_m}{n_m}\left(\frac{1}{R_1} - \frac{1}{R_2}\right).
+\end{equation}
+The right-hand side involves only the lens and its surroundings, not the object, so it is a constant of the lens; setting $s_o \to \infty$ makes $s_i$ equal to that constant's reciprocal, which is precisely the definition of the focal length. Specializing to a lens of index $n$ in air ($n_m = 1$, $n_l = n$):
 \begin{formula}[Lensmaker's equation]
 \begin{equation}
     \frac{1}{f} = (n-1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right).
