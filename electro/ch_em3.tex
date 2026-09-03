@@ -104,9 +104,36 @@ For $\phi_\text{in}$:
   &= -\int_\infty^R \frac{\rho R^3}{3\varepsilon_0 r'^2}\,dr'
      - \int_R^r \frac{\rho r'}{3\varepsilon_0}\,dr' \\
   &= \frac{\rho R^3}{3\varepsilon_0 R} - \frac{\rho}{6\varepsilon_0}(r^2 - R^2)
-   = \frac{\rho R^2}{\varepsilon_0} \cdot \frac{1}{2\varepsilon_0} - \frac{\rho r^2}{6\varepsilon_0}
+   = \frac{\rho R^2}{3\varepsilon_0} + \frac{\rho R^2}{6\varepsilon_0} - \frac{\rho r^2}{6\varepsilon_0}
    = \frac{\rho R^2}{2\varepsilon_0} - \frac{\rho r^2}{6\varepsilon_0}
 \end{align*}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  % Axes (plot units: rho/eps_0 = 1 and R = 1; x scaled by 1.7, y by 5)
+  \draw[-{Stealth[length=5pt]}, gray] (0,0) -- (6.2,0) node[right, font=\small]{$r$};
+  \draw[-{Stealth[length=5pt]}, gray] (0,0) -- (0,3.75) node[above, font=\small]{$\phi(r)$};
+  % Inside: phi = rho(R^2/2 - r^2/6)/eps_0, a downward parabola
+  \draw[very thick, blue!70!black, domain=0:1, samples=50, smooth]
+    plot ({1.7*\x},{6.2*(0.5 - (\x)^2/6)});
+  % Outside: phi = rho R^3/(3 eps_0 r), the point-charge tail
+  \draw[very thick, orange!80!black, domain=1:3.5, samples=90, smooth]
+    plot ({1.7*\x},{6.2/(3*\x)});
+  % Match point at r = R
+  \draw[dashed, gray] (1.7,0) -- (1.7,2.067);
+  \draw[dashed, gray] (0,2.067) -- (1.7,2.067);
+  \node[below, font=\small] at (1.7,-0.05) {$R$};
+  \node[left, font=\small] at (-0.05,2.067) {$\dfrac{\rho R^2}{3\varepsilon_0}$};
+  \draw[dashed, gray] (0,3.1) -- (0.12,3.1);
+  \node[left, font=\small] at (-0.05,3.1) {$\dfrac{\rho R^2}{2\varepsilon_0}$};
+  % Branch labels
+  \node[blue!70!black, font=\small, right] at (1.9,3.15) {inside: parabolic in $r$};
+  \node[orange!80!black, font=\small, right] at (3.9,1.35) {outside: $\propto 1/r$};
+\end{tikzpicture}
+\end{center}
+\caption{Potential of a uniformly charged sphere. Inside it is the downward parabola $\rho(R^2/2 - r^2/6)/\varepsilon_0$; outside it is the point-charge tail $Q/4\pi\varepsilon_0 r$. The two meet at $r=R$ with matching value and slope, since $\phi$ and $E = -d\phi/dr$ are both continuous there.}
+\end{figure}
 \end{example}
 
 %───────────────────────────────────────────────────────────────────────────────
@@ -215,6 +242,31 @@ where $r$ is the distance from the point $(x',y',z')$ (which the potential is be
 
 \begin{example}[Potential difference for an infinite line charge (linear charge density $\lambda$)]
 The field is $E(r) = \dfrac{\lambda}{2\pi\varepsilon_0 r}$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  % Wire seen end-on
+  \filldraw[orange!80!black] (0,0) circle (2.5pt);
+  \node[orange!80!black, font=\small, below left] at (-0.05,-0.05) {$\lambda$};
+  % Two radii at which the potential is compared
+  \draw[dashed, blue!60!black] (0,0) circle (1.2);
+  \draw[dashed, blue!60!black] (0,0) circle (2.4);
+  % Radial field
+  \foreach \a in {0,45,...,315} {
+    \draw[-{Stealth[length=4pt]}, red!70!black] (\a:0.25) -- (\a:1.05);
+  }
+  \draw[<->, thin, gray] (0,0) -- (150:1.2)
+    node[midway, fill=white, inner sep=1pt, font=\small]{$r_1$};
+  \draw[<->, thin, gray] (0,0) -- (-115:2.4)
+    node[midway, fill=white, inner sep=1pt, font=\small]{$r_2$};
+  \filldraw[black] (0:1.2) circle (1.6pt) node[above right, font=\small]{$P_1$};
+  \filldraw[black] (-35:2.4) circle (1.6pt) node[above right, font=\small]{$P_2$};
+  \node[red!70!black, font=\small, right] at (1.9,1.9) {$E = \dfrac{\lambda}{2\pi\varepsilon_0 r}$};
+\end{tikzpicture}
+\end{center}
+\caption{Infinite line charge seen end-on: the field is radial with $E\propto 1/r$, so the work done between the radii $r_1$ and $r_2$ depends only on their ratio.}
+\end{figure}
 \begin{align*}
   \phi_{21}
   &= -\int_{P_1}^{P_2} \vect{E}\cdot d\vect{s}
@@ -772,6 +824,41 @@ Since $\curl\vect{E} = 0$, we can write $\vect{E} = -\grad\phi$.
 
 \begin{example}[Uniformly-Charged Ring]
 A ring of radius $R$ with linear charge density $\lambda$, lying in the $xy$-plane. A field point $P$ is at height $z$ on the axis. The distance from a ring element to $P$ is $|\vect{r}| = \sqrt{z^2 + R^2}$, and $dq = \lambda\,d\ell = \lambda R\,d\phi$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}
+  % Ring in the xy-plane, seen obliquely
+  \draw[very thick, orange!80!black] (0,0) ellipse (2 and 0.7);
+  \draw[dashed, gray] (0,-1.3) -- (0,3.5) node[above, font=\small]{$\hat{z}$};
+  \filldraw[black] (0,0) circle (1.3pt);
+  \node[font=\small, below left] at (-0.05,-0.1) {$O$};
+  % Ring element dq at phi = 55 degrees
+  \coordinate (Q) at (1.147,0.573);
+  \draw[thin, gray] (0,0) -- (Q);
+  \node[font=\small] at (0.75,0.15) {$R$};
+  \draw[very thick, blue!60!black] (55:2 and 0.7) arc (55:73:2 and 0.7);
+  \filldraw[blue!60!black] (Q) circle (1.4pt);
+  \node[blue!60!black, font=\small, above right] at (1.2,0.62)
+    {$dq = \lambda R\,d\phi$};
+  % Field point on the axis
+  \filldraw[black] (0,2.4) circle (1.7pt);
+  \node[font=\small, left] at (-0.12,2.45) {$P$};
+  \draw[dashed, gray] (Q) -- (0,2.4);
+  \node[font=\small, fill=white, inner sep=1pt, rotate=-58] at (0.72,1.42)
+    {$\sqrt{z^2+R^2}$};
+  % Height of P above the ring plane
+  \draw[<->, thin, gray] (-0.75,0) -- (-0.75,2.4)
+    node[midway, left, font=\small]{$z$};
+  \draw[dotted, gray] (-0.8,0) -- (0,0);
+  \draw[dotted, gray] (-0.8,2.4) -- (0,2.4);
+  % Axial field
+  \draw[-{Stealth[length=6pt]}, thick, red!70!black] (0,2.55) -- (0,3.25)
+    node[right, font=\small]{$\vect{E} = E_z\,\hat{z}$};
+\end{tikzpicture}
+\end{center}
+\caption{Uniformly charged ring of radius $R$ in the $xy$-plane. Every element $dq = \lambda R\,d\phi$ sits the same distance $\sqrt{z^2+R^2}$ from $P$, so the potential integral is trivial; the transverse field contributions cancel in pairs and only $E_z$ survives.}
+\end{figure}
 
 \textbf{1) Potential:}
 \begin{align*}
