@@ -5,11 +5,7 @@ Electromagnetism appears at all length scales.
 \section{Electrostatics}
 
 \begin{definition}[Electrostatics]
-The physics of \textbf{stationary charges}.
-\begin{itemize}
-    \item Every particle has an opposite antiparticle with opposite electric charge (e.g.\ electron/positron, proton, antiproton).
-    \item Charge is \underline{conserved} and \underline{quantized}.
-\end{itemize}
+The physics of \textbf{stationary charges}. Every particle has an antiparticle of opposite charge (electron/positron, proton/antiproton), and charge itself is both \underline{conserved} and \underline{quantized}.
 \end{definition}
 
 \subsection{Conservation of Charge}
@@ -18,21 +14,14 @@ The physics of \textbf{stationary charges}.
 If a system is \underline{isolated}, the total charge of that system \underline{does not change}; it is the algebraic sum of $+$ and $-$ charges.
 \end{theorem}
 
-\begin{itemize}
-    \item Photons can be in/out since they carry no charge.
-    \item Charged particles can be created or destroyed but always so as \underline{pairs} (e.g.\ $e^+e^-$ pair production).
-\end{itemize}
+Photons carry no charge and so may freely enter or leave the system. Charged particles can be created and destroyed, but only in \underline{pairs} --- $e^+e^-$ pair production being the standard example --- so the algebraic total never shifts.
 
 \textit{Nonconservation of charge would be quite incompatible with the structure of our present electromagnetic theory: the equations of electromagnetism require it, and any violation would break the internal consistency of the entire framework.}
 
 \subsection{Quantization of Charge}
 
 \begin{definition}[Quantization of Charge]
-$e$: smallest discrete unit of charge; in one electron ($e \approx 1.6 \times 10^{-19}$ C).
-\begin{itemize}
-    \item Protons have exactly the same magnitude of charge: $+e$.
-    \item We shall treat charged particles as point particles --- this is a good enough approximation given that the size of charge in a proton is $\sim 10^{-15}$ m, far smaller than relevant scales.
-\end{itemize}
+$e$: smallest discrete unit of charge; in one electron ($e \approx 1.6 \times 10^{-19}$ C). Protons carry exactly the same magnitude, $+e$. Throughout we treat charged particles as points, which is harmless because a proton's charge occupies only $\sim 10^{-15}$ m --- far below any scale of interest here.
 \end{definition}
 
 \section{Coulomb's Law}
@@ -47,12 +36,7 @@ By Newton's third law, $\vect{F}_1 = -\vect{F}_2$ (assumes both charges are poin
 
 \subsection{Units and the Constant $k$}
 
-\begin{itemize}
-    \item SI unit of charge is the \underline{Coulomb} (C).
-    \item Two like charges (each of 1 C) repel with a force of $\approx 8.99 \times 10^9\,\text{N}$ at $1\,\text{m}$ apart.
-    \item Thus $k \approx 8.988 \times 10^9\;\dfrac{\text{N}\cdot\text{m}^2}{\text{C}^2}$.
-    \item Elementarily, $e \approx 1.602 \times 10^{-19}\,\text{C}$ (1 Coulomb $= 6.242 \times 10^{18}$ electrons).
-\end{itemize}
+The SI unit of charge is the \underline{Coulomb} (C). Two like charges of $1\,$C held $1\,$m apart repel with a force of about $8.99\times 10^9\,$N, which is just to say that $k \approx 8.988 \times 10^9\;\text{N}\cdot\text{m}^2/\text{C}^2$. On that scale the elementary charge is minute, $e \approx 1.602 \times 10^{-19}\,$C, so a single Coulomb amounts to some $6.242 \times 10^{18}$ electrons.
 
 \paragraph{Gaussian System.} In Gaussian units, $k = 1$, so
 \[
@@ -71,19 +55,13 @@ so Coulomb's law becomes
 
 \subsection{Significance of Coulomb's Law: Additivity}
 
-Electric charge is \textbf{additive}.
-\begin{itemize}
-    \item Verifying this requires experimentally measuring charge.
-    \item Experiment idea: place charges $q_1$, $q_2$, $q_3$ in series; verify that $q_3 = q_1 + q_2$.
-    \item The force with which the charges interact is \emph{not} changed by the presence of a third charge.
-\end{itemize}
+Electric charge is \textbf{additive}, but establishing this requires actually measuring charge: place $q_1$, $q_2$, and $q_3$ in series and verify that $q_3 = q_1 + q_2$.
 
 \begin{theorem}[Superposition Principle]
-Combining two sets of sources into one system by placing the second system on top of the first system.
-\begin{itemize}
-    \item Forces add linearly; the whole is the sum of its parts.
-    \item $\displaystyle\vect{F}_a = \sum_{i=1}^{N} \vect{F}_i = \sum_{i=1}^{N} k\frac{q_i q_a}{r_{ia}^2}\,\hat{r}_{ia}$
-\end{itemize}
+Combining two sets of sources into one system by placing the second system on top of the first. Forces then add linearly --- the whole is the sum of its parts:
+\[
+    \vect{F}_a = \sum_{i=1}^{N} \vect{F}_i = \sum_{i=1}^{N} k\frac{q_i q_a}{r_{ia}^2}\,\hat{r}_{ia}.
+\]
 \end{theorem}
 
 \textit{Superposition is not a logical necessity — it must be verified experimentally. Crucially, the force between two charges is unaffected by the presence of a third charge; fields simply add.}
@@ -93,6 +71,32 @@ Place $q_1$ at the origin, $q_2$ at $(d,0)$, $q_3$ at $(0,d)$. The force on $q_1
 \[
     \vect{F}_{12} = -\frac{q_1 q_2}{4\pi\varepsilon_0 d^2}\,\ihat.
 \]
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+  % Axes
+  \draw[-{Stealth[length=5pt]}, gray] (-1.3,0) -- (2.1,0) node[right]{$x$};
+  \draw[-{Stealth[length=5pt]}, gray] (0,-1.3) -- (0,2.1) node[above]{$y$};
+  % Separations
+  \draw[<->, thin, gray] (0,-0.3) -- (1.5,-0.3) node[midway, below, font=\small]{$d$};
+  \draw[<->, thin, gray] (-0.3,0) -- (-0.3,1.5) node[midway, left, font=\small]{$d$};
+  % Charges
+  \filldraw[red!70!black] (0,0) circle (2.2pt) node[above right=1pt, black]{$q_1$};
+  \filldraw[red!70!black] (1.5,0) circle (2.2pt) node[above right=1pt, black]{$q_2$};
+  \filldraw[red!70!black] (0,1.5) circle (2.2pt) node[above right=1pt, black]{$q_3$};
+  % Forces on q1 (like charges: repulsion)
+  \draw[-{Stealth[length=6pt]}, thick, blue!70!black] (0,0) -- (-1.0,0)
+    node[above, font=\small]{$\vect{F}_{12}$};
+  \draw[-{Stealth[length=6pt]}, thick, blue!70!black] (0,0) -- (0,-1.0)
+    node[right, font=\small]{$\vect{F}_{13}$};
+  \draw[-{Stealth[length=6pt]}, thick, dashed, blue!40!black] (0,0) -- (-1.0,-1.0)
+    node[below left, font=\small]{$\vect{F}_{\text{tot},1}$};
+\end{tikzpicture}
+\end{center}
+\caption{Three like charges with $q_1$ at the origin, $q_2$ at $(d,0)$ and $q_3$ at $(0,d)$; the two forces on $q_1$ point along $-\ihat$ and $-\jhat$ and add to the dashed resultant.}
+\end{figure}
+
 By superposition, the total force on charge 1:
 \[
     \vect{F}_{\text{tot},1} = \vect{F}_{12} + \vect{F}_{13}
@@ -209,6 +213,32 @@ where $\hat{r}$ points \emph{from source} $(x',y',z')$ \emph{to test point} $(x,
 \begin{example}[Hemisphere]
 Consider a uniformly charged hemisphere with surface charge density $\sigma$.
 
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  % Hemisphere (cross-section), charge density rho
+  \filldraw[orange!15, draw=orange!70!black, thick] (2,0) arc (0:180:2) -- cycle;
+  % Symmetry axis
+  \draw[-{Stealth[length=5pt]}, dashed, gray] (0,-1.3) -- (0,2.6) node[above, black]{$z$};
+  % Radius of the hemisphere
+  \draw[<->, thin, gray] (0,0) -- (135:2) node[midway, above left, font=\small]{$R$};
+  % Ring element at radius r, polar angle theta
+  \draw[dashed, blue!60!black] (0,0.964) ellipse (1.149 and 0.30);
+  \draw[thin, gray] (0,0) -- (40:1.5) node[midway, below right, font=\small]{$r$};
+  \draw[gray] (0,0.7) arc (90:40:0.7);
+  \node[font=\small] at (0.28,0.82) {$\theta$};
+  \draw[very thick, blue!60!black] (40:1.5) -- (40:1.75);
+  \node[blue!60!black, font=\small, right] at (40:1.85) {$dq = \rho\,dV$};
+  \node[blue!60!black, font=\small, right] at (1.3,0.45) {$dr$};
+  % Net field at the centre O
+  \draw[-{Stealth[length=6pt]}, thick, red!70!black] (0,0) -- (0,-1.0)
+    node[right, font=\small]{$d\vect{E}$};
+  \filldraw[black] (0,0) circle (1.6pt) node[below left, font=\small]{$O$};
+\end{tikzpicture}
+\end{center}
+\caption{Cross-section of the hemisphere of radius $R$: each ring of radius $r$ at polar angle $\theta$ contributes $dq = \rho\,dV$, and only the axial component of its field survives at the centre $O$.}
+\end{figure}
+
 Using spherical coordinates, the area element is $d\sigma = r^2\sin\theta\,d\theta\,d\phi$, so $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$. Setting $dQ = \rho\,dV$, by symmetry the horizontal components of $\vect{E}$ cancel due to rotational symmetry, giving:
 \[
     dE_z = \frac{\rho(2\pi r^2 \sin\theta\,dr\,d\theta)\cos\theta}{4\pi\varepsilon_0\, r^2}.
@@ -291,10 +321,10 @@ Generalizing, the flux through a surface $S$ is:
 \]
 \end{definition}
 
-\begin{itemize}
-    \item Flux represents the magnitude.
-    \item For a closed surface: $\displaystyle\oint_S \vect{E}\cdot d\vect{A} = \frac{Q_\text{enc}}{\varepsilon_0}$.
-\end{itemize}
+Flux measures the magnitude of field passing through the surface, and for a closed surface it depends on nothing but the charge inside:
+\[
+    \oint_S \vect{E}\cdot d\vect{A} = \frac{Q_\text{enc}}{\varepsilon_0}.
+\]
 
 \subsection{Derivation of Gauss's Law from Coulomb's Law}
 
@@ -348,10 +378,7 @@ Superposition principle holds for flux:
     = \frac{1}{\varepsilon_0}\sum_i q_i
     = \frac{1}{\varepsilon_0}\int \rho\,dV.
 \]
-\begin{itemize}
-    \item Coulomb's Law: charges $\to$ electric field.
-    \item Gauss's Law: electric field $\to$ charges.
-\end{itemize}
+The two laws run in opposite directions: Coulomb's law takes charges to the field, Gauss's law takes the field back to the charges.
 \end{fact}
 
 \textit{In practice, Gauss's law yields $E$ directly only when the charge distribution has sufficient symmetry — spherical, cylindrical, or planar — so that $|\vect{E}|$ is constant over the chosen Gaussian surface.}
@@ -360,17 +387,14 @@ Superposition principle holds for flux:
 
 The catch: Gauss's Law is only $\Phi = E\cdot A$ when $|\vect{E}|$ is constant on the surface.
 
-\begin{itemize}
-    \item Case (1): Sphere with $\sigma = \text{const}$ (field inside is $\vect{E} = 0$, field is only radially outward). Works.
-    \item Case (2): A box (cube) $\Rightarrow$ $\vect{E}$ is only \emph{average} zero; it is not zero at every point. Does \emph{not} work in general.
-\end{itemize}
+A sphere of constant $\sigma$ obliges: the interior field vanishes and the exterior field is purely radial, so $|\vect{E}|$ really is constant over the surface. A cube does not, since there $\vect{E}$ is only \emph{on average} zero rather than zero at every point, and the flux integral no longer collapses to $E\cdot A$.
 
-Only three cases where Gauss's Law can be applied to extract $E$ simply:
-\begin{enumerate}
-    \item \textbf{Spherical charge:} $|\vect{E}_\text{sphere}| = \dfrac{Q}{4\pi\varepsilon_0 r^2}$.
-    \item \textbf{Infinite line charge:} $|\vect{E}| = \dfrac{\lambda}{2\pi\varepsilon_0 r}$.
-    \item \textbf{Infinite sheet:} $|\vect{E}_\text{sheet}| = \dfrac{\sigma}{2\varepsilon_0}$.
-\end{enumerate}
+That leaves just three geometries symmetric enough to extract $E$ this way --- the spherical charge, the infinite line, and the infinite sheet:
+\[
+    |\vect{E}_\text{sphere}| = \frac{Q}{4\pi\varepsilon_0 r^2}, \qquad
+    |\vect{E}_\text{line}| = \frac{\lambda}{2\pi\varepsilon_0 r}, \qquad
+    |\vect{E}_\text{sheet}| = \frac{\sigma}{2\varepsilon_0}.
+\]
 
 \subsection{Example: Gauss's Law on a Spherical Surface}
 
@@ -526,12 +550,7 @@ The Gaussian surface must have flux in the same direction as the given shape, an
 
 \section{Force on a Layer of Charge}
 
-\begin{itemize}
-    \item Surface charge density $\sigma$, inside a hollow sphere.
-    \item Inside the sphere the electric field is 0.
-    \item Outside the sphere the field is $\dfrac{Q}{4\pi\varepsilon_0 r^2}$.
-    \item So just outside the sphere, when $r = r_0$: $E_\text{outside} = \dfrac{\sigma}{\varepsilon_0}$ by Gauss's Law.
-\end{itemize}
+Take a hollow sphere carrying surface charge density $\sigma$. The field vanishes inside and is $Q/(4\pi\varepsilon_0 r^2)$ outside, so Gauss's law gives $E_\text{outside} = \sigma/\varepsilon_0$ immediately at the surface, $r = r_0$.
 
 \textbf{Q: What is the electrical force experienced by the charges that make up this distribution?}
 
@@ -750,17 +769,15 @@ Pre-determined shapes:
 \]
 \end{fact}
 
-\begin{itemize}
-    \item Force per unit area on a layer of charge:
-    \[
-        \frac{F}{A} = \frac{1}{2}(E_\text{inside} + E_\text{outside})\,\sigma.
-    \]
-    \item Energy density of an electric field is $\dfrac{\varepsilon_0 E^2}{2}$, so:
-    \[
-        U = \frac{\varepsilon_0}{2}\int E^2\,dV \quad\Longrightarrow\quad
-        \text{represents the total work required to assemble a system of charges.}
-    \]
-\end{itemize}
+The force per unit area on a layer of charge follows from averaging the field across it,
+\[
+    \frac{F}{A} = \frac{1}{2}(E_\text{inside} + E_\text{outside})\,\sigma,
+\]
+and since an electric field carries energy density $\varepsilon_0 E^2/2$, integrating that density
+\[
+    U = \frac{\varepsilon_0}{2}\int E^2\,dV
+\]
+gives the total work required to assemble the charge distribution in the first place.
 
 \subsection{Handy Trig Substitutions}
 

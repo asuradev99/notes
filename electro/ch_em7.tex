@@ -317,10 +317,7 @@ Now we can find the voltage across the capacitor:
 
 \subsection{Steps to Find Thevenin Equivalent}
 
-\begin{enumerate}
-    \item Assign $+/-$ to a capacitor at the beginning.
-    \item Ask: why does current split up? Nature is efficient and wants to minimize power consumption; $P = I^2 R$ gets minimized.
-\end{enumerate}
+Assign $+/-$ to a capacitor at the beginning. Then ask why the current splits up the way it does: nature is efficient and wants to minimize power consumption, so the split is whichever one minimizes $P = I^2 R$.
 
 % ============================================================
 
@@ -353,36 +350,15 @@ But shouldn't the components interact with each other? (Shouldn't $\vect{E}$ in 
 
 \subsection{Kirchhoff's Rules for Loops}
 
-Steps:
-\begin{enumerate}
-    \item Assign a direction to the current in the wire.
-    \item For each loop, the total potential drop is 0.
-    \item Solve the equations.
-\end{enumerate}
+The steps are to assign a direction to the current in each wire, impose that the total potential drop around each loop is 0, and solve the resulting equations.
 
-\textbf{Sign convention --- ``Circulation Direction'':}
-
-\begin{itemize}
-    \item Different from current flow direction.
-    \item For a battery traversed in the direction from $-$ to $+$: $\Delta\phi = +\mathcal{E}$.
-    \item For a battery traversed from $+$ to $-$: $\Delta\phi = -\mathcal{E}$.
-    \item For a resistor traversed in the direction of current: $\Delta\phi = -IR$.
-    \item For a resistor traversed opposite to current: $\Delta\phi = +IR$.
-\end{itemize}
+\textbf{Sign convention --- ``Circulation Direction'':} the circulation direction is chosen for each loop and is different from the current flow direction. Traversing a battery from $-$ to $+$ gives $\Delta\phi = +\mathcal{E}$, and traversing it from $+$ to $-$ gives $\Delta\phi = -\mathcal{E}$; traversing a resistor in the direction of the current gives $\Delta\phi = -IR$, and traversing it opposite to the current gives $\Delta\phi = +IR$.
 
 \subsection{Sign Rules for Capacitors and Resistors}
 
-\textbf{Capacitor} ($-Q$ plate on left, $+Q$ plate on right):
-\begin{itemize}
-    \item Going left to right (against the electric field): $\Delta\phi = +Q/C$.
-    \item Going right to left: $\Delta\phi = -Q/C$.
-\end{itemize}
+For a \textbf{capacitor} with the $-Q$ plate on the left and the $+Q$ plate on the right, going left to right --- against the electric field --- gives $\Delta\phi = +Q/C$, and going right to left gives $\Delta\phi = -Q/C$.
 
-\textbf{Resistor} with current $I$ flowing right:
-\begin{itemize}
-    \item Going right (circulation in same direction as current): $\Delta\phi = -IR$.
-    \item Going left (opposite to current): $\Delta\phi = +IR$.
-\end{itemize}
+For a \textbf{resistor} with current $I$ flowing right, circulating rightwards, in the same direction as the current, gives $\Delta\phi = -IR$, while circulating leftwards, opposite to the current, gives $\Delta\phi = +IR$.
 
 \subsection{Example 1: Three-Loop Circuit}
 

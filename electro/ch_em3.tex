@@ -38,24 +38,20 @@ Let $\vect{E}$ be some electric field and $P_1$, $P_2$ some points within it. Th
 \caption{Two different paths from $P_1$ to $P_2$ through an electric field. Because $\vect{E}$ is conservative ($\curl\vect{E}=0$), the line integral is path-independent.}
 \end{figure}
 
-\begin{itemize}
-  \item Since the electric field is \emph{conservative}, the line integral is path-independent for all paths that begin the same and end the same.
+Since the electric field is \emph{conservative}, the line integral is path-independent: any two paths that begin at the same point and end at the same point give the same value.
 
-  \begin{fact}[Corollary]
-    $\displaystyle\oint \vect{E} \cdot d\vect{s} = 0$ around any closed path.
-  \end{fact}
+\begin{fact}[Corollary]
+  $\displaystyle\oint \vect{E} \cdot d\vect{s} = 0$ around any closed path.
+\end{fact}
 
-  Physically, this means there is no closed path along which the field does continuous net work on a test charge --- equivalently, $\vect{E}$ never circulates.
-
-  \item The line integral is \emph{linear}: if $\vect{E} = \vect{E}_1 + \vect{E}_2 + \dots + \vect{E}_n$, then
-  \[
-    \int_{P_1}^{P_2} \vect{E} \cdot d\vect{s}
-    = \int_{P_1}^{P_2} \vect{E}_1 \cdot d\vect{s}
-    + \int_{P_1}^{P_2} \vect{E}_2 \cdot d\vect{s}
-    + \dots
-    + \int_{P_1}^{P_2} \vect{E}_n \cdot d\vect{s}
-  \]
-\end{itemize}
+Physically, this means there is no closed path along which the field does continuous net work on a test charge --- equivalently, $\vect{E}$ never circulates. The line integral is also \emph{linear}: if $\vect{E} = \vect{E}_1 + \vect{E}_2 + \dots + \vect{E}_n$, then
+\[
+  \int_{P_1}^{P_2} \vect{E} \cdot d\vect{s}
+  = \int_{P_1}^{P_2} \vect{E}_1 \cdot d\vect{s}
+  + \int_{P_1}^{P_2} \vect{E}_2 \cdot d\vect{s}
+  + \dots
+  + \int_{P_1}^{P_2} \vect{E}_n \cdot d\vect{s}
+\]
 
 %───────────────────────────────────────────────────────────────────────────────
 \section{Potential Difference and the Potential Function}
@@ -87,10 +83,7 @@ Fixing the reference point $P_1$ promotes $\phi$ to a scalar field $\phi(x,y,z)$
 \begin{example}[Potential of a uniformly charged sphere (radius $R$, volume charge density $\rho$)]
 Goal: find the potential for all values of $r$, both inside and outside the sphere.
 
-\begin{itemize}
-  \item Inside the sphere: $E(r) = \dfrac{\rho r}{3\varepsilon_0}$
-  \item Outside: $E(r) = \dfrac{\rho R^3}{3\varepsilon_0 r^2}$
-\end{itemize}
+Gauss's law gives the field in the two regions: inside the sphere $E(r) = \dfrac{\rho r}{3\varepsilon_0}$, and outside $E(r) = \dfrac{\rho R^3}{3\varepsilon_0 r^2}$.
 
 Thus,
 \[
@@ -364,26 +357,20 @@ The slope in polar coordinates is $\dfrac{1}{r}\dfrac{dr}{d\theta}$:
   = \frac{-\sin\theta}{2\cos\theta}
 \]
 
-\begin{itemize}
-  \item For $\theta = \pm\pi/2$, slope is $\to\infty$.
-\end{itemize}
+which blows up at $\theta = \pm\pi/2$, where the equipotential runs radially.
 
-We can also go from field lines to equipotential lines:
-\begin{itemize}
-  \item Slope of the tangent $= \dfrac{E_r}{E_\theta} = \dfrac{2\cos\theta}{\sin\theta}$. Why is this the tangent?
-  \item To find the equation for the field-line curves, set
-    \[
-      \frac{1}{r}\frac{dr}{d\theta} = \frac{2\cos\theta}{\sin\theta}
-      \implies \int\frac{dr}{r} = \int\frac{2\cos\theta}{\sin\theta}\,d\theta
-    \]
-    \[
-      \ln(r) = 2\ln(\sin\theta) + C
-    \]
-    \[
-      \implies r = r_0 \sin^2\theta
-    \]
-    where $r_0 = e^C$ is the radius at $\theta = \frac{\pi}{2}$.
-\end{itemize}
+We can also go the other way, from field lines to equipotential lines. The slope of the tangent to a field line is $\dfrac{E_r}{E_\theta} = \dfrac{2\cos\theta}{\sin\theta}$ (why is this the tangent?), so to find the equation for the field-line curves we set
+\[
+  \frac{1}{r}\frac{dr}{d\theta} = \frac{2\cos\theta}{\sin\theta}
+  \implies \int\frac{dr}{r} = \int\frac{2\cos\theta}{\sin\theta}\,d\theta
+\]
+\[
+  \ln(r) = 2\ln(\sin\theta) + C
+\]
+\[
+  \implies r = r_0 \sin^2\theta
+\]
+where $r_0 = e^C$ is the radius at $\theta = \frac{\pi}{2}$.
 
 $\to$ \textit{Do Exercise 2.63 for practice!}
 
@@ -397,20 +384,16 @@ For some arbitrary surface,
 \]
 where $\hat{n}$ is normal to the surface and $dA$ is the area of the surface element.
 
-Now imagine dividing the volume into $N$ pieces.
-\begin{itemize}
-  \item Both volumes share the surface $S_2$: any flux going out of $S_2$ on one side is the flux coming out into the other side, so the internal contributions cancel.
-\end{itemize}
-
-Thus,
+Now imagine dividing the volume into $N$ pieces. Adjacent pieces share a surface --- say two of them share $S_2$ --- and any flux going out of $S_2$ on one side is the flux coming into the other side, so all the internal contributions cancel. Thus,
 \[
   \sum_{i=1}^N \int_{S_i} \vect{F}\cdot d\vect{A}_i = \int_S \vect{F}\cdot d\vect{A} = \Phi
 \]
 
-\begin{itemize}
-  \item As $N\to\infty$ consider the ratio of $\displaystyle\int_{S_i}\vect{F}\cdot d\vect{A}$ and element size $\to 0$.
-  \item $\div \vect{F} \defeq \displaystyle\lim_{V_i\to 0} \frac{1}{V_i}\int_{S_i}\vect{F}\cdot d\vect{A}$: the flux out of $V_i$ per unit volume, as $V_i\to 0$.
-\end{itemize}
+As $N\to\infty$, consider the ratio of $\displaystyle\int_{S_i}\vect{F}\cdot d\vect{A}$ to the element size as that size $\to 0$. This limit defines the divergence,
+\[
+  \div \vect{F} \defeq \lim_{V_i\to 0} \frac{1}{V_i}\int_{S_i}\vect{F}\cdot d\vect{A}
+\]
+the flux out of $V_i$ per unit volume, as $V_i\to 0$.
 
 %───────────────────────────────────────────────────────────────────────────────
 \section{Gauss's Theorem and the Differential Form of Gauss's Law}
@@ -457,29 +440,26 @@ In differential form, $\div\vect{E} = \rho/\varepsilon_0$ is equivalent to Poiss
 
 Let $\vect{F}$ be a vector function of $x$, $y$, $z$ coordinates. 3 scalar functions: $F_x(x,y,z)$, $F_y(x,y,z)$, $F_z(x,y,z)$.
 
-\begin{itemize}
-  \item Net flux through the top and bottom faces (in the $z$-direction):
-    \[
-      F_{z,\text{top}} - F_{z,\text{bottom}}
-    \]
-    This can be approximated as $\left(\pdv{F_z}{\Delta z}\right)\Delta z$.
-  \item The average value of $F_z$ on the bottom surface of the box (it is constant on the rectangle):
-    \[
-      \Rightarrow F_{z,\text{bottom}} = F_z(x,y,z) + \frac{\Delta x}{2}\pdv{F_z}{x} + \frac{\Delta y}{2}\pdv{F_z}{y}
-    \]
-  \item For the top face, the story is similar:
-    \[
-      F_{z,\text{top}} = F_z(x,y,z+\Delta z) + \frac{\Delta x}{2}\pdv{F_z}{x} + \frac{\Delta y}{2}\pdv{F_z}{y} + \Delta z\pdv{F_z}{\Delta z}
-    \]
-  \item Thus the net flux out of the box in the $z$-direction is:
-    \begin{align*}
-      \overrightarrow{\Phi}_z
-      &= \Delta x\Delta y\left[F_z(x,y,z+\Delta z) + \frac{\Delta x}{2}\pdv{F_z}{x}
-         + \frac{\Delta y}{2}\pdv{F_z}{y} + \Delta z\pdv{F_z}{z}\right] \\
-      &\quad - \Delta x\Delta y\left[F_z(x,y,z) + \dots\right] \\
-      &= \Delta x\Delta y\,\Delta z\left(\pdv{F_z}{z}\right)
-    \end{align*}
-\end{itemize}
+Take a small box and work face by face. The net flux through the top and bottom faces (in the $z$-direction) is
+\[
+  F_{z,\text{top}} - F_{z,\text{bottom}}
+\]
+which can be approximated as $\left(\pdv{F_z}{\Delta z}\right)\Delta z$. Using the average value of $F_z$ on the bottom surface of the box (it is constant on the rectangle),
+\[
+  \Rightarrow F_{z,\text{bottom}} = F_z(x,y,z) + \frac{\Delta x}{2}\pdv{F_z}{x} + \frac{\Delta y}{2}\pdv{F_z}{y}
+\]
+and for the top face the story is similar, only displaced by $\Delta z$:
+\[
+  F_{z,\text{top}} = F_z(x,y,z+\Delta z) + \frac{\Delta x}{2}\pdv{F_z}{x} + \frac{\Delta y}{2}\pdv{F_z}{y} + \Delta z\pdv{F_z}{\Delta z}
+\]
+Multiplying by the face area $\Delta x\Delta y$ and subtracting, the net flux out of the box in the $z$-direction is
+\begin{align*}
+  \overrightarrow{\Phi}_z
+  &= \Delta x\Delta y\left[F_z(x,y,z+\Delta z) + \frac{\Delta x}{2}\pdv{F_z}{x}
+     + \frac{\Delta y}{2}\pdv{F_z}{y} + \Delta z\pdv{F_z}{z}\right] \\
+  &\quad - \Delta x\Delta y\left[F_z(x,y,z) + \dots\right] \\
+  &= \Delta x\Delta y\,\Delta z\left(\pdv{F_z}{z}\right)
+\end{align*}
 
 Thus, for all pairs of sides:
 \[
@@ -528,11 +508,7 @@ For $r < a$, $E_x = \dfrac{\rho}{3\varepsilon_0} x$, $y$, $z$ --- same:
 \subsection*{Van de Graaff Generator}
 %───────────────────────────────────────────────────────────────────────────────
 
-\begin{itemize}
-  \item No charge accumulates inside.
-  \item If you have a cavity in a metal the electric field inside is zero.
-  \item Charge density is higher at a sharp point: used by lightning rods because it discharges charge into the air continuously, ionizing the air.
-\end{itemize}
+No charge accumulates inside, and more generally if you have a cavity in a metal the electric field inside it is zero. Charge density is instead higher at a sharp point, which is what lightning rods exploit: they discharge charge into the air continuously, ionizing it.
 
 %───────────────────────────────────────────────────────────────────────────────
 \section{The Laplacian}
@@ -612,9 +588,7 @@ So:
 \]
 \end{formula}
 
-\begin{itemize}
-  \item The class of functions that satisfy Laplace's equation are called \emph{harmonic functions}, and they have the following property:
-\end{itemize}
+The class of functions that satisfy Laplace's equation are called \emph{harmonic functions}, and they have the following property:
 
 \begin{theorem}[2.1]
 If $\phi(x,y,z)$ satisfies Laplace's equation, then the average value of $\phi$ over the surface of any sphere (not necessarily a small sphere) is equal to the value of $\phi$ at the \emph{centre} of the sphere.
@@ -624,16 +598,7 @@ If $\phi(x,y,z)$ satisfies Laplace's equation, then the average value of $\phi$ 
 (For the special case for $\phi$ in regions containing no charge.)
 
 Consider a point charge $q$ and a spherical surface $S$ over which a charge $q'$ is uniformly distributed.
-\begin{itemize}
-  \item Let $q'$ be brought in from infinity to a distance $R$.
-  \item Thus, $W = \dfrac{qq'}{4\pi\varepsilon_0 R}$.
-\end{itemize}
-Now consider if the sphere was brought in from infinity:
-\begin{itemize}
-  \item Work is the same: $\dfrac{qq'}{4\pi\varepsilon_0 R}$.
-  \item Thus, the average value of $q'$ over the surface is $\dfrac{q}{4\pi\varepsilon_0 R}$, which is the same as the potential.
-\end{itemize}
-This proves the theorem for a single point charge, but by superposition it should also work for multiple charges, since the average of a sum is the sum of the averages.
+First let $q'$ be brought in from infinity to a distance $R$, so that $W = \dfrac{qq'}{4\pi\varepsilon_0 R}$. Now consider instead the sphere being brought in from infinity: the work is the same, $\dfrac{qq'}{4\pi\varepsilon_0 R}$, so the average value of the potential over the surface is $\dfrac{q}{4\pi\varepsilon_0 R}$, which is the same as the potential at the centre. This proves the theorem for a single point charge, but by superposition it should also work for multiple charges, since the average of a sum is the sum of the averages.
 \end{proof}
 
 \begin{theorem}[Earnshaw's Theorem]
@@ -648,13 +613,7 @@ Gauss's Law proof: Suppose we had an electric field in which, contrary to the th
 
 \subsection*{Distinguishing the Physics from the Mathematics}
 
-\begin{itemize}
-  \item Suppose that Coulomb's law is instead $\propto \dfrac{e^{-2r}}{r^2}$, which has an effectively finite range.
-  \item Then $\displaystyle\int_S \vect{E}\cdot d\vect{A} \neq \frac{1}{\varepsilon_0}\int_V \rho\,dV$, since the flux would go to 0 as the surface expands --- \textit{see this for yourself!}
-  \item However, $\displaystyle\int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV$ since that is a mathematical law.
-  \item $\div\vect{F} \neq \dfrac{\rho}{\varepsilon_0}$ because a region with 0 density of charge could still have a net flux due to the force field having a finite range (at order $\varepsilon_0$) --- some.
-  \item Remember that statements like $\laplacian\phi = -\dfrac{\rho}{\varepsilon_0}$ only make sense at a macroscopic scale since electrons are discrete.
-\end{itemize}
+Suppose that Coulomb's law is instead $\propto \dfrac{e^{-2r}}{r^2}$, which has an effectively finite range. Then $\displaystyle\int_S \vect{E}\cdot d\vect{A} \neq \frac{1}{\varepsilon_0}\int_V \rho\,dV$, since the flux would go to 0 as the surface expands --- \textit{see this for yourself!} However, $\displaystyle\int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV$ still holds, since that is a mathematical law and knows nothing about the force law. What fails is the physics: $\div\vect{F} \neq \dfrac{\rho}{\varepsilon_0}$, because a region with 0 density of charge could still have a net flux due to the force field having a finite range (at order $\varepsilon_0$). Remember too that statements like $\laplacian\phi = -\dfrac{\rho}{\varepsilon_0}$ only make sense at a macroscopic scale since electrons are discrete.
 
 \subsection*{Equation Graph}
 %───────────────────────────────────────────────────────────────────────────────
@@ -665,12 +624,7 @@ Consider a closed path $C$ along some surface $S$.
 
 Let $\Gamma = \displaystyle\int_C \vect{F}\cdot d\vect{s}$.
 
-\begin{itemize}
-  \item Now bridge $C$ using a new path $B$.
-  \item It is easy to see that $\Gamma = \Gamma_1 + \Gamma_2$: the shared contributions of the two line integrals cancel out.
-  \item In the limit we infinitely subdivide and consider the ratio of loop circulation to area; but here area is a vector $\hat{a}_i$, normal to $S$.
-  \item The limit becomes $\displaystyle\lim_{a_i\to 0}\frac{\Gamma_i}{a_i}$ or $\displaystyle\lim_{a_i\to 0}\frac{\int_{C_i}\vect{F}\cdot d\vect{s}}{a_i}$.
-\end{itemize}
+Now bridge $C$ using a new path $B$, splitting it into two loops. It is easy to see that $\Gamma = \Gamma_1 + \Gamma_2$, since the shared contributions of the two line integrals are traversed in opposite directions and cancel out. In the limit we infinitely subdivide and consider the ratio of loop circulation to area --- but here area is a vector $\hat{a}_i$, normal to $S$ --- so the limit becomes $\displaystyle\lim_{a_i\to 0}\frac{\Gamma_i}{a_i}$, or $\displaystyle\lim_{a_i\to 0}\frac{\int_{C_i}\vect{F}\cdot d\vect{s}}{a_i}$.
 
 \begin{formula}[Curl]
 \[
@@ -759,16 +713,7 @@ OR:
 \subsection{Physical Meaning of Curl}
 %───────────────────────────────────────────────────────────────────────────────
 
-\begin{itemize}
-  \item Imagine a velocity vector field $\vect{G}$, and suppose that $\curl\vect{G} \neq 0$.
-  \item Behaviours then go like: $\nearrow\swarrow$ or $\uparrow\downarrow$ (shear).
-  \item Things would have the tendency to rotate.
-  \item But for an \underline{electrostatic} field, curl must be zero because the path integral of any closed loop is 0!
-    \begin{itemize}
-      \item Thus by Stokes's theorem the total circulation is 0 over any surface $\Rightarrow$ the curl is 0 at every point.
-    \end{itemize}
-  \item If $\curl\vect{F} = 0$, then $\vect{F}$ is conservative ($\vect{F} = \grad\psi$) or ($\vect{E} = -\grad\phi$).
-\end{itemize}
+Imagine a velocity vector field $\vect{G}$ with $\curl\vect{G} \neq 0$. Behaviours then go like $\nearrow\swarrow$ or $\uparrow\downarrow$ (shear), and things would have the tendency to rotate. But for an \underline{electrostatic} field, curl must be zero because the path integral of any closed loop is 0 --- so by Stokes's theorem the total circulation is 0 over any surface $\Rightarrow$ the curl is 0 at every point. Conversely, if $\curl\vect{F} = 0$, then $\vect{F}$ is conservative ($\vect{F} = \grad\psi$) or ($\vect{E} = -\grad\phi$).
 
 %───────────────────────────────────────────────────────────────────────────────
 \subsection{Curl in Spherical Coordinates}
@@ -795,25 +740,13 @@ In Cartesian coordinates,
     \vect{E} = \frac{1}{4\pi\epsilon_0} \frac{q}{r^3}\left(x\ihat + y\jhat + z\khat\right)
 \]
 
-Computing the divergence $\div\vect{E} = \pdv{E_x}{x} + \pdv{E_y}{y} + \pdv{E_z}{z}$:
-
-\begin{enumerate}
-    \item
-    \begin{align*}
-        \pdv{E_x}{x} &= \frac{q}{4\pi\epsilon_0} \pdv{}{x}\frac{x}{r^3}
-        = \frac{q}{4\pi\epsilon_0}\left(\frac{1}{r^3} + \frac{-3x^2}{r^5}\right)
-    \end{align*}
-
-    \item
-    \begin{align*}
-        \pdv{E_y}{y} &= \frac{q}{4\pi\epsilon_0}\left(\frac{1}{r^3} + \frac{-3y^2}{r^5}\right)
-    \end{align*}
-
-    \item
-    \begin{align*}
-        \pdv{E_z}{z} &= \frac{q}{4\pi\epsilon_0}\left(\frac{1}{r^3} + \frac{-3z^2}{r^5}\right)
-    \end{align*}
-\end{enumerate}
+Computing the divergence $\div\vect{E} = \pdv{E_x}{x} + \pdv{E_y}{y} + \pdv{E_z}{z}$, the three terms are (the $y$ and $z$ ones following by symmetry):
+\begin{align*}
+    \pdv{E_x}{x} &= \frac{q}{4\pi\epsilon_0} \pdv{}{x}\frac{x}{r^3}
+    = \frac{q}{4\pi\epsilon_0}\left(\frac{1}{r^3} + \frac{-3x^2}{r^5}\right) \\
+    \pdv{E_y}{y} &= \frac{q}{4\pi\epsilon_0}\left(\frac{1}{r^3} + \frac{-3y^2}{r^5}\right) \\
+    \pdv{E_z}{z} &= \frac{q}{4\pi\epsilon_0}\left(\frac{1}{r^3} + \frac{-3z^2}{r^5}\right)
+\end{align*}
 
 Thus,
 \[
@@ -889,69 +822,67 @@ which is just the potential at the centre of the sphere due to $q$.
 \section*{Chapter 2 Summary}
 %───────────────────────────────────────────────────────────────────────────────
 
-\begin{itemize}
-  \item \textbf{Electric potential difference:}
-    \[
-      \phi_{21} = -\int_{P_1}^{P_2} \vect{E}\cdot d\vect{s}
-    \]
-    Relative to infinity, the potential due to a charge distribution is:
-    \[
-      \phi(x,y,z) = \int\frac{\rho(x',y',z')\,dx'\,dy'\,dz'}{4\pi\varepsilon_0 r}
-      \quad \text{or} \quad \sum_i \frac{q_i}{4\pi\varepsilon_0 r}
-    \]
+The \textbf{electric potential difference} between two points is
+\[
+  \phi_{21} = -\int_{P_1}^{P_2} \vect{E}\cdot d\vect{s}
+\]
+and, relative to infinity, the potential due to a charge distribution is
+\[
+  \phi(x,y,z) = \int\frac{\rho(x',y',z')\,dx'\,dy'\,dz'}{4\pi\varepsilon_0 r}
+  \quad \text{or} \quad \sum_i \frac{q_i}{4\pi\varepsilon_0 r}
+\]
 
-  \item \textbf{Cartesian gradient:}
-    \[
-      \grad f = \hat{x}\,\pdv{f}{x} + \hat{y}\,\pdv{f}{y} + \hat{z}\,\pdv{f}{z}
-      \quad\text{gives the direction of largest increase}
-    \]
-    \[
-      \vect{E} = -\grad\phi
-    \]
-    Implies that the lines of the electric field are perpendicular to the surfaces of constant potential.
+Going back the other way, the \textbf{Cartesian gradient}
+\[
+  \grad f = \hat{x}\,\pdv{f}{x} + \hat{y}\,\pdv{f}{y} + \hat{z}\,\pdv{f}{z}
+  \quad\text{gives the direction of largest increase}
+\]
+so that
+\[
+  \vect{E} = -\grad\phi
+\]
+which implies that the lines of the electric field are perpendicular to the surfaces of constant potential.
 
-  \item Electrostatic potential energy difference of a charge $q$ between $P_1$, $P_2$ $= q\phi_{21}$.
+The electrostatic potential energy difference of a charge $q$ between $P_1$ and $P_2$ is $q\phi_{21}$, and the energy required to assemble a group of charges from infinity is
+\[
+  U = \frac{1}{2}\int \rho\phi\,dV
+  \quad\text{or}\quad
+  \frac{1}{2}\sum_{j=1}^N q_j \sum_{k\neq j}\frac{1}{4\pi\varepsilon_0}\frac{q_k}{r_{jk}}
+  \quad\text{(factor of $\frac{1}{2}$ for double counting)}
+\]
 
-  \item Energy required to assemble a group of charges from infinity is:
-    \[
-      U = \frac{1}{2}\int \rho\phi\,dV
-      \quad\text{or}\quad
-      \frac{1}{2}\sum_{j=1}^N q_j \sum_{k\neq j}\frac{1}{4\pi\varepsilon_0}\frac{q_k}{r_{jk}}
-      \quad\text{(factor of $\frac{1}{2}$ for double counting)}
-    \]
+A \textbf{dipole} $\ominus\!\!-\!\!a\!\!-\!\!\oplus$ is two opposite charges at distance $a$ apart, with dipole moment $p = q\ell$ (or $p = qa$). Its potential and field are
+\[
+  \phi(r,\theta) = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2},
+  \qquad
+  \vect{E}(r,\theta) = \frac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\hat{r} + \sin\theta\,\hat{\theta})
+\]
 
-  \item \textbf{Dipole:} $\ominus\!\!-\!\!a\!\!-\!\!\oplus$, two charges at distance $a$ apart.
-    \begin{itemize}
-      \item Dipole moment: $p = q\ell$ (or $p = qa$).
-      \item $\phi(r,\theta) = \dfrac{p\cos\theta}{4\pi\varepsilon_0 r^2}$
-      \item $\vect{E}(r,\theta) = \dfrac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\hat{r} + \sin\theta\,\hat{\theta})$
-    \end{itemize}
+The \textbf{divergence} is
+\[
+  \div\vect{F} = \nabla\cdot\vect{F} = \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z}
+\]
+and Gauss's Theorem (the Divergence Theorem) states
+\[
+  \int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV
+\]
+which, combined with Gauss's Law, gives $\div\vect{E} = \dfrac{\rho}{\varepsilon_0}$.
 
-  \item \textbf{Divergence:}
-    \[
-      \div\vect{F} = \nabla\cdot\vect{F} = \pdv{F_x}{x} + \pdv{F_y}{y} + \pdv{F_z}{z}
-    \]
-    Gauss's Theorem / Divergence Theorem:
-    \[
-      \int_S \vect{F}\cdot d\vect{A} = \int_V \div\vect{F}\,dV
-    \]
-    Combining with Gauss's Law gives $\div\vect{E} = \dfrac{\rho}{\varepsilon_0}$.
+The \textbf{Laplacian} in Cartesian coordinates is
+\[
+  \laplacian f = \pdv[2]{f}{x} + \pdv[2]{f}{y} + \pdv[2]{f}{z}
+\]
+so that
+\[
+  \boxed{\laplacian\phi = -\frac{\rho}{\varepsilon_0}} \quad \text{Poisson's equation}
+\]
+with the special case $\laplacian\phi = 0$ holding wherever $\phi$ is in a region with no charge density; see Earnshaw's theorem.
 
-  \item \textbf{Laplacian} (Cartesian):
-    \[
-      \laplacian f = \pdv[2]{f}{x} + \pdv[2]{f}{y} + \pdv[2]{f}{z}
-    \]
-    \[
-      \boxed{\laplacian\phi = -\frac{\rho}{\varepsilon_0}} \quad \text{Poisson's equation}
-    \]
-    Special case: $\laplacian\phi = 0$ $\Rightarrow$ $\phi$ satisfies this equation if it is in a region with no charge density; see Earnshaw's theorem.
-
-  \item \textbf{Curl:}
-    \[
-      \curl\vect{F}
-      = \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ \partial/\partial x & \partial/\partial y & \partial/\partial z \\ F_x & F_y & F_z\end{vmatrix}
-    \]
-\end{itemize}
+Finally, the \textbf{curl} is
+\[
+  \curl\vect{F}
+  = \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ \partial/\partial x & \partial/\partial y & \partial/\partial z \\ F_x & F_y & F_z\end{vmatrix}
+\]
 
 %───────────────────────────────────────────────────────────────────────────────
 \section*{Additional Examples: Sphere with a Cavity; Energy of a Charged Sphere}
@@ -1013,11 +944,7 @@ Thus:
 \]
 Thus, $\div\vect{E} = \dfrac{\rho(r)}{\varepsilon_0}$, and $\nabla\cdot\vect{E} = \dfrac{\rho(\vec{r})}{\varepsilon_0}$.
 
-In spherical coordinates, for a thin shell $[r, r+dr]$:
-\begin{itemize}
-  \item Net flux on the ring $= 4\pi(r+dr)^2 E_r(r+dr) - 4\pi r^2 E_r(r)$.
-  \item Taking the derivative:
-    \[
-      \frac{1}{r^2}\pdv{}{r}\!\left(r^2 E_r\right) = \frac{\rho(r)}{\varepsilon_0}
-    \]
-\end{itemize}
+In spherical coordinates, for a thin shell $[r, r+dr]$, the net flux on the ring is $4\pi(r+dr)^2 E_r(r+dr) - 4\pi r^2 E_r(r)$. Taking the derivative and dividing by the shell volume gives
+\[
+  \frac{1}{r^2}\pdv{}{r}\!\left(r^2 E_r\right) = \frac{\rho(r)}{\varepsilon_0}
+\]

@@ -5,32 +5,15 @@
 %═══════════════════════════════════════════════════════════════════════════════
 
 \begin{definition}[Operational Amplifier (Op-Amp)]
-An \textbf{operational amplifier} is a high-gain differential voltage amplifier with two inputs and one output:
-\begin{itemize}
-  \item \textbf{Inverting input} ($V_-$, marked $-$)
-  \item \textbf{Non-inverting input} ($V_+$, marked $+$)
-  \item \textbf{Output} $V_\text{out}$
-\end{itemize}
-The open-loop output voltage is $V_\text{out} = A_\text{OL}(V_+ - V_-)$, where $A_\text{OL} \sim 10^5$--$10^6$.
+An \textbf{operational amplifier} is a high-gain differential voltage amplifier with two inputs---the \textbf{inverting input} $V_-$ (marked $-$) and the \textbf{non-inverting input} $V_+$ (marked $+$)---and a single \textbf{output} $V_\text{out}$. The open-loop output voltage is $V_\text{out} = A_\text{OL}(V_+ - V_-)$, where $A_\text{OL} \sim 10^5$--$10^6$.
 \end{definition}
 
 \begin{fact}[Ideal Op-Amp Model]
-For an ideal op-amp:
-\begin{enumerate}
-  \item \textbf{Infinite input impedance:} No current flows into either input terminal ($I_+ = I_- = 0$).
-  \item \textbf{Zero output impedance:} The output can source or sink any current without voltage drop.
-  \item \textbf{Infinite open-loop gain:} $A_\text{OL} \to \infty$.
-  \item \textbf{Infinite bandwidth:} The gain is flat for all frequencies.
-\end{enumerate}
+An ideal op-amp has \textbf{infinite input impedance}, so no current flows into either input terminal ($I_+ = I_- = 0$), and \textbf{zero output impedance}, so the output can source or sink any current without a voltage drop. Its \textbf{open-loop gain} is infinite, $A_\text{OL} \to \infty$, and its \textbf{bandwidth} is infinite too, meaning that gain is flat at all frequencies.
 \end{fact}
 
 \begin{fact}[Golden Rules (with Negative Feedback)]
-When an op-amp is connected with \emph{negative feedback} (output fed back to $V_-$), two rules follow from the ideal model:
-\begin{enumerate}
-  \item \textbf{No input current:} $I_+ = I_- = 0$ (infinite input impedance).
-  \item \textbf{Virtual short:} The op-amp output drives itself until $V_+ = V_-$ (the inputs are forced to the same voltage).
-\end{enumerate}
-Rule 2 does \emph{not} mean the inputs are connected---it means the feedback loop enforces the equality.
+When an op-amp is connected with \emph{negative feedback} (output fed back to $V_-$), two rules follow from the ideal model. Rule 1, \textbf{no input current:} $I_+ = I_- = 0$, from the infinite input impedance. Rule 2, the \textbf{virtual short:} the op-amp drives its own output until $V_+ = V_-$, forcing the two inputs to the same voltage. Rule 2 does \emph{not} mean the inputs are connected---it means the feedback loop enforces the equality.
 \end{fact}
 
 %───────────────────────────────────────────────────────────────────────────────
@@ -279,12 +262,7 @@ A two-terminal semiconductor device (anode $+$, cathode $-$) that conducts curre
 \[
   I = I_s\!\left(e^{V/nV_T} - 1\right)
 \]
-where $I_s$ is the saturation (reverse leakage) current, $n \approx 1$--$2$ is the ideality factor, and $V_T = kT/q \approx 26\,\text{mV}$ at room temperature. In the forward-biased regime, the voltage drop is approximately:
-\begin{itemize}
-  \item Silicon diode: $V_f \approx 0.6$--$0.7\,\text{V}$
-  \item LED (red/orange/yellow): $V_f \approx 1.8$--$2.2\,\text{V}$
-  \item LED (green/blue/white): $V_f \approx 2.8$--$3.5\,\text{V}$
-\end{itemize}
+where $I_s$ is the saturation (reverse leakage) current, $n \approx 1$--$2$ is the ideality factor, and $V_T = kT/q \approx 26\,\text{mV}$ at room temperature. In the forward-biased regime the drop is roughly fixed and set by the material: a silicon diode sits at $V_f \approx 0.6$--$0.7\,\text{V}$, a red, orange, or yellow LED at $V_f \approx 1.8$--$2.2\,\text{V}$, and a green, blue, or white LED at $V_f \approx 2.8$--$3.5\,\text{V}$ (the shorter the wavelength, the larger the bandgap and the higher the drop).
 \end{definition}
 
 \begin{fact}[Current-Limiting Resistor for an LED]
@@ -324,24 +302,15 @@ Choose the nearest standard value: $\mathbf{150\,\Omega}$ (or $180\,\Omega$ for 
 %═══════════════════════════════════════════════════════════════════════════════
 
 \begin{definition}[Bipolar Junction Transistor (BJT)]
-A three-terminal semiconductor device with terminals \textbf{Base} (B), \textbf{Collector} (C), and \textbf{Emitter} (E). Two types:
-\begin{itemize}
-  \item \textbf{NPN:} Conventional current flows \emph{into} base and collector, out of emitter.
-  \item \textbf{PNP:} Conventional current flows \emph{out} of base and collector, into emitter.
-\end{itemize}
-The B--E junction behaves as a diode ($V_{BE} \approx 0.7\,\text{V}$ for silicon NPN in the active region).
+A three-terminal semiconductor device with terminals \textbf{Base} (B), \textbf{Collector} (C), and \textbf{Emitter} (E). It comes in two types, distinguished by the direction of conventional current: in an \textbf{NPN} it flows \emph{into} the base and collector and out of the emitter, while in a \textbf{PNP} it flows \emph{out} of the base and collector and into the emitter. The B--E junction behaves as a diode ($V_{BE} \approx 0.7\,\text{V}$ for silicon NPN in the active region).
 \end{definition}
 
 \begin{fact}[BJT Operating Regions]
-Three regions of operation:
-\begin{enumerate}
-  \item \textbf{Cutoff:} $V_{BE} < 0.6\,\text{V}$; transistor is \emph{off}; $I_C \approx 0$.
-  \item \textbf{Active:} $V_{BE} \approx 0.7\,\text{V}$ and $V_{CE} > 0.2\,\text{V}$; current gain:
-        \[
-          I_C = \beta\, I_B, \quad \beta \approx 100\text{--}300
-        \]
-  \item \textbf{Saturation:} $V_{BE} > 0.7\,\text{V}$ and $V_{CE} \approx 0.1$--$0.2\,\text{V}$; transistor is fully \emph{on}; $I_C$ limited by the external circuit, not by $\beta$.
-\end{enumerate}
+There are three regions of operation, set by how hard the base is driven. In \textbf{cutoff}, $V_{BE} < 0.6\,\text{V}$, the transistor is \emph{off} and $I_C \approx 0$. In the \textbf{active} region, $V_{BE} \approx 0.7\,\text{V}$ with $V_{CE} > 0.2\,\text{V}$, the collector current is a fixed multiple of the base current,
+\[
+  I_C = \beta\, I_B, \quad \beta \approx 100\text{--}300
+\]
+so the device acts as a linear amplifier. In \textbf{saturation}, $V_{BE} > 0.7\,\text{V}$ and $V_{CE} \approx 0.1$--$0.2\,\text{V}$, the transistor is fully \emph{on} and $I_C$ is limited by the external circuit rather than by $\beta$.
 \end{fact}
 
 %───────────────────────────────────────────────────────────────────────────────
@@ -369,15 +338,10 @@ Three regions of operation:
 \caption{NPN transistor switch: $R_B$ limits base current; load $R_C$ connected from $V_{CC}$ to collector.}
 \end{figure}
 
-\textbf{Design procedure:}
-\begin{enumerate}
-  \item Determine required collector current: $I_C = I_\text{load}$.
-  \item Ensure saturation: choose $I_B \geq I_C / \beta_\text{min}$. In practice, use $I_B \approx I_C / 10$ to guarantee saturation.
-  \item Choose $R_B$:
-        \[
-          R_B = \frac{V_\text{ctrl} - V_{BE}}{I_B} = \frac{V_\text{ctrl} - 0.7\,\text{V}}{I_C/10}
-        \]
-\end{enumerate}
+\textbf{Design procedure:} first take the required collector current to be the load current, $I_C = I_\text{load}$. Then force saturation by choosing $I_B \geq I_C/\beta_\text{min}$; in practice use $I_B \approx I_C/10$, which overdrives the base enough that the switch stays hard on even for a low-$\beta$ part. Finally the base resistor drops whatever the B--E junction does not:
+\[
+  R_B = \frac{V_\text{ctrl} - V_{BE}}{I_B} = \frac{V_\text{ctrl} - 0.7\,\text{V}}{I_C/10}
+\]
 \textbf{Example:} Load draws $I_C = 100\,\text{mA}$ from $V_{CC} = 12\,\text{V}$; $V_\text{ctrl} = 5\,\text{V}$; $\beta = 100$.
 \[
   I_B = 100\,\text{mA}/10 = 10\,\text{mA}, \qquad
@@ -425,22 +389,15 @@ $\tau$ governs the timescale of charging and discharging:
 \end{definition}
 
 \begin{fact}[RC Filter Types]
-For an RC circuit with corner (cutoff) frequency $f_c = \dfrac{1}{2\pi RC}$:
-\begin{enumerate}
-  \item \textbf{Low-pass filter:} $R$ in series between input and output; $C$ from output to ground.
-        Voltage divider ratio:
-        \[
-          H(f) = \frac{V_\text{out}}{V_\text{in}} = \frac{1/j\omega C}{R + 1/j\omega C} = \frac{1}{1 + j\omega RC}
-        \]
-        $|H| \approx 1$ for $f \ll f_c$; $|H| \approx f_c/f \to 0$ for $f \gg f_c$ (attenuates high frequencies).
-
-  \item \textbf{High-pass filter:} $C$ in series; $R$ from output to ground.
-        \[
-          H(f) = \frac{R}{R + 1/j\omega C} = \frac{j\omega RC}{1 + j\omega RC}
-        \]
-        $|H| \approx 0$ for $f \ll f_c$; $|H| \approx 1$ for $f \gg f_c$ (attenuates low frequencies and blocks DC).
-\end{enumerate}
-At $f = f_c$: $|H| = 1/\sqrt{2} \approx 0.707$, i.e.\ the $-3\,\text{dB}$ point; signal power is halved.
+For an RC circuit with corner (cutoff) frequency $f_c = \dfrac{1}{2\pi RC}$, the two arrangements are just the two ways of tapping the same complex voltage divider. The \textbf{low-pass filter} puts $R$ in series between input and output and $C$ from output to ground, giving
+\[
+  H(f) = \frac{V_\text{out}}{V_\text{in}} = \frac{1/j\omega C}{R + 1/j\omega C} = \frac{1}{1 + j\omega RC}
+\]
+so $|H| \approx 1$ for $f \ll f_c$ and $|H| \approx f_c/f \to 0$ for $f \gg f_c$: high frequencies are attenuated. The \textbf{high-pass filter} swaps them, $C$ in series and $R$ from output to ground, giving
+\[
+  H(f) = \frac{R}{R + 1/j\omega C} = \frac{j\omega RC}{1 + j\omega RC}
+\]
+so $|H| \approx 0$ for $f \ll f_c$ and $|H| \approx 1$ for $f \gg f_c$: low frequencies are attenuated and DC is blocked entirely. At $f = f_c$: $|H| = 1/\sqrt{2} \approx 0.707$, i.e.\ the $-3\,\text{dB}$ point; signal power is halved.
 \end{fact}
 
 \begin{figure}[H]
@@ -468,12 +425,14 @@ At $f = f_c$: $|H| = 1/\sqrt{2} \approx 0.707$, i.e.\ the $-3\,\text{dB}$ point;
 \end{figure}
 
 \begin{fact}[Integrator / Differentiator Behavior in Time Domain]
-\begin{itemize}
-  \item \textbf{Integrator (low-pass, $f \gg f_c$):} When the input frequency is far above $f_c$, the capacitor does not fully charge in each cycle. The output is approximately the integral of the input:
-        $V_\text{out}(t) \approx \dfrac{1}{RC}\int V_\text{in}\,dt$.
-  \item \textbf{Differentiator (high-pass, $f \ll f_c$):} When the input frequency is far below $f_c$, the capacitor charges quickly and the voltage across $R$ tracks the rate of change:
-        $V_\text{out}(t) \approx RC\,\dfrac{dV_\text{in}}{dt}$.
-\end{itemize}
+Far from the corner frequency, the same two filters do calculus on the input. A low-pass filter driven well above its corner, $f \gg f_c$, acts as an \textbf{integrator}: the capacitor never fully charges within a cycle, so the output is essentially the running integral of the input,
+\[
+  V_\text{out}(t) \approx \frac{1}{RC}\int V_\text{in}\,dt.
+\]
+A high-pass filter driven well below its corner, $f \ll f_c$, acts as a \textbf{differentiator}: the capacitor charges quickly, so the voltage left across $R$ tracks the rate of change,
+\[
+  V_\text{out}(t) \approx RC\,\frac{dV_\text{in}}{dt}.
+\]
 \end{fact}
 
 %═══════════════════════════════════════════════════════════════════════════════
@@ -481,13 +440,7 @@ At $f = f_c$: $|H| = 1/\sqrt{2} \approx 0.707$, i.e.\ the $-3\,\text{dB}$ point;
 %═══════════════════════════════════════════════════════════════════════════════
 
 \begin{definition}[555 Timer Internal Structure]
-The 555 timer IC contains:
-\begin{itemize}
-  \item A \textbf{voltage divider} of three equal resistors ($5\,\text{k}\Omega$ each, hence ``555'') setting reference voltages at $V_{CC}/3$ and $2V_{CC}/3$.
-  \item Two \textbf{comparators}: upper comparator triggers when pin 6 (threshold) $> 2V_{CC}/3$; lower comparator triggers when pin 2 (trigger) $< V_{CC}/3$.
-  \item An \textbf{SR latch} whose output drives the output stage and a \textbf{discharge transistor} (pin 7).
-  \item An \textbf{output buffer} that sinks or sources up to $\sim 200\,\text{mA}$.
-\end{itemize}
+The 555 timer IC is built around a \textbf{voltage divider} of three equal resistors ($5\,\text{k}\Omega$ each, hence ``555'') which sets reference voltages at $V_{CC}/3$ and $2V_{CC}/3$. These feed two \textbf{comparators}: the upper one trips when pin 6 (threshold) rises above $2V_{CC}/3$, the lower one when pin 2 (trigger) falls below $V_{CC}/3$. Their outputs set and reset an \textbf{SR latch}, which in turn drives both the output stage and a \textbf{discharge transistor} on pin 7, and an \textbf{output buffer} sinks or sources up to $\sim 200\,\text{mA}$.
 \end{definition}
 
 %───────────────────────────────────────────────────────────────────────────────
@@ -497,12 +450,7 @@ The 555 timer IC contains:
 \begin{example}[555 in Monostable Mode]
 \textbf{Setup:} External resistor $R$ from $V_{CC}$ to pin 6/7 junction; capacitor $C$ from pin 6 to ground. A falling edge on pin 2 (trigger, $< V_{CC}/3$) starts the timing cycle.
 
-\textbf{Operation:}
-\begin{enumerate}
-  \item Trigger pulse: output goes HIGH, discharge transistor turns off.
-  \item $C$ charges through $R$ toward $V_{CC}$.
-  \item When $V_C = 2V_{CC}/3$: upper comparator resets the latch, output goes LOW, discharge transistor turns on and rapidly discharges $C$.
-\end{enumerate}
+\textbf{Operation:} the trigger pulse first sends the output HIGH and turns the discharge transistor off, which frees $C$ to charge through $R$ toward $V_{CC}$. When $V_C$ reaches $2V_{CC}/3$ the upper comparator resets the latch, the output goes LOW, and the discharge transistor turns back on and rapidly dumps the charge on $C$, leaving the circuit ready for the next trigger.
 
 \begin{formula}[Monostable Pulse Width]
 \[
@@ -520,11 +468,7 @@ $T = 1.1 \times 10^5 \times 10^{-5} = 1.1\,\text{s}$.
 \begin{example}[555 in Astable Mode]
 \textbf{Setup:} Resistors $R_A$ (from $V_{CC}$ to pin 7) and $R_B$ (from pin 7 to pin 6/2 junction); capacitor $C$ from pin 6/2 to ground.
 
-\textbf{Operation:}
-\begin{itemize}
-  \item $C$ charges through $R_A + R_B$: from $V_{CC}/3$ to $2V_{CC}/3$ (output HIGH).
-  \item $C$ discharges through $R_B$ only: from $2V_{CC}/3$ to $V_{CC}/3$ (output LOW).
-\end{itemize}
+\textbf{Operation:} the capacitor cycles endlessly between the two comparator thresholds. It charges through $R_A + R_B$ from $V_{CC}/3$ up to $2V_{CC}/3$ with the output HIGH, then discharges through $R_B$ alone from $2V_{CC}/3$ back down to $V_{CC}/3$ with the output LOW.
 
 \begin{formula}[555 Astable Frequency and Duty Cycle]
 \[
