@@ -1,0 +1,350 @@
+\chapter{Geometric Optics}
+
+Every chapter so far has taken the wave nature of light seriously: interference, diffraction, polarization. Geometric optics is the opposite limit --- the $\lambda \to 0$ limit of the same theory --- in which light may be treated as travelling along \emph{rays}, the curves orthogonal to the wavefronts. Nothing new is postulated here. Every apparent peculiarity below (virtual images, signed distances, reversibility) is inherited from the wave theory already developed.
+
+% ============================================================
+\section{Domain of Validity and Terminology}
+% ============================================================
+
+The single-slit result of Section~\ref{sec:single-slit} fixes exactly when ray language is safe. Light passing an aperture of size $a$ spreads by an angle $\sim\lambda/a$; only when every relevant dimension --- aperture, lens, mirror, object --- greatly exceeds $\lambda$ is that spreading negligible and the beam's edges sharp enough to call a ray. A lens $5\,$cm across passing visible light has $\lambda/a \sim 10^{-5}$, utterly negligible; the same light through a $10\,\mu$m pinhole spreads by several degrees, and ray optics fails outright.
+
+The vocabulary is worth fixing before the derivations:
+\begin{itemize}
+    \item \textbf{Conjugate points}: an object point and its image point. By reversibility (below), the two labels may be exchanged.
+    \item \textbf{Stigmatic imaging}: all rays leaving one object point pass exactly through one image point. Real surfaces achieve this only approximately, and only for particular conjugate pairs.
+    \item \textbf{Vertex} $V$: where a refracting or reflecting surface meets the optical axis. All distances are measured from it.
+    \item \textbf{Paraxial} (Gaussian, first-order) \textbf{optics}: the approximation keeping only the leading order in ray height and angle. Departures from it are \textbf{aberrations}.
+    \item \textbf{Real image}: rays physically converge there, so it can be caught on a screen. \textbf{Virtual image}: rays only appear to diverge from it.
+\end{itemize}
+
+% ============================================================
+\section{Foundational Principles}
+% ============================================================
+
+Section~\ref{sec:fermat} already stated Fermat's principle in its minimum-transit-time form and used it to derive Snell's law. The form used throughout this chapter is the equivalent statement in terms of \emph{optical path length},
+\begin{formula}[Fermat's principle]
+\begin{equation}
+    \mathrm{OPL} = \int_A^B n(\ell)\,\dd\ell \quad \text{is stationary with respect to variations of the path.}
+\end{equation}
+\end{formula}
+Since $n = c/v$, dividing the OPL by $c$ gives exactly the transit time, so this is the same principle. Note ``stationary,'' not ``minimum'': saddle points and maxima also correspond to physical rays.
+
+The law of reflection $\theta_i = \theta_r$ and Snell's law $n_1\sin\theta_1 = n_2\sin\theta_2$ were both derived in Section~\ref{sec:refraction}, once from wavefront coherence and again from Fermat, and are simply used from here on. It is worth noticing that Snell's law can be written
+\begin{equation}
+    \frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2},
+\end{equation}
+in which $c$ has cancelled entirely: only the ratio $n_2/n_1 = v_1/v_2$ has physical content, and the law in this form governs \emph{any} wave --- sound, seismic --- not just light.
+
+\begin{fact}[Reversibility]
+Any ray traced backwards retraces its forward route exactly.
+\end{fact}
+
+This follows directly from Fermat: $\int n\,\dd\ell$ integrates a scalar against unsigned arc length, so it is unchanged under $A \leftrightarrow B$. Reversing each path is a bijection between the candidate paths of the two problems under which the functional takes equal values, so the stationary paths coincide. This is why the object and image labels of a conjugate pair may be swapped at will.
+
+Total internal reflection was derived in Section~\ref{sec:tir}: for $n_1 > n_2$ no real refraction angle exists beyond $\sin\theta_c = n_2/n_1$. The wave picture adds what the ray picture cannot see: past $\theta_c$ the transmitted wavevector component normal to the interface becomes imaginary, so the field decays evanescently into the second medium, carries no time-averaged energy across it, and the reflection coefficient has $|r| = 1$ --- reflection is total in the strict sense, not merely strong.
+
+% ============================================================
+\section{Refraction at a Single Spherical Surface}
+% ============================================================
+
+Everything else in this chapter --- lenses, mirrors, compound instruments --- is built from one calculation: refraction at a single spherical surface, done exactly from Fermat's principle, with Snell's law never assumed.
+
+The geometry is set up in Figure~\ref{fig:sphere-refract}. A surface of radius $R$ has centre $C$ and vertex $V$; an object $S$ sits a distance $s_o$ to the left in medium $n_1$, and we ask where the rays reconverge in medium $n_2$. A ray leaves $S$, meets the surface at $A$, and continues to $P$ at distance $s_i$. The single parameter locating $A$ is the angle $\varphi = \angle ACV$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \def\R{3}
+  \def\phideg{38}
+  \coordinate (V) at (0,0);
+  \coordinate (C) at (\R,0);
+  \coordinate (S) at (-5,0);
+  \coordinate (P) at (7.6,0);
+  \coordinate (A) at ({\R-\R*cos(\phideg)},{\R*sin(\phideg)});
+  % media shading
+  \fill[LightOrange,opacity=0.45] (-6,-2.8) -- (0,-2.8) --
+      plot[domain=-55:55,samples=60] ({\R-\R*cos(\x)},{\R*sin(\x)}) -- (-6,2.8) -- cycle;
+  \fill[LightGray,opacity=0.5] (8.6,-2.8) -- (0,-2.8) --
+      plot[domain=-55:55,samples=60] ({\R-\R*cos(\x)},{\R*sin(\x)}) -- (8.6,2.8) -- cycle;
+  % surface
+  \draw[very thick] plot[domain=-55:55,samples=80] ({\R-\R*cos(\x)},{\R*sin(\x)});
+  % axis
+  \draw[dashed] (-6,0) -- (8.6,0);
+  % rays
+  \draw[very thick,blue!70!black,->] (S) -- ($(S)!0.62!(A)$);
+  \draw[very thick,blue!70!black] (S) -- (A);
+  \draw[very thick,red!75!black,->] (A) -- ($(A)!0.6!(P)$);
+  \draw[very thick,red!75!black] (A) -- (P);
+  % radius
+  \draw[thick,dashed,gray] (C) -- (A);
+  % angle phi at C
+  \draw[thick] ($(C)+(180:0.85)$) arc (180:{180-\phideg}:0.85);
+  \node at ($(C)+({180-\phideg/2}:1.15)$) {\small$\varphi$};
+  % points
+  \foreach \p/\n/\pos in {S/$S$/below,V/$V$/below left,C/$C$/below,P/$P$/below,A/$A$/above right}{
+      \filldraw (\p) circle (1.6pt); \node[\pos] at (\p) {\small\n};
+  }
+  % length labels
+  \node[blue!70!black] at (-2.9,1.55) {\small$\ell_o$};
+  \node[red!75!black] at (4.2,1.5) {\small$\ell_i$};
+  \node[gray] at (2.55,1.45) {\small$R$};
+  % distances
+  \draw[<->] (-5,-2.35) -- (0,-2.35) node[midway,fill=LightOrange,inner sep=1pt] {\small$s_o$};
+  \draw[<->] (0,-2.75) -- (7.6,-2.75) node[midway,fill=LightGray,inner sep=1pt] {\small$s_i$};
+  \node at (-4.6,2.3) {\small$n_1$};
+  \node at (7.6,2.3) {\small$n_2$};
+\end{tikzpicture}
+\caption{Refraction at a single spherical surface. The ray $S \to A \to P$ is located by the single angle $\varphi = \angle ACV$; Fermat's principle demands that the optical path $n_1\ell_o + n_2\ell_i$ be stationary as $A$ slides along the surface.}
+\label{fig:sphere-refract}
+\end{figure}
+
+Applying the law of cosines to triangles $SAC$ and $ACP$,
+\begin{align}
+    \ell_o &= \sqrt{R^2 + (s_o+R)^2 - 2R(s_o+R)\cos\varphi}, \\
+    \ell_i &= \sqrt{R^2 + (s_i-R)^2 + 2R(s_i-R)\cos\varphi},
+\end{align}
+the sign difference arising because the angle included at $C$ is $\varphi$ in the first triangle and $\pi - \varphi$ in the second. Fermat requires $\mathrm{OPL} = n_1\ell_o + n_2\ell_i$ to be stationary as the ray's landing point slides along the surface:
+\begin{equation}
+    \dv{\varphi}\left(n_1\ell_o + n_2\ell_i\right) = 0
+    \;\Longrightarrow\;
+    \frac{n_1 R(s_o+R)\sin\varphi}{\ell_o} - \frac{n_2 R(s_i-R)\sin\varphi}{\ell_i} = 0.
+\end{equation}
+Dividing through by $R\sin\varphi$ and rearranging gives an \emph{exact} relation, with no approximation anywhere:
+\begin{formula}[Exact single-surface relation]
+\begin{equation}
+    \frac{n_1}{\ell_o} + \frac{n_2}{\ell_i}
+    = \frac{1}{R}\left(\frac{n_2 s_i}{\ell_i} - \frac{n_1 s_o}{\ell_o}\right).
+\end{equation}
+\end{formula}
+
+For rays close to the axis the surface sagitta is negligible, so $\ell_o \to s_o$ and $\ell_i \to s_i$, and the relation collapses to the workhorse of paraxial optics:
+\begin{formula}[Paraxial single-surface equation]
+\begin{equation}
+    \frac{n_1}{s_o} + \frac{n_2}{s_i} = \frac{n_2 - n_1}{R}.
+\end{equation}
+\end{formula}
+
+The ray height has dropped out entirely, and that is the whole reason an image forms at all: \emph{every} paraxial ray leaving $S$ arrives at the same $P$, independent of where it struck the surface. Retaining the next order in $\varphi$ restores a height dependence, and that residual is precisely spherical aberration.
+
+Setting $s_i \to \infty$ and $s_o \to \infty$ in turn gives the two focal lengths
+\begin{equation}
+    f_o = \frac{n_1 R}{n_2 - n_1}, \qquad
+    f_i = \frac{n_2 R}{n_2 - n_1}, \qquad
+    \frac{f_i}{f_o} = \frac{n_2}{n_1},
+\end{equation}
+which differ precisely because the media differ; they coincide only when the surrounding medium is the same on both sides, as for a lens in air.
+
+\begin{example}[Two limiting checks]
+Setting $R \to \infty$ flattens the surface into a plane interface and leaves $s_i = -(n_2/n_1)s_o$: a virtual image at reduced apparent depth. For water viewed from air, $n_1 = 1.33$ and $n_2 = 1$, so the bottom of a pool appears at about $0.75$ of its true depth. Setting $n_1 = n_2$ instead gives $s_i = -s_o$, meaning the ``image'' sits exactly on the object --- correct, since with no index contrast there is no surface at all.
+\end{example}
+
+% ============================================================
+\section{Thin Lenses}
+% ============================================================
+
+A lens is two spherical surfaces in series. Applying the paraxial single-surface equation to each in turn, with the image formed by the first serving as the object for the second, and then letting the thickness $t \to 0$, gives the two central results for a lens of index $n$ in air:
+\begin{formula}[Lensmaker's equation]
+\begin{equation}
+    \frac{1}{f} = (n-1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right).
+\end{equation}
+\end{formula}
+\begin{formula}[Thin-lens (Gaussian) equation]
+\begin{equation}
+    \frac{1}{s_o} + \frac{1}{s_i} = \frac{1}{f}.
+\end{equation}
+\end{formula}
+Here $f_o = f_i \equiv f$, since the medium is now common to both sides. Measuring distances instead from the focal points, with $x_o = s_o - f$ and $x_i = s_i - f$, the same content takes the compact \emph{Newtonian form} $x_o x_i = f^2$.
+
+The reciprocal $P = 1/f$, in diopters when $f$ is in metres, is the lens \textbf{power}; thin lenses in contact simply add, $1/f = 1/f_1 + 1/f_2$, which is why prescriptions are written in diopters rather than focal lengths.
+
+% ============================================================
+\section{Mirrors}
+% ============================================================
+
+A spherical mirror can be treated exactly with no more than the law of reflection. A ray parallel to the axis striking at angle $\theta$ (measured at the centre of curvature) crosses the axis at
+\begin{equation}
+    f(\theta) = R - \frac{R}{2\cos\theta}
+    \;\xrightarrow[\ \theta \to 0\ ]{}\; \frac{R}{2},
+\end{equation}
+so paraxially $f = R/2$, and the thin-lens equation $1/s_o + 1/s_i = 1/f$ applies unchanged. The residual $\theta$-dependence is spherical aberration in its purest form: as Figure~\ref{fig:mirror-aberr} shows, marginal rays cross the axis nearer the mirror than paraxial ones, so a sphere has no single focus.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \def\R{4}
+  % mirror arc (concave toward the left, centre of curvature at the origin)
+  \draw[very thick] plot[domain=-48:48,samples=90] ({\R*cos(\x)},{\R*sin(\x)});
+  \draw[dashed] (-1.0,0) -- (6.4,0);
+  % incoming parallel rays, each reflected to its own axis crossing at R/(2 cos theta)
+  \foreach \h/\col in {0.6/blue!70!black, 1.7/green!45!black, 2.7/red!75!black}{
+    \pgfmathsetmacro{\th}{asin(\h/\R)}
+    \pgfmathsetmacro{\xh}{\R*cos(\th)}
+    \pgfmathsetmacro{\xc}{\R/(2*cos(\th))}
+    \draw[thick,\col,->] (6.3,\h) -- ({\xh+0.05},\h);
+    \draw[thick,\col,->] (\xh,\h) -- (\xc,0);
+    \filldraw[\col] (\xc,0) circle (1.5pt);
+  }
+  \filldraw (0,0) circle (1.8pt) node[below left] {\small$C$};
+  \filldraw (\R,0) circle (1.8pt) node[below right] {\small$V$};
+  \node[below] at (2.0,-0.12) {\small$F = R/2$};
+  % brace marking the spread of crossing points
+  \draw[thick,gray,|<->|] (2.0,-0.95) -- (2.72,-0.95);
+  \draw[gray,thin] (2.36,-1.0) -- (1.55,-1.5);
+  \node[gray,align=center,left] at (1.5,-1.55) {\small spread of foci:\\ \small spherical aberration};
+\end{tikzpicture}
+\caption{A spherical mirror has no single focus. Rays striking farther off axis cross the axis at $f(\theta) = R - R/(2\cos\theta)$, which drifts away from the paraxial value $R/2$ as the ray height grows.}
+\label{fig:mirror-aberr}
+\end{figure}
+
+The cure is to abandon the sphere. Each conic section images exactly one conjugate pair stigmatically: a \emph{paraboloid} for an object at infinity, since by the focus--directrix property every axis-parallel ray has the same OPL to the focus --- hence parabolic telescope primaries; an \emph{ellipsoid} between its two finite foci; a \emph{hyperboloid} for one real and one virtual focus. Spheres are exact for no pair at all, and survive only because they are enormously easier to grind.
+
+% ============================================================
+\section{Sign Conventions and Magnification}
+% ============================================================
+
+Every formula above is signed, and the convention is one rule: \textbf{positive means on the side where the light actually is}.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Quantity & Positive & Negative \\
+\midrule
+$s_o$ & object on incoming side & virtual object \\
+$s_i$ & image on outgoing side (real) & image on incoming side (virtual) \\
+$f$ (lens) & converging & diverging \\
+$f$ (mirror) & concave & convex \\
+$R$ & centre of curvature on outgoing side & otherwise \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+A reliable anchor when memory fails: a biconvex lens in air must converge, so $f > 0$, which forces $R_1 > 0$ and $R_2 < 0$.
+
+Similar triangles on the ray through the lens centre --- undeviated, because a thin lens there is a parallel-faced slab of vanishing thickness --- give the transverse magnification:
+\begin{formula}[Transverse magnification]
+\begin{equation}
+    m = \frac{h_i}{h_o} = -\frac{s_i}{s_o}.
+\end{equation}
+\end{formula}
+Positive $m$ is upright, negative inverted, and for a compound system the magnifications simply multiply, $m_{\text{tot}} = \prod_k m_k$. Note that a real object imaged really ($s_o, s_i > 0$) forces $m < 0$: such an image is \emph{always} inverted, by geometry rather than by convention.
+
+% ============================================================
+\section{Ray Tracing and Compound Systems}
+% ============================================================
+
+Locating an image needs no algebra at all. Three rays leaving the object tip have known behaviour, drawn in Figure~\ref{fig:ray-trace}:
+\begin{enumerate}
+    \item a ray parallel to the axis refracts through the far focal point;
+    \item a ray through the near focal point emerges parallel to the axis;
+    \item a ray through the lens centre passes undeviated.
+\end{enumerate}
+Any two locate the image; the third is a check. For mirrors the analogues reflect rather than refract.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \def\f{2}
+  \def\so{5}
+  \def\ho{1.5}
+  \pgfmathsetmacro{\si}{1/(1/\f-1/\so)}
+  \pgfmathsetmacro{\hi}{-\ho*\si/\so}
+  % axis and lens
+  \draw[dashed] (-6.2,0) -- (5.2,0);
+  \draw[thick,fill=blue!10] (0,0) ellipse (0.22 and 2.25);
+  % foci
+  \filldraw (-\f,0) circle (1.6pt) node[below] {\small$F$};
+  \filldraw (\f,0) circle (1.6pt) node[below right] {\small$F$};
+  % object and image: both stand on the optical axis (base at y=0)
+  \draw[very thick,Green,->] (-\so,0) -- (-\so,\ho);
+  \filldraw[Green] (-\so,0) circle (1.8pt);
+  \node[Green] at (-\so,{\ho+0.35}) {\small object};
+  \draw[very thick,RedOrange,->] (\si,0) -- (\si,\hi);
+  \filldraw[RedOrange] (\si,0) circle (1.8pt);
+  \node[RedOrange] at ({\si+1.1},{\hi+0.55}) {\small image};
+  % ray 1: parallel then through far focus
+  \draw[blue!70!black,thick,->] (-\so,\ho) -- (0,\ho);
+  \draw[blue!70!black,thick] (0,\ho) -- (\si,\hi);
+  \draw[blue!70!black,thick,->] (\si,\hi) -- ($(0,\ho)!1.22!(\si,\hi)$);
+  % ray 2: through near focus then parallel
+  \draw[red!75!black,thick,->] (-\so,\ho) -- (0,\hi);
+  \draw[red!75!black,thick,->] (0,\hi) -- (4.6,\hi);
+  % ray 3: through centre
+  \draw[green!45!black,thick,->] (-\so,\ho) -- (\si,\hi);
+  \draw[green!45!black,thick,->] (\si,\hi) -- ($(-\so,\ho)!1.18!(\si,\hi)$);
+  % distance markers
+  \draw[<->] (-\so,-2.85) -- (0,-2.85) node[midway,fill=white,inner sep=1pt] {\small$s_o$};
+  \draw[<->] (0,-2.85) -- (\si,-2.85) node[midway,fill=white,inner sep=1pt] {\small$s_i$};
+\end{tikzpicture}
+\caption{Ray tracing through a thin converging lens. The parallel ray (blue) refracts through the far focus, the focal ray (red) emerges parallel, and the central ray (green) passes undeviated. All three meet at the image tip, which here is real and inverted, as $s_o > f$ requires.}
+\label{fig:ray-trace}
+\end{figure}
+
+When the object sits \emph{inside} the focal length the same three rays no longer converge on the outgoing side: they diverge, and only their backward extensions meet. That intersection is a virtual image --- upright, magnified, on the same side as the object --- which is exactly how a magnifying glass works, and is drawn in Figure~\ref{fig:virtual-image}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \def\f{3}
+  \def\so{1.8}
+  \def\ho{1.0}
+  \pgfmathsetmacro{\si}{1/(1/\f-1/\so)}   % negative: virtual
+  \pgfmathsetmacro{\hi}{-\ho*\si/\so}
+  \draw[dashed] (-6.6,0) -- (4.6,0);
+  \draw[thick,fill=blue!10] (0,0) ellipse (0.22 and 2.5);
+  \filldraw (-\f,0) circle (1.6pt) node[below] {\small$F$};
+  \filldraw (\f,0) circle (1.6pt) node[below] {\small$F$};
+  % object and virtual image: both stand on the optical axis (base at y=0)
+  \draw[very thick,Green,->] (-\so,0) -- (-\so,\ho);
+  \filldraw[Green] (-\so,0) circle (1.8pt);
+  \node[Green,left] at ({-\so-0.12},{\ho*0.55}) {\small object};
+  \draw[very thick,RedOrange,->] (\si,0) -- (\si,\hi);
+  \filldraw[RedOrange] (\si,0) circle (1.8pt);
+  \node[RedOrange] at (\si,{\hi+0.35}) {\small virtual image};
+  % parallel ray -> through far focus
+  \draw[blue!70!black,thick,->] (-\so,\ho) -- (0,\ho);
+  \draw[blue!70!black,thick,->] (0,\ho) -- (4.4,{\ho-\ho*4.4/\f});
+  \draw[blue!70!black,thick,dotted] (0,\ho) -- (\si,\hi);
+  % central ray
+  \draw[green!45!black,thick,->] (-\so,\ho) -- (3.6,{-\ho*3.6/\so});
+  \draw[green!45!black,thick,dotted] (0,0) -- (\si,\hi);
+  \node[align=center,gray] at (-4.3,-1.6)
+    {\small dotted: backward extensions,\\ \small meeting at the virtual image};
+\end{tikzpicture}
+\caption{Object inside the focal length ($s_o < f$). The refracted rays diverge, so no real image forms; their backward extensions (dotted) meet at an upright, magnified virtual image on the object's own side, with $s_i < 0$ and $m > 1$ --- the magnifying glass.}
+\label{fig:virtual-image}
+\end{figure}
+
+Compound systems need no new machinery: apply the single-element equation in sequence, letting the image of element $k$ be the object of element $k+1$. With a separation $L$ between them,
+\begin{equation}
+    s_{o,k+1} = L - s_{i,k}.
+\end{equation}
+A negative result here is a \textbf{virtual object} --- converging rays intercepted by the next element before they ever formed an image --- and the sign convention handles it without modification.
+
+% ============================================================
+\section{Dispersion and Chromatic Effects}
+% ============================================================
+
+Section~\ref{sec:dispersion} derived why $n$ depends on frequency at all, tracing it to driven bound electrons and the Sellmeier form $n^2(\omega)$. In the visible, between resonances, $n$ rises gently with $\omega$: blue light refracts more strongly than red. Everything in this chapter that involves refraction therefore acquires a colour dependence.
+
+Three consequences matter. A prism separates white light into a spectrum with violet deviated most. The primary rainbow, formed by one internal reflection inside a spherical droplet, sits at about $42^\circ$ from the antisolar point with red on the outside. And any lens has a focal length that varies with colour --- \textbf{chromatic aberration} --- since the lensmaker's equation carries $n$ explicitly and $f \propto 1/(n-1)$.
+
+Mirrors escape this entirely: the law of reflection contains no index at all, so $f = R/2$ holds for every wavelength equally. That immunity, together with the freedom to make a paraboloid stigmatic on axis, is why every large telescope is built around a mirror rather than a lens.
+
+% ============================================================
+\section{Summary}
+% ============================================================
+
+\begin{fact}[Paraxial toolkit]
+\begin{align}
+    \text{Snell:}\quad n_1\sin\theta_1 &= n_2\sin\theta_2,
+    &\text{Critical angle:}\quad \sin\theta_c &= \frac{n_2}{n_1}, \\
+    \text{Single surface:}\quad \frac{n_1}{s_o} + \frac{n_2}{s_i} &= \frac{n_2-n_1}{R},
+    &\text{Mirror:}\quad f &= \frac{R}{2}, \\
+    \text{Gaussian:}\quad \frac{1}{s_o} + \frac{1}{s_i} &= \frac{1}{f},
+    &\text{Newtonian:}\quad x_o x_i &= f^2, \\
+    \text{Lensmaker:}\quad \frac{1}{f} &= (n-1)\left(\frac{1}{R_1}-\frac{1}{R_2}\right),
+    &\text{Magnification:}\quad m &= -\frac{s_i}{s_o}.
+\end{align}
+\end{fact}
+
+The unifying lesson mirrors the one that closed the diffraction chapter. There, every pattern was a Fourier transform of the aperture; here, every imaging equation is Fermat's principle evaluated on a particular surface, and the paraxial approximation is what makes the ray height cancel so that an image exists at all.

@@ -51,6 +51,7 @@ Per-subject additions (content-driven, intentionally differ):
 Content is split across files differently per subject:
 
 - **`thermo-stat-mech/`**: `main.tex` inputs `ch1.tex` through `ch7.tex`
+- **`waves/`**: `main.tex` inputs `ch1.tex` through `ch8.tex`
 - **`electro/`**: `main.tex` inputs `ch_em1.tex` through `ch_em10.tex`
 - **`class-mech/`**: `main.tex` contains the first two chapters inline, then inputs `ch4.tex` through `ch13.tex`
 
