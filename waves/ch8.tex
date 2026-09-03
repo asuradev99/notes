@@ -33,7 +33,46 @@ $R$ & centre of curvature on outgoing side & otherwise \\
 \end{tabular}
 \end{center}
 
-A reliable anchor when memory fails: a biconvex lens in air must converge, so $f > 0$, which forces $R_1 > 0$ and $R_2 < 0$.
+A reliable anchor when memory fails: a biconvex lens in air must converge, so $f > 0$, which forces $R_1 > 0$ and $R_2 < 0$. Figure~\ref{fig:sign-convention} shows the whole convention on one axis.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  % the two sides
+  \fill[LightOrange,opacity=0.45] (-6.6,-3.45) rectangle (0,2.95);
+  \fill[LightGray,opacity=0.5]    (0,-3.45) rectangle (6.6,2.95);
+  \node at (-3.3,2.6) {\small incoming side};
+  \node at (3.3,2.6)  {\small outgoing side};
+  % direction of propagation
+  \draw[very thick,blue!70!black,->] (-6.2,1.95) -- (-4.6,1.95);
+  \node[blue!70!black,right] at (-4.5,1.95) {\small light travels this way};
+  % axis and the optical element
+  \draw[dashed] (-6.6,0) -- (6.6,0);
+  \draw[thick,fill=blue!10] (0,0) ellipse (0.2 and 1.5);
+  \node[below] at (0,-1.58) {\small$V$};
+  % real object on the incoming side
+  \draw[very thick,Green,->] (-4,0) -- (-4,1.1);
+  \filldraw[Green] (-4,0) circle (1.7pt);
+  \node[Green,above] at (-4,1.12) {\small object};
+  % real image on the outgoing side
+  \draw[very thick,RedOrange,->] (3.1,0) -- (3.1,-0.95);
+  \filldraw[RedOrange] (3.1,0) circle (1.7pt);
+  \node[RedOrange,below] at (3.1,-1.0) {\small image};
+  % centre of curvature
+  \filldraw (5.3,0) circle (1.7pt);
+  \node[above] at (5.3,0.06) {\small$C$};
+  % the flipped cases
+  \node[gray,align=center] at (-1.95,0.95) {\scriptsize an image here\\ \scriptsize instead: $s_i < 0$};
+  \node[gray,align=center] at (1.65,1.25) {\scriptsize an object here\\ \scriptsize instead: $s_o < 0$};
+  % signed distances
+  \draw[<->] (-4,-2.3) -- (0,-2.3) node[midway,fill=white,inner sep=1.5pt] {\small$s_o > 0$};
+  \draw[<->] (0,-2.3) -- (3.1,-2.3) node[midway,fill=white,inner sep=1.5pt] {\small$s_i > 0$};
+  \draw[<->] (0,-2.98) -- (5.3,-2.98) node[midway,fill=white,inner sep=1.5pt] {\small$R > 0$};
+  \foreach \x in {-4,3.1,5.3}{\draw[gray!55,thin] (\x,0) -- (\x,-3.08);}
+\end{tikzpicture}
+\caption{The sign convention on a single axis. Light arrives from the left, so the left is the incoming side and the right the outgoing side; a quantity is positive when it lies on the side where the light for it actually is. Hence a real object ($s_o>0$) on the left, a real image ($s_i>0$) and a centre of curvature ($R>0$) on the right, and a sign flip for each if it moves to the other side. A mirror sends the light back the way it came, so for mirrors the outgoing side \emph{is} the incoming side --- which is precisely why a concave mirror, curving toward the light, has $f>0$.}
+\label{fig:sign-convention}
+\end{figure}
 
 % ============================================================
 \section{Foundational Principles}
