@@ -1,24 +1,390 @@
 \chapter{Electrons in a Periodic Potential}
 
-This chapter treats the two complementary limits in which the problem of an electron in a periodic potential becomes tractable. In the \emph{nearly free electron} limit the periodic potential is a weak perturbation on plane waves, and its only dramatic effect is to open gaps at the Bragg planes. In the \emph{tight-binding} limit we start instead from atomic orbitals localized on each site and let a small overlap between neighbours broaden the discrete atomic levels into bands. We then collect the lattice Fourier identities that both pictures rest on, and close with the semiclassical dynamics of Bloch wavepackets.
+An electron in a crystal moves in a potential with the periodicity of the lattice, and that single fact --- before any approximation whatsoever --- already fixes the form of the stationary states. This chapter begins with Bloch's theorem and its immediate consequences: the labelling of states by a crystal momentum and a band index, the notion of a Fermi surface, and the density of levels. It then treats the two complementary limits in which the problem becomes tractable. In the \emph{nearly free electron} limit the periodic potential is a weak perturbation on plane waves, and its only dramatic effect is to open gaps at the Bragg planes. In the \emph{tight-binding} limit we start instead from atomic orbitals localized on each site and let a small overlap between neighbours broaden the discrete atomic levels into bands. We then collect the lattice Fourier identities that both pictures rest on, and close with the semiclassical dynamics of Bloch wavepackets.
 
 A word on notation. Since bold capitals denote vectors throughout these notes, we write the electron position as $\vect{x}$, direct lattice vectors as $\vect{R}$, reciprocal lattice vectors as $\vect{G}$, and wavevectors as $\vect{k}$ and $\vect{q}$.
 
 % ============================================================
-\section{The Nearly Free Electron Model}
+\section{Bloch's Theorem}
 % ============================================================
 
-We work with the central equation obtained by expanding a Bloch state in plane waves: for the coefficients $c_{\vect{k}-\vect{G}}$ of the plane wave $e^{i(\vect{k}-\vect{G})\cdot\vect{x}}$,
+Throughout we make two assumptions: that the crystal is perfect, i.e.\ a strictly periodic array of atoms, and that the atomic nuclei are static. The potential is then periodic,
+\begin{equation}
+    U(\vect{x}+\vect{R}) = U(\vect{x}),
+\end{equation}
+for every lattice vector $\vect{R}$, and the one-electron Schrödinger equation
+\begin{equation}
+    \hat{H}\psi = \left( -\frac{\hbar^2}{2m}\nabla^2 + U(\vect{x}) \right)\psi = E\psi
+\end{equation}
+has a Hamiltonian that is periodic in $\vect{x}$.
+
+\begin{theorem}[Bloch's theorem]
+The eigenstates $\psi$ of the one-electron Hamiltonian $H = -\hbar^2\nabla^2/2m + U(\vect{x})$ with $U$ periodic can be chosen to have the form
+\begin{equation}
+    \psi_{n\vect{k}}(\vect{x}) = e^{i\vect{k}\cdot\vect{x}}\, u_{n\vect{k}}(\vect{x}),
+    \qquad u_{n\vect{k}}(\vect{x}+\vect{R}) = u_{n\vect{k}}(\vect{x}),
+\end{equation}
+equivalently
+\begin{equation}
+    \psi_{n\vect{k}}(\vect{x}+\vect{R}) = e^{i\vect{k}\cdot\vect{R}}\, \psi_{n\vect{k}}(\vect{x}).
+    \label{eq:bloch-condition}
+\end{equation}
+\end{theorem}
+
+\subsection{First Proof: Translation Operators}
+
+Define the translation operator $T_{\vect{R}}$ by $T_{\vect{R}} f(\vect{x}) \equiv f(\vect{x}+\vect{R})$. Because the Hamiltonian is periodic,
+\begin{equation}
+    T_{\vect{R}} \hat{H} \psi = \hat{H}(\vect{x}+\vect{R})\psi(\vect{x}+\vect{R}) = H(\vect{x})\psi(\vect{x}+\vect{R}) = \hat{H} T_{\vect{R}}\psi,
+\end{equation}
+so $T_{\vect{R}}$ commutes with $H$. The translations also commute among themselves,
+\begin{equation}
+    T_{\vect{R}} T_{\vect{R}'} \psi(\vect{x}) = \psi(\vect{x}+\vect{R}+\vect{R}') = T_{\vect{R}'} T_{\vect{R}} \psi = T_{\vect{R}+\vect{R}'}\psi.
+\end{equation}
+Hence $\{T_{\vect{R}}\}$ and $H$ form a set of commuting operators and can be simultaneously diagonalized:
+\begin{equation}
+    \hat{H}\psi = E\psi, \qquad T_{\vect{R}}\psi = C(\vect{R})\psi,
+\end{equation}
+where the multiplicative property $C(\vect{R}+\vect{R}') = C(\vect{R})C(\vect{R}')$ lets us write the eigenvalues on the primitive vectors as
+\begin{equation}
+    C(\vect{a}_i) = \exp(2\pi i x_i).
+\end{equation}
+For an arbitrary lattice vector $\vect{R} = n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3$,
+\begin{equation}
+    C(\vect{R}) = C(\vect{a}_1)^{n_1} C(\vect{a}_2)^{n_2} C(\vect{a}_3)^{n_3}
+    = \exp\bigl(2\pi i x_1 n_1 + 2\pi i x_2 n_2 + 2\pi i x_3 n_3\bigr).
+\end{equation}
+Now take $\vect{k} = x_1\vect{b}_1 + x_2\vect{b}_2 + x_3\vect{b}_3$, where the $\vect{b}_i$ are the reciprocal primitive vectors satisfying $\vect{b}_i\cdot\vect{a}_j = 2\pi\delta_{ij}$. Then
+\begin{equation}
+    \exp(i\vect{k}\cdot\vect{R}) = \exp\bigl(i(x_1\vect{b}_1 + x_2\vect{b}_2 + x_3\vect{b}_3)\cdot(n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3)\bigr)
+    = \exp\bigl(i(2\pi x_1 n_1 + 2\pi x_2 n_2 + 2\pi x_3 n_3)\bigr) = C(\vect{R}),
+\end{equation}
+so that $T_{\vect{R}}\psi = \psi(\vect{x}+\vect{R}) = C(\vect{R})\psi = e^{i\vect{k}\cdot\vect{R}}\psi$, which is exactly~\eqref{eq:bloch-condition}.
+
+\subsection{Born--von Karman Boundary Conditions}
+
+\begin{definition}[Born--von Karman boundary condition]
+\begin{equation}
+    \psi(\vect{x} + N_i \vect{a}_i) = \psi(\vect{x}), \qquad i = 1,2,3,
+\end{equation}
+where $N = N_1 N_2 N_3$ is the total number of primitive cells and $N_i$ is the length of the system in unit cells along a particular direction.
+\end{definition}
+
+This constrains $\vect{k}$ to be real and quantizes its allowed values. Applying the Bloch condition,
+\begin{equation}
+    \psi_{n\vect{k}}(\vect{x}+N_i\vect{a}_i) = \exp(iN_i \vect{k}\cdot\vect{a}_i)\, \psi_{n\vect{k}}(\vect{x}) = \psi(\vect{x})
+    \;\Longrightarrow\; \exp(iN_i\vect{k}\cdot\vect{a}_i) = 1
+    \;\Longrightarrow\; \vect{k}\cdot\vect{a}_i = \frac{2\pi m}{N_i}, \quad m \in \mathbb{Z}.
+\end{equation}
+Writing $\vect{k} = x_1\vect{b}_1 + x_2\vect{b}_2 + x_3\vect{b}_3$ gives $2\pi x_i = 2\pi m/N_i$, i.e.\ $x_i = m/N_i$.
+
+\begin{formula}[Allowed wavevectors]
+\begin{equation}
+    \vect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\,\vect{b}_i, \qquad m_i \in \mathbb{Z}.
+\end{equation}
+\end{formula}
+
+\subsection{Volume per Allowed Wavevector}
+
+The allowed $\vect{k}$ form a lattice whose primitive cell is the parallelepiped with edges $\vect{b}_i/N_i$, so the volume per $\vect{k}$-value is
+\begin{equation}
+    \Delta k = \frac{\vect{b}_1}{N_1}\cdot\left( \frac{\vect{b}_2}{N_2} \times \frac{\vect{b}_3}{N_3} \right)
+    = \frac{1}{N}\,\vect{b}_1\cdot(\vect{b}_2\times\vect{b}_3).
+\end{equation}
+
+\begin{fact}
+The number of allowed wavevectors in a primitive cell of the reciprocal lattice equals the number of sites in the crystal.
+\end{fact}
+
+Since the volume of the reciprocal lattice primitive cell is $(2\pi)^3/v$ with $v = V/N$,
+\begin{equation}
+    \Delta k = \frac{\text{primitive cell volume}}{N} = \frac{(2\pi)^3}{V}.
+\end{equation}
+
+\subsection{Second Proof: Fourier Expansion}
+
+The second proof is more laborious but produces the central equation on which the nearly free electron model is built. By Fourier transform, any function obeying the boundary conditions can be written
+\begin{equation}
+    \psi(\vect{x}) = \sum_{\vect{q}} c_{\vect{q}}\, e^{i\vect{q}\cdot\vect{x}},
+\end{equation}
+where $\vect{q}$ runs over the set of BVK wavevectors. The potential, being periodic in the lattice, has a plane-wave expansion containing only reciprocal lattice vectors:
+\begin{equation}
+    U(\vect{x}) = \sum_{\vect{G}} U_{\vect{G}}\, e^{i\vect{G}\cdot\vect{x}},
+    \qquad
+    U_{\vect{G}} = \frac{1}{v}\int_{\text{cell}} d\vect{x}\; e^{-i\vect{G}\cdot\vect{x}}\, U(\vect{x}),
+\end{equation}
+where it suffices to integrate over one cell since $U$ is periodic. We are free to make the constant term vanish,
+\begin{equation}
+    U_0 = \frac{1}{v}\int_{\text{cell}} d\vect{x}\; U(\vect{x}) = 0.
+\end{equation}
+Since $U(\vect{x})$ is real, $U_{-\vect{G}} = U^*_{\vect{G}}$; and if the lattice has inversion symmetry, $U(\vect{x}) = U(-\vect{x})$ for a suitable choice of origin, then $U_{\vect{G}} = U^*_{-\vect{G}}$ so that $U_{\vect{G}}$ is real.
+
+Substituting both expansions into the Schrödinger equation, the kinetic term gives
+\begin{equation}
+    -\frac{\hbar^2}{2m}\nabla^2 \psi = \sum_{\vect{q}} \frac{\hbar^2}{2m} q^2 c_{\vect{q}}\, e^{i\vect{q}\cdot\vect{x}},
+\end{equation}
+while the potential term gives
+\begin{equation}
+    U\psi = \left( \sum_{\vect{G}} U_{\vect{G}} e^{i\vect{G}\cdot\vect{x}} \right)\left( \sum_{\vect{q}} c_{\vect{q}} e^{i\vect{q}\cdot\vect{x}} \right)
+    = \sum_{\vect{G},\vect{q}} U_{\vect{G}} c_{\vect{q}}\, e^{i(\vect{G}+\vect{q})\cdot\vect{x}}
+    = \sum_{\vect{G},\vect{q}'} U_{\vect{G}} c_{\vect{q}'-\vect{G}}\, e^{i\vect{q}'\cdot\vect{x}}.
+\end{equation}
+
+\begin{fact}
+The potential $U$ only couples a wavevector $\vect{q}$ to wavevectors differing from it by a reciprocal lattice vector, $\vect{q}+\vect{G}$. Everything that follows is a rigorous statement of this fact.
+\end{fact}
+
+Collecting terms with a common exponential,
+\begin{equation}
+    \sum_{\vect{q}} e^{i\vect{q}\cdot\vect{x}} \left\{ \left( \frac{\hbar^2}{2m}q^2 - \varepsilon \right) c_{\vect{q}} + \sum_{\vect{G}'} U_{\vect{G}'}\, c_{\vect{q}-\vect{G}'} \right\} = 0,
+\end{equation}
+and since the plane waves satisfying the Born--von Karman conditions are orthogonal, each brace must vanish separately:
+\begin{equation}
+    \left( \frac{\hbar^2}{2m}q^2 - \varepsilon \right) c_{\vect{q}} + \sum_{\vect{G}'} U_{\vect{G}'}\, c_{\vect{q}-\vect{G}'} = 0
+    \qquad \text{for all allowed } \vect{q}.
+\end{equation}
+Rewriting with $\vect{q} = \vect{k}-\vect{G}$, so that $\vect{k}$ lies in the first Brillouin zone, and then shifting $\vect{G}' \to \vect{G}'-\vect{G}$, gives the central equation.
+
+\begin{formula}[Central equation]
+\begin{equation}
+    \left( \frac{\hbar^2}{2m}(\vect{k}-\vect{G})^2 - \varepsilon \right) c_{\vect{k}-\vect{G}}
+    + \sum_{\vect{G}'} U_{\vect{G}'-\vect{G}}\, c_{\vect{k}-\vect{G}'} = 0.
+    \label{eq:bloch-central}
+\end{equation}
+\end{formula}
+
+This relates only the coefficients $c_{\vect{k}}, c_{\vect{k}-\vect{G}}, c_{\vect{k}-\vect{G}'}, \ldots$ to one another, so the problem of determining the solution coefficients splits into $N$ independent subproblems, one for each $\vect{k}$ in the first zone. Organizing the vector of coefficients into reciprocal-space blocks,
+\begin{equation}
+    \vect{\Psi} = \bigl( \underbrace{c_{\vect{k}},\, c_{\vect{k}-\vect{G}},\, c_{\vect{k}-\vect{G}'},\ldots}_{\vect{k}},\;
+    \underbrace{c_{\vect{k}'},\, c_{\vect{k}'-\vect{G}},\, c_{\vect{k}'-\vect{G}'},\ldots}_{\vect{k}'},\; \ldots \bigr),
+\end{equation}
+the Hamiltonian is block diagonal, with one block $\hat{H}_{\vect{k}}$ for each of the $N$ wavevectors.
+
+\begin{formula}[Reduced matrix equation]
+\begin{equation}
+    \sum_{\vect{G}'} H_{\vect{G}\vect{G}'}(\vect{k})\, c^n_{\vect{G}'} = E_n(\vect{k})\, c^n_{\vect{G}},
+    \qquad
+    H_{\vect{G}\vect{G}'}(\vect{k}) \equiv \frac{\hbar^2}{2m}|\vect{k}+\vect{G}|^2 \delta_{\vect{G}\vect{G}'} + U_{\vect{G}-\vect{G}'}.
+\end{equation}
+\end{formula}
+
+There are thus $N$ independent subproblems of the form $\hat{H}_{\vect{k}}\psi_{\vect{k}} = E\psi_{\vect{k}}$, and the solution for a given $\vect{k}$ is
+\begin{equation}
+    \psi_{\vect{k}}(\vect{x}) = \sum_{\vect{G}} c^n_{\vect{G}}\, e^{i(\vect{k}+\vect{G})\cdot\vect{x}}
+    = e^{i\vect{k}\cdot\vect{x}} \underbrace{\sum_{\vect{G}} c^n_{\vect{G}}\, e^{i\vect{G}\cdot\vect{x}}}_{u_{\vect{k}}(\vect{x})}.
+\end{equation}
+Since $u^n_{\vect{k}}(\vect{x}+\vect{R}) = \sum_{\vect{G}} c^n_{\vect{G}} e^{i\vect{G}\cdot(\vect{x}+\vect{R})} = \sum_{\vect{G}} c^n_{\vect{G}} e^{i\vect{G}\cdot\vect{x}} = u^n_{\vect{k}}(\vect{x})$, this proves Bloch's theorem a second time.
+
+% ============================================================
+\section{Consequences of Bloch's Theorem}
+% ============================================================
+
+\subsection{General Remarks}
+
+\begin{enumerate}
+    \item The wavevector $\vect{k}$ plays the same role as in the free-electron case: it is the quantum number characteristic of the translational symmetry of the periodic potential. But $\hbar\vect{k}$ is \emph{not} the momentum, because the Hamiltonian no longer has full translational symmetry. Indeed, with $\hat{\vect{p}} = \frac{\hbar}{i}\nabla$,
+    \begin{equation}
+        \frac{\hbar}{i}\nabla \psi_{n\vect{k}} = \frac{\hbar}{i}\nabla\bigl( e^{i\vect{k}\cdot\vect{x}} u_{n\vect{k}}(\vect{x}) \bigr)
+        = \hbar\vect{k}\,\psi_{n\vect{k}} + e^{i\vect{k}\cdot\vect{x}}\,\frac{\hbar}{i}\nabla u_{n\vect{k}}(\vect{x}),
+    \end{equation}
+    which is not proportional to $\psi_{n\vect{k}}$. We call $\hbar\vect{k}$ the \emph{crystal momentum}.
+    \item The wavevector in Bloch's theorem can always be confined to the first Brillouin zone. Any $\vect{k}'$ outside it can be written $\vect{k}' = \vect{k}+\vect{G}$ with $\vect{k}$ inside, and then
+    \begin{equation}
+        \psi(\vect{x}+\vect{R}) = e^{i\vect{k}'\cdot\vect{R}}\psi(\vect{x}) = e^{i(\vect{k}+\vect{G})\cdot\vect{R}}\psi(\vect{x}) = e^{i\vect{k}\cdot\vect{R}}\psi(\vect{x}),
+    \end{equation}
+    since $e^{i\vect{G}\cdot\vect{R}} = 1$.
+    \item For a given $\vect{k}$ there are many solutions of the Schrödinger equation
+    \begin{equation}
+        H_{\vect{k}} u_{\vect{k}}(\vect{x}) = \left( \frac{\hbar^2}{2m}\Bigl(\frac{1}{i}\nabla + \vect{k}\Bigr)^{\!2} + U(\vect{x}) \right) u_{\vect{k}}(\vect{x}),
+    \end{equation}
+    a discrete spectrum of eigenvalues $\varepsilon_{n\vect{k}}$ labelled by the \emph{band index} $n$. Each level varies continuously with $\vect{k}$, so we expect a family of continuous functions $\varepsilon_n(\vect{k})$ with the periodicity
+    \begin{equation}
+        \psi_{n,\vect{k}+\vect{G}} = \psi_{n\vect{k}}(\vect{x}), \qquad \varepsilon_{n,\vect{k}+\vect{G}} = \varepsilon_{n,\vect{k}}.
+    \end{equation}
+    \item The mean electron group velocity in band $n$ at wavevector $\vect{k}$ is $\vect{v}_n(\vect{k}) = \frac{1}{\hbar}\nabla_{\vect{k}}\varepsilon_n(\vect{k})$ --- derived below in the semiclassical section. Remarkably, an electron can move forever in a perfect periodic potential without any degradation of its mean velocity.
+\end{enumerate}
+
+\subsection{The Fermi Surface}
+
+The Fermi surface concerns the ground state of $N$ Bloch electrons. Because each band holds $2 N_{\vect{k}} = 2N$ levels (a factor of two from the Pauli principle and spin, and one $\vect{k}$ per primitive cell), two qualitatively different situations arise (Figure~\ref{fig:bloch-filling}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    % --- insulator ---
+    \begin{scope}
+        \draw[-{Stealth}] (0,-1.5) -- (0,1.6) node[above] {$\varepsilon$};
+        \draw[-{Stealth}] (-1.8,0) -- (1.9,0) node[right] {$k$};
+        \draw[thick, domain=-1.5:1.5, samples=60, variable=\t] plot ({\t},{0.55+0.42*\t*\t});
+        \node[right, font=\small] at (1.55,1.0) {$n=2$ not filled};
+        \draw[thick, Orange, domain=-1.5:1.5, samples=60, variable=\t] plot ({\t},{-0.15-0.42*\t*\t});
+        \node[Orange, right, font=\small] at (1.05,-1.2) {$n=1$ filled};
+        \draw[dashed] (-1.8,0.2) -- (1.2,0.2);
+        \node[right, font=\small] at (1.2,0.2) {$\varepsilon_F$};
+        \draw[{Stealth}-{Stealth}] (-0.25,-0.15) -- (-0.25,0.55);
+        \node[left, font=\small] at (-0.3,0.2) {$\Delta E$};
+        \node[font=\small] at (0.1,-1.85) {insulator};
+    \end{scope}
+    % --- metal ---
+    \begin{scope}[xshift=7cm]
+        \draw[-{Stealth}] (0,-1.5) -- (0,1.6) node[above] {$\varepsilon$};
+        \draw[-{Stealth}] (-1.8,0) -- (1.9,0) node[right] {$k$};
+        \draw[thick, domain=-1.5:1.5, samples=60, variable=\t] plot ({\t},{0.25+0.42*\t*\t});
+        \node[right, font=\small] at (1.55,0.8) {$n=2$ not filled};
+        \draw[thick, Orange, domain=-1.5:1.5, samples=60, variable=\t] plot ({\t},{0.15-0.42*\t*\t});
+        \node[Orange, right, font=\small] at (1.05,-0.95) {$n=1$ partially filled};
+        \draw[dashed] (-1.8,-0.15) -- (1.2,-0.15);
+        \node[right, font=\small] at (1.2,-0.3) {$\varepsilon_F$};
+        \node[font=\small] at (0.1,-1.85) {metal};
+    \end{scope}
+\end{tikzpicture}
+\caption{Band filling. In the insulating case (left) one or more bands are completely filled and the rest empty, separated by a band gap $\Delta E$; in the metallic case (right) one or more bands are partially filled and the Fermi level cuts through a band.}
+\label{fig:bloch-filling}
+\end{figure}
+
+\begin{definition}[Insulator case]
+One or more bands are completely filled and the rest are empty. The band gap is
+\begin{equation}
+    \Delta E = E(\text{lowest unoccupied state}) - E(\text{highest occupied state}).
+\end{equation}
+Since the number of available levels per band is $2N_{\vect{k}} = 2N_{\text{primitive cells}}$, this case can only occur if the number of electrons per unit cell is even. If $\Delta E \gg k_B T$ the material is an \emph{insulator}; if $\Delta E \sim k_B T$ it is a \emph{semiconductor}.
+\end{definition}
+
+\begin{definition}[Metal case]
+One or more bands are partially filled. For each such band there is a surface in $\vect{k}$-space separating occupied from unoccupied levels --- a branch of the \emph{Fermi surface} --- defined by
+\begin{equation}
+    \varepsilon_n(\vect{k}) = \varepsilon_F.
+\end{equation}
+The solution of this constraint for each $n$ is a $\vect{k}$-space surface with the periodicity of the reciprocal lattice.
+\end{definition}
+
+\subsection{Density of Levels}
+
+\begin{definition}[Density of levels]
+\begin{equation}
+    g(\varepsilon) = \sum_n g_n(\varepsilon),
+    \qquad
+    g_n(\varepsilon) = \int \frac{d\vect{k}}{4\pi^3}\,\delta\bigl(\varepsilon - \varepsilon_n(\vect{k})\bigr),
+    \qquad [g(\varepsilon)] = \frac{1}{[E][V]},
+\end{equation}
+where the integral runs over any primitive cell.
+\end{definition}
+
+Equivalently, $g_n(\varepsilon)\,d\varepsilon$ is $2/V$ times the number of allowed wavevectors in the $n$th band with energy between $\varepsilon$ and $\varepsilon+d\varepsilon$:
+\begin{equation}
+    g_n(\varepsilon)\, d\varepsilon
+    = \frac{2}{V}\cdot\frac{\text{volume of the $\vect{k}$-space region containing } \varepsilon \to \varepsilon+d\varepsilon}{\Delta k}
+    = \frac{2}{V}\cdot\frac{V}{(2\pi)^3}\int \frac{d\vect{k}}{4\pi^3}\,\delta\bigl(\varepsilon \leq \varepsilon_n(\vect{k}) \leq \varepsilon+d\varepsilon\bigr).
+\end{equation}
+Geometrically, $g_n(\varepsilon)\,d\varepsilon$ is the volume between the constant-energy surface $S_n(\varepsilon)$ and the neighbouring surface $S_n(\varepsilon+d\varepsilon)$ (Figure~\ref{fig:bloch-dos-shell}):
+\begin{equation}
+    g_n(\varepsilon) = \int_{S_n(\varepsilon)} \frac{dS}{4\pi^3}\, \delta k(\vect{k}),
+\end{equation}
+where the perpendicular separation of the two surfaces follows from $\varepsilon + d\varepsilon = \varepsilon + |\nabla\varepsilon_n(\vect{k})|\,\delta k(\vect{k})$, so that
+\begin{equation}
+    \delta k(\vect{k}) = \frac{d\varepsilon}{|\nabla\varepsilon_n(\vect{k})|}.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \draw[thick] plot[smooth cycle, tension=0.8] coordinates {(0,1.9) (1.8,0.5) (1.2,-1.5) (-1.1,-1.6) (-1.9,0.3)};
+    \draw[thick] plot[smooth cycle, tension=0.8] coordinates {(0,1.15) (1.05,0.3) (0.7,-0.9) (-0.65,-0.95) (-1.15,0.2)};
+    \node[font=\small] at (0,0.2) {$S_n(\varepsilon)$};
+    \node[font=\small, right] at (1.55,-1.75) {$S_n(\varepsilon+d\varepsilon)$};
+    \draw[-{Stealth}] (0.9,-0.55) -- (1.45,-0.9);
+    \node[font=\small, above right] at (1.2,-0.75) {$dS$};
+    \draw[{Stealth}-{Stealth}] (0.15,-0.93) -- (0.35,-1.55);
+    \node[font=\small, left] at (0.1,-1.25) {$\delta k(\vect{k})$};
+    \draw (1.2,-1.5) .. controls (1.4,-1.7) .. (1.55,-1.75);
+\end{tikzpicture}
+\caption{The density of levels as a shell volume: $g_n(\varepsilon)\,d\varepsilon$ counts the states between the constant-energy surface $S_n(\varepsilon)$ and $S_n(\varepsilon+d\varepsilon)$, whose perpendicular separation is $\delta k = d\varepsilon/|\nabla\varepsilon_n(\vect{k})|$.}
+\label{fig:bloch-dos-shell}
+\end{figure}
+
+\begin{formula}[Alternate density of states]
+\begin{equation}
+    g_n(\varepsilon) = \int_{S_n(\varepsilon)} \frac{dS}{4\pi^3}\,\frac{1}{|\nabla\varepsilon_n(\vect{k})|}.
+\end{equation}
+\end{formula}
+
+\begin{fact}[Van Hove singularities]
+Because $\varepsilon_n(\vect{k})$ is periodic in the $\vect{k}$-space primitive cell and bounded above and below, there must be points where $\nabla\varepsilon_n(\vect{k}) = 0$, and at those points $g_n(\varepsilon)$ diverges.
+\end{fact}
+
+% ============================================================
+\section{Electrons in a Weak Periodic Potential}
+% ============================================================
+
+The nearly free electron model starts from the Sommerfeld free electron gas and adds a weak perturbing potential. Two reasons make this a sensible description of real materials: conduction electrons cannot get close to the ions and interact strongly with them, since the core electrons already occupy that region; and in the region where conduction electrons are allowed, they screen the field of the positively charged ions, diminishing the total effective potential.
+
+\subsection{Solving the Schrödinger Equation for a Weak Potential}
+
+We begin from the plane-wave ansatz of the second proof of Bloch's theorem,
+\begin{equation}
+    \psi_{\vect{k}}(\vect{x}) = \sum_{\vect{G}} c_{\vect{k}-\vect{G}}\, e^{i(\vect{k}-\vect{G})\cdot\vect{x}},
+\end{equation}
+summed over all reciprocal lattice vectors, with the coefficients $c_{\vect{k}-\vect{G}}$ and $\varepsilon(\vect{k})$ fixed by the central equation~\eqref{eq:bloch-central}, which we now write as
 \begin{equation}
     \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}\bigr)\, c_{\vect{k}-\vect{G}}
     = \sum_{\vect{G}'} U_{\vect{G}'-\vect{G}}\; c_{\vect{k}-\vect{G}'},
-    \label{eq:bloch-central}
+    \qquad \varepsilon^0_{\vect{k}} \equiv \frac{\hbar^2 k^2}{2m}.
+    \label{eq:bloch-central-eps}
 \end{equation}
-where $\varepsilon^0_{\vect{k}} = \hbar^2 k^2/2m$ are the free-electron energies and $U_{\vect{G}}$ are the Fourier components of the periodic potential. Everything below is an analysis of~\eqref{eq:bloch-central} in the two cases: when a single free-electron level is isolated, and when several are nearly degenerate.
+For free electrons $U = 0$ and this collapses to
+\begin{equation}
+    \bigl( \varepsilon^0_{\vect{k}-\vect{G}} - \varepsilon \bigr)\, c_{\vect{k}-\vect{G}} = 0,
+\end{equation}
+so for every $\vect{G}$ either $\varepsilon^0_{\vect{k}-\vect{G}} = \varepsilon(\vect{k})$ or $c_{\vect{k}-\vect{G}} = 0$; nontriviality demands at least one nonzero coefficient. Two cases follow:
+\begin{enumerate}
+    \item \emph{Nondegenerate}: $\varepsilon = \varepsilon^0_{\vect{k}-\vect{G}_1}$ with $\psi_{\vect{k}} \propto e^{i(\vect{k}-\vect{G}_1)\cdot\vect{x}}$, a single plane wave.
+    \item \emph{Degenerate}: $\varepsilon^0_{\vect{k}-\vect{G}_1} = \cdots = \varepsilon^0_{\vect{k}-\vect{G}_m}$, i.e.\ several reciprocal lattice vectors sit at the same squared distance from the given $\vect{k}$ --- which happens only at certain points. There are then $m$ independent degenerate plane-wave solutions, and any linear combination is again a solution, so one has complete freedom in choosing the coefficients $c_{\vect{k}-\vect{G}}$ for $\vect{G} = \vect{G}_1,\ldots,\vect{G}_m$.
+\end{enumerate}
+
+Turning on a weak but nonzero $U_{\vect{G}}$ resolves this freedom. The free-electron parabolas centred on neighbouring reciprocal lattice points intersect, and it is only in the neighbourhood of those intersections --- the region where $|\varepsilon^0_{\vect{k}-\vect{G}_1} - \varepsilon^0_{\vect{k}-\vect{G}}| \sim O(U)$ --- that the potential matters at all (Figure~\ref{fig:bloch-parabolas}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=11cm, height=6cm,
+    axis lines=middle,
+    xlabel={$k$}, ylabel={$\varepsilon^0$},
+    xmin=-2.6, xmax=2.9, ymin=0, ymax=3.4,
+    xtick={-1,0,1}, xticklabels={$-\tfrac{G}{2}$, $0$, $\tfrac{G}{2}$},
+    ytick=\empty, samples=120, clip=false,
+    every axis x label/.style={at={(ticklabel* cs:1.0)}, anchor=west},
+]
+    \addplot[Orange, very thick, domain=-2.3:2.3] {x^2};
+    \addplot[Orange, very thick, domain=-2.6:0.5] {(x+2)^2};
+    \addplot[Orange, very thick, domain=-0.5:2.6] {(x-2)^2};
+    % O(U) window about the crossing at k = G/2
+    \draw[dashed] (axis cs:-2.6,1.35) -- (axis cs:2.6,1.35);
+    \draw[dashed] (axis cs:-2.6,0.65) -- (axis cs:2.6,0.65);
+    \draw[{Stealth}-{Stealth}] (axis cs:2.05,0.65) -- (axis cs:2.05,1.35);
+    \node[right, font=\small] at (axis cs:2.1,1.0) {$O(U)$};
+    \node[below, font=\small] at (axis cs:-2,0) {$\vect{k}_1$};
+    \node[below, font=\small] at (axis cs:2,0) {$\vect{G}$};
+\end{axis}
+\end{tikzpicture}
+\caption{Free-electron parabolas centred on neighbouring reciprocal lattice points. The weak potential only matters in the zone where two free-electron energies differ by $O(U)$, i.e.\ near the crossings at $k = \pm G/2$.}
+\label{fig:bloch-parabolas}
+\end{figure}
 
 \subsection{Case 1: The Nondegenerate Case}
 
-Suppose the level $\varepsilon^0_{\vect{k}-\vect{G}_1}$ is far from all the others on the scale set by $U$. Solving~\eqref{eq:bloch-central} for the small coefficients and substituting back,
+Fix $\vect{k}$ and consider a $\vect{G}_1$ such that
+\begin{equation}
+    \bigl| \varepsilon^0_{\vect{k}-\vect{G}_1} - \varepsilon^0_{\vect{k}-\vect{G}} \bigr| \gg U
+    \qquad \text{for all } \vect{G} \neq \vect{G}_1,
+\end{equation}
+so that one energy level --- typically the smallest --- is isolated from all the others by an amount much larger than $U$. We want a solution that approaches the free-electron result $\varepsilon = \varepsilon^0_{\vect{k}-\vect{G}_1}$, $c_{\vect{k}-\vect{G}} = 0$ ($\vect{G}\neq\vect{G}_1$) as $U \to 0$. Hence $c_{\vect{k}-\vect{G}_1}$ is of order unity while the remaining $c_{\vect{k}-\vect{G}}$ are first order in $U$. Rearranging~\eqref{eq:bloch-central-eps} for a general $\vect{G}$,
+\begin{equation}
+    c_{\vect{k}-\vect{G}} = \frac{U_{\vect{G}_1-\vect{G}}\, c_{\vect{k}-\vect{G}_1}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}
+    + \sum_{\vect{G}' \neq \vect{G}_1} \frac{U_{\vect{G}'-\vect{G}}\, c_{\vect{k}-\vect{G}'}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}
+    = \frac{U_{\vect{G}_1-\vect{G}}\, c_{\vect{k}-\vect{G}_1}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}} + O(U^2),
+\end{equation}
+having chosen $U_0 = 0$. Plugging this back into the equation for $c_{\vect{k}-\vect{G}_1}$,
 \begin{equation}
     \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_1}\bigr) c_{\vect{k}-\vect{G}_1}
     = \sum_{\vect{G}} \frac{|U_{\vect{G}-\vect{G}_1}|^2}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}\, c_{\vect{k}-\vect{G}_1} + O(U^3).
@@ -233,7 +599,7 @@ This gives an intuitive construction of Fermi surfaces in a weak periodic potent
 \section{The Tight-Binding Method}
 % ============================================================
 
-The nearly free electron model starts from plane waves. The opposite starting point is the isolated atom, which is appropriate whenever the solid is composed of weakly interacting neutral atoms.
+The weak-potential treatment above starts from plane waves and perturbs them with the ions. The opposite starting point is the isolated atom, which is appropriate whenever the solid is composed of weakly interacting neutral atoms.
 
 \subsection{Assumptions}
 
