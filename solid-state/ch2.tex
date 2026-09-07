@@ -1,0 +1,566 @@
+\chapter{Crystallography and X-Ray Diffraction}
+
+The experimental window into the structure of a solid is scattering: we send radiation of a known wavelength at the sample and measure how much of it comes out in each direction. This chapter builds the apparatus needed to interpret such an experiment. We begin with the scattering of X-rays by a single free electron, first classically and then through Fermi's golden rule, and record the absorption cross-section that competes with elastic scattering. We then change subject and set up the language of crystals --- lattices, unit cells, Bravais types --- and finally join the two threads through reciprocal space, where the Fourier transform of a periodic density turns the diffraction pattern into a lattice of its own.
+
+% ============================================================
+\section{Scattering from a Single Free Electron}
+% ============================================================
+
+Consider a single free electron that scatters an incident wave. The incident beam is characterized by its \emph{flux}: the number of photons per unit area per second. Since each photon carries energy $\hbar\omega$ and the energy density of the wave is proportional to $|\vect{e}_{\text{in}}|^2$, the flux is proportional to $c$ times the photon number density,
+\begin{equation}
+    \Phi_0 = \frac{\#\ \text{of photons}}{(\text{unit area})(\text{second})} \propto \frac{c\,|\vect{e}_{\text{in}}|^2}{\hbar\omega}.
+\end{equation}
+The scattered intensity $I_{\text{sc}}$ counts the number of scattered photons per second reaching the detector, so it carries an extra factor of the detector area:
+\begin{equation}
+    I_{\text{sc}} = \frac{\#\ \text{of scattered photons}}{\text{second}} \propto \frac{c\,|\vect{e}_{\text{rad}}|^2}{\hbar\omega}\cdot(\text{detector area}) \propto \frac{c\,|\vect{e}_{\text{rad}}|^2}{\hbar\omega}\,R^2\Delta\Omega,
+\end{equation}
+where we used that a detector subtending solid angle $\Delta\Omega$ at distance $R$ has area $R^2\Delta\Omega$ --- the three-dimensional analogue of the arc length $\theta R$.
+
+\begin{definition}[Differential cross-section]
+The differential cross-section is the scattered intensity per unit incident flux per unit solid angle,
+\begin{equation}
+    \dv{\sigma}{\Omega} = \frac{I_{\text{sc}}}{\Phi_0\,\Delta\Omega} = \frac{|\vect{e}_{\text{rad}}|^2 R^2}{|\vect{e}_{\text{in}}|^2}.
+\end{equation}
+\end{definition}
+
+\subsection{Classical Description}
+
+Classically, the incident field drives the electron into forced vibration, and the accelerating charge radiates a spherical wave. Writing the incident field as a monochromatic plane wave and the radiated field as an outgoing spherical wave,
+\begin{equation}
+    \vect{e}_{\text{in}} = E_0\exp(-i\omega t), \qquad
+    \vect{e}_{\text{rad}} \propto \hat{\varepsilon}\,'\,\frac{e^{ikR}}{R},
+\end{equation}
+where $\hat{\varepsilon}\,'$ is the polarization of the outgoing radiation. Working out the dipole radiation of the driven electron gives
+\begin{equation}
+    \frac{E_{\text{rad}}(R,t)}{E_{\text{in}}} \propto \frac{e^2}{m}\,\frac{e^{ikR}}{R}\,\sin\psi,
+\end{equation}
+with $\psi$ the angle measured from the acceleration (polarization) axis, as sketched in Figure~\ref{fig:xrd-spherical}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    % outgoing spherical wavefronts
+    \foreach \r in {0.7,1.2,1.7} {
+        \draw[Periwinkle, thin] (0,0) circle (\r);
+    }
+    % scatterer
+    \fill[ForestGreen] (0,0) circle (2.5pt);
+    % incident radiation
+    \draw[-{Stealth}, thick, Orange] (-3.4,1.4) -- (-0.9,0.45);
+    \node[Orange, above, align=center] at (-2.3,1.0) {incident\\radiation};
+    % axes
+    \draw[-{Stealth}] (0,0) -- (2.6,-1.3) node[right] {$z$};
+    \draw[-{Stealth}] (0,0) -- (0,2.2) node[above] {polarization axis};
+    % outgoing direction
+    \draw[-{Stealth}, thick] (0,0) -- (2.1,0.75) node[right] {$\uvect{R}$};
+    \draw (0,1.0) arc (90:19.7:1.0);
+    \node at (0.55,1.25) {$\psi$};
+    \node[Periwinkle, right] at (1.35,-0.75) {spherical outgoing wave};
+\end{tikzpicture}
+\caption{An electron driven by the incident radiation re-radiates as a spherical wave whose amplitude falls off as $1/R$ and vanishes along the polarization axis, where $\sin\psi = 0$.}
+\label{fig:xrd-spherical}
+\end{figure}
+
+Introducing the classical electron radius $r_0$, the scattering amplitude of a single electron is $-r_0\,|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'|$, i.e.
+\begin{equation}
+    \frac{E_{\text{rad}}(R,t)}{E_{\text{in}}} = -r_0\,\frac{e^{ikR}}{R}\,|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'|,
+\end{equation}
+so that
+\begin{formula}[Thomson differential cross-section]
+\begin{equation}
+    \dv{\sigma}{\Omega} = r_0^2\,\bigl|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'\bigr|^2. \label{eq:xrd-thomson}
+\end{equation}
+\end{formula}
+
+Integrating over all directions and using the angular average $\langle(\hat{\varepsilon}\cdot\hat{\varepsilon}\,')^2\rangle = 2/3$,
+\begin{equation}
+    \sigma_T = \int \dv{\sigma}{\Omega}\,\dd\Omega = 4\pi r_0^2\times\tfrac{2}{3} = \frac{8\pi r_0^2}{3}.
+\end{equation}
+
+\begin{fact}
+The scattering of X-rays from free electrons is \emph{independent of the photon energy}: the Thomson cross-section contains no $\omega$.
+\end{fact}
+
+% ============================================================
+\section{Quantum Theory of Scattering}
+% ============================================================
+
+To do better than the classical picture we specify combined states of the X-ray field and the sample, $\ket{i}$ (initial) and $\ket{f}$ (final), acted on by some interaction Hamiltonian $H_I$. First-order perturbation theory then gives the transition rate.
+
+\begin{theorem}[Fermi's golden rule]
+The number of transitions per second from $\ket{i}$ to $\ket{f}$ is
+\begin{equation}
+    W = \frac{2\pi}{\hbar}\,|M_{if}|^2\,\rho(\mathcal{E}_f),
+\end{equation}
+where $M_{if} = \bra{f}H_I\ket{i}$ and $\rho(\mathcal{E}_f)$ is the density of states at final energy $\mathcal{E}_f$.
+\end{theorem}
+
+The differential cross-section is then written in terms of the rate of transitions into the solid angle $\Delta\Omega$,
+\begin{equation}
+    \dv{\sigma}{\Omega} = \frac{W_{\Delta\Omega}}{\Phi_0\,\Delta\Omega}, \qquad W_{\Delta\Omega} \equiv I_{\text{sc}}.
+\end{equation}
+
+We restrict to elastic scattering, $\mathcal{E}_i = \mathcal{E}_f$, and assume the X-ray/sample system occupies a box of volume $V$ with periodic boundary conditions, so that
+\begin{equation}
+    \frac{\#\ \text{wavevectors}}{k\text{-space volume}} = \frac{V}{(2\pi)^3}, \qquad
+    \vect{k} = \frac{(2\pi)^3}{V}\,n.
+\end{equation}
+Counting final photon states in a shell of solid angle $\Delta\Omega$ and using spherical symmetry,
+\begin{equation}
+    \rho(\mathcal{E}_f)\,\dd\mathcal{E}_f = \frac{V}{8\pi^3}\,\dd^3\vect{k}_f = \frac{V}{8\pi^3}\,k_f^2\,\dd k_f\,\Delta\Omega.
+\end{equation}
+The photon dispersion $\mathcal{E}_f = \hbar k_f c$ converts the $k$-space measure into an energy measure,
+\begin{equation}
+    k_f^2\,\dv{k_f}{\mathcal{E}_f} = \frac{1}{\hbar^3 c^3}\,\mathcal{E}_f^2 .
+\end{equation}
+With a flux of one photon in the box, $\Phi_0 = c/V$, the rate into $\Delta\Omega$ becomes
+\begin{align}
+    W_{\Delta\Omega} &= \frac{2\pi}{\hbar}\int |M_{if}|^2\,\rho(\mathcal{E}_f)\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd\mathcal{E}_f \\
+    &= \frac{2\pi}{\hbar}\cdot\frac{V}{8\pi^3}\int |M_{if}|^2\,k_f^2\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd k_f\,\Delta\Omega \\
+    &= \frac{2\pi}{\hbar}\cdot\frac{V}{8\pi^3}\int |M_{if}|^2\,\frac{1}{\hbar^3c^3}\,\mathcal{E}_f^2\,\Delta\Omega\,\dd\mathcal{E}_f .
+\end{align}
+
+\begin{formula}[Quantum differential cross-section]
+\begin{equation}
+    \left(\dv{\sigma}{\Omega}\right) = \left(\frac{V}{2\pi}\right)^{\!2}\frac{1}{\hbar^4c^4}\int |M_{if}|^2\,\mathcal{E}_f^2\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd\mathcal{E}_f . \label{eq:xrd-qm-dsdo}
+\end{equation}
+\end{formula}
+
+% ============================================================
+\section{The Absorption Cross-Section}
+% ============================================================
+
+Elastic scattering is not the only thing an X-ray can do. In \emph{absorption} the incident photon expels an electron from an atom, so the process is no longer elastic (Figure~\ref{fig:xrd-absorption}). If the electron is bound with binding energy $\mathcal{E}_b$, the ejected photoelectron carries wavevector $q$ with
+\begin{equation}
+    K = \hbar\omega - \mathcal{E}_b = \frac{\hbar^2q^2}{2m},
+\end{equation}
+and, unlike the elastic case, there is no restriction on the direction of the photoelectron.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \draw[thick] (0,-0.9) rectangle (2.0,0.9);
+    \draw[-{Stealth}, thick, Orange, decorate, decoration={snake, amplitude=1.6pt, segment length=6pt, post length=4pt}] (-2.4,0) -- (0,0);
+    \fill[ForestGreen] (1.0,0) circle (2pt);
+    \node[below right] at (1.0,0) {$e^-$};
+    \foreach \a in {35,120,215,300} {
+        \draw[-{Stealth}] (1.0,0) -- ++(\a:0.75);
+    }
+    \node[above] at (-1.2,0.15) {$\hbar\omega$};
+\end{tikzpicture}
+\caption{Photoabsorption: the incident photon is destroyed and a photoelectron leaves the atom in an arbitrary direction.}
+\label{fig:xrd-absorption}
+\end{figure}
+
+If the incident beam is larger than the sample, the scattered intensity is $I_{\text{sc}} = \Phi_0\,\Delta\Omega\,(\dd\sigma/\dd\Omega)$, and the absorption cross-section $\sigma_a$ is defined by $W_{4\pi} = I_0\,\sigma_a N$, i.e.
+\begin{equation}
+    \sigma_a = \frac{W_{4\pi}}{\Phi_0}, \qquad
+    W_{4\pi} = \int \frac{2\pi}{\hbar}\,|M_{if}|^2\,\rho(\mathcal{E}_{pe})\,\delta\bigl(\mathcal{E}_{pe} - (\mathcal{E} - \mathcal{E}_b)\bigr)\,\dd\mathcal{E}_{pe},
+\end{equation}
+where $\mathcal{E}$ is the photon energy and $\mathcal{E}_b$ plays the role of a work function. The photoelectron density of states carries a factor of $2$ for spin,
+\begin{equation}
+    \rho(\mathcal{E}_{pe}) = 2\left(\frac{V}{8\pi^3}\right)\dv{\vect{q}}{\mathcal{E}_{pe}}
+    = 2\left(\frac{V}{8\pi^3}\right)\frac{q^2\sin\theta\,\dd q\,\dd\theta\,\dd\varphi}{\dd\mathcal{E}_{pe}} .
+\end{equation}
+
+\begin{formula}[Absorption cross-section]
+\begin{equation}
+    \sigma_A = \frac{2\pi}{\hbar c}\,\frac{V^2}{4\pi^3}\int |M_{if}|^2\,
+    \delta\bigl(\mathcal{E}_{pe} - (\mathcal{E} - \mathcal{E}_b)\bigr)\,q^2\sin\theta\,\dd\theta\,\dd q\,\dd\varphi .
+\end{equation}
+\end{formula}
+
+% ============================================================
+\section{Crystallography: Lattices and Structures}
+% ============================================================
+
+We now turn from the scattering process to the object doing the scattering. Three terms need to be kept distinct.
+
+\begin{definition}[Motif, lattice, crystal structure]
+A \emph{motif} is a pattern that is repeated by translating from lattice point to lattice point. A \emph{lattice} is a regular arrangement of points. A \emph{crystal structure} is a time-invariant, three-dimensional arrangement of atoms or molecules on a lattice.
+\end{definition}
+
+\subsection{The Space Lattice}
+
+The founding observation, due to René-Just Haüy, is that crystals are made out of repeatedly stacked blocks. The general block is specified by three vectors $\vect{a}$, $\vect{b}$, $\vect{c}$, which need not be mutually perpendicular; coordinates in the block are quoted as e.g.\ $(1,1,1)$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.5]
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (1.5,-0.35);
+    \coordinate (B) at (1.9,0.55);
+    \coordinate (C) at (0.45,1.25);
+    \draw[gray!60] (A) -- ($(A)+(B)$) -- (B);
+    \draw[gray!60] ($(A)+(B)$) -- ($(A)+(B)+(C)$);
+    \draw[gray!60] ($(A)+(C)$) -- ($(A)+(B)+(C)$) -- ($(B)+(C)$);
+    \draw[gray!60] (O) -- (A) (O) -- (B) (O) -- (C);
+    \draw[gray!60] (A) -- ($(A)+(C)$) (B) -- ($(B)+(C)$) (C) -- ($(A)+(C)$) (C) -- ($(B)+(C)$);
+    \draw[-{Stealth}, thick] (O) -- (A) node[below right] {$\vect{a}$};
+    \draw[-{Stealth}, thick] (O) -- (B) node[right] {$\vect{b}$};
+    \draw[-{Stealth}, thick] (O) -- (C) node[above left] {$\vect{c}$};
+    \node at (0.30,0.12) {$\gamma$};
+    \node at (0.16,0.42) {$\beta$};
+    \node at (0.52,0.38) {$\alpha$};
+\end{tikzpicture}
+\caption{The general block: three basis vectors $\vect{a},\vect{b},\vect{c}$ of lengths $a,b,c$ with interaxial angles $\alpha,\beta,\gamma$, none of which need be $90^\circ$.}
+\label{fig:xrd-block}
+\end{figure}
+
+\begin{definition}[Translation vector and space lattice]
+Any coordinate in the lattice is $(u,v,w) = u\vect{a} + v\vect{b} + w\vect{c}$ with $u,v,w \in \mathbb{Z}$; the corresponding \emph{translation vector} is
+\begin{equation}
+    \vect{t} \equiv u\vect{a} + v\vect{b} + w\vect{c}.
+\end{equation}
+A \emph{space lattice} is a set of nodes related by translation vectors $\vect{t}$ --- equivalently, the geometrical image of the translation operators acting on the origin node. The set of translation vectors is
+\begin{equation}
+    \mathcal{T} = \{\,\vect{t} \mid \vect{t} = u\vect{a} + v\vect{b} + w\vect{c},\ (u,v,w)\in\mathbb{Z}\,\}.
+\end{equation}
+\end{definition}
+
+\begin{fact}[Einstein summation convention]
+A summation is implied over every subscript which appears twice on the same side of an equation, e.g.
+\begin{equation}
+    \vect{t} = \sum_{i=1}^{3}\vect{a}_i u_i \longrightarrow \vect{t} = u_i\,\vect{a}_i .
+\end{equation}
+If a subscript is present on one side without an implied summation, it must appear on the other side as well.
+\end{fact}
+
+Two further remarks. The lattice is \emph{invariant} under any translation by a lattice vector $\vect{t}$. A crystal structure consists of a three-dimensional lattice decorated with one or more atoms; the set of lengths and angles $\{a,b,c,\alpha,\beta,\gamma\}$ fully specifies the lattice, and the \emph{unit cell} is the volume spanned by the basis vectors.
+
+% ============================================================
+\section{Bravais Nets and Lattices}
+% ============================================================
+
+\subsection{The Five Two-Dimensional Nets}
+
+In two dimensions there are exactly five distinct nets. Four of them are primitive; the fifth requires an added centering node.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.62, every node/.style={font=\small}]
+    % oblique
+    \begin{scope}
+        \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
+            \fill ({\i*1.4 + \j*0.55},{\j*1.15}) circle (2pt);
+        \draw[-{Stealth}, thick] (0,0) -- (1.4,0) node[below] {$\vect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0.55,1.15) node[above] {$\vect{b}$};
+        \node at (0.75,0.35) {$\gamma$};
+        \node at (2.2,-1.1) {oblique};
+    \end{scope}
+    % rectangular
+    \begin{scope}[xshift=7cm]
+        \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
+            \fill ({\i*1.3},{\j*1.0}) circle (2pt);
+        \draw[-{Stealth}, thick] (0,0) -- (1.3,0) node[below] {$\vect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0,1.0) node[left] {$\vect{b}$};
+        \node at (2.0,-1.1) {rectangular};
+    \end{scope}
+    % square
+    \begin{scope}[xshift=14cm]
+        \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
+            \fill ({\i*1.1},{\j*1.1}) circle (2pt);
+        \draw[-{Stealth}, thick] (0,0) -- (1.1,0) node[below] {$\vect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0,1.1) node[left] {$\vect{b}$};
+        \node at (1.65,-1.1) {square};
+    \end{scope}
+    % hexagonal
+    \begin{scope}[yshift=-4.6cm]
+        \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
+            \fill ({\i*1.2 - \j*0.6},{\j*1.04}) circle (2pt);
+        \draw[-{Stealth}, thick] (0,0) -- (1.2,0) node[below] {$\vect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (-0.6,1.04) node[above left] {$\vect{b}$};
+        \node at (1.4,-1.1) {hexagonal};
+    \end{scope}
+    % centred rectangular
+    \begin{scope}[xshift=7cm, yshift=-4.6cm]
+        \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
+            \fill ({\i*1.3},{\j*1.0}) circle (2pt);
+        \foreach \i in {0,1,2} \foreach \j in {0,1}
+            \fill[Orange] ({\i*1.3+0.65},{\j*1.0+0.5}) circle (2pt);
+        \draw[-{Stealth}, thick] (0,0) -- (1.3,0) node[below] {$\vect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0,1.0) node[left] {$\vect{b}$};
+        \node at (2.0,-1.1) {centred rectangular};
+    \end{scope}
+\end{tikzpicture}
+\caption{The five two-dimensional Bravais nets. The first four are primitive; the centred rectangular net adds a node at the centre of each cell.}
+\label{fig:xrd-nets}
+\end{figure}
+
+The distinguishing symmetries are as follows. The \emph{oblique} net has arbitrary basis directions and the lowest symmetry (only $180^\circ$ rotation). The \emph{rectangular} net is oblique with $\gamma = 90^\circ$, and so has $180^\circ$ rotation symmetry together with mirror symmetry. The \emph{square} net has $|\vect{a}| = |\vect{b}|$ and $\gamma=90^\circ$, giving $90^\circ$ rotation symmetry and two reflection symmetries. The \emph{hexagonal} net has $|\vect{a}| = |\vect{b}|$ with $\gamma = 2\pi/3$ (or $\pi/3$) and $60^\circ$ symmetry. The \emph{centred rectangular} net adds a new lattice point at the centre of the rectangular unit cell.
+
+\subsection{The Seven Three-Dimensional Crystal Systems}
+
+In three dimensions the same logic --- start from an arbitrary block and impose successively more symmetry --- produces seven crystal systems, summarised in Table~\ref{tab:xrd-systems}.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}ll l p{6.2cm}@{}}
+\toprule
+System & Symbol & Constraints & Symmetry / construction \\
+\midrule
+Triclinic & $a$ & arbitrary $\{a,b,c,\alpha,\beta,\gamma\}$ & no rotational symmetry \\
+Monoclinic & $m$ & $\alpha = \gamma = 90^\circ$ & shear the cube along one direction \\
+Orthorhombic & $o$ & $\alpha=\beta=\gamma=90^\circ$ & $180^\circ$ rotation about normal axes; stretch along $2$ faces \\
+Tetragonal & $t$ & $a=b$, $\alpha=\beta=\gamma=90^\circ$ & stretch the cube along one face \\
+Rhombohedral & $R$ & $a=b=c$, $\alpha=\beta=\gamma$ & $120^\circ$ rotation about the body diagonal; stretch/squash along $[111]$ \\
+Hexagonal & $h$ & $a=b$, $\gamma=120^\circ$, $\alpha=\beta=90^\circ$ & $60^\circ$ rotation about the $x$-direction \\
+Cubic & $c$ & $a=b=c$, $\alpha=\beta=\gamma=90^\circ$ & $90^\circ$ rotation about any axis, $120^\circ$ about the body diagonal, reflections \\
+\bottomrule
+\end{tabular}
+\caption{The seven three-dimensional crystal systems, their defining constraints, and the symmetry that characterises each.}
+\label{tab:xrd-systems}
+\end{table}
+
+\subsection{Primitive Cells and Counting Nodes}
+
+\begin{definition}[Primitive unit cell]
+A \emph{primitive} unit cell contains only one lattice point.
+\end{definition}
+
+To count the lattice points belonging to a cell one may either displace the cell slightly and count the nodes it contains, or weight the nodes by how many cells share them:
+\begin{align}
+    N_{2\mathrm{D}} &= N_{\text{in}} + \tfrac{1}{2}N_{\text{edge}} + \tfrac{1}{4}N_{\text{corner}}, \\
+    N_{3\mathrm{D}} &= N_{\text{in}} + \tfrac{1}{2}N_{\text{face}} + \tfrac{1}{4}N_{\text{edge}} + \tfrac{1}{8}N_{\text{corner}} .
+\end{align}
+It is always possible to define a primitive unit cell for every possible net or lattice, but it is usually better to select a unit cell that has the \emph{same symmetries} as the lattice, even at the cost of being non-primitive. New nodes may only be added at locations that are centred between original lattice sites --- the centred rectangular net is the two-dimensional example.
+
+\subsection{Adding Nodes in Three Dimensions}
+
+There are three ways to decorate a three-dimensional cell with extra nodes.
+
+\begin{enumerate}
+    \item \textbf{Body-centering.} For every site $\vect{t}$, add an additional site $\vect{t} + \vect{i}$ where
+    \begin{equation}
+        \vect{i} \equiv \tfrac{1}{2}(\vect{a} + \vect{b} + \vect{c}).
+    \end{equation}
+    Note that $\vect{i}$ is \emph{not} itself a translation vector.
+    \item \textbf{Face-centering.} Add a lattice site to the centre of all faces of the unit cell, at $(\tfrac12,\tfrac12,0)$, $(\tfrac12,0,\tfrac12)$, $(0,\tfrac12,\tfrac12)$ --- the face-centering vectors.
+    \item \textbf{Base-centering.} Add a lattice site to only one face of the unit cell, i.e.\ use a single face-centering vector. Centering two faces instead would leave certain lattice points with different surroundings, so it is not allowed.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.5]
+    \coordinate (O) at (0,0);
+    \def\dx{0.5} \def\dy{0.4}
+    \draw (0,0) rectangle (1.4,1.4);
+    \draw (\dx,\dy) -- ++(1.4,0) -- ++(0,1.4) -- ++(-1.4,0) -- cycle;
+    \draw (0,0) -- (\dx,\dy);
+    \draw (1.4,0) -- ++(\dx,\dy);
+    \draw (0,1.4) -- ++(\dx,\dy);
+    \draw (1.4,1.4) -- ++(\dx,\dy);
+    \foreach \p in {(0,0),(1.4,0),(0,1.4),(1.4,1.4)} \fill \p circle (1.6pt);
+    \foreach \p in {(\dx,\dy),(1.4+\dx,\dy),(\dx,1.4+\dy),(1.4+\dx,1.4+\dy)} \fill \p circle (1.6pt);
+    \fill[Orange] (0.95,0.9) circle (1.8pt);
+    \draw[-{Stealth}, Orange] (0,0) -- (0.95,0.9);
+    \node[Orange, below right] at (0.62,0.62) {$\vect{i}$};
+\end{tikzpicture}
+\caption{Body-centering: an extra node at $\vect{i} = \tfrac12(\vect{a}+\vect{b}+\vect{c})$ inside every cell.}
+\label{fig:xrd-bcc}
+\end{figure}
+
+\begin{example}[Face-centred tetragonal is not new]
+Start from a regular primitive tetragonal lattice and add two face centres. The resulting arrangement admits a new, smaller unit cell --- itself just a primitive tetragonal cell with in-plane edge $a\sqrt{2}/2$ --- so no new lattice type has been created. This kind of collapse is why the naive count of (system) $\times$ (centering) overcounts, and why only fourteen distinct three-dimensional lattices survive.
+\end{example}
+
+\subsection{The Fourteen Bravais Lattices}
+
+Carrying out this analysis for all seven systems leaves fourteen distinct three-dimensional Bravais lattices, listed in Table~\ref{tab:xrd-bravais}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+System & Bravais lattices \\
+\midrule
+Triclinic & $aP$ \\
+Monoclinic & $mP$, $mC$ \\
+Orthorhombic & $oP$, $oC$, $oI$, $oF$ \\
+Tetragonal & $tP$, $tI$ \\
+Hexagonal & $hP$ \\
+Rhombohedral & $R$ \\
+Cubic & $cP$, $cI$, $cF$ \\
+\bottomrule
+\end{tabular}
+\caption{The fourteen Bravais lattices, labelled by crystal system and centering ($P$ primitive, $C$ base-centred, $I$ body-centred, $F$ face-centred).}
+\label{tab:xrd-bravais}
+\end{table}
+
+\subsection{Other Ways to Define a Unit Cell}
+
+The conventional cell is not the only choice. For the cubic $cF$ lattice one can use shorter basis vectors with $\alpha = 60^\circ$: the resulting cell loses the cubic symmetry but contains only one lattice site, so it is primitive.
+
+A canonical, symmetry-respecting alternative is the following.
+
+\begin{definition}[Wigner--Seitz cell]
+Each lattice point has a cell which is the region of space closer to that lattice point than to any other. To construct it, draw lines from the given lattice point to its neighbouring points, draw the perpendicular bisectors of these lines, and take the smallest volume enclosed by the bisectors.
+\end{definition}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+    % construction
+    \begin{scope}
+        \foreach \i in {-2,-1,0,1,2} \foreach \j in {-1,0,1}
+            \fill ({\i*1.1},{\j*1.1}) circle (1.6pt);
+        \foreach \a in {0,45,90,135,180,225,270,315} {
+            \draw[gray!60, dashed] (0,0) -- (\a:1.1);
+        }
+        \foreach \a in {0,90,180,270} {
+            \draw[Periwinkle, thick] ($(\a:0.55)+(\a+90:0.9)$) -- ($(\a:0.55)+(\a-90:0.9)$);
+        }
+        \node at (0,-1.9) {construction};
+    \end{scope}
+    % resulting tiling
+    \begin{scope}[xshift=6cm]
+        \foreach \i in {-1,0,1} \foreach \j in {-1,0,1} {
+            \draw[Periwinkle, thick] ({\i*1.1-0.55},{\j*1.1-0.55}) rectangle ({\i*1.1+0.55},{\j*1.1+0.55});
+            \fill ({\i*1.1},{\j*1.1}) circle (1.6pt);
+        }
+        \node at (0,-1.9) {resulting tiling};
+    \end{scope}
+\end{tikzpicture}
+\caption{Wigner--Seitz construction for a square net: perpendicular bisectors of the vectors to neighbouring nodes bound the cell, and the cells tile the plane with one node each.}
+\label{fig:xrd-ws}
+\end{figure}
+
+To calculate the volume of a Wigner--Seitz cell one only needs to count the number of nodes the conventional unit cell contains, since
+\begin{equation}
+    \frac{\text{volume}}{\text{unit cell}}\cdot\frac{\#\ \text{unit cells}}{\text{node}}
+    = \frac{\text{volume}}{\text{WS cell}}\cdot\frac{\#\ \text{WS cells}}{\text{node}} .
+\end{equation}
+
+% ============================================================
+\section{Reciprocal Space}
+% ============================================================
+
+The motivating question is this: if we interpret the Miller indices as the components of a vector, how does that vector relate to the corresponding plane $(h,k,\ell)$?
+
+Recall the lattice basis vectors $\vect{a}_i$, and define three new vectors $\vect{a}^{\,*}_j$ by the duality requirement
+\begin{equation}
+    \vect{a}_i \cdot \vect{a}^{\,*}_j = \delta_{ij}. \label{eq:xrd-duality}
+\end{equation}
+Since $\vect{a}^{\,*}_1$ must be orthogonal to both $\vect{a}_2$ and $\vect{a}_3$, it must be parallel to their cross product: $\vect{a}^{\,*}_1 = K\,\vect{a}_2\times\vect{a}_3$, and cyclically $\vect{a}^{\,*}_2 = L\,\vect{a}_3\times\vect{a}_1$, $\vect{a}^{\,*}_3 = M\,\vect{a}_1\times\vect{a}_2$. The constants follow from~\eqref{eq:xrd-duality}:
+\begin{equation}
+    \vect{a}_1\cdot\vect{a}^{\,*}_1 = K\,\vect{a}_1\cdot(\vect{a}_2\times\vect{a}_3) = 1,
+\end{equation}
+and likewise for the other two by cyclic permutation, so that
+\begin{equation}
+    K = L = M = \frac{1}{\vect{a}_1\cdot(\vect{a}_2\times\vect{a}_3)} = \frac{1}{V}.
+\end{equation}
+
+\begin{formula}[Reciprocal basis vectors]
+\begin{equation}
+    \vect{a}^{\,*}_1 = \vect{a}^{*} = \frac{\vect{a}_2\times\vect{a}_3}{V}, \qquad
+    \vect{a}^{\,*}_2 = \vect{b}^{*} = \frac{\vect{a}_3\times\vect{a}_1}{V}, \qquad
+    \vect{a}^{\,*}_3 = \vect{c}^{*} = \frac{\vect{a}_1\times\vect{a}_2}{V}.
+\end{equation}
+\end{formula}
+
+\begin{definition}[Reciprocal space]
+The reciprocal space $\{\vect{k}\}$ is the set of wavevectors satisfying
+\begin{equation}
+    e^{i\vect{k}\cdot\vect{r}} = 1 \quad \forall\,\vect{r}\in R,\ \text{the Bravais lattice},
+\end{equation}
+equivalently $\vect{k}\cdot\vect{r} = 2\pi m$ with $m\in\mathbb{Z}$.
+\end{definition}
+
+The factor of $2\pi$ can be absorbed into the basis vectors; doing so gives the convention used by Ashcroft and Mermin,
+\begin{equation}
+    \vect{b}_1 = 2\pi\frac{\vect{a}_2\times\vect{a}_3}{V}, \qquad
+    \vect{b}_2 = 2\pi\frac{\vect{a}_3\times\vect{a}_1}{V}, \qquad
+    \vect{b}_3 = 2\pi\frac{\vect{a}_1\times\vect{a}_2}{V}.
+\end{equation}
+
+Any vector may now be expanded with respect to either basis,
+\begin{equation}
+    \vect{p} = p^{*}_i\,\vect{a}^{\,*}_i = p_j\,\vect{a}_j,
+\end{equation}
+and one should be careful that the reciprocal basis directions do not in general coincide with the direct ones --- for an oblique cell $\vect{a}^{*}$ points along neither $\vect{a}$ nor any of the direct axes.
+
+\subsection{Reciprocal Space and Lattice Planes}
+
+Consider a vector in the reciprocal basis, $\vect{g} = g^{*}_i\,\vect{a}^{\,*}_i$, and restrict the $g^{*}_i$ to be integers; the set of such $\vect{g}$ forms the \emph{reciprocal lattice}, and its components are written $\vect{g} = (hk\ell)$. Now consider all vectors perpendicular to $\vect{g}$, i.e.\ $\vect{r}\cdot\vect{g} = 0$:
+\begin{align}
+    (r_i\vect{a}_i)\cdot(g^{*}_j\vect{a}^{\,*}_j) &= r_i g^{*}_j\,(\vect{a}_i\cdot\vect{a}^{\,*}_j) = r_i g^{*}_j \delta_{ij} \\
+    &= r_1 g^{*}_1 + r_2 g^{*}_2 + r_3 g^{*}_3 \\
+    &= hx + ky + \ell z = 0. \label{eq:xrd-plane}
+\end{align}
+This is the equation of a plane whose normal is the vector $(h,k,\ell)$ expressed in the regular basis. On the other hand, a plane with intercepts $s_1, s_2, s_3$ along the vectors $\vect{a}_i$ has equation
+\begin{equation}
+    \frac{x}{s_1} + \frac{y}{s_2} + \frac{z}{s_3} = 1,
+\end{equation}
+so the plane~\eqref{eq:xrd-plane} has intercepts $1/h$, $1/k$, $1/\ell$ --- exactly the Miller plane $(hk\ell)$.
+
+\begin{fact}[Miller planes and reciprocal vectors]
+The reciprocal lattice vector $\vect{g}$ with components $h,k,\ell$ \emph{in reciprocal space} is perpendicular to the plane with Miller indices $(hk\ell)$.
+\end{fact}
+
+% ============================================================
+\section{The Reciprocal Lattice as a Fourier Transform}
+% ============================================================
+
+The reciprocal lattice is not merely a bookkeeping device: it is what a Fourier transform of a periodic density produces automatically.
+
+\begin{definition}[Fourier transform]
+Let $\rho(\vect{r})$ be any integrable function over $\mathbb{R}^3$. Its Fourier transform is
+\begin{equation}
+    \tilde{\rho}(\vect{k}) = \int_{\mathbb{R}^3} e^{-i\vect{k}\cdot\vect{r}}\,\rho(\vect{r})\,\dd^3\vect{r},
+\end{equation}
+with inverse
+\begin{equation}
+    \rho(\vect{r}) = \frac{1}{(2\pi)^3}\int_{\mathbb{R}^3} e^{i\vect{k}\cdot\vect{r}}\,\tilde{\rho}(\vect{k})\,\dd^3 k .
+\end{equation}
+\end{definition}
+
+\subsection{Fourier Transform of a Periodic Function}
+
+Now introduce translational symmetry: suppose
+\begin{equation}
+    \rho(\vect{r} + \vect{r}_L) = \rho(\vect{r}) \quad \text{for all}\quad \vect{r}_L = n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3 .
+\end{equation}
+Partition space into primitive cells and write $\vect{r} = \vect{x} + \vect{r}_L$, where $\vect{x}$ lies in the cell labelled by $\vect{r}_L$ (Figure~\ref{fig:xrd-partition}). Then $\rho(\vect{x} + \vect{r}_L) = \rho(\vect{x})$, and
+\begin{equation}
+    \tilde{\rho}(\vect{k}) = \int_{\mathbb{R}^3} e^{-i\vect{k}\cdot(\vect{r}_L + \vect{x})}\rho(\vect{r}_L + \vect{x})\,\dd^3\vect{x}
+    = \left(\sum_{\vect{r}_L} e^{-i\vect{k}\cdot\vect{r}_L}\right)\int_{\text{cell}} e^{-i\vect{k}\cdot\vect{x}}\rho(\vect{x})\,\dd^3 x .
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.1]
+    \draw (0,0) rectangle (2.4,2.4);
+    \draw (1.2,0) -- (1.2,2.4);
+    \draw (0,1.2) -- (2.4,1.2);
+    \foreach \x/\y in {0.45/0.45, 1.65/0.45, 0.45/1.65, 1.65/1.65} {
+        \fill (\x,\y) circle (1.8pt);
+        \draw[-{Stealth}, Orange] ({\x-0.35},{\y-0.35}) -- (\x,\y);
+    }
+    \draw[-{Stealth}, Purple] (0,0) -- (1.65,1.65);
+    \node[Purple, right] at (1.25,1.05) {$\vect{r}_L$};
+    \node[above] at (1.55,1.72) {$\vect{x}$};
+\end{tikzpicture}
+\caption{Partitioning space into primitive cells: every point is $\vect{r} = \vect{x} + \vect{r}_L$, with $\vect{r}_L$ a lattice vector and $\vect{x}$ a position inside that cell.}
+\label{fig:xrd-partition}
+\end{figure}
+
+The lattice sum is evaluated by the Poisson summation formula,
+\begin{equation}
+    \sum_{\vect{r}_L} e^{-i\vect{k}\cdot\vect{r}_L} = \frac{(2\pi)^3}{V_c}\sum_{\vect{g}} \delta(\vect{k} - \vect{g}),
+\end{equation}
+where the sum on the right runs over reciprocal lattice vectors $\vect{g}$ and $V_c$ is the cell volume. Therefore
+\begin{equation}
+    \tilde{\rho}(\vect{k}) = \frac{(2\pi)^3}{V_c}\sum_{\vect{g}} \delta(\vect{k} - \vect{g})\int_{\text{cell}} e^{-i\vect{k}\cdot\vect{x}}\rho(\vect{x})\,\dd^3 x,
+\end{equation}
+and since the delta function sets $\vect{k} = \vect{g}$ inside the integral we obtain the central result.
+
+\begin{formula}[Structure factor]
+\begin{equation}
+    \tilde{\rho}(\vect{k}) = \frac{(2\pi)^3}{V_c}\sum_{\vect{g}} S(\vect{g})\,\delta(\vect{k} - \vect{g}),
+    \qquad
+    S(\vect{g}) = \int_{\text{cell}} e^{-i\vect{g}\cdot\vect{x}}\,\rho(\vect{x})\,\dd^3 x .
+\end{equation}
+\end{formula}
+
+The Fourier transform of a periodic density is thus supported \emph{only} on the reciprocal lattice: the diffraction pattern of a crystal consists of sharp spots at the reciprocal lattice vectors $\vect{g}$, with intensities governed by the structure factor $S(\vect{g})$ of the contents of a single cell.

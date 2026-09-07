@@ -1,0 +1,745 @@
+\chapter{The Drude and Sommerfeld Models}
+
+% ============================================================
+\section{Basic Assumptions of the Drude Model}
+% ============================================================
+
+The Drude model treats the conduction electrons of a metal exactly as the kinetic theory of gases treats molecules. The kinetic theory rests on two idealizations: the gas molecules are identical solid spheres, and no forces act between them other than the contact forces of collisions. Between collisions each molecule travels in a straight line, and a collision instantaneously redirects it (Figure~\ref{fig:drude-kinetic}).
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.95]
+        \draw[thick, Orange] (0,0) ellipse (3.2 and 1.6);
+        \foreach \p/\q in {-2.1/0.5, -1.3/-0.4, -0.4/0.9, 0.3/0.1, 1.1/0.7, 1.5/-0.7, 2.3/0.4, -0.9/-1.0, 0.9/-1.1} {
+            \fill (\p,\q) circle (2.2pt);
+        }
+        % a few straight-line trajectories with collisions
+        \draw[-{Stealth}] (-2.1,0.5) -- (-1.3,-0.4);
+        \draw[-{Stealth}] (-1.3,-0.4) -- (0.3,0.1);
+        \draw[-{Stealth}] (0.3,0.1) -- (1.5,-0.7);
+        \draw[-{Stealth}] (1.5,-0.7) -- (2.6,-0.2);
+        \draw[-{Stealth}] (-0.4,0.9) -- (1.1,0.7);
+        \draw[-{Stealth}] (1.1,0.7) -- (2.3,0.4);
+    \end{tikzpicture}
+    \caption{Kinetic theory of gases: identical solid spheres travelling freely between instantaneous collisions. Drude applied precisely this picture to the electrons in a metal.}
+    \label{fig:drude-kinetic}
+\end{figure}
+
+Drude's addition is that the ``gas'' contains two kinds of particles: light, negatively charged electrons and much heavier, positively charged metallic ions. An ion carries charge $eZ$, where $Z$ is the atomic number, and each electron carries charge $-eZ_A$, where $Z_A$ counts the electrons an atom contributes to the gas.
+
+\subsection{Density of the Electron Gas}
+
+The number of conduction electrons per cubic centimetre follows from a chain of unit conversions,
+\begin{equation}
+    \frac{\text{electrons}}{\mathrm{cm}^3} = \frac{\text{atoms}}{\text{mole}}\cdot\frac{\text{electrons}}{\text{atom}}\cdot\frac{\text{moles}}{\mathrm{cm}^3},
+\end{equation}
+in which the first factor is Avogadro's number, the second is $Z$, and the third is the mass density $\rho_m$ divided by the atomic mass $A$. Hence
+\begin{formula}[Conduction electron density]
+\begin{equation}
+    n = 6.022\times 10^{23}\,\frac{Z\rho_m}{A}. \label{eq:drude-density}
+\end{equation}
+\end{formula}
+
+It is convenient to convert this density into a length. Assigning each electron a sphere of volume $V/N = 1/n$,
+\begin{equation}
+    \frac{1}{n} = \frac{4\pi r_s^3}{3} \quad\Longrightarrow\quad r_s = \left(\frac{3}{4\pi n}\right)^{1/3},
+\end{equation}
+which defines the \emph{effective electron radius} $r_s$. It gives a direct feel for how many electrons there are and how closely they are packed. Typical values are collected in Table~\ref{tab:drude-densities}, where $r_s$ is quoted both in \aa ngstr\"oms and in units of the Bohr radius $a_0$.
+
+\begin{table}[ht]
+    \centering
+    \caption{Free electron densities of selected metallic elements.}
+    \label{tab:drude-densities}
+    \begin{tabular}{lcccc}
+        \toprule
+        Element & $Z$ & $n\ (10^{22}/\mathrm{cm}^3)$ & $r_s$ (\AA) & $r_s/a_0$ \\
+        \midrule
+        Li (78\,K) & 1 & 4.70 & 1.72 & 3.25 \\
+        Na (5\,K)  & 1 & 2.65 & 2.08 & 3.93 \\
+        K  (5\,K)  & 1 & 1.40 & 2.57 & 4.86 \\
+        Rb (5\,K)  & 1 & 1.15 & 2.75 & 5.20 \\
+        Cs (5\,K)  & 1 & 0.91 & 2.98 & 5.62 \\
+        Cu & 1 & 8.47 & 1.41 & 2.67 \\
+        Ag & 1 & 5.86 & 1.60 & 3.02 \\
+        Au & 1 & 5.90 & 1.59 & 3.01 \\
+        Be & 2 & 24.7 & 0.99 & 1.87 \\
+        Mg & 2 & 8.61 & 1.41 & 2.66 \\
+        Ca & 2 & 4.61 & 1.73 & 3.27 \\
+        Sr & 2 & 3.55 & 1.89 & 3.57 \\
+        Ba & 2 & 3.15 & 1.96 & 3.71 \\
+        Nb & 1 & 5.56 & 1.63 & 3.07 \\
+        Fe & 2 & 17.0 & 1.12 & 2.12 \\
+        Mn ($\alpha$) & 2 & 16.5 & 1.13 & 2.14 \\
+        Zn & 2 & 13.2 & 1.22 & 2.30 \\
+        Cd & 2 & 9.27 & 1.37 & 2.59 \\
+        Hg (78\,K) & 2 & 8.65 & 1.40 & 2.65 \\
+        Al & 3 & 18.1 & 1.10 & 2.07 \\
+        Ga & 3 & 15.4 & 1.16 & 2.19 \\
+        In & 3 & 11.5 & 1.27 & 2.41 \\
+        Tl & 3 & 10.5 & 1.31 & 2.48 \\
+        Sn & 4 & 14.8 & 1.17 & 2.22 \\
+        Pb & 4 & 13.2 & 1.22 & 2.30 \\
+        Bi & 5 & 14.1 & 1.19 & 2.25 \\
+        Sb & 5 & 16.5 & 1.13 & 2.14 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{fact}
+The electron gas in a metal is about a thousand times denser than a classical gas at standard conditions. That such a dense, strongly charged system can be treated as a dilute noninteracting gas at all is the first surprise of the Drude model.
+\end{fact}
+
+\subsection{The Four Assumptions}
+
+\begin{definition}[Drude assumptions]
+\begin{enumerate}
+    \item \textbf{Independent electron approximation.} Electron--electron interactions are neglected.
+    \item \textbf{Free electron approximation.} Electron--ion interactions are neglected as well.
+    \item \textbf{Collisions.} Collisions are instantaneous events that abruptly alter the velocity of an electron; the scatterer may be an ion core, a defect, and so on. The probability of an electron scattering in a time interval $dt$ is $dt/\tau$, where $\tau$ is the \emph{scattering} (or relaxation) \emph{time}, assumed independent of the position and velocity of the electron.
+    \item \textbf{Equilibrium.} After a collision an electron emerges with a random speed appropriate to the temperature prevailing at the place where the collision occurred.
+\end{enumerate}
+\end{definition}
+
+% ============================================================
+\section{DC Electrical Conductivity}
+% ============================================================
+
+Ohm's law in local form states that the current density is proportional to the applied field,
+\begin{equation}
+    \vect{j} = \sigma\vect{e}, \qquad \vect{e} = \rho\,\vect{j}, \qquad \rho = \sigma^{-1}.
+\end{equation}
+The current density $\vect{j}$ measures the charge crossing unit area per unit time. If $n$ electrons per unit volume drift with velocity $\vect{v}$, then in a time $dt$ all electrons within a slab of thickness $v\,dt$ cross a given face, so
+\begin{equation}
+    \vect{j} = -ne\vect{v}.
+\end{equation}
+The total current through a surface is $I = \vect{j}\cdot\vect{a} = jA$ when the field is normal to the surface. For a wire of length $L$ and cross section $A$ carrying uniform current (Figure~\ref{fig:drude-wire}), the voltage drop is
+\begin{equation}
+    V = EL = \frac{I\rho L}{A} = IR,
+\end{equation}
+which identifies the resistance
+\begin{formula}[Resistance of a uniform conductor]
+\begin{equation}
+    R = \frac{\rho L}{A}.
+\end{equation}
+Resistance grows with length and falls with cross-sectional area.
+\end{formula}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+        % a slab / wire drawn in perspective
+        \draw[thick] (0,0) -- (4,0) -- (4,1.2) -- (0,1.2) -- cycle;
+        \draw[thick] (0,1.2) -- (1,1.9) -- (5,1.9) -- (4,1.2);
+        \draw[thick] (4,0) -- (5,0.7) -- (5,1.9);
+        \draw[dashed] (0,0) -- (1,0.7) -- (5,0.7);
+        \draw[dashed] (1,0.7) -- (1,1.9);
+        \node at (1.9,0.6) {$V = EL$};
+        \node at (4.35,1.0) {$A$};
+        \draw[<->] (0,-0.35) -- (4,-0.35) node[midway, below] {$L$};
+        \draw[-{Stealth}, thick, Orange] (-1.1,1.55) -- (6.1,1.55) node[above left] {$\vect{j}$};
+    \end{tikzpicture}
+    \caption{A uniform conductor of length $L$ and cross section $A$ carrying current density $\vect{j}$. The voltage drop $V=EL$ and the current $I=jA$ combine into $V = IR$ with $R = \rho L/A$.}
+    \label{fig:drude-wire}
+\end{figure}
+
+\subsection{Average Velocity and the Drude Conductivity}
+
+To obtain $\sigma$ we compute the average electron velocity in a field. Take an electron that emerges from a collision at $t=0$ with velocity $\vect{v}_0$ and suffers its next collision at $t = \tau$. In between, the force $-e\vect{e}$ accelerates it uniformly, so
+\begin{equation}
+    \vect{v}_f = \vect{v}_0 - \frac{e\vect{e}t}{m}.
+\end{equation}
+Averaging over electrons, the post-collision velocities point in random directions, so $\langle \vect{v}_0\rangle = 0$; and the mean time since the last collision is $\langle t\rangle = \tau$. Hence
+\begin{equation}
+    \vect{v}_{\text{avg}} = -\frac{e\vect{e}\tau}{m},
+\end{equation}
+and substituting into $\vect{j} = -ne\vect{v}$,
+\begin{formula}[Drude DC conductivity]
+\begin{equation}
+    \vect{j} = \frac{ne^2\tau}{m}\vect{e} = \sigma\vect{e}, \qquad \sigma = \frac{ne^2\tau}{m}. \label{eq:drude-sigma}
+\end{equation}
+\end{formula}
+
+This relation is what makes the model testable. The field $\vect{e}$ is known and $\vect{j}$ is obtained from the measured current, so $\sigma$ is an experimental quantity; then, given $n$, $e$ and $m$, equation~\eqref{eq:drude-sigma} determines the relaxation time $\tau$. Note that $[\rho] = [\Omega]\cdot L$. Table~\ref{tab:drude-resistivity} lists resistivities of the elements at three temperatures, together with the ratio $(\rho/T)_{373\,\mathrm{K}}/(\rho/T)_{273\,\mathrm{K}}$, whose closeness to unity displays the approximately linear temperature dependence of $\rho$; these are the typical orders of magnitude of room-temperature resistivities. Table~\ref{tab:drude-tau} gives the relaxation times extracted from them via~\eqref{eq:drude-sigma}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Electrical resistivities of selected elements, in microhm centimetres, at 77\,K (the boiling point of liquid nitrogen at atmospheric pressure), 273\,K, and 373\,K.}
+    \label{tab:drude-resistivity}
+    \begin{tabular}{lcccc}
+        \toprule
+        Element & 77\,K & 273\,K & 373\,K & $(\rho/T)_{373}/(\rho/T)_{273}$ \\
+        \midrule
+        Li & 1.04 & 8.55 & 12.4 & 1.06 \\
+        Na & 0.8  & 4.2  & Melted & \\
+        K  & 1.38 & 6.1  & Melted & \\
+        Rb & 2.2  & 11.0 & Melted & \\
+        Cs & 4.5  & 18.8 & Melted & \\
+        Cu & 0.2  & 1.56 & 2.24 & 1.05 \\
+        Ag & 0.3  & 1.51 & 2.13 & 1.03 \\
+        Au & 0.5  & 2.04 & 2.84 & 1.02 \\
+        Be &      & 2.8  & 5.3  & 1.39 \\
+        Mg & 0.62 & 3.9  & 5.6  & 1.05 \\
+        Ca &      & 3.43 & 5.0  & 1.07 \\
+        Sr & 7    & 23   &      & \\
+        Ba & 17   & 60   &      & \\
+        Nb & 3.0  & 15.2 & 19.2 & 0.92 \\
+        Fe & 0.66 & 8.9  & 14.7 & 1.21 \\
+        Zn & 1.1  & 5.5  & 7.8  & 1.04 \\
+        Cd & 1.6  & 6.8  &      & \\
+        Hg & 5.8  & Melted & Melted & \\
+        Al & 0.3  & 2.45 & 3.55 & 1.06 \\
+        Ga & 2.75 & 13.6 & Melted & \\
+        In & 1.8  & 8.0  & 12.1 & 1.11 \\
+        Tl & 3.7  & 15   & 22.8 & 1.11 \\
+        Sn & 2.1  & 10.6 & 15.8 & 1.09 \\
+        Pb & 4.7  & 19.0 & 27.0 & 1.04 \\
+        Bi & 35   & 107  & 156  & 1.07 \\
+        Sb & 8    & 39   & 59   & 1.11 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \caption{Drude relaxation times, in units of $10^{-14}$\,s, calculated from the resistivity and density data via Eq.~\eqref{eq:drude-sigma}. The slight temperature dependence of $n$ is ignored.}
+    \label{tab:drude-tau}
+    \begin{tabular}{lccc}
+        \toprule
+        Element & 77\,K & 273\,K & 373\,K \\
+        \midrule
+        Li & 7.3   & 0.88  & 0.61 \\
+        Na & 17    & 3.2   & \\
+        K  & 18    & 4.1   & \\
+        Rb & 14    & 2.8   & \\
+        Cs & 8.6   & 2.1   & \\
+        Cu & 21    & 2.7   & 1.9 \\
+        Ag & 20    & 4.0   & 2.8 \\
+        Au & 12    & 3.0   & 2.1 \\
+        Be &       & 0.51  & 0.27 \\
+        Mg & 6.7   & 1.1   & 0.74 \\
+        Ca &       & 2.2   & 1.5 \\
+        Sr & 1.4   & 0.44  & \\
+        Ba & 0.66  & 0.19  & \\
+        Nb & 2.1   & 0.42  & 0.33 \\
+        Fe & 3.2   & 0.24  & 0.14 \\
+        Zn & 2.4   & 0.49  & 0.34 \\
+        Cd & 2.4   & 0.56  & \\
+        Hg & 0.71  &       & \\
+        Al & 6.5   & 0.80  & 0.55 \\
+        Ga & 0.84  & 0.17  & \\
+        In & 1.7   & 0.38  & 0.25 \\
+        Tl & 0.91  & 0.22  & 0.15 \\
+        Sn & 1.1   & 0.23  & 0.15 \\
+        Pb & 0.57  & 0.14  & 0.099 \\
+        Bi & 0.072 & 0.023 & 0.016 \\
+        Sb & 0.27  & 0.055 & 0.036 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% ============================================================
+\section{Time-Dependent Fields and the Drude Equation}
+% ============================================================
+
+The steady-state argument above can be promoted into an equation of motion for the average momentum per electron. Write the current density in terms of momentum,
+\begin{equation}
+    \vect{j} = -\frac{ne\vect{p}(t)}{m},
+\end{equation}
+and follow the average momentum from $t$ to $t+\Delta t$. With probability $1 - \Delta t/\tau$ the electron does not collide and its momentum simply advances under the external force $\vect{f}(t)$; with probability $\Delta t/\tau$ it does collide, after which its contribution to the average momentum vanishes up to terms of order $\vect{f}(t)\Delta t$. Therefore
+\begin{equation}
+    \vect{p}(t+\Delta t) = \left(1 - \frac{\Delta t}{\tau}\right)\Bigl(\vect{p}(t) + \vect{f}(t)\Delta t + O(\Delta t^2)\Bigr) + \frac{\Delta t}{\tau}\Bigl(0 + O(\vect{f}(t)\Delta t)\Bigr).
+\end{equation}
+Dropping terms of second order in $\Delta t$,
+\begin{equation}
+    \vect{p}(t+\Delta t) - \vect{p}(t) = -\frac{\Delta t}{\tau}\vect{p}(t) + \vect{f}(t)\Delta t + O(\Delta t)^2,
+\end{equation}
+and dividing by $\Delta t$ gives the central dynamical statement of the model.
+
+\begin{formula}[Drude equation]
+\begin{equation}
+    \dv{\vect{p}(t)}{t} = -\frac{\vect{p}(t)}{\tau} + \vect{f}(t). \label{eq:drude-eom}
+\end{equation}
+The first term is a damping force generated by collisions; the second is the external force.
+\end{formula}
+
+% ============================================================
+\section{Hall Effect and Magnetoresistance}
+% ============================================================
+
+Place a metal slab in a magnetic field $\vect{h}$ along $\hat{z}$ and drive a current $j_x$ along $\hat{x}$. The external force is now the Lorentz force
+\begin{equation}
+    \vect{f} = -\frac{e}{c}\,\vect{v}\times\vect{h} = -e\,\vect{v}\times\vect{b}.
+\end{equation}
+The magnetic force deflects the carriers toward one edge of the slab, where they pile up until the transverse field they create cancels the deflection (Figure~\ref{fig:drude-hall}). Two quantities characterize the result: the \emph{magnetoresistance}
+\begin{equation}
+    \rho(H) = \frac{E_x}{j_x},
+\end{equation}
+and the \emph{Hall coefficient}
+\begin{equation}
+    \frac{E_y}{j_x H} = \frac{cE_y}{-neVB}.
+\end{equation}
+The Hall coefficient is negative if the charge carrier is the electron, and positive if some other, positively charged carrier is responsible.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+        % axes
+        \draw[-{Stealth}] (-0.6,2.4) -- (0.1,2.9) node[above] {$y$};
+        \draw[-{Stealth}] (-0.6,2.4) -- (-0.6,3.3) node[above] {$z$};
+        \draw[-{Stealth}] (-0.6,2.4) -- (0.3,2.4) node[right] {$x$};
+        % slab
+        \draw[thick] (1,1.2) -- (6,1.2) -- (6,1.8) -- (1,1.8) -- cycle;
+        \draw[thick] (1,1.8) -- (1.9,2.4) -- (6.9,2.4) -- (6,1.8);
+        \draw[thick] (6,1.2) -- (6.9,1.8) -- (6.9,2.4);
+        % charges
+        \node[Orange] at (2.0,2.15) {\small $+\,+\,+\,+\,+\,+\,+\,+$};
+        \node[Orange] at (4.6,2.15) {\small $+\,+\,+\,+$};
+        \draw[very thick, Dandelion, dashed] (1.25,1.35) -- (5.6,1.35);
+        \foreach \x in {2.2,2.8,3.4,4.0,4.6} {\draw[-{Stealth}] (\x,2.05) -- (\x,1.45);}
+        % fields and currents
+        \draw[-{Stealth}, thick] (3.6,2.4) -- (3.6,3.2) node[above] {$B$};
+        \draw[-{Stealth}, thick] (2.2,0.9) -- (4.6,0.9) node[right] {$E_x$};
+        \draw[-{Stealth}, thick] (7.1,2.1) -- (8.4,2.1) node[right] {$j_x$};
+        \draw[-{Stealth}, thick] (7.1,1.5) -- (8.4,1.5) node[right] {$v_x$};
+        \node at (0.4,2.0) {$E_y$};
+    \end{tikzpicture}
+    \caption{Hall geometry. A current $j_x$ flows along $\hat{x}$ in a magnetic field $B\hat{z}$; the Lorentz force sweeps carriers to one face until the transverse Hall field $E_y$ balances it and the transverse current vanishes.}
+    \label{fig:drude-hall}
+\end{figure}
+
+\subsection{Derivation}
+
+In steady state the Drude equation~\eqref{eq:drude-eom} with the Lorentz force gives
+\begin{equation}
+    \dv{\vect{p}}{t} = -e\left(\vect{e} + \frac{\vect{p}}{mc}\times\vect{h}\right) - \frac{\vect{p}}{\tau} = 0,
+\end{equation}
+and with $\vect{h} = H\hat{z}$ the cross product reduces to
+\begin{equation}
+    \frac{1}{mc}\begin{pmatrix} p_y H_z \\ -p_x H_z \end{pmatrix}.
+\end{equation}
+Componentwise,
+\begin{equation}
+    0 = -eE_x - \omega_c p_y - \frac{p_x}{\tau}, \qquad
+    0 = -eE_y + \omega_c p_x - \frac{p_y}{\tau}, \qquad
+    \omega_c \equiv \frac{eH}{mc},
+\end{equation}
+where $\omega_c$ is the cyclotron frequency. Multiplying through by $-ne\tau/m$ and using $\vect{j} = -ne\vect{p}/m$,
+\begin{equation}
+    \sigma_0 E_x = \omega_c\tau\, j_y + j_x, \qquad \sigma_0 E_y = -\omega_c\tau\, j_x + j_y,
+\end{equation}
+with $\sigma_0 = ne^2\tau/m$ the zero-field conductivity. In equilibrium no current flows across the metal, so $j_y = 0$, and the second relation gives
+\begin{equation}
+    E_y = -\left(\frac{\omega_c\tau}{\sigma_0}\right) j_x = -\left(\frac{H}{nec}\right) j_x.
+\end{equation}
+
+\begin{formula}[Drude Hall coefficient]
+\begin{equation}
+    R_H = -\frac{1}{nec}.
+\end{equation}
+\end{formula}
+
+The Hall coefficient depends only on the carrier density, so measuring it tests whether $n$ is predicted correctly by the Drude model. Moreover, setting $j_y = 0$ in the first relation recovers $j_x = \sigma E_x$: within this model the magnetic field does not affect the ordinary resistance at all.
+
+% ============================================================
+\section{AC Electrical Conductivity}
+% ============================================================
+
+Now drive the metal with a time-varying field $\vect{e}(t) = \operatorname{Re}\left(\vect{e}(\omega)e^{-i\omega t}\right)$. The Drude equation reads
+\begin{equation}
+    \dv{\vect{p}}{t} = -\frac{\vect{p}}{\tau} - e\vect{e},
+\end{equation}
+and with the ansatz $\vect{p}(t) = \operatorname{Re}\left(\vect{p}(\omega)e^{-i\omega t}\right)$ we get
+\begin{equation}
+    -i\omega\, p(\omega) = -\frac{p(\omega)}{\tau} - eE(\omega) \quad\Longrightarrow\quad p(\omega) = \frac{-eE}{\frac{1}{\tau} - i\omega}.
+\end{equation}
+The current density is $j = -nep/m$, so
+\begin{equation}
+    j = \frac{ne^2}{m}\cdot\frac{E}{\frac{1}{\tau} - i\omega}.
+\end{equation}
+
+\begin{formula}[AC Drude conductivity]
+\begin{equation}
+    \vect{j}(\omega) = \sigma(\omega)\vect{e}(\omega), \qquad \sigma(\omega) = \frac{\sigma_0}{1 - i\omega\tau}.
+\end{equation}
+\end{formula}
+
+Two approximations underlie this result. First, the magnetic part of the electromagnetic wave has been dropped: the extra term $-e\vect{p}/(mc)\times\vect{h}$ is smaller than the electric term by a factor $v/c \ll 1$. Second, the field is assumed not to vary appreciably in space over the electron mean free path, i.e.\ its wavelength satisfies $\lambda \gg \ell$; otherwise the electron would sample a spatially varying field between collisions.
+
+\subsection{Propagation of Radiation in a Metal}
+
+To see the consequences, solve Maxwell's equations in the metal. With no net charge,
+\begin{equation}
+    \div \vect{e} = 0, \quad \div\vect{b} = 0, \quad \curl\vect{e} = -\frac{1}{c}\pdv{\vect{h}}{t},
+\end{equation}
+\begin{equation}
+    \curl\vect{h} = \frac{4\pi}{c}\vect{j} + \frac{1}{c}\pdv{\vect{e}}{t}
+    = \frac{4\pi}{c}\sigma\vect{e} + \frac{1}{c}\pdv{\vect{e}}{t}
+    = \frac{4\pi}{c}\sigma E - \frac{i\omega}{c}E,
+\end{equation}
+where in the last step the harmonic time dependence $e^{-i\omega t}$ has been used. Taking the curl of Faraday's law and using $\div\vect{e} = 0$,
+\begin{equation}
+    \curl(\curl \vect{e}) = \grad(\div\vect{e}) - \laplacian{\vect{e}} = -\frac{1}{c}\pdv{t}(\curl \vect{h})
+    = -\frac{1}{c}\left(-i\omega\frac{4\pi}{c}\sigma E - \frac{i\omega}{c}(-i\omega)E\right),
+\end{equation}
+so that
+\begin{equation}
+    -\laplacian{\vect{e}} = \frac{\omega^2}{c^2}\left(1 + \frac{4\pi i \sigma}{\omega}\right)E,
+\end{equation}
+which is a wave equation with a frequency-dependent refractive index.
+
+\begin{definition}[Complex dielectric constant]
+\begin{equation}
+    \epsilon(\omega) = 1 + \frac{4\pi i \sigma}{\omega}.
+\end{equation}
+\end{definition}
+
+In the collisionless regime $\omega\tau \gg 1$,
+\begin{equation}
+    \epsilon(\omega) = 1 + \frac{4\pi i}{\omega}\cdot\frac{ne^2\tau}{m}\cdot\frac{1}{1 - i\omega\tau}
+    \approx 1 - \frac{4\pi n e^2}{m\omega^2} = 1 - \frac{\omega_p^2}{\omega^2},
+\end{equation}
+which defines the \emph{plasma frequency} $\omega_p^2 = 4\pi ne^2/m$.
+
+\begin{fact}[Metallic reflectivity]
+If $\epsilon$ is negative ($\omega < \omega_p$) the solutions decay exponentially and radiation is reflected. If $\epsilon$ is positive ($\omega > \omega_p$) the solutions oscillate and radiation passes through the metal.
+\end{fact}
+
+% ============================================================
+\section{Ground-State Properties of the Electron Gas}
+% ============================================================
+
+We now incorporate quantum mechanics into the behaviour of electrons in solids; this is the Sommerfeld model. Bulk properties turn out to be largely unaffected by the choice of boundary condition, which gives us the freedom to pick whichever is most convenient.
+
+A free electron obeys the three-dimensional Schr\"odinger equation
+\begin{equation}
+    -\frac{\hbar^2}{2m}\laplacian{\psi(\vect{r})} = E\,\psi(\vect{r}),
+\end{equation}
+whose solutions are plane waves
+\begin{equation}
+    \psi(\vect{r}) = \frac{1}{\sqrt{V}}e^{i\vect{k}\cdot\vect{r}},
+\end{equation}
+with dispersion
+\begin{equation}
+    E(\vect{k}) = \frac{\hbar^2|\vect{k}|^2}{2m} = \frac{|\vect{p}|^2}{2m},
+\end{equation}
+so that momentum and velocity are $\vect{p} = \hbar\vect{k}$ and $\vect{v} = \hbar\vect{k}/m$.
+
+\subsection{Periodic Boundary Conditions and Counting States}
+
+The convenient choice is the periodic (Born--von Karman) boundary condition, which wraps the sample of side $L$ onto itself in each direction:
+\begin{equation}
+    \psi(x+L,y,z) = \psi(x,y,z), \quad \psi(x,y+L,z) = \psi(x,y,z), \quad \psi(x,y,z+L) = \psi(x,y,z).
+\end{equation}
+Each condition quantizes the corresponding wavevector component,
+\begin{equation}
+    k_x, k_y, k_z = \frac{2\pi m}{L}, \qquad m \in \mathbb{Z}.
+\end{equation}
+Allowed wavevectors therefore form a cubic mesh in $k$-space of spacing $2\pi/L$. In two dimensions a rectangle of sides $\Delta k_x, \Delta k_y$ satisfies
+\begin{equation}
+    \Delta k_x \Delta k_y = \frac{4\pi^2}{L^2}\Delta m\,\Delta n,
+\end{equation}
+and for large boxes $\Delta m \Delta n$ is approximately the number of states contained.
+
+\begin{formula}[Density of $k$-space states in 3D]
+\begin{equation}
+    \frac{\#\ \text{states}}{\text{$k$-space volume}} = \frac{V}{8\pi^3}.
+\end{equation}
+\end{formula}
+
+\subsection{The Fermi Sphere}
+
+Suppose the metal contains $N$ electrons; what is the ground state? At $T=0$ the Fermi--Dirac distribution is a Heaviside step function, so electrons fill every level up to some energy and none above it. Since the energy depends only on $|\vect{k}|$, the occupied region is a sphere in $k$-space --- the \emph{Fermi sphere} (Figure~\ref{fig:drude-fermi-sphere}) --- of radius $k_F$. Counting states inside it, with a factor of 2 for spin,
+\begin{equation}
+    N = 2\cdot\frac{V}{8\pi^3}\cdot\frac{4}{3}\pi|\vect{k}_F|^3 = \frac{V}{3\pi^2}|\vect{k}_F|^3,
+\end{equation}
+which inverts to give the Fermi wavevector.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[-{Stealth}] (-1.5,0) -- (1.6,0) node[right] {$k_x$};
+        \draw[-{Stealth}] (0,-1.5) -- (0,1.6) node[above] {$k_y$};
+        \fill[Orange, opacity=0.25] (0,0) circle (1);
+        \draw[thick] (0,0) circle (1);
+        \draw[-{Stealth}] (0,0) -- (35:1);
+        \node[above right] at (35:0.75) {$|\vect{k}_F|$};
+    \end{tikzpicture}
+    \caption{The ground state of the free electron gas: all one-electron levels with $|\vect{k}| < k_F$ are doubly occupied, filling the Fermi sphere, and all levels outside it are empty.}
+    \label{fig:drude-fermi-sphere}
+\end{figure}
+
+\begin{formula}[Fermi wavevector and Fermi energy]
+\begin{equation}
+    |\vect{k}_F| = (3\pi^2 n)^{1/3}, \qquad
+    E_F = \frac{\hbar^2 |\vect{k}_F|^2}{2m} = \frac{\hbar^2(3\pi^2 n)^{2/3}}{2m},
+\end{equation}
+where $n = N/V$ is the electron density. The Fermi momentum $\vect{p}_F = \hbar\vect{k}_F$ and Fermi velocity $\vect{v}_F = \hbar\vect{k}_F/m$ are defined analogously.
+\end{formula}
+
+\subsection{Length and Energy Scales}
+
+Expressing the density through the effective electron radius, $1/n = \tfrac{4}{3}\pi r_s^3$, gives
+\begin{equation}
+    k_F = \frac{(9\pi/4)^{1/3}}{r_s} \approx \frac{1.92}{r_s}, \qquad\text{or}\qquad k_F = \frac{3.63}{r_s/a_0}\ \text{\AA}^{-1}.
+\end{equation}
+The Fermi wavevector is inversely proportional to the average electron--electron distance: the more densely the electrons are packed, the higher the maximum wavevector. In the same variables,
+\begin{equation}
+    E_F = \left(\frac{e^2}{2a_0}\right)(k_F a_0)^2 = \mathrm{Ry}\cdot(k_F a_0)^2 = \frac{50.1\ \mathrm{eV}}{(r_s/a_0)^2},
+\end{equation}
+where $\mathrm{Ry} \approx 13.6$\,eV. Fermi energies for metals accordingly range from roughly $1.5$ to $15$\,eV.
+
+\subsection{Total Energy and Pressure}
+
+The total energy of the filled Fermi sphere is a sum over occupied levels,
+\begin{equation}
+    E = 2\sum_{|\vect{k}| < k_F} \frac{\hbar^2 k^2}{2m} \approx 2\cdot\frac{V}{8\pi^3}\int_{|\vect{k}|<k_F} d\vect{k}\ \frac{\hbar^2k^2}{2m} = \frac{1}{\pi^2}\frac{\hbar^2 k_F^5}{10m}\,V,
+\end{equation}
+where the sum has been converted into an integral using the $k$-space density of states. The energy density is therefore
+\begin{equation}
+    \frac{E}{V} = \frac{1}{\pi^2}\frac{\hbar^2 k_F^5}{10m},
+\end{equation}
+and dividing by $n = k_F^3/(3\pi^2)$ gives the energy per electron
+\begin{formula}[Ground-state energy per electron]
+\begin{equation}
+    \frac{E}{N} = \frac{E}{V}\cdot\frac{V}{N} = \frac{3}{5}E_F = \frac{3}{5}k_B T_F,
+\end{equation}
+where the \emph{Fermi temperature} is defined by $E_F = k_B T_F$.
+\end{formula}
+
+\begin{formula}[Fermi temperature]
+\begin{equation}
+    T_F = \frac{E_F}{k_B} \approx \frac{58.2}{(r_s/a_0)^2}\times 10^4\ \mathrm{K}.
+\end{equation}
+\end{formula}
+
+Because the ground-state energy grows as the box is squeezed, the electron gas exerts a pressure even at zero temperature. Using $P = -(\partial E/\partial V)_N$ applied to $E = \tfrac{3}{5}NE_F$ and $E_F \propto V^{-2/3}$,
+\begin{formula}[Degeneracy pressure]
+\begin{equation}
+    P = \frac{2}{3}\frac{E}{V}.
+\end{equation}
+\end{formula}
+
+% ============================================================
+\section{Thermal Properties of the Free Electron Gas}
+% ============================================================
+
+In a Sommerfeld electron gas the one-electron levels are specified by $\vect{k}$ and the spin $s$, with dispersion $\varepsilon(\vect{k}) = \hbar^2k^2/2m$, and the levels are occupied according to the Fermi--Dirac distribution
+\begin{equation}
+    f(\varepsilon) = \frac{1}{e^{(\varepsilon - \mu)/k_BT} + 1},
+\end{equation}
+a step function smoothed over a width $\sim k_BT$ about the chemical potential $\mu$ (Figure~\ref{fig:drude-fd}). Consistency with the ground-state calculations of the previous section requires
+\begin{equation}
+    \lim_{T\to 0}\mu(T) = E_F.
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        width=9cm, height=5cm,
+        axis lines=left,
+        xlabel={$\varepsilon$}, ylabel={$f(\varepsilon)$},
+        domain=0:2.2, samples=300,
+        xmin=0, xmax=2.2, ymin=-0.05, ymax=1.2,
+        xtick={1}, xticklabels={$\mu$}, ytick={1}, yticklabels={$1$},
+        every axis plot/.append style={thick},
+    ]
+        \addplot[Periwinkle] {1/(exp((x-1)/0.06)+1)};
+        \addplot[gray, dashed, samples=2] coordinates {(1,0) (1,1)};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{The Fermi--Dirac distribution. At $T=0$ it is a step at $\varepsilon = \mu$; at finite temperature it is smeared over an energy window of width $\sim k_BT$ around $\mu$.}
+    \label{fig:drude-fd}
+\end{figure}
+
+\subsection{Density of States}
+
+The specific heat per unit volume is $c_V \equiv \frac{1}{V}\left(\pdv{U}{T}\right)_V$, where $U$ is the total energy. Both the total energy and the total number are sums over occupied levels:
+\begin{equation}
+    U = 2\sum_{\vect{k}} \varepsilon(\vect{k}) f(\vect{k}) = \frac{2V}{8\pi^3}\int d\vect{k}\ \varepsilon(\vect{k})f(\vect{k}) = V\!\int d\varepsilon\ \varepsilon\, g(\varepsilon) f(\varepsilon),
+\end{equation}
+\begin{equation}
+    N = \frac{V}{4\pi^3}\int d\vect{k}\ f(\vect{k}) = V\!\int d\varepsilon\ g(\varepsilon)f(\varepsilon).
+\end{equation}
+The function $g(\varepsilon)$ converting the $k$-integral into an energy integral is obtained from
+\begin{equation}
+    \frac{d\vect{k}}{4\pi^3} = \frac{4\pi k^2\,dk}{4\pi^3} = \frac{k^2}{\pi^2}\dv{k}{\varepsilon}\,d\varepsilon = \frac{m}{\pi^2\hbar^2}\sqrt{\frac{2m\varepsilon}{\hbar^2}}\,d\varepsilon.
+\end{equation}
+
+\begin{definition}[Density of states]
+\begin{equation}
+    g(\varepsilon) = \begin{cases}\dfrac{m}{\hbar^2\pi^2}\sqrt{\dfrac{2m\varepsilon}{\hbar^2}}, & \varepsilon > 0,\\[6pt] 0, & \varepsilon < 0.\end{cases}
+\end{equation}
+Intuitively, $g(\varepsilon)\,d\varepsilon$ is the number of one-electron levels per unit volume in the energy range from $\varepsilon$ to $\varepsilon + d\varepsilon$ --- that is, the levels in a thin shell of the Fermi sphere.
+\end{definition}
+
+Rewriting in terms of the Fermi energy,
+\begin{equation}
+    g(\varepsilon) = \frac{3}{2}\frac{n}{E_F}\left(\frac{\varepsilon}{E_F}\right)^{1/2} \quad (\varepsilon > 0), \qquad g(\varepsilon) = 0 \quad (\varepsilon < 0),
+\end{equation}
+so that at the Fermi level itself
+\begin{equation}
+    g(E_F) = \frac{mk_F}{\hbar^2\pi^2} = \frac{3n}{2E_F}.
+\end{equation}
+
+\subsection{The Sommerfeld Expansion}
+
+All the thermodynamic quantities have the form $\int_{-\infty}^{\infty} d\varepsilon\, H(\varepsilon)f(\varepsilon)$ for some function $H$. At almost all temperatures of interest $T \ll T_F$, so $f(\varepsilon)$ differs from its $T=0$ step only in a narrow window of width $\sim k_BT$ around $\mu$; indeed $k_BT/\mu \sim 0.01$ for most metals. If $H(\varepsilon)$ varies slowly near $\varepsilon = \mu$ we may expand
+\begin{equation}
+    H(\varepsilon) = H(\mu) + (\varepsilon - \mu)H'(\mu) + \cdots,
+\end{equation}
+which yields a systematic low-temperature expansion.
+
+\begin{formula}[Sommerfeld expansion]
+\begin{equation}
+    \int_{-\infty}^{\infty} H(\varepsilon)f(\varepsilon)\,d\varepsilon = \int_{-\infty}^{\mu} H(\varepsilon)\,d\varepsilon + \frac{\pi^2}{6}(k_BT)^2 H'(\mu) + O(T^4).
+\end{equation}
+\end{formula}
+
+Applying it to the energy density and the number density,
+\begin{equation}
+    u = \frac{U}{V} = \int_0^{\mu}\varepsilon\, g(\varepsilon)\,d\varepsilon + \frac{\pi^2}{6}(k_BT)^2\bigl(g(\mu) + \mu\, g'(\mu)\bigr),
+\end{equation}
+\begin{equation}
+    n = \frac{N}{V} = \int_0^{\mu} g(\varepsilon)\,d\varepsilon + \frac{\pi^2}{6}(k_BT)^2 g'(\mu) + O(T^4).
+\end{equation}
+Since $N$ and $V$ are held fixed, $n(T) = n(T=0)$, and therefore
+\begin{equation}
+    \int_0^{E_F} g(\varepsilon)\,d\varepsilon = \int_0^{\mu} g(\varepsilon)\,d\varepsilon + \frac{\pi^2}{6}(k_BT)^2 g'(\mu),
+\end{equation}
+that is,
+\begin{equation}
+    \int_{\mu}^{E_F} g(\varepsilon)\,d\varepsilon \approx (E_F - \mu)\,g(E_F) = \frac{\pi^2}{6}(k_BT)^2 g'(\mu),
+\end{equation}
+which fixes how the chemical potential drifts below $E_F$ as the temperature rises.
+
+\begin{formula}[Chemical potential at low temperature]
+\begin{equation}
+    \mu = E_F\left[1 - \frac{1}{3}\left(\frac{\pi k_BT}{2E_F}\right)^2\right].
+\end{equation}
+\end{formula}
+
+\subsection{Electronic Heat Capacity}
+
+Feeding the same expansion into the energy density gives
+
+\begin{formula}[Thermal electronic energy density]
+\begin{equation}
+    u = u_0 + \frac{\pi^2}{6}(k_BT)^2 g(E_F),
+\end{equation}
+\end{formula}
+whose temperature derivative is the electronic heat capacity,
+\begin{formula}[Electronic heat capacity]
+\begin{equation}
+    c_V = \left(\pdv{u}{T}\right)_V = \frac{\pi^2}{2}\left(\frac{k_BT}{E_F}\right)nk_B.
+\end{equation}
+\end{formula}
+
+This is suppressed relative to the classical harmonic-oscillator estimate by a factor $\frac{\pi^2}{3}(k_BT/E_F)$, which is of order $1/100$ at room temperature. The electronic degrees of freedom therefore contribute negligibly to the heat capacity at room temperature. At very low temperatures, however, the atomic contribution falls off as $c_V \sim T^3$, so the linear-in-$T$ electronic heat capacity dominates.
+
+The linear temperature dependence has a simple explanation (Figure~\ref{fig:drude-smearing}): only electrons within $\sim k_BT$ of the Fermi level can be thermally excited, and their number per unit volume is
+\begin{equation}
+    \int_{E_F - k_BT}^{E_F + k_BT} g(\varepsilon)\,d\varepsilon \approx g(E_F)\cdot k_BT,
+\end{equation}
+while each gains an energy of order $k_BT$. Hence
+\begin{equation}
+    u \approx u_0 + \alpha (k_BT)^2 g(E_F),
+\end{equation}
+reproducing the exact result up to the numerical constant. Comparison with experiment (see Ashcroft, p.~49, for the measurement techniques and element-by-element data) shows the prediction works well for the alkali metals.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+        % occupied block
+        \draw[thick] (0,0) -- (0,1.4) -- (4.6,1.4);
+        \draw[thick] (0,0) -- (5.8,0);
+        % smeared edge
+        \draw[thick, Orange] (4.6,1.4) .. controls (5.0,1.4) and (5.0,0) .. (5.4,0);
+        % shading of excited electrons
+        \draw[Orange] (4.6,1.4) -- (5.4,0);
+        \foreach \x in {4.7,4.85,5.0,5.15,5.3} {\draw[Orange, thin] (\x,0) -- (\x, {1.4*(5.4-\x)/0.8});}
+        % arrow indicating promotion
+        \draw[-{Stealth}, Orange, thick] (4.9,0.9) to[bend left=60] (5.6,0.9);
+        \draw[dashed] (5.0,0) -- (5.0,1.4);
+        \draw[<->] (4.6,-0.3) -- (5.4,-0.3) node[right] {$k_BT$};
+        \node[below] at (4.6,-0.55) {$E_F$};
+    \end{tikzpicture}
+    \caption{Only electrons within about $k_BT$ of the Fermi energy are thermally excited. Their number is $\sim g(E_F)k_BT$ and each gains energy $\sim k_BT$, giving $u - u_0 \sim (k_BT)^2 g(E_F)$ and hence a heat capacity linear in $T$.}
+    \label{fig:drude-smearing}
+\end{figure}
+
+% ============================================================
+\section{Sommerfeld Theory of Conduction in Metals}
+% ============================================================
+
+\subsection{The Chemical Potential}
+
+For large $N$ and $V$ the free energy is extensive, $F(N,V,T) = Vf(n,T)$ for some smooth function $f$. The chemical potential is the free energy cost of adding one particle,
+\begin{equation}
+    \mu = F(N+1,V,T) - F(N,V,T) = V\left[f\!\left(n + \tfrac{1}{V},T\right) - f(n,T)\right],
+\end{equation}
+so in the thermodynamic limit
+\begin{equation}
+    \mu \xrightarrow{V\to\infty} \left(\pdv{f}{n}\right)_T.
+\end{equation}
+Since $P = -(\partial F/\partial V)_T = -\partial_V(Vf(n,T))_T = -f + \mu n$, and using $F = U - TS$ and $G = U - TS + PV$,
+\begin{equation}
+    \mu = \frac{1}{n}(P + f) = \frac{1}{n}\left(\frac{G - U + TS}{V} + \frac{U - TS}{V}\right) = \frac{G}{N},
+\end{equation}
+giving three equivalent characterizations:
+\begin{formula}[Chemical potential]
+\begin{equation}
+    \mu = \frac{G}{N}, \qquad \mu = \left(\pdv{u}{n}\right)_s, \qquad \mu = -T\left(\pdv{s}{n}\right)_u.
+\end{equation}
+\end{formula}
+
+\subsection{Velocity Distribution in Metals}
+
+The number of one-electron levels in a $k$-space volume element is $(V/4\pi^3)\,d\vect{k}$, so the number of electrons in that element is
+\begin{equation}
+    \frac{V}{4\pi^3}f(\varepsilon(\vect{k}))\,d\vect{k}.
+\end{equation}
+Using $\hbar\vect{k} = m\vect{v}$, so that $d\vect{k} = (m/\hbar)^3 d\vect{v}$, the number of electrons in a small volume of velocity space about $\vect{v}$ is
+\begin{equation}
+    \frac{V}{4\pi^3}\left(\frac{m}{\hbar}\right)^3\frac{1}{\exp\left[\left(\tfrac{1}{2}mv^2 - \mu\right)/k_BT\right] + 1}\,d\vect{v} \equiv f(\vect{v})\,d\vect{v}.
+\end{equation}
+The Sommerfeld theory of conduction then consists of running the Drude arguments verbatim, but replacing the Maxwell--Boltzmann velocity distribution by $f(\vect{v})$. This is the \emph{semiclassical approximation}.
+
+\subsection{Basics of Electron Transport}
+
+A typical electron in a metal has momentum of order $\hbar k_F$, so for a classical description to make sense the momentum uncertainty must satisfy $\Delta p \ll p = \hbar k_F$, i.e.\ a wavepacket must be well localized in momentum while remaining a wavepacket at all. By the uncertainty relation this means
+\begin{equation}
+    \Delta x \sim \frac{\hbar}{\Delta p} \gg \frac{1}{k_F} \sim r_s,
+\end{equation}
+using $k_F \sim 1/r_s$ from before. So the electron wavepacket must be spread over many interelectron spacings for classical transport to be legitimate. There are only two situations in the Drude model where accurate knowledge of the electron's location matters, and quantum mechanics must be used:
+\begin{enumerate}
+    \item spatially varying electromagnetic fields or temperature gradients;
+    \item $\Delta x \sim \ell$, the mean free path --- the wavepacket must be much smaller than $\ell$ for the Drude picture to work.
+\end{enumerate}
+
+\subsection{Why Classical Mechanics Works}
+
+The Fermi--Dirac distribution is enormously different from the Boltzmann distribution, so why does Sommerfeld theory make predictions so similar to Drude's? Two reasons. First, if electron--electron interactions are neglected, the behaviour of $N$ noninteracting electrons is completely determined by $N$ independent one-electron problems. Second, Fermi--Dirac statistics only affect those predictions which require knowledge of the electronic \emph{velocity} distribution; everything else is untouched.
+
+Where the statistics do matter is in the estimate of the mean free path. Using $v_F$ rather than the thermal speed as the typical electron speed,
+\begin{formula}[Mean free path]
+\begin{equation}
+    \ell = \frac{(r_s/a_0)^2}{\rho_\mu}\cdot 92\ \text{\AA},
+\end{equation}
+where $\rho_\mu$ is the resistivity in microhm centimetres.
+\end{formula}
+Since $\rho_\mu \sim 1$ to $100\ \mu\Omega\,\mathrm{cm}$ at room temperature and $(r_s/a_0)^2 \sim 2$ to $6$, mean free paths of hundreds of \aa ngstr\"oms --- many interatomic spacings --- are typical.
+
+% ============================================================
+\section{Assumptions and Failures of the Free Electron Model}
+% ============================================================
+
+It is worth collecting, at the end, exactly what has been assumed, since each assumption is the seed of a later refinement.
+
+\begin{fact}[Assumptions of the free electron model]
+\begin{enumerate}
+    \item \textbf{Free electron approximation.} The metallic ions do not affect the electron motion; they serve only to maintain overall charge neutrality. This ignores (i) the effect of the ions on electron dynamics between collisions, (ii) the role the ions play as a source of collisions, and (iii) the possibility that the ions themselves contribute to physical phenomena --- for example, phonons.
+    \item \textbf{Independent electrons.} Electron--electron interactions are ignored.
+    \item \textbf{Relaxation time approximation.} The outcome of a collision does not depend on the configuration of the electrons at the moment of collision.
+\end{enumerate}
+\end{fact}
