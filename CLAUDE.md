@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A collection of LaTeX physics notes organized by subject. Each subject lives in its own directory and compiles to a single PDF via `main.tex`.
 
-Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`, `waves/`
+Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`, `waves/`, `solid-state/`
 
 ## Build Commands
 
@@ -24,6 +24,7 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 - `electro/` → `electromagnetism.pdf`
 - `methods/` → `mathematical-methods.pdf`
 - `waves/` → `waves-and-optics.pdf`
+- `solid-state/` → `solid-state-physics.pdf`
 
 ## Document Structure
 
@@ -44,6 +45,7 @@ Per-subject additions (content-driven, intentionally differ):
 - `thermo-stat-mech`, `class-mech`, `waves`: load `tikz`/`pgfplots` for diagrams/plots.
 - `electro`: loads `tikz`/`circuitikz` for circuit diagrams instead.
 - `methods`: needs no extra packages beyond the shared preamble.
+- `solid-state`: loads `tikz`/`pgfplots` for lattice diagrams and band structures.
 - `thermo-stat-mech` additionally defines `\dbar` (inexact differential).
 
 ## Chapter File Organization
@@ -54,6 +56,7 @@ Content is split across files differently per subject:
 - **`waves/`**: `main.tex` inputs `ch1.tex` through `ch8.tex`
 - **`electro/`**: `main.tex` inputs `ch_em1.tex` through `ch_em10.tex`
 - **`class-mech/`**: `main.tex` contains the first two chapters inline, then inputs `ch4.tex` through `ch13.tex`
+- **`solid-state/`**: `main.tex` inputs `ch1.tex` through `ch4.tex`
 
 ## Theorem Numbering
 
