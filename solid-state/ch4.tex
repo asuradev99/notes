@@ -2,11 +2,63 @@
 
 Atoms in a crystal are not static: they vibrate about their equilibrium sites, and those vibrations are collective, propagating through the lattice as waves. Quantized, these waves are the \emph{phonons}. This chapter builds the machinery of lattice dynamics --- the harmonic expansion of the lattice energy, the dynamical matrix, and the dispersion relation $\omega(\vect{k})$ --- and then uses it to explain two thermal properties of solids: the heat capacity (Einstein and Debye models) and the thermal conductivity (which requires anharmonic phonon--phonon scattering to exist at all).
 
+Phonons are a second ``language'' of communication with a crystal: where the electrons govern its electrical properties, the phonons govern its thermal and acoustic ones. They are correspondingly important for bulk material properties such as heat capacity, thermal conductivity, and phase stability. The theoretical thread connecting this chapter to what came before is a simple one --- chemical bonds can be approximated as harmonic oscillators, and that approximation is what determines the specific heat.
+
+% ============================================================
+\section{The Born--Oppenheimer Approximation}
+% ============================================================
+
+Write $\vect{r} \equiv (\vect{r}_1, \ldots, \vect{r}_n)$ for the electron coordinates and $\vect{R} \equiv (\vect{R}_1, \ldots, \vect{R}_n)$ for the nuclear coordinates. There are three kinds of Coulomb interaction between them:
+\begin{align}
+    \text{nucleus--nucleus:} \quad & \sum_{I > J} \frac{Z_I Z_J e^2}{|\vect{R}_I - \vect{R}_J|} = V_{nn}(\vect{R}), \\
+    \text{electron--nucleus:} \quad & -\sum_{i, I} \frac{Z_I e^2}{|\vect{r}_i - \vect{R}_I|} = V_{ne}(\vect{r}, \vect{R}), \\
+    \text{electron--electron:} \quad & \sum_{i > j} \frac{e^2}{|\vect{r}_i - \vect{r}_j|} = V_{ee}(\vect{r}),
+\end{align}
+so that the total potential is $V(\vect{r}, \vect{R}) = V_{nn}(\vect{R}) + V_{ne}(\vect{r}, \vect{R}) + V_{ee}(\vect{r})$ and the Schr\"odinger equation reads
+\begin{equation}
+    i\hbar\, \pdv{\hat{\Phi}(\vect{r}, \vect{R}, t)}{t} = \left(-\sum_I \frac{\hbar^2}{2M_I}\pdv[2]{}{\vect{R}_I} - \sum_i \frac{\hbar^2}{2m}\pdv[2]{}{\vect{r}_i} + V(\vect{r}, \vect{R})\right)\hat{\Phi}(\vect{r}, \vect{R}, t).
+\end{equation}
+This is hopeless as it stands. The Born--Oppenheimer approximation decouples the nuclear and electronic wavefunctions,
+\begin{equation}
+    \hat{\Phi}(\vect{r}, \vect{R}, t) \simeq \Phi(\vect{R})\, \Psi(\vect{r}, \vect{R})\, \exp\!\left(-i\bar{E}t/\hbar\right),
+\end{equation}
+leaving two time-independent problems:
+\begin{align}
+    \left(-\sum_i \frac{\hbar^2}{2m}\pdv[2]{}{\vect{r}_i} + V(\vect{r}, \vect{R})\right)\Psi(\vect{r} \mid \vect{R}) &= E(\vect{R})\,\Psi(\vect{r}, \vect{R}), \\
+    \left(-\sum_I \frac{\hbar^2}{2M_I}\pdv[2]{}{\vect{R}_I} + E(\vect{R})\right)\Phi(\vect{R}) &= \bar{E}\,\Phi(\vect{R}).
+\end{align}
+The electronic eigenvalue $E(\vect{R})$ determines the \emph{potential energy surface} on which the nuclei move, and equilibrium is the condition that the force on every nucleus vanishes:
+\begin{formula}[Equilibrium condition]
+\begin{equation}
+    \vect{F}_I = -\pdv{E(\vect{R})}{\vect{R}_I} = 0.
+\end{equation}
+\end{formula}
+
+\subsection{The Three Assumptions}
+
+\begin{fact}[Assumptions of lattice dynamics]
+\begin{enumerate}
+    \item \emph{Born--Oppenheimer approximation:} the electrons are always instantaneously in their equilibrium configuration given the atomic configuration.
+    \item \emph{Pairwise potential:} the potential can be written as a sum of pairwise terms, $W = \tfrac{1}{2}\sum_{ij}\phi_{ij}(r_{ij})$. Equilibrium occurs when the average force on each atom is zero.
+    \item \emph{Harmonic approximation:} the expansion
+    \begin{equation}
+        W = \sum_n \sum_{s \geq 0} \frac{1}{s!} \pdv[s]{\phi}{u}\,(u_n - u_{n+1})^s
+    \end{equation}
+    is truncated at $0 \leq s \leq 2$. Further terms are \emph{anharmonic}.
+\end{enumerate}
+\end{fact}
+
+The harmonic truncation is what makes the problem exactly solvable, and --- as we will see when we come to thermal conductivity --- it is also what makes it too good, since a purely harmonic crystal has no mechanism for phonons to scatter off each other.
+
 % ============================================================
 \section{From the Wave Equation to Three Dimensions}
 % ============================================================
 
-The starting point is the one-dimensional wave equation
+Within the harmonic approximation the displacements obey a wave equation, whose solutions we write as
+\begin{equation}
+    u(x, t) = \tilde{u}\,\exp\bigl(i[kx - \omega t]\bigr),
+\end{equation}
+where $u$ is the displacement from the equilibrium position, $\tilde{u}$ the amplitude, $k = 2\pi/\lambda$ the wavevector, and $\omega$ the angular frequency. The underlying equation is the one-dimensional wave equation
 \begin{equation}
     \pdv[2]{y}{t} = c^2 \pdv[2]{y}{x}, \qquad c = \frac{\omega}{k},
 \end{equation}
@@ -29,7 +81,7 @@ Generalizing to three dimensions, a lattice vibration is written as
 \section{Lattice Energy and the Harmonic Approximation}
 % ============================================================
 
-Label an atom by $j$ (its index within the unit cell) and $\ell$ (which unit cell it sits in). The total lattice energy is a sum of pair potentials,
+We now carry the three assumptions above into three dimensions. Label an atom by $j$ (its index within the unit cell) and $\ell$ (which unit cell it sits in). The total lattice energy is a sum of pair potentials,
 \begin{equation}
     W = \frac{1}{2}\sum_{jj',\ell\ell'} \varphi(j\ell, j'\ell').
 \end{equation}
@@ -56,8 +108,6 @@ Since only \emph{relative} displacements can cost energy, an equivalent form is
 \begin{equation}
     E_{\text{harm}} = \frac{1}{4}\sum_{jj',\ell\ell'} \bigl[\vect{u}(j\ell) - \vect{u}(j'\ell')\bigr]^{T} \cdot \Phi\!\begin{pmatrix} jj' \\ \ell\ell'\end{pmatrix} \cdot \bigl[\vect{u}(j\ell) - \vect{u}(j'\ell')\bigr].
 \end{equation}
-
-Two assumptions underlie this whole formalism. The first is the \emph{Born--Oppenheimer approximation}: the electrons are always at equilibrium with respect to the instantaneous lattice configuration, so the ions move on a single potential energy surface. The second is that this potential is \emph{pairwise and harmonic}, as written above.
 
 \subsection{Equation of Motion and the Dynamical Matrix}
 
