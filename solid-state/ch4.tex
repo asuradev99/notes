@@ -342,13 +342,71 @@ The phonon density of states counts how many unique modes exist at a given frequ
 \end{equation}
 \end{definition}
 
+The prefactor is the one already familiar from mode counting: periodic boundary conditions put one allowed $\vect{k}$ in every volume $(2\pi)^3/V$ of reciprocal space, so $\sum_{\vect{k}} \to (V/8\pi^3)\int\dd\vect{k}$, and the delta function then picks out only those $\vect{k}$ whose frequency is the one asked for.
+
+\subsection{Evaluating the Density of States}
+
+The delta function in~\eqref{eq:phon-dos} is supported on the surface $S_s(\omega)$ of constant frequency in the Brillouin zone, so it is worth converting the volume integral into an integral over that surface. Split $\dd\vect{k}$ into an element $\dd S$ of the constant-$\omega$ surface and a perpendicular displacement $\dd k_\perp$. Moving a distance $\dd k_\perp$ off the surface changes the frequency by
+\begin{equation}
+    \dd\omega = \left|\grad_{\vect{k}}\,\omega(\vect{k},s)\right| \dd k_\perp,
+\end{equation}
+since the gradient points normal to the surface. The delta function therefore integrates to unity in the perpendicular direction at the cost of a Jacobian $|\grad_{\vect{k}}\omega|^{-1}$, leaving
+
+\begin{formula}[Density of states as a surface integral]
+\begin{equation}
+    g(\omega) = \frac{V}{8\pi^3}\sum_{s=1}^{3p} \int_{S_s(\omega)} \frac{\dd S}{\left|\grad_{\vect{k}}\,\omega(\vect{k},s)\right|}.
+    \label{eq:phon-dos-surface}
+\end{equation}
+\end{formula}
+
+Written this way the density of states is visibly a statement about the \emph{flatness} of the dispersion: where a branch is steep, a given frequency interval is spanned by few modes and $g$ is small; where it is flat, many modes crowd into the same interval and $g$ is large. At a point where $\grad_{\vect{k}}\omega = 0$ --- a band maximum, minimum, or saddle point, which symmetry guarantees at the zone centre and at zone boundaries --- the integrand diverges and $g(\omega)$ has a \emph{van Hove singularity}. These kinks are what make a measured phonon density of states structured rather than smooth, and none of the model spectra below reproduce them.
+
+One constraint holds whatever the dispersion: integrating~\eqref{eq:phon-dos} over all frequencies counts every mode once, so
+\begin{equation}
+    \int_0^\infty \dd\omega\, g(\omega) = \sum_{s=1}^{3p}\sum_{\vect{k}} 1 = 3pN_\ell = 3N,
+    \label{eq:phon-dos-sum}
+\end{equation}
+the total number of vibrational degrees of freedom. Any model density of states must satisfy this sum rule; it is what fixes the free parameter in each of the two models that follow.
+
 % ============================================================
 \section{The Einstein and Debye Models}
 % ============================================================
 
-\subsection{Einstein Approach}
+\subsection{The Einstein Model}
 
-The Einstein model takes $\omega(\vect{k}) = \omega_E$ constant, so that $g(\omega)$ is a delta function at $\omega_E$ and every mode is an independent oscillator of the same frequency. In the high-$T$ limit this reproduces the classical Dulong--Petit result, $C_V = 3Nk_B$. In the low-$T$ limit, however, it predicts an exponential suppression $C_V \propto \exp(-\hbar\omega_E/k_B T)$, whereas experiment shows that most materials have $C_V \propto T^3$ at low temperature. This discrepancy is what Debye set out to fix.
+The crudest guess for the dispersion is that there is none: Einstein takes every mode to have the same frequency, $\omega(\vect{k}) = \omega_E$, so the solid is $3N$ independent oscillators, each atom sitting in its own harmonic well and vibrating in three directions. The density of states is then a single delta function, with weight fixed by the sum rule~\eqref{eq:phon-dos-sum},
+\begin{equation}
+    g(\omega) = 3N\,\delta(\omega - \omega_E).
+\end{equation}
+The frequency integral collapses onto $\omega_E$, so the internal energy is just $3N$ copies of the average energy of one mode,
+\begin{equation}
+    \langle E\rangle = \int_0^\infty \dd\omega\, g(\omega)\,\hbar\omega\left[n_B(\beta\hbar\omega) + \tfrac{1}{2}\right]
+    = 3N\hbar\omega_E\left[\frac{1}{e^{\beta\hbar\omega_E} - 1} + \tfrac{1}{2}\right].
+\end{equation}
+Differentiating, and writing $x \equiv \beta\hbar\omega_E = \theta_E/T$ with $k_B\theta_E \equiv \hbar\omega_E$ the \emph{Einstein temperature},
+\begin{equation}
+    C_V = \pdv{\langle E\rangle}{T} = 3N\hbar\omega_E \cdot \frac{e^{x}}{(e^{x}-1)^2}\cdot\frac{\hbar\omega_E}{k_B T^2},
+\end{equation}
+since the zero-point half drops out.
+
+\begin{formula}[Einstein heat capacity]
+\begin{equation}
+    C_V = 3Nk_B\left(\frac{\theta_E}{T}\right)^{2}\frac{e^{\theta_E/T}}{\left(e^{\theta_E/T} - 1\right)^{2}},
+    \qquad \theta_E \equiv \frac{\hbar\omega_E}{k_B}.
+\end{equation}
+\end{formula}
+
+The two limits are read off directly. For $T \gg \theta_E$ we have $x \ll 1$, and expanding $e^x \approx 1 + x$ gives $e^x/(e^x-1)^2 \to 1/x^2$, so
+\begin{equation}
+    C_V \to 3Nk_B,
+\end{equation}
+the classical Dulong--Petit value --- as it must, since at high temperature every one of the $3N$ oscillators carries $k_B T$ by equipartition. For $T \ll \theta_E$ the exponential dominates the denominator and
+\begin{equation}
+    C_V \approx 3Nk_B\left(\frac{\theta_E}{T}\right)^{2} e^{-\theta_E/T},
+\end{equation}
+which vanishes exponentially fast. Experiment instead finds $C_V \propto T^3$ in most insulators, so the model fails badly at low temperature.
+
+The reason for the failure is the assumption itself. A gap $\hbar\omega_E$ between the ground state and the first excited state of every mode means that once $k_B T$ falls below it, \emph{all} modes freeze out together. But a real solid has acoustic branches with $\omega \to 0$ as $\vect{k}\to 0$: however low the temperature, there are always long-wavelength modes cheap enough to excite, and it is those modes that carry the heat capacity at low $T$. Restoring them is exactly what Debye set out to do.
 
 \subsection{Debye Approach}
 
@@ -403,11 +461,13 @@ Counting states inside a sphere of radius $k$,
     \quad\Longrightarrow\quad
     g(k) = \dv{\phi}{k} = \frac{V}{2\pi^2}k^2.
 \end{equation}
-Equivalently, evaluating the definition~\eqref{eq:phon-dos} with $\omega = ck$,
+Equivalently, evaluate the definition~\eqref{eq:phon-dos} directly with $\omega = ck$. The dispersion is isotropic, so the constant-frequency surfaces are spheres of radius $\omega/c$ and $|\grad_{\vect{k}}\omega| = c$; either from~\eqref{eq:phon-dos-surface} or by doing the radial integral against the delta function,
 \begin{equation}
-    g(\omega) = \frac{V}{8\pi^3}\sum_{s=1}^{3p}\int_{\text{BZ}} 4\pi k^2\,\dd k\,\delta(\omega - ck)
-    = \frac{V}{8\pi^3}\,4\pi\!\left(\frac{\omega}{c}\right)^{2}\frac{1}{c}\sum_{s=1}^{3p}\int_{\text{BZ}}\dd k .
+    g(\omega) = \frac{V}{8\pi^3}\sum_{s=1}^{3}\int 4\pi k^2\,\dd k\;\delta(\omega - ck)
+    = 3\cdot\frac{V}{8\pi^3}\cdot\frac{4\pi\omega^2}{c^3}
+    = \frac{3V\omega^2}{2\pi^2 c^3},
 \end{equation}
+the factor of three counting the one longitudinal and two transverse polarizations.
 
 To find the expected energy we sum over all $\vect{k}$-modes and polarizations,
 \begin{equation}
