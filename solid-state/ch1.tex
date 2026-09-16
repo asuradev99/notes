@@ -559,17 +559,59 @@ The specific heat per unit volume is $c_V \equiv \frac{1}{V}\left(\pdv{U}{T}\rig
 \begin{equation}
     N = \frac{V}{4\pi^3}\int d\vect{k}\ f(\vect{k}) = V\!\int d\varepsilon\ g(\varepsilon)f(\varepsilon).
 \end{equation}
-The function $g(\varepsilon)$ converting the $k$-integral into an energy integral is obtained from
-\begin{equation}
-    \frac{d\vect{k}}{4\pi^3} = \frac{4\pi k^2\,dk}{4\pi^3} = \frac{k^2}{\pi^2}\dv{k}{\varepsilon}\,d\varepsilon = \frac{m}{\pi^2\hbar^2}\sqrt{\frac{2m\varepsilon}{\hbar^2}}\,d\varepsilon.
-\end{equation}
+Both integrals have the same structure: a sum over levels, weighted by something that depends on $\vect{k}$ only through the energy $\varepsilon(\vect{k})$. Whenever that is the case the $\vect{k}$-integral can be collapsed onto a single integral over energy, and the function that does the collapsing is the density of states. It is worth defining it carefully, since it is the object through which every thermal property of the gas is computed, and since the same construction reappears for phonons and for Bloch electrons, where the dispersion is no longer a parabola.
+
+There are two equivalent ways to say what $g(\varepsilon)$ is. The first counts levels below an energy and then differentiates; the second places a delta function on each level.
 
 \begin{definition}[Density of states]
+Let $\mathcal{N}(\varepsilon)$ be the \emph{counting function}: the number of one-electron levels per unit volume with energy less than $\varepsilon$, counting both spin states,
+\begin{equation}
+    \mathcal{N}(\varepsilon) = \frac{2}{V}\sum_{\vect{k}} \Theta\bigl(\varepsilon - \varepsilon(\vect{k})\bigr).
+\end{equation}
+The density of states is its derivative,
+\begin{equation}
+    g(\varepsilon) \equiv \dv{\mathcal{N}}{\varepsilon},
+    \label{eq:drude-dos-deriv}
+\end{equation}
+or equivalently, differentiating the step functions directly,
+\begin{equation}
+    g(\varepsilon) = \frac{2}{V}\sum_{\vect{k}} \delta\bigl(\varepsilon - \varepsilon(\vect{k})\bigr)
+    = \frac{1}{4\pi^3}\int \dd\vect{k}\;\delta\bigl(\varepsilon - \varepsilon(\vect{k})\bigr),
+    \label{eq:drude-dos-delta}
+\end{equation}
+using $\sum_{\vect{k}} \to (V/8\pi^3)\int\dd\vect{k}$. Either way, $g(\varepsilon)\,\dd\varepsilon$ is the number of one-electron levels per unit volume with energies between $\varepsilon$ and $\varepsilon + \dd\varepsilon$.
+\end{definition}
+
+The delta-function form is the more useful of the two, because it makes clear that $g$ is a property of the dispersion alone --- no reference to occupation, temperature, or the Fermi sphere --- and because it can be reduced to a surface integral. Writing $\dd\vect{k} = \dd S\,\dd k_\perp$ with $\dd S$ an element of the constant-energy surface $S(\varepsilon)$ and $\dd k_\perp$ normal to it, and using $\dd\varepsilon = |\grad_{\vect{k}}\varepsilon|\,\dd k_\perp$, the delta function integrates out in the perpendicular direction and leaves
+\begin{equation}
+    g(\varepsilon) = \frac{1}{4\pi^3}\int_{S(\varepsilon)} \frac{\dd S}{\left|\grad_{\vect{k}}\,\varepsilon(\vect{k})\right|}.
+    \label{eq:drude-dos-surface}
+\end{equation}
+The density of states is large where the dispersion is flat and small where it is steep. For free electrons the surfaces are spheres and the gradient is constant on each of them, so this reduces to something elementary --- but for a real band structure it is the general statement, and it is what will produce van Hove singularities later on.
+
+\begin{example}[Free electron density of states]
+Both definitions give the same answer. Taking the counting route first, the levels with $\varepsilon(\vect{k}) = \hbar^2k^2/2m$ below $\varepsilon$ are those inside a sphere of radius $k = \sqrt{2m\varepsilon}/\hbar$, and with two spin states per $\vect{k}$,
+\begin{equation}
+    \mathcal{N}(\varepsilon) = \frac{2}{8\pi^3}\cdot\frac{4}{3}\pi k^3 = \frac{k^3}{3\pi^2} = \frac{1}{3\pi^2}\left(\frac{2m\varepsilon}{\hbar^2}\right)^{3/2},
+\end{equation}
+so that
+\begin{equation}
+    g(\varepsilon) = \dv{\mathcal{N}}{\varepsilon} = \frac{k^2}{\pi^2}\dv{k}{\varepsilon} = \frac{m}{\pi^2\hbar^2}\sqrt{\frac{2m\varepsilon}{\hbar^2}}.
+\end{equation}
+By the delta-function route, spherical symmetry gives $\int\dd\vect{k} = 4\pi\int k^2\dd k$, and the delta function is evaluated with $|\grad_{\vect{k}}\varepsilon| = \hbar^2 k/m$:
+\begin{equation}
+    g(\varepsilon) = \frac{1}{4\pi^3}\int 4\pi k^2\,\dd k\;\delta\!\left(\varepsilon - \frac{\hbar^2k^2}{2m}\right)
+    = \frac{k^2}{\pi^2}\cdot\frac{m}{\hbar^2 k} = \frac{mk}{\pi^2\hbar^2},
+\end{equation}
+which is the same function written in terms of $k$ rather than $\varepsilon$.
+\end{example}
+
+\begin{formula}[Free electron density of states]
 \begin{equation}
     g(\varepsilon) = \begin{cases}\dfrac{m}{\hbar^2\pi^2}\sqrt{\dfrac{2m\varepsilon}{\hbar^2}}, & \varepsilon > 0,\\[6pt] 0, & \varepsilon < 0.\end{cases}
 \end{equation}
-Intuitively, $g(\varepsilon)\,d\varepsilon$ is the number of one-electron levels per unit volume in the energy range from $\varepsilon$ to $\varepsilon + d\varepsilon$ --- that is, the levels in a thin shell of the Fermi sphere.
-\end{definition}
+The vanishing below $\varepsilon = 0$ is simply the statement that there are no free-electron levels of negative energy; the square root reflects the levels lying in a thin shell of the Fermi sphere, whose area grows as $k^2$.
+\end{formula}
 
 Rewriting in terms of the Fermi energy,
 \begin{equation}
