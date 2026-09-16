@@ -101,6 +101,13 @@
 \newcommand{\tthat}{\hat{\boldsymbol{\theta}}}
 
 \newcommand{\vect}[1]{\boldsymbol{\MakeUppercase{#1}}}
+% Vectors whose conventional symbol is a capital (fields, lattice vectors,
+% forces) are set upright bold; those conventionally written lowercase
+% (wavevectors, positions, momenta, primitive vectors) stay bold italic and
+% are NOT uppercased. \vect above remains for the subjects that use the
+% uniform bold-capital convention throughout.
+\newcommand{\cvect}[1]{\mathbf{\MakeUppercase{#1}}}
+\newcommand{\lvect}[1]{\bm{#1}}
 \newcommand{\svect}[1]{\vect{#1}}
 \newcommand{\uvect}[1]{\boldsymbol{\hat{\textbf{#1}}}}
 

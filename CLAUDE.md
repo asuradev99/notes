@@ -32,6 +32,8 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 
 **Vector notation:** `\vect{#1}`/`\svect{#1}` render their argument bold and uppercased with no arrow (e.g. `\vect{r}` → bold **R**), following the convention of bold capital letters for vectors vs. plain lowercase italics for the corresponding scalar magnitude (e.g. `$r = |\vect{r}|$`). This is implemented via `\MakeUppercase`, which only touches literal single-character tokens, so it leaves Greek letters (`\omega`, `\tau`, `\theta`, ...) and control sequences (`\Delta`, `\ddot{}`, `\ell`, ...) unchanged — only bare Latin letters in the argument get capitalized. `\uvect` (unit vectors) keeps its lowercase hat notation and is unaffected.
 
+**Solid-state vector notation:** `solid-state/` instead uses a two-macro convention, since capitalizing every vector would collide (`\vect{r}` and `\vect{R}` both render **R**, and `\vect{k}` would clash with a reciprocal lattice vector). `\cvect{#1}` sets vectors whose conventional symbol is a capital --- fields, lattice vectors `\cvect{R}`/`\cvect{G}`, forces --- as **upright** bold capitals; `\lvect{#1}` leaves vectors conventionally written lowercase --- wavevectors `\lvect{k}`, positions `\lvect{x}`, momenta, primitive vectors --- as bold italic lowercase, with no uppercasing. Both are defined in `shared/preamble.tex` alongside `\vect`, which the other subjects continue to use.
+
 Every subject's `main.tex` starts with:
 
 ```latex

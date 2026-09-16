@@ -9,34 +9,34 @@ The experimental window into the structure of a solid is scattering: we send rad
 Before setting up the scattering problem it is worth recording, in bare form, the two lattice definitions and the two amplitudes that the rest of the chapter will justify and use. Both are developed properly later --- the lattice language in Section~\ref{sec:xrd-crystallography} and the reciprocal lattice in Section~\ref{sec:xrd-reciprocal} --- but they are stated here because they organise everything that follows.
 
 \begin{definition}[Bravais lattice]
-A \emph{Bravais lattice} is the set of all points with position vectors $\vect{r}$ of the form
+A \emph{Bravais lattice} is the set of all points with position vectors $\lvect{r}$ of the form
 \begin{equation}
-    \vect{r} = n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3,
+    \lvect{r} = n_1\lvect{a}_1 + n_2\lvect{a}_2 + n_3\lvect{a}_3,
 \end{equation}
-where $\vect{a}_1, \vect{a}_2, \vect{a}_3$ are linearly independent and $n_1, n_2, n_3 \in \mathbb{Z}$.
+where $\lvect{a}_1, \lvect{a}_2, \lvect{a}_3$ are linearly independent and $n_1, n_2, n_3 \in \mathbb{Z}$.
 \end{definition}
 
 \begin{definition}[Reciprocal lattice]
-The \emph{reciprocal lattice} is the set of wavevectors $\vect{k}$ satisfying
+The \emph{reciprocal lattice} is the set of wavevectors $\lvect{k}$ satisfying
 \begin{equation}
-    e^{i\vect{k}\cdot\vect{r}} = 1 \qquad \text{for all } \vect{r} \in R,
+    e^{i\lvect{k}\cdot\lvect{r}} = 1 \qquad \text{for all } \lvect{r} \in R,
 \end{equation}
 where $R$ is the Bravais lattice.
 \end{definition}
 
-A crystal is rarely a lattice of identical point scatterers: a unit cell generally contains several ions, sitting at positions $\vect{d}_j$ relative to the lattice point, and each ion scatters with its own strength. The scattering amplitude of one cell therefore splits into a sum of per-ion amplitudes carrying the phases of their positions.
+A crystal is rarely a lattice of identical point scatterers: a unit cell generally contains several ions, sitting at positions $\lvect{d}_j$ relative to the lattice point, and each ion scatters with its own strength. The scattering amplitude of one cell therefore splits into a sum of per-ion amplitudes carrying the phases of their positions.
 
 \begin{formula}[Structure factor of a polyatomic crystal]
-Let $\vect{k} = \vect{k}_f - \vect{k}_i$ be the scattering wavevector, i.e.\ the difference between the final and incident X-ray wavevectors. For a cell containing $n$ ions at positions $\vect{d}_j$,
+Let $\lvect{k} = \lvect{k}_f - \lvect{k}_i$ be the scattering wavevector, i.e.\ the difference between the final and incident X-ray wavevectors. For a cell containing $n$ ions at positions $\lvect{d}_j$,
 \begin{equation}
-    S_{\vect{k}} = \sum_{j=1}^{n} f_j(\vect{k})\,e^{i\vect{k}\cdot\vect{d}_j}. \label{eq:xrd-structure-poly}
+    S_{\lvect{k}} = \sum_{j=1}^{n} f_j(\lvect{k})\,e^{i\lvect{k}\cdot\lvect{d}_j}. \label{eq:xrd-structure-poly}
 \end{equation}
 \end{formula}
 
 \begin{definition}[Atomic form factor]
-The \emph{atomic form factor} $f_j(\vect{k})$ is determined by the internal structure of the ion occupying the position $\vect{d}_j$: it is the Fourier transform of that ion's charge density $\rho_j(\vect{r})$,
+The \emph{atomic form factor} $f_j(\lvect{k})$ is determined by the internal structure of the ion occupying the position $\lvect{d}_j$: it is the Fourier transform of that ion's charge density $\rho_j(\lvect{r})$,
 \begin{equation}
-    f_j(\vect{k}) = -\frac{1}{e}\int \dd\vect{r}\; e^{i\vect{k}\cdot\vect{r}}\,\rho_j(\vect{r}),
+    f_j(\lvect{k}) = -\frac{1}{e}\int \dd\lvect{r}\; e^{i\lvect{k}\cdot\lvect{r}}\,\rho_j(\lvect{r}),
 \end{equation}
 normalised by the electron charge so that $f_j$ counts electrons.
 \end{definition}
@@ -97,17 +97,17 @@ The incident radiation itself is taken to be a monochromatic plane wave.
 
 \begin{formula}[Plane wave]
 \begin{equation}
-    \vect{e}(\vect{r},t) = \hat{\varepsilon}\,E_0\exp\bigl(i\vect{k}\cdot\vect{r} - i\omega t\bigr),
+    \cvect{E}(\lvect{r},t) = \hat{\varepsilon}\,E_0\exp\bigl(i\lvect{k}\cdot\lvect{r} - i\omega t\bigr),
 \end{equation}
 with the transversality conditions
 \begin{equation}
-    \hat{\varepsilon}\cdot\uvect{k} = 0, \qquad \vect{k}\cdot\vect{e} = \vect{k}\cdot\vect{h} = 0 .
+    \hat{\varepsilon}\cdot\uvect{k} = 0, \qquad \lvect{k}\cdot\cvect{E} = \lvect{k}\cdot\cvect{H} = 0 .
 \end{equation}
 \end{formula}
 
 Finally, to convert field amplitudes into photon counts we use that the number density of photons is the energy density divided by the energy per photon,
 \begin{equation}
-    \text{number density of light} = \frac{\text{energy density}}{\text{energy per photon}} \propto \frac{c\,|\vect{e}_{\text{in}}|^2}{\hbar\omega} .
+    \text{number density of light} = \frac{\text{energy density}}{\text{energy per photon}} \propto \frac{c\,|\cvect{E}_{\text{in}}|^2}{\hbar\omega} .
 \end{equation}
 This is the bridge between the classical wave and the counting rate at a detector, and it is where the next section begins.
 
@@ -115,20 +115,20 @@ This is the bridge between the classical wave and the counting rate at a detecto
 \section{Scattering from a Single Free Electron}
 % ============================================================
 
-Consider a single free electron that scatters an incident wave. The incident beam is characterized by its \emph{flux}: the number of photons per unit area per second. Since each photon carries energy $\hbar\omega$ and the energy density of the wave is proportional to $|\vect{e}_{\text{in}}|^2$, the flux is proportional to $c$ times the photon number density,
+Consider a single free electron that scatters an incident wave. The incident beam is characterized by its \emph{flux}: the number of photons per unit area per second. Since each photon carries energy $\hbar\omega$ and the energy density of the wave is proportional to $|\cvect{E}_{\text{in}}|^2$, the flux is proportional to $c$ times the photon number density,
 \begin{equation}
-    \Phi_0 = \frac{\#\ \text{of photons}}{(\text{unit area})(\text{second})} \propto \frac{c\,|\vect{e}_{\text{in}}|^2}{\hbar\omega}.
+    \Phi_0 = \frac{\#\ \text{of photons}}{(\text{unit area})(\text{second})} \propto \frac{c\,|\cvect{E}_{\text{in}}|^2}{\hbar\omega}.
 \end{equation}
 The scattered intensity $I_{\text{sc}}$ counts the number of scattered photons per second reaching the detector, so it carries an extra factor of the detector area:
 \begin{equation}
-    I_{\text{sc}} = \frac{\#\ \text{of scattered photons}}{\text{second}} \propto \frac{c\,|\vect{e}_{\text{rad}}|^2}{\hbar\omega}\cdot(\text{detector area}) \propto \frac{c\,|\vect{e}_{\text{rad}}|^2}{\hbar\omega}\,R^2\Delta\Omega,
+    I_{\text{sc}} = \frac{\#\ \text{of scattered photons}}{\text{second}} \propto \frac{c\,|\cvect{E}_{\text{rad}}|^2}{\hbar\omega}\cdot(\text{detector area}) \propto \frac{c\,|\cvect{E}_{\text{rad}}|^2}{\hbar\omega}\,R^2\Delta\Omega,
 \end{equation}
 where we used that a detector subtending solid angle $\Delta\Omega$ at distance $R$ has area $R^2\Delta\Omega$ --- the three-dimensional analogue of the arc length $\theta R$.
 
 \begin{definition}[Differential cross-section]
 The differential cross-section is the scattered intensity per unit incident flux per unit solid angle,
 \begin{equation}
-    \dv{\sigma}{\Omega} = \frac{I_{\text{sc}}}{\Phi_0\,\Delta\Omega} = \frac{|\vect{e}_{\text{rad}}|^2 R^2}{|\vect{e}_{\text{in}}|^2}.
+    \dv{\sigma}{\Omega} = \frac{I_{\text{sc}}}{\Phi_0\,\Delta\Omega} = \frac{|\cvect{E}_{\text{rad}}|^2 R^2}{|\cvect{E}_{\text{in}}|^2}.
 \end{equation}
 \end{definition}
 
@@ -136,8 +136,8 @@ The differential cross-section is the scattered intensity per unit incident flux
 
 Classically, the incident field drives the electron into forced vibration, and the accelerating charge radiates a spherical wave. Writing the incident field as a monochromatic plane wave and the radiated field as an outgoing spherical wave,
 \begin{equation}
-    \vect{e}_{\text{in}} = E_0\exp(-i\omega t), \qquad
-    \vect{e}_{\text{rad}} \propto \hat{\varepsilon}\,'\,\frac{e^{ikR}}{R},
+    \cvect{E}_{\text{in}} = E_0\exp(-i\omega t), \qquad
+    \cvect{E}_{\text{rad}} \propto \hat{\varepsilon}\,'\,\frac{e^{ikR}}{R},
 \end{equation}
 where $\hat{\varepsilon}\,'$ is the polarization of the outgoing radiation. Working out the dipole radiation of the driven electron gives
 \begin{equation}
@@ -212,11 +212,11 @@ The differential cross-section is then written in terms of the rate of transitio
 We restrict to elastic scattering, $\mathcal{E}_i = \mathcal{E}_f$, and assume the X-ray/sample system occupies a box of volume $V$ with periodic boundary conditions, so that
 \begin{equation}
     \frac{\#\ \text{wavevectors}}{k\text{-space volume}} = \frac{V}{(2\pi)^3}, \qquad
-    \vect{k} = \frac{(2\pi)^3}{V}\,n.
+    \lvect{k} = \frac{(2\pi)^3}{V}\,n.
 \end{equation}
 Counting final photon states in a shell of solid angle $\Delta\Omega$ and using spherical symmetry,
 \begin{equation}
-    \rho(\mathcal{E}_f)\,\dd\mathcal{E}_f = \frac{V}{8\pi^3}\,\dd^3\vect{k}_f = \frac{V}{8\pi^3}\,k_f^2\,\dd k_f\,\Delta\Omega.
+    \rho(\mathcal{E}_f)\,\dd\mathcal{E}_f = \frac{V}{8\pi^3}\,\dd^3\lvect{k}_f = \frac{V}{8\pi^3}\,k_f^2\,\dd k_f\,\Delta\Omega.
 \end{equation}
 The photon dispersion $\mathcal{E}_f = \hbar k_f c$ converts the $k$-space measure into an energy measure,
 \begin{equation}
@@ -268,7 +268,7 @@ If the incident beam is larger than the sample, the scattered intensity is $I_{\
 \end{equation}
 where $\mathcal{E}$ is the photon energy and $\mathcal{E}_b$ plays the role of a work function. The photoelectron density of states carries a factor of $2$ for spin,
 \begin{equation}
-    \rho(\mathcal{E}_{pe}) = 2\left(\frac{V}{8\pi^3}\right)\dv{\vect{q}}{\mathcal{E}_{pe}}
+    \rho(\mathcal{E}_{pe}) = 2\left(\frac{V}{8\pi^3}\right)\dv{\lvect{q}}{\mathcal{E}_{pe}}
     = 2\left(\frac{V}{8\pi^3}\right)\frac{q^2\sin\theta\,\dd q\,\dd\theta\,\dd\varphi}{\dd\mathcal{E}_{pe}} .
 \end{equation}
 
@@ -292,7 +292,7 @@ A \emph{motif} is a pattern that is repeated by translating from lattice point t
 
 \subsection{The Space Lattice}
 
-The founding observation, due to René-Just Haüy, is that crystals are made out of repeatedly stacked blocks. The general block is specified by three vectors $\vect{a}$, $\vect{b}$, $\vect{c}$, which need not be mutually perpendicular; coordinates in the block are quoted as e.g.\ $(1,1,1)$.
+The founding observation, due to René-Just Haüy, is that crystals are made out of repeatedly stacked blocks. The general block is specified by three vectors $\lvect{a}$, $\lvect{b}$, $\lvect{c}$, which need not be mutually perpendicular; coordinates in the block are quoted as e.g.\ $(1,1,1)$.
 
 \begin{figure}[ht]
 \centering
@@ -306,37 +306,37 @@ The founding observation, due to René-Just Haüy, is that crystals are made out
     \draw[gray!60] ($(A)+(C)$) -- ($(A)+(B)+(C)$) -- ($(B)+(C)$);
     \draw[gray!60] (O) -- (A) (O) -- (B) (O) -- (C);
     \draw[gray!60] (A) -- ($(A)+(C)$) (B) -- ($(B)+(C)$) (C) -- ($(A)+(C)$) (C) -- ($(B)+(C)$);
-    \draw[-{Stealth}, thick] (O) -- (A) node[below right] {$\vect{a}$};
-    \draw[-{Stealth}, thick] (O) -- (B) node[right] {$\vect{b}$};
-    \draw[-{Stealth}, thick] (O) -- (C) node[above left] {$\vect{c}$};
+    \draw[-{Stealth}, thick] (O) -- (A) node[below right] {$\lvect{a}$};
+    \draw[-{Stealth}, thick] (O) -- (B) node[right] {$\lvect{b}$};
+    \draw[-{Stealth}, thick] (O) -- (C) node[above left] {$\lvect{c}$};
     \node at (0.30,0.12) {$\gamma$};
     \node at (0.16,0.42) {$\beta$};
     \node at (0.52,0.38) {$\alpha$};
 \end{tikzpicture}
-\caption{The general block: three basis vectors $\vect{a},\vect{b},\vect{c}$ of lengths $a,b,c$ with interaxial angles $\alpha,\beta,\gamma$, none of which need be $90^\circ$.}
+\caption{The general block: three basis vectors $\lvect{a},\lvect{b},\lvect{c}$ of lengths $a,b,c$ with interaxial angles $\alpha,\beta,\gamma$, none of which need be $90^\circ$.}
 \label{fig:xrd-block}
 \end{figure}
 
 \begin{definition}[Translation vector and space lattice]
-Any coordinate in the lattice is $(u,v,w) = u\vect{a} + v\vect{b} + w\vect{c}$ with $u,v,w \in \mathbb{Z}$; the corresponding \emph{translation vector} is
+Any coordinate in the lattice is $(u,v,w) = u\lvect{a} + v\lvect{b} + w\lvect{c}$ with $u,v,w \in \mathbb{Z}$; the corresponding \emph{translation vector} is
 \begin{equation}
-    \vect{t} \equiv u\vect{a} + v\vect{b} + w\vect{c}.
+    \cvect{T} \equiv u\lvect{a} + v\lvect{b} + w\lvect{c}.
 \end{equation}
-A \emph{space lattice} is a set of nodes related by translation vectors $\vect{t}$ --- equivalently, the geometrical image of the translation operators acting on the origin node. The set of translation vectors is
+A \emph{space lattice} is a set of nodes related by translation vectors $\cvect{T}$ --- equivalently, the geometrical image of the translation operators acting on the origin node. The set of translation vectors is
 \begin{equation}
-    \mathcal{T} = \{\,\vect{t} \mid \vect{t} = u\vect{a} + v\vect{b} + w\vect{c},\ (u,v,w)\in\mathbb{Z}\,\}.
+    \mathcal{T} = \{\,\cvect{T} \mid \cvect{T} = u\lvect{a} + v\lvect{b} + w\lvect{c},\ (u,v,w)\in\mathbb{Z}\,\}.
 \end{equation}
 \end{definition}
 
 \begin{fact}[Einstein summation convention]
 A summation is implied over every subscript which appears twice on the same side of an equation, e.g.
 \begin{equation}
-    \vect{t} = \sum_{i=1}^{3}\vect{a}_i u_i \longrightarrow \vect{t} = u_i\,\vect{a}_i .
+    \cvect{T} = \sum_{i=1}^{3}\lvect{a}_i u_i \longrightarrow \cvect{T} = u_i\,\lvect{a}_i .
 \end{equation}
 If a subscript is present on one side without an implied summation, it must appear on the other side as well.
 \end{fact}
 
-Two further remarks. The lattice is \emph{invariant} under any translation by a lattice vector $\vect{t}$. A crystal structure consists of a three-dimensional lattice decorated with one or more atoms; the set of lengths and angles $\{a,b,c,\alpha,\beta,\gamma\}$ fully specifies the lattice, and the \emph{unit cell} is the volume spanned by the basis vectors.
+Two further remarks. The lattice is \emph{invariant} under any translation by a lattice vector $\cvect{T}$. A crystal structure consists of a three-dimensional lattice decorated with one or more atoms; the set of lengths and angles $\{a,b,c,\alpha,\beta,\gamma\}$ fully specifies the lattice, and the \emph{unit cell} is the volume spanned by the basis vectors.
 
 % ============================================================
 \section{Bravais Nets and Lattices}
@@ -353,8 +353,8 @@ In two dimensions there are exactly five distinct nets. Four of them are primiti
     \begin{scope}
         \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
             \fill ({\i*1.4 + \j*0.55},{\j*1.15}) circle (2pt);
-        \draw[-{Stealth}, thick] (0,0) -- (1.4,0) node[below] {$\vect{a}$};
-        \draw[-{Stealth}, thick] (0,0) -- (0.55,1.15) node[above] {$\vect{b}$};
+        \draw[-{Stealth}, thick] (0,0) -- (1.4,0) node[below] {$\lvect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0.55,1.15) node[above] {$\lvect{b}$};
         \node at (0.75,0.35) {$\gamma$};
         \node at (2.2,-1.1) {oblique};
     \end{scope}
@@ -362,24 +362,24 @@ In two dimensions there are exactly five distinct nets. Four of them are primiti
     \begin{scope}[xshift=7cm]
         \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
             \fill ({\i*1.3},{\j*1.0}) circle (2pt);
-        \draw[-{Stealth}, thick] (0,0) -- (1.3,0) node[below] {$\vect{a}$};
-        \draw[-{Stealth}, thick] (0,0) -- (0,1.0) node[left] {$\vect{b}$};
+        \draw[-{Stealth}, thick] (0,0) -- (1.3,0) node[below] {$\lvect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0,1.0) node[left] {$\lvect{b}$};
         \node at (2.0,-1.1) {rectangular};
     \end{scope}
     % square
     \begin{scope}[xshift=14cm]
         \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
             \fill ({\i*1.1},{\j*1.1}) circle (2pt);
-        \draw[-{Stealth}, thick] (0,0) -- (1.1,0) node[below] {$\vect{a}$};
-        \draw[-{Stealth}, thick] (0,0) -- (0,1.1) node[left] {$\vect{b}$};
+        \draw[-{Stealth}, thick] (0,0) -- (1.1,0) node[below] {$\lvect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0,1.1) node[left] {$\lvect{b}$};
         \node at (1.65,-1.1) {square};
     \end{scope}
     % hexagonal
     \begin{scope}[yshift=-4.6cm]
         \foreach \i in {0,1,2,3} \foreach \j in {0,1,2}
             \fill ({\i*1.2 - \j*0.6},{\j*1.04}) circle (2pt);
-        \draw[-{Stealth}, thick] (0,0) -- (1.2,0) node[below] {$\vect{a}$};
-        \draw[-{Stealth}, thick] (0,0) -- (-0.6,1.04) node[above left] {$\vect{b}$};
+        \draw[-{Stealth}, thick] (0,0) -- (1.2,0) node[below] {$\lvect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (-0.6,1.04) node[above left] {$\lvect{b}$};
         \node at (1.4,-1.1) {hexagonal};
     \end{scope}
     % centred rectangular
@@ -388,8 +388,8 @@ In two dimensions there are exactly five distinct nets. Four of them are primiti
             \fill ({\i*1.3},{\j*1.0}) circle (2pt);
         \foreach \i in {0,1,2} \foreach \j in {0,1}
             \fill[Orange] ({\i*1.3+0.65},{\j*1.0+0.5}) circle (2pt);
-        \draw[-{Stealth}, thick] (0,0) -- (1.3,0) node[below] {$\vect{a}$};
-        \draw[-{Stealth}, thick] (0,0) -- (0,1.0) node[left] {$\vect{b}$};
+        \draw[-{Stealth}, thick] (0,0) -- (1.3,0) node[below] {$\lvect{a}$};
+        \draw[-{Stealth}, thick] (0,0) -- (0,1.0) node[left] {$\lvect{b}$};
         \node at (2.0,-1.1) {centred rectangular};
     \end{scope}
 \end{tikzpicture}
@@ -397,7 +397,7 @@ In two dimensions there are exactly five distinct nets. Four of them are primiti
 \label{fig:xrd-nets}
 \end{figure}
 
-The distinguishing symmetries are as follows. The \emph{oblique} net has arbitrary basis directions and the lowest symmetry (only $180^\circ$ rotation). The \emph{rectangular} net is oblique with $\gamma = 90^\circ$, and so has $180^\circ$ rotation symmetry together with mirror symmetry. The \emph{square} net has $|\vect{a}| = |\vect{b}|$ and $\gamma=90^\circ$, giving $90^\circ$ rotation symmetry and two reflection symmetries. The \emph{hexagonal} net has $|\vect{a}| = |\vect{b}|$ with $\gamma = 2\pi/3$ (or $\pi/3$) and $60^\circ$ symmetry. The \emph{centred rectangular} net adds a new lattice point at the centre of the rectangular unit cell.
+The distinguishing symmetries are as follows. The \emph{oblique} net has arbitrary basis directions and the lowest symmetry (only $180^\circ$ rotation). The \emph{rectangular} net is oblique with $\gamma = 90^\circ$, and so has $180^\circ$ rotation symmetry together with mirror symmetry. The \emph{square} net has $|\lvect{a}| = |\lvect{b}|$ and $\gamma=90^\circ$, giving $90^\circ$ rotation symmetry and two reflection symmetries. The \emph{hexagonal} net has $|\lvect{a}| = |\lvect{b}|$ with $\gamma = 2\pi/3$ (or $\pi/3$) and $60^\circ$ symmetry. The \emph{centred rectangular} net adds a new lattice point at the centre of the rectangular unit cell.
 
 \subsection{The Seven Three-Dimensional Crystal Systems}
 
@@ -441,11 +441,11 @@ It is always possible to define a primitive unit cell for every possible net or 
 There are three ways to decorate a three-dimensional cell with extra nodes.
 
 \begin{enumerate}
-    \item \textbf{Body-centering.} For every site $\vect{t}$, add an additional site $\vect{t} + \vect{i}$ where
+    \item \textbf{Body-centering.} For every site $\cvect{T}$, add an additional site $\cvect{T} + \lvect{i}$ where
     \begin{equation}
-        \vect{i} \equiv \tfrac{1}{2}(\vect{a} + \vect{b} + \vect{c}).
+        \lvect{i} \equiv \tfrac{1}{2}(\lvect{a} + \lvect{b} + \lvect{c}).
     \end{equation}
-    Note that $\vect{i}$ is \emph{not} itself a translation vector.
+    Note that $\lvect{i}$ is \emph{not} itself a translation vector.
     \item \textbf{Face-centering.} Add a lattice site to the centre of all faces of the unit cell, at $(\tfrac12,\tfrac12,0)$, $(\tfrac12,0,\tfrac12)$, $(0,\tfrac12,\tfrac12)$ --- the face-centering vectors.
     \item \textbf{Base-centering.} Add a lattice site to only one face of the unit cell, i.e.\ use a single face-centering vector. Centering two faces instead would leave certain lattice points with different surroundings, so it is not allowed.
 \end{enumerate}
@@ -465,9 +465,9 @@ There are three ways to decorate a three-dimensional cell with extra nodes.
     \foreach \p in {(\dx,\dy),(1.4+\dx,\dy),(\dx,1.4+\dy),(1.4+\dx,1.4+\dy)} \fill \p circle (1.6pt);
     \fill[Orange] (0.95,0.9) circle (1.8pt);
     \draw[-{Stealth}, Orange] (0,0) -- (0.95,0.9);
-    \node[Orange, below right] at (0.62,0.62) {$\vect{i}$};
+    \node[Orange, below right] at (0.62,0.62) {$\lvect{i}$};
 \end{tikzpicture}
-\caption{Body-centering: an extra node at $\vect{i} = \tfrac12(\vect{a}+\vect{b}+\vect{c})$ inside every cell.}
+\caption{Body-centering: an extra node at $\lvect{i} = \tfrac12(\lvect{a}+\lvect{b}+\lvect{c})$ inside every cell.}
 \label{fig:xrd-bcc}
 \end{figure}
 
@@ -549,64 +549,64 @@ To calculate the volume of a Wigner--Seitz cell one only needs to count the numb
 
 The motivating question is this: if we interpret the Miller indices as the components of a vector, how does that vector relate to the corresponding plane $(h,k,\ell)$?
 
-Recall the lattice basis vectors $\vect{a}_i$, and define three new vectors $\vect{a}^{\,*}_j$ by the duality requirement
+Recall the lattice basis vectors $\lvect{a}_i$, and define three new vectors $\lvect{a}^{\,*}_j$ by the duality requirement
 \begin{equation}
-    \vect{a}_i \cdot \vect{a}^{\,*}_j = \delta_{ij}. \label{eq:xrd-duality}
+    \lvect{a}_i \cdot \lvect{a}^{\,*}_j = \delta_{ij}. \label{eq:xrd-duality}
 \end{equation}
-Since $\vect{a}^{\,*}_1$ must be orthogonal to both $\vect{a}_2$ and $\vect{a}_3$, it must be parallel to their cross product: $\vect{a}^{\,*}_1 = K\,\vect{a}_2\times\vect{a}_3$, and cyclically $\vect{a}^{\,*}_2 = L\,\vect{a}_3\times\vect{a}_1$, $\vect{a}^{\,*}_3 = M\,\vect{a}_1\times\vect{a}_2$. The constants follow from~\eqref{eq:xrd-duality}:
+Since $\lvect{a}^{\,*}_1$ must be orthogonal to both $\lvect{a}_2$ and $\lvect{a}_3$, it must be parallel to their cross product: $\lvect{a}^{\,*}_1 = K\,\lvect{a}_2\times\lvect{a}_3$, and cyclically $\lvect{a}^{\,*}_2 = L\,\lvect{a}_3\times\lvect{a}_1$, $\lvect{a}^{\,*}_3 = M\,\lvect{a}_1\times\lvect{a}_2$. The constants follow from~\eqref{eq:xrd-duality}:
 \begin{equation}
-    \vect{a}_1\cdot\vect{a}^{\,*}_1 = K\,\vect{a}_1\cdot(\vect{a}_2\times\vect{a}_3) = 1,
+    \lvect{a}_1\cdot\lvect{a}^{\,*}_1 = K\,\lvect{a}_1\cdot(\lvect{a}_2\times\lvect{a}_3) = 1,
 \end{equation}
 and likewise for the other two by cyclic permutation, so that
 \begin{equation}
-    K = L = M = \frac{1}{\vect{a}_1\cdot(\vect{a}_2\times\vect{a}_3)} = \frac{1}{V}.
+    K = L = M = \frac{1}{\lvect{a}_1\cdot(\lvect{a}_2\times\lvect{a}_3)} = \frac{1}{V}.
 \end{equation}
 
 \begin{formula}[Reciprocal basis vectors]
 \begin{equation}
-    \vect{a}^{\,*}_1 = \vect{a}^{*} = \frac{\vect{a}_2\times\vect{a}_3}{V}, \qquad
-    \vect{a}^{\,*}_2 = \vect{b}^{*} = \frac{\vect{a}_3\times\vect{a}_1}{V}, \qquad
-    \vect{a}^{\,*}_3 = \vect{c}^{*} = \frac{\vect{a}_1\times\vect{a}_2}{V}.
+    \lvect{a}^{\,*}_1 = \lvect{a}^{*} = \frac{\lvect{a}_2\times\lvect{a}_3}{V}, \qquad
+    \lvect{a}^{\,*}_2 = \lvect{b}^{*} = \frac{\lvect{a}_3\times\lvect{a}_1}{V}, \qquad
+    \lvect{a}^{\,*}_3 = \lvect{c}^{*} = \frac{\lvect{a}_1\times\lvect{a}_2}{V}.
 \end{equation}
 \end{formula}
 
 \begin{definition}[Reciprocal space]
-The reciprocal space $\{\vect{k}\}$ is the set of wavevectors satisfying
+The reciprocal space $\{\lvect{k}\}$ is the set of wavevectors satisfying
 \begin{equation}
-    e^{i\vect{k}\cdot\vect{r}} = 1 \quad \forall\,\vect{r}\in R,\ \text{the Bravais lattice},
+    e^{i\lvect{k}\cdot\lvect{r}} = 1 \quad \forall\,\lvect{r}\in R,\ \text{the Bravais lattice},
 \end{equation}
-equivalently $\vect{k}\cdot\vect{r} = 2\pi m$ with $m\in\mathbb{Z}$.
+equivalently $\lvect{k}\cdot\lvect{r} = 2\pi m$ with $m\in\mathbb{Z}$.
 \end{definition}
 
 The factor of $2\pi$ can be absorbed into the basis vectors; doing so gives the convention used by Ashcroft and Mermin,
 \begin{equation}
-    \vect{b}_1 = 2\pi\frac{\vect{a}_2\times\vect{a}_3}{V}, \qquad
-    \vect{b}_2 = 2\pi\frac{\vect{a}_3\times\vect{a}_1}{V}, \qquad
-    \vect{b}_3 = 2\pi\frac{\vect{a}_1\times\vect{a}_2}{V}.
+    \lvect{b}_1 = 2\pi\frac{\lvect{a}_2\times\lvect{a}_3}{V}, \qquad
+    \lvect{b}_2 = 2\pi\frac{\lvect{a}_3\times\lvect{a}_1}{V}, \qquad
+    \lvect{b}_3 = 2\pi\frac{\lvect{a}_1\times\lvect{a}_2}{V}.
 \end{equation}
 
 Any vector may now be expanded with respect to either basis,
 \begin{equation}
-    \vect{p} = p^{*}_i\,\vect{a}^{\,*}_i = p_j\,\vect{a}_j,
+    \lvect{p} = p^{*}_i\,\lvect{a}^{\,*}_i = p_j\,\lvect{a}_j,
 \end{equation}
-and one should be careful that the reciprocal basis directions do not in general coincide with the direct ones --- for an oblique cell $\vect{a}^{*}$ points along neither $\vect{a}$ nor any of the direct axes.
+and one should be careful that the reciprocal basis directions do not in general coincide with the direct ones --- for an oblique cell $\lvect{a}^{*}$ points along neither $\lvect{a}$ nor any of the direct axes.
 
 \subsection{Reciprocal Space and Lattice Planes}
 
-Consider a vector in the reciprocal basis, $\vect{g} = g^{*}_i\,\vect{a}^{\,*}_i$, and restrict the $g^{*}_i$ to be integers; the set of such $\vect{g}$ forms the \emph{reciprocal lattice}, and its components are written $\vect{g} = (hk\ell)$. Now consider all vectors perpendicular to $\vect{g}$, i.e.\ $\vect{r}\cdot\vect{g} = 0$:
+Consider a vector in the reciprocal basis, $\cvect{G} = g^{*}_i\,\lvect{a}^{\,*}_i$, and restrict the $g^{*}_i$ to be integers; the set of such $\cvect{G}$ forms the \emph{reciprocal lattice}, and its components are written $\cvect{G} = (hk\ell)$. Now consider all vectors perpendicular to $\cvect{G}$, i.e.\ $\lvect{r}\cdot\cvect{G} = 0$:
 \begin{align}
-    (r_i\vect{a}_i)\cdot(g^{*}_j\vect{a}^{\,*}_j) &= r_i g^{*}_j\,(\vect{a}_i\cdot\vect{a}^{\,*}_j) = r_i g^{*}_j \delta_{ij} \\
+    (r_i\lvect{a}_i)\cdot(g^{*}_j\lvect{a}^{\,*}_j) &= r_i g^{*}_j\,(\lvect{a}_i\cdot\lvect{a}^{\,*}_j) = r_i g^{*}_j \delta_{ij} \\
     &= r_1 g^{*}_1 + r_2 g^{*}_2 + r_3 g^{*}_3 \\
     &= hx + ky + \ell z = 0. \label{eq:xrd-plane}
 \end{align}
-This is the equation of a plane whose normal is the vector $(h,k,\ell)$ expressed in the regular basis. On the other hand, a plane with intercepts $s_1, s_2, s_3$ along the vectors $\vect{a}_i$ has equation
+This is the equation of a plane whose normal is the vector $(h,k,\ell)$ expressed in the regular basis. On the other hand, a plane with intercepts $s_1, s_2, s_3$ along the vectors $\lvect{a}_i$ has equation
 \begin{equation}
     \frac{x}{s_1} + \frac{y}{s_2} + \frac{z}{s_3} = 1,
 \end{equation}
 so the plane~\eqref{eq:xrd-plane} has intercepts $1/h$, $1/k$, $1/\ell$ --- exactly the Miller plane $(hk\ell)$.
 
 \begin{fact}[Miller planes and reciprocal vectors]
-The reciprocal lattice vector $\vect{g}$ with components $h,k,\ell$ \emph{in reciprocal space} is perpendicular to the plane with Miller indices $(hk\ell)$.
+The reciprocal lattice vector $\cvect{G}$ with components $h,k,\ell$ \emph{in reciprocal space} is perpendicular to the plane with Miller indices $(hk\ell)$.
 \end{fact}
 
 % ============================================================
@@ -616,13 +616,13 @@ The reciprocal lattice vector $\vect{g}$ with components $h,k,\ell$ \emph{in rec
 The reciprocal lattice is not merely a bookkeeping device: it is what a Fourier transform of a periodic density produces automatically.
 
 \begin{definition}[Fourier transform]
-Let $\rho(\vect{r})$ be any integrable function over $\mathbb{R}^3$. Its Fourier transform is
+Let $\rho(\lvect{r})$ be any integrable function over $\mathbb{R}^3$. Its Fourier transform is
 \begin{equation}
-    \tilde{\rho}(\vect{k}) = \int_{\mathbb{R}^3} e^{-i\vect{k}\cdot\vect{r}}\,\rho(\vect{r})\,\dd^3\vect{r},
+    \tilde{\rho}(\lvect{k}) = \int_{\mathbb{R}^3} e^{-i\lvect{k}\cdot\lvect{r}}\,\rho(\lvect{r})\,\dd^3\lvect{r},
 \end{equation}
 with inverse
 \begin{equation}
-    \rho(\vect{r}) = \frac{1}{(2\pi)^3}\int_{\mathbb{R}^3} e^{i\vect{k}\cdot\vect{r}}\,\tilde{\rho}(\vect{k})\,\dd^3 k .
+    \rho(\lvect{r}) = \frac{1}{(2\pi)^3}\int_{\mathbb{R}^3} e^{i\lvect{k}\cdot\lvect{r}}\,\tilde{\rho}(\lvect{k})\,\dd^3 k .
 \end{equation}
 \end{definition}
 
@@ -630,12 +630,12 @@ with inverse
 
 Now introduce translational symmetry: suppose
 \begin{equation}
-    \rho(\vect{r} + \vect{r}_L) = \rho(\vect{r}) \quad \text{for all}\quad \vect{r}_L = n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3 .
+    \rho(\lvect{r} + \lvect{r}_L) = \rho(\lvect{r}) \quad \text{for all}\quad \lvect{r}_L = n_1\lvect{a}_1 + n_2\lvect{a}_2 + n_3\lvect{a}_3 .
 \end{equation}
-Partition space into primitive cells and write $\vect{r} = \vect{x} + \vect{r}_L$, where $\vect{x}$ lies in the cell labelled by $\vect{r}_L$ (Figure~\ref{fig:xrd-partition}). Then $\rho(\vect{x} + \vect{r}_L) = \rho(\vect{x})$, and
+Partition space into primitive cells and write $\lvect{r} = \lvect{x} + \lvect{r}_L$, where $\lvect{x}$ lies in the cell labelled by $\lvect{r}_L$ (Figure~\ref{fig:xrd-partition}). Then $\rho(\lvect{x} + \lvect{r}_L) = \rho(\lvect{x})$, and
 \begin{equation}
-    \tilde{\rho}(\vect{k}) = \int_{\mathbb{R}^3} e^{-i\vect{k}\cdot(\vect{r}_L + \vect{x})}\rho(\vect{r}_L + \vect{x})\,\dd^3\vect{x}
-    = \left(\sum_{\vect{r}_L} e^{-i\vect{k}\cdot\vect{r}_L}\right)\int_{\text{cell}} e^{-i\vect{k}\cdot\vect{x}}\rho(\vect{x})\,\dd^3 x .
+    \tilde{\rho}(\lvect{k}) = \int_{\mathbb{R}^3} e^{-i\lvect{k}\cdot(\lvect{r}_L + \lvect{x})}\rho(\lvect{r}_L + \lvect{x})\,\dd^3\lvect{x}
+    = \left(\sum_{\lvect{r}_L} e^{-i\lvect{k}\cdot\lvect{r}_L}\right)\int_{\text{cell}} e^{-i\lvect{k}\cdot\lvect{x}}\rho(\lvect{x})\,\dd^3 x .
 \end{equation}
 
 \begin{figure}[ht]
@@ -649,29 +649,29 @@ Partition space into primitive cells and write $\vect{r} = \vect{x} + \vect{r}_L
         \draw[-{Stealth}, Orange] ({\x-0.35},{\y-0.35}) -- (\x,\y);
     }
     \draw[-{Stealth}, Purple] (0,0) -- (1.65,1.65);
-    \node[Purple, right] at (1.25,1.05) {$\vect{r}_L$};
-    \node[above] at (1.55,1.72) {$\vect{x}$};
+    \node[Purple, right] at (1.25,1.05) {$\lvect{r}_L$};
+    \node[above] at (1.55,1.72) {$\lvect{x}$};
 \end{tikzpicture}
-\caption{Partitioning space into primitive cells: every point is $\vect{r} = \vect{x} + \vect{r}_L$, with $\vect{r}_L$ a lattice vector and $\vect{x}$ a position inside that cell.}
+\caption{Partitioning space into primitive cells: every point is $\lvect{r} = \lvect{x} + \lvect{r}_L$, with $\lvect{r}_L$ a lattice vector and $\lvect{x}$ a position inside that cell.}
 \label{fig:xrd-partition}
 \end{figure}
 
 The lattice sum is evaluated by the Poisson summation formula,
 \begin{equation}
-    \sum_{\vect{r}_L} e^{-i\vect{k}\cdot\vect{r}_L} = \frac{(2\pi)^3}{V_c}\sum_{\vect{g}} \delta(\vect{k} - \vect{g}),
+    \sum_{\lvect{r}_L} e^{-i\lvect{k}\cdot\lvect{r}_L} = \frac{(2\pi)^3}{V_c}\sum_{\cvect{G}} \delta(\lvect{k} - \cvect{G}),
 \end{equation}
-where the sum on the right runs over reciprocal lattice vectors $\vect{g}$ and $V_c$ is the cell volume. Therefore
+where the sum on the right runs over reciprocal lattice vectors $\cvect{G}$ and $V_c$ is the cell volume. Therefore
 \begin{equation}
-    \tilde{\rho}(\vect{k}) = \frac{(2\pi)^3}{V_c}\sum_{\vect{g}} \delta(\vect{k} - \vect{g})\int_{\text{cell}} e^{-i\vect{k}\cdot\vect{x}}\rho(\vect{x})\,\dd^3 x,
+    \tilde{\rho}(\lvect{k}) = \frac{(2\pi)^3}{V_c}\sum_{\cvect{G}} \delta(\lvect{k} - \cvect{G})\int_{\text{cell}} e^{-i\lvect{k}\cdot\lvect{x}}\rho(\lvect{x})\,\dd^3 x,
 \end{equation}
-and since the delta function sets $\vect{k} = \vect{g}$ inside the integral we obtain the central result.
+and since the delta function sets $\lvect{k} = \cvect{G}$ inside the integral we obtain the central result.
 
 \begin{formula}[Structure factor]
 \begin{equation}
-    \tilde{\rho}(\vect{k}) = \frac{(2\pi)^3}{V_c}\sum_{\vect{g}} S(\vect{g})\,\delta(\vect{k} - \vect{g}),
+    \tilde{\rho}(\lvect{k}) = \frac{(2\pi)^3}{V_c}\sum_{\cvect{G}} S(\cvect{G})\,\delta(\lvect{k} - \cvect{G}),
     \qquad
-    S(\vect{g}) = \int_{\text{cell}} e^{-i\vect{g}\cdot\vect{x}}\,\rho(\vect{x})\,\dd^3 x .
+    S(\cvect{G}) = \int_{\text{cell}} e^{-i\cvect{G}\cdot\lvect{x}}\,\rho(\lvect{x})\,\dd^3 x .
 \end{equation}
 \end{formula}
 
-The Fourier transform of a periodic density is thus supported \emph{only} on the reciprocal lattice: the diffraction pattern of a crystal consists of sharp spots at the reciprocal lattice vectors $\vect{g}$, with intensities governed by the structure factor $S(\vect{g})$ of the contents of a single cell.
+The Fourier transform of a periodic density is thus supported \emph{only} on the reciprocal lattice: the diffraction pattern of a crystal consists of sharp spots at the reciprocal lattice vectors $\cvect{G}$, with intensities governed by the structure factor $S(\cvect{G})$ of the contents of a single cell.

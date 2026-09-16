@@ -1,6 +1,6 @@
 \chapter{Phonons and Lattice Thermodynamics}
 
-Atoms in a crystal are not static: they vibrate about their equilibrium sites, and those vibrations are collective, propagating through the lattice as waves. Quantized, these waves are the \emph{phonons}. This chapter builds the machinery of lattice dynamics --- the harmonic expansion of the lattice energy, the dynamical matrix, and the dispersion relation $\omega(\vect{k})$ --- and then uses it to explain two thermal properties of solids: the heat capacity (Einstein and Debye models) and the thermal conductivity (which requires anharmonic phonon--phonon scattering to exist at all).
+Atoms in a crystal are not static: they vibrate about their equilibrium sites, and those vibrations are collective, propagating through the lattice as waves. Quantized, these waves are the \emph{phonons}. This chapter builds the machinery of lattice dynamics --- the harmonic expansion of the lattice energy, the dynamical matrix, and the dispersion relation $\omega(\lvect{k})$ --- and then uses it to explain two thermal properties of solids: the heat capacity (Einstein and Debye models) and the thermal conductivity (which requires anharmonic phonon--phonon scattering to exist at all).
 
 Phonons are a second ``language'' of communication with a crystal: where the electrons govern its electrical properties, the phonons govern its thermal and acoustic ones. They are correspondingly important for bulk material properties such as heat capacity, thermal conductivity, and phase stability. The theoretical thread connecting this chapter to what came before is a simple one --- chemical bonds can be approximated as harmonic oscillators, and that approximation is what determines the specific heat.
 
@@ -8,29 +8,29 @@ Phonons are a second ``language'' of communication with a crystal: where the ele
 \section{The Born--Oppenheimer Approximation}
 % ============================================================
 
-Write $\vect{r} \equiv (\vect{r}_1, \ldots, \vect{r}_n)$ for the electron coordinates and $\vect{R} \equiv (\vect{R}_1, \ldots, \vect{R}_n)$ for the nuclear coordinates. There are three kinds of Coulomb interaction between them:
+Write $\lvect{r} \equiv (\lvect{r}_1, \ldots, \lvect{r}_n)$ for the electron coordinates and $\cvect{R} \equiv (\cvect{R}_1, \ldots, \cvect{R}_n)$ for the nuclear coordinates. There are three kinds of Coulomb interaction between them:
 \begin{align}
-    \text{nucleus--nucleus:} \quad & \sum_{I > J} \frac{Z_I Z_J e^2}{|\vect{R}_I - \vect{R}_J|} = V_{nn}(\vect{R}), \\
-    \text{electron--nucleus:} \quad & -\sum_{i, I} \frac{Z_I e^2}{|\vect{r}_i - \vect{R}_I|} = V_{ne}(\vect{r}, \vect{R}), \\
-    \text{electron--electron:} \quad & \sum_{i > j} \frac{e^2}{|\vect{r}_i - \vect{r}_j|} = V_{ee}(\vect{r}),
+    \text{nucleus--nucleus:} \quad & \sum_{I > J} \frac{Z_I Z_J e^2}{|\cvect{R}_I - \cvect{R}_J|} = V_{nn}(\cvect{R}), \\
+    \text{electron--nucleus:} \quad & -\sum_{i, I} \frac{Z_I e^2}{|\lvect{r}_i - \cvect{R}_I|} = V_{ne}(\lvect{r}, \cvect{R}), \\
+    \text{electron--electron:} \quad & \sum_{i > j} \frac{e^2}{|\lvect{r}_i - \lvect{r}_j|} = V_{ee}(\lvect{r}),
 \end{align}
-so that the total potential is $V(\vect{r}, \vect{R}) = V_{nn}(\vect{R}) + V_{ne}(\vect{r}, \vect{R}) + V_{ee}(\vect{r})$ and the Schr\"odinger equation reads
+so that the total potential is $V(\lvect{r}, \cvect{R}) = V_{nn}(\cvect{R}) + V_{ne}(\lvect{r}, \cvect{R}) + V_{ee}(\lvect{r})$ and the Schr\"odinger equation reads
 \begin{equation}
-    i\hbar\, \pdv{\hat{\Phi}(\vect{r}, \vect{R}, t)}{t} = \left(-\sum_I \frac{\hbar^2}{2M_I}\pdv[2]{}{\vect{R}_I} - \sum_i \frac{\hbar^2}{2m}\pdv[2]{}{\vect{r}_i} + V(\vect{r}, \vect{R})\right)\hat{\Phi}(\vect{r}, \vect{R}, t).
+    i\hbar\, \pdv{\hat{\Phi}(\lvect{r}, \cvect{R}, t)}{t} = \left(-\sum_I \frac{\hbar^2}{2M_I}\pdv[2]{}{\cvect{R}_I} - \sum_i \frac{\hbar^2}{2m}\pdv[2]{}{\lvect{r}_i} + V(\lvect{r}, \cvect{R})\right)\hat{\Phi}(\lvect{r}, \cvect{R}, t).
 \end{equation}
 This is hopeless as it stands. The Born--Oppenheimer approximation decouples the nuclear and electronic wavefunctions,
 \begin{equation}
-    \hat{\Phi}(\vect{r}, \vect{R}, t) \simeq \Phi(\vect{R})\, \Psi(\vect{r}, \vect{R})\, \exp\!\left(-i\bar{E}t/\hbar\right),
+    \hat{\Phi}(\lvect{r}, \cvect{R}, t) \simeq \Phi(\cvect{R})\, \Psi(\lvect{r}, \cvect{R})\, \exp\!\left(-i\bar{E}t/\hbar\right),
 \end{equation}
 leaving two time-independent problems:
 \begin{align}
-    \left(-\sum_i \frac{\hbar^2}{2m}\pdv[2]{}{\vect{r}_i} + V(\vect{r}, \vect{R})\right)\Psi(\vect{r} \mid \vect{R}) &= E(\vect{R})\,\Psi(\vect{r}, \vect{R}), \\
-    \left(-\sum_I \frac{\hbar^2}{2M_I}\pdv[2]{}{\vect{R}_I} + E(\vect{R})\right)\Phi(\vect{R}) &= \bar{E}\,\Phi(\vect{R}).
+    \left(-\sum_i \frac{\hbar^2}{2m}\pdv[2]{}{\lvect{r}_i} + V(\lvect{r}, \cvect{R})\right)\Psi(\lvect{r} \mid \cvect{R}) &= E(\cvect{R})\,\Psi(\lvect{r}, \cvect{R}), \\
+    \left(-\sum_I \frac{\hbar^2}{2M_I}\pdv[2]{}{\cvect{R}_I} + E(\cvect{R})\right)\Phi(\cvect{R}) &= \bar{E}\,\Phi(\cvect{R}).
 \end{align}
-The electronic eigenvalue $E(\vect{R})$ determines the \emph{potential energy surface} on which the nuclei move, and equilibrium is the condition that the force on every nucleus vanishes:
+The electronic eigenvalue $E(\cvect{R})$ determines the \emph{potential energy surface} on which the nuclei move, and equilibrium is the condition that the force on every nucleus vanishes:
 \begin{formula}[Equilibrium condition]
 \begin{equation}
-    \vect{F}_I = -\pdv{E(\vect{R})}{\vect{R}_I} = 0.
+    \cvect{F}_I = -\pdv{E(\cvect{R})}{\cvect{R}_I} = 0.
 \end{equation}
 \end{formula}
 
@@ -66,13 +66,13 @@ whose solutions are travelling waves with phase velocity $c$. The velocity that 
 
 Generalizing to three dimensions, a lattice vibration is written as
 \begin{equation}
-    \vect{u}(\vect{r}, t) = \tilde{\vect{u}}\,\exp\!\left(i\vect{k}\cdot\vect{r} - i\omega t\right).
+    \lvect{u}(\lvect{r}, t) = \tilde{\lvect{u}}\,\exp\!\left(i\lvect{k}\cdot\lvect{r} - i\omega t\right).
 \end{equation}
 
 \begin{fact}[Rules for the dispersion relation]
 \begin{enumerate}
     \item There are $3n$ different vibrational modes per unit cell, where $n$ is the number of atoms per unit cell.
-    \item Each such mode has a unique frequency associated with it for a given $\vect{k}$.
+    \item Each such mode has a unique frequency associated with it for a given $\lvect{k}$.
     \item The amplitude of a mode is determined by the frequency of the wave and by the temperature.
 \end{enumerate}
 \end{fact}
@@ -91,14 +91,14 @@ Expanding this in a multivariate Taylor series about the equilibrium configurati
 \end{equation}
 so that the harmonic energy may be written compactly as
 \begin{equation}
-    E_{\text{harm}} = \frac{1}{2}\sum_{jj',\ell\ell'} \vect{u}^{T}(j\ell)\cdot \Phi \cdot \vect{u}(j'\ell')
+    E_{\text{harm}} = \frac{1}{2}\sum_{jj',\ell\ell'} \lvect{u}^{T}(j\ell)\cdot \Phi \cdot \lvect{u}(j'\ell')
     = \frac{1}{2}\sum_{jj',\ell\ell'}\sum_{\alpha\beta} u_\alpha(j\ell)\, \Phi_{\alpha\beta}\, u_\beta(j'\ell').
 \end{equation}
 
 \begin{definition}[Force-constant matrix]
 The atomic displacement and the force-constant (Hessian) matrix are
 \begin{equation}
-    \vect{u}(j\ell) = \begin{bmatrix} u_x(j\ell) \\ u_y(j\ell) \\ u_z(j\ell)\end{bmatrix},
+    \lvect{u}(j\ell) = \begin{bmatrix} u_x(j\ell) \\ u_y(j\ell) \\ u_z(j\ell)\end{bmatrix},
     \qquad
     \Phi_{\alpha\beta}\!\begin{pmatrix} jj' \\ \ell\ell'\end{pmatrix} = \pdv{W}{u_\alpha(j\ell)}{u_\beta(j'\ell')}.
 \end{equation}
@@ -106,7 +106,7 @@ The atomic displacement and the force-constant (Hessian) matrix are
 
 Since only \emph{relative} displacements can cost energy, an equivalent form is
 \begin{equation}
-    E_{\text{harm}} = \frac{1}{4}\sum_{jj',\ell\ell'} \bigl[\vect{u}(j\ell) - \vect{u}(j'\ell')\bigr]^{T} \cdot \Phi\!\begin{pmatrix} jj' \\ \ell\ell'\end{pmatrix} \cdot \bigl[\vect{u}(j\ell) - \vect{u}(j'\ell')\bigr].
+    E_{\text{harm}} = \frac{1}{4}\sum_{jj',\ell\ell'} \bigl[\lvect{u}(j\ell) - \lvect{u}(j'\ell')\bigr]^{T} \cdot \Phi\!\begin{pmatrix} jj' \\ \ell\ell'\end{pmatrix} \cdot \bigl[\lvect{u}(j\ell) - \lvect{u}(j'\ell')\bigr].
 \end{equation}
 
 \subsection{Equation of Motion and the Dynamical Matrix}
@@ -114,34 +114,34 @@ Since only \emph{relative} displacements can cost energy, an equivalent form is
 Differentiating the harmonic energy gives the equation of motion
 \begin{formula}
 \begin{equation}
-    m_j\, \ddot{\vect{u}}(j\ell, t) = -\sum_{j'\ell'} \Phi\!\begin{pmatrix} jj' \\ \ell\ell'\end{pmatrix} \vect{u}(j'\ell', t),
+    m_j\, \ddot{\lvect{u}}(j\ell, t) = -\sum_{j'\ell'} \Phi\!\begin{pmatrix} jj' \\ \ell\ell'\end{pmatrix} \lvect{u}(j'\ell', t),
 \end{equation}
 \end{formula}
 which is the direct analogue of the 1D spring chain $m\ddot{x}_j = K x_{j-1} + K x_{j+1} - 2K x_j$.
 
 Because the lattice is periodic, we may use a plane-wave (travelling-wave) ansatz, exactly as Bloch's theorem does for electronic wavefunctions:
 \begin{equation}
-    \vect{u}(j\ell, t) = \sum_{\vect{k},\nu} \vect{U}(j, \vect{k}, \nu)\,\exp\!\left(i\vect{k}\cdot\vect{r}(j\ell) - i\omega t\right).
+    \lvect{u}(j\ell, t) = \sum_{\lvect{k},\nu} \cvect{U}(j, \lvect{k}, \nu)\,\exp\!\left(i\lvect{k}\cdot\lvect{r}(j\ell) - i\omega t\right).
 \end{equation}
-Substituting this into the equation of motion turns the infinite set of coupled ODEs into a finite eigenvalue problem at each $\vect{k}$:
+Substituting this into the equation of motion turns the infinite set of coupled ODEs into a finite eigenvalue problem at each $\lvect{k}$:
 \begin{formula}[Lattice-dynamical eigenvalue problem]
 \begin{equation}
-    D(\vect{k})\,\vect{e}(\vect{k}, \nu) = \omega^2(\vect{k}, \nu)\, \vect{e}(\vect{k}, \nu),
+    D(\lvect{k})\,\lvect{e}(\lvect{k}, \nu) = \omega^2(\lvect{k}, \nu)\, \lvect{e}(\lvect{k}, \nu),
     \label{eq:phon-eigen}
 \end{equation}
 where the polarization vector
 \begin{equation}
-    \vect{e} \equiv \begin{bmatrix} \vect{u}(1, \vect{k}, \nu) \\ \vect{u}(2, \vect{k}, \nu) \\ \vdots \\ \vect{u}(n, \vect{k}, \nu) \end{bmatrix}
+    \lvect{e} \equiv \begin{bmatrix} \lvect{u}(1, \lvect{k}, \nu) \\ \lvect{u}(2, \lvect{k}, \nu) \\ \vdots \\ \lvect{u}(n, \lvect{k}, \nu) \end{bmatrix}
 \end{equation}
-has $3n$ components and describes all of the polarization information for a given mode $\vect{k}$, for all atoms in the unit cell.
+has $3n$ components and describes all of the polarization information for a given mode $\lvect{k}$, for all atoms in the unit cell.
 \end{formula}
-Here $D(\vect{k})$ is the $3n \times 3n$ \emph{dynamical matrix}, made up of $3\times 3$ blocks that each represent the coupling between a pair of atoms (with the masses absorbed, so that the components of $\vect{e}$ are effectively $\sqrt{m_j}\,\vect{u}(j,\ell)$).
+Here $D(\lvect{k})$ is the $3n \times 3n$ \emph{dynamical matrix}, made up of $3\times 3$ blocks that each represent the coupling between a pair of atoms (with the masses absorbed, so that the components of $\lvect{e}$ are effectively $\sqrt{m_j}\,\lvect{u}(j,\ell)$).
 
 \begin{fact}[Properties of the dynamical matrix]
 \begin{itemize}
-    \item $D(\vect{k})$ commutes with the symmetries of the lattice.
-    \item $D(\vect{k})$ is symmetric under exchange of coordinate axes, hence Hermitian.
-    \item Its eigenvalue equation~\eqref{eq:phon-eigen} produces $\omega(\vect{k})$: the \emph{dispersion relation}. Since $D(\vect{k})$ is $3n \times 3n$ and Hermitian, we expect $3n$ distinct dispersion bands.
+    \item $D(\lvect{k})$ commutes with the symmetries of the lattice.
+    \item $D(\lvect{k})$ is symmetric under exchange of coordinate axes, hence Hermitian.
+    \item Its eigenvalue equation~\eqref{eq:phon-eigen} produces $\omega(\lvect{k})$: the \emph{dispersion relation}. Since $D(\lvect{k})$ is $3n \times 3n$ and Hermitian, we expect $3n$ distinct dispersion bands.
 \end{itemize}
 \end{fact}
 
@@ -274,31 +274,31 @@ Just as we quantized electromagnetic waves into photons, we quantize each lattic
 \begin{equation}
     E = \left(n + \tfrac{1}{2}\right)\hbar\omega.
 \end{equation}
-Summing over all modes labelled by wavevector $\vect{k}$ and branch $\nu$,
+Summing over all modes labelled by wavevector $\lvect{k}$ and branch $\nu$,
 \begin{equation}
-    E(\vect{k}, \nu) = \sum_{\vect{k},\nu} \hbar\omega(\vect{k})\left(n_{\vect{k}\nu} + \tfrac{1}{2}\right).
+    E(\lvect{k}, \nu) = \sum_{\lvect{k},\nu} \hbar\omega(\lvect{k})\left(n_{\lvect{k}\nu} + \tfrac{1}{2}\right).
 \end{equation}
 
 \subsection{Average Energy of a Mode}
 
-For a single mode of frequency $\omega(\vect{k})$ at fixed $T, P, N$, the partition function is
+For a single mode of frequency $\omega(\lvect{k})$ at fixed $T, P, N$, the partition function is
 \begin{align}
-    Z &= \sum_n \exp\!\left(\frac{-\hbar\omega(\vect{k})(n + \tfrac{1}{2})}{k_B T}\right) \\
-      &= \exp\!\left(\frac{-\beta\hbar\omega(\vect{k})}{2}\right)\sum_n \exp\bigl(-\beta\hbar\omega(\vect{k})\,n\bigr)
-       = \frac{\exp\!\left(-\beta\hbar\omega(\vect{k})/2\right)}{1 - \exp\bigl(-\beta\hbar\omega(\vect{k})\bigr)},
+    Z &= \sum_n \exp\!\left(\frac{-\hbar\omega(\lvect{k})(n + \tfrac{1}{2})}{k_B T}\right) \\
+      &= \exp\!\left(\frac{-\beta\hbar\omega(\lvect{k})}{2}\right)\sum_n \exp\bigl(-\beta\hbar\omega(\lvect{k})\,n\bigr)
+       = \frac{\exp\!\left(-\beta\hbar\omega(\lvect{k})/2\right)}{1 - \exp\bigl(-\beta\hbar\omega(\lvect{k})\bigr)},
 \end{align}
-a geometric series. The average energy follows from $\langle U_{\vect{k}}\rangle = -\partial_\beta \ln Z$:
+a geometric series. The average energy follows from $\langle U_{\lvect{k}}\rangle = -\partial_\beta \ln Z$:
 
 \begin{formula}[Average energy of a mode]
 \begin{equation}
-    \langle U_{\vect{k}}\rangle = \hbar\omega(\vect{k})\left[\langle n_{\vect{k}}\rangle + \tfrac{1}{2}\right],
+    \langle U_{\lvect{k}}\rangle = \hbar\omega(\lvect{k})\left[\langle n_{\lvect{k}}\rangle + \tfrac{1}{2}\right],
     \qquad
-    \langle n_{\vect{k}}\rangle \equiv \frac{1}{\exp\!\left(\dfrac{\hbar\omega(\vect{k})}{k_B T}\right) - 1},
+    \langle n_{\lvect{k}}\rangle \equiv \frac{1}{\exp\!\left(\dfrac{\hbar\omega(\lvect{k})}{k_B T}\right) - 1},
 \end{equation}
-where $\langle n_{\vect{k}}\rangle$ --- the Planck (Bose--Einstein) distribution --- is the average occupation of a given $\vect{k}$-mode at temperature $T$.
+where $\langle n_{\lvect{k}}\rangle$ --- the Planck (Bose--Einstein) distribution --- is the average occupation of a given $\lvect{k}$-mode at temperature $T$.
 \end{formula}
 
-Each excitation mode is a boson of frequency $\omega(\vect{k})$ and is occupied $n_B(\beta\hbar\omega(\vect{k}))$ times on average. The physical content of the distribution is that higher-frequency (higher-energy) modes are exponentially suppressed and hence much less occupied, as Figure~\ref{fig:phon-bose} shows.
+Each excitation mode is a boson of frequency $\omega(\lvect{k})$ and is occupied $n_B(\beta\hbar\omega(\lvect{k}))$ times on average. The physical content of the distribution is that higher-frequency (higher-energy) modes are exponentially suppressed and hence much less occupied, as Figure~\ref{fig:phon-bose} shows.
 
 \begin{figure}[ht]
 \centering
@@ -322,7 +322,7 @@ Each excitation mode is a boson of frequency $\omega(\vect{k})$ and is occupied 
 
 Summing the contributions from all phonon modes,
 \begin{equation}
-    \langle U \rangle = \sum_{\vect{k},\nu} \hbar\omega(\vect{k},\nu)\left[\langle n_{\vect{k}}\rangle + \tfrac{1}{2}\right].
+    \langle U \rangle = \sum_{\lvect{k},\nu} \hbar\omega(\lvect{k},\nu)\left[\langle n_{\lvect{k}}\rangle + \tfrac{1}{2}\right].
 \end{equation}
 For small $\Delta k$ the sum becomes an integral over frequency weighted by the number of modes at each frequency:
 
@@ -337,33 +337,33 @@ For small $\Delta k$ the sum becomes an integral over frequency weighted by the 
 \begin{definition}[Density of states]
 The phonon density of states counts how many unique modes exist at a given frequency:
 \begin{equation}
-    g(\omega) \equiv \frac{V}{8\pi^3}\sum_{s=1}^{3p} \int_{\text{BZ}} \dd\vect{k}\;\delta\bigl(\omega - \omega(\vect{k},s)\bigr).
+    g(\omega) \equiv \frac{V}{8\pi^3}\sum_{s=1}^{3p} \int_{\text{BZ}} \dd\lvect{k}\;\delta\bigl(\omega - \omega(\lvect{k},s)\bigr).
     \label{eq:phon-dos}
 \end{equation}
 \end{definition}
 
-The prefactor is the one already familiar from mode counting: periodic boundary conditions put one allowed $\vect{k}$ in every volume $(2\pi)^3/V$ of reciprocal space, so $\sum_{\vect{k}} \to (V/8\pi^3)\int\dd\vect{k}$, and the delta function then picks out only those $\vect{k}$ whose frequency is the one asked for.
+The prefactor is the one already familiar from mode counting: periodic boundary conditions put one allowed $\lvect{k}$ in every volume $(2\pi)^3/V$ of reciprocal space, so $\sum_{\lvect{k}} \to (V/8\pi^3)\int\dd\lvect{k}$, and the delta function then picks out only those $\lvect{k}$ whose frequency is the one asked for.
 
 \subsection{Evaluating the Density of States}
 
-The delta function in~\eqref{eq:phon-dos} is supported on the surface $S_s(\omega)$ of constant frequency in the Brillouin zone, so it is worth converting the volume integral into an integral over that surface. Split $\dd\vect{k}$ into an element $\dd S$ of the constant-$\omega$ surface and a perpendicular displacement $\dd k_\perp$. Moving a distance $\dd k_\perp$ off the surface changes the frequency by
+The delta function in~\eqref{eq:phon-dos} is supported on the surface $S_s(\omega)$ of constant frequency in the Brillouin zone, so it is worth converting the volume integral into an integral over that surface. Split $\dd\lvect{k}$ into an element $\dd S$ of the constant-$\omega$ surface and a perpendicular displacement $\dd k_\perp$. Moving a distance $\dd k_\perp$ off the surface changes the frequency by
 \begin{equation}
-    \dd\omega = \left|\grad_{\vect{k}}\,\omega(\vect{k},s)\right| \dd k_\perp,
+    \dd\omega = \left|\grad_{\lvect{k}}\,\omega(\lvect{k},s)\right| \dd k_\perp,
 \end{equation}
-since the gradient points normal to the surface. The delta function therefore integrates to unity in the perpendicular direction at the cost of a Jacobian $|\grad_{\vect{k}}\omega|^{-1}$, leaving
+since the gradient points normal to the surface. The delta function therefore integrates to unity in the perpendicular direction at the cost of a Jacobian $|\grad_{\lvect{k}}\omega|^{-1}$, leaving
 
 \begin{formula}[Density of states as a surface integral]
 \begin{equation}
-    g(\omega) = \frac{V}{8\pi^3}\sum_{s=1}^{3p} \int_{S_s(\omega)} \frac{\dd S}{\left|\grad_{\vect{k}}\,\omega(\vect{k},s)\right|}.
+    g(\omega) = \frac{V}{8\pi^3}\sum_{s=1}^{3p} \int_{S_s(\omega)} \frac{\dd S}{\left|\grad_{\lvect{k}}\,\omega(\lvect{k},s)\right|}.
     \label{eq:phon-dos-surface}
 \end{equation}
 \end{formula}
 
-Written this way the density of states is visibly a statement about the \emph{flatness} of the dispersion: where a branch is steep, a given frequency interval is spanned by few modes and $g$ is small; where it is flat, many modes crowd into the same interval and $g$ is large. At a point where $\grad_{\vect{k}}\omega = 0$ --- a band maximum, minimum, or saddle point, which symmetry guarantees at the zone centre and at zone boundaries --- the integrand diverges and $g(\omega)$ has a \emph{van Hove singularity}. These kinks are what make a measured phonon density of states structured rather than smooth, and none of the model spectra below reproduce them.
+Written this way the density of states is visibly a statement about the \emph{flatness} of the dispersion: where a branch is steep, a given frequency interval is spanned by few modes and $g$ is small; where it is flat, many modes crowd into the same interval and $g$ is large. At a point where $\grad_{\lvect{k}}\omega = 0$ --- a band maximum, minimum, or saddle point, which symmetry guarantees at the zone centre and at zone boundaries --- the integrand diverges and $g(\omega)$ has a \emph{van Hove singularity}. These kinks are what make a measured phonon density of states structured rather than smooth, and none of the model spectra below reproduce them.
 
 One constraint holds whatever the dispersion: integrating~\eqref{eq:phon-dos} over all frequencies counts every mode once, so
 \begin{equation}
-    \int_0^\infty \dd\omega\, g(\omega) = \sum_{s=1}^{3p}\sum_{\vect{k}} 1 = 3pN_\ell = 3N,
+    \int_0^\infty \dd\omega\, g(\omega) = \sum_{s=1}^{3p}\sum_{\lvect{k}} 1 = 3pN_\ell = 3N,
     \label{eq:phon-dos-sum}
 \end{equation}
 the total number of vibrational degrees of freedom. Any model density of states must satisfy this sum rule; it is what fixes the free parameter in each of the two models that follow.
@@ -374,7 +374,7 @@ the total number of vibrational degrees of freedom. Any model density of states 
 
 \subsection{The Einstein Model}
 
-The crudest guess for the dispersion is that there is none: Einstein takes every mode to have the same frequency, $\omega(\vect{k}) = \omega_E$, so the solid is $3N$ independent oscillators, each atom sitting in its own harmonic well and vibrating in three directions. The density of states is then a single delta function, with weight fixed by the sum rule~\eqref{eq:phon-dos-sum},
+The crudest guess for the dispersion is that there is none: Einstein takes every mode to have the same frequency, $\omega(\lvect{k}) = \omega_E$, so the solid is $3N$ independent oscillators, each atom sitting in its own harmonic well and vibrating in three directions. The density of states is then a single delta function, with weight fixed by the sum rule~\eqref{eq:phon-dos-sum},
 \begin{equation}
     g(\omega) = 3N\,\delta(\omega - \omega_E).
 \end{equation}
@@ -406,15 +406,15 @@ the classical Dulong--Petit value --- as it must, since at high temperature ever
 \end{equation}
 which vanishes exponentially fast. Experiment instead finds $C_V \propto T^3$ in most insulators, so the model fails badly at low temperature.
 
-The reason for the failure is the assumption itself. A gap $\hbar\omega_E$ between the ground state and the first excited state of every mode means that once $k_B T$ falls below it, \emph{all} modes freeze out together. But a real solid has acoustic branches with $\omega \to 0$ as $\vect{k}\to 0$: however low the temperature, there are always long-wavelength modes cheap enough to excite, and it is those modes that carry the heat capacity at low $T$. Restoring them is exactly what Debye set out to do.
+The reason for the failure is the assumption itself. A gap $\hbar\omega_E$ between the ground state and the first excited state of every mode means that once $k_B T$ falls below it, \emph{all} modes freeze out together. But a real solid has acoustic branches with $\omega \to 0$ as $\lvect{k}\to 0$: however low the temperature, there are always long-wavelength modes cheap enough to excite, and it is those modes that carry the heat capacity at low $T$. Restoring them is exactly what Debye set out to do.
 
 \subsection{Debye Approach}
 
 Debye's insight was that the oscillation of atoms in a solid is the same thing as sound. He therefore kept only the acoustic modes and used the long-wavelength dispersion
 \begin{equation}
-    \omega(k) = c\,k, \qquad k \equiv |\vect{k}|.
+    \omega(k) = c\,k, \qquad k \equiv |\lvect{k}|.
 \end{equation}
-For each wavevector $\vect{k}$ there are three kinds of mode --- one longitudinal and two transverse (Figure~\ref{fig:phon-polarizations}) --- and all three are assumed to travel at the same velocity.
+For each wavevector $\lvect{k}$ there are three kinds of mode --- one longitudinal and two transverse (Figure~\ref{fig:phon-polarizations}) --- and all three are assumed to travel at the same velocity.
 
 \begin{figure}[ht]
 \centering
@@ -443,17 +443,17 @@ For each wavevector $\vect{k}$ there are three kinds of mode --- one longitudina
         \draw[-{Latex}, thick] (1.2,-0.6) -- (2.0,0.85);
     \end{scope}
 \end{tikzpicture}
-\caption{The three acoustic polarizations for a given $\vect{k}$: one longitudinal mode, in which displacements are along the propagation direction, and two mutually perpendicular transverse modes. Debye assumes all three have the same velocity.}
+\caption{The three acoustic polarizations for a given $\lvect{k}$: one longitudinal mode, in which displacements are along the propagation direction, and two mutually perpendicular transverse modes. Debye assumes all three have the same velocity.}
 \label{fig:phon-polarizations}
 \end{figure}
 
 Imposing periodic (``von K\'arm\'an'') boundary conditions on a hypertorus of side $L$ gives
 \begin{equation}
-    \vect{k} = \frac{2\pi}{L}(n_1, n_2, n_3),
+    \lvect{k} = \frac{2\pi}{L}(n_1, n_2, n_3),
 \end{equation}
-so each $\vect{k}$-point occupies a volume $(2\pi/L)^3$ in reciprocal space, and sums over modes become integrals:
+so each $\lvect{k}$-point occupies a volume $(2\pi/L)^3$ in reciprocal space, and sums over modes become integrals:
 \begin{equation}
-    \sum_{\vect{k}} \approx \frac{L^3}{(2\pi)^3}\int \dd\vect{k}.
+    \sum_{\lvect{k}} \approx \frac{L^3}{(2\pi)^3}\int \dd\lvect{k}.
 \end{equation}
 Counting states inside a sphere of radius $k$,
 \begin{equation}
@@ -461,7 +461,7 @@ Counting states inside a sphere of radius $k$,
     \quad\Longrightarrow\quad
     g(k) = \dv{\phi}{k} = \frac{V}{2\pi^2}k^2.
 \end{equation}
-Equivalently, evaluate the definition~\eqref{eq:phon-dos} directly with $\omega = ck$. The dispersion is isotropic, so the constant-frequency surfaces are spheres of radius $\omega/c$ and $|\grad_{\vect{k}}\omega| = c$; either from~\eqref{eq:phon-dos-surface} or by doing the radial integral against the delta function,
+Equivalently, evaluate the definition~\eqref{eq:phon-dos} directly with $\omega = ck$. The dispersion is isotropic, so the constant-frequency surfaces are spheres of radius $\omega/c$ and $|\grad_{\lvect{k}}\omega| = c$; either from~\eqref{eq:phon-dos-surface} or by doing the radial integral against the delta function,
 \begin{equation}
     g(\omega) = \frac{V}{8\pi^3}\sum_{s=1}^{3}\int 4\pi k^2\,\dd k\;\delta(\omega - ck)
     = 3\cdot\frac{V}{8\pi^3}\cdot\frac{4\pi\omega^2}{c^3}
@@ -469,12 +469,12 @@ Equivalently, evaluate the definition~\eqref{eq:phon-dos} directly with $\omega 
 \end{equation}
 the factor of three counting the one longitudinal and two transverse polarizations.
 
-To find the expected energy we sum over all $\vect{k}$-modes and polarizations,
+To find the expected energy we sum over all $\lvect{k}$-modes and polarizations,
 \begin{equation}
-    \langle E\rangle = 3\sum_{\vect{k}} \hbar\omega(\vect{k})\left[n_B\bigl(\beta\hbar\omega(\vect{k})\bigr) + \tfrac{1}{2}\right]
-    = 3\,\frac{L^3}{(2\pi)^3}\int \dd\vect{k}\; \hbar\omega(\vect{k})\left(n_B + \tfrac{1}{2}\right),
+    \langle E\rangle = 3\sum_{\lvect{k}} \hbar\omega(\lvect{k})\left[n_B\bigl(\beta\hbar\omega(\lvect{k})\bigr) + \tfrac{1}{2}\right]
+    = 3\,\frac{L^3}{(2\pi)^3}\int \dd\lvect{k}\; \hbar\omega(\lvect{k})\left(n_B + \tfrac{1}{2}\right),
 \end{equation}
-and by spherical symmetry $\int \dd\vect{k} = 4\pi\int_0^\infty k^2\,\dd k$, so
+and by spherical symmetry $\int \dd\lvect{k} = 4\pi\int_0^\infty k^2\,\dd k$, so
 \begin{equation}
     \langle E\rangle = 3\,\frac{4\pi L^3}{(2\pi)^3}\int_0^\omega \omega^2\,\dd\omega \left(\frac{1}{v^3}\right)(\hbar\omega)\left[n_B(\beta\hbar\omega) + \tfrac{1}{2}\right].
 \end{equation}
@@ -584,7 +584,7 @@ The Debye frequency is thus the maximum possible phonon frequency of the lattice
 
 Heat flow is described by Fourier's law
 \begin{equation}
-    \vect{j}_u = -\kappa \grad T, \qquad [j] = \frac{\text{energy transmitted}}{\text{unit area}\cdot\text{unit time}},
+    \lvect{j}_u = -\kappa \grad T, \qquad [j] = \frac{\text{energy transmitted}}{\text{unit area}\cdot\text{unit time}},
 \end{equation}
 and the kinetic-theory expression for the thermal conductivity of a gas is
 \begin{equation}
@@ -626,23 +626,23 @@ where the bracketed integral is recognised as $C_V$. Hence
 
 More formally, the phonon heat flux is
 \begin{equation}
-    \vect{j} = \frac{1}{(2\pi)^3}\int \hbar\omega\, \vect{v}_g\, n_{\vect{k}}\, \dd^3\vect{k}.
+    \lvect{j} = \frac{1}{(2\pi)^3}\int \hbar\omega\, \lvect{v}_g\, n_{\lvect{k}}\, \dd^3\lvect{k}.
 \end{equation}
 
 \subsection{Why Phonons Scatter}
 
 The mean free path $\ell$ is determined by geometrical scattering and by phonon--phonon-like scattering. This is where the harmonic approximation fails outright: in a purely harmonic crystal the plane waves are exact eigenstates, phonons do not interact with each other, and there is no mechanism to redistribute energy or momentum --- so there is no thermal resistivity at all. Yet the distribution of phonons \emph{must} change over time to reach thermal equilibrium at the local temperatures $T_1, T_2$ set by the temperature gradient.
 
-Two candidate mechanisms fail on their own. Single-phonon scattering off a static imperfection or a crystal boundary cannot change the distribution, because $\omega_{\text{in}} = \omega_{\text{out}}$. And a three-phonon process with $\vect{k}_1 + \vect{k}_2 = \vect{k}_3$ conserves the total wavevector exactly; if the sum of reduced wavevectors is conserved, the average $\langle \vect{k}\rangle$ is fixed by the Bose--Einstein distribution
+Two candidate mechanisms fail on their own. Single-phonon scattering off a static imperfection or a crystal boundary cannot change the distribution, because $\omega_{\text{in}} = \omega_{\text{out}}$. And a three-phonon process with $\lvect{k}_1 + \lvect{k}_2 = \lvect{k}_3$ conserves the total wavevector exactly; if the sum of reduced wavevectors is conserved, the average $\langle \lvect{k}\rangle$ is fixed by the Bose--Einstein distribution
 \begin{equation}
-    n_{\vect{k}} = \left[\exp\!\left(\frac{\hbar\omega(\vect{k}) - \vect{v}\cdot\vect{k}}{k_B T}\right) - 1\right]^{-1},
+    n_{\lvect{k}} = \left[\exp\!\left(\frac{\hbar\omega(\lvect{k}) - \lvect{v}\cdot\lvect{k}}{k_B T}\right) - 1\right]^{-1},
 \end{equation}
 which describes a drifting phonon gas that never relaxes. The fix is to add anharmonic terms to $V_{\text{harm}}$: plane waves are then no longer exact solutions, and phonons must eventually decay or scatter into other phonons.
 
 \begin{definition}[Umklapp process]
-An \emph{Umklapp} (U) process is a three-phonon process in which momentum is conserved only up to a reciprocal lattice vector $\vect{g}$:
+An \emph{Umklapp} (U) process is a three-phonon process in which momentum is conserved only up to a reciprocal lattice vector $\cvect{G}$:
 \begin{equation}
-    \vect{k}_1 + \vect{k}_2 = \vect{k}_3 + \vect{g}.
+    \lvect{k}_1 + \lvect{k}_2 = \lvect{k}_3 + \cvect{G}.
 \end{equation}
 \end{definition}
 
@@ -662,9 +662,9 @@ Figure~\ref{fig:phon-scattering} contrasts the three relevant scattering channel
         \draw[fill=LightGray!40] (0,0) rectangle (2.8,2.6);
         \node[anchor=north west, font=\scriptsize] at (0.05,2.58) {BZ};
         \coordinate (o) at (1.3,0.9);
-        \draw[-{Latex}, thick] (o) -- ++(-0.5,1.3) node[above] {$\vect{k}$};
-        \draw[-{Latex}, thick] (o) -- ++(0.7,-0.6) node[below] {$\vect{k}'$};
-        \draw[-{Latex}, thick, Periwinkle] (o) -- ++(0.9,0.6) node[right] {$\vect{k}+\vect{k}'$};
+        \draw[-{Latex}, thick] (o) -- ++(-0.5,1.3) node[above] {$\lvect{k}$};
+        \draw[-{Latex}, thick] (o) -- ++(0.7,-0.6) node[below] {$\lvect{k}'$};
+        \draw[-{Latex}, thick, Periwinkle] (o) -- ++(0.9,0.6) node[right] {$\lvect{k}+\lvect{k}'$};
     \end{scope}
     % --- Umklapp scattering ---
     \begin{scope}[xshift=4.6cm]
@@ -672,10 +672,10 @@ Figure~\ref{fig:phon-scattering} contrasts the three relevant scattering channel
         \draw[fill=LightGray!40] (0,0) rectangle (2.8,2.6);
         \node[anchor=north west, font=\scriptsize] at (0.05,2.58) {BZ};
         \coordinate (o2) at (1.5,1.2);
-        \draw[-{Latex}, thick] (o2) -- ++(0.7,1.1) node[above] {$\vect{k}'$};
-        \draw[-{Latex}, thick] (o2) -- ++(0.6,-0.9) node[below] {$\vect{k}$};
-        \draw[-{Latex}, thick, Periwinkle] (o2) -- ++(-1.2,0) node[left] {$\vect{k}+\vect{k}'+\vect{g}$};
-        \draw[-{Latex}, thick, Orange, dashed] (o2) ++(0.05,-0.22) -- ++(1.3,0) node[right] {$\vect{g}$};
+        \draw[-{Latex}, thick] (o2) -- ++(0.7,1.1) node[above] {$\lvect{k}'$};
+        \draw[-{Latex}, thick] (o2) -- ++(0.6,-0.9) node[below] {$\lvect{k}$};
+        \draw[-{Latex}, thick, Periwinkle] (o2) -- ++(-1.2,0) node[left] {$\lvect{k}+\lvect{k}'+\cvect{G}$};
+        \draw[-{Latex}, thick, Orange, dashed] (o2) ++(0.05,-0.22) -- ++(1.3,0) node[right] {$\cvect{G}$};
     \end{scope}
     % --- Boundary / defect scattering ---
     \begin{scope}[xshift=9.6cm]
@@ -688,17 +688,17 @@ Figure~\ref{fig:phon-scattering} contrasts the three relevant scattering channel
         \fill[Orange] (1.62,0.47) circle (1.6pt);
     \end{scope}
 \end{tikzpicture}
-\caption{Three phonon scattering channels drawn in the Brillouin zone. Normal processes conserve both momentum and energy; Umklapp processes conserve momentum only up to a reciprocal lattice vector $\vect{g}$, and so degrade the heat current; boundary and defect scattering conserve energy but randomize direction.}
+\caption{Three phonon scattering channels drawn in the Brillouin zone. Normal processes conserve both momentum and energy; Umklapp processes conserve momentum only up to a reciprocal lattice vector $\cvect{G}$, and so degrade the heat current; boundary and defect scattering conserve energy but randomize direction.}
 \label{fig:phon-scattering}
 \end{figure}
 
 The full description of how the phonon distribution evolves under a temperature gradient is the Peierls--Boltzmann transport equation,
 \begin{formula}[Peierls--Boltzmann transport equation]
 \begin{equation}
-    \underbrace{\vect{v}(\vect{k},\nu)}_{\text{phonon velocity}}\cdot\underbrace{\grad T}_{\text{temp.\ gradient}}\underbrace{\left(\pdv{n(\vect{k},\nu)}{T}\right)}_{\text{change in boson dist.}} = \underbrace{\left(\pdv{n(\vect{k},\nu)}{t}\right)_{\text{scatter}}}_{\text{time evolution of dist.}},
+    \underbrace{\lvect{v}(\lvect{k},\nu)}_{\text{phonon velocity}}\cdot\underbrace{\grad T}_{\text{temp.\ gradient}}\underbrace{\left(\pdv{n(\lvect{k},\nu)}{T}\right)}_{\text{change in boson dist.}} = \underbrace{\left(\pdv{n(\lvect{k},\nu)}{t}\right)_{\text{scatter}}}_{\text{time evolution of dist.}},
 \end{equation}
 \end{formula}
-whose solution yields the relaxation time $\tau(\vect{k},\nu)$ entering~\eqref{eq:phon-kappa}.
+whose solution yields the relaxation time $\tau(\lvect{k},\nu)$ entering~\eqref{eq:phon-kappa}.
 
 % ============================================================
 \section{Temperature Regimes of the Thermal Conductivity}
@@ -787,7 +787,7 @@ Two computational tasks make up the modern practice of the subject. The first is
 \begin{equation}
     \Phi_{\alpha\beta}(j\ell; j'\ell') = \pdv{V}{u_\alpha(j\ell)}{u_\beta(j'\ell')},
 \end{equation}
-obtained from DFT or molecular dynamics calculations of the potential $V$, with space-group symmetry used to reduce the number of independent constants. The second is the determination of the thermal conductivity, by solving the Peierls--Boltzmann transport equation for $\tau(\vect{k},\nu)$.
+obtained from DFT or molecular dynamics calculations of the potential $V$, with space-group symmetry used to reduce the number of independent constants. The second is the determination of the thermal conductivity, by solving the Peierls--Boltzmann transport equation for $\tau(\lvect{k},\nu)$.
 
 An application is the search for thermoelectric \emph{phonon glasses}: materials that conduct electricity like a metal but conduct heat like a glass, maximizing the figure of merit
 \begin{equation}

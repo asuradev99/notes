@@ -2,7 +2,7 @@
 
 An electron in a crystal moves in a potential with the periodicity of the lattice, and that single fact --- before any approximation whatsoever --- already fixes the form of the stationary states. This chapter begins with Bloch's theorem and its immediate consequences: the labelling of states by a crystal momentum and a band index, the notion of a Fermi surface, and the density of levels. It then treats the two complementary limits in which the problem becomes tractable. In the \emph{nearly free electron} limit the periodic potential is a weak perturbation on plane waves, and its only dramatic effect is to open gaps at the Bragg planes. In the \emph{tight-binding} limit we start instead from atomic orbitals localized on each site and let a small overlap between neighbours broaden the discrete atomic levels into bands. We then collect the lattice Fourier identities that both pictures rest on, and close with the semiclassical dynamics of Bloch wavepackets.
 
-A word on notation. Since bold capitals denote vectors throughout these notes, we write the electron position as $\vect{x}$, direct lattice vectors as $\vect{R}$, reciprocal lattice vectors as $\vect{G}$, and wavevectors as $\vect{k}$ and $\vect{q}$.
+A word on notation. We write the electron position as $\lvect{x}$, reserving $\cvect{R}$ for direct lattice vectors and $\cvect{G}$ for reciprocal lattice vectors, with wavevectors $\lvect{k}$ and $\lvect{q}$.
 
 % ============================================================
 \section{Bloch's Theorem}
@@ -10,86 +10,86 @@ A word on notation. Since bold capitals denote vectors throughout these notes, w
 
 Throughout we make two assumptions: that the crystal is perfect, i.e.\ a strictly periodic array of atoms, and that the atomic nuclei are static. The potential is then periodic,
 \begin{equation}
-    U(\vect{x}+\vect{R}) = U(\vect{x}),
+    U(\lvect{x}+\cvect{R}) = U(\lvect{x}),
 \end{equation}
-for every lattice vector $\vect{R}$, and the one-electron Schrödinger equation
+for every lattice vector $\cvect{R}$, and the one-electron Schrödinger equation
 \begin{equation}
-    \hat{H}\psi = \left( -\frac{\hbar^2}{2m}\nabla^2 + U(\vect{x}) \right)\psi = E\psi
+    \hat{H}\psi = \left( -\frac{\hbar^2}{2m}\nabla^2 + U(\lvect{x}) \right)\psi = E\psi
 \end{equation}
-has a Hamiltonian that is periodic in $\vect{x}$.
+has a Hamiltonian that is periodic in $\lvect{x}$.
 
 \begin{theorem}[Bloch's theorem]
-The eigenstates $\psi$ of the one-electron Hamiltonian $H = -\hbar^2\nabla^2/2m + U(\vect{x})$ with $U$ periodic can be chosen to have the form
+The eigenstates $\psi$ of the one-electron Hamiltonian $H = -\hbar^2\nabla^2/2m + U(\lvect{x})$ with $U$ periodic can be chosen to have the form
 \begin{equation}
-    \psi_{n\vect{k}}(\vect{x}) = e^{i\vect{k}\cdot\vect{x}}\, u_{n\vect{k}}(\vect{x}),
-    \qquad u_{n\vect{k}}(\vect{x}+\vect{R}) = u_{n\vect{k}}(\vect{x}),
+    \psi_{n\lvect{k}}(\lvect{x}) = e^{i\lvect{k}\cdot\lvect{x}}\, u_{n\lvect{k}}(\lvect{x}),
+    \qquad u_{n\lvect{k}}(\lvect{x}+\cvect{R}) = u_{n\lvect{k}}(\lvect{x}),
 \end{equation}
 equivalently
 \begin{equation}
-    \psi_{n\vect{k}}(\vect{x}+\vect{R}) = e^{i\vect{k}\cdot\vect{R}}\, \psi_{n\vect{k}}(\vect{x}).
+    \psi_{n\lvect{k}}(\lvect{x}+\cvect{R}) = e^{i\lvect{k}\cdot\cvect{R}}\, \psi_{n\lvect{k}}(\lvect{x}).
     \label{eq:bloch-condition}
 \end{equation}
 \end{theorem}
 
 \subsection{First Proof: Translation Operators}
 
-Define the translation operator $T_{\vect{R}}$ by $T_{\vect{R}} f(\vect{x}) \equiv f(\vect{x}+\vect{R})$. Because the Hamiltonian is periodic,
+Define the translation operator $T_{\cvect{R}}$ by $T_{\cvect{R}} f(\lvect{x}) \equiv f(\lvect{x}+\cvect{R})$. Because the Hamiltonian is periodic,
 \begin{equation}
-    T_{\vect{R}} \hat{H} \psi = \hat{H}(\vect{x}+\vect{R})\psi(\vect{x}+\vect{R}) = H(\vect{x})\psi(\vect{x}+\vect{R}) = \hat{H} T_{\vect{R}}\psi,
+    T_{\cvect{R}} \hat{H} \psi = \hat{H}(\lvect{x}+\cvect{R})\psi(\lvect{x}+\cvect{R}) = H(\lvect{x})\psi(\lvect{x}+\cvect{R}) = \hat{H} T_{\cvect{R}}\psi,
 \end{equation}
-so $T_{\vect{R}}$ commutes with $H$. The translations also commute among themselves,
+so $T_{\cvect{R}}$ commutes with $H$. The translations also commute among themselves,
 \begin{equation}
-    T_{\vect{R}} T_{\vect{R}'} \psi(\vect{x}) = \psi(\vect{x}+\vect{R}+\vect{R}') = T_{\vect{R}'} T_{\vect{R}} \psi = T_{\vect{R}+\vect{R}'}\psi.
+    T_{\cvect{R}} T_{\cvect{R}'} \psi(\lvect{x}) = \psi(\lvect{x}+\cvect{R}+\cvect{R}') = T_{\cvect{R}'} T_{\cvect{R}} \psi = T_{\cvect{R}+\cvect{R}'}\psi.
 \end{equation}
-Hence $\{T_{\vect{R}}\}$ and $H$ form a set of commuting operators and can be simultaneously diagonalized:
+Hence $\{T_{\cvect{R}}\}$ and $H$ form a set of commuting operators and can be simultaneously diagonalized:
 \begin{equation}
-    \hat{H}\psi = E\psi, \qquad T_{\vect{R}}\psi = C(\vect{R})\psi,
+    \hat{H}\psi = E\psi, \qquad T_{\cvect{R}}\psi = C(\cvect{R})\psi,
 \end{equation}
-where the multiplicative property $C(\vect{R}+\vect{R}') = C(\vect{R})C(\vect{R}')$ lets us write the eigenvalues on the primitive vectors as
+where the multiplicative property $C(\cvect{R}+\cvect{R}') = C(\cvect{R})C(\cvect{R}')$ lets us write the eigenvalues on the primitive vectors as
 \begin{equation}
-    C(\vect{a}_i) = \exp(2\pi i x_i).
+    C(\lvect{a}_i) = \exp(2\pi i x_i).
 \end{equation}
-For an arbitrary lattice vector $\vect{R} = n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3$,
+For an arbitrary lattice vector $\cvect{R} = n_1\lvect{a}_1 + n_2\lvect{a}_2 + n_3\lvect{a}_3$,
 \begin{equation}
-    C(\vect{R}) = C(\vect{a}_1)^{n_1} C(\vect{a}_2)^{n_2} C(\vect{a}_3)^{n_3}
+    C(\cvect{R}) = C(\lvect{a}_1)^{n_1} C(\lvect{a}_2)^{n_2} C(\lvect{a}_3)^{n_3}
     = \exp\bigl(2\pi i x_1 n_1 + 2\pi i x_2 n_2 + 2\pi i x_3 n_3\bigr).
 \end{equation}
-Now take $\vect{k} = x_1\vect{b}_1 + x_2\vect{b}_2 + x_3\vect{b}_3$, where the $\vect{b}_i$ are the reciprocal primitive vectors satisfying $\vect{b}_i\cdot\vect{a}_j = 2\pi\delta_{ij}$. Then
+Now take $\lvect{k} = x_1\lvect{b}_1 + x_2\lvect{b}_2 + x_3\lvect{b}_3$, where the $\lvect{b}_i$ are the reciprocal primitive vectors satisfying $\lvect{b}_i\cdot\lvect{a}_j = 2\pi\delta_{ij}$. Then
 \begin{equation}
-    \exp(i\vect{k}\cdot\vect{R}) = \exp\bigl(i(x_1\vect{b}_1 + x_2\vect{b}_2 + x_3\vect{b}_3)\cdot(n_1\vect{a}_1 + n_2\vect{a}_2 + n_3\vect{a}_3)\bigr)
-    = \exp\bigl(i(2\pi x_1 n_1 + 2\pi x_2 n_2 + 2\pi x_3 n_3)\bigr) = C(\vect{R}),
+    \exp(i\lvect{k}\cdot\cvect{R}) = \exp\bigl(i(x_1\lvect{b}_1 + x_2\lvect{b}_2 + x_3\lvect{b}_3)\cdot(n_1\lvect{a}_1 + n_2\lvect{a}_2 + n_3\lvect{a}_3)\bigr)
+    = \exp\bigl(i(2\pi x_1 n_1 + 2\pi x_2 n_2 + 2\pi x_3 n_3)\bigr) = C(\cvect{R}),
 \end{equation}
-so that $T_{\vect{R}}\psi = \psi(\vect{x}+\vect{R}) = C(\vect{R})\psi = e^{i\vect{k}\cdot\vect{R}}\psi$, which is exactly~\eqref{eq:bloch-condition}.
+so that $T_{\cvect{R}}\psi = \psi(\lvect{x}+\cvect{R}) = C(\cvect{R})\psi = e^{i\lvect{k}\cdot\cvect{R}}\psi$, which is exactly~\eqref{eq:bloch-condition}.
 
 \subsection{Born--von Karman Boundary Conditions}
 
 \begin{definition}[Born--von Karman boundary condition]
 \begin{equation}
-    \psi(\vect{x} + N_i \vect{a}_i) = \psi(\vect{x}), \qquad i = 1,2,3,
+    \psi(\lvect{x} + N_i \lvect{a}_i) = \psi(\lvect{x}), \qquad i = 1,2,3,
 \end{equation}
 where $N = N_1 N_2 N_3$ is the total number of primitive cells and $N_i$ is the length of the system in unit cells along a particular direction.
 \end{definition}
 
-This constrains $\vect{k}$ to be real and quantizes its allowed values. Applying the Bloch condition,
+This constrains $\lvect{k}$ to be real and quantizes its allowed values. Applying the Bloch condition,
 \begin{equation}
-    \psi_{n\vect{k}}(\vect{x}+N_i\vect{a}_i) = \exp(iN_i \vect{k}\cdot\vect{a}_i)\, \psi_{n\vect{k}}(\vect{x}) = \psi(\vect{x})
-    \;\Longrightarrow\; \exp(iN_i\vect{k}\cdot\vect{a}_i) = 1
-    \;\Longrightarrow\; \vect{k}\cdot\vect{a}_i = \frac{2\pi m}{N_i}, \quad m \in \mathbb{Z}.
+    \psi_{n\lvect{k}}(\lvect{x}+N_i\lvect{a}_i) = \exp(iN_i \lvect{k}\cdot\lvect{a}_i)\, \psi_{n\lvect{k}}(\lvect{x}) = \psi(\lvect{x})
+    \;\Longrightarrow\; \exp(iN_i\lvect{k}\cdot\lvect{a}_i) = 1
+    \;\Longrightarrow\; \lvect{k}\cdot\lvect{a}_i = \frac{2\pi m}{N_i}, \quad m \in \mathbb{Z}.
 \end{equation}
-Writing $\vect{k} = x_1\vect{b}_1 + x_2\vect{b}_2 + x_3\vect{b}_3$ gives $2\pi x_i = 2\pi m/N_i$, i.e.\ $x_i = m/N_i$.
+Writing $\lvect{k} = x_1\lvect{b}_1 + x_2\lvect{b}_2 + x_3\lvect{b}_3$ gives $2\pi x_i = 2\pi m/N_i$, i.e.\ $x_i = m/N_i$.
 
 \begin{formula}[Allowed wavevectors]
 \begin{equation}
-    \vect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\,\vect{b}_i, \qquad m_i \in \mathbb{Z}.
+    \lvect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\,\lvect{b}_i, \qquad m_i \in \mathbb{Z}.
 \end{equation}
 \end{formula}
 
 \subsection{Volume per Allowed Wavevector}
 
-The allowed $\vect{k}$ form a lattice whose primitive cell is the parallelepiped with edges $\vect{b}_i/N_i$, so the volume per $\vect{k}$-value is
+The allowed $\lvect{k}$ form a lattice whose primitive cell is the parallelepiped with edges $\lvect{b}_i/N_i$, so the volume per $\lvect{k}$-value is
 \begin{equation}
-    \Delta k = \frac{\vect{b}_1}{N_1}\cdot\left( \frac{\vect{b}_2}{N_2} \times \frac{\vect{b}_3}{N_3} \right)
-    = \frac{1}{N}\,\vect{b}_1\cdot(\vect{b}_2\times\vect{b}_3).
+    \Delta k = \frac{\lvect{b}_1}{N_1}\cdot\left( \frac{\lvect{b}_2}{N_2} \times \frac{\lvect{b}_3}{N_3} \right)
+    = \frac{1}{N}\,\lvect{b}_1\cdot(\lvect{b}_2\times\lvect{b}_3).
 \end{equation}
 
 \begin{fact}
@@ -105,75 +105,75 @@ Since the volume of the reciprocal lattice primitive cell is $(2\pi)^3/v$ with $
 
 The second proof is more laborious but produces the central equation on which the nearly free electron model is built. By Fourier transform, any function obeying the boundary conditions can be written
 \begin{equation}
-    \psi(\vect{x}) = \sum_{\vect{q}} c_{\vect{q}}\, e^{i\vect{q}\cdot\vect{x}},
+    \psi(\lvect{x}) = \sum_{\lvect{q}} c_{\lvect{q}}\, e^{i\lvect{q}\cdot\lvect{x}},
 \end{equation}
-where $\vect{q}$ runs over the set of BVK wavevectors. The potential, being periodic in the lattice, has a plane-wave expansion containing only reciprocal lattice vectors:
+where $\lvect{q}$ runs over the set of BVK wavevectors. The potential, being periodic in the lattice, has a plane-wave expansion containing only reciprocal lattice vectors:
 \begin{equation}
-    U(\vect{x}) = \sum_{\vect{G}} U_{\vect{G}}\, e^{i\vect{G}\cdot\vect{x}},
+    U(\lvect{x}) = \sum_{\cvect{G}} U_{\cvect{G}}\, e^{i\cvect{G}\cdot\lvect{x}},
     \qquad
-    U_{\vect{G}} = \frac{1}{v}\int_{\text{cell}} d\vect{x}\; e^{-i\vect{G}\cdot\vect{x}}\, U(\vect{x}),
+    U_{\cvect{G}} = \frac{1}{v}\int_{\text{cell}} d\lvect{x}\; e^{-i\cvect{G}\cdot\lvect{x}}\, U(\lvect{x}),
 \end{equation}
 where it suffices to integrate over one cell since $U$ is periodic. We are free to make the constant term vanish,
 \begin{equation}
-    U_0 = \frac{1}{v}\int_{\text{cell}} d\vect{x}\; U(\vect{x}) = 0.
+    U_0 = \frac{1}{v}\int_{\text{cell}} d\lvect{x}\; U(\lvect{x}) = 0.
 \end{equation}
-Since $U(\vect{x})$ is real, $U_{-\vect{G}} = U^*_{\vect{G}}$; and if the lattice has inversion symmetry, $U(\vect{x}) = U(-\vect{x})$ for a suitable choice of origin, then $U_{\vect{G}} = U^*_{-\vect{G}}$ so that $U_{\vect{G}}$ is real.
+Since $U(\lvect{x})$ is real, $U_{-\cvect{G}} = U^*_{\cvect{G}}$; and if the lattice has inversion symmetry, $U(\lvect{x}) = U(-\lvect{x})$ for a suitable choice of origin, then $U_{\cvect{G}} = U^*_{-\cvect{G}}$ so that $U_{\cvect{G}}$ is real.
 
 Substituting both expansions into the Schrödinger equation, the kinetic term gives
 \begin{equation}
-    -\frac{\hbar^2}{2m}\nabla^2 \psi = \sum_{\vect{q}} \frac{\hbar^2}{2m} q^2 c_{\vect{q}}\, e^{i\vect{q}\cdot\vect{x}},
+    -\frac{\hbar^2}{2m}\nabla^2 \psi = \sum_{\lvect{q}} \frac{\hbar^2}{2m} q^2 c_{\lvect{q}}\, e^{i\lvect{q}\cdot\lvect{x}},
 \end{equation}
 while the potential term gives
 \begin{equation}
-    U\psi = \left( \sum_{\vect{G}} U_{\vect{G}} e^{i\vect{G}\cdot\vect{x}} \right)\left( \sum_{\vect{q}} c_{\vect{q}} e^{i\vect{q}\cdot\vect{x}} \right)
-    = \sum_{\vect{G},\vect{q}} U_{\vect{G}} c_{\vect{q}}\, e^{i(\vect{G}+\vect{q})\cdot\vect{x}}
-    = \sum_{\vect{G},\vect{q}'} U_{\vect{G}} c_{\vect{q}'-\vect{G}}\, e^{i\vect{q}'\cdot\vect{x}}.
+    U\psi = \left( \sum_{\cvect{G}} U_{\cvect{G}} e^{i\cvect{G}\cdot\lvect{x}} \right)\left( \sum_{\lvect{q}} c_{\lvect{q}} e^{i\lvect{q}\cdot\lvect{x}} \right)
+    = \sum_{\cvect{G},\lvect{q}} U_{\cvect{G}} c_{\lvect{q}}\, e^{i(\cvect{G}+\lvect{q})\cdot\lvect{x}}
+    = \sum_{\cvect{G},\lvect{q}'} U_{\cvect{G}} c_{\lvect{q}'-\cvect{G}}\, e^{i\lvect{q}'\cdot\lvect{x}}.
 \end{equation}
 
 \begin{fact}
-The potential $U$ only couples a wavevector $\vect{q}$ to wavevectors differing from it by a reciprocal lattice vector, $\vect{q}+\vect{G}$. Everything that follows is a rigorous statement of this fact.
+The potential $U$ only couples a wavevector $\lvect{q}$ to wavevectors differing from it by a reciprocal lattice vector, $\lvect{q}+\cvect{G}$. Everything that follows is a rigorous statement of this fact.
 \end{fact}
 
 Collecting terms with a common exponential,
 \begin{equation}
-    \sum_{\vect{q}} e^{i\vect{q}\cdot\vect{x}} \left\{ \left( \frac{\hbar^2}{2m}q^2 - \varepsilon \right) c_{\vect{q}} + \sum_{\vect{G}'} U_{\vect{G}'}\, c_{\vect{q}-\vect{G}'} \right\} = 0,
+    \sum_{\lvect{q}} e^{i\lvect{q}\cdot\lvect{x}} \left\{ \left( \frac{\hbar^2}{2m}q^2 - \varepsilon \right) c_{\lvect{q}} + \sum_{\cvect{G}'} U_{\cvect{G}'}\, c_{\lvect{q}-\cvect{G}'} \right\} = 0,
 \end{equation}
 and since the plane waves satisfying the Born--von Karman conditions are orthogonal, each brace must vanish separately:
 \begin{equation}
-    \left( \frac{\hbar^2}{2m}q^2 - \varepsilon \right) c_{\vect{q}} + \sum_{\vect{G}'} U_{\vect{G}'}\, c_{\vect{q}-\vect{G}'} = 0
-    \qquad \text{for all allowed } \vect{q}.
+    \left( \frac{\hbar^2}{2m}q^2 - \varepsilon \right) c_{\lvect{q}} + \sum_{\cvect{G}'} U_{\cvect{G}'}\, c_{\lvect{q}-\cvect{G}'} = 0
+    \qquad \text{for all allowed } \lvect{q}.
 \end{equation}
-Rewriting with $\vect{q} = \vect{k}-\vect{G}$, so that $\vect{k}$ lies in the first Brillouin zone, and then shifting $\vect{G}' \to \vect{G}'-\vect{G}$, gives the central equation.
+Rewriting with $\lvect{q} = \lvect{k}-\cvect{G}$, so that $\lvect{k}$ lies in the first Brillouin zone, and then shifting $\cvect{G}' \to \cvect{G}'-\cvect{G}$, gives the central equation.
 
 \begin{formula}[Central equation]
 \begin{equation}
-    \left( \frac{\hbar^2}{2m}(\vect{k}-\vect{G})^2 - \varepsilon \right) c_{\vect{k}-\vect{G}}
-    + \sum_{\vect{G}'} U_{\vect{G}'-\vect{G}}\, c_{\vect{k}-\vect{G}'} = 0.
+    \left( \frac{\hbar^2}{2m}(\lvect{k}-\cvect{G})^2 - \varepsilon \right) c_{\lvect{k}-\cvect{G}}
+    + \sum_{\cvect{G}'} U_{\cvect{G}'-\cvect{G}}\, c_{\lvect{k}-\cvect{G}'} = 0.
     \label{eq:bloch-central}
 \end{equation}
 \end{formula}
 
-This relates only the coefficients $c_{\vect{k}}, c_{\vect{k}-\vect{G}}, c_{\vect{k}-\vect{G}'}, \ldots$ to one another, so the problem of determining the solution coefficients splits into $N$ independent subproblems, one for each $\vect{k}$ in the first zone. Organizing the vector of coefficients into reciprocal-space blocks,
+This relates only the coefficients $c_{\lvect{k}}, c_{\lvect{k}-\cvect{G}}, c_{\lvect{k}-\cvect{G}'}, \ldots$ to one another, so the problem of determining the solution coefficients splits into $N$ independent subproblems, one for each $\lvect{k}$ in the first zone. Organizing the vector of coefficients into reciprocal-space blocks,
 \begin{equation}
-    \vect{\Psi} = \bigl( \underbrace{c_{\vect{k}},\, c_{\vect{k}-\vect{G}},\, c_{\vect{k}-\vect{G}'},\ldots}_{\vect{k}},\;
-    \underbrace{c_{\vect{k}'},\, c_{\vect{k}'-\vect{G}},\, c_{\vect{k}'-\vect{G}'},\ldots}_{\vect{k}'},\; \ldots \bigr),
+    \cvect{\Psi} = \bigl( \underbrace{c_{\lvect{k}},\, c_{\lvect{k}-\cvect{G}},\, c_{\lvect{k}-\cvect{G}'},\ldots}_{\lvect{k}},\;
+    \underbrace{c_{\lvect{k}'},\, c_{\lvect{k}'-\cvect{G}},\, c_{\lvect{k}'-\cvect{G}'},\ldots}_{\lvect{k}'},\; \ldots \bigr),
 \end{equation}
-the Hamiltonian is block diagonal, with one block $\hat{H}_{\vect{k}}$ for each of the $N$ wavevectors.
+the Hamiltonian is block diagonal, with one block $\hat{H}_{\lvect{k}}$ for each of the $N$ wavevectors.
 
 \begin{formula}[Reduced matrix equation]
 \begin{equation}
-    \sum_{\vect{G}'} H_{\vect{G}\vect{G}'}(\vect{k})\, c^n_{\vect{G}'} = E_n(\vect{k})\, c^n_{\vect{G}},
+    \sum_{\cvect{G}'} H_{\cvect{G}\cvect{G}'}(\lvect{k})\, c^n_{\cvect{G}'} = E_n(\lvect{k})\, c^n_{\cvect{G}},
     \qquad
-    H_{\vect{G}\vect{G}'}(\vect{k}) \equiv \frac{\hbar^2}{2m}|\vect{k}+\vect{G}|^2 \delta_{\vect{G}\vect{G}'} + U_{\vect{G}-\vect{G}'}.
+    H_{\cvect{G}\cvect{G}'}(\lvect{k}) \equiv \frac{\hbar^2}{2m}|\lvect{k}+\cvect{G}|^2 \delta_{\cvect{G}\cvect{G}'} + U_{\cvect{G}-\cvect{G}'}.
 \end{equation}
 \end{formula}
 
-There are thus $N$ independent subproblems of the form $\hat{H}_{\vect{k}}\psi_{\vect{k}} = E\psi_{\vect{k}}$, and the solution for a given $\vect{k}$ is
+There are thus $N$ independent subproblems of the form $\hat{H}_{\lvect{k}}\psi_{\lvect{k}} = E\psi_{\lvect{k}}$, and the solution for a given $\lvect{k}$ is
 \begin{equation}
-    \psi_{\vect{k}}(\vect{x}) = \sum_{\vect{G}} c^n_{\vect{G}}\, e^{i(\vect{k}+\vect{G})\cdot\vect{x}}
-    = e^{i\vect{k}\cdot\vect{x}} \underbrace{\sum_{\vect{G}} c^n_{\vect{G}}\, e^{i\vect{G}\cdot\vect{x}}}_{u_{\vect{k}}(\vect{x})}.
+    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{G}} c^n_{\cvect{G}}\, e^{i(\lvect{k}+\cvect{G})\cdot\lvect{x}}
+    = e^{i\lvect{k}\cdot\lvect{x}} \underbrace{\sum_{\cvect{G}} c^n_{\cvect{G}}\, e^{i\cvect{G}\cdot\lvect{x}}}_{u_{\lvect{k}}(\lvect{x})}.
 \end{equation}
-Since $u^n_{\vect{k}}(\vect{x}+\vect{R}) = \sum_{\vect{G}} c^n_{\vect{G}} e^{i\vect{G}\cdot(\vect{x}+\vect{R})} = \sum_{\vect{G}} c^n_{\vect{G}} e^{i\vect{G}\cdot\vect{x}} = u^n_{\vect{k}}(\vect{x})$, this proves Bloch's theorem a second time.
+Since $u^n_{\lvect{k}}(\lvect{x}+\cvect{R}) = \sum_{\cvect{G}} c^n_{\cvect{G}} e^{i\cvect{G}\cdot(\lvect{x}+\cvect{R})} = \sum_{\cvect{G}} c^n_{\cvect{G}} e^{i\cvect{G}\cdot\lvect{x}} = u^n_{\lvect{k}}(\lvect{x})$, this proves Bloch's theorem a second time.
 
 % ============================================================
 \section{Consequences of Bloch's Theorem}
@@ -182,31 +182,31 @@ Since $u^n_{\vect{k}}(\vect{x}+\vect{R}) = \sum_{\vect{G}} c^n_{\vect{G}} e^{i\v
 \subsection{General Remarks}
 
 \begin{enumerate}
-    \item The wavevector $\vect{k}$ plays the same role as in the free-electron case: it is the quantum number characteristic of the translational symmetry of the periodic potential. But $\hbar\vect{k}$ is \emph{not} the momentum, because the Hamiltonian no longer has full translational symmetry. Indeed, with $\hat{\vect{p}} = \frac{\hbar}{i}\nabla$,
+    \item The wavevector $\lvect{k}$ plays the same role as in the free-electron case: it is the quantum number characteristic of the translational symmetry of the periodic potential. But $\hbar\lvect{k}$ is \emph{not} the momentum, because the Hamiltonian no longer has full translational symmetry. Indeed, with $\hat{\lvect{p}} = \frac{\hbar}{i}\nabla$,
     \begin{equation}
-        \frac{\hbar}{i}\nabla \psi_{n\vect{k}} = \frac{\hbar}{i}\nabla\bigl( e^{i\vect{k}\cdot\vect{x}} u_{n\vect{k}}(\vect{x}) \bigr)
-        = \hbar\vect{k}\,\psi_{n\vect{k}} + e^{i\vect{k}\cdot\vect{x}}\,\frac{\hbar}{i}\nabla u_{n\vect{k}}(\vect{x}),
+        \frac{\hbar}{i}\nabla \psi_{n\lvect{k}} = \frac{\hbar}{i}\nabla\bigl( e^{i\lvect{k}\cdot\lvect{x}} u_{n\lvect{k}}(\lvect{x}) \bigr)
+        = \hbar\lvect{k}\,\psi_{n\lvect{k}} + e^{i\lvect{k}\cdot\lvect{x}}\,\frac{\hbar}{i}\nabla u_{n\lvect{k}}(\lvect{x}),
     \end{equation}
-    which is not proportional to $\psi_{n\vect{k}}$. We call $\hbar\vect{k}$ the \emph{crystal momentum}.
-    \item The wavevector in Bloch's theorem can always be confined to the first Brillouin zone. Any $\vect{k}'$ outside it can be written $\vect{k}' = \vect{k}+\vect{G}$ with $\vect{k}$ inside, and then
+    which is not proportional to $\psi_{n\lvect{k}}$. We call $\hbar\lvect{k}$ the \emph{crystal momentum}.
+    \item The wavevector in Bloch's theorem can always be confined to the first Brillouin zone. Any $\lvect{k}'$ outside it can be written $\lvect{k}' = \lvect{k}+\cvect{G}$ with $\lvect{k}$ inside, and then
     \begin{equation}
-        \psi(\vect{x}+\vect{R}) = e^{i\vect{k}'\cdot\vect{R}}\psi(\vect{x}) = e^{i(\vect{k}+\vect{G})\cdot\vect{R}}\psi(\vect{x}) = e^{i\vect{k}\cdot\vect{R}}\psi(\vect{x}),
+        \psi(\lvect{x}+\cvect{R}) = e^{i\lvect{k}'\cdot\cvect{R}}\psi(\lvect{x}) = e^{i(\lvect{k}+\cvect{G})\cdot\cvect{R}}\psi(\lvect{x}) = e^{i\lvect{k}\cdot\cvect{R}}\psi(\lvect{x}),
     \end{equation}
-    since $e^{i\vect{G}\cdot\vect{R}} = 1$.
-    \item For a given $\vect{k}$ there are many solutions of the Schrödinger equation
+    since $e^{i\cvect{G}\cdot\cvect{R}} = 1$.
+    \item For a given $\lvect{k}$ there are many solutions of the Schrödinger equation
     \begin{equation}
-        H_{\vect{k}} u_{\vect{k}}(\vect{x}) = \left( \frac{\hbar^2}{2m}\Bigl(\frac{1}{i}\nabla + \vect{k}\Bigr)^{\!2} + U(\vect{x}) \right) u_{\vect{k}}(\vect{x}),
+        H_{\lvect{k}} u_{\lvect{k}}(\lvect{x}) = \left( \frac{\hbar^2}{2m}\Bigl(\frac{1}{i}\nabla + \lvect{k}\Bigr)^{\!2} + U(\lvect{x}) \right) u_{\lvect{k}}(\lvect{x}),
     \end{equation}
-    a discrete spectrum of eigenvalues $\varepsilon_{n\vect{k}}$ labelled by the \emph{band index} $n$. Each level varies continuously with $\vect{k}$, so we expect a family of continuous functions $\varepsilon_n(\vect{k})$ with the periodicity
+    a discrete spectrum of eigenvalues $\varepsilon_{n\lvect{k}}$ labelled by the \emph{band index} $n$. Each level varies continuously with $\lvect{k}$, so we expect a family of continuous functions $\varepsilon_n(\lvect{k})$ with the periodicity
     \begin{equation}
-        \psi_{n,\vect{k}+\vect{G}} = \psi_{n\vect{k}}(\vect{x}), \qquad \varepsilon_{n,\vect{k}+\vect{G}} = \varepsilon_{n,\vect{k}}.
+        \psi_{n,\lvect{k}+\cvect{G}} = \psi_{n\lvect{k}}(\lvect{x}), \qquad \varepsilon_{n,\lvect{k}+\cvect{G}} = \varepsilon_{n,\lvect{k}}.
     \end{equation}
-    \item The mean electron group velocity in band $n$ at wavevector $\vect{k}$ is $\vect{v}_n(\vect{k}) = \frac{1}{\hbar}\nabla_{\vect{k}}\varepsilon_n(\vect{k})$ --- derived below in the semiclassical section. Remarkably, an electron can move forever in a perfect periodic potential without any degradation of its mean velocity.
+    \item The mean electron group velocity in band $n$ at wavevector $\lvect{k}$ is $\lvect{v}_n(\lvect{k}) = \frac{1}{\hbar}\nabla_{\lvect{k}}\varepsilon_n(\lvect{k})$ --- derived below in the semiclassical section. Remarkably, an electron can move forever in a perfect periodic potential without any degradation of its mean velocity.
 \end{enumerate}
 
 \subsection{The Fermi Surface}
 
-The Fermi surface concerns the ground state of $N$ Bloch electrons. Because each band holds $2 N_{\vect{k}} = 2N$ levels (a factor of two from the Pauli principle and spin, and one $\vect{k}$ per primitive cell), two qualitatively different situations arise (Figure~\ref{fig:bloch-filling}).
+The Fermi surface concerns the ground state of $N$ Bloch electrons. Because each band holds $2 N_{\lvect{k}} = 2N$ levels (a factor of two from the Pauli principle and spin, and one $\lvect{k}$ per primitive cell), two qualitatively different situations arise (Figure~\ref{fig:bloch-filling}).
 
 \begin{figure}[ht]
 \centering
@@ -247,15 +247,15 @@ One or more bands are completely filled and the rest are empty. The band gap is
 \begin{equation}
     \Delta E = E(\text{lowest unoccupied state}) - E(\text{highest occupied state}).
 \end{equation}
-Since the number of available levels per band is $2N_{\vect{k}} = 2N_{\text{primitive cells}}$, this case can only occur if the number of electrons per unit cell is even. If $\Delta E \gg k_B T$ the material is an \emph{insulator}; if $\Delta E \sim k_B T$ it is a \emph{semiconductor}.
+Since the number of available levels per band is $2N_{\lvect{k}} = 2N_{\text{primitive cells}}$, this case can only occur if the number of electrons per unit cell is even. If $\Delta E \gg k_B T$ the material is an \emph{insulator}; if $\Delta E \sim k_B T$ it is a \emph{semiconductor}.
 \end{definition}
 
 \begin{definition}[Metal case]
-One or more bands are partially filled. For each such band there is a surface in $\vect{k}$-space separating occupied from unoccupied levels --- a branch of the \emph{Fermi surface} --- defined by
+One or more bands are partially filled. For each such band there is a surface in $\lvect{k}$-space separating occupied from unoccupied levels --- a branch of the \emph{Fermi surface} --- defined by
 \begin{equation}
-    \varepsilon_n(\vect{k}) = \varepsilon_F.
+    \varepsilon_n(\lvect{k}) = \varepsilon_F.
 \end{equation}
-The solution of this constraint for each $n$ is a $\vect{k}$-space surface with the periodicity of the reciprocal lattice.
+The solution of this constraint for each $n$ is a $\lvect{k}$-space surface with the periodicity of the reciprocal lattice.
 \end{definition}
 
 \subsection{Density of Levels}
@@ -264,7 +264,7 @@ The solution of this constraint for each $n$ is a $\vect{k}$-space surface with 
 \begin{equation}
     g(\varepsilon) = \sum_n g_n(\varepsilon),
     \qquad
-    g_n(\varepsilon) = \int \frac{d\vect{k}}{4\pi^3}\,\delta\bigl(\varepsilon - \varepsilon_n(\vect{k})\bigr),
+    g_n(\varepsilon) = \int \frac{d\lvect{k}}{4\pi^3}\,\delta\bigl(\varepsilon - \varepsilon_n(\lvect{k})\bigr),
     \qquad [g(\varepsilon)] = \frac{1}{[E][V]},
 \end{equation}
 where the integral runs over any primitive cell.
@@ -273,16 +273,16 @@ where the integral runs over any primitive cell.
 Equivalently, $g_n(\varepsilon)\,d\varepsilon$ is $2/V$ times the number of allowed wavevectors in the $n$th band with energy between $\varepsilon$ and $\varepsilon+d\varepsilon$:
 \begin{equation}
     g_n(\varepsilon)\, d\varepsilon
-    = \frac{2}{V}\cdot\frac{\text{volume of the $\vect{k}$-space region containing } \varepsilon \to \varepsilon+d\varepsilon}{\Delta k}
-    = \frac{2}{V}\cdot\frac{V}{(2\pi)^3}\int \frac{d\vect{k}}{4\pi^3}\,\delta\bigl(\varepsilon \leq \varepsilon_n(\vect{k}) \leq \varepsilon+d\varepsilon\bigr).
+    = \frac{2}{V}\cdot\frac{\text{volume of the $\lvect{k}$-space region containing } \varepsilon \to \varepsilon+d\varepsilon}{\Delta k}
+    = \frac{2}{V}\cdot\frac{V}{(2\pi)^3}\int \frac{d\lvect{k}}{4\pi^3}\,\delta\bigl(\varepsilon \leq \varepsilon_n(\lvect{k}) \leq \varepsilon+d\varepsilon\bigr).
 \end{equation}
 Geometrically, $g_n(\varepsilon)\,d\varepsilon$ is the volume between the constant-energy surface $S_n(\varepsilon)$ and the neighbouring surface $S_n(\varepsilon+d\varepsilon)$ (Figure~\ref{fig:bloch-dos-shell}):
 \begin{equation}
-    g_n(\varepsilon) = \int_{S_n(\varepsilon)} \frac{dS}{4\pi^3}\, \delta k(\vect{k}),
+    g_n(\varepsilon) = \int_{S_n(\varepsilon)} \frac{dS}{4\pi^3}\, \delta k(\lvect{k}),
 \end{equation}
-where the perpendicular separation of the two surfaces follows from $\varepsilon + d\varepsilon = \varepsilon + |\nabla\varepsilon_n(\vect{k})|\,\delta k(\vect{k})$, so that
+where the perpendicular separation of the two surfaces follows from $\varepsilon + d\varepsilon = \varepsilon + |\nabla\varepsilon_n(\lvect{k})|\,\delta k(\lvect{k})$, so that
 \begin{equation}
-    \delta k(\vect{k}) = \frac{d\varepsilon}{|\nabla\varepsilon_n(\vect{k})|}.
+    \delta k(\lvect{k}) = \frac{d\varepsilon}{|\nabla\varepsilon_n(\lvect{k})|}.
 \end{equation}
 
 \begin{figure}[ht]
@@ -295,21 +295,21 @@ where the perpendicular separation of the two surfaces follows from $\varepsilon
     \draw[-{Stealth}] (0.9,-0.55) -- (1.45,-0.9);
     \node[font=\small, above right] at (1.2,-0.75) {$dS$};
     \draw[{Stealth}-{Stealth}] (0.15,-0.93) -- (0.35,-1.55);
-    \node[font=\small, left] at (0.1,-1.25) {$\delta k(\vect{k})$};
+    \node[font=\small, left] at (0.1,-1.25) {$\delta k(\lvect{k})$};
     \draw (1.2,-1.5) .. controls (1.4,-1.7) .. (1.55,-1.75);
 \end{tikzpicture}
-\caption{The density of levels as a shell volume: $g_n(\varepsilon)\,d\varepsilon$ counts the states between the constant-energy surface $S_n(\varepsilon)$ and $S_n(\varepsilon+d\varepsilon)$, whose perpendicular separation is $\delta k = d\varepsilon/|\nabla\varepsilon_n(\vect{k})|$.}
+\caption{The density of levels as a shell volume: $g_n(\varepsilon)\,d\varepsilon$ counts the states between the constant-energy surface $S_n(\varepsilon)$ and $S_n(\varepsilon+d\varepsilon)$, whose perpendicular separation is $\delta k = d\varepsilon/|\nabla\varepsilon_n(\lvect{k})|$.}
 \label{fig:bloch-dos-shell}
 \end{figure}
 
 \begin{formula}[Alternate density of states]
 \begin{equation}
-    g_n(\varepsilon) = \int_{S_n(\varepsilon)} \frac{dS}{4\pi^3}\,\frac{1}{|\nabla\varepsilon_n(\vect{k})|}.
+    g_n(\varepsilon) = \int_{S_n(\varepsilon)} \frac{dS}{4\pi^3}\,\frac{1}{|\nabla\varepsilon_n(\lvect{k})|}.
 \end{equation}
 \end{formula}
 
 \begin{fact}[Van Hove singularities]
-Because $\varepsilon_n(\vect{k})$ is periodic in the $\vect{k}$-space primitive cell and bounded above and below, there must be points where $\nabla\varepsilon_n(\vect{k}) = 0$, and at those points $g_n(\varepsilon)$ diverges.
+Because $\varepsilon_n(\lvect{k})$ is periodic in the $\lvect{k}$-space primitive cell and bounded above and below, there must be points where $\nabla\varepsilon_n(\lvect{k}) = 0$, and at those points $g_n(\varepsilon)$ diverges.
 \end{fact}
 
 % ============================================================
@@ -322,26 +322,26 @@ The nearly free electron model starts from the Sommerfeld free electron gas and 
 
 We begin from the plane-wave ansatz of the second proof of Bloch's theorem,
 \begin{equation}
-    \psi_{\vect{k}}(\vect{x}) = \sum_{\vect{G}} c_{\vect{k}-\vect{G}}\, e^{i(\vect{k}-\vect{G})\cdot\vect{x}},
+    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{G}} c_{\lvect{k}-\cvect{G}}\, e^{i(\lvect{k}-\cvect{G})\cdot\lvect{x}},
 \end{equation}
-summed over all reciprocal lattice vectors, with the coefficients $c_{\vect{k}-\vect{G}}$ and $\varepsilon(\vect{k})$ fixed by the central equation~\eqref{eq:bloch-central}, which we now write as
+summed over all reciprocal lattice vectors, with the coefficients $c_{\lvect{k}-\cvect{G}}$ and $\varepsilon(\lvect{k})$ fixed by the central equation~\eqref{eq:bloch-central}, which we now write as
 \begin{equation}
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}\bigr)\, c_{\vect{k}-\vect{G}}
-    = \sum_{\vect{G}'} U_{\vect{G}'-\vect{G}}\; c_{\vect{k}-\vect{G}'},
-    \qquad \varepsilon^0_{\vect{k}} \equiv \frac{\hbar^2 k^2}{2m}.
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}\bigr)\, c_{\lvect{k}-\cvect{G}}
+    = \sum_{\cvect{G}'} U_{\cvect{G}'-\cvect{G}}\; c_{\lvect{k}-\cvect{G}'},
+    \qquad \varepsilon^0_{\lvect{k}} \equiv \frac{\hbar^2 k^2}{2m}.
     \label{eq:bloch-central-eps}
 \end{equation}
 For free electrons $U = 0$ and this collapses to
 \begin{equation}
-    \bigl( \varepsilon^0_{\vect{k}-\vect{G}} - \varepsilon \bigr)\, c_{\vect{k}-\vect{G}} = 0,
+    \bigl( \varepsilon^0_{\lvect{k}-\cvect{G}} - \varepsilon \bigr)\, c_{\lvect{k}-\cvect{G}} = 0,
 \end{equation}
-so for every $\vect{G}$ either $\varepsilon^0_{\vect{k}-\vect{G}} = \varepsilon(\vect{k})$ or $c_{\vect{k}-\vect{G}} = 0$; nontriviality demands at least one nonzero coefficient. Two cases follow:
+so for every $\cvect{G}$ either $\varepsilon^0_{\lvect{k}-\cvect{G}} = \varepsilon(\lvect{k})$ or $c_{\lvect{k}-\cvect{G}} = 0$; nontriviality demands at least one nonzero coefficient. Two cases follow:
 \begin{enumerate}
-    \item \emph{Nondegenerate}: $\varepsilon = \varepsilon^0_{\vect{k}-\vect{G}_1}$ with $\psi_{\vect{k}} \propto e^{i(\vect{k}-\vect{G}_1)\cdot\vect{x}}$, a single plane wave.
-    \item \emph{Degenerate}: $\varepsilon^0_{\vect{k}-\vect{G}_1} = \cdots = \varepsilon^0_{\vect{k}-\vect{G}_m}$, i.e.\ several reciprocal lattice vectors sit at the same squared distance from the given $\vect{k}$ --- which happens only at certain points. There are then $m$ independent degenerate plane-wave solutions, and any linear combination is again a solution, so one has complete freedom in choosing the coefficients $c_{\vect{k}-\vect{G}}$ for $\vect{G} = \vect{G}_1,\ldots,\vect{G}_m$.
+    \item \emph{Nondegenerate}: $\varepsilon = \varepsilon^0_{\lvect{k}-\cvect{G}_1}$ with $\psi_{\lvect{k}} \propto e^{i(\lvect{k}-\cvect{G}_1)\cdot\lvect{x}}$, a single plane wave.
+    \item \emph{Degenerate}: $\varepsilon^0_{\lvect{k}-\cvect{G}_1} = \cdots = \varepsilon^0_{\lvect{k}-\cvect{G}_m}$, i.e.\ several reciprocal lattice vectors sit at the same squared distance from the given $\lvect{k}$ --- which happens only at certain points. There are then $m$ independent degenerate plane-wave solutions, and any linear combination is again a solution, so one has complete freedom in choosing the coefficients $c_{\lvect{k}-\cvect{G}}$ for $\cvect{G} = \cvect{G}_1,\ldots,\cvect{G}_m$.
 \end{enumerate}
 
-Turning on a weak but nonzero $U_{\vect{G}}$ resolves this freedom. The free-electron parabolas centred on neighbouring reciprocal lattice points intersect, and it is only in the neighbourhood of those intersections --- the region where $|\varepsilon^0_{\vect{k}-\vect{G}_1} - \varepsilon^0_{\vect{k}-\vect{G}}| \sim O(U)$ --- that the potential matters at all (Figure~\ref{fig:bloch-parabolas}).
+Turning on a weak but nonzero $U_{\cvect{G}}$ resolves this freedom. The free-electron parabolas centred on neighbouring reciprocal lattice points intersect, and it is only in the neighbourhood of those intersections --- the region where $|\varepsilon^0_{\lvect{k}-\cvect{G}_1} - \varepsilon^0_{\lvect{k}-\cvect{G}}| \sim O(U)$ --- that the potential matters at all (Figure~\ref{fig:bloch-parabolas}).
 
 \begin{figure}[ht]
 \centering
@@ -363,8 +363,8 @@ Turning on a weak but nonzero $U_{\vect{G}}$ resolves this freedom. The free-ele
     \draw[dashed] (axis cs:-2.6,0.65) -- (axis cs:2.6,0.65);
     \draw[{Stealth}-{Stealth}] (axis cs:2.05,0.65) -- (axis cs:2.05,1.35);
     \node[right, font=\small] at (axis cs:2.1,1.0) {$O(U)$};
-    \node[below, font=\small] at (axis cs:-2,0) {$\vect{k}_1$};
-    \node[below, font=\small] at (axis cs:2,0) {$\vect{G}$};
+    \node[below, font=\small] at (axis cs:-2,0) {$\lvect{k}_1$};
+    \node[below, font=\small] at (axis cs:2,0) {$\cvect{G}$};
 \end{axis}
 \end{tikzpicture}
 \caption{Free-electron parabolas centred on neighbouring reciprocal lattice points. The weak potential only matters in the zone where two free-electron energies differ by $O(U)$, i.e.\ near the crossings at $k = \pm G/2$.}
@@ -373,75 +373,75 @@ Turning on a weak but nonzero $U_{\vect{G}}$ resolves this freedom. The free-ele
 
 \subsection{Case 1: The Nondegenerate Case}
 
-Fix $\vect{k}$ and consider a $\vect{G}_1$ such that
+Fix $\lvect{k}$ and consider a $\cvect{G}_1$ such that
 \begin{equation}
-    \bigl| \varepsilon^0_{\vect{k}-\vect{G}_1} - \varepsilon^0_{\vect{k}-\vect{G}} \bigr| \gg U
-    \qquad \text{for all } \vect{G} \neq \vect{G}_1,
+    \bigl| \varepsilon^0_{\lvect{k}-\cvect{G}_1} - \varepsilon^0_{\lvect{k}-\cvect{G}} \bigr| \gg U
+    \qquad \text{for all } \cvect{G} \neq \cvect{G}_1,
 \end{equation}
-so that one energy level --- typically the smallest --- is isolated from all the others by an amount much larger than $U$. We want a solution that approaches the free-electron result $\varepsilon = \varepsilon^0_{\vect{k}-\vect{G}_1}$, $c_{\vect{k}-\vect{G}} = 0$ ($\vect{G}\neq\vect{G}_1$) as $U \to 0$. Hence $c_{\vect{k}-\vect{G}_1}$ is of order unity while the remaining $c_{\vect{k}-\vect{G}}$ are first order in $U$. Rearranging~\eqref{eq:bloch-central-eps} for a general $\vect{G}$,
+so that one energy level --- typically the smallest --- is isolated from all the others by an amount much larger than $U$. We want a solution that approaches the free-electron result $\varepsilon = \varepsilon^0_{\lvect{k}-\cvect{G}_1}$, $c_{\lvect{k}-\cvect{G}} = 0$ ($\cvect{G}\neq\cvect{G}_1$) as $U \to 0$. Hence $c_{\lvect{k}-\cvect{G}_1}$ is of order unity while the remaining $c_{\lvect{k}-\cvect{G}}$ are first order in $U$. Rearranging~\eqref{eq:bloch-central-eps} for a general $\cvect{G}$,
 \begin{equation}
-    c_{\vect{k}-\vect{G}} = \frac{U_{\vect{G}_1-\vect{G}}\, c_{\vect{k}-\vect{G}_1}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}
-    + \sum_{\vect{G}' \neq \vect{G}_1} \frac{U_{\vect{G}'-\vect{G}}\, c_{\vect{k}-\vect{G}'}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}
-    = \frac{U_{\vect{G}_1-\vect{G}}\, c_{\vect{k}-\vect{G}_1}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}} + O(U^2),
+    c_{\lvect{k}-\cvect{G}} = \frac{U_{\cvect{G}_1-\cvect{G}}\, c_{\lvect{k}-\cvect{G}_1}}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}}
+    + \sum_{\cvect{G}' \neq \cvect{G}_1} \frac{U_{\cvect{G}'-\cvect{G}}\, c_{\lvect{k}-\cvect{G}'}}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}}
+    = \frac{U_{\cvect{G}_1-\cvect{G}}\, c_{\lvect{k}-\cvect{G}_1}}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}} + O(U^2),
 \end{equation}
-having chosen $U_0 = 0$. Plugging this back into the equation for $c_{\vect{k}-\vect{G}_1}$,
+having chosen $U_0 = 0$. Plugging this back into the equation for $c_{\lvect{k}-\cvect{G}_1}$,
 \begin{equation}
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_1}\bigr) c_{\vect{k}-\vect{G}_1}
-    = \sum_{\vect{G}} \frac{|U_{\vect{G}-\vect{G}_1}|^2}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}\, c_{\vect{k}-\vect{G}_1} + O(U^3).
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_1}\bigr) c_{\lvect{k}-\cvect{G}_1}
+    = \sum_{\cvect{G}} \frac{|U_{\cvect{G}-\cvect{G}_1}|^2}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}}\, c_{\lvect{k}-\cvect{G}_1} + O(U^3).
 \end{equation}
-Replacing $\varepsilon \approx \varepsilon^0_{\vect{k}-\vect{G}_1}$ in the denominator --- legitimate because $\varepsilon = \varepsilon^0_{\vect{k}-\vect{G}_1} + \Delta E$ with $\Delta E = O(U^2)$ --- gives the perturbed level.
+Replacing $\varepsilon \approx \varepsilon^0_{\lvect{k}-\cvect{G}_1}$ in the denominator --- legitimate because $\varepsilon = \varepsilon^0_{\lvect{k}-\cvect{G}_1} + \Delta E$ with $\Delta E = O(U^2)$ --- gives the perturbed level.
 
 \begin{formula}[Nondegenerate weakly perturbed energy levels]
 \begin{equation}
-    \varepsilon = \varepsilon^0_{\vect{k}-\vect{G}_1}
-    + \sum_{\vect{G}} \frac{|U_{\vect{G}-\vect{G}_1}|^2}{\varepsilon^0_{\vect{k}-\vect{G}_1} - \varepsilon^0_{\vect{k}-\vect{G}}} + O(U^3).
+    \varepsilon = \varepsilon^0_{\lvect{k}-\cvect{G}_1}
+    + \sum_{\cvect{G}} \frac{|U_{\cvect{G}-\cvect{G}_1}|^2}{\varepsilon^0_{\lvect{k}-\cvect{G}_1} - \varepsilon^0_{\lvect{k}-\cvect{G}}} + O(U^3).
 \end{equation}
 \end{formula}
 
-The intuition is that the exact state is still mostly a single plane wave; the periodic potential merely admixes small pieces of the other $\vect{k}-\vect{G}$ plane waves, and the resulting energy shift is small.
+The intuition is that the exact state is still mostly a single plane wave; the periodic potential merely admixes small pieces of the other $\lvect{k}-\cvect{G}$ plane waves, and the resulting energy shift is small.
 
 \subsection{Case 2: The Degenerate Case}
 
-Now suppose there are $m$ reciprocal lattice vectors $\vect{G}_1,\ldots,\vect{G}_m$ whose free-electron energies $\varepsilon^0_{\vect{k}-\vect{G}_1},\ldots,\varepsilon^0_{\vect{k}-\vect{G}_m}$ all lie within $O(U)$ of each other, but are far from every other level on the scale of $U$:
+Now suppose there are $m$ reciprocal lattice vectors $\cvect{G}_1,\ldots,\cvect{G}_m$ whose free-electron energies $\varepsilon^0_{\lvect{k}-\cvect{G}_1},\ldots,\varepsilon^0_{\lvect{k}-\cvect{G}_m}$ all lie within $O(U)$ of each other, but are far from every other level on the scale of $U$:
 \begin{equation}
-    \bigl|\varepsilon^0_{\vect{k}-\vect{G}} - \varepsilon^0_{\vect{k}-\vect{G}_i}\bigr| \gg U,
-    \qquad i = 1,\ldots,m, \quad \vect{G} \neq \vect{G}_1,\ldots,\vect{G}_m.
+    \bigl|\varepsilon^0_{\lvect{k}-\cvect{G}} - \varepsilon^0_{\lvect{k}-\cvect{G}_i}\bigr| \gg U,
+    \qquad i = 1,\ldots,m, \quad \cvect{G} \neq \cvect{G}_1,\ldots,\cvect{G}_m.
 \end{equation}
 There is one constraint for each member of the degenerate set, so we get $m$ coupled equations. Separating the large coefficients from the small ones,
 \begin{equation}
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_i}\bigr) c_{\vect{k}-\vect{G}_i}
-    = \underbrace{\sum_{j=1}^{m} U_{\vect{G}_j-\vect{G}_i}\, c_{\vect{k}-\vect{G}_j}}_{\text{large coefficients}}
-    + \sum_{\vect{G} \neq \vect{G}_1\ldots\vect{G}_m} U_{\vect{G}-\vect{G}_i}\, c_{\vect{k}-\vect{G}},
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_i}\bigr) c_{\lvect{k}-\cvect{G}_i}
+    = \underbrace{\sum_{j=1}^{m} U_{\cvect{G}_j-\cvect{G}_i}\, c_{\lvect{k}-\cvect{G}_j}}_{\text{large coefficients}}
+    + \sum_{\cvect{G} \neq \cvect{G}_1\ldots\cvect{G}_m} U_{\cvect{G}-\cvect{G}_i}\, c_{\lvect{k}-\cvect{G}},
     \qquad i = 1,\ldots,m.
     \label{eq:bloch-degen}
 \end{equation}
-For the remaining $\vect{G} \neq \vect{G}_1,\ldots,\vect{G}_m$ the same equation gives
+For the remaining $\cvect{G} \neq \cvect{G}_1,\ldots,\cvect{G}_m$ the same equation gives
 \begin{equation}
-    c_{\vect{k}-\vect{G}} = \frac{1}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}}
-    \left( \sum_{j=1}^{m} U_{\vect{G}_j-\vect{G}}\, c_{\vect{k}-\vect{G}_j}
-    + \sum_{\vect{G}' \neq \vect{G}_1\ldots\vect{G}_m} U_{\vect{G}'-\vect{G}}\, c_{\vect{k}-\vect{G}'} \right)
-    = \frac{1}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}} \sum_{j=1}^{m} U_{\vect{G}_j-\vect{G}}\, c_{\vect{k}-\vect{G}_j} + O(U^2).
+    c_{\lvect{k}-\cvect{G}} = \frac{1}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}}
+    \left( \sum_{j=1}^{m} U_{\cvect{G}_j-\cvect{G}}\, c_{\lvect{k}-\cvect{G}_j}
+    + \sum_{\cvect{G}' \neq \cvect{G}_1\ldots\cvect{G}_m} U_{\cvect{G}'-\cvect{G}}\, c_{\lvect{k}-\cvect{G}'} \right)
+    = \frac{1}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}} \sum_{j=1}^{m} U_{\cvect{G}_j-\cvect{G}}\, c_{\lvect{k}-\cvect{G}_j} + O(U^2).
 \end{equation}
 Substituting this back into~\eqref{eq:bloch-degen},
 \begin{equation}
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_i}\bigr) c_{\vect{k}-\vect{G}_i}
-    = \sum_{j=1}^{m} U_{\vect{G}_j-\vect{G}_i}\, c_{\vect{k}-\vect{G}_j}
-    + \sum_{j=1}^{m} \left( \sum_{\vect{G} \neq \vect{G}_1\ldots\vect{G}_m}
-    \frac{U_{\vect{G}-\vect{G}_i} U_{\vect{G}_j-\vect{G}}}{\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}}} \right) c_{\vect{k}-\vect{G}_j} + O(U^3),
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_i}\bigr) c_{\lvect{k}-\cvect{G}_i}
+    = \sum_{j=1}^{m} U_{\cvect{G}_j-\cvect{G}_i}\, c_{\lvect{k}-\cvect{G}_j}
+    + \sum_{j=1}^{m} \left( \sum_{\cvect{G} \neq \cvect{G}_1\ldots\cvect{G}_m}
+    \frac{U_{\cvect{G}-\cvect{G}_i} U_{\cvect{G}_j-\cvect{G}}}{\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}}} \right) c_{\lvect{k}-\cvect{G}_j} + O(U^3),
 \end{equation}
 so that to leading order the second sum drops out.
 
-\begin{formula}[System of equations for $\varepsilon(\vect{k}-\vect{G})$]
+\begin{formula}[System of equations for $\varepsilon(\lvect{k}-\cvect{G})$]
 \begin{equation}
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_i}\bigr)\, c_{\vect{k}-\vect{G}_i}
-    = \sum_{j=1}^{m} U_{\vect{G}_j-\vect{G}_i}\, c_{\vect{k}-\vect{G}_j}.
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_i}\bigr)\, c_{\lvect{k}-\cvect{G}_i}
+    = \sum_{j=1}^{m} U_{\cvect{G}_j-\cvect{G}_i}\, c_{\lvect{k}-\cvect{G}_j}.
     \label{eq:bloch-degen-system}
 \end{equation}
 \end{formula}
 
 \subsection{The Bragg Plane Condition}
 
-When are two free-electron levels degenerate in the required sense? Suppose $\varepsilon^0_{\vect{q}} \approx \varepsilon^0_{\vect{q}-\vect{G}}$ while $|\varepsilon^0_{\vect{q}} - \varepsilon^0_{\vect{q}-\vect{G}'}| \gg U$ for all other $\vect{G}' \neq \vect{G}, 0$. The exact condition $\varepsilon^0_{\vect{q}} = \varepsilon^0_{\vect{q}-\vect{G}}$ holds precisely when $|\vect{q}| = |\vect{q}-\vect{G}|$, i.e.\ when $\vect{q}$ lies on the plane bisecting $\vect{G}$ --- the \emph{Bragg plane} (Figure~\ref{fig:bloch-bragg-plane}).
+When are two free-electron levels degenerate in the required sense? Suppose $\varepsilon^0_{\lvect{q}} \approx \varepsilon^0_{\lvect{q}-\cvect{G}}$ while $|\varepsilon^0_{\lvect{q}} - \varepsilon^0_{\lvect{q}-\cvect{G}'}| \gg U$ for all other $\cvect{G}' \neq \cvect{G}, 0$. The exact condition $\varepsilon^0_{\lvect{q}} = \varepsilon^0_{\lvect{q}-\cvect{G}}$ holds precisely when $|\lvect{q}| = |\lvect{q}-\cvect{G}|$, i.e.\ when $\lvect{q}$ lies on the plane bisecting $\cvect{G}$ --- the \emph{Bragg plane} (Figure~\ref{fig:bloch-bragg-plane}).
 
 \begin{figure}[ht]
 \centering
@@ -454,25 +454,25 @@ When are two free-electron levels degenerate in the required sense? Suppose $\va
     \draw[thick, Periwinkle] ($(M)!2.0!90:(K)$) -- ($(M)!2.0!270:(K)$);
     \node[Periwinkle, above] at ($(M)!2.0!90:(K)$) {Bragg plane};
     % vectors
-    \draw[-{Stealth}, thick] (O) -- (K) node[right] {$\vect{G}$};
-    \draw[-{Stealth}, thick] (O) -- (Q) node[above right] {$\vect{q}$};
+    \draw[-{Stealth}, thick] (O) -- (K) node[right] {$\cvect{G}$};
+    \draw[-{Stealth}, thick] (O) -- (Q) node[above right] {$\lvect{q}$};
     \draw[-{Stealth}, thick] (K) -- (Q);
-    \node at (5.9,0.2) {$\vect{q}-\vect{G}$};
+    \node at (5.9,0.2) {$\lvect{q}-\cvect{G}$};
     % half-K marker
     \draw[-{Stealth}, thick, Orange] (O) -- (M);
-    \node[Orange, below left] at (1.6,-0.35) {$\tfrac{1}{2}\vect{G}$};
+    \node[Orange, below left] at (1.6,-0.35) {$\tfrac{1}{2}\cvect{G}$};
     \fill (O) circle (1.6pt);
     \fill (K) circle (1.6pt);
     % right-angle tick at midpoint
     \draw[Orange] ($(M)+(0.12,0.06)$) -- ($(M)+(0.25,-0.2)$);
     \fill (Q) circle (1.6pt);
 \end{tikzpicture}
-\caption{The Bragg plane condition. The free-electron levels $\varepsilon^0_{\vect{q}}$ and $\varepsilon^0_{\vect{q}-\vect{G}}$ are degenerate exactly when $\vect{q}$ lies on the plane perpendicular to $\vect{G}$ through $\tfrac{1}{2}\vect{G}$.}
+\caption{The Bragg plane condition. The free-electron levels $\varepsilon^0_{\lvect{q}}$ and $\varepsilon^0_{\lvect{q}-\cvect{G}}$ are degenerate exactly when $\lvect{q}$ lies on the plane perpendicular to $\cvect{G}$ through $\tfrac{1}{2}\cvect{G}$.}
 \label{fig:bloch-bragg-plane}
 \end{figure}
 
 \begin{fact}[Key idea]
-A weak periodic potential has its most prominent effects only at those free-electron energy levels whose $\vect{k}$-values lie close to the planes that cause Bragg reflections.
+A weak periodic potential has its most prominent effects only at those free-electron energy levels whose $\lvect{k}$-values lie close to the planes that cause Bragg reflections.
 \end{fact}
 
 \subsection{Energy Levels Near a Single Bragg Plane}
@@ -480,30 +480,30 @@ A weak periodic potential has its most prominent effects only at those free-elec
 \begin{example}[Two nearly degenerate levels]
 Take $m = 2$, i.e.\ two electron levels within $U$ of each other. Then~\eqref{eq:bloch-degen-system} reduces to the pair
 \begin{align}
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_1}\bigr) c_{\vect{k}-\vect{G}_1} &= U_{\vect{G}_2-\vect{G}_1}\, c_{\vect{k}-\vect{G}_2}, \\
-    \bigl(\varepsilon - \varepsilon^0_{\vect{k}-\vect{G}_2}\bigr) c_{\vect{k}-\vect{G}_2} &= U_{\vect{G}_1-\vect{G}_2}\, c_{\vect{k}-\vect{G}_1}.
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_1}\bigr) c_{\lvect{k}-\cvect{G}_1} &= U_{\cvect{G}_2-\cvect{G}_1}\, c_{\lvect{k}-\cvect{G}_2}, \\
+    \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_2}\bigr) c_{\lvect{k}-\cvect{G}_2} &= U_{\cvect{G}_1-\cvect{G}_2}\, c_{\lvect{k}-\cvect{G}_1}.
 \end{align}
-Letting $\vect{q} = \vect{k} - \vect{G}_1$ and $\vect{G} = \vect{G}_2 - \vect{G}_1$, a nontrivial solution requires
+Letting $\lvect{q} = \lvect{k} - \cvect{G}_1$ and $\cvect{G} = \cvect{G}_2 - \cvect{G}_1$, a nontrivial solution requires
 \begin{equation}
-    \det \begin{pmatrix} \varepsilon - \varepsilon^0_{\vect{q}} & -U_{\vect{G}} \\[2pt] -U^*_{\vect{G}} & \varepsilon - \varepsilon^0_{\vect{q}-\vect{G}} \end{pmatrix} = 0,
+    \det \begin{pmatrix} \varepsilon - \varepsilon^0_{\lvect{q}} & -U_{\cvect{G}} \\[2pt] -U^*_{\cvect{G}} & \varepsilon - \varepsilon^0_{\lvect{q}-\cvect{G}} \end{pmatrix} = 0,
 \end{equation}
 whose roots are
 \begin{equation}
-    \varepsilon = \tfrac{1}{2}\bigl(\varepsilon^0_{\vect{q}} + \varepsilon^0_{\vect{q}-\vect{G}}\bigr)
-    \pm \left[ \left( \frac{\varepsilon^0_{\vect{q}} - \varepsilon^0_{\vect{q}-\vect{G}}}{2} \right)^{\!2} + |U_{\vect{G}}|^2 \right]^{1/2}.
+    \varepsilon = \tfrac{1}{2}\bigl(\varepsilon^0_{\lvect{q}} + \varepsilon^0_{\lvect{q}-\cvect{G}}\bigr)
+    \pm \left[ \left( \frac{\varepsilon^0_{\lvect{q}} - \varepsilon^0_{\lvect{q}-\cvect{G}}}{2} \right)^{\!2} + |U_{\cvect{G}}|^2 \right]^{1/2}.
     \label{eq:bloch-two-level}
 \end{equation}
-Note that when $\varepsilon^0_{\vect{q}} = \varepsilon^0_{\vect{q}-\vect{G}}$,
+Note that when $\varepsilon^0_{\lvect{q}} = \varepsilon^0_{\lvect{q}-\cvect{G}}$,
 \begin{equation}
-    \pdv{\varepsilon}{\vect{q}} = \frac{\hbar^2}{m}\bigl(\vect{q} - \tfrac{1}{2}\vect{G}\bigr),
+    \pdv{\varepsilon}{\lvect{q}} = \frac{\hbar^2}{m}\bigl(\lvect{q} - \tfrac{1}{2}\cvect{G}\bigr),
 \end{equation}
-so the constant-energy surfaces meet the Bragg plane at right angles. If $\vect{q}$ lies exactly on the Bragg plane the two free-electron energies coincide and~\eqref{eq:bloch-two-level} collapses to
+so the constant-energy surfaces meet the Bragg plane at right angles. If $\lvect{q}$ lies exactly on the Bragg plane the two free-electron energies coincide and~\eqref{eq:bloch-two-level} collapses to
 \begin{equation}
-    \varepsilon = \varepsilon^0_{\vect{q}} \pm |U_{\vect{G}}|.
+    \varepsilon = \varepsilon^0_{\lvect{q}} \pm |U_{\cvect{G}}|.
 \end{equation}
 \end{example}
 
-The two branches are therefore split by $2|U_{\vect{G}}|$ where they would otherwise have crossed, as sketched in Figure~\ref{fig:bloch-gap}.
+The two branches are therefore split by $2|U_{\cvect{G}}|$ where they would otherwise have crossed, as sketched in Figure~\ref{fig:bloch-gap}.
 
 \begin{figure}[ht]
 \centering
@@ -528,27 +528,27 @@ The two branches are therefore split by $2|U_{\vect{G}}|$ where they would other
     % gap marker
     \draw[dashed] (axis cs:1,0) -- (axis cs:1,2.5);
     \draw[{Stealth}-{Stealth}, thick] (axis cs:1,0.65) -- (axis cs:1,1.35);
-    \node[right] at (axis cs:1.05,1.0) {$2|U_{\vect{G}}|$};
+    \node[right] at (axis cs:1.05,1.0) {$2|U_{\cvect{G}}|$};
 \end{axis}
 \end{tikzpicture}
-\caption{Energy levels near a single Bragg plane. The two free-electron parabolas (dashed) would cross at $q=\tfrac{1}{2}G$; the weak periodic potential repels them, leaving a gap of $2|U_{\vect{G}}|$ and forcing both branches to meet the zone boundary with zero slope.}
+\caption{Energy levels near a single Bragg plane. The two free-electron parabolas (dashed) would cross at $q=\tfrac{1}{2}G$; the weak periodic potential repels them, leaving a gap of $2|U_{\cvect{G}}|$ and forcing both branches to meet the zone boundary with zero slope.}
 \label{fig:bloch-gap}
 \end{figure}
 
 \subsection{Wavefunctions at a Single Bragg Plane}
 
-Plugging $\varepsilon = \varepsilon^0_{\vect{q}} \pm |U_{\vect{G}}|$ back into the two-level system fixes the ratio of the coefficients,
+Plugging $\varepsilon = \varepsilon^0_{\lvect{q}} \pm |U_{\cvect{G}}|$ back into the two-level system fixes the ratio of the coefficients,
 \begin{equation}
-    c_{\vect{q}} = \pm \operatorname{sgn}(U_{\vect{G}})\, c_{\vect{q}-\vect{G}},
+    c_{\lvect{q}} = \pm \operatorname{sgn}(U_{\cvect{G}})\, c_{\lvect{q}-\cvect{G}},
 \end{equation}
-so for $U_{\vect{G}} > 0$ the two solutions are the even and odd combinations of the two plane waves:
+so for $U_{\cvect{G}} > 0$ the two solutions are the even and odd combinations of the two plane waves:
 \begin{align}
-    \psi(\vect{x}) &\propto e^{i\frac{\vect{G}}{2}\cdot\vect{x}} + e^{-i\frac{\vect{G}}{2}\cdot\vect{x}}
-    \;\Longrightarrow\; |\psi(\vect{x})|^2 \propto \cos^2\!\left(\tfrac{\vect{G}}{2}\cdot\vect{x}\right),
-    && \varepsilon = \varepsilon^0_{\vect{q}} + |U_{\vect{G}}| \quad \text{($s$-like)}, \\
-    \psi(\vect{x}) &\propto e^{i\frac{\vect{G}}{2}\cdot\vect{x}} - e^{-i\frac{\vect{G}}{2}\cdot\vect{x}}
-    \;\Longrightarrow\; |\psi(\vect{x})|^2 \propto \sin^2\!\left(\tfrac{\vect{G}}{2}\cdot\vect{x}\right),
-    && \varepsilon = \varepsilon^0_{\vect{q}} - |U_{\vect{G}}| \quad \text{($p$-like)}.
+    \psi(\lvect{x}) &\propto e^{i\frac{\cvect{G}}{2}\cdot\lvect{x}} + e^{-i\frac{\cvect{G}}{2}\cdot\lvect{x}}
+    \;\Longrightarrow\; |\psi(\lvect{x})|^2 \propto \cos^2\!\left(\tfrac{\cvect{G}}{2}\cdot\lvect{x}\right),
+    && \varepsilon = \varepsilon^0_{\lvect{q}} + |U_{\cvect{G}}| \quad \text{($s$-like)}, \\
+    \psi(\lvect{x}) &\propto e^{i\frac{\cvect{G}}{2}\cdot\lvect{x}} - e^{-i\frac{\cvect{G}}{2}\cdot\lvect{x}}
+    \;\Longrightarrow\; |\psi(\lvect{x})|^2 \propto \sin^2\!\left(\tfrac{\cvect{G}}{2}\cdot\lvect{x}\right),
+    && \varepsilon = \varepsilon^0_{\lvect{q}} - |U_{\cvect{G}}| \quad \text{($p$-like)}.
 \end{align}
 The lower-energy ($p$-like) state piles its charge away from the ion cores, the higher-energy ($s$-like) state piles it on them.
 
@@ -557,7 +557,7 @@ The lower-energy ($p$-like) state piles its charge away from the ion cores, the 
 In three dimensions the free-electron band structure is highly degenerate, and group theory determines how many bands a weak potential splits each degeneracy into. The generic statement that survives is about the size of the splitting.
 
 \begin{fact}[Energy gap]
-The energy gap opened at a Bragg plane is at least $2|U_{\vect{G}}|$.
+The energy gap opened at a Bragg plane is at least $2|U_{\cvect{G}}|$.
 \end{fact}
 
 \subsection{Brillouin Zones and Fermi Levels}
@@ -611,118 +611,118 @@ Assume that in the vicinity of an atom the full Hamiltonian $H$ is well approxim
 \begin{equation}
     H_{\text{at}} \psi_n = E_n \psi_n,
 \end{equation}
-and require $\psi_n(\vect{x})$ to be very small once $|\vect{x}|$ exceeds the lattice constant $a$. Writing the crystal Hamiltonian as
+and require $\psi_n(\lvect{x})$ to be very small once $|\lvect{x}|$ exceeds the lattice constant $a$. Writing the crystal Hamiltonian as
 \begin{equation}
-    H = H_{\text{at}} + \Delta U(\vect{x}),
+    H = H_{\text{at}} + \Delta U(\lvect{x}),
 \end{equation}
 we have
 \begin{equation}
-    H \psi_n(\vect{x}) = H_{\text{at}} \psi_n(\vect{x}) + \Delta U(\vect{x}) \psi_n(\vect{x})
-    = E_n \psi_n(\vect{x}) + \boxed{\Delta U(\vect{x})\psi_n(\vect{x})}.
+    H \psi_n(\lvect{x}) = H_{\text{at}} \psi_n(\lvect{x}) + \Delta U(\lvect{x}) \psi_n(\lvect{x})
+    = E_n \psi_n(\lvect{x}) + \boxed{\Delta U(\lvect{x})\psi_n(\lvect{x})}.
 \end{equation}
-For $\psi_n$ to satisfy the crystal Hamiltonian the boxed term must vanish, which happens either because $\Delta U(\vect{x})$ is small (close to the atom) or because $\psi_n(\vect{x})$ is small (far from the atom). Hence an atomic solution $\psi_n(\vect{x} - \vect{R})$ can be placed at each atomic site $\vect{R}$ of the lattice.
+For $\psi_n$ to satisfy the crystal Hamiltonian the boxed term must vanish, which happens either because $\Delta U(\lvect{x})$ is small (close to the atom) or because $\psi_n(\lvect{x})$ is small (far from the atom). Hence an atomic solution $\psi_n(\lvect{x} - \cvect{R})$ can be placed at each atomic site $\cvect{R}$ of the lattice.
 
-These site-localized functions do not individually satisfy the Bloch condition $\psi(\vect{x}+\vect{R}) = e^{i\vect{k}\cdot\vect{R}}\psi(\vect{x})$, so we take linear combinations,
+These site-localized functions do not individually satisfy the Bloch condition $\psi(\lvect{x}+\cvect{R}) = e^{i\lvect{k}\cdot\cvect{R}}\psi(\lvect{x})$, so we take linear combinations,
 \begin{equation}
-    \psi_{n\vect{k}}(\vect{x}) = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}}\, \psi_n(\vect{x} - \vect{R}),
+    \psi_{n\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\, \psi_n(\lvect{x} - \cvect{R}),
     \label{eq:bloch-tb-sum}
 \end{equation}
-where $\vect{k}$ lies in the first Brillouin zone with Born--von Karman boundary conditions.
+where $\lvect{k}$ lies in the first Brillouin zone with Born--von Karman boundary conditions.
 
 \begin{theorem}[\eqref{eq:bloch-tb-sum} satisfies Bloch's theorem]
-Let $\vect{R}'' = \vect{R}' - \vect{R}$, which is again a lattice vector by the periodic boundary conditions. Then
+Let $\cvect{R}'' = \cvect{R}' - \cvect{R}$, which is again a lattice vector by the periodic boundary conditions. Then
 \begin{align}
-    \psi(\vect{x}+\vect{R}) &= \sum_{\vect{R}'} e^{i\vect{k}\cdot\vect{R}'}\, \psi_n(\vect{x} + \vect{R} - \vect{R}')
-    = \sum_{\vect{R}''} e^{i\vect{k}\cdot(\vect{R}''+\vect{R})}\, \psi_n(\vect{x} - \vect{R}'') \\
-    &= e^{i\vect{k}\cdot\vect{R}} \sum_{\vect{R}''} e^{i\vect{k}\cdot\vect{R}''}\, \psi_n(\vect{x} - \vect{R}'')
-    = e^{i\vect{k}\cdot\vect{R}}\, \psi(\vect{x}).
+    \psi(\lvect{x}+\cvect{R}) &= \sum_{\cvect{R}'} e^{i\lvect{k}\cdot\cvect{R}'}\, \psi_n(\lvect{x} + \cvect{R} - \cvect{R}')
+    = \sum_{\cvect{R}''} e^{i\lvect{k}\cdot(\cvect{R}''+\cvect{R})}\, \psi_n(\lvect{x} - \cvect{R}'') \\
+    &= e^{i\lvect{k}\cdot\cvect{R}} \sum_{\cvect{R}''} e^{i\lvect{k}\cdot\cvect{R}''}\, \psi_n(\lvect{x} - \cvect{R}'')
+    = e^{i\lvect{k}\cdot\cvect{R}}\, \psi(\lvect{x}).
 \end{align}
 \end{theorem}
 
 However, acting with $H$ on this state,
 \begin{equation}
-    H\psi_{n\vect{k}} = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} H \psi_n(\vect{x}-\vect{R}) = E_n \psi_{n\vect{k}}(\vect{x}),
+    H\psi_{n\lvect{k}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} H \psi_n(\lvect{x}-\cvect{R}) = E_n \psi_{n\lvect{k}}(\lvect{x}),
 \end{equation}
-gives no modification to the atomic energies at all --- which is not realistic. The fix is to assume instead that the product $\Delta U(\vect{x})\psi_n(\vect{x})$ is exceedingly small but nonzero.
+gives no modification to the atomic energies at all --- which is not realistic. The fix is to assume instead that the product $\Delta U(\lvect{x})\psi_n(\lvect{x})$ is exceedingly small but nonzero.
 
 \begin{formula}[Tight-binding ansatz]
-Assume a single-atom-like wavefunction $\phi(\vect{x})$ close to the true $\psi(\vect{x})$,
+Assume a single-atom-like wavefunction $\phi(\lvect{x})$ close to the true $\psi(\lvect{x})$,
 \begin{equation}
-    \phi(\vect{x}) = \sum_n b_n \psi_n(\vect{x}) \qquad \text{(cf.\ Wannier functions)},
+    \phi(\lvect{x}) = \sum_n b_n \psi_n(\lvect{x}) \qquad \text{(cf.\ Wannier functions)},
 \end{equation}
 and build the crystal state as
 \begin{equation}
-    \psi_{\vect{k}}(\vect{x}) = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}}\, \phi(\vect{x}-\vect{R}),
+    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\, \phi(\lvect{x}-\cvect{R}),
     \qquad b_n = \braket{\psi_n | \phi}.
 \end{equation}
 \end{formula}
 
 \subsection{Finding the Coefficients}
 
-We need the $b_n(\vect{k})$. Start from $H\ket{\psi_{\vect{k}}} = (H_{\text{at}} + \Delta U)\ket{\psi_{\vect{k}}} = \varepsilon(\vect{k})\ket{\psi_{\vect{k}}}$ and project onto an atomic orbital. Since $\bra{\psi_m} H_{\text{at}} \ket{\psi_{\vect{k}}} = E_m \braket{\psi_m | \psi_{\vect{k}}}$,
+We need the $b_n(\lvect{k})$. Start from $H\ket{\psi_{\lvect{k}}} = (H_{\text{at}} + \Delta U)\ket{\psi_{\lvect{k}}} = \varepsilon(\lvect{k})\ket{\psi_{\lvect{k}}}$ and project onto an atomic orbital. Since $\bra{\psi_m} H_{\text{at}} \ket{\psi_{\lvect{k}}} = E_m \braket{\psi_m | \psi_{\lvect{k}}}$,
 \begin{equation}
-    \bra{\psi_m} H \ket{\psi_{\vect{k}}} = E_m \braket{\psi_m|\psi_{\vect{k}}} + \bra{\psi_m}\Delta U\ket{\psi_{\vect{k}}} = \varepsilon(\vect{k}) \braket{\psi_m|\psi_{\vect{k}}},
+    \bra{\psi_m} H \ket{\psi_{\lvect{k}}} = E_m \braket{\psi_m|\psi_{\lvect{k}}} + \bra{\psi_m}\Delta U\ket{\psi_{\lvect{k}}} = \varepsilon(\lvect{k}) \braket{\psi_m|\psi_{\lvect{k}}},
 \end{equation}
 so that
 \begin{equation}
-    \bigl(\varepsilon(\vect{k}) - E_m\bigr) \braket{\psi_m | \psi_{\vect{k}}} = \bra{\psi_m} \Delta U \ket{\psi_{\vect{k}}}.
+    \bigl(\varepsilon(\lvect{k}) - E_m\bigr) \braket{\psi_m | \psi_{\lvect{k}}} = \bra{\psi_m} \Delta U \ket{\psi_{\lvect{k}}}.
 \end{equation}
-Now insert $\ket{\psi_{\vect{k}}} = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} \sum_n b_n \ket{\psi_n(\vect{x}-\vect{R})}$ and use $\braket{\psi_m|\psi_n} = \delta_{mn}$:
+Now insert $\ket{\psi_{\lvect{k}}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} \sum_n b_n \ket{\psi_n(\lvect{x}-\cvect{R})}$ and use $\braket{\psi_m|\psi_n} = \delta_{mn}$:
 \begin{equation}
-    \bigl(\varepsilon(\vect{k}) - E_m\bigr) \sum_n b_n \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}}
-    \underbrace{\braket{\psi_m | \psi_n(\vect{x}-\vect{R})}}_{\displaystyle \alpha_{mn}(\vect{R})}
-    = \sum_n b_n \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}}
-    \underbrace{\bra{\psi_m} \Delta U \ket{\psi_n(\vect{x}-\vect{R})}}_{\displaystyle \gamma_{mn}(\vect{R})}.
+    \bigl(\varepsilon(\lvect{k}) - E_m\bigr) \sum_n b_n \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}
+    \underbrace{\braket{\psi_m | \psi_n(\lvect{x}-\cvect{R})}}_{\displaystyle \alpha_{mn}(\cvect{R})}
+    = \sum_n b_n \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}
+    \underbrace{\bra{\psi_m} \Delta U \ket{\psi_n(\lvect{x}-\cvect{R})}}_{\displaystyle \gamma_{mn}(\cvect{R})}.
 \end{equation}
 Rearranging gives the general constraint
 \begin{equation}
-    \varepsilon(\vect{k}) \sum_n b_n \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} \alpha_{mn}(\vect{R})
-    = \sum_n b_n \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} \bigl( E_m \alpha_{mn}(\vect{R}) + \gamma_{mn}(\vect{R}) \bigr).
+    \varepsilon(\lvect{k}) \sum_n b_n \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} \alpha_{mn}(\cvect{R})
+    = \sum_n b_n \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} \bigl( E_m \alpha_{mn}(\cvect{R}) + \gamma_{mn}(\cvect{R}) \bigr).
     \label{eq:bloch-tb-constraint}
 \end{equation}
 
 \subsection{The Tight-Binding Equation}
 
-Assume now that $\alpha_{mn}(\vect{R})$ and $\gamma_{mn}(\vect{R})$ are negligible for $|\vect{R}|$ beyond the nearest neighbours, so that the lattice sums run over a finite set. Define
+Assume now that $\alpha_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})$ are negligible for $|\cvect{R}|$ beyond the nearest neighbours, so that the lattice sums run over a finite set. Define
 \begin{equation}
-    \alpha_{mn}(\vect{k}) = \sum_{\text{n.n.}} e^{i\vect{k}\cdot\vect{R}} \alpha_{mn}(\vect{R}),
+    \alpha_{mn}(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} \alpha_{mn}(\cvect{R}),
     \qquad
-    H_{mn}(\vect{k}) = \sum_{\text{n.n.}} e^{i\vect{k}\cdot\vect{R}} H_{mn}(\vect{R}),
+    H_{mn}(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} H_{mn}(\cvect{R}),
     \qquad
-    H_{mn}(\vect{R}) = E_m \alpha_{mn}(\vect{R}) + \gamma_{mn}(\vect{R}).
+    H_{mn}(\cvect{R}) = E_m \alpha_{mn}(\cvect{R}) + \gamma_{mn}(\cvect{R}).
 \end{equation}
-Then~\eqref{eq:bloch-tb-constraint} reads $\varepsilon(\vect{k}) \sum_n b_n \alpha_{mn}(\vect{k}) = \sum_n b_n H_{mn}(\vect{k})$.
+Then~\eqref{eq:bloch-tb-constraint} reads $\varepsilon(\lvect{k}) \sum_n b_n \alpha_{mn}(\lvect{k}) = \sum_n b_n H_{mn}(\lvect{k})$.
 
 \begin{formula}[Tight-binding equation]
 \begin{equation}
-    \varepsilon(\vect{k})\, \alpha(\vect{k})\, \vect{c} = H(\vect{k})\, \vect{c},
-    \qquad \vect{c} = (b_1, \ldots, b_n)^T.
+    \varepsilon(\lvect{k})\, \alpha(\lvect{k})\, \lvect{c} = H(\lvect{k})\, \lvect{c},
+    \qquad \lvect{c} = (b_1, \ldots, b_n)^T.
 \end{equation}
 \end{formula}
 
 \subsection{Application to an $s$-Band}
 
 \begin{example}[Single $s$-band]
-If there is only one band then $\alpha(\vect{k}) = \mathbb{1}$ and $\vect{c} \to 1$, so $\varepsilon(\vect{k})\mathbb{1} = H(\vect{k})$. With $\alpha_{mn}(\vect{R}) = \delta_{mn}\delta_{\vect{R},0}$,
+If there is only one band then $\alpha(\lvect{k}) = \mathbb{1}$ and $\lvect{c} \to 1$, so $\varepsilon(\lvect{k})\mathbb{1} = H(\lvect{k})$. With $\alpha_{mn}(\cvect{R}) = \delta_{mn}\delta_{\cvect{R},0}$,
 \begin{equation}
-    H(\vect{k}) = \sum_{\text{n.n.}} e^{i\vect{k}\cdot\vect{R}} \bigl( E_m \delta_{\vect{R},0} + \gamma(\vect{R}) \bigr)
-    = E_m - \beta + \sum_{\text{n.n.}} e^{i\vect{k}\cdot\vect{R}} \gamma(\vect{R}),
+    H(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} \bigl( E_m \delta_{\cvect{R},0} + \gamma(\cvect{R}) \bigr)
+    = E_m - \beta + \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} \gamma(\cvect{R}),
 \end{equation}
-where $-\beta = \gamma(0)$ is the on-site term. By inversion symmetry of the lattice $\Delta U(-\vect{R}) = \Delta U(\vect{R})$, so $\gamma(\vect{R}) = \gamma$ is the same for all nearest neighbours and the exponentials combine into cosines:
+where $-\beta = \gamma(0)$ is the on-site term. By inversion symmetry of the lattice $\Delta U(-\cvect{R}) = \Delta U(\cvect{R})$, so $\gamma(\cvect{R}) = \gamma$ is the same for all nearest neighbours and the exponentials combine into cosines:
 \begin{equation}
-    \varepsilon(\vect{k}) = E_s - \beta + \sum_{\text{n.n.}} \gamma \cos(\vect{k}\cdot\vect{R}).
+    \varepsilon(\lvect{k}) = E_s - \beta + \sum_{\text{n.n.}} \gamma \cos(\lvect{k}\cdot\cvect{R}).
 \end{equation}
 \end{example}
 
 \begin{formula}[Single-orbital tight-binding]
 \begin{equation}
-    \varepsilon(\vect{k}) = E_s - \beta - \sum_{\text{n.n.}} \gamma(\vect{R}) \cos(\vect{k}\cdot\vect{R}),
+    \varepsilon(\lvect{k}) = E_s - \beta - \sum_{\text{n.n.}} \gamma(\cvect{R}) \cos(\lvect{k}\cdot\cvect{R}),
     \qquad
-    \gamma \equiv -\bra{\phi(\vect{x})} \Delta U(\vect{x}) \ket{\phi(\vect{x}-\vect{R})},
+    \gamma \equiv -\bra{\phi(\lvect{x})} \Delta U(\lvect{x}) \ket{\phi(\lvect{x}-\cvect{R})},
 \end{equation}
 where ``n.n.'' means only nearest-neighbour atomic separations are summed. The assumptions are:
 \begin{enumerate}
-    \item \emph{Orthogonality}: $\alpha(\vect{R}) = \int d\vect{x}\; \phi^*(\vect{x})\phi(\vect{x}-\vect{R}) = 0$;
+    \item \emph{Orthogonality}: $\alpha(\cvect{R}) = \int d\lvect{x}\; \phi^*(\lvect{x})\phi(\lvect{x}-\cvect{R}) = 0$;
     \item only nearest-neighbour separations give appreciable overlap integrals.
 \end{enumerate}
 \end{formula}
@@ -730,18 +730,18 @@ where ``n.n.'' means only nearest-neighbour atomic separations are summed. The a
 \begin{example}[Tight-binding for an FCC crystal]
 The 12 nearest neighbours of the origin in an FCC lattice sit at
 \begin{equation}
-    \vect{R} = \tfrac{a}{2}(\pm 1, \pm 1, 0), \quad \tfrac{a}{2}(\pm 1, 0, \pm 1), \quad \tfrac{a}{2}(0, \pm 1, \pm 1),
+    \cvect{R} = \tfrac{a}{2}(\pm 1, \pm 1, 0), \quad \tfrac{a}{2}(\pm 1, 0, \pm 1), \quad \tfrac{a}{2}(0, \pm 1, \pm 1),
 \end{equation}
-so $\vect{k}\cdot\vect{R} = \tfrac{a}{2}(\pm k_i \pm k_j)$ with $ij = xy,\, yz,\, xz$. Summing the twelve exponentials gives
+so $\lvect{k}\cdot\cvect{R} = \tfrac{a}{2}(\pm k_i \pm k_j)$ with $ij = xy,\, yz,\, xz$. Summing the twelve exponentials gives
 \begin{equation}
-    \varepsilon(\vect{k}) = E_s - \beta - 4\gamma \sum_{ij} \cos(k_i a)\cos(k_j a).
+    \varepsilon(\lvect{k}) = E_s - \beta - 4\gamma \sum_{ij} \cos(k_i a)\cos(k_j a).
 \end{equation}
 The intuition to carry away: the smaller the orbital overlap integral, the narrower the band.
 \end{example}
 
 \subsection{From Atomic Levels to Bands}
 
-Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a single-atom potential with what happens in a solid: as the atoms are brought together, each atomic level broadens into a band containing $N$ values of $\vect{k}$.
+Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a single-atom potential with what happens in a solid: as the atoms are brought together, each atomic level broadens into a band containing $N$ values of $\lvect{k}$.
 
 \begin{figure}[ht]
 \centering
@@ -768,11 +768,11 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
         \draw (0,1.95) -- (2.2,1.5);
         \draw (0,1.95) -- (2.2,2.4);
         \draw[decorate, decoration={brace, amplitude=5pt}] (2.5,2.45) -- (2.5,0.0);
-        \node[right, align=left, font=\small] at (2.75,1.2) {bands, each with\\$N$ values of $\vect{k}$};
+        \node[right, align=left, font=\small] at (2.75,1.2) {bands, each with\\$N$ values of $\lvect{k}$};
         \node[align=center, font=\small] at (1.1,-0.75) {electronic levels\\in a solid};
     \end{scope}
 \end{tikzpicture}
-\caption{Discrete levels of the single-atom potential (left) broaden into bands as the atomic spacing is reduced (right); each band contains $N$ allowed values of $\vect{k}$.}
+\caption{Discrete levels of the single-atom potential (left) broaden into bands as the atomic spacing is reduced (right); each band contains $N$ allowed values of $\lvect{k}$.}
 \label{fig:bloch-levels}
 \end{figure}
 
@@ -780,13 +780,13 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 
 \begin{enumerate}
     \item The number of atomic levels kept in the expansion determines the number of bands, and equals the dimension of the matrix problem --- as one sees from the indices of $H_{mn}$.
-    \item The width of a band (lowest to highest energy within it) scales with the overlap integrals $\gamma_{mn}(\vect{R})$. Rule of thumb: as the energy of a given atomic level increases, so does the spatial extent of its wavefunction.
-    \item The more overlap, the greater $\partial\varepsilon/\partial \vect{k}$, which means the electrons have a larger mean velocity.
+    \item The width of a band (lowest to highest energy within it) scales with the overlap integrals $\gamma_{mn}(\cvect{R})$. Rule of thumb: as the energy of a given atomic level increases, so does the spatial extent of its wavefunction.
+    \item The more overlap, the greater $\partial\varepsilon/\partial \lvect{k}$, which means the electrons have a larger mean velocity.
     \item For materials with more than one atom in the basis, use
     \begin{equation}
-        \psi(\vect{x}) = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}}\bigl( a\,\phi(\vect{x}-\vect{R}) + b\,\phi(\vect{x}-\vect{d}-\vect{R}) \bigr).
+        \psi(\lvect{x}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigl( a\,\phi(\lvect{x}-\cvect{R}) + b\,\phi(\lvect{x}-\lvect{d}-\cvect{R}) \bigr).
     \end{equation}
-    \item When spin--orbit coupling is present (as in heavier elements), include in $\Delta U(\vect{x})$ the electron's interaction with neighbouring atomic spins, and approximate $\phi$ as a linear combination of the same orbital wavefunctions but of opposite spin --- which doubles the size of the tight-binding matrix.
+    \item When spin--orbit coupling is present (as in heavier elements), include in $\Delta U(\lvect{x})$ the electron's interaction with neighbouring atomic spins, and approximate $\phi$ as a linear combination of the same orbital wavefunctions but of opposite spin --- which doubles the size of the tight-binding matrix.
     \item The method still assumes the independent-electron approximation, and so fails for magnetic materials.
 \end{enumerate}
 
@@ -794,15 +794,15 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 
 Wannier functions form a basis for the atomic wavefunctions $\phi$. Any Bloch function can be written in the form
 \begin{equation}
-    \psi_{n\vect{k}}(\vect{x}) = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} f_n(\vect{R}, \vect{x}),
+    \psi_{n\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} f_n(\cvect{R}, \lvect{x}),
     \qquad
-    f_n(\vect{R},\vect{x}) = \frac{1}{v_0} \int d\vect{k}\; e^{-i\vect{k}\cdot\vect{R}} \psi_{n\vect{k}}(\vect{x}),
+    f_n(\cvect{R},\lvect{x}) = \frac{1}{v_0} \int d\lvect{k}\; e^{-i\lvect{k}\cdot\cvect{R}} \psi_{n\lvect{k}}(\lvect{x}),
 \end{equation}
-and by Bloch's theorem it must be that $f_n(\vect{R},\vect{x}) = \phi_n(\vect{x}-\vect{R})$.
+and by Bloch's theorem it must be that $f_n(\cvect{R},\lvect{x}) = \phi_n(\lvect{x}-\cvect{R})$.
 
 \begin{fact}[Orthogonality]
 \begin{equation}
-    \braket{\phi_n | \phi_m} = \braket{\phi_n(\vect{x}-\vect{R}_a) | \phi_n(\vect{x}-\vect{R}_b)} = 0.
+    \braket{\phi_n | \phi_m} = \braket{\phi_n(\lvect{x}-\cvect{R}_a) | \phi_n(\lvect{x}-\cvect{R}_b)} = 0.
 \end{equation}
 \end{fact}
 
@@ -812,66 +812,66 @@ Because they are localized, Wannier functions are important for modelling semicl
 \section{Lattice Fourier Transforms and Identities}
 % ============================================================
 
-Both models above lean on a handful of lattice Fourier identities, which we now collect. The starting point is that the plane waves $e^{i\vect{k}\cdot\vect{x}}$ form a complete basis for any well-behaved function on $\mathbb{R}^3$.
+Both models above lean on a handful of lattice Fourier identities, which we now collect. The starting point is that the plane waves $e^{i\lvect{k}\cdot\lvect{x}}$ form a complete basis for any well-behaved function on $\mathbb{R}^3$.
 
 \subsection{Functions Periodic in Real Space}
 
-If $f(\vect{x}+\vect{R}) = f(\vect{x})$, then only those plane waves periodic in the lattice can appear --- that is, those with reciprocal lattice wavevectors:
+If $f(\lvect{x}+\cvect{R}) = f(\lvect{x})$, then only those plane waves periodic in the lattice can appear --- that is, those with reciprocal lattice wavevectors:
 \begin{equation}
-    f(\vect{x}) = \sum_{\vect{G}} f_{\vect{G}}\, e^{i\vect{G}\cdot\vect{x}},
+    f(\lvect{x}) = \sum_{\cvect{G}} f_{\cvect{G}}\, e^{i\cvect{G}\cdot\lvect{x}},
     \qquad
-    f_{\vect{G}} = \frac{1}{v}\int_C d\vect{x}\; e^{-i\vect{G}\cdot\vect{x}} f(\vect{x}),
+    f_{\cvect{G}} = \frac{1}{v}\int_C d\lvect{x}\; e^{-i\cvect{G}\cdot\lvect{x}} f(\lvect{x}),
 \end{equation}
 where the integral runs over any primitive cell $C$ of volume $v$.
 
 \begin{theorem}[Vanishing of the cell integral]
-For a nonzero reciprocal lattice vector $\vect{G}$, $\int_C d\vect{x}\, e^{i\vect{G}\cdot\vect{x}} = 0$. Translating the unit cell does not change the integral, so
+For a nonzero reciprocal lattice vector $\cvect{G}$, $\int_C d\lvect{x}\, e^{i\cvect{G}\cdot\lvect{x}} = 0$. Translating the unit cell does not change the integral, so
 \begin{equation}
-    \int_C d\vect{x}\; e^{i\vect{G}\cdot\vect{x}} = \int_C d\vect{x}\; e^{i\vect{G}\cdot(\vect{x}+\vect{d})}
+    \int_C d\lvect{x}\; e^{i\cvect{G}\cdot\lvect{x}} = \int_C d\lvect{x}\; e^{i\cvect{G}\cdot(\lvect{x}+\lvect{d})}
     \;\Longrightarrow\;
-    \left(\int_C d\vect{x}\; e^{i\vect{G}\cdot\vect{x}}\right)\bigl(e^{i\vect{G}\cdot\vect{d}} - 1\bigr) = 0.
+    \left(\int_C d\lvect{x}\; e^{i\cvect{G}\cdot\lvect{x}}\right)\bigl(e^{i\cvect{G}\cdot\lvect{d}} - 1\bigr) = 0.
 \end{equation}
-The second factor is never zero for generic $\vect{d}$, so the integral vanishes.
+The second factor is never zero for generic $\lvect{d}$, so the integral vanishes.
 \end{theorem}
 
 \subsection{Functions Periodic in Reciprocal Space}
 
 Dually, a function periodic in reciprocal space is expanded on direct lattice vectors:
 \begin{equation}
-    \phi(\vect{k}) = \sum_{\vect{R}} e^{i\vect{R}\cdot\vect{k}}\, \phi_{\vect{R}},
+    \phi(\lvect{k}) = \sum_{\cvect{R}} e^{i\cvect{R}\cdot\lvect{k}}\, \phi_{\cvect{R}},
     \qquad
-    \phi_{\vect{R}} \equiv V \int \frac{d\vect{k}}{(2\pi)^3}\, e^{-i\vect{R}\cdot\vect{k}}\, \phi(\vect{k}).
+    \phi_{\cvect{R}} \equiv V \int \frac{d\lvect{k}}{(2\pi)^3}\, e^{-i\cvect{R}\cdot\lvect{k}}\, \phi(\lvect{k}).
 \end{equation}
 
 \subsection{Functions Periodic under Born--von Karman Boundary Conditions}
 
-The BVK boundary condition is $f(\vect{x} + N_i \vect{a}_i) = f(\vect{x})$, which restricts the allowed wavevectors to
+The BVK boundary condition is $f(\lvect{x} + N_i \lvect{a}_i) = f(\lvect{x})$, which restricts the allowed wavevectors to
 \begin{equation}
-    \vect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\, \vect{b}_i, \qquad m_i \in \mathbb{Z}.
+    \lvect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\, \lvect{b}_i, \qquad m_i \in \mathbb{Z}.
 \end{equation}
 The expansion then takes the form
 \begin{equation}
-    f(\vect{x}) = \sum_{\vect{k}} f_{\vect{k}}\, e^{i\vect{k}\cdot\vect{x}},
+    f(\lvect{x}) = \sum_{\lvect{k}} f_{\lvect{k}}\, e^{i\lvect{k}\cdot\lvect{x}},
     \qquad
-    f_{\vect{k}} \equiv \frac{1}{V}\int d\vect{x}\; e^{-i\vect{k}\cdot\vect{x}} f(\vect{x}),
+    f_{\lvect{k}} \equiv \frac{1}{V}\int d\lvect{x}\; e^{-i\lvect{k}\cdot\lvect{x}} f(\lvect{x}),
 \end{equation}
-and again $\int_V d\vect{x}\, e^{i\vect{k}\cdot\vect{x}} = 0$ for $\vect{k} \neq 0$.
+and again $\int_V d\lvect{x}\, e^{i\lvect{k}\cdot\lvect{x}} = 0$ for $\lvect{k} \neq 0$.
 
 \begin{theorem}[Sum of exponentials identity]
-For $\vect{R}$ running over the lattice sites $\sum_{i=1}^3 n_i \vect{a}_i$ with $0 \leq n_i < N_i$ and $N_1 N_2 N_3 = N$,
+For $\cvect{R}$ running over the lattice sites $\sum_{i=1}^3 n_i \lvect{a}_i$ with $0 \leq n_i < N_i$ and $N_1 N_2 N_3 = N$,
 \begin{equation}
-    \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} = N \delta_{\vect{k},0}.
+    \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} = N \delta_{\lvect{k},0}.
 \end{equation}
-The sum is invariant under displacing every site by a lattice vector $\vect{R}_0$,
+The sum is invariant under displacing every site by a lattice vector $\cvect{R}_0$,
 \begin{equation}
-    \sum_{\vect{R}} e^{i\vect{k}\cdot(\vect{R}+\vect{R}_0)} = e^{i\vect{k}\cdot\vect{R}_0} \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}} = \sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}},
+    \sum_{\cvect{R}} e^{i\lvect{k}\cdot(\cvect{R}+\cvect{R}_0)} = e^{i\lvect{k}\cdot\cvect{R}_0} \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}},
 \end{equation}
-so that $\bigl(e^{i\vect{k}\cdot\vect{R}_0} - 1\bigr)\bigl(\sum_{\vect{R}} e^{i\vect{k}\cdot\vect{R}}\bigr) = 0$. If $\vect{k} = 0$ the sum is $\sum_{\vect{R}} 1 = N$; if $\vect{k} \neq 0$ the sum must vanish.
+so that $\bigl(e^{i\lvect{k}\cdot\cvect{R}_0} - 1\bigr)\bigl(\sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigr) = 0$. If $\lvect{k} = 0$ the sum is $\sum_{\cvect{R}} 1 = N$; if $\lvect{k} \neq 0$ the sum must vanish.
 \end{theorem}
 
 \begin{formula}[BVK identity]
 \begin{equation}
-    \sum_{\vect{k}} e^{i\vect{k}\cdot\vect{R}} = N \delta_{\vect{R},0}.
+    \sum_{\lvect{k}} e^{i\lvect{k}\cdot\cvect{R}} = N \delta_{\cvect{R},0}.
 \end{equation}
 \end{formula}
 
@@ -883,73 +883,73 @@ In the semiclassical picture electrons do \emph{not} collide with the ions --- t
 
 \begin{definition}[Bloch wavepacket]
 \begin{equation}
-    \psi_n(\vect{x},t) = \sum_{\vect{k}'} g(\vect{k}')\, \psi_{n\vect{k}'}(\vect{x})\, \exp\!\left(-\tfrac{i}{\hbar}\varepsilon_n(\vect{k}')t\right),
+    \psi_n(\lvect{x},t) = \sum_{\lvect{k}'} g(\lvect{k}')\, \psi_{n\lvect{k}'}(\lvect{x})\, \exp\!\left(-\tfrac{i}{\hbar}\varepsilon_n(\lvect{k}')t\right),
 \end{equation}
-where the weight $g(\vect{k}') \approx 0$ once $|\vect{k}'-\vect{k}| > \Delta k$. The packet must obey the uncertainty principle $\Delta k\, \Delta x \gtrsim 1$.
+where the weight $g(\lvect{k}') \approx 0$ once $|\lvect{k}'-\lvect{k}| > \Delta k$. The packet must obey the uncertainty principle $\Delta k\, \Delta x \gtrsim 1$.
 \end{definition}
 
 \subsection{Width of the Wavepacket}
 
 Assume $\Delta k$ is small compared with the dimensions of the Brillouin zone, and examine the amplitude at points a lattice vector away:
 \begin{equation}
-    \psi_n(\vect{x}_0 + \vect{R}, t) = \sum_{\vect{k}'} \underbrace{\bigl[ g(\vect{k}')\psi_{n\vect{k}'}(\vect{x}_0) \bigr]}_{\text{weight function}}
-    \exp\!\left[ i\Bigl( \underbrace{\vect{k}'\cdot\vect{R}}_{\text{from the Bloch condition}} - \tfrac{1}{\hbar}\varepsilon_n(\vect{k}')t \Bigr) \right].
+    \psi_n(\lvect{x}_0 + \cvect{R}, t) = \sum_{\lvect{k}'} \underbrace{\bigl[ g(\lvect{k}')\psi_{n\lvect{k}'}(\lvect{x}_0) \bigr]}_{\text{weight function}}
+    \exp\!\left[ i\Bigl( \underbrace{\lvect{k}'\cdot\cvect{R}}_{\text{from the Bloch condition}} - \tfrac{1}{\hbar}\varepsilon_n(\lvect{k}')t \Bigr) \right].
 \end{equation}
-By the properties of the Fourier transform, if $g(\vect{k})$ is appreciable within $\Delta k$ then $g(\vect{x})$ is appreciable within $\Delta R \approx 1/\Delta k$. Since $\Delta k$ is small compared with the Brillouin zone dimension, of order $1/a$, the spread $\Delta R$ is large compared with the lattice constant $a$: wavepackets are spread over many primitive unit cells.
+By the properties of the Fourier transform, if $g(\lvect{k})$ is appreciable within $\Delta k$ then $g(\lvect{x})$ is appreciable within $\Delta R \approx 1/\Delta k$. Since $\Delta k$ is small compared with the Brillouin zone dimension, of order $1/a$, the spread $\Delta R$ is large compared with the lattice constant $a$: wavepackets are spread over many primitive unit cells.
 
 \subsection{Group Velocity of Bloch Electrons}
 
-Expand the band energy to second order in a small shift $\vect{q}$:
+Expand the band energy to second order in a small shift $\lvect{q}$:
 \begin{equation}
-    \varepsilon_n(\vect{k}+\vect{q}) = \varepsilon_n(\vect{k}) + \sum_i \pdv{\varepsilon_n}{k_i} q_i
+    \varepsilon_n(\lvect{k}+\lvect{q}) = \varepsilon_n(\lvect{k}) + \sum_i \pdv{\varepsilon_n}{k_i} q_i
     + \frac{1}{2}\sum_{ij} \frac{\partial^2 \varepsilon_n}{\partial k_i \partial k_j} q_i q_j + O(q^3).
     \label{eq:bloch-expand}
 \end{equation}
-The same shift can be treated by perturbation theory: since $H_{\vect{k}+\vect{q}}\psi^n_{\vect{k}+\vect{q}} = \varepsilon^n_{\vect{k}+\vect{q}}\psi^n_{\vect{k}+\vect{q}}$,
+The same shift can be treated by perturbation theory: since $H_{\lvect{k}+\lvect{q}}\psi^n_{\lvect{k}+\lvect{q}} = \varepsilon^n_{\lvect{k}+\lvect{q}}\psi^n_{\lvect{k}+\lvect{q}}$,
 \begin{equation}
-    H_{\vect{k}+\vect{q}} = H_{\vect{k}} + \underbrace{\frac{\hbar^2}{m}\,\vect{q}\cdot\left(\frac{1}{i}\nabla + \vect{k}\right)}_{\displaystyle V(\vect{q})} + \frac{\hbar^2}{2m}q^2 .
+    H_{\lvect{k}+\lvect{q}} = H_{\lvect{k}} + \underbrace{\frac{\hbar^2}{m}\,\lvect{q}\cdot\left(\frac{1}{i}\nabla + \lvect{k}\right)}_{\displaystyle V(\lvect{q})} + \frac{\hbar^2}{2m}q^2 .
     \label{eq:bloch-Hexpand}
 \end{equation}
 If the unperturbed problem is $H_0 \psi_n = E^0_n \psi_n$, then to second order in $V$,
 \begin{equation}
-    E_n = E^0_n + \int d\vect{x}\; \psi_n^* V \psi_n + \sum_{n' \neq n} \frac{\bigl| \int d\vect{x}\; \psi_n^* V \psi_{n'} \bigr|^2}{E^0_n - E^0_{n'}}.
+    E_n = E^0_n + \int d\lvect{x}\; \psi_n^* V \psi_n + \sum_{n' \neq n} \frac{\bigl| \int d\lvect{x}\; \psi_n^* V \psi_{n'} \bigr|^2}{E^0_n - E^0_{n'}}.
     \label{eq:bloch-pert}
 \end{equation}
 Comparing~\eqref{eq:bloch-expand} with~\eqref{eq:bloch-pert} at first order,
 \begin{equation}
-    \sum_i \pdv{\varepsilon_n}{k_i} q_i = \int d\vect{x}\; \psi_n^* V \psi_n,
+    \sum_i \pdv{\varepsilon_n}{k_i} q_i = \int d\lvect{x}\; \psi_n^* V \psi_n,
 \end{equation}
-and comparing~\eqref{eq:bloch-Hexpand} with~\eqref{eq:bloch-pert} we need the part of $V(\vect{q})$ linear in $\vect{q}$, so that
+and comparing~\eqref{eq:bloch-Hexpand} with~\eqref{eq:bloch-pert} we need the part of $V(\lvect{q})$ linear in $\lvect{q}$, so that
 \begin{equation}
-    \sum_i \pdv{\varepsilon_n}{k_i} q_i = \frac{\hbar^2}{m} \sum_i \int d\vect{x}\; u^*_{n\vect{k}}\, q_i \left(\frac{1}{i}\nabla + \vect{k}\right)_{\!i} u_{n\vect{k}}.
+    \sum_i \pdv{\varepsilon_n}{k_i} q_i = \frac{\hbar^2}{m} \sum_i \int d\lvect{x}\; u^*_{n\lvect{k}}\, q_i \left(\frac{1}{i}\nabla + \lvect{k}\right)_{\!i} u_{n\lvect{k}}.
 \end{equation}
 Recalling the momentum operator $\hat{p}_i \equiv \frac{\hbar}{i}\pdv{}{x_i}$,
 \begin{equation}
-    \frac{1}{\hbar}\pdv{\varepsilon_n}{k_i} = \frac{1}{m} \Bigl\langle \frac{\hbar}{i}\pdv{}{x_i} + \hbar k_i \Bigr\rangle_{u_{n\vect{k}}}
-    = \frac{1}{m}\bigl\langle \hat{p}_i + \hbar k_i \bigr\rangle_{u_{n\vect{k}}}.
+    \frac{1}{\hbar}\pdv{\varepsilon_n}{k_i} = \frac{1}{m} \Bigl\langle \frac{\hbar}{i}\pdv{}{x_i} + \hbar k_i \Bigr\rangle_{u_{n\lvect{k}}}
+    = \frac{1}{m}\bigl\langle \hat{p}_i + \hbar k_i \bigr\rangle_{u_{n\lvect{k}}}.
 \end{equation}
-Finally, using $\psi_{n\vect{k}} = e^{i\vect{k}\cdot\vect{x}} u_{n\vect{k}}(\vect{x})$,
+Finally, using $\psi_{n\lvect{k}} = e^{i\lvect{k}\cdot\lvect{x}} u_{n\lvect{k}}(\lvect{x})$,
 \begin{equation}
     \frac{1}{\hbar}\pdv{\varepsilon_n}{k_i}
-    = \frac{1}{m}\int d\vect{x}\; u^*_{n\vect{k}} (\hat{p}_i + \hbar k_i) u_{n\vect{k}}
-    = \frac{1}{m}\int d\vect{x}\; e^{i\vect{k}\cdot\vect{x}} \psi^*_{n\vect{k}} (\hat{p}_i + \hbar k_i) e^{-i\vect{k}\cdot\vect{x}} \psi_{n\vect{k}},
+    = \frac{1}{m}\int d\lvect{x}\; u^*_{n\lvect{k}} (\hat{p}_i + \hbar k_i) u_{n\lvect{k}}
+    = \frac{1}{m}\int d\lvect{x}\; e^{i\lvect{k}\cdot\lvect{x}} \psi^*_{n\lvect{k}} (\hat{p}_i + \hbar k_i) e^{-i\lvect{k}\cdot\lvect{x}} \psi_{n\lvect{k}},
 \end{equation}
 and since
 \begin{equation}
-    \hat{p}_i \bigl[ e^{-i\vect{k}\cdot\vect{x}} \psi_{n\vect{k}}(\vect{x}) \bigr]
-    = \frac{\hbar}{i}\pdv{}{x_i}\bigl[ e^{-i\vect{k}\cdot\vect{x}} \psi_{n\vect{k}}(\vect{x}) \bigr]
-    = -\hbar k_i\, e^{-i\vect{k}\cdot\vect{x}}\psi_{n\vect{k}}(\vect{x}) + e^{-i\vect{k}\cdot\vect{x}}\, \hat{p}_i \psi_{n\vect{k}}(\vect{x}),
+    \hat{p}_i \bigl[ e^{-i\lvect{k}\cdot\lvect{x}} \psi_{n\lvect{k}}(\lvect{x}) \bigr]
+    = \frac{\hbar}{i}\pdv{}{x_i}\bigl[ e^{-i\lvect{k}\cdot\lvect{x}} \psi_{n\lvect{k}}(\lvect{x}) \bigr]
+    = -\hbar k_i\, e^{-i\lvect{k}\cdot\lvect{x}}\psi_{n\lvect{k}}(\lvect{x}) + e^{-i\lvect{k}\cdot\lvect{x}}\, \hat{p}_i \psi_{n\lvect{k}}(\lvect{x}),
 \end{equation}
 the $\hbar k_i$ terms cancel, leaving
 \begin{equation}
     \frac{1}{\hbar}\pdv{\varepsilon_n}{k_i}
-    = \frac{1}{m}\int d\vect{x}\; e^{i\vect{k}\cdot\vect{x}} \psi^*_{n\vect{k}} e^{-i\vect{k}\cdot\vect{x}} \hat{p}_i \psi_{n\vect{k}}
-    = \frac{1}{m}\langle \hat{p}_i \rangle_{\psi_{n\vect{k}}} = \langle \hat{v}_i \rangle_{\psi_{n\vect{k}}}.
+    = \frac{1}{m}\int d\lvect{x}\; e^{i\lvect{k}\cdot\lvect{x}} \psi^*_{n\lvect{k}} e^{-i\lvect{k}\cdot\lvect{x}} \hat{p}_i \psi_{n\lvect{k}}
+    = \frac{1}{m}\langle \hat{p}_i \rangle_{\psi_{n\lvect{k}}} = \langle \hat{v}_i \rangle_{\psi_{n\lvect{k}}}.
 \end{equation}
 
 \begin{formula}[Group velocity]
 \begin{equation}
-    \langle \vect{v}_n(\vect{k}) \rangle = \frac{1}{\hbar} \pdv{\varepsilon_n(\vect{k})}{\vect{k}} = \pdv{\omega}{\vect{k}}.
+    \langle \lvect{v}_n(\lvect{k}) \rangle = \frac{1}{\hbar} \pdv{\varepsilon_n(\lvect{k})}{\lvect{k}} = \pdv{\omega}{\lvect{k}}.
 \end{equation}
 \end{formula}
 
@@ -957,22 +957,22 @@ the $\hbar k_i$ terms cancel, leaving
 \section{The Semiclassical Model}
 % ============================================================
 
-The semiclassical model describes the response of electrons to externally applied electric and magnetic fields that vary slowly on the scale $\Delta R$ of the wavepacket. Given the band structure $\varepsilon_n(\vect{k})$, it associates with each electron a position $\vect{x}$, a wavevector $\vect{k}$, and a band index $n$.
+The semiclassical model describes the response of electrons to externally applied electric and magnetic fields that vary slowly on the scale $\Delta R$ of the wavepacket. Given the band structure $\varepsilon_n(\lvect{k})$, it associates with each electron a position $\lvect{x}$, a wavevector $\lvect{k}$, and a band index $n$.
 
 \begin{fact}[Assumptions of the semiclassical model]
 \begin{enumerate}
     \item The electron stays within its band: there are no interband transitions.
     \item The time evolution is governed by
     \begin{equation}
-        \dot{\vect{x}} = \vect{v}_n(\vect{k}) = \frac{1}{\hbar}\pdv{\varepsilon_n(\vect{k})}{\vect{k}},
+        \dot{\lvect{x}} = \lvect{v}_n(\lvect{k}) = \frac{1}{\hbar}\pdv{\varepsilon_n(\lvect{k})}{\lvect{k}},
         \qquad
-        \hbar \dot{\vect{k}} = -e\left[ \vect{E}(\vect{x},t) + \frac{1}{c}\, \vect{v}_n(\vect{k}) \times \vect{H}(\vect{x},t) \right],
+        \hbar \dot{\lvect{k}} = -e\left[ \cvect{E}(\lvect{x},t) + \frac{1}{c}\, \lvect{v}_n(\lvect{k}) \times \cvect{H}(\lvect{x},t) \right],
     \end{equation}
-    where $\vect{H}$ is the magnetic field. Note that the crystal momentum $\hbar\vect{k}$ is \emph{not} the total electron momentum.
+    where $\cvect{H}$ is the magnetic field. Note that the crystal momentum $\hbar\lvect{k}$ is \emph{not} the total electron momentum.
     \item All distinct wavevectors for a single band lie within a single primitive cell of the reciprocal lattice, with occupation given by the Fermi distribution
     \begin{equation}
-        f\bigl(\varepsilon_n(\vect{k})\bigr) \frac{d\vect{k}}{4\pi^3}
-        = \frac{d\vect{k}/4\pi^3}{e^{(\varepsilon_n(\vect{k})-\mu)/k_B T}+1}.
+        f\bigl(\varepsilon_n(\lvect{k})\bigr) \frac{d\lvect{k}}{4\pi^3}
+        = \frac{d\lvect{k}/4\pi^3}{e^{(\varepsilon_n(\lvect{k})-\mu)/k_B T}+1}.
     \end{equation}
 \end{enumerate}
 \end{fact}
@@ -983,8 +983,8 @@ A useful corollary is the \emph{many-carrier} statement: one need only consider 
 
 There must be some minimum strength of the periodic potential below which the model breaks down, because interband transitions become possible. The conditions are
 \begin{equation}
-    e |\vect{E}| a \ll \frac{\bigl[\varepsilon_{\text{gap}}(\vect{k})\bigr]^2}{\varepsilon_F},
+    e |\cvect{E}| a \ll \frac{\bigl[\varepsilon_{\text{gap}}(\lvect{k})\bigr]^2}{\varepsilon_F},
     \qquad
-    \hbar\omega_c \ll \frac{\bigl[\varepsilon_{\text{gap}}(\vect{k})\bigr]^2}{\varepsilon_F},
+    \hbar\omega_c \ll \frac{\bigl[\varepsilon_{\text{gap}}(\lvect{k})\bigr]^2}{\varepsilon_F},
 \end{equation}
 where $\omega_c$ is the cyclotron frequency: both the work done by the field over a lattice constant and the cyclotron energy quantum must be small compared with the scale set by the gap.
