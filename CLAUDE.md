@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A collection of LaTeX physics notes organized by subject. Each subject lives in its own directory and compiles to a single PDF via `main.tex`.
 
-Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`, `waves/`, `solid-state/`
+Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`, `waves/`, `solid-state/`, `circuits/`
 
 ## Build Commands
 
@@ -25,6 +25,7 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 - `methods/` → `mathematical-methods.pdf`
 - `waves/` → `waves-and-optics.pdf`
 - `solid-state/` → `solid-state-physics.pdf`
+- `circuits/` → `circuits.pdf`
 
 ## Document Structure
 
@@ -45,7 +46,8 @@ followed by whatever packages/commands that subject alone needs, then `\begin{do
 
 Per-subject additions (content-driven, intentionally differ):
 - `thermo-stat-mech`, `class-mech`, `waves`: load `tikz`/`pgfplots` for diagrams/plots.
-- `electro`: loads `tikz`/`circuitikz` for circuit diagrams instead.
+- `electro`: loads `tikz` for field and geometry diagrams.
+- `circuits`: loads `tikz`/`circuitikz` for circuit schematics.
 - `methods`: needs no extra packages beyond the shared preamble.
 - `solid-state`: loads `tikz`/`pgfplots` for lattice diagrams and band structures.
 - `thermo-stat-mech` additionally defines `\dbar` (inexact differential).
@@ -56,7 +58,8 @@ Content is split across files differently per subject:
 
 - **`thermo-stat-mech/`**: `main.tex` inputs `ch1.tex` through `ch7.tex`
 - **`waves/`**: `main.tex` inputs `ch1.tex` through `ch8.tex`
-- **`electro/`**: `main.tex` inputs `ch_em1.tex` through `ch_em10.tex`
+- **`electro/`**: `main.tex` inputs `ch_em1.tex`, `ch_em3.tex`, `ch_em4.tex`, `ch_em6.tex`, `ch_em9.tex`, `ch_em10.tex` (the numbering has gaps; `ch_em9.tex` holds three chapters)
+- **`circuits/`**: `main.tex` inputs `ch1.tex` (batteries and DC networks) and `ch2.tex` (electronics); split out of `electro/` so the EM notes stay field-theoretic
 - **`class-mech/`**: `main.tex` contains the first two chapters inline, then inputs `ch4.tex` through `ch13.tex`
 - **`solid-state/`**: `main.tex` inputs `ch1.tex` through `ch4.tex`
 

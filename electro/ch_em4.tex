@@ -554,9 +554,71 @@ With more than two conductors, no single number can capture the relationship bet
 
 Suppose $n$ separate conductors are held at potentials $V_1,\dots,V_n$. In the charge-free region exterior to all of them, $\phi$ satisfies Laplace's equation $\laplacian\phi = 0$, which is linear: if $\phi_1$ and $\phi_2$ both solve it, so does $\alpha\phi_1 + \beta\phi_2$. Combined with uniqueness --- the solution in a region being completely determined by its boundary values --- this has strong consequences.
 
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+  \draw[dashed, black!40] (-3.5,-2.0) rectangle (3.5,2.2);
+  \node[font=\small, black!55] at (0,1.85) {exterior region: $\laplacian\phi = 0$, no charge};
+  \draw[fill=gray!20, thick] (-2.1,0.55) ellipse (0.95cm and 0.62cm);
+  \node[font=\small] at (-2.1,0.55) {$V_1$};
+  \draw[fill=gray!20, thick] (0.65,1.0) ellipse (0.8cm and 0.55cm);
+  \node[font=\small] at (0.65,1.0) {$V_2$};
+  \draw[fill=gray!20, thick] (2.35,-0.75) ellipse (0.9cm and 0.6cm);
+  \node[font=\small] at (2.35,-0.75) {$V_3$};
+  \draw[fill=gray!20, thick] (-1.1,-1.05) ellipse (0.85cm and 0.55cm);
+  \node[font=\small] at (-1.1,-1.05) {$V_4$};
+  \node[font=\small] at (-2.1,-0.25) {$Q_1$};
+  \node[font=\small] at (0.65,0.25) {$Q_2$};
+  \node[font=\small] at (2.35,0.05) {$Q_3$};
+  \node[font=\small] at (-1.1,-1.85) {$Q_4$};
+\end{tikzpicture}
+\end{center}
+\caption{A system of $n$ conductors held at prescribed potentials $V_1,\dots,V_n$. The exterior region is charge-free, so $\phi$ is harmonic there, and the potentials on the conductor surfaces are exactly the boundary data that uniqueness says determines it. The charges $Q_i$ are then not free to be chosen --- they are whatever the resulting field puts on each surface.}
+\label{fig:em-nconductors}
+\end{figure}
+
 \subsection{Elementary Solutions and Superposition}
 
 For each $k = 1,\dots,n$, define the \emph{elementary solution} $\phi^{(k)}(\vect{x})$ to be the potential in the exterior region when conductor $k$ is held at potential $1$ and every other conductor is grounded at potential $0$. Each $\phi^{(k)}$ is harmonic in the exterior region and depends only on the geometry of the conductors --- never on any applied voltage.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+\begin{scope}[xshift=0.0cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!55, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$1$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$0$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$0$};
+\end{scope}
+\begin{scope}[xshift=3.0cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!18, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$0$};
+  \filldraw[fill=gray!55, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$1$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$0$};
+\end{scope}
+\begin{scope}[xshift=6.0cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!18, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$0$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$0$};
+  \filldraw[fill=gray!55, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$1$};
+\end{scope}
+\node[font=\small] at (1.0,-1.45) {$\phi^{(1)}$};
+\node[font=\small] at (4.0,-1.45) {$\phi^{(2)}$};
+\node[font=\small] at (7.0,-1.45) {$\phi^{(3)}$};
+\end{tikzpicture}
+\end{center}
+\caption{The three elementary solutions for a system of $n=3$ conductors. In $\phi^{(k)}$ conductor $k$ is held at potential $1$ (shaded) and every other conductor is grounded at $0$. Each is a complete solution of Laplace's equation in the exterior region, and each depends only on the geometry --- the same three pictures serve for every choice of applied voltages.}
+\label{fig:em-elementary}
+\end{figure}
 
 \begin{theorem}[Superposition of elementary solutions]
 For arbitrary potentials $V_1,\dots,V_n$ on the $n$ conductors, the potential in the exterior region is
@@ -581,6 +643,58 @@ Two things must be checked.
 Being harmonic in the exterior region and matching the prescribed potential on every conductor's surface, $\phi_\text{total}$ is by uniqueness \emph{the} solution; no other candidate is consistent with this boundary data.
 \end{proof}
 
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.72]
+\begin{scope}[xshift=0.0cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!55, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$1$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$0$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$0$};
+\end{scope}
+\begin{scope}[xshift=3.0cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!18, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$0$};
+  \filldraw[fill=gray!55, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$1$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$0$};
+\end{scope}
+\begin{scope}[xshift=6.0cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!18, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$0$};
+  \filldraw[fill=gray!18, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$0$};
+  \filldraw[fill=gray!55, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$1$};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+  \draw[dashed, black!35] (-0.15,-0.95) rectangle (2.15,1.5);
+  \filldraw[fill=gray!55, draw=black!70, thick] (0.45,0.78) circle (0.33);
+  \node[font=\scriptsize] at (0.45,0.78) {$V_1$};
+  \filldraw[fill=gray!55, draw=black!70, thick] (1.55,0.95) circle (0.33);
+  \node[font=\scriptsize] at (1.55,0.95) {$V_2$};
+  \filldraw[fill=gray!55, draw=black!70, thick] (1.0,-0.35) circle (0.33);
+  \node[font=\scriptsize] at (1.0,-0.35) {$V_3$};
+\end{scope}
+\node[font=\large] at (2.55,0.28) {$+$};
+\node[font=\large] at (5.55,0.28) {$+$};
+\node[font=\large] at (8.55,0.28) {$=$};
+\node[font=\small] at (1.0,-1.45) {$V_1\,\phi^{(1)}$};
+\node[font=\small] at (4.0,-1.45) {$V_2\,\phi^{(2)}$};
+\node[font=\small] at (7.0,-1.45) {$V_3\,\phi^{(3)}$};
+\node[font=\small] at (10.6,-1.45) {$\phi_{\text{total}}$};
+\end{tikzpicture}
+\end{center}
+\caption{Superposition. Weighting each elementary solution by the corresponding applied potential and adding gives a function that is harmonic (a sum of harmonic functions) and that takes the value $V_i$ on conductor $i$ (since only the $i$th term is nonzero there). By uniqueness it is therefore \emph{the} solution.}
+\label{fig:em-superposition}
+\end{figure}
+
 \subsection{The Capacitance Matrix}
 
 The surface charge density on a conductor is $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$, so the total charge on conductor $i$ is
@@ -603,6 +717,30 @@ Each coefficient $C_{ik}$ depends only on the geometry of the conductor system, 
 This is the direct $n$-conductor generalization of $Q = C\phi$, and it makes precise the earlier observation that on a system of conductors the charges and potentials are not independent: fixing all the potentials fixes every charge, and the relation between them is linear.
 
 \emph{A check by scaling.} If every $V_j$ is scaled by a common factor $\alpha$, then $\phi\to\alpha\phi$ everywhere by the same linearity-and-uniqueness argument applied directly, and so every $Q_i\to\alpha Q_i$. This is consistent with the formula, since $\sum_k C_{ik}(\alpha V_k) = \alpha\sum_k C_{ik}V_k$.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+  \draw[fill=gray!35, thick] (-2.3,0) ellipse (1.05cm and 0.78cm);
+  \node[font=\small] at (-2.3,0) {$V_k=1$};
+  \foreach \a in {20,55,-20,-55} {\node[blue!70!black, font=\scriptsize] at ($(-2.3,0)+(\a:1.15 and 0.9)$) {$+$};}
+  \draw[fill=gray!18, thick] (2.3,0) ellipse (1.05cm and 0.78cm);
+  \node[font=\small] at (2.3,0) {$V_i=0$};
+  \foreach \a in {160,125,200,235} {\node[red, font=\scriptsize] at ($(2.3,0)+(\a:1.15 and 0.9)$) {$-$};}
+  \foreach \s in {0.62,0,-0.62} {
+    \draw[-{Stealth[length=5pt]}, thick, orange!80!black]
+      (-1.2,\s*0.72) to[out=\s*22,in=180-\s*22] (1.2,\s*0.72);
+  }
+  \node[font=\small] at (0,-1.5) {$C_{ik} = Q_i \le 0$ for $i\neq k$};
+  \draw[thick] (2.3,-0.8) -- (2.3,-1.9);
+  \foreach \w/\y in {0.42/-1.9, 0.28/-2.05, 0.14/-2.2} {
+    \draw[thick] (2.3-\w,\y) -- (2.3+\w,\y);
+  }
+\end{tikzpicture}
+\end{center}
+\caption{Why the off-diagonal coefficients are expected to be negative. With conductor $k$ raised to potential $1$ and conductor $i$ grounded, field lines run from the higher potential to the lower and terminate on $i$, depositing charge of the opposite sign. The induced $Q_i$, which is precisely $C_{ik}$, is therefore negative.}
+\label{fig:em-offdiagonal}
+\end{figure}
 
 \emph{On the off-diagonal entries.} The coefficient $C_{ik}$ with $i\neq k$ is the charge induced on conductor $i$ when conductor $k$ alone is raised to potential $1$ and all others are grounded. Field lines leaving the positively charged conductor $k$ terminate on whichever grounded conductors they reach, including $i$, and by the field-line argument above an induced charge of the opposite sign is expected wherever they terminate. This suggests $C_{ik}\le 0$ for $i\neq k$, in contrast with $C_{ii}>0$. A full proof of that sign pattern, together with the symmetry $C_{ik} = C_{ki}$ --- a consequence of Green's reciprocation theorem --- is a natural next topic.
 
