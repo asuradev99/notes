@@ -385,6 +385,45 @@ Flux measures the magnitude of field passing through the surface, and for a clos
     \oint_S \vect{E}\cdot d\vect{A} = \frac{Q_\text{enc}}{\varepsilon_0}.
 \]
 
+\subsection{Gauss's Law via Solid Angle}
+
+The derivation above used a sphere, on which $\vect{E}$ is constant and normal to the surface --- convenient, but it leaves open why the result should hold for a surface of any shape at all. There is a second derivation which never mentions spheres, and which isolates exactly what is doing the work: the inverse-square law, and nothing else.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \filldraw (0,0) circle (1.6pt) node[below] {$q$};
+    \draw[thick] (3.2,-0.45) -- (4.0,0.05) -- (3.7,0.75) -- (2.9,0.25) -- cycle;
+    \node at (3.9,-0.75) {$da$};
+    \draw (0,0) -- (3.2,-0.45);
+    \draw (0,0) -- (4.0,0.05);
+    \draw (0,0) -- (3.7,0.75);
+    \draw (0,0) -- (2.9,0.25);
+    \draw[-{Stealth}, thick] (0,0) -- (1.8,0.12) node[below] {$\vect{r}$};
+    \draw[-{Stealth}, thick] (3.45,0.15) -- (4.15,0.55) node[right] {$\vect{E}$};
+    \draw[-{Stealth}, thick, orange] (3.45,0.15) -- (3.75,0.95) node[above] {$\hat{n}$};
+    \node at (2.55,0.45) {$\theta$};
+\end{tikzpicture}
+\caption{A surface element $da$ seen from a charge $q$. Only the projection $\cos\theta\,da$ perpendicular to $\vect{r}$ contributes to the flux, and that projection is $r^2\,d\Omega$ by the definition of solid angle.}
+\label{fig:em-solidangle}
+\end{figure}
+
+The flux of a point charge's field through an arbitrary surface element is
+\[
+    \vect{E}\cdot d\vect{A} = \vect{E}\cdot\hat{n}\; da = \frac{q}{4\pi\varepsilon_0}\,\frac{\cos\theta\; da}{|\vect{r}|^2} .
+\]
+Here $\cos\theta\,da$ is the area of the element projected perpendicular to $\vect{r}$, and the solid angle subtended by a patch is by definition that perpendicular projection divided by $r^2$. Hence $\cos\theta\,da = r^2\,d\Omega$, and
+\[
+    \vect{E}\cdot d\vect{A} = \frac{q}{4\pi\varepsilon_0}\,\frac{r^2\,d\Omega}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega .
+\]
+The distance has cancelled out entirely. This is the one place the inverse-square law enters: had the field fallen off as any other power, the $r$-dependence would have survived and the flux would have depended on the shape of the surface. Nothing else about the geometry matters.
+
+Integrating over a closed surface, the total solid angle is $4\pi$ when the charge is enclosed. When it is not, every ray that enters the surface also leaves it, and the two crossings contribute with opposite signs, so the total is zero:
+\[
+    \oint_S \vect{E}\cdot d\vect{A} = \begin{cases} q/\varepsilon_0, & q \text{ inside } S,\\[2pt] 0, & q \text{ outside } S.\end{cases}
+\]
+Superposing over a continuous distribution recovers Gauss's law for an arbitrary closed surface, which is the general statement the spherical derivation could only suggest.
+
 \subsection{Derivation of Gauss's Law from Coulomb's Law}
 
 Consider a simple system consisting of a single point charge (source) $q$ and use a hollow sphere of radius $r$ as the Gaussian surface.

@@ -108,6 +108,26 @@ By Gauss's theorem:
 
 Note: $\rho = \dot\rho \neq 0 \Rightarrow I \neq 0$.
 
+\subsection{Continuity as a Consequence of Maxwell's Equations}
+
+We introduced the continuity equation as an expression of charge conservation, imposed on the fields from outside. It is worth noticing that it need not be imposed at all: it is forced by the field equations themselves. Take the divergence of the Amp\`ere--Maxwell law,
+\[
+    \curl\vect{B} = \mu_0\vect{J} + \mu_0\varepsilon_0\pdv{\vect{E}}{t},
+\]
+which gives
+\[
+    \underbrace{\div\left(\curl\vect{B}\right)}_{0} = \mu_0\,\div\vect{J} + \mu_0\varepsilon_0\,\pdv{t}\left(\div\vect{E}\right) = \mu_0\,\div\vect{J} + \mu_0\varepsilon_0\,\pdv{t}\left(\frac{\rho}{\varepsilon_0}\right),
+\]
+using Gauss's law in the last step. The divergence of a curl vanishes identically, and what remains is the continuity equation,
+\[
+    \div\vect{J} + \pdv{\rho}{t} = 0 .
+\]
+Integrating over a volume and applying the divergence theorem returns the global form already written above.
+
+\begin{fact}
+Of the two, the local form is the stronger statement. The global form says only that the total charge of an isolated system stays constant; the local form says that charge cannot vanish in one place and reappear in another, but must flow continuously in between. Read the other way, the continuity equation is a constraint on the sources: $\rho$ and $\vect{J}$ cannot be prescribed independently of one another, but must be mutually consistent if Maxwell's equations are to admit a solution for $\vect{E}$ and $\vect{B}$ at all.
+\end{fact}
+
 \section{Ohm's Law}
 
 It is empirically common that:
