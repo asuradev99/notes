@@ -1,0 +1,316 @@
+\chapter{Mathematical Foundations}
+
+The chapters that follow develop electromagnetism largely in the order it was discovered, taking Coulomb's law as the starting point and reading the field equations off from it. This chapter collects, in one place and at a higher level of rigour, the vector-calculus machinery that those arguments quietly lean on: the differential identities for radial fields, Green's identities, the sense in which $1/r^2$ has a delta function for a divergence, and the Helmholtz theorem, which explains why specifying a divergence and a curl is the same thing as specifying a field. Nothing here is about electromagnetism as such, but every later derivation is easier to trust once these are in hand.
+
+\section{Handy Gradient Identities}
+
+The single most-used second-derivative identity is
+\[
+    \curl(\curl \vect{f}) = \grad(\div \vect{f}) - \laplacian{\vect{f}},
+\]
+which we will use both to derive the wave equation and, below, to prove a uniqueness theorem.
+
+\subsection{Functions of \texorpdfstring{$\vect{r}$}{r}}
+
+Write $\vect{r} = r\,\rhat$ and let $f(r)$ be a scalar function of the radius alone. Then
+\[
+    \grad r = \rhat, \qquad \curl \vect{r} = 0,
+\]
+\[
+    \grad f = f'\,\rhat, \qquad \laplacian{f(r)} = \frac{\left(r^2 f'\right)'}{r^2},
+\]
+\[
+    \div(f\vect{r}) = \frac{\left(r^3 f\right)'}{r^2}, \qquad \curl\bigl(f(r)\,\vect{r}\bigr) = 0.
+\]
+The vanishing of the last curl is worth isolating, since it is exactly what makes the electrostatic field conservative.
+
+\begin{theorem}[Curl of a central field]
+The curl of the gradient of any central function $f(r)$ is zero. Indeed, for any scalar $g(r)$ the radial vector field $g'(r)\rhat$ is a gradient: in spherical coordinates the angular derivatives vanish,
+\[
+    \grad g(r) = \pdv{g}{r}\rhat + \cancel{\frac{1}{r}\pdv{g}{\theta}\hat{\theta}} + \cancel{\frac{1}{r\sin\theta}\pdv{g}{\varphi}\hat{\varphi}} = \pdv{g}{r}\rhat,
+\]
+or equivalently $\grad g(r) = g'(r)\grad r = g'(r)\rhat$. Hence $\curl \grad g = 0$.
+\end{theorem}
+
+\subsection{Functions of \texorpdfstring{$\vect{r} - \vect{r}'$}{r - r'}}
+
+Most electrostatic integrands depend not on the field point alone but on the separation between field point and source point. Writing $R \equiv |\vect{r} - \vect{r}'|$ and $\uvect{R}$ for the unit vector along the separation, the same identities read
+\begin{enumerate}
+    \item $\grad f(R) = f'(R)\,\uvect{R}$,
+    \item $\div \vect{g}(R) = \vect{g}\,'(R)\cdot\uvect{R}$,
+    \item $\curl \vect{g}(R) = \uvect{R}\times\vect{g}\,'(R)$.
+\end{enumerate}
+
+\section{Green's Identities}
+
+Green's identities convert volume integrals of second derivatives into surface integrals, and they are the basic tool for boundary-value problems in electrostatics.
+
+For any two scalar functions $\varphi$ and $\psi$, the product rule gives
+\[
+    \div\left(\varphi\grad\psi\right) = \varphi\,\div\grad\psi + \grad\psi\cdot\grad\varphi = \varphi\laplacian{\psi} + \grad\psi\cdot\grad\varphi.
+\]
+Integrating over a volume $V$ and applying the divergence theorem,
+\[
+    \int_V \div\left(\varphi\grad\psi\right) dV = \int_V \left(\varphi\laplacian{\psi} + \grad\psi\cdot\grad\varphi\right) dV = \int_{\partial V} \varphi\grad\psi\cdot\hat{n}\; da.
+\]
+The surface integrand simplifies by the definition of the directional derivative, $\left(\varphi\grad\psi\right)\cdot\hat{n} = \varphi\left(\grad\psi\cdot\hat{n}\right) = \varphi\,\pdv{\psi}{n}$, which gives the first identity.
+
+\begin{formula}[Green's first identity]
+\[
+    \int_V \left(\varphi\laplacian{\psi} + \grad\psi\cdot\grad\varphi\right) dV = \int_{\partial V} \varphi\,\pdv{\psi}{n}\, da.
+\]
+\end{formula}
+
+Writing the same identity with $\varphi$ and $\psi$ interchanged and subtracting removes the symmetric $\grad\varphi\cdot\grad\psi$ term entirely.
+
+\begin{formula}[Green's second identity]
+\[
+    \int_V \left(\varphi\laplacian{\psi} - \psi\laplacian{\varphi}\right) d^3x = \int_{\partial V} \left(\varphi\,\pdv{\psi}{n} - \psi\,\pdv{\varphi}{n}\right) da.
+\]
+\end{formula}
+
+\section{The Mean Value Theorem for Harmonic Functions}
+
+Green's second identity has an immediate and striking consequence: a harmonic function has no local maxima or minima, because its value at any point is the average of its values on any sphere around that point.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \draw[thick] (0,0) circle (1.3);
+    \filldraw (0,0) circle (1.4pt);
+    \draw[-{Stealth}] (0,0) -- (1.3,0) node[midway, above] {$a$};
+    \node at (0,-1.65) {$\Phi$ harmonic inside};
+\end{tikzpicture}
+\caption{A ball of radius $a$ on whose interior $\Phi$ is harmonic. The mean value theorem states that $\Phi$ at the centre equals its average over the bounding sphere.}
+\label{fig:em-meanvalue}
+\end{figure}
+
+Consider a ball of radius $a$ centred at the origin. Take $\psi = 1/R$ with $R = |\vect{r}|$, and let $\varphi = \Phi$ be harmonic in the ball, so $\laplacian{\Phi} = 0$. On the bounding sphere the outward normal derivative of $\psi$ is
+\[
+    \pdv{\psi}{n} = -\frac{1}{a^2}.
+\]
+Green's second identity then reduces to
+\[
+    \int_V \Phi\laplacian{\psi}\; dV = \int_{\partial V}\left(\Phi\cdot\frac{-1}{a^2} - \frac{1}{a}\pdv{\Phi}{n}\right) da,
+\]
+since the $\psi\laplacian{\Phi}$ term vanishes. For the left-hand side we need the Laplacian of $1/R$, which by the radial formula above is
+\[
+    \laplacian{\psi} = \frac{\left(r^2\cdot\left(-1/r^2\right)\right)'}{r^2} = 4\pi\delta^3(\vect{r}),
+\]
+a result proved in Section~\ref{sec:em-delta} below. Hence
+\[
+    \int_V \Phi\laplacian{\psi}\; dV = -4\pi\,\Phi(0),
+\]
+and rearranging,
+\[
+    \Phi(0) = \frac{1}{4\pi a}\oint \pdv{\Phi}{n}\, da + \frac{1}{4\pi a^2}\oint \Phi\; da.
+\]
+The first term vanishes: by the divergence theorem it equals $\frac{1}{4\pi a}\int_V \div\grad\Phi\; dV = \frac{1}{4\pi a}\int_V \laplacian{\Phi}\; dV = 0$, because $\Phi$ is harmonic.
+
+\begin{theorem}[Mean value theorem]
+If $\Phi$ is harmonic in a ball of radius $a$, then its value at the centre is its average over the bounding sphere:
+\[
+    \Phi(0) = \frac{1}{4\pi a^2}\oint \Phi\; da.
+\]
+\end{theorem}
+
+\section{Continuity from Maxwell's Equations}
+
+Charge conservation is not an extra postulate bolted onto electromagnetism; it is forced by the field equations themselves. Take the divergence of the Amp\`ere--Maxwell law,
+\[
+    \curl \vect{b} = \mu_0\vect{j} + \mu_0\varepsilon_0\pdv{\vect{e}}{t},
+\]
+so that
+\[
+    \underbrace{\div\left(\curl\vect{b}\right)}_{0} = \mu_0\,\div\vect{j} + \mu_0\varepsilon_0\,\pdv{t}\left(\div\vect{e}\right) = \mu_0\,\div\vect{j} + \mu_0\varepsilon_0\,\pdv{t}\left(\frac{\rho}{\varepsilon_0}\right),
+\]
+where Gauss's law was used in the last step. The divergence of a curl vanishes identically, leaving the continuity equation.
+
+\begin{formula}[Continuity equation]
+\[
+    \div\vect{j} + \pdv{\rho}{t} = 0.
+\]
+\end{formula}
+
+Integrating over a volume and applying the divergence theorem gives the global form,
+\[
+    \int_V \left(\div\vect{j}\right) d^3r = -\dv{t}\int_V \rho\; d^3r
+    \quad\Longrightarrow\quad
+    \int_{\partial V} \vect{j}\cdot d\vect{a} = -\dv{t}\int_V \rho\; d^3r :
+\]
+the charge leaving a region through its boundary equals the rate at which the charge inside decreases.
+
+\begin{fact}
+The local form is the stronger statement. The global form says only that the total charge of an isolated system stays constant; the local form says that charge cannot vanish here and reappear there, but must flow continuously in between. The continuity equation also constrains the sources: $\rho$ and $\vect{j}$ cannot be prescribed independently, but must be mutually consistent if Maxwell's equations are to have a solution at all.
+\end{fact}
+
+\section{Proof That \texorpdfstring{$\vect{E}$}{E} Is a Gradient}
+
+Coulomb's law for a continuous distribution reads
+\[
+    \vect{e}(\vect{x}) = \frac{1}{4\pi\varepsilon_0}\int \rho(\vect{x}\,')\,\frac{\vect{x}-\vect{x}\,'}{|\vect{x}-\vect{x}\,'|^3}\; d^3x'.
+\]
+To show this field is a gradient, define $R = |\vect{x}-\vect{x}\,'| = \sqrt{\sum_i (x_i - x_i')^2}$ and differentiate:
+\[
+    \pdv{x_i}\frac{1}{R} = \dv{R}\left(\frac{1}{R}\right)\pdv{R}{x_i} = -\frac{1}{R^2}\cdot\frac{1}{2R}\cdot 2(x_i - x_i') = -\frac{(x_i - x_i')}{R^3}.
+\]
+Summing over components,
+\[
+    \grad\left(\frac{1}{R}\right) = -\sum_i \frac{(x_i - x_i')}{R^3}\,\hat{x}_i = -\frac{\vect{x}-\vect{x}\,'}{|\vect{x}-\vect{x}\,'|^3},
+\]
+which is precisely the Coulomb kernel up to a sign. Therefore
+\[
+    \vect{e}(\vect{x}) = -\frac{1}{4\pi\varepsilon_0}\int \rho(\vect{x}\,')\,\grad\left(\frac{1}{|\vect{x}-\vect{x}\,'|}\right) d^3x'
+    = -\grad\left(\frac{1}{4\pi\varepsilon_0}\int \frac{\rho(\vect{x}\,')}{|\vect{x}-\vect{x}\,'|}\; d^3x'\right) = -\grad\phi(\vect{x}).
+\]
+
+\subsection{Why the Gradient May Be Taken Outside the Integral}
+
+Interchanging $\grad$ and $\int$ is legitimate because the differentiated integrand converges uniformly near the point of differentiation --- in particular, the apparent singularity at $\vect{x}\,' = \vect{x}$ is integrable. To see this, put the origin at the field point by writing $\vect{x}\,' = \vect{x} + r\hat{n}$, so that $d^3x' = r^2\,dr\,d\Omega$ and $R = r$. If $\rho \le M$ near $\vect{x}$, then
+\[
+    \left|\rho(\vect{x}\,')\,\frac{\vect{x}-\vect{x}\,'}{|\vect{x}-\vect{x}\,'|^3}\right| r^2\,dr\,d\Omega \le M\,\frac{r}{r^3}\cdot r^2\,dr\,d\Omega = M\,dr\,d\Omega,
+\]
+which is finite. The two powers of $r$ from the volume element cancel the $1/r^2$ of the kernel, so the integral defining $\vect{e}(\vect{x})$ converges at every point.
+
+\subsection{Consequence: The Field Is Irrotational}
+
+Having written $\vect{e} = -\grad\phi$, its curl vanishes identically. In index notation,
+\[
+    \left(\curl\grad\phi\right)_i = \epsilon_{ijk}\,\partial_j\partial_k\phi,
+\]
+where $\epsilon_{ijk}$ is antisymmetric under $j \leftrightarrow k$ while $\partial_j\partial_k\phi = \partial_k\partial_j\phi$ is symmetric. Contracting an antisymmetric with a symmetric object gives zero, so
+
+\begin{formula}
+\[
+    \curl\vect{e} = 0 \qquad\text{(electrostatics)}.
+\]
+\end{formula}
+
+\section{Gauss's Law via Solid Angle}
+
+There is a derivation of Gauss's law that makes the inverse-square law do all the work and never mentions spheres.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \filldraw (0,0) circle (1.6pt) node[below] {$q$};
+    % patch
+    \draw[thick] (3.2,-0.45) -- (4.0,0.05) -- (3.7,0.75) -- (2.9,0.25) -- cycle;
+    \node at (3.9,-0.7) {$da$};
+    % rays to patch corners
+    \draw (0,0) -- (3.2,-0.45);
+    \draw (0,0) -- (4.0,0.05);
+    \draw (0,0) -- (3.7,0.75);
+    \draw (0,0) -- (2.9,0.25);
+    % r and normal and E
+    \draw[-{Stealth}, thick] (0,0) -- (1.8,0.12) node[below] {$\vect{r}$};
+    \draw[-{Stealth}, thick] (3.45,0.15) -- (4.15,0.55) node[right] {$\vect{e}$};
+    \draw[-{Stealth}, thick, Orange] (3.45,0.15) -- (3.75,0.95) node[above] {$\hat{n}$};
+    \node at (2.55,0.45) {$\theta$};
+\end{tikzpicture}
+\caption{A surface element $da$ seen from a charge $q$. Only the projection $\cos\theta\, da$ of the element perpendicular to $\vect{r}$ matters, and that projection is $r^2\,d\Omega$ by the definition of solid angle.}
+\label{fig:em-solidangle}
+\end{figure}
+
+The flux of a point charge's field through a surface element is
+\[
+    \vect{e}\cdot d\vect{a} = \vect{e}\cdot\hat{n}\; da = \frac{q}{4\pi\varepsilon_0}\,\frac{\cos\theta\; da}{|\vect{r}|^2}.
+\]
+Now $\cos\theta\, da$ is the area of the element projected perpendicular to $\vect{r}$, and the solid angle subtended by a patch is by definition its perpendicular projection divided by $r^2$; hence $\cos\theta\, da = r^2 d\Omega$ and
+\[
+    \vect{e}\cdot d\vect{a} = \frac{q}{4\pi\varepsilon_0}\,\frac{r^2\,d\Omega}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega.
+\]
+The distance has dropped out completely --- this is where the inverse-square law enters, and nothing else about the geometry survives. Integrating over a closed surface, the total solid angle is $4\pi$ if the charge is enclosed and $0$ if it is not, since in the latter case every ray enters and leaves, contributing with opposite signs:
+\[
+    \oint_S \vect{e}\cdot d\vect{a} = \begin{cases} q/\varepsilon_0, & q \text{ inside } S,\\ 0, & q \text{ outside } S.\end{cases}
+\]
+By superposition over a continuous distribution,
+
+\begin{formula}[Gauss's law, integral form]
+\[
+    \oint_S \vect{e}\cdot d\vect{a} = \frac{1}{\varepsilon_0}\int_V \rho(\vect{r})\; d^3r.
+\]
+\end{formula}
+
+\subsection{The Local Form}
+
+Applying the divergence theorem to the left-hand side,
+\[
+    \int_{\partial V} \vect{e}\cdot d\vect{a} = \int_V \div\vect{e}\; d^3r = \int_V \frac{\rho}{\varepsilon_0}\; d^3r
+    \quad\Longrightarrow\quad
+    \int_V \left(\div\vect{e} - \frac{\rho}{\varepsilon_0}\right) d^3r = 0 .
+\]
+The conclusion we want is that the integrand itself vanishes, and this requires an argument: an integral can vanish over every volume while its integrand does not, if the integrand is badly behaved. What rules that out is continuity. For a continuous $g$, the value at a point is recovered as the limit of its averages over shrinking balls,
+\[
+    g(\vect{x}) = \lim_{R\to 0}\frac{\displaystyle\int_{|\vect{y}-\vect{x}|<R} g\; d^3y}{\tfrac{4}{3}\pi R^3},
+\]
+so if every such average is zero, so is $g$ everywhere.
+
+\begin{formula}[Gauss's law, differential form]
+\[
+    \div\vect{e} = \frac{\rho}{\varepsilon_0}.
+\]
+\end{formula}
+
+\section{The Divergence of the Coulomb Kernel}
+\label{sec:em-delta}
+
+The identity used twice already --- that $1/r^2$ has a delta function for a divergence --- deserves its own proof. The statement only makes sense distributionally, that is, through its action on well-behaved test functions $f$, taken to be compactly supported so that $f$ vanishes outside some bounded region.
+
+\begin{theorem}
+\[
+    \div\left(\frac{\rhat}{r^2}\right) = 4\pi\,\delta^3(\vect{r}).
+\]
+\end{theorem}
+
+\begin{proof}
+Pair the left-hand side with a test function and integrate by parts, with $dv = \div(\rhat/r^2)$ and $u = f$:
+\[
+    \int \div\left(\frac{\rhat}{r^2}\right) f\; d^3x
+    = \sum_i \int \pdv{x_i}\left(\frac{1}{r^2}\right) f\; d^3x
+    = \sum_i \left(\underbrace{\left.\frac{1}{r^2}f\right|_{\partial V}}_{0} - \int_V \frac{1}{r^2}\pdv{f}{x_i}\; d^3x\right),
+\]
+the boundary term vanishing because $f$ is compactly supported. What remains is
+\[
+    -\int \frac{\rhat}{r^2}\cdot\grad f\; d^3x.
+\]
+Now evaluate this in spherical coordinates. Only the radial part of $\grad f$ survives the dot product with $\rhat$, and the angular integral contributes a factor $4\pi$:
+\[
+    -\int \frac{\rhat}{r^2}\cdot\grad f\; d^3x = -4\pi\int_0^\infty \frac{1}{\cancel{r^2}}\left(\pdv{f}{r}\right)\cancel{r^2}\,dr
+    = -4\pi\int_0^\infty \pdv{f}{r}\; dr = -4\pi\bigl(f(\infty) - f(0)\bigr) = 4\pi f(0),
+\]
+again using compact support to kill $f(\infty)$. Since the functional sends $f \mapsto 4\pi f(0)$, it is $4\pi\delta^3(\vect{r})$ by definition of the delta function.
+\end{proof}
+
+This is the precise sense in which a point charge's field has zero divergence everywhere except at the charge, where the divergence is infinite in exactly the right way to give Gauss's law.
+
+\section{The Helmholtz Theorem}
+
+Finally, the structural result behind the whole subject: for a field that dies off at infinity, knowing its divergence and its curl is knowing the field.
+
+\begin{theorem}[Helmholtz]
+Let $\vect{f}(\vect{x})$ be a continuously differentiable vector field on all of three-dimensional space which decays faster than $1/r$ as $r = |\vect{x}|\to\infty$ --- that is, $r\,\vect{f}(\vect{x})\to 0$ as $r\to\infty$. Then there exist $V(\vect{x})$ and $\vect{a}(\vect{x})$, uniquely specified by $\vect{f}$, such that
+\[
+    \vect{f}(\vect{x}) = -\grad V(\vect{x}) + \curl\vect{a}(\vect{x}),
+\]
+where
+\[
+    V(\vect{x}) = \frac{1}{4\pi}\int \frac{\div'\vect{f}(\vect{x}\,')}{|\vect{x}-\vect{x}\,'|}\; d^3x',
+    \qquad
+    \vect{a}(\vect{x}) = \frac{1}{4\pi}\int \frac{\curl'\vect{f}(\vect{x}\,')}{|\vect{x}-\vect{x}\,'|}\; d^3x'.
+\]
+\end{theorem}
+
+The decomposition explains the shape of Maxwell's equations: they are exactly a prescription of the divergence and the curl of $\vect{e}$ and $\vect{b}$, which by this theorem is precisely enough information to determine both fields.
+
+\subsection{Uniqueness}
+
+That two such fields cannot differ is easy to see. Suppose $\vect{f}_1$ and $\vect{f}_2$ have the same divergence and the same curl, and set $\vect{d} = \vect{f}_1 - \vect{f}_2$. Then
+\[
+    \div\vect{d} = \div\left(\vect{f}_1 - \vect{f}_2\right) = 0, \qquad \curl\vect{d} = 0,
+\]
+and by the first identity of this chapter,
+\[
+    \laplacian{\vect{d}} = \grad\left(\div\vect{d}\right) - \curl\left(\curl\vect{d}\right) = 0.
+\]
+So each component of $\vect{d}$ satisfies Laplace's equation on all of space. By the mean value theorem proved above, a harmonic function attains no interior maximum or minimum, so a harmonic function that vanishes at infinity must vanish identically --- whence $\vect{d} = 0$ and $\vect{f}_1 = \vect{f}_2$.
