@@ -1,12 +1,19 @@
 \chapter{Crystallography and X-Ray Diffraction}
 
-The experimental window into the structure of a solid is scattering: we send radiation of a known wavelength at the sample and measure how much of it comes out in each direction. This chapter builds the apparatus needed to interpret such an experiment. We begin by stating the lattice definitions and the two scattering amplitudes --- the structure factor and the atomic form factor --- that the rest of the chapter exists to justify, and fix the conventions used to define a cross-section. We then treat the scattering of X-rays by a single free electron, first classically and then through Fermi's golden rule, and record the absorption cross-section that competes with elastic scattering. Next we set up the language of crystals --- lattices, unit cells, Bravais types --- and finally join the two threads through reciprocal space, where the Fourier transform of a periodic density turns the diffraction pattern into a lattice of its own.
+The experimental window into the structure of a solid is scattering: we send radiation of a known wavelength at the sample and measure how much of it comes out in each direction. Interpreting such an experiment needs two separate bodies of theory, and this chapter takes them in the order they depend on one another. First the language of crystals --- lattices, unit cells, the Bravais types, and the reciprocal lattice that emerges when a periodic density is Fourier transformed. Only then the scattering itself: the conventions that define a cross-section, the scattering of X-rays by a single free electron treated classically and then through Fermi's golden rule, and the absorption that competes with elastic scattering. The reciprocal lattice is what joins the two threads, since it is what turns a diffraction pattern into a picture of the crystal.
 
 % ============================================================
-\section{Lattices, Structure Factors, and Form Factors}
+\section{Crystallography: Lattices and Structures}
+\label{sec:xrd-crystallography}
 % ============================================================
 
-Before setting up the scattering problem it is worth recording, in bare form, the two lattice definitions and the two amplitudes that the rest of the chapter will justify and use. Both are developed properly later --- the lattice language in Section~\ref{sec:xrd-crystallography} and the reciprocal lattice in Section~\ref{sec:xrd-reciprocal} --- but they are stated here because they organise everything that follows.
+We begin with the object doing the scattering. Three terms need to be kept distinct.
+
+\begin{definition}[Motif, lattice, crystal structure]
+A \emph{motif} is a pattern that is repeated by translating from lattice point to lattice point. A \emph{lattice} is a regular arrangement of points. A \emph{crystal structure} is a time-invariant, three-dimensional arrangement of atoms or molecules on a lattice.
+\end{definition}
+
+It is worth recording at the outset the modern, coordinate-free version of what a lattice is; the classical crystallographic development below arrives at the same object by a different route.
 
 \begin{definition}[Bravais lattice]
 A \emph{Bravais lattice} is the set of all points with position vectors $\lvect{r}$ of the form
@@ -14,280 +21,6 @@ A \emph{Bravais lattice} is the set of all points with position vectors $\lvect{
     \lvect{r} = n_1\lvect{a}_1 + n_2\lvect{a}_2 + n_3\lvect{a}_3,
 \end{equation}
 where $\lvect{a}_1, \lvect{a}_2, \lvect{a}_3$ are linearly independent and $n_1, n_2, n_3 \in \mathbb{Z}$.
-\end{definition}
-
-\begin{definition}[Reciprocal lattice]
-The \emph{reciprocal lattice} is the set of wavevectors $\lvect{k}$ satisfying
-\begin{equation}
-    e^{i\lvect{k}\cdot\lvect{r}} = 1 \qquad \text{for all } \lvect{r} \in R,
-\end{equation}
-where $R$ is the Bravais lattice.
-\end{definition}
-
-A crystal is rarely a lattice of identical point scatterers: a unit cell generally contains several ions, sitting at positions $\lvect{d}_j$ relative to the lattice point, and each ion scatters with its own strength. The scattering amplitude of one cell therefore splits into a sum of per-ion amplitudes carrying the phases of their positions.
-
-\begin{formula}[Structure factor of a polyatomic crystal]
-Let $\lvect{k} = \lvect{k}_f - \lvect{k}_i$ be the scattering wavevector, i.e.\ the difference between the final and incident X-ray wavevectors. For a cell containing $n$ ions at positions $\lvect{d}_j$,
-\begin{equation}
-    S_{\lvect{k}} = \sum_{j=1}^{n} f_j(\lvect{k})\,e^{i\lvect{k}\cdot\lvect{d}_j}. \label{eq:xrd-structure-poly}
-\end{equation}
-\end{formula}
-
-\begin{definition}[Atomic form factor]
-The \emph{atomic form factor} $f_j(\lvect{k})$ is determined by the internal structure of the ion occupying the position $\lvect{d}_j$: it is the Fourier transform of that ion's charge density $\rho_j(\lvect{r})$,
-\begin{equation}
-    f_j(\lvect{k}) = -\frac{1}{e}\int \dd\lvect{r}\; e^{i\lvect{k}\cdot\lvect{r}}\,\rho_j(\lvect{r}),
-\end{equation}
-normalised by the electron charge so that $f_j$ counts electrons.
-\end{definition}
-
-The remainder of the chapter earns these expressions: the form factor is what a single electron's scattering amplitude becomes once the electrons are bound into an ion, and the sum in~\eqref{eq:xrd-structure-poly} is exactly the cell integral that the Fourier transform of a periodic density will produce.
-
-% ============================================================
-\section{Cross-Section Conventions}
-% ============================================================
-
-Everything measured in a diffraction experiment is a cross-section, so we must be careful about what is being normalised against what. Two experimental geometries are in common use, and they differ in whether the incident beam is bigger or smaller than the sample (Figure~\ref{fig:xrd-crosssection}).
-
-In geometry (A) the beam is smaller than the object. The relevant quantity is then $I_0$, the number of photons per second in the beam; the beam's area does not matter because it is entirely contained within the surface of the object. The scattered intensity is proportional to $I_0$, and
-\begin{equation}
-    I_{\text{sc}} = I_0\,N\,\Delta\Omega\left(\dv{\sigma}{\Omega}\right),
-\end{equation}
-where $N$ is the number of scattering particles in the sample along the beam direction per unit area.
-
-In geometry (B) the beam is larger than the object --- for instance a single small scatterer bathed in a wide beam. Here it is the incident \emph{flux} $\Phi_0$ (photons per unit area per second) that matters, since only the part of the beam intercepted by the object contributes, and $I_{\text{sc}} \propto \Phi_0$.
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[scale=0.95]
-    % (A) beam smaller than object
-    \begin{scope}
-        \node at (-2.6,1.5) {(A)};
-        \foreach \y in {0.45,0.15,-0.15,-0.45} {
-            \draw[-{Stealth}, Orange] (-2.6,\y) -- (-0.9,\y);
-        }
-        \node[Orange, left] at (-2.6,0.9) {$I_0$};
-        \draw[thick] plot [smooth cycle, tension=0.9]
-            coordinates {(-0.8,0.7) (0.2,1.0) (0.9,0.3) (0.5,-0.7) (-0.6,-0.8)};
-        \node at (0.0,0.1) {\small large object};
-        \draw[-{Stealth}, thick] (0.4,0.4) -- (2.5,1.5);
-        \draw[Periwinkle, thick] (2.2,1.0) -- (2.9,1.35) -- (2.7,1.9) -- (2.0,1.55) -- cycle;
-        \node[Periwinkle, right] at (2.9,1.5) {$\Delta\Omega$};
-        \foreach \y in {-0.2,-0.5} {\draw[-{Stealth}, Orange!60] (1.0,\y) -- (2.0,\y);}
-    \end{scope}
-    % (B) beam larger than object
-    \begin{scope}[yshift=-3.6cm]
-        \node at (-2.6,1.5) {(B)};
-        \foreach \y in {0.75,0.45,0.15,-0.15,-0.45} {
-            \draw[-{Stealth}, Orange] (-2.6,\y) -- (-0.1,\y);
-        }
-        \node[Orange, left] at (-2.6,1.1) {$\Phi_0$};
-        \fill[ForestGreen] (0,0.15) circle (2.5pt);
-        \draw[-{Stealth}, thick] (0,0.15) -- (2.5,1.5);
-        \draw[Periwinkle, thick] (2.2,1.0) -- (2.9,1.35) -- (2.7,1.9) -- (2.0,1.55) -- cycle;
-        \node[Periwinkle, right] at (2.9,1.5) {$\Delta\Omega$};
-        \draw[-{Stealth}, Orange!60] (0.2,0.15) -- (2.2,0.15);
-    \end{scope}
-\end{tikzpicture}
-\caption{Two cross-section conventions. (A) The beam is smaller than the object, so the photon rate $I_0$ is the natural normalisation and $I_{\text{sc}} = I_0 N \Delta\Omega\,(\dd\sigma/\dd\Omega)$. (B) The beam is larger than the scatterer, so the flux $\Phi_0$ is the natural normalisation and $I_{\text{sc}} \propto \Phi_0$.}
-\label{fig:xrd-crosssection}
-\end{figure}
-
-The incident radiation itself is taken to be a monochromatic plane wave.
-
-\begin{formula}[Plane wave]
-\begin{equation}
-    \cvect{E}(\lvect{r},t) = \hat{\varepsilon}\,E_0\exp\bigl(i\lvect{k}\cdot\lvect{r} - i\omega t\bigr),
-\end{equation}
-with the transversality conditions
-\begin{equation}
-    \hat{\varepsilon}\cdot\uvect{k} = 0, \qquad \lvect{k}\cdot\cvect{E} = \lvect{k}\cdot\cvect{H} = 0 .
-\end{equation}
-\end{formula}
-
-Finally, to convert field amplitudes into photon counts we use that the number density of photons is the energy density divided by the energy per photon,
-\begin{equation}
-    \text{number density of light} = \frac{\text{energy density}}{\text{energy per photon}} \propto \frac{c\,|\cvect{E}_{\text{in}}|^2}{\hbar\omega} .
-\end{equation}
-This is the bridge between the classical wave and the counting rate at a detector, and it is where the next section begins.
-
-% ============================================================
-\section{Scattering from a Single Free Electron}
-% ============================================================
-
-Consider a single free electron that scatters an incident wave. The incident beam is characterized by its \emph{flux}: the number of photons per unit area per second. Since each photon carries energy $\hbar\omega$ and the energy density of the wave is proportional to $|\cvect{E}_{\text{in}}|^2$, the flux is proportional to $c$ times the photon number density,
-\begin{equation}
-    \Phi_0 = \frac{\#\ \text{of photons}}{(\text{unit area})(\text{second})} \propto \frac{c\,|\cvect{E}_{\text{in}}|^2}{\hbar\omega}.
-\end{equation}
-The scattered intensity $I_{\text{sc}}$ counts the number of scattered photons per second reaching the detector, so it carries an extra factor of the detector area:
-\begin{equation}
-    I_{\text{sc}} = \frac{\#\ \text{of scattered photons}}{\text{second}} \propto \frac{c\,|\cvect{E}_{\text{rad}}|^2}{\hbar\omega}\cdot(\text{detector area}) \propto \frac{c\,|\cvect{E}_{\text{rad}}|^2}{\hbar\omega}\,R^2\Delta\Omega,
-\end{equation}
-where we used that a detector subtending solid angle $\Delta\Omega$ at distance $R$ has area $R^2\Delta\Omega$ --- the three-dimensional analogue of the arc length $\theta R$.
-
-\begin{definition}[Differential cross-section]
-The differential cross-section is the scattered intensity per unit incident flux per unit solid angle,
-\begin{equation}
-    \dv{\sigma}{\Omega} = \frac{I_{\text{sc}}}{\Phi_0\,\Delta\Omega} = \frac{|\cvect{E}_{\text{rad}}|^2 R^2}{|\cvect{E}_{\text{in}}|^2}.
-\end{equation}
-\end{definition}
-
-\subsection{Classical Description}
-
-Classically, the incident field drives the electron into forced vibration, and the accelerating charge radiates a spherical wave. Writing the incident field as a monochromatic plane wave and the radiated field as an outgoing spherical wave,
-\begin{equation}
-    \cvect{E}_{\text{in}} = E_0\exp(-i\omega t), \qquad
-    \cvect{E}_{\text{rad}} \propto \hat{\varepsilon}\,'\,\frac{e^{ikR}}{R},
-\end{equation}
-where $\hat{\varepsilon}\,'$ is the polarization of the outgoing radiation. Working out the dipole radiation of the driven electron gives
-\begin{equation}
-    \frac{E_{\text{rad}}(R,t)}{E_{\text{in}}} \propto \frac{e^2}{m}\,\frac{e^{ikR}}{R}\,\sin\psi,
-\end{equation}
-with $\psi$ the angle measured from the acceleration (polarization) axis, as sketched in Figure~\ref{fig:xrd-spherical}.
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[scale=1.0]
-    % outgoing spherical wavefronts
-    \foreach \r in {0.7,1.2,1.7} {
-        \draw[Periwinkle, thin] (0,0) circle (\r);
-    }
-    % scatterer
-    \fill[ForestGreen] (0,0) circle (2.5pt);
-    % incident radiation
-    \draw[-{Stealth}, thick, Orange] (-3.4,1.4) -- (-0.9,0.45);
-    \node[Orange, above, align=center] at (-2.3,1.0) {incident\\radiation};
-    % axes
-    \draw[-{Stealth}] (0,0) -- (2.6,-1.3) node[right] {$z$};
-    \draw[-{Stealth}] (0,0) -- (0,2.2) node[above] {polarization axis};
-    % outgoing direction
-    \draw[-{Stealth}, thick] (0,0) -- (2.1,0.75) node[right] {$\uvect{R}$};
-    \draw (0,1.0) arc (90:19.7:1.0);
-    \node at (0.55,1.25) {$\psi$};
-    \node[Periwinkle, right] at (1.35,-0.75) {spherical outgoing wave};
-\end{tikzpicture}
-\caption{An electron driven by the incident radiation re-radiates as a spherical wave whose amplitude falls off as $1/R$ and vanishes along the polarization axis, where $\sin\psi = 0$.}
-\label{fig:xrd-spherical}
-\end{figure}
-
-Introducing the classical electron radius $r_0$, the scattering amplitude of a single electron is $-r_0\,|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'|$, i.e.
-\begin{equation}
-    \frac{E_{\text{rad}}(R,t)}{E_{\text{in}}} = -r_0\,\frac{e^{ikR}}{R}\,|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'|,
-\end{equation}
-so that
-\begin{formula}[Thomson differential cross-section]
-\begin{equation}
-    \dv{\sigma}{\Omega} = r_0^2\,\bigl|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'\bigr|^2. \label{eq:xrd-thomson}
-\end{equation}
-\end{formula}
-
-Integrating over all directions and using the angular average $\langle(\hat{\varepsilon}\cdot\hat{\varepsilon}\,')^2\rangle = 2/3$,
-\begin{equation}
-    \sigma_T = \int \dv{\sigma}{\Omega}\,\dd\Omega = 4\pi r_0^2\times\tfrac{2}{3} = \frac{8\pi r_0^2}{3}.
-\end{equation}
-
-\begin{fact}
-The scattering of X-rays from free electrons is \emph{independent of the photon energy}: the Thomson cross-section contains no $\omega$.
-\end{fact}
-
-% ============================================================
-\section{Quantum Theory of Scattering}
-% ============================================================
-
-To do better than the classical picture we specify combined states of the X-ray field and the sample, $\ket{i}$ (initial) and $\ket{f}$ (final), acted on by some interaction Hamiltonian $H_I$. First-order perturbation theory then gives the transition rate.
-
-\begin{theorem}[Fermi's golden rule]
-The number of transitions per second from $\ket{i}$ to $\ket{f}$ is
-\begin{equation}
-    W = \frac{2\pi}{\hbar}\,|M_{if}|^2\,\rho(\mathcal{E}_f),
-\end{equation}
-where $M_{if} = \bra{f}H_I\ket{i}$ and $\rho(\mathcal{E}_f)$ is the density of states at final energy $\mathcal{E}_f$.
-\end{theorem}
-
-The differential cross-section is then written in terms of the rate of transitions into the solid angle $\Delta\Omega$,
-\begin{equation}
-    \dv{\sigma}{\Omega} = \frac{W_{\Delta\Omega}}{\Phi_0\,\Delta\Omega}, \qquad W_{\Delta\Omega} \equiv I_{\text{sc}}.
-\end{equation}
-
-We restrict to elastic scattering, $\mathcal{E}_i = \mathcal{E}_f$, and assume the X-ray/sample system occupies a box of volume $V$ with periodic boundary conditions, so that
-\begin{equation}
-    \frac{\#\ \text{wavevectors}}{k\text{-space volume}} = \frac{V}{(2\pi)^3}, \qquad
-    \lvect{k} = \frac{(2\pi)^3}{V}\,n.
-\end{equation}
-Counting final photon states in a shell of solid angle $\Delta\Omega$ and using spherical symmetry,
-\begin{equation}
-    \rho(\mathcal{E}_f)\,\dd\mathcal{E}_f = \frac{V}{8\pi^3}\,\dd^3\lvect{k}_f = \frac{V}{8\pi^3}\,k_f^2\,\dd k_f\,\Delta\Omega.
-\end{equation}
-The photon dispersion $\mathcal{E}_f = \hbar k_f c$ converts the $k$-space measure into an energy measure,
-\begin{equation}
-    k_f^2\,\dv{k_f}{\mathcal{E}_f} = \frac{1}{\hbar^3 c^3}\,\mathcal{E}_f^2 .
-\end{equation}
-With a flux of one photon in the box, $\Phi_0 = c/V$, the rate into $\Delta\Omega$ becomes
-\begin{align}
-    W_{\Delta\Omega} &= \frac{2\pi}{\hbar}\int |M_{if}|^2\,\rho(\mathcal{E}_f)\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd\mathcal{E}_f \\
-    &= \frac{2\pi}{\hbar}\cdot\frac{V}{8\pi^3}\int |M_{if}|^2\,k_f^2\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd k_f\,\Delta\Omega \\
-    &= \frac{2\pi}{\hbar}\cdot\frac{V}{8\pi^3}\int |M_{if}|^2\,\frac{1}{\hbar^3c^3}\,\mathcal{E}_f^2\,\Delta\Omega\,\dd\mathcal{E}_f .
-\end{align}
-
-\begin{formula}[Quantum differential cross-section]
-\begin{equation}
-    \left(\dv{\sigma}{\Omega}\right) = \left(\frac{V}{2\pi}\right)^{\!2}\frac{1}{\hbar^4c^4}\int |M_{if}|^2\,\mathcal{E}_f^2\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd\mathcal{E}_f . \label{eq:xrd-qm-dsdo}
-\end{equation}
-\end{formula}
-
-% ============================================================
-\section{The Absorption Cross-Section}
-% ============================================================
-
-Elastic scattering is not the only thing an X-ray can do. In \emph{absorption} the incident photon expels an electron from an atom, so the process is no longer elastic (Figure~\ref{fig:xrd-absorption}). If the electron is bound with binding energy $\mathcal{E}_b$, the ejected photoelectron carries wavevector $q$ with
-\begin{equation}
-    K = \hbar\omega - \mathcal{E}_b = \frac{\hbar^2q^2}{2m},
-\end{equation}
-and, unlike the elastic case, there is no restriction on the direction of the photoelectron.
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[scale=1.0]
-    \draw[thick] (0,-0.9) rectangle (2.0,0.9);
-    \draw[-{Stealth}, thick, Orange, decorate, decoration={snake, amplitude=1.6pt, segment length=6pt, post length=4pt}] (-2.4,0) -- (0,0);
-    \fill[ForestGreen] (1.0,0) circle (2pt);
-    \node[below right] at (1.0,0) {$e^-$};
-    \foreach \a in {35,120,215,300} {
-        \draw[-{Stealth}] (1.0,0) -- ++(\a:0.75);
-    }
-    \node[above] at (-1.2,0.15) {$\hbar\omega$};
-\end{tikzpicture}
-\caption{Photoabsorption: the incident photon is destroyed and a photoelectron leaves the atom in an arbitrary direction.}
-\label{fig:xrd-absorption}
-\end{figure}
-
-If the incident beam is larger than the sample, the scattered intensity is $I_{\text{sc}} = \Phi_0\,\Delta\Omega\,(\dd\sigma/\dd\Omega)$, and the absorption cross-section $\sigma_a$ is defined by $W_{4\pi} = I_0\,\sigma_a N$, i.e.
-\begin{equation}
-    \sigma_a = \frac{W_{4\pi}}{\Phi_0}, \qquad
-    W_{4\pi} = \int \frac{2\pi}{\hbar}\,|M_{if}|^2\,\rho(\mathcal{E}_{pe})\,\delta\bigl(\mathcal{E}_{pe} - (\mathcal{E} - \mathcal{E}_b)\bigr)\,\dd\mathcal{E}_{pe},
-\end{equation}
-where $\mathcal{E}$ is the photon energy and $\mathcal{E}_b$ plays the role of a work function. The photoelectron density of states carries a factor of $2$ for spin,
-\begin{equation}
-    \rho(\mathcal{E}_{pe}) = 2\left(\frac{V}{8\pi^3}\right)\dv{\lvect{q}}{\mathcal{E}_{pe}}
-    = 2\left(\frac{V}{8\pi^3}\right)\frac{q^2\sin\theta\,\dd q\,\dd\theta\,\dd\varphi}{\dd\mathcal{E}_{pe}} .
-\end{equation}
-
-\begin{formula}[Absorption cross-section]
-\begin{equation}
-    \sigma_A = \frac{2\pi}{\hbar c}\,\frac{V^2}{4\pi^3}\int |M_{if}|^2\,
-    \delta\bigl(\mathcal{E}_{pe} - (\mathcal{E} - \mathcal{E}_b)\bigr)\,q^2\sin\theta\,\dd\theta\,\dd q\,\dd\varphi .
-\end{equation}
-\end{formula}
-
-% ============================================================
-\section{Crystallography: Lattices and Structures}
-\label{sec:xrd-crystallography}
-% ============================================================
-
-We now turn from the scattering process to the object doing the scattering. Three terms need to be kept distinct.
-
-\begin{definition}[Motif, lattice, crystal structure]
-A \emph{motif} is a pattern that is repeated by translating from lattice point to lattice point. A \emph{lattice} is a regular arrangement of points. A \emph{crystal structure} is a time-invariant, three-dimensional arrangement of atoms or molecules on a lattice.
 \end{definition}
 
 \subsection{The Space Lattice}
@@ -337,6 +70,7 @@ If a subscript is present on one side without an implied summation, it must appe
 \end{fact}
 
 Two further remarks. The lattice is \emph{invariant} under any translation by a lattice vector $\cvect{T}$. A crystal structure consists of a three-dimensional lattice decorated with one or more atoms; the set of lengths and angles $\{a,b,c,\alpha,\beta,\gamma\}$ fully specifies the lattice, and the \emph{unit cell} is the volume spanned by the basis vectors.
+
 
 % ============================================================
 \section{Bravais Nets and Lattices}
@@ -542,6 +276,7 @@ To calculate the volume of a Wigner--Seitz cell one only needs to count the numb
     = \frac{\text{volume}}{\text{WS cell}}\cdot\frac{\#\ \text{WS cells}}{\text{node}} .
 \end{equation}
 
+
 % ============================================================
 \section{Reciprocal Space}
 \label{sec:xrd-reciprocal}
@@ -609,6 +344,7 @@ so the plane~\eqref{eq:xrd-plane} has intercepts $1/h$, $1/k$, $1/\ell$ --- exac
 The reciprocal lattice vector $\cvect{G}$ with components $h,k,\ell$ \emph{in reciprocal space} is perpendicular to the plane with Miller indices $(hk\ell)$.
 \end{fact}
 
+
 % ============================================================
 \section{The Reciprocal Lattice as a Fourier Transform}
 % ============================================================
@@ -675,3 +411,271 @@ and since the delta function sets $\lvect{k} = \cvect{G}$ inside the integral we
 \end{formula}
 
 The Fourier transform of a periodic density is thus supported \emph{only} on the reciprocal lattice: the diffraction pattern of a crystal consists of sharp spots at the reciprocal lattice vectors $\cvect{G}$, with intensities governed by the structure factor $S(\cvect{G})$ of the contents of a single cell.
+
+\subsection{Polyatomic Crystals: the Form Factor}
+
+A crystal is rarely a lattice of identical point scatterers: a unit cell generally contains several ions, sitting at positions $\lvect{d}_j$ relative to the lattice point, and each ion scatters with its own strength. The scattering amplitude of one cell therefore splits into a sum of per-ion amplitudes carrying the phases of their positions.
+
+\begin{formula}[Structure factor of a polyatomic crystal]
+Let $\lvect{k} = \lvect{k}_f - \lvect{k}_i$ be the scattering wavevector, i.e.\ the difference between the final and incident X-ray wavevectors. For a cell containing $n$ ions at positions $\lvect{d}_j$,
+\begin{equation}
+    S_{\lvect{k}} = \sum_{j=1}^{n} f_j(\lvect{k})\,e^{i\lvect{k}\cdot\lvect{d}_j}. \label{eq:xrd-structure-poly}
+\end{equation}
+\end{formula}
+
+\begin{definition}[Atomic form factor]
+The \emph{atomic form factor} $f_j(\lvect{k})$ is determined by the internal structure of the ion occupying the position $\lvect{d}_j$: it is the Fourier transform of that ion's charge density $\rho_j(\lvect{r})$,
+\begin{equation}
+    f_j(\lvect{k}) = -\frac{1}{e}\int \dd\lvect{r}\; e^{i\lvect{k}\cdot\lvect{r}}\,\rho_j(\lvect{r}),
+\end{equation}
+normalised by the electron charge so that $f_j$ counts electrons.
+\end{definition}
+
+The remainder of the story is that the form factor is what a single electron's scattering amplitude becomes once the electrons are bound into an ion --- which is what the scattering theory of the next section computes.
+
+
+% ============================================================
+\section{X-Ray Diffraction}
+% ============================================================
+
+With the crystal described, we turn to the experiment that reveals it. Everything measured in a diffraction experiment is a cross-section, so we begin with what a cross-section means, then compute the one belonging to a single free electron --- the elementary scatterer out of which the form factors above are built.
+
+% ============================================================
+\subsection{Cross-Section Conventions}
+% ============================================================
+
+Everything measured in a diffraction experiment is a cross-section, so we must be careful about what is being normalised against what. Two experimental geometries are in common use, and they differ in whether the incident beam is bigger or smaller than the sample (Figure~\ref{fig:xrd-crosssection}).
+
+In geometry (A) the beam is smaller than the object. The relevant quantity is then $I_0$, the number of photons per second in the beam; the beam's area does not matter because it is entirely contained within the surface of the object. The scattered intensity is proportional to $I_0$, and
+\begin{equation}
+    I_{\text{sc}} = I_0\,N\,\Delta\Omega\left(\dv{\sigma}{\Omega}\right),
+\end{equation}
+where $N$ is the number of scattering particles in the sample along the beam direction per unit area.
+
+In geometry (B) the beam is larger than the object --- for instance a single small scatterer bathed in a wide beam. Here it is the incident \emph{flux} $\Phi_0$ (photons per unit area per second) that matters, since only the part of the beam intercepted by the object contributes, and $I_{\text{sc}} \propto \Phi_0$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+    % (A) beam smaller than object
+    \begin{scope}
+        \node at (-2.6,1.5) {(A)};
+        \foreach \y in {0.45,0.15,-0.15,-0.45} {
+            \draw[-{Stealth}, Orange] (-2.6,\y) -- (-0.9,\y);
+        }
+        \node[Orange, left] at (-2.6,0.9) {$I_0$};
+        \draw[thick] plot [smooth cycle, tension=0.9]
+            coordinates {(-0.8,0.7) (0.2,1.0) (0.9,0.3) (0.5,-0.7) (-0.6,-0.8)};
+        \node at (0.0,0.1) {\small large object};
+        \draw[-{Stealth}, thick] (0.4,0.4) -- (2.5,1.5);
+        \draw[Periwinkle, thick] (2.2,1.0) -- (2.9,1.35) -- (2.7,1.9) -- (2.0,1.55) -- cycle;
+        \node[Periwinkle, right] at (2.9,1.5) {$\Delta\Omega$};
+        \foreach \y in {-0.2,-0.5} {\draw[-{Stealth}, Orange!60] (1.0,\y) -- (2.0,\y);}
+    \end{scope}
+    % (B) beam larger than object
+    \begin{scope}[yshift=-3.6cm]
+        \node at (-2.6,1.5) {(B)};
+        \foreach \y in {0.75,0.45,0.15,-0.15,-0.45} {
+            \draw[-{Stealth}, Orange] (-2.6,\y) -- (-0.1,\y);
+        }
+        \node[Orange, left] at (-2.6,1.1) {$\Phi_0$};
+        \fill[ForestGreen] (0,0.15) circle (2.5pt);
+        \draw[-{Stealth}, thick] (0,0.15) -- (2.5,1.5);
+        \draw[Periwinkle, thick] (2.2,1.0) -- (2.9,1.35) -- (2.7,1.9) -- (2.0,1.55) -- cycle;
+        \node[Periwinkle, right] at (2.9,1.5) {$\Delta\Omega$};
+        \draw[-{Stealth}, Orange!60] (0.2,0.15) -- (2.2,0.15);
+    \end{scope}
+\end{tikzpicture}
+\caption{Two cross-section conventions. (A) The beam is smaller than the object, so the photon rate $I_0$ is the natural normalisation and $I_{\text{sc}} = I_0 N \Delta\Omega\,(\dd\sigma/\dd\Omega)$. (B) The beam is larger than the scatterer, so the flux $\Phi_0$ is the natural normalisation and $I_{\text{sc}} \propto \Phi_0$.}
+\label{fig:xrd-crosssection}
+\end{figure}
+
+The incident radiation itself is taken to be a monochromatic plane wave.
+
+\begin{formula}[Plane wave]
+\begin{equation}
+    \cvect{E}(\lvect{r},t) = \hat{\varepsilon}\,E_0\exp\bigl(i\lvect{k}\cdot\lvect{r} - i\omega t\bigr),
+\end{equation}
+with the transversality conditions
+\begin{equation}
+    \hat{\varepsilon}\cdot\uvect{k} = 0, \qquad \lvect{k}\cdot\cvect{E} = \lvect{k}\cdot\cvect{H} = 0 .
+\end{equation}
+\end{formula}
+
+Finally, to convert field amplitudes into photon counts we use that the number density of photons is the energy density divided by the energy per photon,
+\begin{equation}
+    \text{number density of light} = \frac{\text{energy density}}{\text{energy per photon}} \propto \frac{c\,|\cvect{E}_{\text{in}}|^2}{\hbar\omega} .
+\end{equation}
+This is the bridge between the classical wave and the counting rate at a detector, and it is where the next section begins.
+
+
+% ============================================================
+\subsection{Scattering from a Single Free Electron}
+% ============================================================
+
+Consider a single free electron that scatters an incident wave. The incident beam is characterized by its \emph{flux}: the number of photons per unit area per second. Since each photon carries energy $\hbar\omega$ and the energy density of the wave is proportional to $|\cvect{E}_{\text{in}}|^2$, the flux is proportional to $c$ times the photon number density,
+\begin{equation}
+    \Phi_0 = \frac{\#\ \text{of photons}}{(\text{unit area})(\text{second})} \propto \frac{c\,|\cvect{E}_{\text{in}}|^2}{\hbar\omega}.
+\end{equation}
+The scattered intensity $I_{\text{sc}}$ counts the number of scattered photons per second reaching the detector, so it carries an extra factor of the detector area:
+\begin{equation}
+    I_{\text{sc}} = \frac{\#\ \text{of scattered photons}}{\text{second}} \propto \frac{c\,|\cvect{E}_{\text{rad}}|^2}{\hbar\omega}\cdot(\text{detector area}) \propto \frac{c\,|\cvect{E}_{\text{rad}}|^2}{\hbar\omega}\,R^2\Delta\Omega,
+\end{equation}
+where we used that a detector subtending solid angle $\Delta\Omega$ at distance $R$ has area $R^2\Delta\Omega$ --- the three-dimensional analogue of the arc length $\theta R$.
+
+\begin{definition}[Differential cross-section]
+The differential cross-section is the scattered intensity per unit incident flux per unit solid angle,
+\begin{equation}
+    \dv{\sigma}{\Omega} = \frac{I_{\text{sc}}}{\Phi_0\,\Delta\Omega} = \frac{|\cvect{E}_{\text{rad}}|^2 R^2}{|\cvect{E}_{\text{in}}|^2}.
+\end{equation}
+\end{definition}
+
+\subsubsection{Classical Description}
+
+Classically, the incident field drives the electron into forced vibration, and the accelerating charge radiates a spherical wave. Writing the incident field as a monochromatic plane wave and the radiated field as an outgoing spherical wave,
+\begin{equation}
+    \cvect{E}_{\text{in}} = E_0\exp(-i\omega t), \qquad
+    \cvect{E}_{\text{rad}} \propto \hat{\varepsilon}\,'\,\frac{e^{ikR}}{R},
+\end{equation}
+where $\hat{\varepsilon}\,'$ is the polarization of the outgoing radiation. Working out the dipole radiation of the driven electron gives
+\begin{equation}
+    \frac{E_{\text{rad}}(R,t)}{E_{\text{in}}} \propto \frac{e^2}{m}\,\frac{e^{ikR}}{R}\,\sin\psi,
+\end{equation}
+with $\psi$ the angle measured from the acceleration (polarization) axis, as sketched in Figure~\ref{fig:xrd-spherical}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    % outgoing spherical wavefronts
+    \foreach \r in {0.7,1.2,1.7} {
+        \draw[Periwinkle, thin] (0,0) circle (\r);
+    }
+    % scatterer
+    \fill[ForestGreen] (0,0) circle (2.5pt);
+    % incident radiation
+    \draw[-{Stealth}, thick, Orange] (-3.4,1.4) -- (-0.9,0.45);
+    \node[Orange, above, align=center] at (-2.3,1.0) {incident\\radiation};
+    % axes
+    \draw[-{Stealth}] (0,0) -- (2.6,-1.3) node[right] {$z$};
+    \draw[-{Stealth}] (0,0) -- (0,2.2) node[above] {polarization axis};
+    % outgoing direction
+    \draw[-{Stealth}, thick] (0,0) -- (2.1,0.75) node[right] {$\uvect{R}$};
+    \draw (0,1.0) arc (90:19.7:1.0);
+    \node at (0.55,1.25) {$\psi$};
+    \node[Periwinkle, right] at (1.35,-0.75) {spherical outgoing wave};
+\end{tikzpicture}
+\caption{An electron driven by the incident radiation re-radiates as a spherical wave whose amplitude falls off as $1/R$ and vanishes along the polarization axis, where $\sin\psi = 0$.}
+\label{fig:xrd-spherical}
+\end{figure}
+
+Introducing the classical electron radius $r_0$, the scattering amplitude of a single electron is $-r_0\,|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'|$, i.e.
+\begin{equation}
+    \frac{E_{\text{rad}}(R,t)}{E_{\text{in}}} = -r_0\,\frac{e^{ikR}}{R}\,|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'|,
+\end{equation}
+so that
+\begin{formula}[Thomson differential cross-section]
+\begin{equation}
+    \dv{\sigma}{\Omega} = r_0^2\,\bigl|\hat{\varepsilon}\cdot\hat{\varepsilon}\,'\bigr|^2. \label{eq:xrd-thomson}
+\end{equation}
+\end{formula}
+
+Integrating over all directions and using the angular average $\langle(\hat{\varepsilon}\cdot\hat{\varepsilon}\,')^2\rangle = 2/3$,
+\begin{equation}
+    \sigma_T = \int \dv{\sigma}{\Omega}\,\dd\Omega = 4\pi r_0^2\times\tfrac{2}{3} = \frac{8\pi r_0^2}{3}.
+\end{equation}
+
+\begin{fact}
+The scattering of X-rays from free electrons is \emph{independent of the photon energy}: the Thomson cross-section contains no $\omega$.
+\end{fact}
+
+
+% ============================================================
+\subsection{Quantum Theory of Scattering}
+% ============================================================
+
+To do better than the classical picture we specify combined states of the X-ray field and the sample, $\ket{i}$ (initial) and $\ket{f}$ (final), acted on by some interaction Hamiltonian $H_I$. First-order perturbation theory then gives the transition rate.
+
+\begin{theorem}[Fermi's golden rule]
+The number of transitions per second from $\ket{i}$ to $\ket{f}$ is
+\begin{equation}
+    W = \frac{2\pi}{\hbar}\,|M_{if}|^2\,\rho(\mathcal{E}_f),
+\end{equation}
+where $M_{if} = \bra{f}H_I\ket{i}$ and $\rho(\mathcal{E}_f)$ is the density of states at final energy $\mathcal{E}_f$.
+\end{theorem}
+
+The differential cross-section is then written in terms of the rate of transitions into the solid angle $\Delta\Omega$,
+\begin{equation}
+    \dv{\sigma}{\Omega} = \frac{W_{\Delta\Omega}}{\Phi_0\,\Delta\Omega}, \qquad W_{\Delta\Omega} \equiv I_{\text{sc}}.
+\end{equation}
+
+We restrict to elastic scattering, $\mathcal{E}_i = \mathcal{E}_f$, and assume the X-ray/sample system occupies a box of volume $V$ with periodic boundary conditions, so that
+\begin{equation}
+    \frac{\#\ \text{wavevectors}}{k\text{-space volume}} = \frac{V}{(2\pi)^3}, \qquad
+    \lvect{k} = \frac{(2\pi)^3}{V}\,n.
+\end{equation}
+Counting final photon states in a shell of solid angle $\Delta\Omega$ and using spherical symmetry,
+\begin{equation}
+    \rho(\mathcal{E}_f)\,\dd\mathcal{E}_f = \frac{V}{8\pi^3}\,\dd^3\lvect{k}_f = \frac{V}{8\pi^3}\,k_f^2\,\dd k_f\,\Delta\Omega.
+\end{equation}
+The photon dispersion $\mathcal{E}_f = \hbar k_f c$ converts the $k$-space measure into an energy measure,
+\begin{equation}
+    k_f^2\,\dv{k_f}{\mathcal{E}_f} = \frac{1}{\hbar^3 c^3}\,\mathcal{E}_f^2 .
+\end{equation}
+With a flux of one photon in the box, $\Phi_0 = c/V$, the rate into $\Delta\Omega$ becomes
+\begin{align}
+    W_{\Delta\Omega} &= \frac{2\pi}{\hbar}\int |M_{if}|^2\,\rho(\mathcal{E}_f)\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd\mathcal{E}_f \\
+    &= \frac{2\pi}{\hbar}\cdot\frac{V}{8\pi^3}\int |M_{if}|^2\,k_f^2\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd k_f\,\Delta\Omega \\
+    &= \frac{2\pi}{\hbar}\cdot\frac{V}{8\pi^3}\int |M_{if}|^2\,\frac{1}{\hbar^3c^3}\,\mathcal{E}_f^2\,\Delta\Omega\,\dd\mathcal{E}_f .
+\end{align}
+
+\begin{formula}[Quantum differential cross-section]
+\begin{equation}
+    \left(\dv{\sigma}{\Omega}\right) = \left(\frac{V}{2\pi}\right)^{\!2}\frac{1}{\hbar^4c^4}\int |M_{if}|^2\,\mathcal{E}_f^2\,\delta(\mathcal{E}_f - \mathcal{E}_i)\,\dd\mathcal{E}_f . \label{eq:xrd-qm-dsdo}
+\end{equation}
+\end{formula}
+
+
+% ============================================================
+\subsection{The Absorption Cross-Section}
+% ============================================================
+
+Elastic scattering is not the only thing an X-ray can do. In \emph{absorption} the incident photon expels an electron from an atom, so the process is no longer elastic (Figure~\ref{fig:xrd-absorption}). If the electron is bound with binding energy $\mathcal{E}_b$, the ejected photoelectron carries wavevector $q$ with
+\begin{equation}
+    K = \hbar\omega - \mathcal{E}_b = \frac{\hbar^2q^2}{2m},
+\end{equation}
+and, unlike the elastic case, there is no restriction on the direction of the photoelectron.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \draw[thick] (0,-0.9) rectangle (2.0,0.9);
+    \draw[-{Stealth}, thick, Orange, decorate, decoration={snake, amplitude=1.6pt, segment length=6pt, post length=4pt}] (-2.4,0) -- (0,0);
+    \fill[ForestGreen] (1.0,0) circle (2pt);
+    \node[below right] at (1.0,0) {$e^-$};
+    \foreach \a in {35,120,215,300} {
+        \draw[-{Stealth}] (1.0,0) -- ++(\a:0.75);
+    }
+    \node[above] at (-1.2,0.15) {$\hbar\omega$};
+\end{tikzpicture}
+\caption{Photoabsorption: the incident photon is destroyed and a photoelectron leaves the atom in an arbitrary direction.}
+\label{fig:xrd-absorption}
+\end{figure}
+
+If the incident beam is larger than the sample, the scattered intensity is $I_{\text{sc}} = \Phi_0\,\Delta\Omega\,(\dd\sigma/\dd\Omega)$, and the absorption cross-section $\sigma_a$ is defined by $W_{4\pi} = I_0\,\sigma_a N$, i.e.
+\begin{equation}
+    \sigma_a = \frac{W_{4\pi}}{\Phi_0}, \qquad
+    W_{4\pi} = \int \frac{2\pi}{\hbar}\,|M_{if}|^2\,\rho(\mathcal{E}_{pe})\,\delta\bigl(\mathcal{E}_{pe} - (\mathcal{E} - \mathcal{E}_b)\bigr)\,\dd\mathcal{E}_{pe},
+\end{equation}
+where $\mathcal{E}$ is the photon energy and $\mathcal{E}_b$ plays the role of a work function. The photoelectron density of states carries a factor of $2$ for spin,
+\begin{equation}
+    \rho(\mathcal{E}_{pe}) = 2\left(\frac{V}{8\pi^3}\right)\dv{\lvect{q}}{\mathcal{E}_{pe}}
+    = 2\left(\frac{V}{8\pi^3}\right)\frac{q^2\sin\theta\,\dd q\,\dd\theta\,\dd\varphi}{\dd\mathcal{E}_{pe}} .
+\end{equation}
+
+\begin{formula}[Absorption cross-section]
+\begin{equation}
+    \sigma_A = \frac{2\pi}{\hbar c}\,\frac{V^2}{4\pi^3}\int |M_{if}|^2\,
+    \delta\bigl(\mathcal{E}_{pe} - (\mathcal{E} - \mathcal{E}_b)\bigr)\,q^2\sin\theta\,\dd\theta\,\dd q\,\dd\varphi .
+\end{equation}
+\end{formula}
+
