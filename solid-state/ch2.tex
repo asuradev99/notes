@@ -433,6 +433,31 @@ The reciprocal lattice vector $\cvect{G}$ with components $h,k,\ell$ \emph{in re
 \end{fact}
 
 
+\subsection{Symmetry of the Reciprocal Lattice}
+
+The direct and reciprocal lattices are not merely dual as sets of vectors; they share the same point symmetry. Let $L = \{\cvect{R}\}$ be a Bravais lattice and $L' = \{\cvect{G}\}$ its reciprocal lattice, so that
+\begin{equation}
+    \cvect{R}\cdot\cvect{G} = 2\pi n, \qquad n\in\mathbb{Z},\quad \forall\,\cvect{R}\in L,\ \cvect{G}\in L'.
+    \label{eq:xrd-RG-duality}
+\end{equation}
+
+\begin{fact}[Point symmetry of the reciprocal lattice]
+If $g$ is a point-symmetry operation of the direct lattice, it is also a symmetry of the reciprocal lattice.
+\end{fact}
+
+To see this, let $R_g$ be the orthogonal matrix representing $g$, so that $R_g\cvect{R}\in L$ for every $\cvect{R}\in L$. Because $R_g$ preserves dot products,
+\begin{equation}
+    \cvect{R}\cdot(R_g\cvect{G}) = (R_g^{-1}\cvect{R})\cdot\cvect{G} = 2\pi n,
+\end{equation}
+since $R_g^{-1}$ is also a symmetry and hence $R_g^{-1}\cvect{R}\in L$. The vector $R_g\cvect{G}$ therefore satisfies the defining condition~\eqref{eq:xrd-RG-duality} against every $\cvect{R}$, so $R_g\cvect{G}\in L'$.
+
+Three consequences follow immediately.
+\begin{enumerate}
+    \item The reciprocal of any Bravais lattice belongs to the same crystal system (Table~\ref{tab:xrd-systems}).
+    \item The reciprocal of a primitive lattice is primitive.
+    \item The reciprocal of $oI$ is $oF$ and vice versa; since duality is an involution, $(L')' = L$, and $oC$ is the only centred orthorhombic lattice left over, its reciprocal must be $oC$ itself.
+\end{enumerate}
+
 % ============================================================
 \section{The Reciprocal Lattice as a Fourier Transform}
 % ============================================================
