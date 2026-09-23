@@ -596,6 +596,25 @@ This gives an intuitive construction of Fermi surfaces in a weak periodic potent
 \end{figure}
 
 % ============================================================
+\section{Band Sticking in Nonsymmorphic Crystals}
+\label{sec:bloch-sticking}
+% ============================================================
+
+The degeneracies met so far have come from the geometry of the Bragg planes alone. A crystal's space group can force degeneracies of its own, and whether it does turns on the symmorphic--nonsymmorphic distinction of the previous chapter.
+
+In a symmorphic crystal the symmetry operations that leave $\lvect{k}$ invariant --- the \emph{little group} of $\lvect{k}$ --- act on Bloch states as an ordinary point group, and the possible band degeneracies at that $\lvect{k}$ are read off from its irreducible representations. Nothing beyond the point group is involved.
+
+In a nonsymmorphic crystal an operation carries an irremovable fractional translation $\lvect{\tau}$, and acting with it on a Bloch state produces an extra phase. If the operation returns a pure lattice translation after $n$ applications,
+\begin{equation}
+    \{R \mid \lvect{\tau}\}^n = \{E \mid \cvect{R}\}
+    \quad\Longrightarrow\quad
+    \bigl(\{R \mid \lvect{\tau}\}\bigr)^n \psi_{n\lvect{k}} = e^{-i\lvect{k}\cdot\cvect{R}}\,\psi_{n\lvect{k}} .
+\end{equation}
+Inside the zone this phase is harmless, but on the zone boundary it is nontrivial, and combined with the remaining symmetries it can force bands to be degenerate over entire lines or planes rather than at isolated points. This is called \emph{band sticking}.
+
+The standard example is hcp, whose $6_3$ screw axis makes every band at least twofold degenerate across the whole hexagonal top face of the Brillouin zone, $k_z = \pi/c$. Degeneracies of this kind cannot occur in a symmorphic crystal, where no such phase is available; two bands that happen to meet there do so accidentally, and a small perturbation separates them.
+
+% ============================================================
 \section{The Tight-Binding Method}
 % ============================================================
 

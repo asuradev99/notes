@@ -77,6 +77,7 @@ Two further remarks. The lattice is \emph{invariant} under any translation by a 
 % ============================================================
 
 \subsection{The Five Two-Dimensional Nets}
+\label{sec:xrd-2dnets}
 
 In two dimensions there are exactly five distinct nets. Four of them are primitive; the fifth requires an added centering node.
 
@@ -276,6 +277,93 @@ To calculate the volume of a Wigner--Seitz cell one only needs to count the numb
     = \frac{\text{volume}}{\text{WS cell}}\cdot\frac{\#\ \text{WS cells}}{\text{node}} .
 \end{equation}
 
+
+\subsection{Space Groups: Symmorphic and Nonsymmorphic Structures}
+
+A Bravais lattice describes only the translational symmetry of a crystal. The full symmetry of a crystal structure --- Bravais lattice plus basis --- is its \emph{space group}: the set of all rigid motions that map the structure onto itself. A general rigid motion is a point operation followed by a translation.
+
+\begin{definition}[Seitz notation]
+A space-group element is written $\{R \mid \lvect{t}\}$, where $R$ is an orthogonal matrix --- a rotation, reflection, inversion, or rotoinversion --- and $\lvect{t}$ is a translation. It acts on a position as
+\begin{equation}
+    \{R \mid \lvect{t}\}\,\lvect{x} = R\lvect{x} + \lvect{t}.
+\end{equation}
+\end{definition}
+
+\begin{formula}[Multiplication and inverse of Seitz operators]
+\begin{equation}
+    \{R \mid \lvect{t}\}\{R' \mid \lvect{t}'\} = \{RR' \mid R\lvect{t}' + \lvect{t}\},
+    \qquad
+    \{R \mid \lvect{t}\}^{-1} = \{R^{-1} \mid -R^{-1}\lvect{t}\}.
+    \label{eq:xrd-seitz-product}
+\end{equation}
+\end{formula}
+
+Pure lattice translations are $\{E \mid \cvect{R}\}$ with $\cvect{R}$ in the Bravais lattice; they form the translation subgroup $T$. Discarding the translational part of every element leaves the set of rotational parts $\{R\}$, which is the \emph{point group} $P$ of the crystal --- for the square net of Section~\ref{sec:xrd-2dnets}, $P = C_{4v}$.
+
+The subtlety is that $P$ need not be a subgroup of the space group $G$. Some operations $R$ may appear in $G$ only in combination with a translation $\lvect{\tau}$ that is a \emph{fraction} of a lattice vector.
+
+\begin{definition}[Symmorphic space group]
+A space group is \emph{symmorphic} if there exists a choice of origin for which every element has the form
+\begin{equation}
+    \{R \mid \cvect{R}\}, \qquad R\in P,\quad \cvect{R}\in T,
+\end{equation}
+that is, every translational part is a lattice vector. Equivalently, some point in space is left fixed by every operation $\{R\mid 0\}$ of the whole point group, and $G$ is the semidirect product $G = T\rtimes P$.
+\end{definition}
+
+\begin{definition}[Nonsymmorphic space group]
+A space group is \emph{nonsymmorphic} if no choice of origin removes all fractional translations: at least one element has the form $\{R \mid \lvect{\tau} + \cvect{R}\}$ with $\lvect{\tau}$ not a lattice vector.
+\end{definition}
+
+\subsubsection{Why the Fractional Translation Cannot Always Be Removed}
+
+Shifting the origin by $\lvect{s}$ conjugates each element by $\{E\mid\lvect{s}\}$. Using~\eqref{eq:xrd-seitz-product},
+\begin{equation}
+    \{E\mid\lvect{s}\}^{-1}\{R\mid\lvect{\tau}\}\{E\mid\lvect{s}\}
+    = \{R \mid \lvect{\tau} + (R-E)\,\lvect{s}\}.
+    \label{eq:xrd-origin-shift}
+\end{equation}
+An origin shift can therefore change $\lvect{\tau}$ only by vectors of the form $(R-E)\lvect{s}$, and such vectors have no component along the directions $R$ leaves fixed --- the axis of a rotation, or the plane of a mirror. A fractional translation \emph{along} such a direction is thus intrinsic, and survives any change of origin. This yields the two elementary nonsymmorphic operations.
+
+\begin{definition}[Screw axis]
+An $n$-fold rotation about an axis, combined with a translation of $m/n$ of a lattice vector along that axis; written $n_m$. For instance $2_1 = \{C_{2z} \mid \tfrac{c}{2}\uvect{z}\}$. Applying it twice gives $\{E \mid c\,\uvect{z}\}$, a pure lattice translation, though the operation itself is not one.
+\end{definition}
+
+\begin{definition}[Glide plane]
+A reflection in a plane, combined with a translation of half a lattice vector parallel to that plane, for instance $\{m_z \mid \tfrac{a}{2}\uvect{x}\}$. Applying it twice gives the lattice translation $\{E \mid a\,\uvect{x}\}$.
+\end{definition}
+
+\begin{fact}[Criterion]
+A space group is nonsymmorphic if and only if it contains a screw axis or a glide plane whose fractional translation cannot be eliminated by~\eqref{eq:xrd-origin-shift}.
+\end{fact}
+
+\subsubsection{Counting and Examples}
+
+Of the 230 three-dimensional space groups, 73 are symmorphic and 157 are nonsymmorphic. Each of the fourteen Bravais lattices combined with each compatible point group gives exactly the 73 symmorphic groups, so these are precisely the ones that can be built ``naively'' by placing a point-symmetric basis on a lattice. In two dimensions, 13 of the 17 wallpaper groups are symmorphic; the four nonsymmorphic ones --- $pg$, $pmg$, $pgg$, $p4gm$ --- all contain glide lines.
+
+\begin{table}[ht]
+    \centering
+    \caption{Symmorphic and nonsymmorphic examples.}
+    \label{tab:xrd-symmorphic}
+    \begin{tabular}{llll}
+        \toprule
+        Structure & Space group & Type & Reason \\
+        \midrule
+        Simple cubic, BCC, FCC metals & $Pm\bar{3}m$, $Im\bar{3}m$, $Fm\bar{3}m$ & symmorphic & one atom per cell \\
+        NaCl (rock salt) & $Fm\bar{3}m$ & symmorphic & both atoms on sites of full $O_h$ symmetry \\
+        CsCl & $Pm\bar{3}m$ & symmorphic & \\
+        Graphene (honeycomb) & $p6mm$ & symmorphic & origin at hexagon centre \\
+        Diamond (C, Si, Ge) & $Fd\bar{3}m$ & nonsymmorphic & $d$-glide and $4_1$ screw \\
+        hcp (Mg, Zn, Ti) & $P6_3/mmc$ & nonsymmorphic & $6_3$ screw, $c$-glide \\
+        Zincblende (GaAs) & $F\bar{4}3m$ & symmorphic & inversion lost with the diamond glides \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{fact}[A basis does not imply nonsymmorphic]
+Having more than one atom per primitive cell does \emph{not} by itself make a structure nonsymmorphic. The honeycomb lattice is not a Bravais lattice, since its two sublattices are inequivalent under translation, yet its space group $p6mm$ is symmorphic: every symmetry, including the inversion that swaps the two sublattices, fixes the centre of a hexagon. The question is whether all point operations share a common fixed point, not whether all atoms are equivalent under translation. Diamond, by contrast, is nonsymmorphic --- the inversion swapping its two FCC sublattices is centred on a bond midpoint while the fourfold operations are centred on an atom, and no single origin serves both.
+\end{fact}
+
+The distinction is not merely taxonomic. It has a direct consequence for band structure, which we take up once Bloch's theorem is available, in Section~\ref{sec:bloch-sticking}.
 
 % ============================================================
 \section{Reciprocal Space}
