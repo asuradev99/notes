@@ -283,21 +283,79 @@ For any conductor in equilibrium, whatever its shape and whatever external charg
 
 Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\phi$ satisfying $\laplacian\phi = 0$ --- or $-\rho/\varepsilon_0$ where charge is present --- subject to boundary conditions on the conducting surfaces that bound the region. Such a \textbf{boundary-value problem} is fully specified either by prescribing $\phi$ on each conductor, or equivalently by specifying the total charge $Q_k$ on each one.
 
-\begin{theorem}[3.1 (Uniqueness Theorem)]
-Assuming that there is a solution $\phi(x,y,z)$ for a given set of conductors with potentials $\phi_{0i}$, this solution must be unique.
+Before proving that such a problem has only one solution, we should be precise about what counts as admissible boundary data.
 
-\textbf{Proof idea:} Assume there is another solution $\psi(x,y,z)$. Since $\laplacian\phi = 0$ is linear, $\phi + c\psi$ is also a solution for $c_1\phi + c_2\psi$. In particular, let $W(x,y,z) \defeq \phi - \psi$. But then $W$ is not a solution because $\phi(\text{boundary}) = \psi(\text{boundary}) \neq 0$, but $W(\text{boundary}) = \phi(\text{boundary}) - \psi(\text{boundary}) = 0$. So $W$ is the solution to a different problem where the same conductors but all conductors held at 0 potential.
+\begin{definition}[Dirichlet boundary condition]
+The value of the potential itself is specified at every point of the boundary surface $S = \partial V$:
+\[
+    \phi(\vect{x}) = f(\vect{x}) \quad\text{for } \vect{x}\in S,
+\]
+for some prescribed function $f$. Holding each conductor at a given potential is a Dirichlet condition.
+\end{definition}
 
-$\Rightarrow$ $W$ must be 0 everywhere (if not, then it violates the fact that it has a maximum $\phi^\text{avg}_\text{inner}$, since it has no maximum).
+\begin{definition}[Neumann boundary condition]
+The normal derivative of the potential --- equivalently the normal component of the field, since $E_n = -\pdv*{\phi}{n}$ --- is specified at every point of $S$:
+\[
+    \pdv{\phi}{n}(\vect{x}) = g(\vect{x}) \quad\text{for } \vect{x}\in S,
+\]
+where $\pdv*{}{n} \equiv \hat{n}\cdot\grad$ is the derivative along the outward normal. Specifying the surface charge on each conductor is a Neumann condition, since $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$.
+\end{definition}
 
-$\Rightarrow$ $\psi = \phi$ everywhere.
+\begin{fact}[Neumann data cannot be prescribed arbitrarily]
+Integrating Gauss's law over $V$ and applying the divergence theorem gives
+\[
+    \oint_S \vect{E}\cdot\hat{n}\,da = \frac{1}{\varepsilon_0}\int_V \rho\,d^3x
+    \quad\Longleftrightarrow\quad
+    \oint_S \pdv{\phi}{n}\,da = -\frac{1}{\varepsilon_0}\int_V \rho\,d^3x .
+\]
+So $g$ cannot be chosen freely: its integral over the whole boundary is fixed by the total charge enclosed. A proposed Neumann condition violating this identity corresponds to no physical configuration at all.
+\end{fact}
 
-This theorem also works when there is charge: $\laplacian\phi = -\dfrac{\rho}{\epsilon_0}$.
+\begin{fact}[Cauchy data is over-determined]
+Specifying \emph{both} $\phi$ and $\pdv*{\phi}{n}$ on the same closed surface is over-determined. As the theorem below shows, Dirichlet data alone already fixes the solution, so imposing Neumann data on top of it is either redundant --- consistent with the Dirichlet solution --- or admits no solution at all.
+\end{fact}
+
+\begin{theorem}[Uniqueness]
+Let $V$ be a region with boundary $S = \partial V$, and let $\phi_1$ and $\phi_2$ both solve Poisson's equation in $V$ for the same charge density,
+\[
+    \laplacian\phi_1 = \laplacian\phi_2 = -\frac{\rho}{\varepsilon_0} \quad\text{in } V .
+\]
+If they satisfy the same boundary condition on $S$ --- either
+\begin{enumerate}[label=(\alph*)]
+    \item Dirichlet, $\phi_1 = \phi_2$ on $S$;
+    \item Neumann, $\pdv*{\phi_1}{n} = \pdv*{\phi_2}{n}$ on $S$; or
+    \item mixed, Dirichlet on one part of $S$ and Neumann on the rest
+\end{enumerate}
+--- then $\phi_1 = \phi_2$ throughout $V$ in cases (a) and (c), and $\phi_1 = \phi_2 + \text{const.}$ throughout $V$ in case (b).
 \end{theorem}
+
+\begin{proof}
+Let $U \equiv \phi_1 - \phi_2$. Since both solve Poisson's equation for the same $\rho$, the sources cancel:
+\[
+    \laplacian U = \left(-\frac{\rho}{\varepsilon_0}\right) - \left(-\frac{\rho}{\varepsilon_0}\right) = 0 \quad\text{in } V,
+\]
+so $U$ is harmonic in $V$. Apply Green's first identity (Formula~\ref{form:em-green1}) with both functions equal to $U$:
+\[
+    \int_V \left(U\laplacian U + |\grad U|^2\right) d^3x = \oint_S U\,\pdv{U}{n}\,da .
+\]
+The first term vanishes because $U$ is harmonic, leaving
+\[
+    \int_V |\grad U|^2\,d^3x = \oint_S U\,\pdv{U}{n}\,da .
+\]
+
+\emph{The surface integral vanishes in every case.} In case (a), $U = 0$ on $S$, so the integrand vanishes pointwise. In case (b), $\pdv*{U}{n} = 0$ on $S$, so again it vanishes pointwise. In case (c), every point of $S$ lies in one region or the other, so at each point either $U = 0$ or $\pdv*{U}{n} = 0$, and the integrand vanishes pointwise across the whole of $S$. In all three cases
+\[
+    \oint_S U\,\pdv{U}{n}\,da = 0 \quad\Longrightarrow\quad \int_V |\grad U|^2\,d^3x = 0 .
+\]
+
+\emph{Conclusion.} The integrand $|\grad U|^2$ is non-negative pointwise, and a non-negative integrand integrating to zero must vanish identically. Hence $\grad U = 0$ everywhere in $V$, and $U$ is constant throughout.
+
+In case (a) --- and in case (c), on its Dirichlet portion --- $U = 0$ at every point of that part of $S$; since $U$ is constant throughout $V$, that constant is zero, and $\phi_1 = \phi_2$ exactly. In case (b) nothing pins down the constant: only $\pdv*{U}{n} = 0$ was known on $S$, which says nothing about the value of $U$ there. So $\phi_1$ and $\phi_2$ agree up to an additive constant --- which is physically as it should be, since only $\vect{E} = -\grad\phi$ is observable and an additive constant leaves it unchanged.
+\end{proof}
 
 This is powerful: if you can guess a solution --- by images, by symmetry, by any means at all --- that satisfies Laplace's equation and matches every boundary condition, then it must be \emph{the} solution. Every technique in the remainder of the chapter rests on that licence.
 
-\begin{theorem}[Corollary 3.2]
+\begin{theorem}[Corollary: a hollow conductor shields its interior]
 In the space inside a hollow conductor of any shape, if that space is empty of charge, the electric field is 0.
 
 \textbf{Proof:} Since $\phi$ is equipotential on the boundaries of the conductor, and thus by the \emph{average-value condition} must be $\phi_0$ throughout the entire region enclosed by the conductor. $\Rightarrow \vect{E} = 0$.
