@@ -106,6 +106,7 @@ Consider a neutral conducting spherical shell enclosing a point charge $q$. A Ga
 
 % =====================================================================
 \section{The Field at the Surface}
+\label{sec:em-surface}
 % =====================================================================
 
 We now determine $\vect{E}$ immediately outside the conductor's surface. The field there is a vector, so it must be pinned down twice: once for the component normal to the surface, and once for the component tangential to it. The two require different arguments and different constructions, and it is worth keeping them separate, since a common error is to suppose that the pillbox below settles both.
@@ -225,8 +226,9 @@ As $R$ was an arbitrary surface point, $\phi = \phi_0$ on the entire surface as 
 \end{figure}
 
 \subsection{Shielding: No Field Lines Within a Conductor}
+\label{sec:em-shielding}
 
-An immediate corollary is that no field line can run through the material of a conductor. Such a line would join two distinct points $A$ and $B$ of the conductor with $\vect{E}\neq 0$ along it, giving $\phi(B)-\phi(A) = -\int_A^B\vect{E}\cdot d\vect{\ell} \neq 0$ and contradicting the constancy just proved. This is the basis of \textbf{electrical shielding}.
+An immediate corollary is that no field line can run through the material of a conductor. Such a line would join two distinct points $A$ and $B$ of the conductor with $\vect{E}\neq 0$ along it, giving $\phi(B)-\phi(A) = -\int_A^B\vect{E}\cdot d\vect{\ell} \neq 0$ and contradicting the constancy just proved. This is the basis of \textbf{electrical shielding}. It says nothing yet about a \emph{cavity} inside a conductor, where there is no material to carry the argument; that stronger statement needs the uniqueness theorem, and is proved as a corollary of it below.
 
 % =====================================================================
 \section{Field Lines Between Conductors at Different Potentials}
@@ -316,6 +318,7 @@ Specifying \emph{both} $\phi$ and $\pdv*{\phi}{n}$ on the same closed surface is
 \end{fact}
 
 \begin{theorem}[Uniqueness]
+\label{thm:em-uniqueness}
 Let $V$ be a region with boundary $S = \partial V$, and let $\phi_1$ and $\phi_2$ both solve Poisson's equation in $V$ for the same charge density,
 \[
     \laplacian\phi_1 = \laplacian\phi_2 = -\frac{\rho}{\varepsilon_0} \quad\text{in } V .
@@ -355,13 +358,17 @@ In case (a) --- and in case (c), on its Dirichlet portion --- $U = 0$ at every p
 
 This is powerful: if you can guess a solution --- by images, by symmetry, by any means at all --- that satisfies Laplace's equation and matches every boundary condition, then it must be \emph{the} solution. Every technique in the remainder of the chapter rests on that licence.
 
+The first application is the one promised in Section~\ref{sec:em-shielding}: a conductor shields not only its own material but any cavity hollowed out of it.
+
 \begin{theorem}[Corollary: a hollow conductor shields its interior]
-In the space inside a hollow conductor of any shape, if that space is empty of charge, the electric field is 0.
-
-\textbf{Proof:} Since $\phi$ is equipotential on the boundaries of the conductor, and thus by the \emph{average-value condition} must be $\phi_0$ throughout the entire region enclosed by the conductor. $\Rightarrow \vect{E} = 0$.
-
-This is related to the proof that $\vect{E} = 0$ on the inside of a conductor; since neutral atom $=$ empty space.
+In the space inside a hollow conductor of any shape, if that space is empty of charge, the electric field is zero.
 \end{theorem}
+
+\begin{proof}
+Let $V$ be the cavity, bounded by the conductor's inner surface $S$. Inside the cavity $\rho = 0$, so $\phi$ satisfies Laplace's equation there, and since the conductor is an equipotential, $\phi = \phi_0$ at every point of $S$. That is a Dirichlet problem, so Theorem~\ref{thm:em-uniqueness} applies. Now simply guess a solution: the constant function $\phi \equiv \phi_0$ throughout $V$ satisfies $\laplacian\phi = 0$ and matches the boundary value everywhere on $S$. By uniqueness it is therefore \emph{the} solution, and $\vect{E} = -\grad\phi = 0$ throughout the cavity.
+\end{proof}
+
+Notice how little work this took once uniqueness was available: the hard part is knowing that a guess which fits is necessarily right. This is the same licence the method of images exploits next, and it is worth seeing it used once on a problem whose answer we can check against intuition before trusting it on one whose answer we cannot.
 
 % =====================================================================
 \section{The Method of Images}
@@ -404,7 +411,7 @@ With the field in hand we can compute what the conductor actually carries. At a 
 \[
     E_z = -\frac{2q}{4\pi\varepsilon_0\,(r^2+h^2)}\cdot\frac{h}{\sqrt{r^2+h^2}} = -\frac{qh}{2\pi\varepsilon_0\,(r^2+h^2)^{3/2}} .
 \]
-Returning to the original problem, the boundary condition of the previous section gives $E_z = \sigma/\varepsilon_0$ just above the plane, whence
+Returning to the original problem, the surface boundary condition of Section~\ref{sec:em-surface} gives $E_z = \sigma/\varepsilon_0$ just above the plane, whence
 \[
     \sigma(r) = -\frac{qh}{2\pi\,(r^2+h^2)^{3/2}} .
 \]
@@ -424,7 +431,7 @@ Given the solution to any electrostatic problem, with its equipotential surfaces
 \section{Capacitance}
 % =====================================================================
 
-An isolated conductor carrying charge $Q$ acquires a potential $\phi_0$, measured with respect to zero at infinity. By the linearity of Laplace's equation, doubling the charge doubles the potential everywhere, so $Q\propto\phi_0$ with a constant of proportionality that depends only on the geometry.
+An isolated conductor carrying charge $Q$ acquires a potential $\phi_0$, measured with respect to zero at infinity. Scaling the charge by $\alpha$ scales the boundary data by $\alpha$, and $\alpha\phi$ then solves the same problem with the scaled data, so by Theorem~\ref{thm:em-uniqueness} it is the solution: the potential everywhere scales with the charge. Hence $Q\propto\phi_0$, with a constant of proportionality that depends only on the geometry.
 
 \begin{formula}[Capacitance (isolated conductor)]
 \[
@@ -440,22 +447,15 @@ For an isolated sphere of radius $a$, $\phi_0 = Q/4\pi\varepsilon_0 a$, so $C = 
 
 \subsection{Two Conductors}
 
-\begin{definition}[Capacitor]
-A capacitor consists of two conductors with potentials $\phi_1$ and $\phi_2$, charges $+q$ and $-q$:
-\[
-  Q = C\bigl(|\phi_1 - \phi_2|\bigr) \quad \text{only valid if you move } Q
-  \text{ from one previously neutral conductor}
-\]
-\[
-  Q \approx C\Phi = C|\Delta\phi|
-\]
-\end{definition}
+For a pair of conductors the useful quantity is referred not to a potential measured from infinity but to the potential \emph{difference} between them.
 
-More usefully, for a pair of conductors carrying $+Q$ and $-Q$ the capacitance is referred to their potential \emph{difference},
+\begin{definition}[Capacitor]
+A \emph{capacitor} is a pair of conductors, separated by insulation, carrying equal and opposite charges $+Q$ and $-Q$, so that every field line leaving one terminates on the other. Its capacitance is
 \[
-    C = \frac{Q}{\phi_a - \phi_b},
+    C = \frac{Q}{|\phi_1 - \phi_2|},
 \]
-and a \textbf{capacitor} is any such pair of conductors separated by insulation, storing energy in the field between them.
+with $Q$ the charge transferred from one conductor to the other, both having started neutral.
+\end{definition}
 
 \begin{example}[Parallel-Plate Capacitor]
 Two flat conducting plates at separation $s$, each of area $A$.
@@ -772,7 +772,7 @@ Substituting the superposition result and using linearity of the integral,
 Each coefficient $C_{ik}$ depends only on the geometry of the conductor system, never on the applied voltages, since it was defined from a problem in which $V_k$ was fixed at exactly $1$ and all other conductors grounded.
 \end{formula}
 
-This is the direct $n$-conductor generalization of $Q = C\phi$, and it makes precise the earlier observation that on a system of conductors the charges and potentials are not independent: fixing all the potentials fixes every charge, and the relation between them is linear.
+This is the direct $n$-conductor generalization of $Q = C\phi$, and it makes precise the sense in which, on a system of conductors, the charges and the potentials are not independent of one another: fixing all the potentials fixes every charge, and the relation between them is linear.
 
 \emph{A check by scaling.} If every $V_j$ is scaled by a common factor $\alpha$, then $\phi\to\alpha\phi$ everywhere by the same linearity-and-uniqueness argument applied directly, and so every $Q_i\to\alpha Q_i$. This is consistent with the formula, since $\sum_k C_{ik}(\alpha V_k) = \alpha\sum_k C_{ik}V_k$.
 
