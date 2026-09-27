@@ -435,11 +435,10 @@ The first application is the one promised in Section~\ref{sec:em-shielding}: a c
 
 \begin{theorem}[Shielding theorem: the Faraday cage]
 \label{thm:em-faraday-cage}
-Let a conductor of any shape contain an empty cavity $V_\text{cav}$ of any shape --- no charge placed inside it. Then
+Let a conductor of any shape contain an empty cavity $V_\text{cav}$ of any shape --- no charge placed inside it --- and suppose an arbitrary external charge distribution or applied field is present outside the conductor. Then
 \[
-    \vect{E} = 0 \quad\text{everywhere in } V_\text{cav}, \qquad \sigma = 0 \quad\text{everywhere on the cavity wall},
+    \vect{E} = 0 \quad\text{everywhere in } V_\text{cav}, \qquad \sigma = 0 \quad\text{everywhere on the cavity wall}.
 \]
-regardless of the shape of the cavity, the shape of the conductor's outer surface, or any external charge distribution or applied field outside the conductor.
 \end{theorem}
 
 \begin{figure}[H]
@@ -456,23 +455,21 @@ regardless of the shape of the cavity, the shape of the conductor's outer surfac
   \node[font=\small, align=left] at (5.6,-1.2) {applied field / any\\[-2pt]external configuration};
 \end{tikzpicture}
 \end{center}
-\caption{The Faraday cage. Whatever charge sits outside the conductor, and whatever the shapes of the outer surface and the cavity, the field inside an empty cavity vanishes exactly.}
+\caption{The Faraday cage: an empty cavity of arbitrary shape inside a conductor of arbitrary shape, with an arbitrary external charge and applied field.}
 \label{fig:em-faraday-cage}
 \end{figure}
 
 \begin{proof}
-Theorem~\ref{thm:em-equipotential} uses only that $\vect{E}=0$ throughout the conductor's interior and that $\phi$ is continuous across an ordinary surface --- neither step referred to what lies outside the conductor. Free charge on the conductor rearranges itself however necessary to keep $\vect{E}=0$ inside it, no matter what external field is applied, so the entire conductor --- including the cavity wall $S \equiv \partial V_\text{cav}$ --- sits at one constant potential $\phi_0$, whatever value that constant happens to take.
+Theorem~\ref{thm:em-equipotential} uses only that $\vect{E}=0$ throughout the conductor's interior and that $\phi$ is continuous across an ordinary surface --- neither step referred to what lies outside the conductor, so the entire conductor, including the cavity wall $S \equiv \partial V_\text{cav}$, still sits at one constant potential $\phi_0$.
 
-Inside $V_\text{cav}$ no charge was placed, so $\laplacian\phi = 0$ there, with $\phi=\phi_0$ on $S$. That is a Dirichlet problem, so Theorem~\ref{thm:em-uniqueness} applies. Now simply guess a solution: the constant function $\phi\equiv\phi_0$ throughout $V_\text{cav}$ satisfies $\laplacian\phi=0$ and matches the boundary value everywhere on $S$. By uniqueness it is therefore \emph{the} solution, giving
+Inside $V_\text{cav}$ no charge was placed, so $\laplacian\phi = 0$ there, with $\phi=\phi_0$ on $S$: a Dirichlet problem, so Theorem~\ref{thm:em-uniqueness} applies. The constant function $\phi\equiv\phi_0$ throughout $V_\text{cav}$ satisfies $\laplacian\phi=0$ and matches the boundary value on $S$, so by uniqueness it is \emph{the} solution, giving
 \[
     \vect{E} = -\grad\phi_0 = 0 \quad\text{everywhere in } V_\text{cav}.
 \]
-Applying the pillbox relation of Section~\ref{sec:em-surface}, $E_\perp = \sigma/\varepsilon_0$, at the cavity wall with $E_\perp = 0$ then gives $\sigma = 0$ there as well: the cavity wall carries no induced charge at all, in contrast to the conductor's outer surface, which generally does.
+Applying the pillbox relation of Section~\ref{sec:em-surface}, $E_\perp = \sigma/\varepsilon_0$, at the cavity wall with $E_\perp = 0$ then gives $\sigma = 0$ there as well, in contrast to the conductor's outer surface, which generally carries induced charge.
 \end{proof}
 
-\begin{fact}[The shielding is exact]
-Nothing in the proof referenced the strength or location of the external charge, the shape of the outer surface, or the shape of the cavity --- only that the cavity itself is charge-free. This is why the shielding is \emph{exact}, not merely approximate for a conductor that is ``thick enough'': an empty cavity in a conductor is completely field-free under \emph{any} external electrostatic configuration whatsoever, however strong the applied field or however thin the conductor's walls. A real Faraday cage --- a mesh rather than a solid shell --- only approximates this idealization, and departs from it precisely to the extent that field lines can thread the gaps in the mesh.
-\end{fact}
+A real Faraday cage --- a mesh rather than a solid shell --- only approximates this result, departing from it to the extent that field lines can thread the gaps.
 
 Notice how little work Theorem~\ref{thm:em-faraday-cage} took once uniqueness was available: the hard part is knowing that a guess which fits is necessarily right. This is the same licence the method of images exploits next, and it is worth seeing it used once on a problem whose answer we can check against intuition before trusting it on one whose answer we cannot.
 
