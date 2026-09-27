@@ -326,9 +326,39 @@ For any conductor in equilibrium, whatever its shape and whatever external charg
 \section{The Boundary-Value Problem and Uniqueness}
 % =====================================================================
 
-Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\phi$ satisfying $\laplacian\phi = 0$ --- or $-\rho/\varepsilon_0$ where charge is present --- subject to boundary conditions on the conducting surfaces that bound the region. Such a \textbf{boundary-value problem} is fully specified either by prescribing $\phi$ on each conductor, or equivalently by specifying the total charge $Q_k$ on each one.
+Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\phi$ satisfying $\laplacian\phi = 0$ --- or $-\rho/\varepsilon_0$ where charge is present --- subject to boundary conditions on the conducting surfaces that bound the region.
 
-Before proving that such a problem has only one solution, we should be precise about what counts as admissible boundary data.
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \draw[fill=gray!15,thick] (0,0) ellipse (1.1cm and 0.8cm);
+  \node[font=\small] at (0,0) {$S_1$};
+  \node[font=\small, below] at (0,-0.9) {$\phi_1$ or $Q_1$};
+  \draw[fill=gray!15,thick] (3.6,0.3) ellipse (0.9cm and 1.1cm);
+  \node[font=\small] at (3.6,0.3) {$S_2$};
+  \node[font=\small, below] at (3.6,-0.9) {$\phi_2$ or $Q_2$};
+  \draw[fill=gray!15,thick] (1.7,-2.0) circle (0.6cm);
+  \node[font=\small] at (1.7,-2.0) {$S_3$};
+  \node[font=\small, below] at (1.7,-2.7) {$\phi_3$ or $Q_3$};
+  \node[font=\small, black!55] at (-1.4,2.0) {$\laplacian\phi=-\rho/\varepsilon_0$};
+  \node[font=\small, black!55] at (5.3,-2.2) {$\phi\to0$ as $|\vect{x}|\to\infty$};
+  \draw[->] (5.0,-1.9) -- (4.0,-1.0);
+\end{tikzpicture}
+\end{center}
+\caption{The exterior boundary-value problem: conductor surfaces $S_1,\dots,S_n$ sit in a region where $\phi$ obeys Poisson's equation for whatever free charge is prescribed there, subject to one datum --- $\phi_i$ or $Q_i$, never both --- on each $S_i$, plus decay at infinity.}
+\label{fig:em-bvp-setup}
+\end{figure}
+
+Precisely, such a \textbf{boundary-value problem} is specified by the following data (Figure~\ref{fig:em-bvp-setup}):
+\begin{itemize}
+    \item the shapes and positions of the conducting surfaces $S_1,\dots,S_n$;
+    \item any prescribed free charge density $\rho(\vect{x})$ in the region outside them;
+    \item for \emph{each} conductor, exactly one of its potential $\phi_i$ or its total charge $Q_i$ --- never both, which would be over-determined, nor neither, which would leave the problem unsolved;
+    \item if the region is unbounded, the decay condition $\phi\to 0$ as $|\vect{x}|\to\infty$, needed to rule out solutions that differ by an additive harmonic function growing at infinity.
+\end{itemize}
+Solving the problem means finding $\phi$ everywhere in the region (hence $\vect{E} = -\grad\phi$), the induced surface charge $\sigma_i = -\varepsilon_0\,\pdv*{\phi}{n}$ on each conductor, and whichever of $\{\phi_i\}$ or $\{Q_i\}$ was \emph{not} prescribed --- if potentials were given, the charges $Q_i = \oint_{S_i}\sigma_i\,da$ come out as part of the solution, and vice versa. When $Q_i$ is given instead of $\phi_i$, the surface condition is that $\phi$ is \emph{constant} on $S_i$, at some value determined by the constraint $Q_i = -\varepsilon_0\oint_{S_i}\pdv*{\phi}{n}\,da$, rather than a value fixed in advance.
+
+Before proving that this data determines a unique solution, we should be precise about the two kinds of boundary condition it involves.
 
 \begin{definition}[Dirichlet boundary condition]
 The value of the potential itself is specified at every point of the boundary surface $S = \partial V$:
