@@ -376,14 +376,15 @@ The normal derivative of the potential --- equivalently the normal component of 
 where $\pdv*{}{n} \equiv \hat{n}\cdot\grad$ is the derivative along the outward normal. Specifying the surface charge on each conductor is a Neumann condition, since $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$.
 \end{definition}
 
-\begin{fact}[Neumann data cannot be prescribed arbitrarily]
-Integrating Gauss's law over $V$ and applying the divergence theorem gives
+Not every function $g$ is admissible Neumann data, however. Integrating Gauss's law over $V$ and applying the divergence theorem gives
 \[
     \oint_S \vect{E}\cdot\hat{n}\,da = \frac{1}{\varepsilon_0}\int_V \rho\,d^3x
     \quad\Longleftrightarrow\quad
     \oint_S \pdv{\phi}{n}\,da = -\frac{1}{\varepsilon_0}\int_V \rho\,d^3x .
 \]
-So $g$ cannot be chosen freely: its integral over the whole boundary is fixed by the total charge enclosed. A proposed Neumann condition violating this identity corresponds to no physical configuration at all.
+
+\begin{fact}[Neumann data cannot be prescribed arbitrarily]
+The function $g = \pdv*{\phi}{n}$ cannot be chosen freely on $S$: its integral over the whole boundary is fixed by the total charge enclosed. A proposed Neumann condition violating this identity corresponds to no physical configuration at all.
 \end{fact}
 
 \begin{fact}[Cauchy data is over-determined]
@@ -428,6 +429,34 @@ The first term vanishes because $U$ is harmonic, leaving
 
 In case (a) --- and in case (c), on its Dirichlet portion --- $U = 0$ at every point of that part of $S$; since $U$ is constant throughout $V$, that constant is zero, and $\phi_1 = \phi_2$ exactly. In case (b) nothing pins down the constant: only $\pdv*{U}{n} = 0$ was known on $S$, which says nothing about the value of $U$ there. So $\phi_1$ and $\phi_2$ agree up to an additive constant --- which is physically as it should be, since only $\vect{E} = -\grad\phi$ is observable and an additive constant leaves it unchanged.
 \end{proof}
+
+\subsection{The Case of Prescribed Charges}
+
+The boundary-value setup above allows a conductor's total charge $Q_i$ to be specified in place of its potential, and it is worth checking directly that this pins down the solution too, since it is not literally an instance of case (b). Neumann data means the normal derivative is known \emph{pointwise} on $S$; specifying $Q_i$ instead only says that $\phi$ is \emph{some} constant on $S_i$ --- an unknown one --- together with the single integrated condition $\oint_{S_i}\pdv*{\phi}{n}\,da = -Q_i/\varepsilon_0$. This is weaker than pointwise Neumann data, so the theorem above does not directly apply, and the case deserves its own argument.
+
+\begin{theorem}[Uniqueness with charges prescribed]
+\label{thm:em-uniqueness-charges}
+Let $V$ be the region exterior to conductors with surfaces $S_1,\dots,S_n$, and let $\phi_1,\phi_2$ both solve Poisson's equation in $V$ for the same $\rho$, with $\phi_1,\phi_2 \to 0$ as $|\vect{x}|\to\infty$. If the two solutions assign the same total charge $Q_i$ to every conductor, then $\phi_1 = \phi_2$ throughout $V$ --- including agreement on the potential of every conductor, which was not prescribed in advance.
+\end{theorem}
+
+\begin{proof}
+Let $U \equiv \phi_1 - \phi_2$, harmonic in $V$ as before. Because each $\phi_1,\phi_2$ is constant over every conductor, so is $U$: write $U = c_i$ on $S_i$, a priori a different constant for each $i$. Matching charges on $S_i$ gives
+\[
+    \oint_{S_i} \pdv{U}{n}\,da = \oint_{S_i}\pdv{\phi_1}{n}\,da - \oint_{S_i}\pdv{\phi_2}{n}\,da
+    = -\frac{Q_i}{\varepsilon_0} - \left(-\frac{Q_i}{\varepsilon_0}\right) = 0 .
+\]
+Apply Green's first identity on $V$, whose boundary consists of the surfaces $S_1,\dots,S_n$ together with a sphere at infinity:
+\[
+    \int_V |\grad U|^2\,d^3x = \sum_{i=1}^n \oint_{S_i} U\,\pdv{U}{n}\,da \;+\; \oint_{\infty} U\,\pdv{U}{n}\,da .
+\]
+The sphere at infinity contributes nothing: for an isolated charge distribution $U$ decays at least as $1/|\vect{x}|$ and $\pdv*{U}{n}$ at least as $1/|\vect{x}|^2$, so the integrand falls off faster than the sphere's area grows. On each $S_i$, $U = c_i$ is constant and factors out of its integral, leaving $c_i \oint_{S_i}\pdv*{U}{n}\,da = 0$ by the charge-matching condition above. So every term vanishes, giving
+\[
+    \int_V |\grad U|^2\,d^3x = 0 \quad\Longrightarrow\quad \grad U = 0 \text{ everywhere in } V,
+\]
+and $U$ is one constant throughout the connected region $V$. Since $U\to 0$ at infinity, that constant is zero: $U\equiv 0$ everywhere in $V$, so $\phi_1=\phi_2$ throughout, and in particular $c_i = 0$ for every $i$ --- the two solutions agree on each conductor's potential as well.
+\end{proof}
+
+Prescribing the charges therefore determines the solution completely, with no leftover additive constant, unlike the bare Neumann case above. The difference is the decay condition at infinity: on a bounded region with pure Neumann data there is nothing to rule out a uniform shift of $\phi$, but here decay at infinity plays exactly that role, since a nonzero constant added everywhere would not decay.
 
 This is powerful: if you can guess a solution --- by images, by symmetry, by any means at all --- that satisfies Laplace's equation and matches every boundary condition, then it must be \emph{the} solution. Every technique in the remainder of the chapter rests on that licence.
 
