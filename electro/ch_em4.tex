@@ -1,23 +1,23 @@
 % =====================================================================
 \chapter{Conductors and Capacitance}
 
-A conductor is a material containing charges that are free to move in response to any electric field present. That single property, combined with the demand that nothing be moving, is enough to fix a great deal: the field inside, the charge density inside, the direction and magnitude of the field at the surface, and the behaviour of the potential throughout. This chapter derives each of those in turn, then uses them to develop capacitance, first for a single pair of conductors and then for an arbitrary system of them.
+A conductor contains charges free to move in response to any field. That, plus the demand that nothing move, fixes the interior field and charge density, the field at the surface, and the potential throughout. We derive each, then develop capacitance for one, two, and many conductors.
 
 % =====================================================================
 \section{Electrostatic Equilibrium}
 % =====================================================================
 
-Throughout we consider a conductor in \emph{electrostatic equilibrium}: nothing is moving, and all quantities are time-independent. Everything in this section is a consequence of that assumption alone, holding regardless of the conductor's shape or of what other charges are present nearby.
+Throughout, the conductor is in \emph{electrostatic equilibrium}: nothing moves and all quantities are time-independent. Everything below follows from this alone, whatever the conductor's shape or surroundings.
 
 \begin{theorem}[The interior field vanishes]
 $\vect{E} = 0$ at every point in the interior of a conductor in electrostatic equilibrium.
 \end{theorem}
 
 \begin{proof}
-Suppose, for contradiction, that $\vect{E}\neq 0$ at some interior point. The free charges there feel a force $\vect{F} = q\vect{E}\neq 0$, and by Newton's second law they accelerate. But moving charges contradict the assumption that the configuration is static. Hence no such point can exist, and $\vect{E} = 0$ throughout the interior.
+If $\vect{E}\neq 0$ at an interior point, the free charges there feel $\vect{F}=q\vect{E}\neq 0$ and accelerate, contradicting equilibrium.
 \end{proof}
 
-This is a statement about the \emph{full} vector, not merely its magnitude or one of its components --- a point we will need shortly. Note also what it does not say: the field outside is not zero, and the conductor does not shield its exterior. What has happened physically is that the free charges redistribute themselves until the field they produce exactly cancels whatever external field is applied. An insulator has no such freedom, and the external field penetrates it essentially unchanged.
+This concerns the \emph{full} vector, not just one component --- a point used below. It says nothing about the field outside: the free charges redistribute until their field cancels any applied field inside. An insulator cannot do this, so an external field penetrates it essentially unchanged.
 
 \begin{figure}[H]
 \begin{center}
@@ -61,13 +61,13 @@ The volume charge density $\rho$ vanishes throughout the interior of a conductor
 \end{theorem}
 
 \begin{proof}
-Gauss's law in local form reads $\div\vect{E} = \rho/\varepsilon_0$. Since $\vect{E} = 0$ at every interior point, its divergence is identically zero there as well, forcing $\rho = 0$ throughout the interior. Any net charge placed on the conductor therefore cannot reside in the bulk; it must live as a surface charge density $\sigma$ on the boundary.
+Gauss's law gives $\rho = \varepsilon_0\div\vect{E} = 0$ at every interior point, so any net charge must sit on the boundary as a surface density $\sigma$.
 \end{proof}
 
-In the idealized macroscopic treatment used here that surface charge is a genuine two-dimensional sheet. Microscopically the layer has a finite, atomic-scale thickness, but that refinement plays no role in anything below.
+Macroscopically $\sigma$ is a two-dimensional sheet; its atomic-scale thickness plays no role below.
 
 \begin{example}[Spherically Symmetric Field --- Neutral Conducting Spherical Shell]
-Consider a neutral conducting spherical shell enclosing a point charge $q$. A Gaussian surface drawn inside the shell material encloses zero flux, so zero net charge; since the enclosed charge $q$ is already there, the inner surface must carry $-q$. The outer surface then carries $+q$ to keep the conductor neutral overall. The external field is purely radial, identical to that of a point charge $+q$ at the center --- even if $q$ is off-center inside.
+A neutral conducting shell encloses a point charge $q$. A Gaussian surface inside the metal has zero flux, so the inner surface carries $-q$ and, by neutrality, the outer surface $+q$. The external field is radial, identical to that of $+q$ at the center --- even if $q$ is off-center.
 
 \begin{figure}[H]
 \begin{center}
@@ -110,7 +110,7 @@ Consider a neutral conducting spherical shell enclosing a point charge $q$. A Ga
 \label{sec:em-surface}
 % =====================================================================
 
-We now determine $\vect{E}$ immediately outside the conductor's surface. The field there is a vector, so it must be pinned down twice: once for the component normal to the surface, and once for the component tangential to it. The two require different arguments and different constructions, and it is worth keeping them separate, since a common error is to suppose that the pillbox below settles both.
+The field just outside is a vector, so its normal and tangential components must be fixed separately; the pillbox below settles only the first.
 
 \subsection{The Normal Component: a Gaussian Pillbox}
 
@@ -128,18 +128,18 @@ We now determine $\vect{E}$ immediately outside the conductor's surface. The fie
   \node[font=\small, black!60] at (1.55,0.25) {area $A$};
 \end{tikzpicture}
 \end{center}
-\caption{A Gaussian pillbox straddling the surface. The inner face contributes no flux because $\vect{E}=0$ inside, and the side wall contributes none in the limit of vanishing height, so the entire flux $\sigma A/\varepsilon_0$ passes through the outer face.}
+\caption{A Gaussian pillbox straddling the surface. With $\vect{E}=0$ inside and a vanishing side wall, the entire flux $\sigma A/\varepsilon_0$ passes through the outer face.}
 \end{figure}
 
-Take a small pillbox --- a short cylinder --- straddling the surface, with one flat face of area $A$ just inside the conductor, the other just outside, and a connecting side wall of negligible height, so that its flux contribution vanishes. Gauss's law in integral form gives
+Take a pillbox straddling the surface, with faces of area $A$ just inside and just outside and a side wall of negligible height. Gauss's law gives
 \[
     \oint_S \vect{E}\cdot\hat{n}\,da = \frac{Q_\text{enc}}{\varepsilon_0}.
 \]
-The inside face contributes nothing, since $\vect{E} = 0$ there, and the enclosed charge is $Q_\text{enc} = \sigma A$. The entire flux therefore comes from the outside face alone:
+The inner face contributes nothing and $Q_\text{enc}=\sigma A$, so
 \[
     E_\perp A = \frac{\sigma A}{\varepsilon_0} \quad\Longrightarrow\quad E_\perp = \frac{\sigma}{\varepsilon_0}.
 \]
-This fixes only the component of $\vect{E}$ normal to the surface. The pillbox says nothing whatever about any component lying \emph{within} the surface, since such a component would contribute no flux through either face.
+A tangential component contributes no flux through either face, so the pillbox is silent about it.
 
 \subsection{The Tangential Component: a Thin Rectangular Loop}
 
@@ -161,15 +161,15 @@ This fixes only the component of $\vect{E}$ normal to the surface. The pillbox s
 \caption{A thin rectangular loop straddling the surface. As $h\to 0$ the short sides contribute nothing to the circulation, so the two long sides must cancel one another.}
 \end{figure}
 
-Take instead a thin rectangular loop straddling the surface: two long sides of length $L$ running parallel to the surface, one just outside and one just inside, joined by two short sides of length $h$, with $h\to 0$ at the end. The electrostatic field is curl-free, since it derives from a scalar potential, so
+Instead take a thin rectangular loop straddling the surface, with long sides $L$ just outside and just inside and short sides $h\to 0$. Since $\vect{E}$ is curl-free,
 \[
     \oint \vect{E}\cdot d\vect{\ell} = 0
 \]
-around any closed loop. The short sides contribute at most $|\vect{E}|_{\max} h$, which vanishes as $h\to 0$, so only the two long sides survive. They are traversed in opposite directions in order to close the loop, whence the relative sign:
+around the loop. The short sides vanish as $h\to 0$, and the long sides are traversed oppositely:
 \[
     E_{\parallel,\text{out}}\,L - E_{\parallel,\text{in}}\,L = 0 \quad\Longrightarrow\quad E_{\parallel,\text{out}} = E_{\parallel,\text{in}}.
 \]
-Here is where it matters that the first theorem gave us the vanishing of the entire interior vector and not merely its normal part: $E_{\parallel,\text{in}} = 0$, and therefore $E_{\parallel,\text{out}} = 0$ as well.
+Since the full interior vector vanishes, $E_{\parallel,\text{in}} = 0$ and hence $E_{\parallel,\text{out}} = 0$.
 
 \subsection{The Combined Result}
 
@@ -177,10 +177,10 @@ Here is where it matters that the first theorem gave us the vanishing of the ent
 \[
     \vect{E}_\text{just outside} = \frac{\sigma}{\varepsilon_0}\,\hat{n},
 \]
-directed straight out of the surface, with no component running along it. Equivalently, in terms of the potential, $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$, where $\pdv*{}{n}$ is the outward normal derivative.
+normal to the surface. Equivalently, $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$ with $\pdv*{}{n}$ the outward normal derivative.
 \end{formula}
 
-Field lines therefore always meet a conductor's surface at a right angle. The physical reading is a consistency check on the assumption we started from: were a tangential component to exist, free charges sitting at the surface would feel a force \emph{along} the surface and would begin to slide, contradicting equilibrium. The mathematics and the physics agree, as they must.
+Field lines therefore meet a conductor at right angles --- consistent with equilibrium, since a tangential component would make surface charges slide.
 
 % =====================================================================
 \section{The Conductor as an Equipotential}
@@ -197,7 +197,7 @@ Recall the line-integral relation between $\vect{E}$ and $\phi$: for any path $\
     \phi(Q) - \phi(P) = -\int_\gamma \vect{E}\cdot d\vect{\ell}.
 \]
 
-\textbf{Step 1 (the interior).} Let $P$ and $Q$ be any two interior points, and choose a path $\gamma$ from $P$ to $Q$ lying entirely within the conductor --- possible because the interior is connected (Figure~\ref{fig:em-equip-interior}). Because $\vect{E} = 0$ at \emph{every} point of the interior, the integrand vanishes identically along the whole path, whatever its shape; no appeal to path independence or to Stokes's theorem is needed. Hence
+\textbf{Step 1 (interior).} Join any two interior points $P$, $Q$ by a path $\gamma$ lying inside the conductor (Figure~\ref{fig:em-equip-interior}). Since $\vect{E}=0$ everywhere along it,
 \[
     \phi(Q) - \phi(P) = -\int_\gamma 0\,d\ell = 0 .
 \]
@@ -217,13 +217,13 @@ Since $P$ and $Q$ were arbitrary, $\phi \equiv \phi_0$ for a single constant $\p
 \label{fig:em-equip-interior}
 \end{figure}
 
-\textbf{Step 2 (continuity across the surface).} Before reaching the surface we need to know that $\phi$ does not jump there. Join a point $P_\text{below}$ just inside the surface to a point $P_\text{above}$ just outside by a short path of length $h$ crossing the boundary along the normal (Figure~\ref{fig:em-equip-continuity}). Then
+\textbf{Step 2 (continuity across the surface).} Join $P_\text{below}$ just inside to $P_\text{above}$ just outside by a normal path of length $h$ (Figure~\ref{fig:em-equip-continuity}):
 \[
     \bigl|\phi(P_\text{above}) - \phi(P_\text{below})\bigr|
     = \left|\int_{P_\text{below}}^{P_\text{above}} \vect{E}\cdot d\vect{\ell}\right|
     \le \Bigl(\max_{\text{path}}|\vect{E}|\Bigr)\, h .
 \]
-Since $\sigma$, and hence $\vect{E}$, remains finite on both sides as the surface is approached, the right-hand side vanishes as $h\to 0$. So $\phi$ is continuous across the surface, and the value at a surface point is the limit of its values along any path of interior points approaching that point.
+Since $\sigma$, and hence $\vect{E}$, stays finite, the bound vanishes as $h\to 0$: $\phi$ is continuous across the surface.
 
 \begin{figure}[H]
 \begin{center}
@@ -244,13 +244,13 @@ Since $\sigma$, and hence $\vect{E}$, remains finite on both sides as the surfac
 \label{fig:em-equip-continuity}
 \end{figure}
 
-This is where the finiteness of $\sigma$ does real work. The argument fails for an idealized \emph{dipole layer}, in which $\sigma\to\infty$ as the layer thickness $d\to 0$ with the product $\sigma d$ held fixed: there $|\vect{E}|h$ does not vanish in the limit, and the potential genuinely jumps across the layer. An ordinary conductor carries a finite surface charge, so the exception does not arise here.
+Finiteness of $\sigma$ is essential: for an idealized \emph{dipole layer} ($\sigma\to\infty$ as thickness $d\to 0$ with $\sigma d$ fixed) the bound does not vanish and $\phi$ genuinely jumps.
 
-\textbf{Step 3 (the surface).} Let $R$ be any point on the conductor's surface, and let $P_n \to R$ be a sequence of interior points approaching it, say along the inward normal (Figure~\ref{fig:em-equip-surface}). Each $P_n$ is interior, so $\phi(P_n) = \phi_0$ for every $n$ by Step 1, and by the continuity of Step 2,
+\textbf{Step 3 (surface).} For a surface point $R$, take interior points $P_n\to R$ (Figure~\ref{fig:em-equip-surface}); each has $\phi(P_n)=\phi_0$, so by Step 2
 \[
     \phi(R) = \lim_{n\to\infty}\phi(P_n) = \lim_{n\to\infty}\phi_0 = \phi_0 .
 \]
-Since $R$ was an arbitrary surface point, $\phi = \phi_0$ on the entire surface --- including the walls of any cavity hollowed out of the conductor, which are simply another part of that same surface. Combining Steps 1 and 3, $\phi = \phi_0$ at every point of the conductor.
+This holds for every surface point, including cavity walls, so $\phi=\phi_0$ throughout the conductor.
 \end{proof}
 
 \begin{figure}[H]
@@ -272,23 +272,23 @@ Since $R$ was an arbitrary surface point, $\phi = \phi_0$ on the entire surface 
 \subsection{Shielding: No Field Lines Within a Conductor}
 \label{sec:em-shielding}
 
-An immediate corollary is that no field line can run through the material of a conductor. Such a line would join two distinct points $A$ and $B$ of the conductor with $\vect{E}\neq 0$ along it, giving $\phi(B)-\phi(A) = -\int_A^B\vect{E}\cdot d\vect{\ell} \neq 0$ and contradicting the constancy just proved. This is the basis of \textbf{electrical shielding}. It says nothing yet about a \emph{cavity} inside a conductor, where there is no material to carry the argument; that stronger statement needs the uniqueness theorem, and is proved as a corollary of it below.
+Consequently no field line runs through a conductor's material: it would join two points of the conductor with $\phi(B)-\phi(A) = -\int_A^B\vect{E}\cdot d\vect{\ell}\neq 0$. This is the basis of \textbf{electrical shielding}. Shielding of a \emph{cavity}, where there is no material, needs uniqueness and is proved below.
 
 % =====================================================================
 \section{Field Lines Between Conductors at Different Potentials}
 % =====================================================================
 
-Let conductors $A$ and $B$ be held at potentials $\phi_A > \phi_B$, and consider a field line leaving $A$ at a point $P$ and terminating on $B$ at a point $Q$; by the previous section it leaves and arrives perpendicular to both surfaces. Along this line,
+Let conductors $A$, $B$ have $\phi_A>\phi_B$, and follow a field line from $P$ on $A$ to $Q$ on $B$:
 \[
     \phi_B - \phi_A = \phi(Q) - \phi(P) = -\int_P^Q \vect{E}\cdot d\vect{\ell} < 0 .
 \]
-The left-hand side is negative by hypothesis. For the right-hand side to be negative as well, with $d\vect{\ell}$ oriented along the direction of travel from $P$ to $Q$, the integrand $\vect{E}\cdot d\vect{\ell}$ must be positive on average along the path --- that is, $\vect{E}$ must have a positive component along the direction running from $A$ to $B$.
+So $\vect{E}\cdot d\vect{\ell}$ is positive on average along the path: $\vect{E}$ points from $A$ toward $B$.
 
 \begin{fact}
 Field lines point from the higher-potential conductor toward the lower-potential one.
 \end{fact}
 
-This matches the familiar statement that a positive test charge, feeling $\vect{F} = q\vect{E}$, is pushed from high potential to low. The point is that it is now a consequence of the line-integral relation rather than a separate assumption.
+This recovers the familiar statement that positive charges are pushed from high to low potential, now as a consequence rather than an assumption.
 
 \begin{figure}[H]
 \begin{center}
@@ -327,7 +327,7 @@ For any conductor in equilibrium, whatever its shape and whatever external charg
 \section{The Boundary-Value Problem and Uniqueness}
 % =====================================================================
 
-Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\phi$ satisfying $\laplacian\phi = 0$ --- or $-\rho/\varepsilon_0$ where charge is present --- subject to boundary conditions on the conducting surfaces that bound the region.
+Since $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\phi$ with $\laplacian\phi = -\rho/\varepsilon_0$ subject to conditions on the bounding conductors.
 
 \begin{figure}[H]
 \begin{center}
@@ -346,7 +346,7 @@ Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\
   \draw[->] (5.0,-1.9) -- (4.0,-1.0);
 \end{tikzpicture}
 \end{center}
-\caption{The exterior boundary-value problem: conductor surfaces $S_1,\dots,S_n$ sit in a region where $\phi$ obeys Poisson's equation for whatever free charge is prescribed there, subject to one datum --- $\phi_i$ or $Q_i$, never both --- on each $S_i$, plus decay at infinity.}
+\caption{The exterior boundary-value problem: $\phi$ obeys Poisson's equation outside the conductors, with one datum --- $\phi_i$ or $Q_i$ --- on each $S_i$ and decay at infinity.}
 \label{fig:em-bvp-setup}
 \end{figure}
 
@@ -355,11 +355,11 @@ Precisely, such a \textbf{boundary-value problem} is specified by the following 
     \item the shapes and positions of the conducting surfaces $S_1,\dots,S_n$;
     \item any prescribed free charge density $\rho(\lvect{x})$ in the region outside them;
     \item for \emph{each} conductor, exactly one of its potential $\phi_i$ or its total charge $Q_i$ --- never both, which would be over-determined, nor neither, which would leave the problem unsolved;
-    \item if the region is unbounded, the decay condition $\phi\to 0$ as $|\lvect{x}|\to\infty$, needed to rule out solutions that differ by an additive harmonic function growing at infinity.
+    \item for an unbounded region, $\phi\to 0$ as $|\lvect{x}|\to\infty$.
 \end{itemize}
-Solving the problem means finding $\phi$ everywhere in the region (hence $\vect{E} = -\grad\phi$), the induced surface charge $\sigma_i = -\varepsilon_0\,\pdv*{\phi}{n}$ on each conductor, and whichever of $\{\phi_i\}$ or $\{Q_i\}$ was \emph{not} prescribed --- if potentials were given, the charges $Q_i = \oint_{S_i}\sigma_i\,da$ come out as part of the solution, and vice versa. When $Q_i$ is given instead of $\phi_i$, the surface condition is that $\phi$ is \emph{constant} on $S_i$, at some value determined by the constraint $Q_i = -\varepsilon_0\oint_{S_i}\pdv*{\phi}{n}\,da$, rather than a value fixed in advance.
+Solving means finding $\phi$ (hence $\vect{E}$), the surface charges $\sigma_i = -\varepsilon_0\,\pdv*{\phi}{n}$, and whichever of $\{\phi_i\}$, $\{Q_i\}$ was not given. If $Q_i$ is given, $\phi$ is an \emph{unknown} constant on $S_i$ fixed by $Q_i = -\varepsilon_0\oint_{S_i}\pdv*{\phi}{n}\,da$.
 
-Before proving that this data determines a unique solution, we should be precise about the two kinds of boundary condition it involves.
+First, the two kinds of boundary condition.
 
 \begin{definition}[Dirichlet boundary condition]
 The value of the potential itself is specified at every point of the boundary surface $S = \partial V$:
@@ -389,7 +389,7 @@ The function $g = \pdv*{\phi}{n}$ cannot be chosen freely on $S$: its integral o
 \end{fact}
 
 \begin{fact}[Cauchy data is over-determined]
-Specifying \emph{both} $\phi$ and $\pdv*{\phi}{n}$ on the same closed surface is over-determined. As the theorem below shows, Dirichlet data alone already fixes the solution, so imposing Neumann data on top of it is either redundant --- consistent with the Dirichlet solution --- or admits no solution at all.
+Specifying both $\phi$ and $\pdv*{\phi}{n}$ on a closed surface over-determines the problem: by the theorem below Dirichlet data alone fixes the solution, so extra Neumann data is either redundant or inconsistent.
 \end{fact}
 
 \begin{theorem}[Uniqueness]
@@ -421,23 +421,23 @@ The first term vanishes because $U$ is harmonic, leaving
     \int_V |\grad U|^2\,d^3x = \oint_S U\,\pdv{U}{n}\,da .
 \]
 
-\emph{The surface integral vanishes in every case.} In case (a), $U = 0$ on $S$, so the integrand vanishes pointwise. In case (b), $\pdv*{U}{n} = 0$ on $S$, so again it vanishes pointwise. In case (c), every point of $S$ lies in one region or the other, so at each point either $U = 0$ or $\pdv*{U}{n} = 0$, and the integrand vanishes pointwise across the whole of $S$. In all three cases
+\emph{The surface term vanishes.} In case (a) $U=0$ on $S$; in (b) $\pdv*{U}{n}=0$; in (c) one or the other holds at each point. In all cases
 \[
     \oint_S U\,\pdv{U}{n}\,da = 0 \quad\Longrightarrow\quad \int_V |\grad U|^2\,d^3x = 0 .
 \]
 
 \emph{Conclusion.} The integrand $|\grad U|^2$ is non-negative pointwise, and a non-negative integrand integrating to zero must vanish identically. Hence $\grad U = 0$ everywhere in $V$, and $U$ is constant throughout.
 
-In case (a) --- and in case (c), on its Dirichlet portion --- $U = 0$ at every point of that part of $S$; since $U$ is constant throughout $V$, that constant is zero, and $\phi_1 = \phi_2$ exactly. In case (b) nothing pins down the constant: only $\pdv*{U}{n} = 0$ was known on $S$, which says nothing about the value of $U$ there. So $\phi_1$ and $\phi_2$ agree up to an additive constant --- which is physically as it should be, since only $\vect{E} = -\grad\phi$ is observable and an additive constant leaves it unchanged.
+In cases (a) and (c) $U$ vanishes somewhere on $S$, so the constant is zero and $\phi_1=\phi_2$. In case (b) nothing fixes the constant, so the solutions agree up to an additive constant --- harmless, since $\vect{E}=-\grad\phi$ is unchanged.
 \end{proof}
 
 \subsection{The Case of Prescribed Charges}
 
-The boundary-value setup above allows a conductor's total charge $Q_i$ to be specified in place of its potential, and it is worth checking directly that this pins down the solution too, since it is not literally an instance of case (b). Neumann data means the normal derivative is known \emph{pointwise} on $S$; specifying $Q_i$ instead only says that $\phi$ is \emph{some} constant on $S_i$ --- an unknown one --- together with the single integrated condition $\oint_{S_i}\pdv*{\phi}{n}\,da = -Q_i/\varepsilon_0$. This is weaker than pointwise Neumann data, so the theorem above does not directly apply, and the case deserves its own argument.
+Specifying a conductor's charge $Q_i$ is \emph{not} case (b): Neumann data fixes $\pdv*{\phi}{n}$ pointwise, whereas $Q_i$ only says $\phi$ is an unknown constant on $S_i$ with $\oint_{S_i}\pdv*{\phi}{n}\,da = -Q_i/\varepsilon_0$. This weaker condition needs its own argument.
 
 \begin{theorem}[Uniqueness with charges prescribed]
 \label{thm:em-uniqueness-charges}
-Let $V$ be the region exterior to conductors with surfaces $S_1,\dots,S_n$, and let $\phi_1,\phi_2$ both solve Poisson's equation in $V$ for the same $\rho$, with $\phi_1,\phi_2 \to 0$ as $|\lvect{x}|\to\infty$. If the two solutions assign the same total charge $Q_i$ to every conductor, then $\phi_1 = \phi_2$ throughout $V$ --- including agreement on the potential of every conductor, which was not prescribed in advance.
+Let $V$ be the region exterior to conductors $S_1,\dots,S_n$, and let $\phi_1,\phi_2$ solve Poisson's equation in $V$ for the same $\rho$, vanishing at infinity. If they give every conductor the same charge $Q_i$, then $\phi_1=\phi_2$ throughout $V$, including on every conductor.
 \end{theorem}
 
 \begin{proof}
@@ -450,18 +450,18 @@ Apply Green's first identity on $V$, whose boundary consists of the surfaces $S_
 \[
     \int_V |\grad U|^2\,d^3x = \sum_{i=1}^n \oint_{S_i} U\,\pdv{U}{n}\,da \;+\; \oint_{\infty} U\,\pdv{U}{n}\,da .
 \]
-The sphere at infinity contributes nothing: for an isolated charge distribution $U$ decays at least as $1/|\lvect{x}|$ and $\pdv*{U}{n}$ at least as $1/|\lvect{x}|^2$, so the integrand falls off faster than the sphere's area grows. On each $S_i$, $U = c_i$ is constant and factors out of its integral, leaving $c_i \oint_{S_i}\pdv*{U}{n}\,da = 0$ by the charge-matching condition above. So every term vanishes, giving
+The sphere at infinity contributes nothing, since $U\sim 1/|\lvect{x}|$ and $\pdv*{U}{n}\sim 1/|\lvect{x}|^2$ while the area grows only as $|\lvect{x}|^2$. On each $S_i$, $U=c_i$ factors out, leaving $c_i\oint_{S_i}\pdv*{U}{n}\,da=0$. Hence
 \[
     \int_V |\grad U|^2\,d^3x = 0 \quad\Longrightarrow\quad \grad U = 0 \text{ everywhere in } V,
 \]
-and $U$ is one constant throughout the connected region $V$. Since $U\to 0$ at infinity, that constant is zero: $U\equiv 0$ everywhere in $V$, so $\phi_1=\phi_2$ throughout, and in particular $c_i = 0$ for every $i$ --- the two solutions agree on each conductor's potential as well.
+so $U$ is constant on the connected region $V$, and since $U\to 0$ at infinity, $U\equiv 0$: the solutions agree everywhere, including every conductor's potential.
 \end{proof}
 
-Prescribing the charges therefore determines the solution completely, with no leftover additive constant, unlike the bare Neumann case above. The difference is the decay condition at infinity: on a bounded region with pure Neumann data there is nothing to rule out a uniform shift of $\phi$, but here decay at infinity plays exactly that role, since a nonzero constant added everywhere would not decay.
+So prescribing charges fixes the solution completely, with no leftover constant: the decay condition at infinity rules out the uniform shift that pure Neumann data on a bounded region allows.
 
-This is powerful: if you can guess a solution --- by images, by symmetry, by any means at all --- that satisfies Laplace's equation and matches every boundary condition, then it must be \emph{the} solution. Every technique in the remainder of the chapter rests on that licence.
+The upshot: any guess --- by images, symmetry, or otherwise --- that satisfies Laplace's equation and every boundary condition is \emph{the} solution. The rest of the chapter rests on this.
 
-The first application is the one promised in Section~\ref{sec:em-shielding}: a conductor shields not only its own material but any cavity hollowed out of it.
+The first application completes Section~\ref{sec:em-shielding}: a conductor also shields any cavity hollowed out of it.
 
 \begin{theorem}[Shielding theorem: the Faraday cage]
 \label{thm:em-faraday-cage}
@@ -490,13 +490,13 @@ Let a conductor of any shape contain an empty cavity $V_\text{cav}$ of any shape
 \end{figure}
 
 \begin{proof}
-Theorem~\ref{thm:em-equipotential} uses only that $\vect{E}=0$ throughout the conductor's interior and that $\phi$ is continuous across an ordinary surface --- neither step referred to what lies outside the conductor, so the entire conductor, including the cavity wall $S \equiv \partial V_\text{cav}$, still sits at one constant potential $\phi_0$.
+The equipotential argument (Theorem~\ref{thm:em-equipotential}) never referred to the exterior, so the whole conductor, including the cavity wall $S$, sits at one potential $\phi_0$.
 
-Inside $V_\text{cav}$ no charge was placed, so $\laplacian\phi = 0$ there, with $\phi=\phi_0$ on $S$: a Dirichlet problem, so Theorem~\ref{thm:em-uniqueness} applies. The constant function $\phi\equiv\phi_0$ throughout $V_\text{cav}$ satisfies $\laplacian\phi=0$ and matches the boundary value on $S$, so by uniqueness it is \emph{the} solution, giving
+In the charge-free cavity $\laplacian\phi = 0$ with $\phi=\phi_0$ on $S$. The constant $\phi\equiv\phi_0$ satisfies both, so by uniqueness (Theorem~\ref{thm:em-uniqueness}) it is the solution:
 \[
     \vect{E} = -\grad\phi_0 = 0 \quad\text{everywhere in } V_\text{cav}.
 \]
-Applying the pillbox relation of Section~\ref{sec:em-surface}, $E_\perp = \sigma/\varepsilon_0$, at the cavity wall with $E_\perp = 0$ then gives $\sigma = 0$ there as well, in contrast to the conductor's outer surface, which generally carries induced charge.
+Then $E_\perp = \sigma/\varepsilon_0$ (Section~\ref{sec:em-surface}) gives $\sigma=0$ on the cavity wall.
 \end{proof}
 
 A real Faraday cage --- a mesh rather than a solid shell --- only approximates this result, departing from it to the extent that field lines can thread the gaps.
@@ -505,24 +505,24 @@ The theorem assumed the cavity was empty. It is worth asking what survives if it
 
 \begin{theorem}[Corollary: the exterior field is blind to how the enclosed charge is arranged]
 \label{thm:em-cavity-charge}
-Let a conductor contain a cavity $V_\text{cav}$ holding some charge distribution of total charge $Q$, with the conductor itself possibly carrying additional charge $Q_\text{cond}$ and sitting in an arbitrary external field. Then the potential and field everywhere \emph{outside} the conductor are completely independent of how that charge $Q$ is arranged within the cavity --- its position, its shape, whether it is a point charge or spread out --- and depend on it only through the single number $Q$.
+Let a conductor with charge $Q_\text{cond}$, in any external field, contain a cavity holding total charge $Q$. Then the field outside the conductor depends on the cavity's contents only through $Q$ --- not on the charge's position, shape, or distribution.
 \end{theorem}
 
 \begin{proof}
-By Gauss's law applied to a surface drawn within the conductor's material, enclosing the cavity, the cavity wall carries induced charge $-Q$ exactly, whatever the arrangement of charge producing $Q$: the flux through that surface is fixed by $Q$ alone. Since the conductor's total charge is $Q_\text{cond}$, the remainder $Q_\text{cond}+Q$ must reside on the outer surface --- again a statement about a single total, with no reference to how $Q$ sits inside the cavity.
+A Gaussian surface inside the metal enclosing the cavity shows the cavity wall carries exactly $-Q$, whatever the arrangement; the outer surface therefore carries $Q_\text{cond}+Q$.
 
-Now consider the boundary-value problem for the region \emph{outside} the conductor. It is bounded internally by the conductor's outer surface, on which $\phi$ is some constant $\phi_0$ (the conductor is an equipotential, Theorem~\ref{thm:em-equipotential}, and this holds regardless of what is in the cavity, by the same argument as the theorem above), together with the integrated condition that the outer surface carries charge $Q_\text{cond}+Q$. This is exactly the situation of Theorem~\ref{thm:em-uniqueness-charges}: the exterior solution is uniquely determined by the outer surface's shape, its total charge, and the external configuration alone. Nothing in that boundary data mentions the cavity's contents beyond the single number $Q$, so two configurations of enclosed charge with the same $Q$ produce the same exterior $\phi$.
+Outside, $\phi$ is an unknown constant on the outer surface (Theorem~\ref{thm:em-equipotential}), which carries total charge $Q_\text{cond}+Q$. By Theorem~\ref{thm:em-uniqueness-charges} this data --- which involves the cavity only through $Q$ --- fixes the exterior solution.
 \end{proof}
 
-This is a weaker statement than saying the conductor disappears and the exterior field becomes that of the enclosed charge alone --- and it should be, since the charge $Q_\text{cond}+Q$ on the outer surface still has to distribute itself according to the outer surface's own shape and whatever external field is present, which in general looks nothing like the field of a point or extended charge in empty space. The two coincide only when that redistribution itself reproduces the same field, as in the spherical shell of Example~\ref{ex:em-shell}: there the outer surface is a sphere, so by symmetry its induced charge spreads uniformly regardless of where $q$ sits in the cavity, and a uniform spherical shell of charge produces exactly the field of a point charge at its center. For a conductor of general shape the outer charge still depends only on $Q$ and not on $q$'s position --- that much survives --- but the resulting exterior field is the one set by the actual outer shape, not the simpler field of the enclosed charge in isolation.
+This is weaker than saying the exterior field is that of the enclosed charge alone: the outer charge still distributes according to the outer shape and any external field. The two coincide only in special cases, such as the spherical shell of Example~\ref{ex:em-shell}, where the outer charge spreads uniformly and so mimics a point charge at the center.
 
-Notice how little work Theorem~\ref{thm:em-faraday-cage} took once uniqueness was available: the hard part is knowing that a guess which fits is necessarily right. This is the same licence the method of images exploits next, and it is worth seeing it used once on a problem whose answer we can check against intuition before trusting it on one whose answer we cannot.
+Once uniqueness is available these results take little work --- the same licence the method of images exploits next.
 
 % =====================================================================
 \section{The Method of Images}
 % =====================================================================
 
-The method of images is uniqueness put to work. We replace a conductor by one or more fictitious \emph{image} charges chosen so that the boundary condition on the conductor's surface is reproduced exactly; the resulting field, in the physical region, is then guaranteed to be the right one.
+The method of images applies uniqueness directly: replace a conductor by fictitious \emph{image} charges that reproduce its boundary condition; the resulting field in the physical region is then the correct one.
 
 Consider a point charge $+q$ at height $h$ above an infinite grounded conducting plane, so that $\phi = 0$ on the plane.
 
@@ -551,15 +551,15 @@ Consider a point charge $+q$ at height $h$ above an infinite grounded conducting
 \caption{A point charge $+q$ at height $h$ above a grounded conducting plane ($\Phi=0$). Field lines meet the plane perpendicularly. The image charge $-q$ at $-h$ reproduces the same boundary conditions.}
 \end{figure}
 
-Place a mirror image charge $-q$ at depth $-h$ below the plane. On the plane every point is equidistant from the two charges, so their potentials cancel there and $\phi = 0$ over the whole plane; by symmetry the field is also perpendicular to it. Both boundary conditions are thus satisfied, and the two-charge system solves Laplace's equation everywhere above the plane, where no image charge is located. By uniqueness, the field in the physical region $z>0$ is exactly that of the two-charge system --- even though the image charge does not exist.
+Place an image charge $-q$ at depth $h$ below the plane. Every point of the plane is equidistant from the two charges, so $\phi=0$ there, and the pair solves Laplace's equation in $z>0$. By uniqueness, the field above the plane is that of the two charges.
 
 \subsection{The Induced Surface Charge}
 
-With the field in hand we can compute what the conductor actually carries. At a distance $r$ from the foot of the charge, the two contributions have equal magnitude and their horizontal parts cancel, leaving a purely vertical field of magnitude $2\,|\vect{E}_q|\cos\theta$ with $\cos\theta = h/\sqrt{r^2+h^2}$:
+At distance $r$ from the foot of the charge the horizontal components cancel, leaving
 \[
     E_z = -\frac{2q}{4\pi\varepsilon_0\,(r^2+h^2)}\cdot\frac{h}{\sqrt{r^2+h^2}} = -\frac{qh}{2\pi\varepsilon_0\,(r^2+h^2)^{3/2}} .
 \]
-Returning to the original problem, the surface boundary condition of Section~\ref{sec:em-surface} gives $E_z = \sigma/\varepsilon_0$ just above the plane, whence
+With $E_z = \sigma/\varepsilon_0$ just above the plane (Section~\ref{sec:em-surface}),
 \[
     \sigma(r) = -\frac{qh}{2\pi\,(r^2+h^2)^{3/2}} .
 \]
@@ -573,13 +573,13 @@ so the plane draws up exactly the charge of the image it is standing in for --- 
 
 \subsection{General Strategy}
 
-Given the solution to any electrostatic problem, with its equipotential surfaces located, one obtains the solution to a new problem by ``copper-plating'' any one of those equipotentials: the field on either side is unchanged, because a conducting surface placed along an equipotential imposes exactly the boundary condition that surface already satisfied. Reading this backwards is the method of images --- replace the conductor by whatever charge configuration would have produced that equipotential in the first place.
+Conversely, ``copper-plating'' any equipotential of a known solution leaves the field unchanged, since the conductor imposes the boundary condition that surface already satisfied. The method of images runs this backwards.
 
 % =====================================================================
 \section{Capacitance}
 % =====================================================================
 
-An isolated conductor carrying charge $Q$ acquires a potential $\phi_0$, measured with respect to zero at infinity. Scaling the charge by $\alpha$ scales the boundary data by $\alpha$, and $\alpha\phi$ then solves the same problem with the scaled data, so by Theorem~\ref{thm:em-uniqueness} it is the solution: the potential everywhere scales with the charge. Hence $Q\propto\phi_0$, with a constant of proportionality that depends only on the geometry.
+An isolated conductor with charge $Q$ has potential $\phi_0$ relative to infinity. Scaling $Q$ by $\alpha$ scales the boundary data, and $\alpha\phi$ solves the scaled problem, so by uniqueness $Q\propto\phi_0$ with a geometry-dependent constant.
 
 \begin{formula}[Capacitance (isolated conductor)]
 \[
@@ -591,7 +591,7 @@ An isolated conductor carrying charge $Q$ acquires a potential $\phi_0$, measure
 ($\epsilon_0$ can be expressed as Farads/metre.)
 \end{formula}
 
-For an isolated sphere of radius $a$, $\phi_0 = Q/4\pi\varepsilon_0 a$, so $C = 4\pi\varepsilon_0 a$. For an isolated conducting disk of the same radius, $C = 8\varepsilon_0 a$: a disk needs less charge than a sphere to reach a given potential.
+An isolated sphere of radius $a$ has $\phi_0 = Q/4\pi\varepsilon_0 a$, so $C = 4\pi\varepsilon_0 a$; a disk of the same radius has $C = 8\varepsilon_0 a$.
 
 \subsection{Two Conductors}
 
@@ -756,9 +756,9 @@ Capacitance per unit length:
 \section{Systems of Many Conductors: the Capacitance Matrix}
 % =====================================================================
 
-With more than two conductors, no single number can capture the relationship between charges and potentials: raising one conductor's potential induces charge on all the others. What replaces $Q = C\phi$ is a matrix, and deriving it is a clean application of linearity together with uniqueness.
+With more than two conductors, raising one conductor's potential induces charge on all the others, so $Q=C\phi$ generalizes to a matrix, derived from linearity and uniqueness.
 
-Suppose $n$ separate conductors are held at potentials $V_1,\dots,V_n$. In the charge-free region exterior to all of them, $\phi$ satisfies Laplace's equation $\laplacian\phi = 0$, which is linear: if $\phi_1$ and $\phi_2$ both solve it, so does $\alpha\phi_1 + \beta\phi_2$. Combined with uniqueness --- the solution in a region being completely determined by its boundary values --- this has strong consequences.
+Hold $n$ conductors at potentials $V_1,\dots,V_n$. In the charge-free exterior region $\phi$ satisfies the linear equation $\laplacian\phi=0$, and uniqueness fixes it from the boundary values.
 
 \begin{figure}[H]
 \begin{center}
@@ -779,13 +779,13 @@ Suppose $n$ separate conductors are held at potentials $V_1,\dots,V_n$. In the c
   \node[font=\small] at (-1.1,-1.85) {$Q_4$};
 \end{tikzpicture}
 \end{center}
-\caption{A system of $n$ conductors held at prescribed potentials $V_1,\dots,V_n$. The exterior region is charge-free, so $\phi$ is harmonic there, and the potentials on the conductor surfaces are exactly the boundary data that uniqueness says determines it. The charges $Q_i$ are then not free to be chosen --- they are whatever the resulting field puts on each surface.}
+\caption{$n$ conductors at prescribed potentials $V_i$ in a charge-free region. The potentials are the boundary data; the charges $Q_i$ then follow from the resulting field.}
 \label{fig:em-nconductors}
 \end{figure}
 
 \subsection{Elementary Solutions and Superposition}
 
-For each $k = 1,\dots,n$, define the \emph{elementary solution} $\phi^{(k)}(\lvect{x})$ to be the potential in the exterior region when conductor $k$ is held at potential $1$ and every other conductor is grounded at potential $0$. Each $\phi^{(k)}$ is harmonic in the exterior region and depends only on the geometry of the conductors --- never on any applied voltage.
+Define the \emph{elementary solution} $\phi^{(k)}(\lvect{x})$ as the exterior potential with conductor $k$ at potential $1$ and all others grounded. It is harmonic and depends only on geometry.
 
 \begin{figure}[H]
 \begin{center}
@@ -822,7 +822,7 @@ For each $k = 1,\dots,n$, define the \emph{elementary solution} $\phi^{(k)}(\lve
 \node[font=\small] at (7.0,-1.45) {$\phi^{(3)}$};
 \end{tikzpicture}
 \end{center}
-\caption{The three elementary solutions for a system of $n=3$ conductors. In $\phi^{(k)}$ conductor $k$ is held at potential $1$ (shaded) and every other conductor is grounded at $0$. Each is a complete solution of Laplace's equation in the exterior region, and each depends only on the geometry --- the same three pictures serve for every choice of applied voltages.}
+\caption{Elementary solutions for $n=3$: in $\phi^{(k)}$ conductor $k$ is at potential $1$ (shaded), the rest at $0$. They depend only on geometry.}
 \label{fig:em-elementary}
 \end{figure}
 
@@ -897,7 +897,7 @@ Being harmonic in the exterior region and matching the prescribed potential on e
 \node[font=\small] at (10.6,-1.45) {$\phi_{\text{total}}$};
 \end{tikzpicture}
 \end{center}
-\caption{Superposition. Weighting each elementary solution by the corresponding applied potential and adding gives a function that is harmonic (a sum of harmonic functions) and that takes the value $V_i$ on conductor $i$ (since only the $i$th term is nonzero there). By uniqueness it is therefore \emph{the} solution.}
+\caption{Superposition: $\sum_k V_k\phi^{(k)}$ is harmonic and equals $V_i$ on conductor $i$, so by uniqueness it is the solution.}
 \label{fig:em-superposition}
 \end{figure}
 
@@ -920,9 +920,9 @@ Substituting the superposition result and using linearity of the integral,
 Each coefficient $C_{ik}$ depends only on the geometry of the conductor system, never on the applied voltages, since it was defined from a problem in which $V_k$ was fixed at exactly $1$ and all other conductors grounded.
 \end{formula}
 
-This is the direct $n$-conductor generalization of $Q = C\phi$, and it makes precise the sense in which, on a system of conductors, the charges and the potentials are not independent of one another: fixing all the potentials fixes every charge, and the relation between them is linear.
+This generalizes $Q=C\phi$: fixing all the potentials fixes every charge, linearly.
 
-\emph{A check by scaling.} If every $V_j$ is scaled by a common factor $\alpha$, then $\phi\to\alpha\phi$ everywhere by the same linearity-and-uniqueness argument applied directly, and so every $Q_i\to\alpha Q_i$. This is consistent with the formula, since $\sum_k C_{ik}(\alpha V_k) = \alpha\sum_k C_{ik}V_k$.
+\emph{Check.} Scaling all $V_j$ by $\alpha$ scales $\phi$ and every $Q_i$ by $\alpha$, consistent with the formula.
 
 \begin{figure}[H]
 \begin{center}
@@ -944,11 +944,11 @@ This is the direct $n$-conductor generalization of $Q = C\phi$, and it makes pre
   }
 \end{tikzpicture}
 \end{center}
-\caption{Why the off-diagonal coefficients are expected to be negative. With conductor $k$ raised to potential $1$ and conductor $i$ grounded, field lines run from the higher potential to the lower and terminate on $i$, depositing charge of the opposite sign. The induced $Q_i$, which is precisely $C_{ik}$, is therefore negative.}
+\caption{Off-diagonal coefficients: with conductor $k$ at potential $1$ and $i$ grounded, field lines run from $k$ to $i$ and deposit negative charge there, so $C_{ik}=Q_i<0$.}
 \label{fig:em-offdiagonal}
 \end{figure}
 
-\emph{On the off-diagonal entries.} The coefficient $C_{ik}$ with $i\neq k$ is the charge induced on conductor $i$ when conductor $k$ alone is raised to potential $1$ and all others are grounded. Field lines leaving the positively charged conductor $k$ terminate on whichever grounded conductors they reach, including $i$, and by the field-line argument above an induced charge of the opposite sign is expected wherever they terminate. This suggests $C_{ik}\le 0$ for $i\neq k$, in contrast with $C_{ii}>0$. A full proof of that sign pattern, together with the symmetry $C_{ik} = C_{ki}$ --- a consequence of Green's reciprocation theorem --- is a natural next topic.
+\emph{Off-diagonal entries.} $C_{ik}$ ($i\neq k$) is the charge induced on $i$ when only $k$ is at potential $1$. Field lines from $k$ end on $i$ with opposite-sign charge, suggesting $C_{ik}\le 0$, whereas $C_{ii}>0$. Proving this, and the symmetry $C_{ik}=C_{ki}$ (Green's reciprocation theorem), is a natural next topic.
 
 % =====================================================================
 \section{Energy Stored in a Capacitor}
@@ -990,7 +990,7 @@ which agrees with the earlier calculation for energy stored in the electric fiel
 \subsection{Force Required to Keep Capacitor Plates Apart}
 %%─────────────────────────────────────────────
 
-For a general capacitor whose capacitance $C(x)$ depends on plate separation $x$, the plates attract each other and an external force $F_\text{ext}$ is needed to hold them apart. Increasing $x$ by $\Delta x$ at constant $Q$ (one plate fixed) requires the external agent to do work equal to the change in stored energy:
+If $C(x)$ depends on plate separation $x$, the plates attract and an external force is needed to hold them apart. At constant $Q$, the work done increasing $x$ by $\Delta x$ equals the change in stored energy:
 
 \begin{align*}
   F_\text{ext}\,\Delta x &= \Delta U = \frac{Q^2}{2}\,\frac{\partial}{\partial x}\!\left(\frac{1}{C}\right)\Delta x \\[4pt]
@@ -1011,6 +1011,6 @@ For the coaxial capacitor above, with $Q = \lambda L$ and $C/L = 2\pi\varepsilon
 \subsection{Capacitor Paradox}
 %%─────────────────────────────────────────────
 
-The paradox is whether connecting two capacitors in this configuration leaves the field unchanged (A) or causes charge to redistribute so that all field is confined between the inner pair of plates (B). The answer is B: option A contains a logical flaw because $\Delta\phi$ is defined relative to infinity, and assuming nothing changes ignores the fact that the connected plates must equilibrate to a common potential consistent with the boundary conditions at infinity.
+Does connecting two capacitors in this configuration leave the field unchanged (A), or confine it between the inner plates (B)? The answer is B: the connected plates must reach a common potential, and assuming nothing changes ignores this.
 
 \medskip\noindent Note: the end state is one of equilibrium, so every result of this chapter applies to it --- in particular each connected pair is a single conductor, at a single potential throughout.
