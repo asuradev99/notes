@@ -103,6 +103,7 @@ Consider a neutral conducting spherical shell enclosing a point charge $q$. A Ga
 \caption{Point charge $q$ inside a neutral conducting shell: the inner surface carries $-q$, the outer surface $+q$, and the outside field is that of $+q$ at the center.}
 \end{figure}
 \end{example}
+\label{ex:em-shell}
 
 % =====================================================================
 \section{The Field at the Surface}
@@ -499,6 +500,21 @@ Applying the pillbox relation of Section~\ref{sec:em-surface}, $E_\perp = \sigma
 \end{proof}
 
 A real Faraday cage --- a mesh rather than a solid shell --- only approximates this result, departing from it to the extent that field lines can thread the gaps.
+
+The theorem assumed the cavity was empty. It is worth asking what survives if it is not.
+
+\begin{theorem}[Corollary: the exterior field is blind to how the enclosed charge is arranged]
+\label{thm:em-cavity-charge}
+Let a conductor contain a cavity $V_\text{cav}$ holding some charge distribution of total charge $Q$, with the conductor itself possibly carrying additional charge $Q_\text{cond}$ and sitting in an arbitrary external field. Then the potential and field everywhere \emph{outside} the conductor are completely independent of how that charge $Q$ is arranged within the cavity --- its position, its shape, whether it is a point charge or spread out --- and depend on it only through the single number $Q$.
+\end{theorem}
+
+\begin{proof}
+By Gauss's law applied to a surface drawn within the conductor's material, enclosing the cavity, the cavity wall carries induced charge $-Q$ exactly, whatever the arrangement of charge producing $Q$: the flux through that surface is fixed by $Q$ alone. Since the conductor's total charge is $Q_\text{cond}$, the remainder $Q_\text{cond}+Q$ must reside on the outer surface --- again a statement about a single total, with no reference to how $Q$ sits inside the cavity.
+
+Now consider the boundary-value problem for the region \emph{outside} the conductor. It is bounded internally by the conductor's outer surface, on which $\phi$ is some constant $\phi_0$ (the conductor is an equipotential, Theorem~\ref{thm:em-equipotential}, and this holds regardless of what is in the cavity, by the same argument as the theorem above), together with the integrated condition that the outer surface carries charge $Q_\text{cond}+Q$. This is exactly the situation of Theorem~\ref{thm:em-uniqueness-charges}: the exterior solution is uniquely determined by the outer surface's shape, its total charge, and the external configuration alone. Nothing in that boundary data mentions the cavity's contents beyond the single number $Q$, so two configurations of enclosed charge with the same $Q$ produce the same exterior $\phi$.
+\end{proof}
+
+This is a weaker statement than saying the conductor disappears and the exterior field becomes that of the enclosed charge alone --- and it should be, since the charge $Q_\text{cond}+Q$ on the outer surface still has to distribute itself according to the outer surface's own shape and whatever external field is present, which in general looks nothing like the field of a point or extended charge in empty space. The two coincide only when that redistribution itself reproduces the same field, as in the spherical shell of Example~\ref{ex:em-shell}: there the outer surface is a sphere, so by symmetry its induced charge spreads uniformly regardless of where $q$ sits in the cavity, and a uniform spherical shell of charge produces exactly the field of a point charge at its center. For a conductor of general shape the outer charge still depends only on $Q$ and not on $q$'s position --- that much survives --- but the resulting exterior field is the one set by the actual outer shape, not the simpler field of the enclosed charge in isolation.
 
 Notice how little work Theorem~\ref{thm:em-faraday-cage} took once uniqueness was available: the hard part is knowing that a guess which fits is necessarily right. This is the same licence the method of images exploits next, and it is worth seeing it used once on a problem whose answer we can check against intuition before trusting it on one whose answer we cannot.
 
