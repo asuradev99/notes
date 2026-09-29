@@ -117,9 +117,9 @@ Because electrical forces are conservative, the work done in assembling a charge
 
 If you drop a 3rd charge from infinity, the work done by the system becomes:
 \begin{align*}
-    W_3 &= -\int_{\infty}^{P_3} \vect{F}_{P_3}\cdot d\vect{s} \\
-        &= -\int_{\infty}^{P_3} \left(\vect{F}_{q_1} + \vect{F}_{q_2}\right)\cdot d\vect{s} \\
-        &= -\int_{\infty}^{P_3} \vect{F}_{q_1}\cdot d\vect{s} - \int_{\infty}^{P_3} \vect{F}_{q_2}\cdot d\vect{s} \\
+    W_3 &= -\int_{\infty}^{P_3} \vect{F}_{P_3}\cdot d\lvect{s} \\
+        &= -\int_{\infty}^{P_3} \left(\vect{F}_{q_1} + \vect{F}_{q_2}\right)\cdot d\lvect{s} \\
+        &= -\int_{\infty}^{P_3} \vect{F}_{q_1}\cdot d\lvect{s} - \int_{\infty}^{P_3} \vect{F}_{q_2}\cdot d\lvect{s} \\
         &= \frac{q_1 q_3}{4\pi\varepsilon_0 r_{13}} + \frac{q_2 q_3}{4\pi\varepsilon_0 r_{23}}.
 \end{align*}
 
@@ -399,20 +399,20 @@ The derivation above used a sphere, on which $\vect{E}$ is constant and normal t
     \draw (0,0) -- (4.0,0.05);
     \draw (0,0) -- (3.7,0.75);
     \draw (0,0) -- (2.9,0.25);
-    \draw[-{Stealth}, thick] (0,0) -- (1.8,0.12) node[below] {$\vect{r}$};
+    \draw[-{Stealth}, thick] (0,0) -- (1.8,0.12) node[below] {$\lvect{r}$};
     \draw[-{Stealth}, thick] (3.45,0.15) -- (4.15,0.55) node[right] {$\vect{E}$};
     \draw[-{Stealth}, thick, orange] (3.45,0.15) -- (3.75,0.95) node[above] {$\hat{n}$};
     \node at (2.55,0.45) {$\theta$};
 \end{tikzpicture}
-\caption{A surface element $da$ seen from a charge $q$. Only the projection $\cos\theta\,da$ perpendicular to $\vect{r}$ contributes to the flux, and that projection is $r^2\,d\Omega$ by the definition of solid angle.}
+\caption{A surface element $da$ seen from a charge $q$. Only the projection $\cos\theta\,da$ perpendicular to $\lvect{r}$ contributes to the flux, and that projection is $r^2\,d\Omega$ by the definition of solid angle.}
 \label{fig:em-solidangle}
 \end{figure}
 
 The flux of a point charge's field through an arbitrary surface element is
 \[
-    \vect{E}\cdot d\vect{A} = \vect{E}\cdot\hat{n}\; da = \frac{q}{4\pi\varepsilon_0}\,\frac{\cos\theta\; da}{|\vect{r}|^2} .
+    \vect{E}\cdot d\vect{A} = \vect{E}\cdot\hat{n}\; da = \frac{q}{4\pi\varepsilon_0}\,\frac{\cos\theta\; da}{|\lvect{r}|^2} .
 \]
-Here $\cos\theta\,da$ is the area of the element projected perpendicular to $\vect{r}$, and the solid angle subtended by a patch is by definition that perpendicular projection divided by $r^2$. Hence $\cos\theta\,da = r^2\,d\Omega$, and
+Here $\cos\theta\,da$ is the area of the element projected perpendicular to $\lvect{r}$, and the solid angle subtended by a patch is by definition that perpendicular projection divided by $r^2$. Hence $\cos\theta\,da = r^2\,d\Omega$, and
 \[
     \vect{E}\cdot d\vect{A} = \frac{q}{4\pi\varepsilon_0}\,\frac{r^2\,d\Omega}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega .
 \]

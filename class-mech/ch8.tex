@@ -9,7 +9,7 @@
 
 At point $A$ (on the axis of rotation), the torque is
 \[
-    \vect{\tau}_A = \vect{r}_A \times \vect{F} = 0,
+    \vect{\tau}_A = \lvect{r}_A \times \vect{F} = 0,
 \]
 and therefore
 \[
@@ -18,7 +18,7 @@ and therefore
 
 At point $B$ (the bob),
 \[
-    \vect{\tau}_B = \vect{r}_B \times \vect{F}
+    \vect{\tau}_B = \lvect{r}_B \times \vect{F}
     \implies
     |\vect{\tau}_B| = \ell\cos\alpha \cdot T\sin\alpha = Mg\ell\sin\alpha,
 \]
@@ -210,11 +210,11 @@ Substituting into (3) using the constraint:
 
 If an object is both rotating and translating, we need to account for both. The $z$-component of angular momentum is
 \[
-    L_z = I_0\,\omega + \bigl(\vect{R}\times m\vect{v}\bigr)_z,
+    L_z = I_0\,\omega + \bigl(\vect{R}\times m\lvect{v}\bigr)_z,
 \]
-where $\vect{R}$ is the distance to the COM. More generally, for a system of $N$ particles with $\vect{r}_j = \vect{R} + \vect{r}'_j$ (position relative to COM):
+where $\vect{R}$ is the distance to the COM. More generally, for a system of $N$ particles with $\lvect{r}_j = \vect{R} + \lvect{r}'_j$ (position relative to COM):
 \[
-    \vect{L} = \sum_{j=1}^{N}\bigl(\vect{r}_j\times m_j\dot{\vect{r}}_j\bigr).
+    \vect{L} = \sum_{j=1}^{N}\bigl(\lvect{r}_j\times m_j\dot{\lvect{r}}_j\bigr).
 \]
 
 \begin{example}[Rolling Wheel]
@@ -228,13 +228,13 @@ where $\vect{R}$ is the distance to the COM. More generally, for a system of $N$
 
 The angular momentum about point $B$:
 \[
-    \vect{L} = \vect{L}_0 + \bigl(\vect{R}\times m\vect{v}\bigr),
+    \vect{L} = \vect{L}_0 + \bigl(\vect{R}\times m\lvect{v}\bigr),
     \quad L_0 = -I_0\omega = -\tfrac{1}{2}Mb^2\omega.
 \]
 
 Assuming rolling without slipping ($v = b\omega$):
 \begin{align*}
-    \vect{R}\times m\vect{v} &= \bigl(R\cos\beta\,\hat{x}+R\sin\beta\,\hat{y}\bigr)\times(mv\,\hat{x}) \\
+    \vect{R}\times m\lvect{v} &= \bigl(R\cos\beta\,\hat{x}+R\sin\beta\,\hat{y}\bigr)\times(mv\,\hat{x}) \\
     &= -R\sin\beta\cdot mv\,\hat{z} = -mvb\,\hat{z}.
 \end{align*}
 Thus
@@ -325,11 +325,11 @@ Substituting (ii) into (i):
 
 Torque about $A$:
 \[
-    \tau_z = \tau_0 + \bigl(\vect{R}\times\vect{f}\bigr)_z = -fb + \bigl(\hat{z}\times(f + Mg\sin\theta\hat{x})\bigr) \cdot(\ldots) = -bMg\sin\theta.
+    \tau_z = \tau_0 + \bigl(\vect{R}\times\lvect{f}\bigr)_z = -fb + \bigl(\hat{z}\times(f + Mg\sin\theta\hat{x})\bigr) \cdot(\ldots) = -bMg\sin\theta.
 \]
 Angular momentum about $A$:
 \[
-    L_z = L_0 + \bigl(\vect{R}\times M\vect{v}\bigr)_z
+    L_z = L_0 + \bigl(\vect{R}\times M\lvect{v}\bigr)_z
     = -I_0\omega - b^2 M\omega = -\tfrac{1}{2}Mb^2\omega - Mb^2\omega = -\tfrac{3}{2}Mb^2\omega.
 \]
 Since $\tau_z = \dv{L_z}{t}$:
@@ -343,7 +343,7 @@ Since $\tau_z = \dv{L_z}{t}$:
 
 \textbf{Method 3} (about contact point $A$ directly):
 \[
-    \tau_z = \sum_j(\vect{r}_j\times\vect{f}_j)_z = -bW\sin\theta.
+    \tau_z = \sum_j(\lvect{r}_j\times\lvect{f}_j)_z = -bW\sin\theta.
 \]
 \[
     I = Mb^2 + I_0 = Mb^2 + \tfrac{1}{2}Mb^2 = \tfrac{3}{2}Mb^2 \quad\text{(about contact point)}.
@@ -360,7 +360,7 @@ Thus, using $a = -\alpha b$:
 
 \textbf{Linear (translational) part:}
 \[
-    K_b - K_a = W_{ba} = \int_{\vect{r}_a}^{\vect{r}_b}\vect{F}\cdot d\vect{r}.
+    K_b - K_a = W_{ba} = \int_{\lvect{r}_a}^{\lvect{r}_b}\vect{F}\cdot d\lvect{r}.
 \]
 
 \textbf{Rotational kinetic energy:} $\tfrac{1}{2}I_0\omega^2$.
@@ -476,19 +476,19 @@ This is commutative because infinitesimal rotations are:
 \]
 and $\lim_{\Delta\theta\to 0}\bigl(d\theta_x\,\hat{x} + d\theta_y\,\hat{y}\bigr) = d\theta_y\,\hat{y} + d\theta_x\,\hat{x}$.
 
-As a rigid body turns, a position vector $\vect{r}$ traces a cone. The radius of the cone is $r\sin\phi$. For a small rotation $\Delta\theta$:
+As a rigid body turns, a position vector $\lvect{r}$ traces a cone. The radius of the cone is $r\sin\phi$. For a small rotation $\Delta\theta$:
 \[
-    |\Delta\vect{r}| = 2r\sin\phi\,\sin\!\left(\frac{\Delta\theta}{2}\right).
+    |\Delta\lvect{r}| = 2r\sin\phi\,\sin\!\left(\frac{\Delta\theta}{2}\right).
 \]
 For small $\Delta\theta$:
 \[
-    |\Delta\vect{r}| \approx r\sin\phi\,\Delta\theta.
+    |\Delta\lvect{r}| \approx r\sin\phi\,\Delta\theta.
 \]
 Therefore:
 \begin{formula}[Velocity from Rotation]
 \[
-    \left|\dv{\vect{r}}{t}\right| = r\sin\phi\,\dv{\theta}{t} = |\vect{\omega}\times\vect{r}|,
-    \implies \dot{\vect{r}} = \vect{\omega}\times\vect{r}.
+    \left|\dv{\lvect{r}}{t}\right| = r\sin\phi\,\dv{\theta}{t} = |\vect{\omega}\times\lvect{r}|,
+    \implies \dot{\lvect{r}} = \vect{\omega}\times\lvect{r}.
 \]
 This allows us to discuss multiple rotations at the same time.
 \end{formula}
@@ -668,27 +668,27 @@ Any motion of a rigid body can be described by both a translation and a rotation
 
 Now we allow the axis to translate. The $z$-component of angular momentum $L_z$ can be written as:
 \[
-    L_z = I_0\omega + \bigl(\vect{R}\times m\vect{v}\bigr)_z,
+    L_z = I_0\omega + \bigl(\vect{R}\times m\lvect{v}\bigr)_z,
 \]
-where $\vect{v} = \dot{\vect{R}}$ is the velocity of the COM.
+where $\lvect{v} = \dot{\vect{R}}$ is the velocity of the COM.
 
 \subsection{Proof}
 
 Consider a body as an aggregate of $N$ particles. Then
 \[
-    \vect{L} = \sum_{j=1}^{N}\bigl(\vect{r}_j\times m_j\dot{\vect{r}}_j\bigr),
-    \quad \vect{R} = \frac{\sum m_j\vect{r}_j}{M}.
+    \vect{L} = \sum_{j=1}^{N}\bigl(\lvect{r}_j\times m_j\dot{\lvect{r}}_j\bigr),
+    \quad \vect{R} = \frac{\sum m_j\lvect{r}_j}{M}.
 \]
-Using COM coordinates $\vect{r}_j = \vect{R}+\vect{r}'_j$:
+Using COM coordinates $\lvect{r}_j = \vect{R}+\lvect{r}'_j$:
 \begin{align*}
-    \vect{L} &= \sum\bigl(\vect{R}+\vect{r}'_j\bigr)\times m_j\bigl(\dot{\vect{R}}+\dot{\vect{r}}'_j\bigr) \\
+    \vect{L} &= \sum\bigl(\vect{R}+\lvect{r}'_j\bigr)\times m_j\bigl(\dot{\vect{R}}+\dot{\lvect{r}}'_j\bigr) \\
     &= \vect{R}\times\sum m_j\dot{\vect{R}}
-     + \underbrace{\sum m_j\vect{r}'_j}_{=0}\times\dot{\vect{R}}
-     + \vect{R}\times\underbrace{\sum m_j\dot{\vect{r}}'_j}_{=0}
-     + \sum\bigl(m_j\vect{r}'_j\times\dot{\vect{r}}'_j\bigr) \\
-    &= \vect{R}\times M\vect{V} + \sum\bigl(m_j\vect{r}'_j\times\dot{\vect{r}}'_j\bigr).
+     + \underbrace{\sum m_j\lvect{r}'_j}_{=0}\times\dot{\vect{R}}
+     + \vect{R}\times\underbrace{\sum m_j\dot{\lvect{r}}'_j}_{=0}
+     + \sum\bigl(m_j\lvect{r}'_j\times\dot{\lvect{r}}'_j\bigr) \\
+    &= \vect{R}\times M\vect{V} + \sum\bigl(m_j\lvect{r}'_j\times\dot{\lvect{r}}'_j\bigr).
 \end{align*}
-The cross terms vanish because $\sum m_j\vect{r}'_j = 0$ (COM definition).
+The cross terms vanish because $\sum m_j\lvect{r}'_j = 0$ (COM definition).
 
 Since we only care about $z$-rotation:
 \[
@@ -697,7 +697,7 @@ Since we only care about $z$-rotation:
 
 \begin{formula}[Angular Momentum: Translation + Rotation]
 \[
-    L_z = I_0\omega + \bigl(\vect{R}\times M\vect{v}\bigr)_z.
+    L_z = I_0\omega + \bigl(\vect{R}\times M\lvect{v}\bigr)_z.
 \]
 The first term is the \textbf{spin term}; the second is the \textbf{orbital term}.
 \end{formula}
@@ -712,7 +712,7 @@ The first term is the \textbf{spin term}; the second is the \textbf{orbital term
     I_0 = \tfrac{1}{2}Mb^2 \implies L_0 = -\tfrac{1}{2}Mb^2\omega.
 \]
 \[
-    \bigl(\vect{R}\times M\vect{v}\bigr)_z = -Mbv = -Mb^2\omega.
+    \bigl(\vect{R}\times M\lvect{v}\bigr)_z = -Mbv = -Mb^2\omega.
 \]
 By the above theorem:
 \begin{align*}
@@ -729,9 +729,9 @@ By the above theorem:
 \subsection{Torque on a Moving Body}
 
 \begin{align*}
-    \tau &= \sum\vect{r}_j\times\vect{F}_j
-    = \sum\bigl(\vect{r}'_j+\vect{R}\bigr)\times\vect{F}_j \\
-    &= \sum\bigl(\vect{r}'_j\times\vect{F}_j\bigr) + \vect{R}\times\vect{F},
+    \tau &= \sum\lvect{r}_j\times\vect{F}_j
+    = \sum\bigl(\lvect{r}'_j+\vect{R}\bigr)\times\vect{F}_j \\
+    &= \sum\bigl(\lvect{r}'_j\times\vect{F}_j\bigr) + \vect{R}\times\vect{F},
 \end{align*}
 where $\vect{F} = \sum\vect{F}_j$ is the total applied force.
 
@@ -748,9 +748,9 @@ Note: $\tau_0 = I\alpha$ is \textbf{totally independent of linear motion}.
 The same separation applies for kinetic energy:
 \begin{align*}
     K &= \tfrac{1}{2}\sum m_j v_j^2
-    = \tfrac{1}{2}\sum m_j\bigl(\vect{v}+\dot{\vect{r}}'_j\bigr)^2 \\
-    &= \tfrac{1}{2}\sum m_j\bigl(v^2 + 2\vect{v}\cdot\dot{\vect{r}}'_j + \dot{r}'^2_j\bigr) \\
-    &= \tfrac{1}{2}Mv^2 + \underbrace{\Bigl(\sum m_j\dot{\vect{r}}'_j\Bigr)}_{\displaystyle=0}\cdot 2\vect{v}
+    = \tfrac{1}{2}\sum m_j\bigl(\lvect{v}+\dot{\lvect{r}}'_j\bigr)^2 \\
+    &= \tfrac{1}{2}\sum m_j\bigl(v^2 + 2\lvect{v}\cdot\dot{\lvect{r}}'_j + \dot{r}'^2_j\bigr) \\
+    &= \tfrac{1}{2}Mv^2 + \underbrace{\Bigl(\sum m_j\dot{\lvect{r}}'_j\Bigr)}_{\displaystyle=0}\cdot 2\lvect{v}
        + \tfrac{1}{2}\sum m_j\dot{r}'^2_j.
 \end{align*}
 \begin{formula}[Total Kinetic Energy]
@@ -795,7 +795,7 @@ Torque about $A$:
 
 Angular momentum about $A$:
 \[
-    L_z = -I_0\omega + \bigl(\vect{R}\times M\vect{v}\bigr)_z
+    L_z = -I_0\omega + \bigl(\vect{R}\times M\lvect{v}\bigr)_z
     = -\tfrac{1}{2}Mb^2\omega - Mb^2\omega = -\tfrac{3}{2}Mb^2\omega
     \quad (v = b\omega\text{ no-slip}).
 \]
@@ -819,17 +819,17 @@ Since $\tau_z = \dv{L_z}{t}$:
 
 \section{Work--Energy Theorem and Rotational Motion}
 
-Recall $K_b - K_a = W_{ba}$ where $W_{ba} = \displaystyle\int_m^{r_b}\vect{F}\cdot d\vect{r}$.
+Recall $K_b - K_a = W_{ba}$ where $W_{ba} = \displaystyle\int_m^{r_b}\vect{F}\cdot d\lvect{r}$.
 
 For a rigid body this divides into two parts:
 
 \textbf{(1) Translational part:}
 
-Net force on COM: $\vect{F} = M\dv{\vect{v}}{t}$.
+Net force on COM: $\vect{F} = M\dv{\lvect{v}}{t}$.
 
-Using $d\vect{R} = \vect{v}\,dt$:
+Using $d\vect{R} = \lvect{v}\,dt$:
 \[
-    \vect{F}\cdot d\vect{R} = M\dv{\vect{v}}{t}\cdot\vect{v}\,dt = d\!\left(\tfrac{1}{2}Mv^2\right).
+    \vect{F}\cdot d\vect{R} = M\dv{\lvect{v}}{t}\cdot\lvect{v}\,dt = d\!\left(\tfrac{1}{2}Mv^2\right).
 \]
 Integrating:
 \[
@@ -860,7 +860,7 @@ $\tau_0 = I_0\alpha = I_0\dv{\omega}{t}$. Using $d\theta = \omega\,dt$:
 \hline
 \textbf{Pure Rotation} & \textbf{Rotation and Translation} \\
 \hline
-$L = I\omega$ & $L_z = I_0\omega + (\vect{R}\times M\vect{v})_z$ \\
+$L = I\omega$ & $L_z = I_0\omega + (\vect{R}\times M\lvect{v})_z$ \\
 $\tau = I\alpha$ & $\tau_z = \tau_0 + (\vect{R}\times\vect{F})_z$ \\
 $K = \tfrac{1}{2}I\omega^2$ & $\tau_0 = I_0\alpha$ \\
 & $K = \tfrac{1}{2}I_0\omega^2 + \tfrac{1}{2}Mv^2$ \\
@@ -880,57 +880,57 @@ Consider two isolated particles $m_1$ and $m_2$.
 
 \begin{figure}[H]
     \centering
-    \caption{Two-body system. $\vect{r} = \vect{r}_1 - \vect{r}_2$ is the relative
-             position vector; $r = |\vect{r}| = |\vect{r}_1 - \vect{r}_2|$.}
+    \caption{Two-body system. $\lvect{r} = \lvect{r}_1 - \lvect{r}_2$ is the relative
+             position vector; $r = |\lvect{r}| = |\lvect{r}_1 - \lvect{r}_2|$.}
 \end{figure}
 
 \textbf{Equations of motion:}
 \begin{align}
-    m_1\ddot{\vect{r}}_1 &= f(r)\hat{r}, \tag{1}\\
-    m_2\ddot{\vect{r}}_2 &= -f(r)\hat{r}. \tag{2}
+    m_1\ddot{\lvect{r}}_1 &= f(r)\hat{r}, \tag{1}\\
+    m_2\ddot{\lvect{r}}_2 &= -f(r)\hat{r}. \tag{2}
 \end{align}
 
 \textbf{Apply the COM:}
 \[
-    \vect{R} = \frac{m_1\vect{r}_1 + m_2\vect{r}_2}{m_1+m_2}.
+    \vect{R} = \frac{m_1\lvect{r}_1 + m_2\lvect{r}_2}{m_1+m_2}.
 \]
 It can be shown (exercise) that $\ddot{\vect{R}} = 0$, so the COM moves at constant velocity. Setting $\vect{R}_0$ at the origin with a stationary COM: $\vect{R} = 0$.
 
 Subtracting (1) by (2):
 \[
-    \ddot{\vect{r}}_1 = \frac{f(r)}{m_1}, \quad \ddot{\vect{r}}_2 = \frac{-f(r)}{m_2}.
+    \ddot{\lvect{r}}_1 = \frac{f(r)}{m_1}, \quad \ddot{\lvect{r}}_2 = \frac{-f(r)}{m_2}.
 \]
 \[
-    \ddot{\vect{r}}_1 - \ddot{\vect{r}}_2 = \left(\frac{1}{m_1}+\frac{1}{m_2}\right)f(r)\hat{r}.
+    \ddot{\lvect{r}}_1 - \ddot{\lvect{r}}_2 = \left(\frac{1}{m_1}+\frac{1}{m_2}\right)f(r)\hat{r}.
 \]
 \[
-    \implies \left(\frac{m_1 m_2}{m_1+m_2}\right)\bigl(\ddot{\vect{r}}_1-\ddot{\vect{r}}_2\bigr) = f(r)\hat{r}.
+    \implies \left(\frac{m_1 m_2}{m_1+m_2}\right)\bigl(\ddot{\lvect{r}}_1-\ddot{\lvect{r}}_2\bigr) = f(r)\hat{r}.
 \]
 Let $\mu = \dfrac{m_1 m_2}{m_1+m_2}$, called the \textbf{reduced mass}. Then
 \[
-    \mu(\ddot{\vect{r}}_1-\ddot{\vect{r}}_2) = f(r)\hat{r}
-    \implies \mu\ddot{\vect{r}} = f(r)\hat{r}.
+    \mu(\ddot{\lvect{r}}_1-\ddot{\lvect{r}}_2) = f(r)\hat{r}
+    \implies \mu\ddot{\lvect{r}} = f(r)\hat{r}.
 \]
-Working backwards to find $\vect{r}_1$ and $\vect{r}_2$:
+Working backwards to find $\lvect{r}_1$ and $\lvect{r}_2$:
 \[
-    \vect{r} = \vect{r}_1-\vect{r}_2, \quad \vect{R} = \frac{m_1\vect{r}_1+m_2\vect{r}_2}{m_1+m_2}.
+    \lvect{r} = \lvect{r}_1-\lvect{r}_2, \quad \vect{R} = \frac{m_1\lvect{r}_1+m_2\lvect{r}_2}{m_1+m_2}.
 \]
 Solving:
 \begin{formula}[Individual Positions from COM and Relative Coordinates]
 \[
-    \vect{r}_1 = \vect{R} + \left(\frac{m_2}{m_1+m_2}\right)\vect{r},
+    \lvect{r}_1 = \vect{R} + \left(\frac{m_2}{m_1+m_2}\right)\lvect{r},
     \qquad
-    \vect{r}_2 = \vect{R} - \left(\frac{m_2}{m_1+m_2}\right)\vect{r}.
+    \lvect{r}_2 = \vect{R} - \left(\frac{m_2}{m_1+m_2}\right)\lvect{r}.
 \]
 \end{formula}
 
 \section{Consequences of Angular Momentum Conservation}
 
-Since $f(r)\hat{r}$ is along $\vect{r}$ and cannot exert a torque on $\mu$, the angular momentum $\vect{L}$ is constant.
+Since $f(r)\hat{r}$ is along $\lvect{r}$ and cannot exert a torque on $\mu$, the angular momentum $\vect{L}$ is constant.
 
 \subsection{A) Motion is Confined to a Plane}
 
-\textbf{Proof:} $\vect{L} = \mu(\vect{r}\times\dot{\vect{r}})$. Since $\vect{L}\perp\vect{r}$ for all $t$, and $\vect{L}$ is fixed, $\vect{r}$ stays in a plane. Thus, we introduce polar coordinates:
+\textbf{Proof:} $\vect{L} = \mu(\lvect{r}\times\dot{\lvect{r}})$. Since $\vect{L}\perp\lvect{r}$ for all $t$, and $\vect{L}$ is fixed, $\lvect{r}$ stays in a plane. Thus, we introduce polar coordinates:
 
 \begin{formula}[Equations of Motion in Polar Coordinates]
 \[
@@ -944,7 +944,7 @@ Since $f(r)\hat{r}$ is along $\vect{r}$ and cannot exert a torque on $\mu$, the 
 
 Since there is no net torque, the angular momentum is $L = \mu r^2\dot\theta = \text{const}$.
 
-The area swept out by $\vect{r}$ in time $dt$ is $dA = \tfrac{1}{2}r^2\,d\theta$, so:
+The area swept out by $\lvect{r}$ in time $dt$ is $dA = \tfrac{1}{2}r^2\,d\theta$, so:
 
 \begin{formula}[Law of Equal Areas (Kepler's Second Law)]
 \[
@@ -952,7 +952,7 @@ The area swept out by $\vect{r}$ in time $dt$ is $dA = \tfrac{1}{2}r^2\,d\theta$
 \]
 \end{formula}
 
-Thus, areas swept out by $\vect{r}$ are the same for equal time intervals.
+Thus, areas swept out by $\lvect{r}$ are the same for equal time intervals.
 \begin{itemize}
     \item Holds for \underline{all central forces} and \underline{open and closed} orbits.
 \end{itemize}

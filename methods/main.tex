@@ -38,9 +38,9 @@ The following is a collection of helpful facts/definitions taken from \textit{Ma
 (Basic Vector Properties). 
 
 \begin{enumerate}
-  \item $\vect{a} + \vect{0} = \vect{a}$ (Existence of Additive Identity)
-  \item $\vect{a} + \vect{b} = \vect{b} + \vect{a} $ (Commutativity) 
-  \item $\vect{a} + (\vect{b} + \vect{c}) = (\vect{a} + \vect{b}) + \vect{c}$ (Associativity)
+  \item $\lvect{a} + \vect{0} = \lvect{a}$ (Existence of Additive Identity)
+  \item $\lvect{a} + \lvect{b} = \lvect{b} + \lvect{a} $ (Commutativity) 
+  \item $\lvect{a} + (\lvect{b} + \lvect{c}) = (\lvect{a} + \lvect{b}) + \lvect{c}$ (Associativity)
   \item $|\uvect{u} | = 1 $ (Unit Vector Length)
   
 \end{enumerate}
@@ -85,11 +85,11 @@ Here are some useful properties of dot products summarized:
 (Dot product properties). 
 
 \begin{enumerate}
-  \item $\vect{a} \cdot \vect{a} = |\vect{a}|^2$
-  \item $\vect{a} \cdot \vect{a} = 0 \iff \vect{a} = 0 $
-  \item $\vect{a} \cdot \vect{b} = \vect{b} \cdot \vect{a} $ (Commutativity) 
-  \item $\vect{a} \cdot (\vect{b} + \vect{c}) = (\vect{a} \cdot \vect{b}) + (\vect{a} \cdot \vect{c})$ (Distributivity Over Addition)
-  \item $(k\vect{a}) \cdot \vect{b} = \vect{a} \cdot (k\vect{b}) $ (Scalar Associativity)
+  \item $\lvect{a} \cdot \lvect{a} = |\lvect{a}|^2$
+  \item $\lvect{a} \cdot \lvect{a} = 0 \iff \lvect{a} = 0 $
+  \item $\lvect{a} \cdot \lvect{b} = \lvect{b} \cdot \lvect{a} $ (Commutativity) 
+  \item $\lvect{a} \cdot (\lvect{b} + \lvect{c}) = (\lvect{a} \cdot \lvect{b}) + (\lvect{a} \cdot \lvect{c})$ (Distributivity Over Addition)
+  \item $(k\lvect{a}) \cdot \lvect{b} = \lvect{a} \cdot (k\lvect{b}) $ (Scalar Associativity)
   
 \end{enumerate}
     
@@ -103,27 +103,27 @@ We can use the dot product to more compactly define the projection of one vector
     \caption{Vector Projection}
 \end{figure}
 
-We want to describe the vector $\vect{p}$, which is the projection of $\vect{a}$ onto $\vect{b}$, in terms of the dot product. Clearly, $|\vect{p}| = |\vect{a}|cos(\theta)$. We also know the direction of $\vect{p}$, which is the same as the direction of $\vect{p}$, or $\frac{\vect{b}}{|\vect{b}|} $. Thus, we have 
+We want to describe the vector $\lvect{p}$, which is the projection of $\lvect{a}$ onto $\lvect{b}$, in terms of the dot product. Clearly, $|\lvect{p}| = |\lvect{a}|cos(\theta)$. We also know the direction of $\lvect{p}$, which is the same as the direction of $\lvect{p}$, or $\frac{\lvect{b}}{|\lvect{b}|} $. Thus, we have 
 
 \begin{align*}
-    \vect{p} &= |\vect{a}|\cos(\theta) \frac{\vect{b}}{|\vect{b}|} \\
-             &= |\vect{a}|\frac{|\vect{b}|}{|\vect{b}|} \cos(\theta)  \frac{\vect{b}}{|\vect{b}|} \\
-             &= \frac{\vect{a} \cdot \vect{b}}{|\vect{b}|} \uvect{b}
+    \lvect{p} &= |\lvect{a}|\cos(\theta) \frac{\lvect{b}}{|\lvect{b}|} \\
+             &= |\lvect{a}|\frac{|\lvect{b}|}{|\lvect{b}|} \cos(\theta)  \frac{\lvect{b}}{|\lvect{b}|} \\
+             &= \frac{\lvect{a} \cdot \lvect{b}}{|\lvect{b}|} \uvect{b}
 \end{align*}
 
 
 \begin{definition}
-    The \textbf{projection} of $\vect{a}$ onto $\vect{b}$, or $\textbf{proj}_b(a)$, is defined as 
+    The \textbf{projection} of $\lvect{a}$ onto $\lvect{b}$, or $\textbf{proj}_b(a)$, is defined as 
 
-   $$ \textbf{proj}_b(a) = |\vect{a}\cos(\theta)|\uvect{b} = \frac{\vect{a} \cdot \vect{b}}{|\vect{b}|} \uvect{b} 
-   = \frac{\vect{a} \cdot \vect{b}}{\vect{b} \cdot \vect{b}} \uvect{b}  $$
+   $$ \textbf{proj}_b(a) = |\lvect{a}\cos(\theta)|\uvect{b} = \frac{\lvect{a} \cdot \lvect{b}}{|\lvect{b}|} \uvect{b} 
+   = \frac{\lvect{a} \cdot \lvect{b}}{\lvect{b} \cdot \lvect{b}} \uvect{b}  $$
 \end{definition}
 
 \section{Cross Products}
 \begin{definition}
     The \textbf{cross product} of two vectors is 
     \begin{displaymath}
-        \vect{a} \cross \vect{b} = 
+        \lvect{a} \cross \lvect{b} = 
         \begin{vmatrix}
             \ihat & \jhat & \khat \\
             a_i & a_j & a_k \\
@@ -133,7 +133,7 @@ We want to describe the vector $\vect{p}$, which is the projection of $\vect{a}$
     \end{displaymath}
     Where the direction of the resulting vector follows the right-hand rule. Additionally, the magnitude of the cross product is
  \begin{displaymath}
-    |\vect{a} \cross \vect{b}| = |\vect{a}||\vect{b}|\sin(\theta)
+    |\lvect{a} \cross \lvect{b}| = |\lvect{a}||\lvect{b}|\sin(\theta)
  \end{displaymath}
 
     
@@ -145,10 +145,10 @@ We want to describe the vector $\vect{p}$, which is the projection of $\vect{a}$
   (Cross Product Properties). \    
     
 \begin{enumerate}
-  \item $\vect{a} \cross \vect{a} = 0$ 
-  \item $\vect{a} \cross \vect{b} = - \vect{b} \cross \vect{a} $ (Anticommutativity) 
-  \item $\vect{a} \cross (\vect{b} + \vect{c}) = (\vect{a} \cross \vect{b}) + (\vect{a} \cross \vect{c})$ (Distributivity Over Addition)
-  \item $(k\vect{a}) \cross \vect{b} = \vect{a} \cross (k\vect{b}) $ (Scalar Associativity)
+  \item $\lvect{a} \cross \lvect{a} = 0$ 
+  \item $\lvect{a} \cross \lvect{b} = - \lvect{b} \cross \lvect{a} $ (Anticommutativity) 
+  \item $\lvect{a} \cross (\lvect{b} + \lvect{c}) = (\lvect{a} \cross \lvect{b}) + (\lvect{a} \cross \lvect{c})$ (Distributivity Over Addition)
+  \item $(k\lvect{a}) \cross \lvect{b} = \lvect{a} \cross (k\lvect{b}) $ (Scalar Associativity)
   
 \end{enumerate}
  \end{theorem}

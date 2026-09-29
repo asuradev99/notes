@@ -317,7 +317,7 @@ For any conductor in equilibrium, whatever its shape and whatever external charg
     \item $\vect{E} = 0$ everywhere in the material.
     \item $\rho = 0$ in the material; all net charge sits on the surface as $\sigma$.
     \item $\phi$ is constant over the material and its surface: $\phi_a = \phi_b$ for any two points of one conductor.
-    \item Just outside, $\vect{E} = (\sigma/\varepsilon_0)\,\hat{n}$ --- perpendicular to the surface, with no tangential part --- so that $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$ and $Q_\text{enc} = \oint\sigma\,da = \varepsilon_0\oint\vect{E}\cdot d\vect{a}$.
+    \item Just outside, $\vect{E} = (\sigma/\varepsilon_0)\,\hat{n}$ --- perpendicular to the surface, with no tangential part --- so that $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$ and $Q_\text{enc} = \oint\sigma\,da = \varepsilon_0\oint\vect{E}\cdot d\lvect{a}$.
     \item No field line passes through the material, which is what makes a conductor a shield.
 \end{enumerate}
 \end{formula}
@@ -341,7 +341,7 @@ Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\
   \node[font=\small] at (1.7,-2.0) {$S_3$};
   \node[font=\small, below] at (1.7,-2.7) {$\phi_3$ or $Q_3$};
   \node[font=\small, black!55] at (-1.4,2.0) {$\laplacian\phi=-\rho/\varepsilon_0$};
-  \node[font=\small, black!55] at (5.3,-2.2) {$\phi\to0$ as $|\vect{x}|\to\infty$};
+  \node[font=\small, black!55] at (5.3,-2.2) {$\phi\to0$ as $|\lvect{x}|\to\infty$};
   \draw[->] (5.0,-1.9) -- (4.0,-1.0);
 \end{tikzpicture}
 \end{center}
@@ -352,9 +352,9 @@ Because $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\
 Precisely, such a \textbf{boundary-value problem} is specified by the following data (Figure~\ref{fig:em-bvp-setup}):
 \begin{itemize}
     \item the shapes and positions of the conducting surfaces $S_1,\dots,S_n$;
-    \item any prescribed free charge density $\rho(\vect{x})$ in the region outside them;
+    \item any prescribed free charge density $\rho(\lvect{x})$ in the region outside them;
     \item for \emph{each} conductor, exactly one of its potential $\phi_i$ or its total charge $Q_i$ --- never both, which would be over-determined, nor neither, which would leave the problem unsolved;
-    \item if the region is unbounded, the decay condition $\phi\to 0$ as $|\vect{x}|\to\infty$, needed to rule out solutions that differ by an additive harmonic function growing at infinity.
+    \item if the region is unbounded, the decay condition $\phi\to 0$ as $|\lvect{x}|\to\infty$, needed to rule out solutions that differ by an additive harmonic function growing at infinity.
 \end{itemize}
 Solving the problem means finding $\phi$ everywhere in the region (hence $\vect{E} = -\grad\phi$), the induced surface charge $\sigma_i = -\varepsilon_0\,\pdv*{\phi}{n}$ on each conductor, and whichever of $\{\phi_i\}$ or $\{Q_i\}$ was \emph{not} prescribed --- if potentials were given, the charges $Q_i = \oint_{S_i}\sigma_i\,da$ come out as part of the solution, and vice versa. When $Q_i$ is given instead of $\phi_i$, the surface condition is that $\phi$ is \emph{constant} on $S_i$, at some value determined by the constraint $Q_i = -\varepsilon_0\oint_{S_i}\pdv*{\phi}{n}\,da$, rather than a value fixed in advance.
 
@@ -363,7 +363,7 @@ Before proving that this data determines a unique solution, we should be precise
 \begin{definition}[Dirichlet boundary condition]
 The value of the potential itself is specified at every point of the boundary surface $S = \partial V$:
 \[
-    \phi(\vect{x}) = f(\vect{x}) \quad\text{for } \vect{x}\in S,
+    \phi(\lvect{x}) = f(\lvect{x}) \quad\text{for } \lvect{x}\in S,
 \]
 for some prescribed function $f$. Holding each conductor at a given potential is a Dirichlet condition.
 \end{definition}
@@ -371,7 +371,7 @@ for some prescribed function $f$. Holding each conductor at a given potential is
 \begin{definition}[Neumann boundary condition]
 The normal derivative of the potential --- equivalently the normal component of the field, since $E_n = -\pdv*{\phi}{n}$ --- is specified at every point of $S$:
 \[
-    \pdv{\phi}{n}(\vect{x}) = g(\vect{x}) \quad\text{for } \vect{x}\in S,
+    \pdv{\phi}{n}(\lvect{x}) = g(\lvect{x}) \quad\text{for } \lvect{x}\in S,
 \]
 where $\pdv*{}{n} \equiv \hat{n}\cdot\grad$ is the derivative along the outward normal. Specifying the surface charge on each conductor is a Neumann condition, since $\sigma = -\varepsilon_0\,\pdv*{\phi}{n}$.
 \end{definition}
@@ -436,7 +436,7 @@ The boundary-value setup above allows a conductor's total charge $Q_i$ to be spe
 
 \begin{theorem}[Uniqueness with charges prescribed]
 \label{thm:em-uniqueness-charges}
-Let $V$ be the region exterior to conductors with surfaces $S_1,\dots,S_n$, and let $\phi_1,\phi_2$ both solve Poisson's equation in $V$ for the same $\rho$, with $\phi_1,\phi_2 \to 0$ as $|\vect{x}|\to\infty$. If the two solutions assign the same total charge $Q_i$ to every conductor, then $\phi_1 = \phi_2$ throughout $V$ --- including agreement on the potential of every conductor, which was not prescribed in advance.
+Let $V$ be the region exterior to conductors with surfaces $S_1,\dots,S_n$, and let $\phi_1,\phi_2$ both solve Poisson's equation in $V$ for the same $\rho$, with $\phi_1,\phi_2 \to 0$ as $|\lvect{x}|\to\infty$. If the two solutions assign the same total charge $Q_i$ to every conductor, then $\phi_1 = \phi_2$ throughout $V$ --- including agreement on the potential of every conductor, which was not prescribed in advance.
 \end{theorem}
 
 \begin{proof}
@@ -449,7 +449,7 @@ Apply Green's first identity on $V$, whose boundary consists of the surfaces $S_
 \[
     \int_V |\grad U|^2\,d^3x = \sum_{i=1}^n \oint_{S_i} U\,\pdv{U}{n}\,da \;+\; \oint_{\infty} U\,\pdv{U}{n}\,da .
 \]
-The sphere at infinity contributes nothing: for an isolated charge distribution $U$ decays at least as $1/|\vect{x}|$ and $\pdv*{U}{n}$ at least as $1/|\vect{x}|^2$, so the integrand falls off faster than the sphere's area grows. On each $S_i$, $U = c_i$ is constant and factors out of its integral, leaving $c_i \oint_{S_i}\pdv*{U}{n}\,da = 0$ by the charge-matching condition above. So every term vanishes, giving
+The sphere at infinity contributes nothing: for an isolated charge distribution $U$ decays at least as $1/|\lvect{x}|$ and $\pdv*{U}{n}$ at least as $1/|\lvect{x}|^2$, so the integrand falls off faster than the sphere's area grows. On each $S_i$, $U = c_i$ is constant and factors out of its integral, leaving $c_i \oint_{S_i}\pdv*{U}{n}\,da = 0$ by the charge-matching condition above. So every term vanishes, giving
 \[
     \int_V |\grad U|^2\,d^3x = 0 \quad\Longrightarrow\quad \grad U = 0 \text{ everywhere in } V,
 \]
@@ -769,7 +769,7 @@ Suppose $n$ separate conductors are held at potentials $V_1,\dots,V_n$. In the c
 
 \subsection{Elementary Solutions and Superposition}
 
-For each $k = 1,\dots,n$, define the \emph{elementary solution} $\phi^{(k)}(\vect{x})$ to be the potential in the exterior region when conductor $k$ is held at potential $1$ and every other conductor is grounded at potential $0$. Each $\phi^{(k)}$ is harmonic in the exterior region and depends only on the geometry of the conductors --- never on any applied voltage.
+For each $k = 1,\dots,n$, define the \emph{elementary solution} $\phi^{(k)}(\lvect{x})$ to be the potential in the exterior region when conductor $k$ is held at potential $1$ and every other conductor is grounded at potential $0$. Each $\phi^{(k)}$ is harmonic in the exterior region and depends only on the geometry of the conductors --- never on any applied voltage.
 
 \begin{figure}[H]
 \begin{center}
@@ -813,7 +813,7 @@ For each $k = 1,\dots,n$, define the \emph{elementary solution} $\phi^{(k)}(\vec
 \begin{theorem}[Superposition of elementary solutions]
 For arbitrary potentials $V_1,\dots,V_n$ on the $n$ conductors, the potential in the exterior region is
 \[
-    \phi_\text{total}(\vect{x}) = \sum_{k=1}^n V_k\,\phi^{(k)}(\vect{x}).
+    \phi_\text{total}(\lvect{x}) = \sum_{k=1}^n V_k\,\phi^{(k)}(\lvect{x}).
 \]
 \end{theorem}
 

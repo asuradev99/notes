@@ -381,15 +381,15 @@ Going back to $\dot{x}$'s temporarily:
 \subsection*{Example 2: Charged Particle in Electromagnetic Field}
 
 \[
-    L = \tfrac{1}{2}m|\dot{\vect{x}}|^2 - q\phi(\vect{x},t) + q\dot{\vect{x}}\cdot\vect{A}(\vect{x},t) \implies \text{system is \underline{not} conservative}
+    L = \tfrac{1}{2}m|\dot{\lvect{x}}|^2 - q\phi(\lvect{x},t) + q\dot{\lvect{x}}\cdot\vect{A}(\lvect{x},t) \implies \text{system is \underline{not} conservative}
 \]
 \[
-    p_x = \frac{\partial L}{\partial \dot{x}} = m\dot{x} + qA_x, \qquad \Rightarrow \vect{p} = m\dot{\vect{x}} + q\vect{A}
+    p_x = \frac{\partial L}{\partial \dot{x}} = m\dot{x} + qA_x, \qquad \Rightarrow \lvect{p} = m\dot{\lvect{x}} + q\vect{A}
 \]
 \[
-    H = \vect{p}\cdot\dot{\vect{x}} - L = m|\dot{\vect{x}}|^2 + q\dot{\vect{x}}\cdot\vect{A} - \tfrac{1}{2}m|\dot{\vect{x}}|^2 + q\phi - q\dot{\vect{x}}\cdot\vect{A}
-    = \tfrac{1}{2}m|\dot{\vect{x}}|^2 + q\phi
-    = \frac{1}{2m}|\vect{p} - q\vect{A}|^2 + q\phi
+    H = \lvect{p}\cdot\dot{\lvect{x}} - L = m|\dot{\lvect{x}}|^2 + q\dot{\lvect{x}}\cdot\vect{A} - \tfrac{1}{2}m|\dot{\lvect{x}}|^2 + q\phi - q\dot{\lvect{x}}\cdot\vect{A}
+    = \tfrac{1}{2}m|\dot{\lvect{x}}|^2 + q\phi
+    = \frac{1}{2m}|\lvect{p} - q\vect{A}|^2 + q\phi
 \]
 
 \subsection*{Example 3: Particle on a Sphere}
@@ -644,7 +644,7 @@ Regardless of whether spatial translation is a symmetry, momentum is the generat
 
 Consider now a generating function
 \[
-    F = \vect{x}\cdot\vect{P} + (\vect{x}\times\vect{P})_z\,\delta\phi = xP_x + yP_y + zP_z + (yP_x - xP_y)\,\delta\phi
+    F = \lvect{x}\cdot\vect{P} + (\lvect{x}\times\vect{P})_z\,\delta\phi = xP_x + yP_y + zP_z + (yP_x - xP_y)\,\delta\phi
 \]
 (angular momentum; small angle)
 
@@ -1013,7 +1013,7 @@ $F(q,p) \Rightarrow \dfrac{dF}{dt} = [F,H]$. If $= 0$, then $F$ is conserved.
 \]
 \[
     = \frac{p_y p_x}{m} + y\frac{\partial U}{\partial x} - \frac{p_x p_y}{m} - x\frac{\partial U}{\partial y}
-    = y\frac{\partial U}{\partial x} - x\frac{\partial U}{\partial y} = -yF_x + xF_y = |\vect{x}\times\vect{F}|_z \quad \checkmark
+    = y\frac{\partial U}{\partial x} - x\frac{\partial U}{\partial y} = -yF_x + xF_y = |\lvect{x}\times\vect{F}|_z \quad \checkmark
 \]
 
 \section{Another Useful Fact}

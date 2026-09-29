@@ -81,13 +81,13 @@ Therefore:
   \node[above right] at (3.7,0.1) {$M$};
   % Incoming particle trajectory
   \draw[->,thick,blue] (0,0.6) -- (2.8,0.6);
-  \node[above,blue,scale=0.85] at (1.0,0.6) {$\vect{p}_i$};
+  \node[above,blue,scale=0.85] at (1.0,0.6) {$\lvect{p}_i$};
   % Impact parameter b
   \draw[<->,gray] (0,0) -- (0,0.6) node[midway,left]{$b$};
   \draw[dashed,gray] (0,0) -- (3.5,0);
   % Scattered trajectory
   \draw[->,thick,red] (3.5,0) -- ++(35:2.0);
-  \node[right,red,scale=0.85] at (5.2,1.15) {$\vect{p}_f$};
+  \node[right,red,scale=0.85] at (5.2,1.15) {$\lvect{p}_f$};
   % Scattering angle theta
   \draw (3.5,0) ++(0:0.8) arc[start angle=0,end angle=35,radius=0.8];
   \node[right,scale=0.85] at (4.35,0.25) {$\theta$};
@@ -95,14 +95,14 @@ Therefore:
   \draw[dashed,gray] (2.0,0.6) -- (4.0,0.6);
 \end{tikzpicture}
 \end{center}
-\caption{Scattering setup. A particle with initial momentum $\vect{p}_i$ and impact parameter $b$ (perpendicular distance from target centre) scatters through angle $\theta$ off a heavy target $M$.}
+\caption{Scattering setup. A particle with initial momentum $\lvect{p}_i$ and impact parameter $b$ (perpendicular distance from target centre) scatters through angle $\theta$ off a heavy target $M$.}
 \label{fig:scattering_setup}
 \end{figure}
 
 \begin{itemize}
     \item $\theta$: scattering angle --- direction between initial and final momentum.
     \item $M$: $M \gg m$.
-    \item $b$: impact parameter --- vertical displacement of a particle's initial position relative to a line going through the center of the sphere, in the $\vect{p}_i$ direction.
+    \item $b$: impact parameter --- vertical displacement of a particle's initial position relative to a line going through the center of the sphere, in the $\lvect{p}_i$ direction.
     \item $\alpha$ is the same on both sides because the \textbf{perp} component of momentum is conserved.
 \end{itemize}
 
@@ -298,11 +298,11 @@ Consider the rest frame of the particle $P$:
         \quad\text{(plug in initial energy)}
     \]
     \[
-        \vect{p}_i^e = m_e v\,\hat{x} \implies \vect{p}_f^e = m_e v(\cos\theta\,\hat{x} + \sin\theta\,\hat{y})
+        \lvect{p}_i^e = m_e v\,\hat{x} \implies \lvect{p}_f^e = m_e v(\cos\theta\,\hat{x} + \sin\theta\,\hat{y})
         \approx m_e v(\hat{x} + \theta\,\hat{y})
     \]
     \[
-        \implies \Delta\vect{p}_e = m_e v\theta\,\hat{y} \approx \frac{2k}{vb}\,\hat{y}
+        \implies \Delta\lvect{p}_e = m_e v\theta\,\hat{y} \approx \frac{2k}{vb}\,\hat{y}
         \quad\text{(this is approximately the momentum that the proton loses)}
     \]
     \[
@@ -433,7 +433,7 @@ which is the ``impact area'' that the particle must hit.
 
 \begin{enumerate}
     \item $\vect{F} = -\grad U(r) = -\dfrac{\partial U}{\partial r}\,\hat{r}$
-    \item $\dfrac{d\vect{L}}{dt} = 0 \implies \vect{L} = \vect{r}\times\vect{p}$, $\vect{r}\perp\vect{L}$.
+    \item $\dfrac{d\vect{L}}{dt} = 0 \implies \vect{L} = \lvect{r}\times\lvect{p}$, $\lvect{r}\perp\vect{L}$.
     \begin{itemize}
         \item $\mathcal{L} = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\phi}^2) - U(r)$, $\phi$ is cyclic.
         \item $\implies mr^2\dot{\phi}$ is conserved.
@@ -499,16 +499,16 @@ which is the ``impact area'' that the particle must hit.
 
 \begin{figure}[H]
     \centering
-    \caption{A general rigid body rotating with $\vec{\omega} = \omega\hat{z}$. Each mass element $m_i$ is at position $\vect{r}_i$ with transverse distance $\rho_i$ from the rotation axis and axial coordinate $z_i$.}
+    \caption{A general rigid body rotating with $\vec{\omega} = \omega\hat{z}$. Each mass element $m_i$ is at position $\lvect{r}_i$ with transverse distance $\rho_i$ from the rotation axis and axial coordinate $z_i$.}
 \end{figure}
 
 \begin{align*}
-    \vect{L} &= \sum_i \vect{r}_i \times m_i\vect{v}_i
-    = \sum_i m_i\,\vect{r}_i \times (\vec{\omega}\times\vect{r}_i) \\
-    &= \sum_i m_i\!\left[(\vect{r}_i\cdot\vect{r}_i)\vec{\omega} - (\vect{r}_i\cdot\vec{\omega})\vect{r}_i\right]
+    \vect{L} &= \sum_i \lvect{r}_i \times m_i\lvect{v}_i
+    = \sum_i m_i\,\lvect{r}_i \times (\vec{\omega}\times\lvect{r}_i) \\
+    &= \sum_i m_i\!\left[(\lvect{r}_i\cdot\lvect{r}_i)\vec{\omega} - (\lvect{r}_i\cdot\vec{\omega})\lvect{r}_i\right]
 \end{align*}
 
-Using $r_i^2 = \rho_i^2 + z_i^2$ and $\vect{r}_i\cdot\vec{\omega} = z_i\omega$:
+Using $r_i^2 = \rho_i^2 + z_i^2$ and $\lvect{r}_i\cdot\vec{\omega} = z_i\omega$:
 
 \[
     = \omega\sum_i m_i\!\left[(\rho_i^2 + z_i^2)\hat{z} - x_i z_i\,\hat{x} - y_i z_i\,\hat{y} - z_i^2\,\hat{z}\right]
@@ -558,7 +558,7 @@ The eigenvalues $\lambda_1, \lambda_2, \lambda_3$ become $I_1, I_2, I_3$.
 
 \[
     \vect{T} = \dv{\vect{L}}{t} = \left(\dv{\vect{L}}{t}\right)_{\text{rot}} + \vec{\omega}\times\vect{L},
-    \qquad \vect{v} = \vec{\omega}\times\vect{r}
+    \qquad \lvect{v} = \vec{\omega}\times\lvect{r}
 \]
 
 To see why, consider rotating the angular momentum components. After a small rotation $\Delta\theta_3$ about axis 3:
@@ -639,7 +639,7 @@ Only if $I_1$ is max or min. If it isn't, then it isn't stable.
         \item Rotate about $\hat{x}'''$: $\theta$
         \item Rotate about $\hat{z}''$: $\psi$
     \end{enumerate}
-    \item $\vect{r}' = U\vect{r} = U_\psi U_\theta U_\phi\,\vect{r}$ (Unitary transformation).
+    \item $\lvect{r}' = U\lvect{r} = U_\psi U_\theta U_\phi\,\lvect{r}$ (Unitary transformation).
 \end{itemize}
 
 Rotation about 1 axis:
@@ -649,11 +649,11 @@ Rotation about 1 axis:
 
 \begin{formula}[Euler Angle Transformation]
 \[
-    \vect{r}' =
+    \lvect{r}' =
     \begin{pmatrix} \cos\psi & \sin\psi & 0 \\ -\sin\psi & \cos\psi & 0 \\ 0 & 0 & 1 \end{pmatrix}
     \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & \sin\theta \\ 0 & -\sin\theta & \cos\theta \end{pmatrix}
     \begin{pmatrix} \cos\phi & \sin\phi & 0 \\ -\sin\phi & \cos\phi & 0 \\ 0 & 0 & 1 \end{pmatrix}
-    \vect{r}
+    \lvect{r}
 \]
 \end{formula}
 
@@ -1121,11 +1121,11 @@ But now:
 
 \begin{figure}[H]
     \centering
-    \caption{Scattering summary diagram. A particle with initial momentum $\vect{p}_i$ and impact parameter $b$ scatters off a potential centered at the origin through angle $\theta$. The solid angle element $d\Omega$ subtended by the scattered ring is shown.}
+    \caption{Scattering summary diagram. A particle with initial momentum $\lvect{p}_i$ and impact parameter $b$ scatters off a potential centered at the origin through angle $\theta$. The solid angle element $d\Omega$ subtended by the scattered ring is shown.}
 \end{figure}
 
 \begin{itemize}
-    \item $\theta$ (scatter angle): direction between initial and final $\vect{p}$.
+    \item $\theta$ (scatter angle): direction between initial and final $\lvect{p}$.
     \item $b$: impact parameter, $b = R\sin\alpha$.
     \item $\alpha$: angle from origin to point of closest approach.
     \item \textbf{Important:} If the potential has azimuthal symmetry, the trajectory of the particle obeys time-translation symmetry $\implies$

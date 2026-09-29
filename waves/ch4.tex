@@ -7,7 +7,7 @@
 Symmetries of a coupled oscillator system determine the amplitude ratios of its normal modes without ever having to diagonalize the equation of motion. The strategy is: identify a linear transformation $S$ on the configuration space that leaves the equations of motion invariant, then look for normal modes that are simultaneously eigenvectors of $S$.
 
 \begin{definition}[Symmetry matrix]
-A \emph{symmetry matrix} $S$ for a coupled oscillator system with configuration vector $\vect{x}(t) = (x_1, x_2, \ldots, x_n)^\top$ is a linear map such that whenever $\vect{x}(t)$ is a solution of the equations of motion, so is $\tilde{\vect{x}}(t) = S\,\vect{x}(t)$. Equivalently, if $K$ is the matrix governing $\ddot{\vect{x}} = -K\vect{x}$ (or $M^{-1}K$ for unequal masses), then $S$ commutes with the dynamical matrix:
+A \emph{symmetry matrix} $S$ for a coupled oscillator system with configuration vector $\lvect{x}(t) = (x_1, x_2, \ldots, x_n)^\top$ is a linear map such that whenever $\lvect{x}(t)$ is a solution of the equations of motion, so is $\tilde{\lvect{x}}(t) = S\,\lvect{x}(t)$. Equivalently, if $K$ is the matrix governing $\ddot{\lvect{x}} = -K\lvect{x}$ (or $M^{-1}K$ for unequal masses), then $S$ commutes with the dynamical matrix:
 \begin{equation}
     SK = KS.
 \end{equation}
@@ -32,14 +32,14 @@ For three masses $m_1, m_2, m_3$ connected in a chain between two walls with ide
     S_{\mathrm{wr}} &= \begin{pmatrix} -1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & -1 & 0 \end{pmatrix}
     & &\text{(``weird'' reflection: swap two + flip signs)}.
 \end{align}
-Any solution $\vect{x}(t)$ carried into $S\vect{x}(t)$ by one of these matrices is also a solution.
+Any solution $\lvect{x}(t)$ carried into $S\lvect{x}(t)$ by one of these matrices is also a solution.
 \end{example}
 
 \subsection{Eigenvalue Equation for Normal Modes}
 
-Suppose $\vect{x}^{(i)}(t) = \vect{A}^{(i)} \cos(\omega_i t + \phi_i)$ is a normal mode with amplitude vector $\vect{A}^{(i)}$ and frequency $\omega_i$. Then $\tilde{\vect{x}} = S \vect{x}^{(i)}$ is also a solution of the equations of motion, and because $S$ is a constant matrix, $\tilde{\vect{x}}$ oscillates at the same frequency $\omega_i$. If all eigenfrequencies are distinct, $\tilde{\vect{x}}$ must therefore be proportional to $\vect{x}^{(i)}$:
+Suppose $\lvect{x}^{(i)}(t) = \vect{A}^{(i)} \cos(\omega_i t + \phi_i)$ is a normal mode with amplitude vector $\vect{A}^{(i)}$ and frequency $\omega_i$. Then $\tilde{\lvect{x}} = S \lvect{x}^{(i)}$ is also a solution of the equations of motion, and because $S$ is a constant matrix, $\tilde{\lvect{x}}$ oscillates at the same frequency $\omega_i$. If all eigenfrequencies are distinct, $\tilde{\lvect{x}}$ must therefore be proportional to $\lvect{x}^{(i)}$:
 \begin{equation}
-    \tilde{\vect{x}}(t) = \beta \vect{A}^{(i)} \cos(\omega_i t + \phi_i)
+    \tilde{\lvect{x}}(t) = \beta \vect{A}^{(i)} \cos(\omega_i t + \phi_i)
     = S \vect{A}^{(i)} \cos(\omega_i t + \phi_i).
 \end{equation}
 Stripping off the time dependence gives the central result.
@@ -225,7 +225,7 @@ The wavenumber $k$ and wavelength $\lambda$ are related by
 
 \subsection{Symmetry and Commutators}
 
-The pattern behind all of this is that if $S$ is a symmetry of the equations of motion $\ddot{\vect{x}} = -K \vect{x}$, then $S$ commutes with $K$:
+The pattern behind all of this is that if $S$ is a symmetry of the equations of motion $\ddot{\lvect{x}} = -K \lvect{x}$, then $S$ commutes with $K$:
 \begin{equation}
     SK = KS.
 \end{equation}

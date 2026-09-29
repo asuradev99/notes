@@ -57,12 +57,12 @@ Here $d$ is measured from the center of one slit to the center of the next, not 
 
 Because $\theta_1\approx\theta_2\approx\cdots\approx\theta$ in the far field, all slits contribute with essentially the same amplitude and wave vector, differing only by the accumulated phase $\delta$ per slit. The total field is then a geometric series:
 \begin{equation}
-    \vect{E}_{\text{tot}} = \vect{E}_0\, e^{i(\omega t - \vect{k}\cdot\vect{r})} \sum_{m=0}^{N-1} e^{-i m \delta}
-    = \vect{E}_0\, e^{i(\omega t - \vect{k}\cdot\vect{r})}\, \frac{1 - e^{-i N \delta}}{1 - e^{-i \delta}}.
+    \vect{E}_{\text{tot}} = \vect{E}_0\, e^{i(\omega t - \lvect{k}\cdot\lvect{r})} \sum_{m=0}^{N-1} e^{-i m \delta}
+    = \vect{E}_0\, e^{i(\omega t - \lvect{k}\cdot\lvect{r})}\, \frac{1 - e^{-i N \delta}}{1 - e^{-i \delta}}.
 \end{equation}
 To turn this into something recognizable, factor $e^{-i\delta N/2}$ from the numerator and $e^{-i\delta/2}$ from the denominator; each difference of exponentials then collapses into a sine:
 \begin{equation}
-    \vect{E}_{\text{tot}} = \vect{E}_0\, e^{i(\omega t - \vect{k}\cdot\vect{r})}\, e^{-i \delta (N-1)/2}\, \frac{\sin(N\delta/2)}{\sin(\delta/2)}.
+    \vect{E}_{\text{tot}} = \vect{E}_0\, e^{i(\omega t - \lvect{k}\cdot\lvect{r})}\, e^{-i \delta (N-1)/2}\, \frac{\sin(N\delta/2)}{\sin(\delta/2)}.
 \end{equation}
 
 The intensity is $\langle I \rangle \propto |E|^2$, and the leftover exponential prefactor (a pure phase) drops out. What remains is the central multi-slit result:

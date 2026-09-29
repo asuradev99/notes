@@ -21,18 +21,18 @@
     \draw[thick] (\bx-0.3,\by-0.3) rectangle (\bx+0.3,\by+0.3);
   \end{scope}
   % Weight arrow (downward)
-  \draw[->,thick,blue] (1.6,0.92) -- (1.6,-0.5) node[below]{$\vect{w}=m\vect{g}$};
+  \draw[->,thick,blue] (1.6,0.92) -- (1.6,-0.5) node[below]{$\lvect{w}=m\lvect{g}$};
   % Normal arrow (perpendicular to slope)
   \draw[->,thick,red] (1.6,0.92) -- ++(150:1.1) node[above left]{$\vect{N}$};
   % Acceleration along slope
-  \draw[->,thick,ForestGreen] (1.6,0.92) -- ++(30:1.1) node[right]{$\vect{a}$};
+  \draw[->,thick,ForestGreen] (1.6,0.92) -- ++(30:1.1) node[right]{$\lvect{a}$};
 \end{tikzpicture}
 \end{center}
-\caption{Block on a frictionless inclined plane at angle $\theta$; normal force $\vect{N}$ perpendicular to surface, weight $\vect{w} = m\vect{g}$ downward.}
+\caption{Block on a frictionless inclined plane at angle $\theta$; normal force $\vect{N}$ perpendicular to surface, weight $\lvect{w} = m\lvect{g}$ downward.}
 \label{fig:inclined_plane}
 \end{figure}
 
-Newton's second law $\vect{N} + \vect{w} = m\vect{a}$, projected onto axes along and perpendicular to the slope:
+Newton's second law $\vect{N} + \lvect{w} = m\lvect{a}$, projected onto axes along and perpendicular to the slope:
 
 \begin{align*}
 x&: \quad w\sin\theta = ma \implies mg\sin\theta = ma \implies a = g\sin\theta \\
@@ -82,7 +82,7 @@ Two masses $m_1$ and $m_2$ hang from either end of a rope over a fixed pulley. F
 
 \textbf{System \{1\}:} tension $T_1$ upward, weight $w_1 = m_1 g$ downward.
 \[
-\vect{T}_1 + \vect{w}_1 = m_1 \vect{a}_1 \implies T_1 - m_1 g = m_1 \ddot{y}_1
+\vect{T}_1 + \lvect{w}_1 = m_1 \lvect{a}_1 \implies T_1 - m_1 g = m_1 \ddot{y}_1
 \]
 
 \textbf{System \{2\}:} tension $T_2$ upward, weight $w_2 = m_2 g$ downward.
@@ -135,8 +135,8 @@ A object $A$ rotates at angular speed $\omega_0$ at radius $r_0$ on a frictionle
 
 \textbf{System \{A\}:} Only horizontal tension $T$ acts (normal $N$ and weight $w_A$ cancel vertically).
 \[
-\vect{T} = m_A \vect{a}_A, \qquad
-\vect{a}_A = (\ddot{r} - r\dot{\theta}^2)\,\rhat + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\tthat
+\vect{T} = m_A \lvect{a}_A, \qquad
+\lvect{a}_A = (\ddot{r} - r\dot{\theta}^2)\,\rhat + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\tthat
 \]
 
 Projecting:
@@ -404,7 +404,7 @@ Force due to a string's resistance to increasing length. You can imagine a chain
 
 \begin{formula}[Hooke's Law]
 \[
-\vect{F} = -k(\vect{x} - \vect{x}_0)
+\vect{F} = -k(\lvect{x} - \lvect{x}_0)
 \]
 where $x_0$ is the length of the spring at equilibrium.
 \end{formula}
@@ -438,7 +438,7 @@ where $x_0$ is the length of the spring at equilibrium.
 
 Equation of motion (1D):
 \[
-\vect{F} = m\vect{a} \implies m\ddot{x} = -k(x - x_0)
+\vect{F} = m\lvect{a} \implies m\ddot{x} = -k(x - x_0)
 \]
 
 \subsection{Solving the Equation of Motion}
@@ -600,7 +600,7 @@ A mass $m$ hangs from a spring (spring constant $k$) attached to a ceiling. Let 
 
 System \{mass\}:
 \[
-\vect{T} + m\vect{g} = m\vect{a} \implies -kx + mg = m\ddot{x}
+\vect{T} + m\lvect{g} = m\lvect{a} \implies -kx + mg = m\ddot{x}
 \]
 \[
 \ddot{x} = -\frac{k}{m}x + g
@@ -656,11 +656,11 @@ A ball on a string of length $\ell$ swings in a plane. System: \{ball\}.
 \label{fig:pendulum}
 \end{figure}
 
-Forces: $\vect{T} + m\vect{g} = m\vect{a}$.
+Forces: $\vect{T} + m\lvect{g} = m\lvect{a}$.
 
 Using polar coordinates with $r = \ell = \mathrm{const}$ ($\dot{r} = \ddot{r} = 0$):
 \[
-\vect{a} = (\ddot{r} - r\dot{\theta}^2)\,\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\,\tthat
+\lvect{a} = (\ddot{r} - r\dot{\theta}^2)\,\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\,\tthat
 = -\ell\dot{\theta}^2\,\rhat + \ell\ddot{\theta}\,\tthat
 \]
 

@@ -197,45 +197,45 @@ Units of energy: Joule, $\mathrm{J} = \frac{\mathrm{kg}\cdot\mathrm{m}^2}{\mathr
 
 \section{Integrating Motion in Several Directions}
 
-Let $\vect{r}$ be a position vector. We need to solve
+Let $\lvect{r}$ be a position vector. We need to solve
 \[
-    \vect{F}(\vect{r}) = m\dv{\vect{v}}{t}.
+    \vect{F}(\lvect{r}) = m\dv{\lvect{v}}{t}.
 \]
-Dot both sides with $\Delta\vect{r}$:
+Dot both sides with $\Delta\lvect{r}$:
 \[
-    \vect{F} \cdot \Delta\vect{r} = m\dv{\vect{v}}{t} \cdot \Delta\vect{r} = F\,\Delta r\cos\theta = m\dv{\vect{v}}{t}\cdot\Delta\vect{r}.
+    \vect{F} \cdot \Delta\lvect{r} = m\dv{\lvect{v}}{t} \cdot \Delta\lvect{r} = F\,\Delta r\cos\theta = m\dv{\lvect{v}}{t}\cdot\Delta\lvect{r}.
 \]
 
-Since $\Delta\vect{r} = \vect{v}\,\Delta t$ (reason why energy is path-independent!):
+Since $\Delta\lvect{r} = \lvect{v}\,\Delta t$ (reason why energy is path-independent!):
 \[
-    m\dv{\vect{v}}{t}\cdot\Delta\vect{r} = m\dv{\vect{v}}{t}\cdot\vect{v}\,\Delta t = m\,\frac{1}{2}\dv{}{t}(v^2)\,\Delta t.
+    m\dv{\lvect{v}}{t}\cdot\Delta\lvect{r} = m\dv{\lvect{v}}{t}\cdot\lvect{v}\,\Delta t = m\,\frac{1}{2}\dv{}{t}(v^2)\,\Delta t.
 \]
 Thus
 \[
-    \vect{F}\cdot\Delta\vect{r} = \frac{m}{2}\dv{}{t}(v^2)\,\Delta t.
+    \vect{F}\cdot\Delta\lvect{r} = \frac{m}{2}\dv{}{t}(v^2)\,\Delta t.
 \]
 
-Next, divide the trajectory from $\vect{r}_a$ to $\vect{r}_b$ into short segments:
+Next, divide the trajectory from $\lvect{r}_a$ to $\lvect{r}_b$ into short segments:
 
 \begin{figure}[H]
     \centering
-    \caption{Trajectory divided into short segments $\Delta\vect{r}_j$ at positions $\vect{r}_j$.}
+    \caption{Trajectory divided into short segments $\Delta\lvect{r}_j$ at positions $\lvect{r}_j$.}
 \end{figure}
 
-Thus $\vect{F}(\vect{r}_j)\cdot\Delta\vect{r}_j = \dfrac{m}{2}\dv{}{t}(v_j^2)\,\Delta t_j$.
+Thus $\vect{F}(\lvect{r}_j)\cdot\Delta\lvect{r}_j = \dfrac{m}{2}\dv{}{t}(v_j^2)\,\Delta t_j$.
 
 Summing:
 \[
-    \sum_{j=1}^{N} \vect{F}(\vect{r}_j)\cdot\Delta\vect{r}_j = \sum_{j=1}^{N} \frac{m}{2}\dv{}{t}(v_j^2)\,\Delta t_j.
+    \sum_{j=1}^{N} \vect{F}(\lvect{r}_j)\cdot\Delta\lvect{r}_j = \sum_{j=1}^{N} \frac{m}{2}\dv{}{t}(v_j^2)\,\Delta t_j.
 \]
 In the limit:
 \[
-    \int_{\vect{r}_a}^{\vect{r}_b} \vect{F}(\vect{r})\cdot d\vect{r} = \frac{m}{2}\int_{t_a}^{t_b}\dv{}{t}(v^2)\,dt = \frac{m}{2}\,v^2\Big|_{t_a}^{t_b} = \tfrac{1}{2}mv_b^2 - \tfrac{1}{2}mv_a^2.
+    \int_{\lvect{r}_a}^{\lvect{r}_b} \vect{F}(\lvect{r})\cdot d\lvect{r} = \frac{m}{2}\int_{t_a}^{t_b}\dv{}{t}(v^2)\,dt = \frac{m}{2}\,v^2\Big|_{t_a}^{t_b} = \tfrac{1}{2}mv_b^2 - \tfrac{1}{2}mv_a^2.
 \]
 
 \begin{formula}[Work–Energy Theorem (3D)]
 \[
-    \boxed{\int_{\vect{r}_a}^{\vect{r}_b} \vect{F}\cdot d\vect{r} = \tfrac{1}{2}mv_b^2 - \tfrac{1}{2}mv_a^2.}
+    \boxed{\int_{\lvect{r}_a}^{\lvect{r}_b} \vect{F}\cdot d\lvect{r} = \tfrac{1}{2}mv_b^2 - \tfrac{1}{2}mv_a^2.}
 \]
 \end{formula}
 
@@ -244,9 +244,9 @@ The gravitational force on a mass $m$ due to a planet of mass $M_e$ is
 \[
     \vect{F} = -\frac{GM_e m}{r^2}\,\uvect{r} = -mg\frac{R_e^2}{r^2}\,\uvect{r}.
 \]
-In spherical coordinates, $d\vect{r} = dr\,\uvect{r} + r\,d\theta\,\tthat$, so
+In spherical coordinates, $d\lvect{r} = dr\,\uvect{r} + r\,d\theta\,\tthat$, so
 \[
-    \vect{F}\cdot d\vect{r} = -mg\frac{R_e^2}{r^2}\,dr \quad (\text{since } \uvect{r}\cdot\tthat = 0).
+    \vect{F}\cdot d\lvect{r} = -mg\frac{R_e^2}{r^2}\,dr \quad (\text{since } \uvect{r}\cdot\tthat = 0).
 \]
 Thus
 \[
@@ -262,7 +262,7 @@ As $r\to\infty$:
 
 \section{Applying the Work–Energy Theorem}
 
-Because $W_{ba} = \int_a^b \vect{F}\cdot d\vect{r}$ for non-conservative forces, $\vect{F}$ and the actual path must be known.
+Because $W_{ba} = \int_a^b \vect{F}\cdot d\lvect{r}$ for non-conservative forces, $\vect{F}$ and the actual path must be known.
 
 \begin{itemize}
     \item Most forces are conservative, however.
@@ -271,13 +271,13 @@ Because $W_{ba} = \int_a^b \vect{F}\cdot d\vect{r}$ for non-conservative forces,
 
 \begin{definition}[Work (general)]
 \[
-    \int_C \vect{F}\cdot d\vect{r} = W.
+    \int_C \vect{F}\cdot d\lvect{r} = W.
 \]
 \end{definition}
 
 \begin{definition}[Power]
 \[
-    \dv{W}{t} = \vect{F}\cdot\vect{v}.
+    \dv{W}{t} = \vect{F}\cdot\lvect{v}.
 \]
 \end{definition}
 
@@ -285,18 +285,18 @@ Because $W_{ba} = \int_a^b \vect{F}\cdot d\vect{r}$ for non-conservative forces,
 
 \begin{formula}[Conservation of Energy]
 \[
-    W = \int_{\vect{r}_a}^{\vect{r}_b} \vect{F}\cdot d\vect{r} = -U(\vect{r}_b) + U(\vect{r}_a) = K_b - K_a,
+    W = \int_{\lvect{r}_a}^{\lvect{r}_b} \vect{F}\cdot d\lvect{r} = -U(\lvect{r}_b) + U(\lvect{r}_a) = K_b - K_a,
 \]
 \[
-    \Rightarrow\quad K_a + U(\vect{r}_a) = K_b + U(\vect{r}_b) \quad \text{(total energy is conserved)}.
+    \Rightarrow\quad K_a + U(\lvect{r}_a) = K_b + U(\lvect{r}_b) \quad \text{(total energy is conserved)}.
 \]
 \end{formula}
 
-For a closed path, $W = \oint_C \vect{F}\cdot d\vect{r} = U(\vect{r}_a) - U(\vect{r}_a) = 0$.
+For a closed path, $W = \oint_C \vect{F}\cdot d\lvect{r} = U(\lvect{r}_a) - U(\lvect{r}_a) = 0$.
 
 Thus:
 \[
-    U = -\oint \vect{F}\cdot d\vect{r}, \qquad \vect{F} = -\grad U, \qquad F = -\dv{U}{r}.
+    U = -\oint \vect{F}\cdot d\lvect{r}, \qquad \vect{F} = -\grad U, \qquad F = -\dv{U}{r}.
 \]
 
 \section{Energy Diagrams}
@@ -344,11 +344,11 @@ Thus:
 \label{fig:energy_diagrams}
 \end{figure}
 
-Non-conservative forces: $\oint \vect{F}\cdot d\vect{r} \neq 0$ (depends on path taken). Example: friction.
+Non-conservative forces: $\oint \vect{F}\cdot d\lvect{r} \neq 0$ (depends on path taken). Example: friction.
 
 Thus,
 \[
-    E_{\text{tot}} = U + K + W_{\text{non-cons.}} = U + K + \int_{\vect{a}}^{\vect{b}} \vect{F}_f \cdot d\vect{r}.
+    E_{\text{tot}} = U + K + W_{\text{non-cons.}} = U + K + \int_{\lvect{a}}^{\lvect{b}} \vect{F}_f \cdot d\lvect{r}.
 \]
 
 \begin{example}[Block on an Incline]
@@ -362,7 +362,7 @@ Thus,
     \item End: $U_b = 0$, $K_b = \tfrac{1}{2}mv_b^2$, $E_b = \tfrac{1}{2}v_b^2$.
     \item Work by friction:
     \[
-        W_f = \int_a^b \vect{F}_{fr}\cdot d\vect{r} = -\int_a^b \mu F_N\,ds = -\mu mg\cos\theta \cdot s = -\mu mg\cos\theta \cdot \frac{h}{\sin\theta}.
+        W_f = \int_a^b \vect{F}_{fr}\cdot d\lvect{r} = -\int_a^b \mu F_N\,ds = -\mu mg\cos\theta \cdot s = -\mu mg\cos\theta \cdot \frac{h}{\sin\theta}.
     \]
 \end{itemize}
 \end{example}
@@ -444,17 +444,17 @@ Substituting into the constraint:
     \item Smashes particles together to discover their properties.
 \end{itemize}
 
-\section{Integrating \texorpdfstring{$\vect{F}\cdot d\vect{r}$}{F dot dr}}
+\section{Integrating \texorpdfstring{$\vect{F}\cdot d\lvect{r}$}{F dot dr}}
 
 \begin{figure}[H]
     \centering
-    \caption{For circular motion, break $d\vect{r}$ into $(A\,\uvect{r} + B\,\tthat)$. Tip: $|d\vect{r}| \approx \ell\,d\theta$ for radius $\ell$.}
+    \caption{For circular motion, break $d\lvect{r}$ into $(A\,\uvect{r} + B\,\tthat)$. Tip: $|d\lvect{r}| \approx \ell\,d\theta$ for radius $\ell$.}
 \end{figure}
 
 \subsection{Work Done by a Central Force}
 
 \[
-    W_{ba} = \int_a^b \vect{F}\cdot d\vect{r} = \int_a^b f(r)\,\uvect{r}\cdot(dr\,\uvect{r} + r\,d\theta\,\tthat) = \int_a^b f(r)\,dr.
+    W_{ba} = \int_a^b \vect{F}\cdot d\lvect{r} = \int_a^b f(r)\,\uvect{r}\cdot(dr\,\uvect{r} + r\,d\theta\,\tthat) = \int_a^b f(r)\,dr.
 \]
 This depends \emph{only} on initial and final $r$. Thus, work done by a central force on a closed path is $\mathbf{0}$.
 
@@ -468,7 +468,7 @@ where $S$ is the total length of the path.
 \section{Conservation of Mechanical Energy}
 
 \[
-    \int_{r_a}^{r_b} \vect{F}\cdot d\vect{r} = -U(\vect{r}_b) + U(\vect{r}_a)
+    \int_{r_a}^{r_b} \vect{F}\cdot d\lvect{r} = -U(\lvect{r}_b) + U(\lvect{r}_a)
 \]
 (implies conservative force $\vect{F}$ around a closed path is $0$).
 
@@ -531,7 +531,7 @@ In a uniform gravitational field, $\vect{F} = -mg\,\khat$:
 
 \begin{formula}[Potential Energy Difference]
 \[
-    U_b - U_a = -\int_{r_a}^{r_b} \vect{F}\cdot d\vect{r} = -\int_{r_a}^{r_b} f(r)\,dr.
+    U_b - U_a = -\int_{r_a}^{r_b} \vect{F}\cdot d\lvect{r} = -\int_{r_a}^{r_b} f(r)\,dr.
 \]
 \end{formula}
 
@@ -600,7 +600,7 @@ Examining $U(x + \Delta x) - U(x)$:
 \]
 Thus:
 \[
-    W_{ba}^{\text{total}} = \int_a^b \vect{F}_c\cdot d\vect{r} + \int_a^b \vect{F}^{NC}\cdot d\vect{r} = -U_b + U_a + W_{ba}^{NC}.
+    W_{ba}^{\text{total}} = \int_a^b \vect{F}_c\cdot d\lvect{r} + \int_a^b \vect{F}^{NC}\cdot d\lvect{r} = -U_b + U_a + W_{ba}^{NC}.
 \]
 By the work–energy theorem:
 \[
@@ -620,7 +620,7 @@ By the work–energy theorem:
     \item $E_i = mgh$.
     \item $E_s = \tfrac{1}{2}mv^2 + W_f$.
     \item $W_f = -\mu mg\cos\theta \cdot \dfrac{h}{\sin\theta}$.
-    \item $W_{ba}^{NC} = \int_a^b \vect{f}\cdot d\vect{r}$.
+    \item $W_{ba}^{NC} = \int_a^b \lvect{f}\cdot d\lvect{r}$.
 \end{itemize}
 
 Thus:
@@ -674,7 +674,7 @@ Thus $\Delta E = \tfrac{1}{2}k(x_1^2 - x_0^2)$.
 
 \textbf{Approximation for $W_{NC}$}: The non-conservative work done by friction is
 \[
-    W_{NC} = \int \vect{f}\cdot d\vect{r} = \int -\mu mg\,dx = -\mu mg\,D,
+    W_{NC} = \int \lvect{f}\cdot d\lvect{r} = \int -\mu mg\,dx = -\mu mg\,D,
 \]
 where $D$ is the total distance traveled in one cycle.
 
@@ -897,13 +897,13 @@ Potential energy:
 
 \section{Momentum}
 
-Conservation of momentum: $\vect{F}_{\text{ext}} = \dv{\vect{p}}{t} = 0$ (for a closed system).
+Conservation of momentum: $\vect{F}_{\text{ext}} = \dv{\lvect{p}}{t} = 0$ (for a closed system).
 
 \begin{itemize}
-    \item $\vect{p} = m\dv{\vect{x}}{t}$.
-    \item $\vect{F} = \dv{\vect{p}}{t} \approx \dfrac{p(t+\Delta t) - p(t)}{\Delta t} \Rightarrow p_f - p_i = \int_{t_i}^{t_f} F\,dt$.
-    \item COM: $\dfrac{1}{M}\sum m_i \vect{r}_i = \dfrac{1}{M}\int r\,dm$.
-    \item When you shift coordinates (Jacobi coordinates): $\displaystyle\frac{1}{M}\sum m_i \vect{r}_i' = 0$.
+    \item $\lvect{p} = m\dv{\lvect{x}}{t}$.
+    \item $\vect{F} = \dv{\lvect{p}}{t} \approx \dfrac{p(t+\Delta t) - p(t)}{\Delta t} \Rightarrow p_f - p_i = \int_{t_i}^{t_f} F\,dt$.
+    \item COM: $\dfrac{1}{M}\sum m_i \lvect{r}_i = \dfrac{1}{M}\int r\,dm$.
+    \item When you shift coordinates (Jacobi coordinates): $\displaystyle\frac{1}{M}\sum m_i \lvect{r}_i' = 0$.
 \end{itemize}
 
 \subsection{Flux Density}
@@ -911,7 +911,7 @@ Conservation of momentum: $\vect{F}_{\text{ext}} = \dv{\vect{p}}{t} = 0$ (for a 
     \vect{J} = \rho_m v^2 \uvect{v}, \qquad \mathcal{P} = \frac{F}{A}.
 \]
 \[
-    F_{\text{ext}} = M_{\text{tot}}\dv[2]{\vect{r}}{t} = \dot{\vect{p}}_{\text{tot}} = \frac{d\mathcal{M}}{dt}\bigg|_{\text{in}} - \frac{d\mathcal{M}}{dt}\bigg|_{\text{out}}.
+    F_{\text{ext}} = M_{\text{tot}}\dv[2]{\lvect{r}}{t} = \dot{\lvect{p}}_{\text{tot}} = \frac{d\mathcal{M}}{dt}\bigg|_{\text{in}} - \frac{d\mathcal{M}}{dt}\bigg|_{\text{out}}.
 \]
 
 \subsection{Momentum Flow}
@@ -924,7 +924,7 @@ Conservation of momentum: $\vect{F}_{\text{ext}} = \dv{\vect{p}}{t} = 0$ (for a 
 
 Useful facts:
 \[
-    |v_{i,\text{com}}| = |v_{i,\text{com}}'|, \qquad \sum \vect{r}_i' \approx 0.
+    |v_{i,\text{com}}| = |v_{i,\text{com}}'|, \qquad \sum \lvect{r}_i' \approx 0.
 \]
 \[
     \bm{m} \xrightarrow{v} \bm{M} \;\to\; \bm{m} v_f \;\bm{M} v_{f_1} \quad \text{then} \quad V = v_s - v_{s_1}.
@@ -934,10 +934,10 @@ Useful facts:
 
 \begin{itemize}
     \item $KE = \tfrac{1}{2}mv^2$, $\quad PE = mgy$.
-    \item Work: $W = \int \vect{F}\cdot d\vect{r}$.
+    \item Work: $W = \int \vect{F}\cdot d\lvect{r}$.
     \item Work–Energy Theorem: $\tfrac{1}{2}mv_f^2 - \tfrac{1}{2}mv_i^2 = \int_{r_i}^{r_f} F\,dr$.
     \item Conservation of Energy: $\dv{E}{t} = 0$ (only for conservative fields). $W = \Delta E = (E; K+U)$.
-    \item Potential Energy: $\Delta U = -\int \vect{F}\cdot d\vect{r}$, thus $\vect{F} = -\grad U$, $\omega = \sqrt{k_{\text{eff}}/m}$.
+    \item Potential Energy: $\Delta U = -\int \vect{F}\cdot d\lvect{r}$, thus $\vect{F} = -\grad U$, $\omega = \sqrt{k_{\text{eff}}/m}$.
     \item Energy Diagrams: $k_{\text{eff}} = U''(r_0)$.
     \item Spring energy: $\tfrac{1}{2}k(x-x_0)^2$.
 \end{itemize}
@@ -1086,4 +1086,4 @@ Conservation of energy:
 
 (From lecture recap)
 
-Have 2 particles: let $\vect{v}_1$, $\vect{v}_2$ be particle velocities in the lab frame; $\vect{v}_{1,\text{com}}$, $\vect{v}_{2,\text{com}}$ be velocities in the COM frame.
+Have 2 particles: let $\lvect{v}_1$, $\lvect{v}_2$ be particle velocities in the lab frame; $\lvect{v}_{1,\text{com}}$, $\lvect{v}_{2,\text{com}}$ be velocities in the COM frame.

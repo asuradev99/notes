@@ -155,7 +155,7 @@ Substituting into the wave equation gives $-E_0 k^2 \cos(kz-\omega t)\,\hat{x} =
 \end{formula}
 This is the vacuum dispersion relation: linear, and hence non-dispersive --- every frequency travels at the same speed $c$. The magnetic partner is fixed by Faraday's law $\curl\vect{E} = -\partial_t\vect{B}$, which yields
 \begin{equation}
-    \vect{B}(\vect{r},t) = \frac{1}{c}\,\hat{k}\times \vect{E},
+    \vect{B}(\lvect{r},t) = \frac{1}{c}\,\hat{k}\times \vect{E},
 \end{equation}
 valid \emph{only} for travelling waves. The field structure is shown in Figure~\ref{fig:em-planewave}: $\vect{E}$ and $\vect{B}$ are mutually perpendicular, both perpendicular to the direction of travel, and oscillate exactly in phase.
 
@@ -180,17 +180,17 @@ valid \emph{only} for travelling waves. The field structure is shown in Figure~\
 
 More generally, a plane wave travelling in an arbitrary direction is
 \begin{equation}
-    \vect{E}(\vect{r},t) = \operatorname{Re}\bigl[\vect{E}_0\, e^{i(\vect{k}\cdot\vect{r} - \omega t + \phi)}\bigr],
+    \vect{E}(\lvect{r},t) = \operatorname{Re}\bigl[\vect{E}_0\, e^{i(\lvect{k}\cdot\lvect{r} - \omega t + \phi)}\bigr],
 \end{equation}
-where $\vect{E}_0 = \langle E_{0x}, E_{0y}, E_{0z}\rangle$ specifies the polarization, $\vect{k} = \langle k_x, k_y, k_z\rangle$ the direction of propagation, and $|\vect{k}| = 2\pi/\lambda$. The magnetic field is again
+where $\vect{E}_0 = \langle E_{0x}, E_{0y}, E_{0z}\rangle$ specifies the polarization, $\lvect{k} = \langle k_x, k_y, k_z\rangle$ the direction of propagation, and $|\lvect{k}| = 2\pi/\lambda$. The magnetic field is again
 \begin{equation}
-    \vect{B}(\vect{r},t) = \frac{1}{c}\hat{k}\times \vect{E}(\vect{r},t).
+    \vect{B}(\lvect{r},t) = \frac{1}{c}\hat{k}\times \vect{E}(\lvect{r},t).
 \end{equation}
 
 \begin{example}[Wave at $45^\circ$ in the $xy$-plane]
-Suppose $|\vect{k}| = 2\pi/\lambda$ points at $45^\circ$ in the $xy$-plane, so
+Suppose $|\lvect{k}| = 2\pi/\lambda$ points at $45^\circ$ in the $xy$-plane, so
 \begin{equation}
-    \vect{k} = \frac{\sqrt{2}\pi}{\lambda}\begin{pmatrix}1\\1\\0\end{pmatrix}.
+    \lvect{k} = \frac{\sqrt{2}\pi}{\lambda}\begin{pmatrix}1\\1\\0\end{pmatrix}.
 \end{equation}
 Since $\vect{E}\perp\hat{k}$ and lies in the $xy$-plane, one valid choice is $\vect{E} = E_0\langle -\tfrac{1}{\sqrt 2}, \tfrac{1}{\sqrt 2}, 0\rangle\cos\!\left(\tfrac{\pi\sqrt 2}{\lambda}(x+y) - \omega t + \phi\right)$, and the magnetic field is $\vect{B} = (E_0/c)\,\hat{z}\cos(\cdots)$, perpendicular to both.
 \end{example}
@@ -200,19 +200,19 @@ Since $\vect{E}\perp\hat{k}$ and lies in the $xy$-plane, one valid choice is $\v
 The perpendicularity we drew in Figure~\ref{fig:em-planewave} is not an accident of the special case but a theorem forced by Maxwell's equations.
 
 \begin{theorem}[Transverseness]
-For a plane wave $\vect{E} = \vect{E}_0 e^{i(\vect{k}\cdot\vect{r} - \omega t)}$ in vacuum,
+For a plane wave $\vect{E} = \vect{E}_0 e^{i(\lvect{k}\cdot\lvect{r} - \omega t)}$ in vacuum,
 \begin{equation}
-    \vect{E}_0\cdot\vect{k} = 0, \qquad \vect{B}_0\cdot\vect{k} = 0.
+    \vect{E}_0\cdot\lvect{k} = 0, \qquad \vect{B}_0\cdot\lvect{k} = 0.
 \end{equation}
 Furthermore $\vect{E}\perp\vect{B}$ and $|\vect{E}| = c|\vect{B}|$.
 \end{theorem}
 
 \emph{Proof.} From $\div\vect{E} = 0$,
 \begin{equation}
-    \div \vect{E} = i(\vect{E}_0\cdot\vect{k})e^{i(\vect{k}\cdot\vect{r} - \omega t)} = 0
-    \;\Longrightarrow\; \vect{E}_0\cdot\vect{k} = 0,
+    \div \vect{E} = i(\vect{E}_0\cdot\lvect{k})e^{i(\lvect{k}\cdot\lvect{r} - \omega t)} = 0
+    \;\Longrightarrow\; \vect{E}_0\cdot\lvect{k} = 0,
 \end{equation}
-and the proof for $\vect{B}_0$ from $\div\vect{B} = 0$ is identical. From Faraday's law $\vect{k}\times\vect{E}_0 = \omega\vect{B}_0$: since $\vect{k}\perp\vect{E}_0$, one has $\vect{B}_0\perp\vect{E}_0$, and taking magnitudes, $|\vect{k}||\vect{E}_0| = \omega|\vect{B}_0|$ gives $|\vect{E}_0| = c|\vect{B}_0|$. \qed
+and the proof for $\vect{B}_0$ from $\div\vect{B} = 0$ is identical. From Faraday's law $\lvect{k}\times\vect{E}_0 = \omega\vect{B}_0$: since $\lvect{k}\perp\vect{E}_0$, one has $\vect{B}_0\perp\vect{E}_0$, and taking magnitudes, $|\lvect{k}||\vect{E}_0| = \omega|\vect{B}_0|$ gives $|\vect{E}_0| = c|\vect{B}_0|$. \qed
 
 % ============================================================
 \section{Energy and Momentum of EM Waves}
@@ -317,9 +317,9 @@ The walls at $x=0,a$ require $\sin(k_x\cdot 0) = 0$, so $\delta_x = 0$, and $\si
 
 Removing the walls, a generalized travelling wave has the form
 \begin{equation}
-    \vect{E}(\vect{r},t) = \vect{E}_0\, f(k_x x + k_y y + k_z z - \omega t) = \vect{E}_0\, f(\vect{k}\cdot\vect{r} - \omega t),
+    \vect{E}(\lvect{r},t) = \vect{E}_0\, f(k_x x + k_y y + k_z z - \omega t) = \vect{E}_0\, f(\lvect{k}\cdot\lvect{r} - \omega t),
 \end{equation}
-with dispersion relation $\omega = v_p |\vect{k}|$. Surfaces of constant phase $\vect{k}\cdot\vect{r} - \omega t$ are planes perpendicular to $\vect{k}$, which is exactly why such a solution is called a \emph{plane wave}.
+with dispersion relation $\omega = v_p |\lvect{k}|$. Surfaces of constant phase $\lvect{k}\cdot\lvect{r} - \omega t$ are planes perpendicular to $\lvect{k}$, which is exactly why such a solution is called a \emph{plane wave}.
 
 % ============================================================
 \section{Dispersion Relations, Group and Phase Velocity}
@@ -448,7 +448,7 @@ Sharp localization in $x$ demands a broad band of wavenumbers. With de Broglie's
 \section{Polarization}
 % ============================================================
 
-We saw that an EM wave is transverse, leaving $\vect{E}$ free to point anywhere in the plane perpendicular to $\vect{k}$. The way this direction behaves over a cycle is the wave's \emph{polarization}, and it is a genuine extra degree of freedom with real physical consequences.
+We saw that an EM wave is transverse, leaving $\vect{E}$ free to point anywhere in the plane perpendicular to $\lvect{k}$. The way this direction behaves over a cycle is the wave's \emph{polarization}, and it is a genuine extra degree of freedom with real physical consequences.
 
 \subsection{Polarization Vector}
 
@@ -656,13 +656,13 @@ Physically, this is energy conservation one photon at a time ($E = \hbar\omega$)
     k = \frac{n\omega}{c}.
 \end{equation}
 \end{formula}
-Since $\omega$ is now common to all three waves, $k$ is fixed purely by which medium a wave lives in: the incident and reflected waves travel in the same medium at the same speed, so $k_I = k_R = n_1\omega/c$, while the transmitted wave has the different magnitude $k_T = n_2\omega/c$. This is also the missing ingredient behind Snell's law: matching the tangential component of $\vect{k}$ across the interface, $k_I\sin\theta_I = k_T\sin\theta_T$, becomes $n_1\sin\theta_I = n_2\sin\theta_T$ the moment the common factor of $\omega/c$ cancels --- the same law derived earlier from pure path-difference interference, now recovered from the wave equation directly.
+Since $\omega$ is now common to all three waves, $k$ is fixed purely by which medium a wave lives in: the incident and reflected waves travel in the same medium at the same speed, so $k_I = k_R = n_1\omega/c$, while the transmitted wave has the different magnitude $k_T = n_2\omega/c$. This is also the missing ingredient behind Snell's law: matching the tangential component of $\lvect{k}$ across the interface, $k_I\sin\theta_I = k_T\sin\theta_T$, becomes $n_1\sin\theta_I = n_2\sin\theta_T$ the moment the common factor of $\omega/c$ cancels --- the same law derived earlier from pure path-difference interference, now recovered from the wave equation directly.
 
 With a single shared $\omega$ established, write the three waves as
 \begin{equation}
-    \vect{E}_I = \vect{E}_{0I}\, e^{i(\vect{k}_I\cdot\vect{r} - \omega t)}, \quad
-    \vect{E}_R = \vect{E}_{0R}\, e^{i(\vect{k}_R\cdot\vect{r} - \omega t)}, \quad
-    \vect{E}_T = \vect{E}_{0T}\, e^{i(\vect{k}_T\cdot\vect{r} - \omega t)},
+    \vect{E}_I = \vect{E}_{0I}\, e^{i(\lvect{k}_I\cdot\lvect{r} - \omega t)}, \quad
+    \vect{E}_R = \vect{E}_{0R}\, e^{i(\lvect{k}_R\cdot\lvect{r} - \omega t)}, \quad
+    \vect{E}_T = \vect{E}_{0T}\, e^{i(\lvect{k}_T\cdot\lvect{r} - \omega t)},
 \end{equation}
 each with its magnetic partner $\vect{B} = \hat{k}\times\vect{E}/v$. Because the phases already match along the interface (that was Snell's law, just derived again above from $k=n\omega/c$), it remains only to balance the amplitude vectors $\vect{E}_{\text{left}} = \vect{E}_{0I} + \vect{E}_{0R}$ and $\vect{E}_{\text{right}} = \vect{E}_{0T}$.
 
@@ -872,7 +872,7 @@ At this special incidence angle the reflected and refracted rays are exactly per
 \label{fig:brewster}
 \end{figure}
 
-\emph{Physical picture.} The reflected wave is radiation from electrons in medium 2 driven by $\vect{E}_T$ --- not $\vect{E}_I$, since the incident wave never itself enters medium 2 --- oscillating along an axis $\perp\vect{k}_T$, in the plane of incidence. A dipole radiates zero power along its own axis, and at Brewster's angle that axis coincides exactly with the reflected direction (violet, Figure~\ref{fig:brewster}), so no $p$-polarized light is reflected. For $s$-polarization the dipole axis is always $\perp$ to the whole plane of incidence, never aligned with any in-plane direction, which is why $R_s$ has no analogous zero.
+\emph{Physical picture.} The reflected wave is radiation from electrons in medium 2 driven by $\vect{E}_T$ --- not $\vect{E}_I$, since the incident wave never itself enters medium 2 --- oscillating along an axis $\perp\lvect{k}_T$, in the plane of incidence. A dipole radiates zero power along its own axis, and at Brewster's angle that axis coincides exactly with the reflected direction (violet, Figure~\ref{fig:brewster}), so no $p$-polarized light is reflected. For $s$-polarization the dipole axis is always $\perp$ to the whole plane of incidence, never aligned with any in-plane direction, which is why $R_s$ has no analogous zero.
 
 % ============================================================
 \section{Radiation from an Accelerating Charge}
@@ -916,12 +916,12 @@ Because $\div\vect{E} = 0$ inside the shell (there are no charges there), the fi
 The radial component is just Coulomb's, $E_\parallel = q/(4\pi\varepsilon_0 r^2)$, so the transverse part is
 \begin{formula}[Radiation field]
 \begin{equation}
-    \vect{E}_{\text{rad}}(\vect{r}, t) = -\frac{q\,\vect{a}_\perp\!\left(t - r/c\right)}{4\pi\varepsilon_0 c^2 r}.
+    \vect{E}_{\text{rad}}(\lvect{r}, t) = -\frac{q\,\lvect{a}_\perp\!\left(t - r/c\right)}{4\pi\varepsilon_0 c^2 r}.
 \end{equation}
 \end{formula}
-Here $\vect{a}_\perp = \vect{a} - (\vect{a}\cdot\hat{r})\hat{r}$ is the part of the acceleration perpendicular to the line of sight, and the field is \emph{retarded} by the light-travel time $r/c$. Its magnetic partner is
+Here $\lvect{a}_\perp = \lvect{a} - (\lvect{a}\cdot\hat{r})\hat{r}$ is the part of the acceleration perpendicular to the line of sight, and the field is \emph{retarded} by the light-travel time $r/c$. Its magnetic partner is
 \begin{equation}
-    \vect{B}_{\text{rad}}(\vect{r}, t) = \frac{1}{c}\hat{r}\times\vect{E}_{\text{rad}}.
+    \vect{B}_{\text{rad}}(\lvect{r}, t) = \frac{1}{c}\hat{r}\times\vect{E}_{\text{rad}}.
 \end{equation}
 Two features set radiation apart from the ordinary Coulomb field: it falls off only as $1/r$, not $1/r^2$, so it can carry energy all the way to infinity; and it is driven by acceleration, vanishing for a charge in uniform motion.
 

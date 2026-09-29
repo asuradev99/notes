@@ -591,19 +591,19 @@ In vacuum, Maxwell's equations decouple into wave equations for $\vect{E}$ and $
     \pdv[2]{\vect{E}}{t} = \frac{1}{\mu_0\varepsilon_0}\,\laplacian\vect{E}, \qquad
     \pdv[2]{\vect{B}}{t} = \frac{1}{\mu_0\varepsilon_0}\,\laplacian\vect{B},
 \end{equation}
-both propagating at the speed of light $c = 1/\sqrt{\mu_0\varepsilon_0}$. A plane wave is specified by a wave vector $\vect{k} = (k_x, k_y, k_z)$, so that $\vect{r}\cdot\vect{k} = k_x x + k_y y + k_z z$, together with a polarization direction for $\vect{E}$.
+both propagating at the speed of light $c = 1/\sqrt{\mu_0\varepsilon_0}$. A plane wave is specified by a wave vector $\lvect{k} = (k_x, k_y, k_z)$, so that $\lvect{r}\cdot\lvect{k} = k_x x + k_y y + k_z z$, together with a polarization direction for $\vect{E}$.
 
 \begin{formula}[Traveling EM plane wave]
-For $\vect{E}(\vect{r}, t) = E_0\,\uvect{x}\cos(kz - \omega t)$, Faraday's law $\curl\vect{E} = -\pdv{\vect{B}}{t}$ gives
+For $\vect{E}(\lvect{r}, t) = E_0\,\uvect{x}\cos(kz - \omega t)$, Faraday's law $\curl\vect{E} = -\pdv{\vect{B}}{t}$ gives
 \begin{equation}
-    \vect{B}(\vect{r}, t) = \frac{1}{c}\,\uvect{k}\times\vect{E}(\vect{r}, t).
+    \vect{B}(\lvect{r}, t) = \frac{1}{c}\,\uvect{k}\times\vect{E}(\lvect{r}, t).
 \end{equation}
-The three vectors form a right-handed triad with propagation direction $\uvect{k} = \uvect{E}\times\uvect{B} = \frac{1}{\|\vect{k}\|}\bigl(\vect{E}\times\vect{B}\bigr)$.
+The three vectors form a right-handed triad with propagation direction $\uvect{k} = \uvect{E}\times\uvect{B} = \frac{1}{\|\lvect{k}\|}\bigl(\vect{E}\times\vect{B}\bigr)$.
 \end{formula}
 
 \subsection{Boundary Conditions and Energy}
 
-At a perfect conductor the tangential electric field must vanish, $\vect{E}(\vect{r}_b, t) = 0$ on the boundary --- the electromagnetic analog of a clamped string end. For a standing EM wave, $\vect{E}$ and $\vect{B}$ are then $90^\circ$ out of phase in both space and time: the magnetic field is largest where the electric field vanishes, and vice versa.
+At a perfect conductor the tangential electric field must vanish, $\vect{E}(\lvect{r}_b, t) = 0$ on the boundary --- the electromagnetic analog of a clamped string end. For a standing EM wave, $\vect{E}$ and $\vect{B}$ are then $90^\circ$ out of phase in both space and time: the magnetic field is largest where the electric field vanishes, and vice versa.
 
 The energy densities are
 \begin{equation}

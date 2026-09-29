@@ -57,9 +57,9 @@ Note that position vectors are dependent on a particular choice of coordinate sy
 \indent Now we can define the difference, or \textbf{displacement}, between two vectors: 
 
 \begin{definition}
-    The \textit{displacement} between two vectors $ \vect{r_1} = x_1 \ihat + y_1 \jhat + z_1 \khat $ and $\vect{r_2} = x_2 \ihat + y_2 \jhat + z_2 \khat $ is the vector 
+    The \textit{displacement} between two vectors $ \lvect{r_1} = x_1 \ihat + y_1 \jhat + z_1 \khat $ and $\lvect{r_2} = x_2 \ihat + y_2 \jhat + z_2 \khat $ is the vector 
 
-    $$ \svect{s} = \vect{r_1 r_2} = \vect{r_2} - \vect{r_1} = (x_2 - x_1) \ihat + (y_2 - y_1) \jhat + (z_2 - z_1) \khat$$
+    $$ \svect{s} = \lvect{r_1 r_2} = \lvect{r_2} - \lvect{r_1} = (x_2 - x_1) \ihat + (y_2 - y_1) \jhat + (z_2 - z_1) \khat$$
 \end{definition}
 
 
@@ -80,13 +80,13 @@ Consider the scenario described by Figure \ref{ind}.
     \label{ind}
 \end{figure}
 
-In this figure, let $\vect{r_1}$ and $\vect{r_2}$ be the position vectors of points $P_1$ and $P_2$ with respect to the leftmost coordinate system, and let $\vect{r_1}'$ and $\vect{r_2}'$ be the position vectors of the same points with respect to the rightmost coordinate system. Additionally, let $\vect{R}$ be the vector connecting the origins of the two coordinate systems. Finally, let $\vect{s}$ be the displacement vector from $\vect{r_1}$ to  $\vect{r_2}$, and $\vect{s}'$ as the displacement vector from $\vect{r_1}'$ to $\vect{r_2}'$. We must show that $\vect{s} = \vect{s}'$. Notice that, from Figure \ref{ind}, it is immediately apparent that $\vect{r_1} = \vect{R} + \vect{r_1}'$ and $\vect{r_2} = \vect{R} + \vect{r_2}'$. Thus, from the above definitions it follows that 
+In this figure, let $\lvect{r_1}$ and $\lvect{r_2}$ be the position vectors of points $P_1$ and $P_2$ with respect to the leftmost coordinate system, and let $\lvect{r_1}'$ and $\lvect{r_2}'$ be the position vectors of the same points with respect to the rightmost coordinate system. Additionally, let $\vect{R}$ be the vector connecting the origins of the two coordinate systems. Finally, let $\lvect{s}$ be the displacement vector from $\lvect{r_1}$ to  $\lvect{r_2}$, and $\lvect{s}'$ as the displacement vector from $\lvect{r_1}'$ to $\lvect{r_2}'$. We must show that $\lvect{s} = \lvect{s}'$. Notice that, from Figure \ref{ind}, it is immediately apparent that $\lvect{r_1} = \vect{R} + \lvect{r_1}'$ and $\lvect{r_2} = \vect{R} + \lvect{r_2}'$. Thus, from the above definitions it follows that 
 
 \begin{align*}
-\vect{s} & = \vect{r_2} - \vect{r_1} \\
-            & = (\vect{R} + \vect{r_2}') - (\vect{R} + \vect{r_1}') \\
-        & = \vect{r_2}' - \vect{r_1}'\\
-        & = \vect{s_1}'\\
+\lvect{s} & = \lvect{r_2} - \lvect{r_1} \\
+            & = (\vect{R} + \lvect{r_2}') - (\vect{R} + \lvect{r_1}') \\
+        & = \lvect{r_2}' - \lvect{r_1}'\\
+        & = \lvect{s_1}'\\
 \end{align*}
 Therefore, $\svect{s}$ is independent of any particular coordinate system. 
 
@@ -114,13 +114,13 @@ We can easily extend these definition to multiple dimensions using vectors.
 
 \section{Motion in Several Dimensions}
 
-Consider a particle in a three-dimensional coordinate system whose position $\vect{r} = x(t) \ihat + y(t) \jhat + z(t) \khat $ varies as a function of time. Suppose that, in a brief time interval $\Delta t$ after a time $t$, the vector $\vect{r}$ changes by a displacement $\vect{\Delta r}$. Thus, we can define the the average velocity vector $\vect{\bar{v}}$ to be 
+Consider a particle in a three-dimensional coordinate system whose position $\lvect{r} = x(t) \ihat + y(t) \jhat + z(t) \khat $ varies as a function of time. Suppose that, in a brief time interval $\Delta t$ after a time $t$, the vector $\lvect{r}$ changes by a displacement $\lvect{\Delta r}$. Thus, we can define the the average velocity vector $\lvect{\bar{v}}$ to be 
 
-$$ \vect{\bar{v}} =  \frac{\vect{\Delta r}}{\Delta t} = \frac{\vect{r}(t + \Delta t) - \vect{r}(t)}{\Delta t}$$
+$$ \lvect{\bar{v}} =  \frac{\lvect{\Delta r}}{\Delta t} = \frac{\lvect{r}(t + \Delta t) - \lvect{r}(t)}{\Delta t}$$
 
 Expanding the above expression component-wise we see that
 
-$$  \frac{\vect{\Delta r}}{\Delta t} =
+$$  \frac{\lvect{\Delta r}}{\Delta t} =
 \frac{x(t+\Delta t) - x(t)}{\Delta t} \ihat +  \\
 \frac{y(t+\Delta t) - y(t)}{\Delta t} \jhat + \\ 
 \frac{z(t+\Delta t) - z(t)}{\Delta t} \khat
@@ -130,7 +130,7 @@ Taking the limit as $\Delta t \rightarrow 0$ yields
 
 \begin{definition}[Instantaneous Velocity]
     
-$$ \vect{v} =  \frac{d\svect{r}}{dt} = \frac{dx}{dt} \ihat + \frac{dy}{dt} \jhat + \frac{dz}{dt} \khat $$
+$$ \lvect{v} =  \frac{d\svect{r}}{dt} = \frac{dx}{dt} \ihat + \frac{dy}{dt} \jhat + \frac{dz}{dt} \khat $$
 \end{definition}
 
 
@@ -140,16 +140,16 @@ Note that this step only works because the basis vectors $\ihat$, $\jhat$, and $
 \begin{definition}[Instantaneous Acceleration]
     \label{def:instacc}
     $$
-        \vect{a} =  \frac{d\svect{v}}{dt} = \frac{d^2\vect{x}}{dt^2} 
+        \lvect{a} =  \frac{d\svect{v}}{dt} = \frac{d^2\lvect{x}}{dt^2} 
     $$
 
 \end{definition}
 
-When visualizing the velocity vector $\vect{v}(t)$, it is helpful to note that the velocity vector is always tangent to the trajectory of the particle. This is because, for small $\Delta t$, 
+When visualizing the velocity vector $\lvect{v}(t)$, it is helpful to note that the velocity vector is always tangent to the trajectory of the particle. This is because, for small $\Delta t$, 
 
 \begin{equation}
 \label{eq:parallel}
-\frac{\vect{\Delta r}}{\Delta t} \approx \frac{d\svect{r}}{d t} = \vect{v}(t) \implies \vect{\Delta r} \approx \vect{v}(t) \Delta t
+\frac{\lvect{\Delta r}}{\Delta t} \approx \frac{d\svect{r}}{d t} = \lvect{v}(t) \implies \lvect{\Delta r} \approx \lvect{v}(t) \Delta t
 \end{equation}
 
 
@@ -159,7 +159,7 @@ Definition \ref{def:instacc} gives the three differential equations (one for eac
 in terms of the acceleration. A trivial integration gives
 
 \begin{align}
-    \vect{v}(t) = \vect{v}(t_0) + \int_{t_0}^{t} \vect{a}(t')dt'
+    \lvect{v}(t) = \lvect{v}(t_0) + \int_{t_0}^{t} \lvect{a}(t')dt'
     \label{eq:s}
 \end{align}
 
@@ -168,23 +168,23 @@ for the position in terms of velocity:
 
 
 \begin{align}
-    \vect{r}(t) = \vect{r}(t_0) + \int_{t_0}^{t} \vect{v}(t')dt'
+    \lvect{r}(t) = \lvect{r}(t_0) + \int_{t_0}^{t} \lvect{v}(t')dt'
     \label{eq:t} 
 \end{align}
 
-Suppose that $\vect{a}$ is constant and $t_0 = 0$, then Eq. \ref{eq:s} and Eq. \ref{eq:t} become 
+Suppose that $\lvect{a}$ is constant and $t_0 = 0$, then Eq. \ref{eq:s} and Eq. \ref{eq:t} become 
 
 \begin{align*}
-    \vect{v}(t) &= \vect{v_0} + \vect{a}t \\ 
-    \implies \vect{r}(t) &= \vect{r_0} + \int_{0}^{t} (\vect{v_0} + \vect{a}t') dt'\\ 
-                         &= \vect{r_0} + \vect{v_0}t + \frac{1}{2}\vect{a}t^2
+    \lvect{v}(t) &= \lvect{v_0} + \lvect{a}t \\ 
+    \implies \lvect{r}(t) &= \lvect{r_0} + \int_{0}^{t} (\lvect{v_0} + \lvect{a}t') dt'\\ 
+                         &= \lvect{r_0} + \lvect{v_0}t + \frac{1}{2}\lvect{a}t^2
 \end{align*}
 
 \begin{formula}[Kinematic Solution with Uniform Acceleration]
     For \textbf{uniform acceleration}, the solution to the kinematic 
     equations for position in terms of the initial conditions, and the acceleration is
     \[
-        \vect{r}(t) = \vect{r_0} + \vect{v_0}t + \frac{1}{2}\vect{a}t^2
+        \lvect{r}(t) = \lvect{r_0} + \lvect{v_0}t + \frac{1}{2}\lvect{a}t^2
     \]
 \end{formula}
 
@@ -215,8 +215,8 @@ $\vect{A}$ merely rotates and never changes its magnitude. \\
 
 \begin{fact}
     
-    For any time-varying vector $\vect{r}(t)$ with velocity $\vect{v}(t)$, if
-    $\vect{r} \cdot \vect{v} = 0$ then the vector $\vect{r}$ undergoes only rotation for all time. 
+    For any time-varying vector $\lvect{r}(t)$ with velocity $\lvect{v}(t)$, if
+    $\lvect{r} \cdot \lvect{v} = 0$ then the vector $\lvect{r}$ undergoes only rotation for all time. 
 
     
 \end{fact}
@@ -259,7 +259,7 @@ $\frac{dA}{dt} = \frac{dA_{\perp}}{dt} = A\omega$. In the language of position a
 
 In a \emph{polar} coordinate system, each point in space is represented 
 as a tuple $(r, \theta)$ where $r$ is the distance from the origin and 
-$\theta$ is the angle between $\vect{r}$ and the x-axis. To transfer between
+$\theta$ is the angle between $\lvect{r}$ and the x-axis. To transfer between
 Cartesian and polar points, we can use the following relations: 
 
 \begin{align*}
@@ -292,7 +292,7 @@ illustrates the following relations between the unit vectors of the two coordina
     Thus a position vector in polar coordinates is of the form 
 
     \[
-        \vect{r} = r\rhat(\theta)
+        \lvect{r} = r\rhat(\theta)
         \]
 
     Where $r$ is a function of time.
@@ -320,13 +320,13 @@ for the velocity and acceleration in polar coordinates.
 To find the velocity, using the above expressions,
 
 \begin{align*}
-    \vect{v} = \dv{\vect{r}}{t} &= \dv{t}(r\rhat) = \dot{r}\rhat + r\dot{\theta}\tthat
+    \lvect{v} = \dv{\lvect{r}}{t} &= \dv{t}(r\rhat) = \dot{r}\rhat + r\dot{\theta}\tthat
 \end{align*}
 
 A similar derivation for acceleration in polar coordinates yields
 
 \begin{align*}
-    \vect{a} = \dv{\vect{v}}{t} &= \ddot{r}\rhat + \dot{r}\dot{\theta}\tthat + \dot{r}\dot{\theta}\tthat + r\ddot{\theta}\tthat + -r\dot{\theta}^2\rhat \\
+    \lvect{a} = \dv{\lvect{v}}{t} &= \ddot{r}\rhat + \dot{r}\dot{\theta}\tthat + \dot{r}\dot{\theta}\tthat + r\ddot{\theta}\tthat + -r\dot{\theta}^2\rhat \\
             &= (\ddot{r} - r\dot{\theta}^2)\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\tthat
 \end{align*}
 
@@ -336,8 +336,8 @@ In summary,
 
     \label{def:test}
     \begin{align*}
-        \vect{v} &= \dot{r}\rhat + r\dot{\theta}\tthat \\
-        \vect{a} &= (\ddot{r} - r\dot{\theta}^2)\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\tthat
+        \lvect{v} &= \dot{r}\rhat + r\dot{\theta}\tthat \\
+        \lvect{a} &= (\ddot{r} - r\dot{\theta}^2)\rhat + (2\dot{r}\dot{\theta} + r\ddot{\theta})\tthat
     \end{align*}
 \end{definition}
 
@@ -387,7 +387,7 @@ Extending this reasoning, two rubber bands produce twice the acceleration, and p
     In an inertial system, 
 
     \[
-        \vect{F} = m\vect{a} 
+        \vect{F} = m\lvect{a} 
     \]
 
     where $[F] = \text{kg}\frac{\text{m}}{\text{s}^2}$
@@ -400,8 +400,8 @@ Thus, if something is accelerating, it is not a guarantee that there is a force 
 
 \begin{fact}[Newton's Third Law]
 
-    Suppose there are two bodies, $a$ and $b$. If body $b$ exerts  a force on $a$, $\vect{F_{ba}}$, then there is an equal and opposite
-    acting on $b$, $\vect{F_{ab}} = \vect{-F_{ba}}$
+    Suppose there are two bodies, $a$ and $b$. If body $b$ exerts  a force on $a$, $\lvect{F_{ba}}$, then there is an equal and opposite
+    acting on $b$, $\lvect{F_{ab}} = \lvect{-F_{ba}}$
 
 \end{fact}
 
@@ -423,23 +423,23 @@ For systems moving with a constant acceleration vector, there is an easy way to 
 \end{figure}
 
 Figure \ref{fig:fictforce} shows two coordinate systems, $(x, y, z)$ and $(x', y', z')$. The former is inertial, 
-while the latter moves with constant acceleration $\vect{R}$. The vector $\vect{r}$ shows the position of an accelerating 
-body with respect to the inertial coordinate system and the vector $\vect{r'}$ shows the position with respect 
+while the latter moves with constant acceleration $\vect{R}$. The vector $\lvect{r}$ shows the position of an accelerating 
+body with respect to the inertial coordinate system and the vector $\lvect{r'}$ shows the position with respect 
 to the inertial coordinate system. Using vector addition, we see from the diagram that
 
 \[
-    \vect{r} = \vect{r'} + \vect{R} 
+    \lvect{r} = \lvect{r'} + \vect{R} 
 \]
 
 Differentiating twice with respect to time, 
 
 \[
-    \vect{\ddot{r}} = \vect{\ddot{r'}} + \vect{\ddot{R}}
+    \lvect{\ddot{r}} = \lvect{\ddot{r'}} + \vect{\ddot{R}}
 \]
 
 Multiplying by the mass of the particle, 
 \[
-    m\vect{\ddot{r}} = m\vect{\ddot{r'}} + m\vect{\ddot{R}} \\
+    m\lvect{\ddot{r}} = m\lvect{\ddot{r'}} + m\vect{\ddot{R}} \\
 \]
 Thus by Newton's Second Law, 
 \[    
@@ -479,12 +479,12 @@ This chapter will introduce new kinds of forces, which are primarily derived fro
 The first of these forces is the all-too familiar Law of Gravitation: 
 
 \begin{fact}[Newton's Law of Gravitation]
-    Consider two particles with masses $M_a$ and $M_b$ separated by a distance $r$. Let $\vect{F_{ba}}$ be the gravitational force exerted by particle
+    Consider two particles with masses $M_a$ and $M_b$ separated by a distance $r$. Let $\lvect{F_{ba}}$ be the gravitational force exerted by particle
     $b$ on particle $a$. Then 
     \[
-        \vect{F_{ba}} = -\frac{G M_a M_b}{r^2}\rhat  
+        \lvect{F_{ba}} = -\frac{G M_a M_b}{r^2}\rhat  
     \]
-    Where $\vect{r} = \vect{r_a r_b}$ and $G$ is the \textbf{Gravitational Constant}. 
+    Where $\lvect{r} = \lvect{r_a r_b}$ and $G$ is the \textbf{Gravitational Constant}. 
 \end{fact}
 
 A useful corrollary of this law is that
@@ -501,7 +501,7 @@ A useful corrollary of this law is that
         \end{cases} 
     \]
 
-    where $\vect{r}$ is the vector pointing \textit{from} the center of the shell \textit{to} $m$.
+    where $\lvect{r}$ is the vector pointing \textit{from} the center of the shell \textit{to} $m$.
 \end{fact}
 
 A rigorous proof of this fact will not be given here, but the intuitive idea is that the proportion of the shell's surface area containing mass a particle

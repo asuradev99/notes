@@ -235,7 +235,7 @@ Consider $V(x) = (V_0/a^4)(x^4 + 4ax^3 - 8a^2 x^2)$ with $a > 0$. Solving $V'(x)
 
 A second application of the same idea: take a uniform rod of length $\ell$ and mass $m$ pivoted about one end, so that its moment of inertia about the pivot is $I = m\ell^2/3$. Let $\theta$ be the angle from the downward vertical. The gravitational force acts at the center of mass, a distance $\ell/2$ from the pivot, and produces a torque
 \begin{equation}
-    \tau = |\vect{r}\times\vect{F}| = -mg\,\tfrac{\ell}{2}\sin\theta.
+    \tau = |\lvect{r}\times\vect{F}| = -mg\,\tfrac{\ell}{2}\sin\theta.
 \end{equation}
 Newton's law for rotational motion, $\tau = I\ddot{\theta}$, gives
 \begin{equation}
@@ -380,9 +380,9 @@ Since each basis function $x_j(t + a)$ must itself be a linear combination of th
 \begin{equation}
     x_j(t + a) = \sum_k R_{jk}(a)\,x_k(t),
 \end{equation}
-for some matrix $R(a)$. Plugging into~\eqref{eq:tt-eigen} yields an eigenvalue equation for the coefficient vector $\vect{c}$:
+for some matrix $R(a)$. Plugging into~\eqref{eq:tt-eigen} yields an eigenvalue equation for the coefficient vector $\lvect{c}$:
 \begin{equation}
-    R(a)\,\vect{c} = h(a)\,\vect{c}, \qquad (R(a) - h(a)\,\mathbb{1})\vect{c} = 0.
+    R(a)\,\lvect{c} = h(a)\,\lvect{c}, \qquad (R(a) - h(a)\,\mathbb{1})\lvect{c} = 0.
 \end{equation}
 Setting $\det(R(a) - h(a)\mathbb{1}) = 0$ gives (at most) $n$ complex values of $h(a)$, one for each independent exponential mode.
 

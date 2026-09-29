@@ -2,7 +2,7 @@
 
 \section{Electric Current}
 
-Electric current is charge in motion; 1 ampere equals 1 coulomb per second. The key microscopic quantities are the charge carrier density $n$, drift velocity $\vect{u}$, charge $q$, and cross-sectional area vector $\vect{a}$.
+Electric current is charge in motion; 1 ampere equals 1 coulomb per second. The key microscopic quantities are the charge carrier density $n$, drift velocity $\lvect{u}$, charge $q$, and cross-sectional area vector $\lvect{a}$.
 
 \begin{figure}[H]
 \begin{center}
@@ -12,48 +12,48 @@ Electric current is charge in motion; 1 ampere equals 1 coulomb per second. The 
     (0,0) -- (2.5,0) -- (3.0,1.5) -- (0.5,1.5) -- cycle;
   % Normal vector
   \draw[-{Stealth[length=6pt]}, thick, green!60!black]
-    (1.5,0.75) -- (2.8,1.8) node[right]{$\hat{n}$ ($\vect{a}$)};
+    (1.5,0.75) -- (2.8,1.8) node[right]{$\hat{n}$ ($\lvect{a}$)};
   % Velocity arrows (slanted)
   \foreach \x/\y in {-1.5/0, -1.0/0.5, -0.5/1.0, -0.5/-0.3} {
     \draw[-{Stealth[length=4pt]}, thick, red!70!black]
       (\x,\y) -- (\x+1.0, \y+0.4);
   }
-  \node[red!70!black] at (-1.5,1.2) {$\vect{u}$};
+  \node[red!70!black] at (-1.5,1.2) {$\lvect{u}$};
   % theta angle label
   \node[font=\small] at (2.0,1.6) {$\theta$};
   % Area label
   \node[blue!60!black, font=\small] at (1.5,0.2) {area $A$};
 \end{tikzpicture}
 \end{center}
-\caption{A frame of area $A$ with particles streaming through at velocity $\vect{u}$ at angle $\theta$ to the normal $\hat{n}$. In time $\Delta t$, the volume passing through is $A u\Delta t\cos\theta = \vect{a}\cdot\vect{u}\,\Delta t$.}
+\caption{A frame of area $A$ with particles streaming through at velocity $\lvect{u}$ at angle $\theta$ to the normal $\hat{n}$. In time $\Delta t$, the volume passing through is $A u\Delta t\cos\theta = \lvect{a}\cdot\lvect{u}\,\Delta t$.}
 \end{figure}
 
-The volume swept through the frame in time $\Delta t$ is $\vect{a}\cdot\vect{u}\,\Delta t$, containing on average $n(\vect{a}\cdot\vect{u}\,\Delta t)$ particles, giving a current:
+The volume swept through the frame in time $\Delta t$ is $\lvect{a}\cdot\lvect{u}\,\Delta t$, containing on average $n(\lvect{a}\cdot\lvect{u}\,\Delta t)$ particles, giving a current:
 
 \begin{formula}[Current through a frame]
 \[
-    I_a = \frac{q\!\left(n\,\vect{a}\cdot\vect{u}\,\Delta t\right)}{\Delta t} = nq\,\vect{a}\cdot\vect{u}
+    I_a = \frac{q\!\left(n\,\lvect{a}\cdot\lvect{u}\,\Delta t\right)}{\Delta t} = nq\,\lvect{a}\cdot\lvect{u}
 \]
 \end{formula}
 
 If there are multiple kinds of particles moving in the same direction:
 \[
-    I_a = n_1 q_1\,\vect{a}\cdot\vect{u}_1 + n_2 q_2\,\vect{a}\cdot\vect{u}_2 + \cdots
-    = \vect{a}\cdot\sum_k n_k q_k \vect{u}_k
+    I_a = n_1 q_1\,\lvect{a}\cdot\lvect{u}_1 + n_2 q_2\,\lvect{a}\cdot\lvect{u}_2 + \cdots
+    = \lvect{a}\cdot\sum_k n_k q_k \lvect{u}_k
 \]
 
 \begin{definition}[Current Density]
 \[
-    \vect{J} \defeq \sum_k n_k q_k \vect{u}_k
+    \vect{J} \defeq \sum_k n_k q_k \lvect{u}_k
 \]
-with units $\text{Amperes}/\text{m}^2$, so that $I_a = \vect{a}\cdot\vect{J}$.
+with units $\text{Amperes}/\text{m}^2$, so that $I_a = \lvect{a}\cdot\vect{J}$.
 \end{definition}
 
 In a typical conductor, electrons move in every direction; the mean velocity averaged over all electrons is:
 
 \begin{formula}[Mean electron velocity]
 \[
-    \bar{\vect{u}} = \frac{1}{N_e}\sum_k n_k \vect{u}_k
+    \bar{\lvect{u}} = \frac{1}{N_e}\sum_k n_k \lvect{u}_k
 \]
 where $N_e$ is the number of electrons per unit volume (total).
 \end{formula}
@@ -62,7 +62,7 @@ Combining this with the definition of $\vect{J}$:
 
 \begin{formula}[Electron current density]
 \[
-    \vect{J}_e = -eN_e\bar{\vect{u}}_e
+    \vect{J}_e = -eN_e\bar{\lvect{u}}_e
 \]
 Units: $\dfrac{\text{charge}}{\text{area}}\cdot\dfrac{\text{m}}{\text{s}}$.
 \end{formula}
@@ -73,7 +73,7 @@ The total current through a surface is the flux of $\vect{J}$:
 
 \begin{formula}[Total current through a surface]
 \[
-    I = \int_S \vect{J}\cdot d\vect{a}
+    I = \int_S \vect{J}\cdot d\lvect{a}
 \]
 \end{formula}
 
@@ -85,17 +85,17 @@ In steady state, no charge accumulates anywhere, so the net flux of $\vect{J}$ t
 \]
 \end{formula}
 
-In steady-state: $\oint \vect{J}\cdot d\vect{a} = 0$.
+In steady-state: $\oint \vect{J}\cdot d\lvect{a} = 0$.
 
 By Gauss's theorem:
 \[
-    \int \nabla\cdot\vect{J}\,dV = \oint \vect{J}\cdot d\vect{a}
+    \int \nabla\cdot\vect{J}\,dV = \oint \vect{J}\cdot d\lvect{a}
     \quad\Rightarrow\quad \nabla\cdot\vect{J} = 0
 \]
 
 More generally, if $J$ is \emph{not} steady:
 \[
-    \int_S \vect{J}\cdot d\vect{a} = -\dv{}{t}\int_V \rho\,dV = -\dv{Q}{t}
+    \int_S \vect{J}\cdot d\lvect{a} = -\dv{}{t}\int_V \rho\,dV = -\dv{Q}{t}
 \]
 
 By Gauss's theorem:

@@ -7,7 +7,7 @@
 \begin{definition}[EMF]
 The electromotive force (EMF) is defined as the line integral of the electric field from the negative terminal to the positive terminal:
 \[
-    \mathcal{E} = \int_{+\,\text{terminal}}^{-\,\text{terminal}} \vect{E}\cdot d\vect{s} = \text{EMF}
+    \mathcal{E} = \int_{+\,\text{terminal}}^{-\,\text{terminal}} \vect{E}\cdot d\lvect{s} = \text{EMF}
 \]
 \end{definition}
 
@@ -18,7 +18,7 @@ EMF is the work per unit charge done by non-electrostatic forces (chemical, mech
 \subsection{Kirchhoff's Rules}
 
 \begin{theorem}[Kirchhoff's Voltage Law (Rule 2)]
-The sum of EMFs and potential drops around any closed loop must add up to zero. This comes from the fact that $\oint \vect{E}\cdot d\vect{s} = 0$ for the electrostatic field — equivalently, energy is conserved around any loop.
+The sum of EMFs and potential drops around any closed loop must add up to zero. This comes from the fact that $\oint \vect{E}\cdot d\lvect{s} = 0$ for the electrostatic field — equivalently, energy is conserved around any loop.
 \[
     \mathcal{E} = IR
 \]
@@ -81,7 +81,7 @@ Because the voltages and currents are governed by linear equations, a superposit
 
 \section{Energy Dissipation in Current Flow}
 
-The power delivered to push a charge through a field $\vect{E}$ is $q\vect{E}\cdot\vect{v}$, and this energy is ultimately transferred to heat via lattice collisions. For a current $I$ through a resistor $R$ at voltage $V$, the net work done in $\Delta t$ is:
+The power delivered to push a charge through a field $\vect{E}$ is $q\vect{E}\cdot\lvect{v}$, and this energy is ultimately transferred to heat via lattice collisions. For a current $I$ through a resistor $R$ at voltage $V$, the net work done in $\Delta t$ is:
 \[
     q_\text{total}\,\Delta\phi = (I\,\Delta t)\,V - I^2 R\,\Delta t
     \quad\Rightarrow\quad \boxed{\frac{dW}{dt} = I^2 R = P}

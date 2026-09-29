@@ -128,7 +128,7 @@ In the Hall effect, a transverse magnetic field deflects current carriers to one
 \[
     eE_H = ev B \quad \Rightarrow \quad E_H = vB.
 \]
-The current density $\vect{J} = -ne\vect{v}$ gives the drift speed $v = J/(ne) = I/(neh\ell)$, and the Hall voltage $V_H = E_H \ell$ becomes:
+The current density $\vect{J} = -ne\lvect{v}$ gives the drift speed $v = J/(ne) = I/(neh\ell)$, and the Hall voltage $V_H = E_H \ell$ becomes:
 \[
     V_H = \left(\frac{B}{neh}\right) I.
 \]
@@ -171,11 +171,11 @@ We can fix the gauge by imposing $\div \vect{A} = 0$ (Coulomb gauge):
     \vect{A} - \vect{A}' = \grad\psi \quad \Rightarrow \quad \div\vect{A} - \div\vect{A}' = \nabla^2 \psi
 \]
 
-Suppose we have $\curl\vect{A} = \vect{B}$ and $\div\vect{A} = f(\vect{r})$. We know:
+Suppose we have $\curl\vect{A} = \vect{B}$ and $\div\vect{A} = f(\lvect{r})$. We know:
 \[
     \div\vect{E} = \frac{\rho(x,y,z)}{\varepsilon_0}
 \]
-We can find a vector field such that $\div\vect{A}' = f(\vect{r})$, then subtract it.
+We can find a vector field such that $\div\vect{A}' = f(\lvect{r})$, then subtract it.
 
 \begin{fact}
 Be careful about integrating electric/magnetic fields from scratch: you could get a wrong answer automatically by not considering volume currents infinitely close to the point in question (see exercise 1.69, pg.\ 305). Solution: remove a thin strip.
@@ -212,7 +212,7 @@ These are exactly analogous to $\nabla^2\phi = -\rho/\varepsilon_0$.
 
 Recall that:
 \[
-    \phi(\vect{r}_1) = \iiint \frac{\rho_2}{4\pi\varepsilon_0 r_{12}} \, dV_2
+    \phi(\lvect{r}_1) = \iiint \frac{\rho_2}{4\pi\varepsilon_0 r_{12}} \, dV_2
 \]
 
 So for $A_x$:
@@ -223,7 +223,7 @@ So for $A_x$:
 In general:
 \begin{formula}[Magnetic Vector Potential from Current]
 \[
-    \vect{A}(\vect{r}_1) = \frac{\mu_0}{4\pi} \int \frac{\vect{J}(\vect{r}_2)}{r_{12}} \, dV
+    \vect{A}(\lvect{r}_1) = \frac{\mu_0}{4\pi} \int \frac{\vect{J}(\lvect{r}_2)}{r_{12}} \, dV
 \]
 \end{formula}
 
@@ -246,7 +246,7 @@ So $\vect{A} = (A_x, 0, 0)$ and $\vect{B} = \curl\vect{A}$.
 
 \section{Biot--Savart Law from the Vector Potential}
 
-Biot-Savart gives the magnetic field produced by a steady current element $Id\vect{\ell}$ at displacement $\vect{r}$. Note the cross product: the field circles around the current element, unlike the radial Coulomb field.
+Biot-Savart gives the magnetic field produced by a steady current element $Id\vect{\ell}$ at displacement $\lvect{r}$. Note the cross product: the field circles around the current element, unlike the radial Coulomb field.
 
 \[
     d\vect{B} = \curl(d\vect{A}), \quad \text{where} \quad d\vect{A} = \frac{\mu_0 I}{4\pi r}\,d\vect{\ell}
@@ -331,7 +331,7 @@ Integrating from $-L/2$ to $L/2$:
 
 \begin{formula}[Lorentz Force]
 \[
-    \vect{F} = q\left(\vect{E} + \vect{v}\times\vect{B}\right)
+    \vect{F} = q\left(\vect{E} + \lvect{v}\times\vect{B}\right)
 \]
 \end{formula}
 
@@ -344,7 +344,7 @@ For a long straight wire, the field is:
 
 Force balance:
 \[
-    \vect{F} = q(\vect{E} + \vect{v}\times\vect{B}) = q(E + vB) = 0
+    \vect{F} = q(\vect{E} + \lvect{v}\times\vect{B}) = q(E + vB) = 0
 \]
 \[
     \Rightarrow \quad E = -vB \quad \Rightarrow \quad v = \frac{E}{B}
@@ -355,17 +355,17 @@ The Wien filter balances electric and magnetic forces so that only particles wit
 
 \section{Force on a Current-Carrying Wire}
 
-The force on a current element $dq\,\vect{v} = dq\,\frac{d\vect{s}}{dt} = I\,d\vect{s}$ in a field $\vect{B}$:
+The force on a current element $dq\,\lvect{v} = dq\,\frac{d\lvect{s}}{dt} = I\,d\lvect{s}$ in a field $\vect{B}$:
 \[
-    \vect{F} = \int I\,d\vect{s}\times\vect{B}
+    \vect{F} = \int I\,d\lvect{s}\times\vect{B}
 \]
 
 \subsection{Example: Current Loop Levitated by Magnetic Force}
 
-Equilibrium condition $\vect{F}_g + \vect{F}_B = 0$ with $\vect{F}_g = m\vect{g} = -mg\,\hat{z}$:
+Equilibrium condition $\vect{F}_g + \vect{F}_B = 0$ with $\vect{F}_g = m\lvect{g} = -mg\,\hat{z}$:
 
 \[
-    \vect{F}_B = \int I\,d\vect{s}\times\vect{B} = \int_0^\ell I\,d\vect{s}\times B\,\hat{x} = \int_0^\ell I\,dy\,B\,\hat{z} = IB\ell\,\hat{z}
+    \vect{F}_B = \int I\,d\lvect{s}\times\vect{B} = \int_0^\ell I\,d\lvect{s}\times B\,\hat{x} = \int_0^\ell I\,dy\,B\,\hat{z} = IB\ell\,\hat{z}
 \]
 
 Thus $IB\ell = mg$, giving:
@@ -422,24 +422,24 @@ Using a rectangular Amp\`{e}rian loop of width $\ell$ straddling the sheet:
 
 \begin{formula}[Electromagnetic Field Transformations]
 \begin{align*}
-    E'_\| &= E_\| & E'_\perp &= \gamma\left(E_\perp + \vect{v}\times\vect{B}_\perp\right) \\[4pt]
-    B'_\| &= B_\| & B'_\perp &= \gamma\left(\vect{B}_\perp - \frac{\vect{v}}{c^2}\times\vect{E}_\perp\right)
+    E'_\| &= E_\| & E'_\perp &= \gamma\left(E_\perp + \lvect{v}\times\vect{B}_\perp\right) \\[4pt]
+    B'_\| &= B_\| & B'_\perp &= \gamma\left(\vect{B}_\perp - \frac{\lvect{v}}{c^2}\times\vect{E}_\perp\right)
 \end{align*}
 \end{formula}
 
-where $\|$ and $\perp$ refer to directions parallel and perpendicular to the boost velocity $\vect{v}$.
+where $\|$ and $\perp$ refer to directions parallel and perpendicular to the boost velocity $\lvect{v}$.
 
 \chapter{Electromagnetic Induction}
 
 \section{Conducting Rod in a Magnetic Field}
 
-The charges inside the moving rod experience a force $\vect{F} = q\vect{v}\times\vect{B}$ (not a force from $\vect{E}$). This creates a charge separation (positive charges accumulate at one end).
+The charges inside the moving rod experience a force $\vect{F} = q\lvect{v}\times\vect{B}$ (not a force from $\vect{E}$). This creates a charge separation (positive charges accumulate at one end).
 
 \subsection{Electromotive Force (EMF)}
 
 \begin{definition}[Electromotive Force]
 \[
-    \mathcal{E} \equiv \frac{1}{q}\oint \vect{f}\cdot d\vect{s}
+    \mathcal{E} \equiv \frac{1}{q}\oint \lvect{f}\cdot d\lvect{s}
 \]
 The EMF is the electromotive force (not actually a force --- it has units of electric potential). It is any influence that causes charge to circulate around a closed path. EMF must be non-electrostatic, since $\curl\vect{E} = 0$ for electrostatic fields and a conservative field cannot drive a current around a closed loop.
 \end{definition}

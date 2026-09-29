@@ -16,29 +16,29 @@ In a two-body collision momentum is always conserved.
 
 Let $v_{1,\text{com}}$ and $v_{2,\text{com}}$ be velocities in the COM frame. Then
 \begin{align*}
-    \vect{v}_{1,\text{com}} &= \vect{v}_1 - \vect{v}_\text{com}
-        = \frac{m_2}{m_1+m_2}(\vect{v}_1 - \vect{v}_2) \\
-    \vect{v}_{2,\text{com}} &= \vect{v}_2 - \vect{v}_\text{com}
-        = \frac{m_1}{m_1+m_2}(\vect{v}_1 - \vect{v}_2)
+    \lvect{v}_{1,\text{com}} &= \lvect{v}_1 - \lvect{v}_\text{com}
+        = \frac{m_2}{m_1+m_2}(\lvect{v}_1 - \lvect{v}_2) \\
+    \lvect{v}_{2,\text{com}} &= \lvect{v}_2 - \lvect{v}_\text{com}
+        = \frac{m_1}{m_1+m_2}(\lvect{v}_1 - \lvect{v}_2)
 \end{align*}
 
 The momenta in the COM frame are
 \begin{align*}
-    \vect{p}_{1,\text{com}} &= m_1 \vect{v}_{1,\text{com}}
-        = \frac{m_1 m_2}{m_1+m_2}(\vect{v}_1 - \vect{v}_2) = \mu\,\Delta v \\
-    \vect{p}_{2,\text{com}} &= m_2 \vect{v}_{2,\text{com}}
-        = \frac{m_2 m_1}{m_1+m_2}(\vect{v}_2 - \vect{v}_1)
+    \lvect{p}_{1,\text{com}} &= m_1 \lvect{v}_{1,\text{com}}
+        = \frac{m_1 m_2}{m_1+m_2}(\lvect{v}_1 - \lvect{v}_2) = \mu\,\Delta v \\
+    \lvect{p}_{2,\text{com}} &= m_2 \lvect{v}_{2,\text{com}}
+        = \frac{m_2 m_1}{m_1+m_2}(\lvect{v}_2 - \lvect{v}_1)
 \end{align*}
 
 Thus,
 \[
-    \boxed{\vect{p}_{1,\text{com}} = -\vect{p}_{2,\text{com}}}
+    \boxed{\lvect{p}_{1,\text{com}} = -\lvect{p}_{2,\text{com}}}
 \]
 
 because the COM is at the origin — \textbf{total momentum is 0}.
 
 \[
-    \vect{p}_{\text{com,net}} = \vec{0}
+    \lvect{p}_{\text{com,net}} = \vec{0}
 \]
 
 The total kinetic energy in the COM frame is $\tfrac{1}{2}m v_{1,\text{com}}^2 + \tfrac{1}{2}m v_{2,\text{com}}^2$.
@@ -46,8 +46,8 @@ The total kinetic energy in the COM frame is $\tfrac{1}{2}m v_{1,\text{com}}^2 +
 \begin{fact}[Elastic collisions in the COM frame]
 For elastic collisions,
 \[
-    \bigl|\vect{v}_{1,\text{com}}\bigr|_{\text{before}}
-    = \bigl|\vect{v}_{1,\text{com}}\bigr|_{\text{after}}
+    \bigl|\lvect{v}_{1,\text{com}}\bigr|_{\text{before}}
+    = \bigl|\lvect{v}_{1,\text{com}}\bigr|_{\text{after}}
 \]
 Speeds are unchanged by the collision (useful fact — prove this fact).
 \end{fact}
@@ -55,7 +55,7 @@ Speeds are unchanged by the collision (useful fact — prove this fact).
 \subsection{Elastic Collision Example — Collision of the Carts}
 
 \begin{example}[Elastic collision of two carts]
-Initial velocities $\vect{v}_1,\,\vect{v}_2$; final velocities $\vect{v}_1',\,\vect{v}_2'$.
+Initial velocities $\lvect{v}_1,\,\lvect{v}_2$; final velocities $\lvect{v}_1',\,\lvect{v}_2'$.
 
 Derive $v_1 + v_1' = v_2 + v_2'$.
 
@@ -86,7 +86,7 @@ Energy is \textbf{NOT} conserved.
 \textbf{Completely inelastic collision} $\Rightarrow$ carts stick together.
 
 \[
-    m_1\vect{v}_1 + m_2\vect{v}_2 = (m_1+m_2)\vect{v}_f'
+    m_1\lvect{v}_1 + m_2\lvect{v}_2 = (m_1+m_2)\lvect{v}_f'
 \]
 
 \subsubsection*{Projection in 1D}
@@ -104,9 +104,9 @@ $m$ moving at $v_0$, $M$ at rest.
 
 \subsubsection*{COM frame (before)}
 \begin{align*}
-    \vect{v}_{m,\text{com}} &= \vect{v}_0 - \vect{v}_\text{com} \\
-    |\vect{v}_{m,\text{com}}| &= \frac{Mv_0}{m+M} \\
-    \vect{v}_{M,\text{com}} &= -\vect{v}_\text{com} = -\frac{mv_0}{m+M}
+    \lvect{v}_{m,\text{com}} &= \lvect{v}_0 - \lvect{v}_\text{com} \\
+    |\lvect{v}_{m,\text{com}}| &= \frac{Mv_0}{m+M} \\
+    \lvect{v}_{M,\text{com}} &= -\lvect{v}_\text{com} = -\frac{mv_0}{m+M}
 \end{align*}
 
 By the useful fact (speeds unchanged in COM frame under elastic collision):
@@ -116,12 +116,12 @@ By the useful fact (speeds unchanged in COM frame under elastic collision):
 
 \subsubsection*{Going back to the lab frame}
 \[
-    \vect{v}_m' = \vect{v}_{1,\text{com}}' + \vect{v}_\text{com}
+    \lvect{v}_m' = \lvect{v}_{1,\text{com}}' + \lvect{v}_\text{com}
 \]
 
 \begin{figure}[H]
 \centering
-\caption{Vector diagram for returning to lab frame: the final lab velocity $\vect{v}_m'$ is the vector sum of the COM-frame velocity $\vect{v}_{1,\text{com}}'$ and the COM velocity $\vect{v}_\text{com}$.}
+\caption{Vector diagram for returning to lab frame: the final lab velocity $\lvect{v}_m'$ is the vector sum of the COM-frame velocity $\lvect{v}_{1,\text{com}}'$ and the COM velocity $\lvect{v}_\text{com}$.}
 \end{figure}
 \end{example}
 
@@ -176,9 +176,9 @@ From momentum conservation (during collision) and energy conservation (during sw
 
 \begin{definition}[Angular Momentum]
 \[
-    \vect{L} = \vect{r} \times \vect{p}
+    \vect{L} = \lvect{r} \times \lvect{p}
 \]
-where $\vect{r}$ is the position of the object at a point and $\vect{p}$ is its momentum.
+where $\lvect{r}$ is the position of the object at a point and $\lvect{p}$ is its momentum.
 \end{definition}
 
 Angular momentum:
@@ -189,13 +189,13 @@ Angular momentum:
 
 For a particle in circular motion (rotation confined to a plane):
 \begin{align*}
-    \vect{L} &= \vect{r} \times \vect{p} = \vect{r} \times m\vect{v} = m(\vect{r}\times\vect{v})
+    \vect{L} &= \lvect{r} \times \lvect{p} = \lvect{r} \times m\lvect{v} = m(\lvect{r}\times\lvect{v})
 \end{align*}
 
 \subsubsection*{Computing $\vect{L}_A$ (pivot at centre of orbit)}
 
 \begin{align*}
-    \vect{L}_A &= m(\vect{r}_A \times \vect{v}) \\
+    \vect{L}_A &= m(\lvect{r}_A \times \lvect{v}) \\
     &= m\bigl(r_A\,\hat{r} \times v\,\hat{\theta}\bigr) \\
     &= mr_A v\,(\hat{r}\times\hat{\theta}) \\
     &= mr_A v\,\hat{z}
@@ -253,16 +253,16 @@ Any displacement is the combination of a single rotation and a translation.
 \section{Angular Momentum of a Particle}
 
 \[
-    \vect{L} = \vect{r}\times\vect{p}
+    \vect{L} = \lvect{r}\times\lvect{p}
 \]
 
-where $\vect{r}$ is position with respect to a given coordinate system and $\vect{p}$ is the momentum vector of the particle.
+where $\lvect{r}$ is position with respect to a given coordinate system and $\lvect{p}$ is the momentum vector of the particle.
 
 \[
-    |\vect{L}| = |\vect{r}||\vect{p}|\sin\alpha
+    |\vect{L}| = |\lvect{r}||\lvect{p}|\sin\alpha
 \]
 
-We can break $\vect{r}$ into its components: $r_\perp$ (perpendicular to trajectory) and $r_\parallel$ (parallel to trajectory).
+We can break $\lvect{r}$ into its components: $r_\perp$ (perpendicular to trajectory) and $r_\parallel$ (parallel to trajectory).
 
 Thus,
 \[
@@ -276,20 +276,20 @@ Or: $L = r\, p_\perp$.
 
 \textbf{In summary,}
 \[
-    |L_z| = |\vect{r}||\vect{p}| = |\vect{r}||\vect{p}_\perp|
+    |L_z| = |\lvect{r}||\lvect{p}| = |\lvect{r}||\lvect{p}_\perp|
 \]
 
-(where $\vect{r}\cdot\vect{p}=0$) and $\vec{L}_z = m|\vect{r}|^2\omega\,\hat{k}$.
+(where $\lvect{r}\cdot\lvect{p}=0$) and $\vec{L}_z = m|\lvect{r}|^2\omega\,\hat{k}$.
 
 If motion is 2D:
 \[
-    \boxed{\vect{L} = \vect{r}\times\vect{p} = m(xv_y - yv_x)\,\hat{k}}
+    \boxed{\vect{L} = \lvect{r}\times\lvect{p} = m(xv_y - yv_x)\,\hat{k}}
 \]
 
 \begin{example}[Conical pendulum angular momentum]
-Because $\vect{r}\perp\vect{p}$,
+Because $\lvect{r}\perp\lvect{p}$,
 \[
-    |\vect{L}_A| = |\vect{r}||\vect{p}| = rp
+    |\vect{L}_A| = |\lvect{r}||\lvect{p}| = rp
 \]
 
 Recall $|p| = Mv = Mr\omega$, thus
@@ -300,7 +300,7 @@ Recall $|p| = Mv = Mr\omega$, thus
 
 Now imagine momentum with respect to pivot at point $B$:
 \[
-    |\vect{L}_B| = |\vect{r}'||\vect{p}| = m|\ell||\vect{v}| = \ell |p|
+    |\vect{L}_B| = |\lvect{r}'||\lvect{p}| = m|\ell||\lvect{v}| = \ell |p|
     = M\ell r\omega
 \]
 
@@ -320,14 +320,14 @@ The axis can \underline{translate} but \underline{cannot} rotate.
 
 For the $j$-th particle undergoing circular motion about the $z$-axis,
 \[
-    |\vect{v}_j| = |\dot{\vect{r}}_j| = \omega\rho_j \tag{1}
+    |\lvect{v}_j| = |\dot{\lvect{r}}_j| = \omega\rho_j \tag{1}
 \]
 
 where $\rho_j = \sqrt{x^2+y^2}$ in this case.
 
 Thus, the angular momentum of the $j$-th particle is
 \[
-    \vect{L}_j = \vect{r}_j \times m_j \vect{v}_j
+    \vect{L}_j = \lvect{r}_j \times m_j \lvect{v}_j
 \]
 
 We only care about angular momentum along the axis of rotation, so
@@ -523,27 +523,27 @@ Therefore,
 
 \begin{definition}[Torque]
 \[
-    \vec{\tau} = \vect{r}\times\vect{F}
+    \vec{\tau} = \lvect{r}\times\vect{F}
 \]
 Torque is the angular analogue to force.
 \end{definition}
 
 As usual,
 \[
-    |\vec{\tau}| = |r_\perp||\vect{F}| = |\vect{r}||F_\perp|
+    |\vec{\tau}| = |r_\perp||\vect{F}| = |\lvect{r}||F_\perp|
 \]
 
 \subsection{Example: Torque Due to Gravity}
 
-Find the torque in a uniform gravitational field where $\vect{F}_g = m\vect{g}$.
+Find the torque in a uniform gravitational field where $\vect{F}_g = m\lvect{g}$.
 
 \begin{align*}
-    \vec{\tau}_j &= \vect{r}_j \times m_j \vect{g} \\
+    \vec{\tau}_j &= \lvect{r}_j \times m_j \lvect{g} \\
     \vec{\tau}_\text{net} &= \sum_j \vec{\tau}_j
-        = \sum_j \vect{r}_j \times m_j \vect{g}
-        = \sum_j m_j \vect{r}_j \times \vect{g}
-        = \left(\sum_j m_j \vect{r}_j\right)\times\vect{g} \\
-    &= M\vec{R}_\text{com}\times\vect{g} = \vec{R}\times\vec{W}
+        = \sum_j \lvect{r}_j \times m_j \lvect{g}
+        = \sum_j m_j \lvect{r}_j \times \lvect{g}
+        = \left(\sum_j m_j \lvect{r}_j\right)\times\lvect{g} \\
+    &= M\vec{R}_\text{com}\times\lvect{g} = \vec{R}\times\vec{W}
 \end{align*}
 
 \textbf{Torque is 0 at equilibrium} (and $\vect{F}_\text{net}=\vec{0}$).
@@ -552,15 +552,15 @@ Find the torque in a uniform gravitational field where $\vect{F}_g = m\vect{g}$.
 
 \begin{formula}[Newton's 2nd law for rotation]
 \[
-    \boxed{\dv{\vect{L}}{t}} = \dv{}{t}(\vect{r}\times\vect{p})
-    = \dot{\vect{r}}\times\vect{p} + \vect{r}\times\dot{\vect{p}}
+    \boxed{\dv{\vect{L}}{t}} = \dv{}{t}(\lvect{r}\times\lvect{p})
+    = \dot{\lvect{r}}\times\lvect{p} + \lvect{r}\times\dot{\lvect{p}}
 \]
 
-The first term $\dot{\vect{r}}\times\vect{p} = \vect{v}\times m\vect{v} = 0$.
+The first term $\dot{\lvect{r}}\times\lvect{p} = \lvect{v}\times m\lvect{v} = 0$.
 
 Thus,
 \[
-    \dv{\vect{L}}{t} = \vect{r}\times\dot{\vect{p}} = \vect{r}\times\vect{F} = \vec{\tau}
+    \dv{\vect{L}}{t} = \lvect{r}\times\dot{\lvect{p}} = \lvect{r}\times\vect{F} = \vec{\tau}
 \]
 \end{formula}
 
@@ -579,7 +579,7 @@ Consider a particle moving under a central force
 \]
 Then
 \[
-    \vec{\tau} = \vect{r}\times f(r)\hat{r} = 0
+    \vec{\tau} = \lvect{r}\times f(r)\hat{r} = 0
     \quad\text{(both pointing in the same direction)}
 \]
 Thus $\vect{L}$ is conserved (equal areas swept in equal times).
@@ -597,9 +597,9 @@ Area swept out:
     = \frac{1}{2}r^2\dv{\theta}{t}
 \]
 
-From polar coordinates, $\vect{v} = \dot{r}\hat{r} + r\dot{\theta}\hat{\theta}$, so
+From polar coordinates, $\lvect{v} = \dot{r}\hat{r} + r\dot{\theta}\hat{\theta}$, so
 \begin{align*}
-    \vect{L} &= \vect{r}\times m\vect{v}
+    \vect{L} &= \lvect{r}\times m\lvect{v}
         = r\hat{r}\times m(\dot{r}\hat{r}+r\dot{\theta}\hat{\theta}) \\
     &= r\hat{r}\times m\dot{r}\hat{r} + r\hat{r}\times mr\dot{\theta}\hat{\theta} \\
     &= mr^2\dot{\theta}\,\hat{z} = 2m\dv{A}{t} = C
@@ -633,9 +633,9 @@ As $r\to\infty$:
 \[
     E_i = \tfrac{1}{2}mv_0^2, \qquad L_i = -mb'v_0
 \]
-(rotation is clockwise ($-$) and $b'$ is the perpendicular component of $\vect{r}$).
+(rotation is clockwise ($-$) and $b'$ is the perpendicular component of $\lvect{r}$).
 
-Collision occurs when the point of closest approach is $R$; at this point $\vect{r}\perp\vect{v}$.
+Collision occurs when the point of closest approach is $R$; at this point $\lvect{r}\perp\lvect{v}$.
 
 If speed is $v(R)$ at closest approach:
 \[

@@ -167,14 +167,14 @@ with four constants $C, D, \varphi_a, \varphi_b$ fixed by four initial condition
 \section{The Matrix Formulation}
 % ============================================================
 
-Solving simultaneous equations for the ratio $r$ becomes hopeless with more than two masses, and the calculation quickly becomes opaque even for two if the coupling is unsymmetric. The clean method is linear algebra, which turns the entire problem into an eigenvalue computation. Write $\vect{x} = (x_1, x_2)^T$ and cast the equations of motion as
+Solving simultaneous equations for the ratio $r$ becomes hopeless with more than two masses, and the calculation quickly becomes opaque even for two if the coupling is unsymmetric. The clean method is linear algebra, which turns the entire problem into an eigenvalue computation. Write $\lvect{x} = (x_1, x_2)^T$ and cast the equations of motion as
 \begin{equation}
-    \ddot{\vect{x}} = P\vect{x}, \qquad
+    \ddot{\lvect{x}} = P\lvect{x}, \qquad
     P = \begin{pmatrix} -2\omega_0^2 & \omega_0^2 \\ \omega_0^2 & -2\omega_0^2 \end{pmatrix}.
 \end{equation}
-Assume a solution $\vect{x}(t) = \operatorname{Re}\{\vect{A}\, e^{i(\omega t + \varphi)}\}$. Then $\ddot{\vect{x}} = -\omega^2 \vect{x}$, and the equation of motion becomes
+Assume a solution $\lvect{x}(t) = \operatorname{Re}\{\vect{A}\, e^{i(\omega t + \varphi)}\}$. Then $\ddot{\lvect{x}} = -\omega^2 \lvect{x}$, and the equation of motion becomes
 \begin{equation}
-    -\omega^2 \vect{x} = P \vect{x} \quad \Longrightarrow \quad (P + \omega^2 I)\vect{A} = 0.
+    -\omega^2 \lvect{x} = P \lvect{x} \quad \Longrightarrow \quad (P + \omega^2 I)\vect{A} = 0.
 \end{equation}
 Since the time-dependent factor never vanishes, we need the amplitude vector $\vect{A}$ to lie in the null space of $P + \omega^2 I$. Nontrivial solutions require
 \begin{formula}
@@ -207,7 +207,7 @@ For $\omega_b^2 = 3\omega_0^2$:
 \end{equation}
 The full solution is the sum
 \begin{equation}
-    \vect{x}(t) = \vect{A}_a \cos(\omega_a t + \varphi_a) + \vect{A}_b \cos(\omega_b t + \varphi_b),
+    \lvect{x}(t) = \vect{A}_a \cos(\omega_a t + \varphi_a) + \vect{A}_b \cos(\omega_b t + \varphi_b),
 \end{equation}
 with four free constants $C_a, C_b, \varphi_a, \varphi_b$.
 
@@ -359,7 +359,7 @@ Rearranging,
     \ddot{x}_1 = -\!\left(\frac{k}{m} + \frac{g}{\ell}\right) x_1 + \frac{k}{m} x_2, \quad
     \ddot{x}_2 = \frac{k}{m} x_1 - \!\left(\frac{k}{m} + \frac{g}{\ell}\right) x_2.
 \end{equation}
-In matrix form, $\ddot{\vect{x}} = P\vect{x}$ with
+In matrix form, $\ddot{\lvect{x}} = P\lvect{x}$ with
 \begin{equation}
     P = \begin{pmatrix} -\!\left(\tfrac{k}{m} + \tfrac{g}{\ell}\right) & \tfrac{k}{m} \\[3pt] \tfrac{k}{m} & -\!\left(\tfrac{k}{m} + \tfrac{g}{\ell}\right) \end{pmatrix}.
 \end{equation}
@@ -399,9 +399,9 @@ Two limits are instructive. As $\alpha \to \infty$ (a heavy tip bob), $\omega^2 
 
 Everything done so far generalizes verbatim to $N$ degrees of freedom. For a system of $N$ masses with equations of motion
 \begin{equation}
-    M \ddot{\vect{x}} + K \vect{x} = 0,
+    M \ddot{\lvect{x}} + K \lvect{x} = 0,
 \end{equation}
-where $M = \operatorname{diag}(m_1, \ldots, m_N)$ is the mass matrix and $K$ is the stiffness matrix, plugging in $\vect{x} = \vect{A} e^{i\omega t}$ yields
+where $M = \operatorname{diag}(m_1, \ldots, m_N)$ is the mass matrix and $K$ is the stiffness matrix, plugging in $\lvect{x} = \vect{A} e^{i\omega t}$ yields
 \begin{equation}
     (-\omega^2 M + K)\vect{A} = 0 \;\Longleftrightarrow\; (M^{-1} K - \omega^2 I)\vect{A} = 0.
 \end{equation}
@@ -440,7 +440,7 @@ and the constant term $\zeta$ \emph{must} vanish, because $\omega = 0$ is always
 For highly symmetric systems --- say $N$ identical masses arranged in a ring with identical nearest-neighbor springs --- one can bypass the full diagonalization by exploiting the symmetry directly. The idea is that any linear map commuting with the dynamics must share its eigenvectors, so if we can find a simpler operator that reflects the system's geometric symmetry we can read the modes off from \emph{it} instead.
 
 \begin{definition}[Symmetry matrix]
-A matrix $S$ is a \emph{symmetry} of the dynamics if $S$ commutes with $M^{-1} K$. Equivalently, if $\vect{x}' = S \vect{x}$ satisfies the same equations of motion whenever $\vect{x}$ does. Common examples: cyclic permutation of sites in a ring, reflection through a symmetry axis.
+A matrix $S$ is a \emph{symmetry} of the dynamics if $S$ commutes with $M^{-1} K$. Equivalently, if $\lvect{x}' = S \lvect{x}$ satisfies the same equations of motion whenever $\lvect{x}$ does. Common examples: cyclic permutation of sites in a ring, reflection through a symmetry axis.
 \end{definition}
 
 If $S$ commutes with the dynamical matrix, its eigenvectors coincide (up to degeneracy) with the normal modes. For a ring of $N$ identical sites, the symmetry $S_1$ that rotates each site to its neighbor satisfies $S_1^N = I$, so its eigenvalues are $N$th roots of unity:

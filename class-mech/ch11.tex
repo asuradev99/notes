@@ -763,8 +763,8 @@ Plugging into Kepler's 3rd Law:
 \chapter{The Virial Theorem}
 
 \[
-    K = \tfrac{1}{2}\sum m v_i^2 = \tfrac{1}{2}\sum \dot{\vect{p}}_i \cdot \vect{v}
-    = \tfrac{1}{2}\left[\frac{d}{dt}\left(\sum \vect{p}_i \cdot \vect{x}_i\right) - \sum \vect{x}_i \cdot \dot{\vect{p}}_i\right]
+    K = \tfrac{1}{2}\sum m v_i^2 = \tfrac{1}{2}\sum \dot{\lvect{p}}_i \cdot \lvect{v}
+    = \tfrac{1}{2}\left[\frac{d}{dt}\left(\sum \lvect{p}_i \cdot \lvect{x}_i\right) - \sum \lvect{x}_i \cdot \dot{\lvect{p}}_i\right]
 \]
 
 \subsection{Time Average of a Function}
@@ -774,12 +774,12 @@ Plugging into Kepler's 3rd Law:
 \]
 
 \[
-    2\langle K\rangle = \left\langle \frac{d}{dt}\sum \vect{p}_i\cdot\vect{x}_i\right\rangle
-    - \left\langle \sum \vect{x}_i\cdot\dot{\vect{p}}_i\right\rangle
+    2\langle K\rangle = \left\langle \frac{d}{dt}\sum \lvect{p}_i\cdot\lvect{x}_i\right\rangle
+    - \left\langle \sum \lvect{x}_i\cdot\dot{\lvect{p}}_i\right\rangle
 \]
 
 \[
-    = \lim_{T\to\infty}\left(\frac{1}{T}\left[\sum \vect{p}_i\cdot\vect{x}_i\right]_0^T\right) \approx 0
+    = \lim_{T\to\infty}\left(\frac{1}{T}\left[\sum \lvect{p}_i\cdot\lvect{x}_i\right]_0^T\right) \approx 0
     \quad\forall\text{ bounded systems}
 \]
 
@@ -799,8 +799,8 @@ The objects will have to turn back and go the other way periodically.
 
 Thus:
 \[
-    2\langle K\rangle = -\left\langle\sum \vect{x}_i\cdot\dot{\vect{p}}_i\right\rangle
-    = -\left\langle\sum \vect{x}_i\cdot\vect{F}_i\right\rangle
+    2\langle K\rangle = -\left\langle\sum \lvect{x}_i\cdot\dot{\lvect{p}}_i\right\rangle
+    = -\left\langle\sum \lvect{x}_i\cdot\vect{F}_i\right\rangle
 \]
 
 where
@@ -811,23 +811,23 @@ is essentially the net force (central forces) on particle $i$.
 
 \begin{figure}[H]
 \centering
-\caption{Two particles $i$ and $j$ separated by $\vect{r}_{ij}$, illustrating the pairwise central-force interaction.}
+\caption{Two particles $i$ and $j$ separated by $\lvect{r}_{ij}$, illustrating the pairwise central-force interaction.}
 \end{figure}
 
 \[
-    \Rightarrow\quad 2\langle K\rangle = \left\langle\sum_{i,j}\vect{x}_{ij}\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij}\right\rangle
+    \Rightarrow\quad 2\langle K\rangle = \left\langle\sum_{i,j}\lvect{x}_{ij}\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij}\right\rangle
 \]
 
 Now consider the $i,j$ and $j,i$ terms in this sum:
 \[
-    \vect{x}_i\cdot\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij} + \vect{x}_j\cdot\frac{\partial U}{\partial r_{ij}}(-\hat{r}_{ij})
-    = (\vect{x}_i - \vect{x}_j)\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij}
+    \lvect{x}_i\cdot\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij} + \lvect{x}_j\cdot\frac{\partial U}{\partial r_{ij}}(-\hat{r}_{ij})
+    = (\lvect{x}_i - \lvect{x}_j)\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij}
     = r_{ij}\frac{U}{r_{ij}} \cdot \frac{\partial U}{\partial r_{ij}}
 \]
 
 Wait --- more carefully:
 \[
-    = (\vect{x}_i - \vect{x}_j)\cdot\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij} = r_{ij}\frac{\partial U}{\partial r_{ij}}
+    = (\lvect{x}_i - \lvect{x}_j)\cdot\frac{\partial U}{\partial r_{ij}}\hat{r}_{ij} = r_{ij}\frac{\partial U}{\partial r_{ij}}
 \]
 \[
     \Rightarrow\quad 2\langle K\rangle = \left\langle\sum_{i,j<i} r_{ij}\frac{\partial U}{\partial r_{ij}}\right\rangle
@@ -1141,7 +1141,7 @@ In general, central potentials can be written as (two-body problems):
 
 Time avg.\ of a fn.:
 \[
-    \lim_{T\to\infty}\left(\frac{1}{T}\left[\sum \vect{p}_i\cdot\vect{x}_i\right]_0^T\right) \approx 0
+    \lim_{T\to\infty}\left(\frac{1}{T}\left[\sum \lvect{p}_i\cdot\lvect{x}_i\right]_0^T\right) \approx 0
     \quad\forall\text{ bounded systems}
 \]
 Objects will have to turn and come back periodically.
@@ -1174,14 +1174,14 @@ No slip condition applies. Let $x$ be the displacement along the incline and $\t
 
 Position of the sphere's contact point:
 \[
-    \vect{x}_S = (x + R\theta\cos(\alpha))\hat{x} + (-R\theta\sin(\alpha))\hat{y},
-    \qquad \vect{x}_W = x\hat{x}
+    \lvect{x}_S = (x + R\theta\cos(\alpha))\hat{x} + (-R\theta\sin(\alpha))\hat{y},
+    \qquad \lvect{x}_W = x\hat{x}
 \]
 \[
-    \dot{\vect{x}}_S = (\dot x + R\dot\theta\cos(\alpha))\hat{x} - R\dot\theta\sin(\alpha)\hat{y}
+    \dot{\lvect{x}}_S = (\dot x + R\dot\theta\cos(\alpha))\hat{x} - R\dot\theta\sin(\alpha)\hat{y}
 \]
 \[
-    \Rightarrow\quad \|\dot{\vect{x}}_S\|^2
+    \Rightarrow\quad \|\dot{\lvect{x}}_S\|^2
     = (\dot x + R\dot\theta\cos(\alpha))^2 + R^2\dot\theta^2\sin^2(\alpha)
     = \dot x^2 + 2\dot x R\dot\theta\cos(\alpha) + R^2\dot\theta^2
 \]

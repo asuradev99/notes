@@ -82,7 +82,7 @@ From this:
 The entire force on a particle carrying a charge $q$ is given by
 \begin{formula}[Lorentz Force]
 \[
-  \vect{F} = q\vect{E} + q\vect{v}\times\vect{B} \quad \leftarrow \text{magnetic force}
+  \vect{F} = q\vect{E} + q\lvect{v}\times\vect{B} \quad \leftarrow \text{magnetic force}
 \]
 \end{formula}
 where the first term is the electric force and the second is the magnetic force.
@@ -101,13 +101,13 @@ where the first term is the electric force and the second is the magnetic force.
   % Charge moving to the right
   \filldraw[red] (-1.5,0) circle (4pt) node[above, black]{$+q$};
   \draw[-{Stealth[length=6pt]}, thick, red!80!black]
-    (-1.5,0) -- (0.0,0) node[below]{$\vect{v}$};
+    (-1.5,0) -- (0.0,0) node[below]{$\lvect{v}$};
   % Magnetic force upward (v x B = right x into-page = up)
   \draw[-{Stealth[length=6pt]}, thick, blue!80!black]
-    (-1.5,0) -- (-1.5,1.2) node[right]{$\vect{F} = q\vect{v}\times\vect{B}$};
+    (-1.5,0) -- (-1.5,1.2) node[right]{$\vect{F} = q\lvect{v}\times\vect{B}$};
 \end{tikzpicture}
 \end{center}
-\caption{A positive charge $+q$ moving to the right with velocity $\vect{v}$ in a field $\vect{B}$ directed into the page. By the right-hand rule, $\vect{F} = q\vect{v}\times\vect{B}$ points upward.}
+\caption{A positive charge $+q$ moving to the right with velocity $\lvect{v}$ in a field $\vect{B}$ directed into the page. By the right-hand rule, $\vect{F} = q\lvect{v}\times\vect{B}$ points upward.}
 \end{figure}
 
 \textbf{How do we find $\vect{B}$?} First determine $\vect{E}$ from the force on a stationary test charge (so $v=0$). Then measure the additional force on a moving charge for at least two independent velocity directions; the unique $\vect{B}$ that accounts for both additional forces is the magnetic field.
@@ -119,7 +119,7 @@ The electric charge of a moving particle is not obviously well-defined, since we
 \subsection*{Charge in a Moving Frame}
 
 \[
-  Q = \epsilon_0 \int_{S(t)} \vect{E}\cdot d\vect{a}
+  Q = \epsilon_0 \int_{S(t)} \vect{E}\cdot d\lvect{a}
 \]
 
 Here $S$ is fixed in frame $F$ while $Q$ moves through it. Gauss's law remains valid even when the charge is moving, which is the content of charge invariance.
@@ -128,7 +128,7 @@ Here $S$ is fixed in frame $F$ while $Q$ moves through it. Gauss's law remains v
 
 Charge invariance means the total charge in a system is the same number in all inertial frames — not just conserved in time, but frame-independent. This is stronger than conservation; mass, by contrast, is not invariant in the same way. Crucially, it is charge invariance (not merely conservation) that allows Gauss's law to hold in all frames and guarantees that the field transformations are consistent:
 \[
-  \int_{S(t)} \vect{E}\cdot d\vect{a} = \int_{S'(t')} \vect{E}'\cdot d\vect{a}'
+  \int_{S(t)} \vect{E}\cdot d\lvect{a} = \int_{S'(t')} \vect{E}'\cdot d\lvect{a}'
 \]
 (measured at different times due to relativistic time dilation). The experimental support for charge invariance is extensive and precise.
 
@@ -187,7 +187,7 @@ where $\theta'$ is the angle between the radius vector and the velocity directio
 
 \section{Force on a Moving Charge}
 
-Consider a test charge moving with velocity $\vect{v}$ in a field produced by sources at rest in the lab frame $F$. The test charge has its own rest frame $F'$. The momentum components transform as
+Consider a test charge moving with velocity $\lvect{v}$ in a field produced by sources at rest in the lab frame $F$. The test charge has its own rest frame $F'$. The momentum components transform as
 \[
   \frac{dp_{\parallel}}{dt} = \frac{dp'_{\parallel}}{dt}, \qquad
   \frac{dp_{\perp}}{dt} = \frac{1}{\gamma}\frac{dp'_{\perp}}{dt}
@@ -208,7 +208,7 @@ This is the origin of the magnetic force between parallel wires. In the rest fra
 
 \section*{Chapter Summary}
 
-Charged particles moving in a magnetic field experience a force $\vect{F} = q\vect{v}\times\vect{B}$. Charge is invariant, so Gauss's law works in all frames. Take a collection of charges moving with respect to the lab frame, acting as the source of an electric field; the components of that field transform as
+Charged particles moving in a magnetic field experience a force $\vect{F} = q\lvect{v}\times\vect{B}$. Charge is invariant, so Gauss's law works in all frames. Take a collection of charges moving with respect to the lab frame, acting as the source of an electric field; the components of that field transform as
 \[
   E_{\parallel}^{\text{lab}} = E_{\parallel}^{\text{source}}
   \qquad\text{and}\qquad
@@ -326,15 +326,15 @@ The perpendicular velocity is reduced by a factor of $\gamma$ compared with the 
 
 \section{Relativistic Energy and Momentum}
 
-If a particle is moving with velocity $\vect{u}$ in an inertial frame $F_1$:
+If a particle is moving with velocity $\lvect{u}$ in an inertial frame $F_1$:
 
 \begin{formula}[Relativistic Momentum and Energy]
 \[
-  \vect{p} = \gamma m_0 \vect{u}
+  \lvect{p} = \gamma m_0 \lvect{u}
   \qquad\text{and}\qquad
   E = \gamma m_0 c^2
 \]
-where $m_0$ is the \underline{rest mass} and $\gamma = \dfrac{1}{\sqrt{1 - u^2/c^2}}$ (where $\vect{u}$ is same as above).
+where $m_0$ is the \underline{rest mass} and $\gamma = \dfrac{1}{\sqrt{1 - u^2/c^2}}$ (where $\lvect{u}$ is same as above).
 
 This $E$ is relativistic energy; \emph{not} kinetic or potential energy.
 \end{formula}
@@ -350,7 +350,7 @@ This $E$ is relativistic energy; \emph{not} kinetic or potential energy.
 \end{align*}
 These form a \textit{four-vector}.
 
-Force is $F = d\vect{p}/dt$ where $\vect{p}$ and $t$ are both measured in the same frame. Consider a particle of rest mass $m_0$ initially at rest in frame $F$; a force $f_x$ acts for a short time $\Delta t$. In that interval $p_x$ grows from $0$ to $f_x\,\Delta t$, the displacement is $\Delta x \approx \tfrac{1}{2}(f_x/m_0)(\Delta t)^2$, and the kinetic energy gained is
+Force is $F = d\lvect{p}/dt$ where $\lvect{p}$ and $t$ are both measured in the same frame. Consider a particle of rest mass $m_0$ initially at rest in frame $F$; a force $f_x$ acts for a short time $\Delta t$. In that interval $p_x$ grows from $0$ to $f_x\,\Delta t$, the displacement is $\Delta x \approx \tfrac{1}{2}(f_x/m_0)(\Delta t)^2$, and the kinetic energy gained is
 \[
   \Delta E = \frac{(f_x \Delta t)^2}{2m_0}
   \quad\text{(valid when the speed is small enough for Newtonian mechanics).}
@@ -389,7 +389,7 @@ First, solve the $\vect{B}$ field of a solid cylindrical wire:
   |\vect{B}|\cdot 2\pi r &= \mu_0 J \pi r^2 \\
   |\vect{B}| &= \frac{\mu_0 J r}{2}\,\hat{\phi} \quad\text{inside} \quad(\phi \text{ direction}) \\
              &= \frac{\mu_0 J r}{2}(\hat{z}\times\hat{r}) \\
-             &= \frac{\mu_0}{2}\vect{J}\times\vect{r}
+             &= \frac{\mu_0}{2}\vect{J}\times\lvect{r}
 \end{align*}
 
 %───────────────────────────────────────────────────────────────────
@@ -400,7 +400,7 @@ First, solve the $\vect{B}$ field of a solid cylindrical wire:
 
 \begin{definition}[Magnetic Field]
 \[
-  \vect{F} = q\vect{E} + q\vect{v}\times\vect{B}
+  \vect{F} = q\vect{E} + q\lvect{v}\times\vect{B}
 \]
 $\vect{B}$ is the magnetic field at that same time and place; $\vect{E}$ is the electric field at the moving particle's position in the \underline{stationary frame}.
 \end{definition}
@@ -437,7 +437,7 @@ Thus the force on a length $\ell$ of wire 2 is:
 
 \subsection*{Force on a Small Current-Carrying Wire}
 
-For a small element of wire of length $d\ell$ carrying current $I = \lambda v$, the charge in that element is $dq = \lambda\,d\ell$. The magnetic force is $dF = dq\,\vect{v}\times\vect{B}$, which gives:
+For a small element of wire of length $d\ell$ carrying current $I = \lambda v$, the charge in that element is $dq = \lambda\,d\ell$. The magnetic force is $dF = dq\,\lvect{v}\times\vect{B}$, which gives:
 
 \begin{formula}[Force on a Current Element]
 \[
@@ -454,7 +454,7 @@ The $\hat{z}$ direction is defined with respect to the plane created by the curr
 
 \begin{formula}[Ampere's Law]
 \[
-  \oint \vect{B}\cdot d\vect{s} = \mu_0 I_c
+  \oint \vect{B}\cdot d\lvect{s} = \mu_0 I_c
   \qquad (I_c = \text{current enclosed by path})
 \]
 \end{formula}
@@ -463,7 +463,7 @@ Note the sign convention: by the right-hand rule, current going into the page (c
 
 \subsection*{More General Ampere's Law}
 
-Since $\div\vect{J}=0$ in magnetostatics and the enclosed current is $I_c = \int_S \vect{J}\cdot d\vect{a}$, the integral form $\oint_C \vect{B}\cdot d\vect{s} = \mu_0 I_c$ leads directly to the differential form:
+Since $\div\vect{J}=0$ in magnetostatics and the enclosed current is $I_c = \int_S \vect{J}\cdot d\lvect{a}$, the integral form $\oint_C \vect{B}\cdot d\lvect{s} = \mu_0 I_c$ leads directly to the differential form:
 \[
   \boxed{\curl\vect{B} = \mu_0\vect{J}} \quad (1)
 \]
@@ -510,7 +510,7 @@ In the $\hat{\phi}$ direction (at a point $(x, y, 0)$):
 \[
   d\vect{B} = \frac{\mu_0 I}{4\pi}\frac{d\vect{\ell}\times\hat{r}}{r^2}
   \qquad\text{or}\qquad
-  d\vect{B} = \frac{\mu_0 I}{4\pi}\frac{d\vect{\ell}\times\vect{r}}{r^3}
+  d\vect{B} = \frac{\mu_0 I}{4\pi}\frac{d\vect{\ell}\times\lvect{r}}{r^3}
 \]
 \end{formula}
 
