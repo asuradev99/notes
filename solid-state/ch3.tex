@@ -1018,39 +1018,59 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 \subsection{Crystals with a Basis}
 \label{sec:bloch-tb-basis}
 
-So far every orbital sat on a lattice point. When the unit cell contains several atoms, at positions $\lvect{d}_1,\lvect{d}_2,\ldots$ relative to the lattice point $\cvect{R}$, each orbital in the expansion is attached to a particular atom, and it is natural to let the index $n$ label both the orbital and the atom it sits on, with $\lvect{d}_n$ the position of that atom in the cell. The orbital $n$ of the cell at $\cvect{R}$ is then centred at $\cvect{R}+\lvect{d}_n$.
+So far every orbital sat on a lattice point. When the unit cell contains several atoms, at positions $\lvect{d}_1,\lvect{d}_2,\ldots$ relative to the lattice point $\cvect{R}$, each orbital in the expansion is attached to a particular atom. Let the index $n$ label both the orbital and the atom it sits on, with $\lvect{d}_n$ the position of that atom in the cell, and let $\psi_n(\lvect{x})$ denote the orbital centred at the origin. Orbital $n$ of the cell at $\cvect{R}$ is then $\psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n)$.
+
+\paragraph{The ansatz.} The direct generalisation of the tight-binding ansatz attaches the Bloch phase of the \emph{cell} to every orbital in it:
+\begin{equation}
+    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot\cvect{R}}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n)
+    \qquad\text{(cell convention)}.
+\end{equation}
+This is a valid Bloch function, but the phase ignores where in the cell the orbital actually sits, and the offsets $\lvect{d}_n$ then reappear as awkward extra phases in the matrix elements. The cleaner choice is to give each orbital the Bloch phase of the point on which it is centred, i.e.\ to replace $e^{i\lvect{k}\cdot\cvect{R}}\to e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n)}$:
 
 \begin{definition}[Tight-binding ansatz, atom convention]
 \begin{equation}
     \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n)}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n).
     \label{eq:bloch-tb-basis}
 \end{equation}
-Each orbital carries the Bloch phase of the point on which it is actually centred, rather than that of its cell.
 \end{definition}
 
-Since $\cvect{R}\to\cvect{R}+\cvect{R}'$ merely relabels the sum, \eqref{eq:bloch-tb-basis} satisfies Bloch's theorem exactly as before. Repeating the projection of the preceding subsections, now onto orbital $m$ on the atom at $\lvect{d}_m$ in the cell at the origin, gives the same tight-binding equation with the phases shifted accordingly.
+The two differ only by the $\cvect{R}$-independent factor $e^{i\lvect{k}\cdot\lvect{d}_n}$, which can be absorbed into the coefficient, $b_n^{\text{cell}} = e^{i\lvect{k}\cdot\lvect{d}_n} b_n$; both therefore describe the same states, and~\eqref{eq:bloch-tb-basis} satisfies Bloch's theorem by the same relabelling $\cvect{R}\to\cvect{R}+\cvect{R}'$ as before.
 
-\begin{formula}[Tight-binding equation with a basis]
+\paragraph{Deriving the equations.} Project $H\ket{\psi_{\lvect{k}}}=\varepsilon\ket{\psi_{\lvect{k}}}$ onto orbital $m$ on its atom in the origin cell, $\psi_m(\lvect{x}-\lvect{d}_m)$, exactly as in the one-atom case. Each term of~\eqref{eq:bloch-tb-basis} contributes an overlap between an orbital centred at $\lvect{d}_m$ and one centred at $\cvect{R}+\lvect{d}_n$. Shifting the integration variable by $\lvect{d}_m$, these depend only on the separation
+\begin{equation}
+    \lvect{r} \equiv \cvect{R}+\lvect{d}_n-\lvect{d}_m,
+\end{equation}
+the physical vector from atom $m$ to atom $n$. Multiplying through by $e^{-i\lvect{k}\cdot\lvect{d}_m}$, the phase in front of each term becomes $e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n-\lvect{d}_m)}=e^{i\lvect{k}\cdot\lvect{r}}$. The result is the same tight-binding equation,
 \begin{equation}
     \varepsilon(\lvect{k})\,\alpha(\lvect{k})\,\lvect{c} = H(\lvect{k})\,\lvect{c},
     \qquad \lvect{c}=(b_1,\ldots,b_N)^T,
 \end{equation}
-with
-\begin{gather}
-    \alpha_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\,\alpha_{mn}(\lvect{r}),
-    \qquad
-    H_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\,\bigl(E_m\,\alpha_{mn}(\lvect{r})+\gamma_{mn}(\lvect{r})\bigr),\\
-    \alpha_{mn}(\lvect{r}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\lvect{r})},
-    \qquad
-    \gamma_{mn}(\lvect{r}) = \bra{\psi_m(\lvect{x})}\Delta U_m\ket{\psi_n(\lvect{x}-\lvect{r})}.
-\end{gather}
-Here $\lvect{r} = \cvect{R}+\lvect{d}_n-\lvect{d}_m$ runs over the displacement vectors from an atom of type $m$ to the atoms of type $n$ that it overlaps (including $\lvect{r}=0$ when $m=n$), the orbitals $\psi_m$ are centred at the origin, and $\Delta U_m = H - H_{\text{at}}$ with $H_{\text{at}}$ the Hamiltonian of the atom of type $m$.
+with every lattice vector $\cvect{R}$ in the definitions replaced by the bond vector $\lvect{r}$.
+
+\begin{formula}[Changed definitions with a basis]
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{l|l}
+    one atom per cell & atom convention \\ \hline
+    $\alpha_{mn}(\cvect{R}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\cvect{R})}$
+    & $\alpha_{mn}(\lvect{r}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\lvect{r})}$ \\
+    $\gamma_{mn}(\cvect{R}) = \bra{\psi_m(\lvect{x})}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})}$
+    & $\gamma_{mn}(\lvect{r}) = \bra{\psi_m(\lvect{x})}\Delta U_m\ket{\psi_n(\lvect{x}-\lvect{r})}$ \\
+    $H_{mn}(\cvect{R}) = E_m\alpha_{mn}(\cvect{R})+\gamma_{mn}(\cvect{R})$
+    & $H_{mn}(\lvect{r}) = E_m\alpha_{mn}(\lvect{r})+\gamma_{mn}(\lvect{r})$ \\
+    $\alpha_{mn}(\lvect{k}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\alpha_{mn}(\cvect{R})$
+    & $\alpha_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\alpha_{mn}(\lvect{r})$ \\
+    $H_{mn}(\lvect{k}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}H_{mn}(\cvect{R})$
+    & $H_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}H_{mn}(\lvect{r})$
+\end{tabular}
+\end{center}
+Here $\lvect{r}=\cvect{R}+\lvect{d}_n-\lvect{d}_m$ runs over the vectors from an atom of type $m$ to the atoms of type $n$ it overlaps (including $\lvect{r}=0$ when $m=n$), and $\Delta U_m = H - H_{\text{at},m}$ is measured relative to the Hamiltonian of the atom of type $m$ at the origin. For one atom per cell, $\lvect{d}_n=0$ and $\lvect{r}=\cvect{R}$, recovering the left column.
 \end{formula}
 
-The advantage is that every matrix element is a sum over \emph{physical bond vectors}, each weighted by $e^{i\lvect{k}\cdot\lvect{r}}$; one never needs to track which cell a neighbour belongs to. For a one-atom basis $\lvect{d}_n=0$, $\lvect{r}=\cvect{R}$, and the formulas reduce to those above.
+Every matrix element is thus a sum over \emph{physical bond vectors}, each weighted by $e^{i\lvect{k}\cdot\lvect{r}}$; one never has to track which cell a neighbour belongs to.
 
 \begin{fact}[Cell convention versus atom convention]
-One may instead attach the phase of the cell, $e^{i\lvect{k}\cdot\cvect{R}}$, to every orbital in it. The coefficients of the two conventions are related by $b^{\text{cell}}_n = e^{i\lvect{k}\cdot\lvect{d}_n}\,b_n$, so
+The coefficients of the cell and atom conventions are related by $b^{\text{cell}}_n = e^{i\lvect{k}\cdot\lvect{d}_n}\,b_n$, so
 \begin{equation}
     H^{\text{atom}}(\lvect{k}) = D^\dagger(\lvect{k})\,H^{\text{cell}}(\lvect{k})\,D(\lvect{k}),
     \qquad
