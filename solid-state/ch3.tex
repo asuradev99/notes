@@ -1018,66 +1018,29 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 \subsection{Crystals with a Basis}
 \label{sec:bloch-tb-basis}
 
-So far every orbital sat on a lattice point. When the unit cell contains several atoms, at positions $\lvect{d}_1,\lvect{d}_2,\ldots$ relative to the lattice point $\cvect{R}$, each orbital in the expansion is attached to a particular atom. Let the index $n$ label both the orbital and the atom it sits on, with $\lvect{d}_n$ the position of that atom in the cell, and let $\psi_n(\lvect{x})$ denote the orbital centred at the origin. Orbital $n$ of the cell at $\cvect{R}$ is then $\psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n)$.
-
-\paragraph{The ansatz.} The direct generalisation of the tight-binding ansatz attaches the Bloch phase of the \emph{cell} to every orbital in it:
+If the unit cell contains several atoms at positions $\lvect{d}_n$, let $n$ label both the orbital and its atom. The natural ansatz attaches to each orbital the Bloch phase of the point where it actually sits:
 \begin{equation}
-    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot\cvect{R}}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n)
-    \qquad\text{(cell convention)}.
-\end{equation}
-This is a valid Bloch function, but the phase ignores where in the cell the orbital actually sits, and the offsets $\lvect{d}_n$ then reappear as awkward extra phases in the matrix elements. The cleaner choice is to give each orbital the Bloch phase of the point on which it is centred, i.e.\ to replace $e^{i\lvect{k}\cdot\cvect{R}}\to e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n)}$:
-
-\begin{definition}[Tight-binding ansatz, atom convention]
-\begin{equation}
-    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n)}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n).
+    \psi_{\lvect{k}} = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot\cvect{R}}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n)
+    \quad\longrightarrow\quad
+    \psi_{\lvect{k}} = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n)}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n)
     \label{eq:bloch-tb-basis}
 \end{equation}
-\end{definition}
+(\emph{atom convention}). The extra factor $e^{i\lvect{k}\cdot\lvect{d}_n}$ is absorbed into $b_n$, so the band energies are unchanged. Projecting onto orbital $m$ as before, every lattice vector $\cvect{R}$ in the definitions is replaced by the bond vector $\lvect{r}=\cvect{R}+\lvect{d}_n-\lvect{d}_m$ from atom $m$ to atom $n$:
 
-The two differ only by the $\cvect{R}$-independent factor $e^{i\lvect{k}\cdot\lvect{d}_n}$, which can be absorbed into the coefficient, $b_n^{\text{cell}} = e^{i\lvect{k}\cdot\lvect{d}_n} b_n$; both therefore describe the same states, and~\eqref{eq:bloch-tb-basis} satisfies Bloch's theorem by the same relabelling $\cvect{R}\to\cvect{R}+\cvect{R}'$ as before.
-
-\paragraph{Deriving the equations.} Project $H\ket{\psi_{\lvect{k}}}=\varepsilon\ket{\psi_{\lvect{k}}}$ onto orbital $m$ on its atom in the origin cell, $\psi_m(\lvect{x}-\lvect{d}_m)$, exactly as in the one-atom case. Each term of~\eqref{eq:bloch-tb-basis} contributes an overlap between an orbital centred at $\lvect{d}_m$ and one centred at $\cvect{R}+\lvect{d}_n$. Shifting the integration variable by $\lvect{d}_m$, these depend only on the separation
-\begin{equation}
-    \lvect{r} \equiv \cvect{R}+\lvect{d}_n-\lvect{d}_m,
-\end{equation}
-the physical vector from atom $m$ to atom $n$. Multiplying through by $e^{-i\lvect{k}\cdot\lvect{d}_m}$, the phase in front of each term becomes $e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n-\lvect{d}_m)}=e^{i\lvect{k}\cdot\lvect{r}}$. The result is the same tight-binding equation,
-\begin{equation}
-    \varepsilon(\lvect{k})\,\alpha(\lvect{k})\,\lvect{c} = H(\lvect{k})\,\lvect{c},
-    \qquad \lvect{c}=(b_1,\ldots,b_N)^T,
-\end{equation}
-with every lattice vector $\cvect{R}$ in the definitions replaced by the bond vector $\lvect{r}$.
-
-\begin{formula}[Changed definitions with a basis]
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{l|l}
-    one atom per cell & atom convention \\ \hline
-    $\alpha_{mn}(\cvect{R}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\cvect{R})}$
-    & $\alpha_{mn}(\lvect{r}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\lvect{r})}$ \\
-    $\gamma_{mn}(\cvect{R}) = \bra{\psi_m(\lvect{x})}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})}$
-    & $\gamma_{mn}(\lvect{r}) = \bra{\psi_m(\lvect{x})}\Delta U_m\ket{\psi_n(\lvect{x}-\lvect{r})}$ \\
-    $H_{mn}(\cvect{R}) = E_m\alpha_{mn}(\cvect{R})+\gamma_{mn}(\cvect{R})$
-    & $H_{mn}(\lvect{r}) = E_m\alpha_{mn}(\lvect{r})+\gamma_{mn}(\lvect{r})$ \\
-    $\alpha_{mn}(\lvect{k}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\alpha_{mn}(\cvect{R})$
-    & $\alpha_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\alpha_{mn}(\lvect{r})$ \\
-    $H_{mn}(\lvect{k}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}H_{mn}(\cvect{R})$
-    & $H_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}H_{mn}(\lvect{r})$
-\end{tabular}
-\end{center}
-Here $\lvect{r}=\cvect{R}+\lvect{d}_n-\lvect{d}_m$ runs over the vectors from an atom of type $m$ to the atoms of type $n$ it overlaps (including $\lvect{r}=0$ when $m=n$), and $\Delta U_m = H - H_{\text{at},m}$ is measured relative to the Hamiltonian of the atom of type $m$ at the origin. For one atom per cell, $\lvect{d}_n=0$ and $\lvect{r}=\cvect{R}$, recovering the left column.
+\begin{formula}[Tight-binding definitions with a basis]
+\begin{gather}
+    \alpha_{mn}(\lvect{r}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\lvect{r})},
+    \qquad
+    \gamma_{mn}(\lvect{r}) = \bra{\psi_m(\lvect{x})}\Delta U\ket{\psi_n(\lvect{x}-\lvect{r})},\\
+    H_{mn}(\lvect{r}) = E_m\alpha_{mn}(\lvect{r})+\gamma_{mn}(\lvect{r}),\\
+    \alpha_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\,\alpha_{mn}(\lvect{r}),
+    \qquad
+    H_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\,H_{mn}(\lvect{r}),
+\end{gather}
+with the same equation $\varepsilon\,\alpha(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$. For one atom per cell, $\lvect{r}=\cvect{R}$.
 \end{formula}
 
-Every matrix element is thus a sum over \emph{physical bond vectors}, each weighted by $e^{i\lvect{k}\cdot\lvect{r}}$; one never has to track which cell a neighbour belongs to.
-
-\begin{fact}[Cell convention versus atom convention]
-The coefficients of the cell and atom conventions are related by $b^{\text{cell}}_n = e^{i\lvect{k}\cdot\lvect{d}_n}\,b_n$, so
-\begin{equation}
-    H^{\text{atom}}(\lvect{k}) = D^\dagger(\lvect{k})\,H^{\text{cell}}(\lvect{k})\,D(\lvect{k}),
-    \qquad
-    D(\lvect{k}) = \begin{bmatrix} e^{i\lvect{k}\cdot\lvect{d}_1} & & \\ & \ddots & \\ & & e^{i\lvect{k}\cdot\lvect{d}_N}\end{bmatrix},
-\end{equation}
-a unitary change of basis: the band energies are identical. The price of the atom convention is that $H(\lvect{k})$ is no longer periodic in reciprocal space, $H(\lvect{k}+\cvect{G}) = D^\dagger(\cvect{G})\,H(\lvect{k})\,D(\cvect{G})$, although its eigenvalues are. This distinction is irrelevant for energies, but matters for quantities built from the eigenvectors, such as Berry phases.
-\end{fact}
+The price is that $H(\lvect{k})$ is no longer periodic under $\lvect{k}\to\lvect{k}+\cvect{G}$ (it changes by a unitary transformation), which matters only for eigenvector quantities such as Berry phases.
 
 \subsection{Remarks on the Tight-Binding Method}
 
@@ -1137,38 +1100,26 @@ Graphene is a single sheet of carbon atoms arranged on a honeycomb. The honeycom
 \end{equation}
 of length $a/\sqrt3$, and each $B$ atom has three $A$ neighbours at $-\lvect{\delta}_j$. The nearest atoms on the same sublattice lie at the larger distance $a$, and in the nearest-neighbour approximation their overlaps are neglected.
 
-\paragraph{Real-space matrix elements.} Denote by $\psi$ the $p_z$ orbital, with atomic energy $E_p$, so that $\psi_A=\psi_B=\psi$ and $E_A=E_B=E_p$. The first step is to list, for each pair $(m,n)$, the bond vectors $\lvect{r}$ that enter the sums and the values of $\alpha_{mn}(\lvect{r})$ and $\gamma_{mn}(\lvect{r})$ on them. In the nearest-neighbour approximation:
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{c|c|c|c|c}
-    $(m,n)$ & bond vectors $\lvect{r}$ & $\alpha_{mn}(\lvect{r})$ & $\gamma_{mn}(\lvect{r})$ & $H_{mn}(\lvect{r}) = E_p\alpha_{mn}+\gamma_{mn}$ \\ \hline
-    $(A,A)$ & $0$ & $1$ & $\gamma_{AA}(0)$ & $E_p+\gamma_{AA}(0)\equiv\varepsilon$ \\
-    $(B,B)$ & $0$ & $1$ & $\gamma_{BB}(0)$ & $E_p+\gamma_{BB}(0)=\varepsilon$ \\
-    $(A,B)$ & $\lvect{\delta}_1,\lvect{\delta}_2,\lvect{\delta}_3$ & $0$ & $-t$ & $-t$ \\
-    $(B,A)$ & $-\lvect{\delta}_1,-\lvect{\delta}_2,-\lvect{\delta}_3$ & $0$ & $-t$ & $-t$
-\end{tabular}
-\end{center}
-Three inputs go into this table. First, the orbitals are taken orthogonal, $\alpha_{mn}(\lvect{r})=\delta_{mn}\delta_{\lvect{r},0}$, so the overlap is $1$ on-site and $0$ on every bond. Second, the on-site energy $\varepsilon\equiv E_p+\gamma_{AA}(0)$ is the same on both sublattices because the two atoms are identical; in the single-orbital notation, $\varepsilon=E_s-\beta$. Third, the hopping integral
+\paragraph{Real-space matrix elements.} Denote by $\psi$ the $p_z$ orbital, with atomic energy $E_p$, so that $\psi_A=\psi_B=\psi$. Three approximations fix every matrix element. The orbitals are orthogonal; the on-site energy $\varepsilon\equiv E_p+\gamma_{AA}(0)=E_p+\gamma_{BB}(0)$ is the same on both identical atoms ($\varepsilon=E_s-\beta$ in the single-orbital notation); and only nearest neighbours hop, with a single hopping integral $\gamma_{AB}(\lvect{\delta}_j)\equiv-t$ for all three bonds by the threefold rotation symmetry ($t=\gamma>0$). The bonds from an $A$ atom are $+\lvect{\delta}_j$ and those from a $B$ atom are $-\lvect{\delta}_j$; write $s_{AB}=+1$, $s_{BA}=-1$. Then
 \begin{equation}
-    \gamma_{AB}(\lvect{\delta}_j) = \bra{\psi(\lvect{x})}\Delta U_A\ket{\psi(\lvect{x}-\lvect{\delta}_j)} \equiv -t
-\end{equation}
-is the same for all three bonds, since they are related by the threefold rotation symmetry of the lattice; $t=\gamma>0$ in the notation of the single-orbital formula. The $(B,A)$ row follows in the same way from the bonds $-\lvect{\delta}_j$ leaving a $B$ atom.
-
-\paragraph{Summing over bonds.} Each entry of the $k$-space matrices is now obtained by applying $X_{mn}(\lvect{k})=\sum_{\lvect{r}}e^{i\lvect{k}\cdot\lvect{r}}X_{mn}(\lvect{r})$ to the corresponding row of the table. For the overlap matrix only $\lvect{r}=0$ contributes, with $e^{i\lvect{k}\cdot 0}=1$:
-\begin{equation}
-    \alpha_{AA}(\lvect{k}) = \alpha_{BB}(\lvect{k}) = 1,
+    \alpha_{mn}(\lvect{r}) = \delta_{mn}\,\delta_{\lvect{r},0},
     \qquad
-    \alpha_{AB}(\lvect{k}) = \sum_{j=1}^3 e^{i\lvect{k}\cdot\lvect{\delta}_j}\cdot 0 = 0 = \alpha_{BA}(\lvect{k}),
-    \qquad\Longrightarrow\qquad
-    \alpha(\lvect{k}) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+    H_{mn}(\lvect{r}) = \varepsilon\,\delta_{mn}\,\delta_{\lvect{r},0} \;-\; t\,(1-\delta_{mn})\sum_{j=1}^{3}\delta_{\lvect{r},\,s_{mn}\lvect{\delta}_j}.
 \end{equation}
-so the tight-binding equation $\varepsilon\,\alpha\,\lvect{c}=H\lvect{c}$ reduces to an ordinary eigenvalue problem. For the Hamiltonian, the diagonal entries again have a single term, while each off-diagonal entry is a sum of three terms, one per bond:
-\begin{align}
-    H_{AA}(\lvect{k}) &= e^{i\lvect{k}\cdot 0}\,\varepsilon = \varepsilon, \qquad H_{BB}(\lvect{k}) = \varepsilon, \\
-    H_{AB}(\lvect{k}) &= e^{i\lvect{k}\cdot\lvect{\delta}_1}(-t) + e^{i\lvect{k}\cdot\lvect{\delta}_2}(-t) + e^{i\lvect{k}\cdot\lvect{\delta}_3}(-t) = -t\,f(\lvect{k}), \\
-    H_{BA}(\lvect{k}) &= e^{-i\lvect{k}\cdot\lvect{\delta}_1}(-t) + e^{-i\lvect{k}\cdot\lvect{\delta}_2}(-t) + e^{-i\lvect{k}\cdot\lvect{\delta}_3}(-t) = -t\,f^*(\lvect{k}),
-\end{align}
-consistent with $H_{BA}=H_{AB}^*$ as required by hermiticity. The diagonal entries carry no $\lvect{k}$-dependence because there is no hopping between atoms of the same sublattice.
+
+\paragraph{Summing over bonds.} Applying $X_{mn}(\lvect{k})=\sum_{\lvect{r}}e^{i\lvect{k}\cdot\lvect{r}}X_{mn}(\lvect{r})$, each Kronecker delta collapses the sum onto one bond:
+\begin{equation}
+    \alpha_{mn}(\lvect{k}) = \delta_{mn},
+    \qquad
+    H_{mn}(\lvect{k}) = \varepsilon\,\delta_{mn} - t\,(1-\delta_{mn})\sum_{j=1}^{3} e^{i s_{mn}\lvect{k}\cdot\lvect{\delta}_j}.
+\end{equation}
+Hence $\alpha(\lvect{k})$ is the identity and the tight-binding equation is an ordinary eigenvalue problem, while
+\begin{equation}
+    H(\lvect{k}) = \begin{bmatrix} H_{AA} & H_{AB} \\ H_{BA} & H_{BB} \end{bmatrix}
+    = \begin{bmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{bmatrix},
+    \qquad f(\lvect{k})\equiv\sum_{j=1}^3 e^{i\lvect{k}\cdot\lvect{\delta}_j},
+\end{equation}
+Hermitian as required. The diagonal is $\lvect{k}$-independent because there is no hopping within a sublattice.
 
 \paragraph{The structure factor $f(\lvect{k})$.} Inserting the bond vectors, $\lvect{k}\cdot\lvect{\delta}_1 = k_ya/\sqrt3$ and $\lvect{k}\cdot\lvect{\delta}_{2,3} = \mp k_xa/2 - k_ya/2\sqrt3$, so
 \begin{equation}
@@ -1176,7 +1127,7 @@ consistent with $H_{BA}=H_{AB}^*$ as required by hermiticity. The diagonal entri
     = e^{ik_ya/\sqrt3} + e^{-ik_ya/2\sqrt3}\bigl(e^{-ik_xa/2}+e^{ik_xa/2}\bigr)
     = e^{ik_ya/\sqrt3}+2e^{-ik_ya/2\sqrt3}\cos\tfrac{k_xa}{2}.
 \end{equation}
-Collecting the four entries into a matrix gives the result.
+
 
 \begin{formula}[Graphene tight-binding Hamiltonian]
 \begin{equation}
@@ -1192,7 +1143,7 @@ with
 \end{equation}
 \end{formula}
 
-The eigenvalues follow from $\det\bigl[H(\lvect{k})-E\bigr] = (\varepsilon-E)^2 - t^2|f|^2 = 0$. The diagonal is constant because hopping always connects opposite sublattices; the two orbitals per cell give two bands, symmetric about $\varepsilon$.
+The eigenvalues follow from $\det\bigl[H(\lvect{k})-E\bigr] = (\varepsilon-E)^2 - t^2|f|^2 = 0$. The two orbitals per cell give two bands, symmetric about $\varepsilon$.
 
 \paragraph{Dirac points.} The bands touch where $f(\lvect{k})=0$. The reciprocal lattice is again triangular, and the Brillouin zone is a hexagon (Fig.~\ref{fig:graphene-bz}) whose corners lie at distance $4\pi/3a$ from $\Gamma$. At the corner $\lvect{K}=(4\pi/3a,\,0)$ one has $\cos(k_xa/2)=-\tfrac12$ and $|f|^2 = 1+1-2=0$. The six corners form two classes, $K$ and $K'$, each consisting of three corners related by reciprocal lattice vectors; $K'$ is related to $K$ by inversion.
 
