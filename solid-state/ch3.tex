@@ -978,7 +978,15 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 \subsection{Example: Graphene}
 \label{sec:bloch-graphene}
 
-Graphene is a single sheet of carbon atoms on a honeycomb lattice. The honeycomb is not a Bravais lattice; it is a \emph{triangular} Bravais lattice with a two-atom basis (sublattices $A$ and $B$), so remark~4 above applies and the tight-binding problem is a $2\times2$ matrix problem, one row per sublattice. Take one relevant orbital per atom (the $p_z$ orbital, which forms the low-energy $\pi$ bands) with on-site energy $\varepsilon$ and nearest-neighbour hopping $-t$ (this $t$ is the $\gamma$ of the single-orbital formula).
+Graphene is a single sheet of carbon atoms on a honeycomb lattice. The honeycomb is not a Bravais lattice; it is a \emph{triangular} Bravais lattice with a two-atom basis (sublattices $A$ and $B$), as in remark~4 above. This example shows how the general formalism of the previous subsections specialises to that case; the only new ingredient is that the ``orbital label'' $n$ now runs over the atoms of the basis.
+
+\paragraph{Dictionary to the general notation.} Let $\psi(\lvect{x})$ be the single carbon $p_z$ orbital --- the orbital that forms the low-energy $\pi$ bands --- with atomic energy $E_p$. In the general formulation the functions $\psi_n$ are the atomic orbitals, $\phi=\sum_n b_n\psi_n$ is the trial orbital, and $n$ labels which orbital sits at each lattice point $\cvect{R}$. Here there are two per unit cell:
+\begin{equation}
+    \psi_A(\lvect{x}-\cvect{R}) = \psi(\lvect{x}-\cvect{R}-\lvect{d}_A),
+    \qquad
+    \psi_B(\lvect{x}-\cvect{R}) = \psi(\lvect{x}-\cvect{R}-\lvect{d}_B),
+\end{equation}
+the same orbital $\psi$ centred on the $A$ and on the $B$ atom of the cell at $\cvect{R}$. So $m,n\in\{A,B\}$, the coefficient vector is $\lvect{c}=(b_A,b_B)^T$, and the Bloch state is $\psi_{\lvect{k}}=\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}\bigl(b_A\psi_A(\lvect{x}-\cvect{R})+b_B\psi_B(\lvect{x}-\cvect{R})\bigr)$ --- exactly remark~4. The tight-binding equation $\varepsilon\,\alpha(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$ is therefore a $2\times2$ problem, and we only have to evaluate the matrices $\alpha_{mn}(\lvect{k})$ and $H_{mn}(\lvect{k})$ of the previous subsections.
 
 \begin{figure}[ht]
 \centering
@@ -1015,26 +1023,61 @@ Graphene is a single sheet of carbon atoms on a honeycomb lattice. The honeycomb
 \label{fig:graphene-lattice}
 \end{figure}
 
-\paragraph{Hamiltonian.} Choose $\cvect{a}_1 = a(1,0)$ and $\cvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$. An $A$ atom has three nearest neighbours, all of type $B$, at
+\paragraph{Geometry.} Choose $\cvect{a}_1 = a(1,0)$ and $\cvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$, and put the $A$ atom of the cell $\cvect{R}=0$ at the origin. Its three nearest neighbours are all $B$ atoms, at
 \begin{equation}
     \lvect{\delta}_1 = \tfrac{a}{\sqrt3}(0,1), \qquad
     \lvect{\delta}_2 = \tfrac{a}{\sqrt3}\bigl(-\tfrac{\sqrt3}{2},-\tfrac12\bigr), \qquad
     \lvect{\delta}_3 = \tfrac{a}{\sqrt3}\bigl(\tfrac{\sqrt3}{2},-\tfrac12\bigr),
 \end{equation}
-and each $B$ atom has three $A$ neighbours at $-\lvect{\delta}_j$. Writing $\psi = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigl(a_{\lvect{k}}\phi_A + b_{\lvect{k}}\phi_B\bigr)$ and keeping only nearest-neighbour hopping, the tight-binding equation becomes $H(\lvect{k})\lvect{c}=E\lvect{c}$ with $\lvect{c}=(a_{\lvect{k}},b_{\lvect{k}})^T$ and
+so $\lvect{d}_B=\lvect{\delta}_1$ with $\lvect{d}_A=0$. Two of these neighbours lie in neighbouring unit cells: $\lvect{\delta}_2=\lvect{\delta}_1-\cvect{a}_2$ and $\lvect{\delta}_3=\lvect{\delta}_1+\cvect{a}_1-\cvect{a}_2$. In the language of the general formalism, the $B$ orbitals that overlap $\psi_A$ are those with cell vectors
 \begin{equation}
-    H(\lvect{k}) = \begin{pmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{pmatrix},
-    \qquad
-    f(\lvect{k}) = \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j}
-    = e^{ik_y a/\sqrt3} + 2e^{-ik_y a/2\sqrt3}\cos\tfrac{k_x a}{2}.
+    \cvect{R}\in\{\,0,\; -\cvect{a}_2,\; \cvect{a}_1-\cvect{a}_2\,\}.
 \end{equation}
-The diagonal entries vanish (beyond $\varepsilon$) because an $A$ atom has no $A$ nearest neighbours: hopping always connects the two sublattices. The eigenvalues are
+The next-nearest neighbours of an $A$ atom are other $A$ atoms at distance $a>a/\sqrt3$, and are dropped.
+
+\paragraph{The overlap matrix $\alpha(\lvect{k})$.} By the orthogonality assumption of the single-orbital formula, $\alpha_{mn}(\cvect{R})=\braket{\psi_m|\psi_n(\lvect{x}-\cvect{R})}=\delta_{mn}\delta_{\cvect{R},0}$: the orbital on one atom is orthogonal to every other. (The true overlap between neighbouring carbon $p_z$ orbitals is nonzero but small; it changes the bandwidth by a factor, not the qualitative results.) Then
+\begin{equation}
+    \alpha_{mn}(\lvect{k}) = \sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}\,\delta_{mn}\delta_{\cvect{R},0} = \delta_{mn},
+    \qquad\text{i.e.}\quad \alpha(\lvect{k})=\mathbb{1},
+\end{equation}
+which is why $\alpha(\lvect{k})$ ``went away'': it is the identity and the tight-binding equation reduces to an ordinary eigenvalue problem, $\varepsilon(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$, as in the single-band example.
+
+\paragraph{The matrix $H(\lvect{k})$.} The elements are $H_{mn}(\lvect{k})=\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}H_{mn}(\cvect{R})$ with $H_{mn}(\cvect{R})=E_p\,\alpha_{mn}(\cvect{R})+\gamma_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})=\bra{\psi_m}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})}$. Evaluate them one at a time.
+\begin{itemize}
+    \item \emph{Diagonal, $m=n=A$ (and likewise $B$).} Only the on-site term $\cvect{R}=0$ survives, since the same-sublattice neighbours are dropped. With $\alpha_{AA}(0)=1$,
+    \begin{equation}
+        H_{AA}=E_p+\gamma_{AA}(0)\equiv\varepsilon=H_{BB}.
+    \end{equation}
+    This $\varepsilon=E_p-\beta$ is the on-site energy of the single-band example, in which $-\beta=\gamma(0)$. There is no $\cvect{k}$-dependence because there are no same-sublattice hoppings.
+    \item \emph{Off-diagonal, $H_{AB}$.} Here $\alpha_{AB}(\cvect{R})=0$, so $H_{AB}(\cvect{R})=\gamma_{AB}(\cvect{R})$, and this is nonzero only for the three cell vectors listed above. By the equivalence of the three bonds, all three have the same value, which we call $-t$:
+    \begin{equation}
+        \gamma_{AB}(\cvect{R}) = \bra{\psi_A}\Delta U\ket{\psi_B(\lvect{x}-\cvect{R})} \equiv -t\qquad(\cvect{R}\in\{0,-\cvect{a}_2,\cvect{a}_1-\cvect{a}_2\}).
+    \end{equation}
+    \item \emph{Relation to $\gamma$.} The single-orbital formula defined $\gamma\equiv-\bra{\phi}\Delta U\ket{\phi(\lvect{x}-\cvect{R})}$ with a minus sign so that it is positive for an attractive $\Delta U$. The hopping matrix element above is the same integral, so $t=\gamma$: $t$ is nothing but the nearest-neighbour $\gamma$ between the two orbitals, and it is positive. (Hence ``$-t$'' in the Hamiltonian, and the minus sign in $\varepsilon=E_s-\beta-\sum\gamma\cos$.)
+\end{itemize}
+Summing the three off-diagonal terms with their Bloch phases,
+\begin{equation}
+    H_{AB}(\lvect{k}) = -t\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}} = -t\bigl(1+e^{-i\lvect{k}\cdot\cvect{a}_2}+e^{i\lvect{k}\cdot(\cvect{a}_1-\cvect{a}_2)}\bigr),
+    \qquad H_{BA}=H_{AB}^*,
+\end{equation}
+where $H_{BA}=H_{AB}^*$ because $H$ is Hermitian (equivalently, the $A$ neighbours of a $B$ atom sit at $-\cvect{R}$). It is more convenient to factor out the phase $e^{-i\lvect{k}\cdot\lvect{\delta}_1}$:
+\begin{equation}
+    H_{AB}(\lvect{k})=-t\,e^{-i\lvect{k}\cdot\lvect{\delta}_1}f(\lvect{k}),
+    \qquad
+    f(\lvect{k})\equiv\sum_{j=1}^3e^{i\lvect{k}\cdot\lvect{\delta}_j}
+    = e^{ik_ya/\sqrt3}+2e^{-ik_ya/2\sqrt3}\cos\tfrac{k_xa}{2},
+\end{equation}
+since $\lvect{\delta}_j-\lvect{\delta}_1\in\{0,-\cvect{a}_2,\cvect{a}_1-\cvect{a}_2\}$. The phase $e^{-i\lvect{k}\cdot\lvect{\delta}_1}$ arises because the cell-vector convention $e^{i\lvect{k}\cdot\cvect{R}}$ ignores where inside the cell the $B$ atom sits; it can be absorbed into the definition of $b_B\to e^{i\lvect{k}\cdot\lvect{\delta}_1}b_B$, a unitary change of basis that leaves the energies unchanged. Doing so, $f(\lvect{k})$ is simply the sum over the three bond vectors of $e^{i\lvect{k}\cdot\lvect{\delta}}$, and
+\begin{equation}
+    H(\lvect{k}) = \begin{pmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{pmatrix}.
+\end{equation}
+Hopping always connects the two sublattices, hence the off-diagonal form. The eigenvalues are
 \begin{equation}
     E_\pm(\lvect{k}) = \varepsilon \pm t\,|f(\lvect{k})|,
     \qquad
     |f|^2 = 1 + 4\cos^2\tfrac{k_x a}{2} + 4\cos\tfrac{k_x a}{2}\cos\tfrac{\sqrt3 k_y a}{2}.
 \end{equation}
-Two bands, symmetric about $\varepsilon$, as expected from a two-atom basis.
+Two bands, symmetric about $\varepsilon$, as expected from a two-atom basis: the dimension of the matrix equals the number of orbitals kept (remark~1).
 
 \paragraph{Dirac points.} The bands touch where $f=0$. The reciprocal lattice is triangular too, and its Brillouin zone is a hexagon (Fig.~\ref{fig:graphene-bz}) whose corners lie at distance $4\pi/3a$ from the centre. At the corner $\lvect{K}=(4\pi/3a,\,0)$, $\cos(k_xa/2)=-\tfrac12$ and $|f|^2 = 1+1-2=0$; the six corners fall into two inequivalent sets, $K$ and $K'=-K$, three corners each.
 
@@ -1108,7 +1151,7 @@ The dispersion is a cone, linear in $|\lvect{q}|$ --- \emph{not} the quadratic $
 \end{equation}
 which vanishes linearly at $E_F$. Graphene is therefore a \emph{semimetal} (zero-gap semiconductor): no gap, but no states at the Fermi level either. This is a result of the two-band structure with symmetric sublattices, not of any filling accident.
 
-\paragraph{Breaking sublattice symmetry.} If the $A$ and $B$ atoms are inequivalent (e.g.\ graphene on hexagonal boron nitride, or BN itself), the on-site energies differ, $\varepsilon_A=\varepsilon+\Delta$, $\varepsilon_B=\varepsilon$, and
+\paragraph{Breaking sublattice symmetry.} If the $A$ and $B$ atoms are inequivalent (e.g.\ graphene on hexagonal boron nitride, or BN itself), the two diagonal entries differ, $H_{AA}=\varepsilon+\Delta$ and $H_{BB}=\varepsilon$ (in the notation above, $E_m$ and $\gamma_{mm}(0)$ differ for $m=A,B$), while the off-diagonal hopping is unchanged:
 \begin{equation}
     H = \begin{pmatrix} \varepsilon+\Delta & -tf \\ -tf^* & \varepsilon \end{pmatrix},
     \qquad
