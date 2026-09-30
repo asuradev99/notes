@@ -6,7 +6,7 @@ Electric current is charge in motion; 1 ampere equals 1 coulomb per second. The 
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.35]
   % Frame (parallelogram to show tilt)
   \draw[thick, blue!70!black]
     (0,0) -- (2.5,0) -- (3.0,1.5) -- (0.5,1.5) -- cycle;
@@ -20,7 +20,8 @@ Electric current is charge in motion; 1 ampere equals 1 coulomb per second. The 
   }
   \node[red!70!black] at (-1.5,1.2) {$\lvect{u}$};
   % theta angle label
-  \node[font=\small] at (2.0,1.6) {$\theta$};
+  \draw[thin] (2.1,1.2) arc (39:78:0.55);
+  \node[font=\small] at (2.25,1.58) {$\theta$};
   % Area label
   \node[blue!60!black, font=\small] at (1.5,0.2) {area $A$};
 \end{tikzpicture}
@@ -159,7 +160,7 @@ In isotropic materials the conductivity is the same in all directions, so $I \pr
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
+\begin{tikzpicture}[scale=1.22]
   % Bar (rectangular prism approximation)
   % Front face
   \fill[blue!10] (0,0) rectangle (4.0,1.5);
@@ -175,7 +176,7 @@ In isotropic materials the conductivity is the same in all directions, so $I \pr
     \draw[-{Stealth[length=5pt]}, thick, red!70!black]
       (0.4,\y) -- (3.6,\y);
   }
-  \node[red!70!black] at (2.0,0.75) {$\vect{J}$};
+  \node[red!70!black, fill=blue!10, inner sep=1pt] at (2.0,0.95) {$\vect{J}$};
   % Length label
   \draw[<->, gray] (0,-0.4) -- (4.0,-0.4) node[midway, below]{$L$};
   % Area label
@@ -194,7 +195,7 @@ $\sigma_1 > \sigma_2$.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
+\begin{tikzpicture}[scale=1.22]
   % Two segments of the bar
   \fill[blue!10] (0,0) rectangle (2.6,1.5);
   \fill[blue!25] (2.6,0) rectangle (5.2,1.5);

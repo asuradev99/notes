@@ -89,22 +89,21 @@ where the first term is the electric force and the second is the magnetic force.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.35]
   % Magnetic field B into page (crosses)
   \foreach \x in {-2.0,-1.0,0,1.0,2.0} {
-    \foreach \y in {-1.2,0,1.2} {
-      \draw[gray!60] (\x,\y) -- ++(-0.13,0.13) ++(-0.13,-0.13) -- ++(0.13,-0.13);
-      \draw[gray!60] (\x,\y) -- ++(0.13,0.13) ++(-0.13,-0.13) -- ++(-0.13,0.13);
+    \foreach \y in {-1.3,-0.6,2.2} {
+      \draw[gray!60] (\x-0.1,\y-0.1) -- (\x+0.1,\y+0.1) (\x-0.1,\y+0.1) -- (\x+0.1,\y-0.1);
     }
   }
-  \node[gray] at (2.6,1.2) {$\vect{B}$ (into page)};
+  \node[gray, anchor=west] at (2.3,-0.6) {$\vect{B}$ (into page)};
   % Charge moving to the right
-  \filldraw[red] (-1.5,0) circle (4pt) node[above, black]{$+q$};
+  \filldraw[red] (-1.5,0) circle (4pt) node[left=2pt, black]{$+q$};
   \draw[-{Stealth[length=6pt]}, thick, red!80!black]
     (-1.5,0) -- (0.0,0) node[below]{$\lvect{v}$};
   % Magnetic force upward (v x B = right x into-page = up)
   \draw[-{Stealth[length=6pt]}, thick, blue!80!black]
-    (-1.5,0) -- (-1.5,1.2) node[right]{$\vect{F} = q\lvect{v}\times\vect{B}$};
+    (-1.5,0) -- (-1.5,1.2) node[above]{$\vect{F} = q\lvect{v}\times\vect{B}$};
 \end{tikzpicture}
 \end{center}
 \caption{A positive charge $+q$ moving to the right with velocity $\lvect{v}$ in a field $\vect{B}$ directed into the page. By the right-hand rule, $\vect{F} = q\lvect{v}\times\vect{B}$ points upward.}
@@ -252,7 +251,7 @@ Consider a rod in $F'$ parallel to the $x'$ axis, going from $x'_A$ to $x'_B$, s
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.95]
+\begin{tikzpicture}[scale=1.28]
   % ---- Frame F': rod at rest ----
   \draw[->] (0,2.6) -- (6.6,2.6) node[right, font=\small]{$x'$};
   \node[font=\small, left] at (0,3.15) {$F'$};
@@ -476,80 +475,3 @@ these two equations, given $\vect{J}$, uniquely determine $\vect{B}$ (by the Hel
 \begin{theorem}[Uniqueness Theorem]
 Assuming $\vect{B}$ vanishes at infinity, (1) and (2) determine $\vect{B}$, if $\vect{J}$ is given --- a special case of the \underline{Helmholtz Theorem}. (Proof: see Purcell p.\ 292.)
 \end{theorem}
-
-\section*{Vector Potential}
-
-The vector potential $\vect{A}$ represents $\vect{B}$ as $\curl\vect{A}$ (analogue of $\vect{E} = -\grad\phi$). In the Coulomb gauge $\div\vect{A}=0$, the condition $\curl(\curl\vect{A}) = \mu_0\vect{J}$ reduces to $\laplacian\vect{A} = -\mu_0\vect{J}$, whose solution is directly analogous to the electrostatic potential:
-\[
-  \vect{A}(x_1,y_1,z_1) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(x_2,y_2,z_2)\,dV_2}{r_{12}}.
-\]
-
-\section{Field of Any Current-Carrying Wire}
-
-For an arbitrary loop of wire:
-\[
-  J = \frac{I}{a}, \qquad dV_2 = a\,d\ell
-  \quad\Rightarrow\quad J\,dV_2 = I\,d\ell
-  \quad\Rightarrow\quad \vect{J}\,dV_2 = I\,d\vect{\ell}
-\]
-\[
-  \text{Thus}\quad \vect{A} = \frac{\mu_0 I}{4\pi}\int\frac{d\vect{\ell}}{r_{12}}
-\]
-
-In the $\hat{\phi}$ direction (at a point $(x, y, 0)$):
-\[
-  d\vect{A} = \hat{x}\,\frac{\mu_0 I}{4\pi}\frac{d\ell}{\sqrt{x^2+y^2+z^2}}
-\]
-\[
-  d\vect{B} = \curl(d\vect{A}) = \hat{z}\left(-\frac{\partial A_x}{\partial y}\right)
-  = \hat{z}\,\frac{\mu_0 I}{4\pi}\frac{y\,d\ell}{(x^2+y^2)^{3/2}}
-  = \hat{z}\,\frac{\mu_0 I}{4\pi}\frac{\sin\phi\,d\ell}{r^2}
-\]
-
-\begin{formula}[Biot--Savart Law]
-\[
-  d\vect{B} = \frac{\mu_0 I}{4\pi}\frac{d\vect{\ell}\times\hat{r}}{r^2}
-  \qquad\text{or}\qquad
-  d\vect{B} = \frac{\mu_0 I}{4\pi}\frac{d\vect{\ell}\times\lvect{r}}{r^3}
-\]
-\end{formula}
-
-The gauge freedom in $\vect{A}$ means one can add any gradient $\grad\psi$ (which gives zero when integrated around a closed path, since $\curl(\grad\psi)=0$) without changing $\vect{B}$.
-
-\section{Fields of Rings and Coils}
-
-At the center of the ring:
-\[
-  \boxed{B_z = \frac{\mu_0 I}{2b}}
-\]
-
-Solenoid: equivalent to a stack of current rings.
-\[
-  r = \frac{b}{2n\theta}
-\]
-
-Using the geometry: $x = r\,d\theta$, $\sin\theta = x/r$, so $h = x/\sin\theta$:
-\[
-  \Rightarrow\quad dI = I\cdot n\,\frac{r\,d\theta}{\sin\theta}
-\]
-By the ring formula:
-\[
-  dB_z = (2\pi)\frac{\mu_0 b^2}{2r^3} = \left(\frac{nI\,r\,d\theta}{\sin\theta}\right)\frac{\mu_0 b^2}{2r^3}
-  = \frac{\mu_0 nI}{2}\sin\theta\,d\theta
-\]
-\[
-  B_z = \frac{\mu_0 nI}{2}\int_{\theta_1}^{\theta_2}\sin\theta\,d\theta
-      = \frac{\mu_0 nI}{2}(\cos\theta_1 - \cos\theta_2)
-\]
-If $\theta_1 = 0$ and $\theta_2 = \pi$ (infinite coil):
-\[
-  \boxed{B_z = \mu_0 n I}
-\]
-
-\subsection*{Class Notes: Plane of Current}
-
-Current per unit length is $I/w$. A strip of width $dx$ carries current $dI = I\,d\vec{\ell} = \dfrac{I}{w}\,dx$.
-
-\[
-  B = \int_{-w/2}^{w/2} \frac{\mu_0\,dI}{2\pi r\cdot w}\cdot\cos\theta\,dx
-\]

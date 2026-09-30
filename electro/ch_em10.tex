@@ -1,55 +1,52 @@
-\section{Magnetic Field of a Single Infinite Sheet (Derivation)}
+\section{Magnetic Field of an Infinite Current Sheet}
 
-Continuing from the infinite-sheet calculation. The field from a single infinite current sheet with surface current density $K$ (in the $x$-direction):
-
+A sheet in the plane $y=0$ carries surface current density $K$ (current per unit width) in the $x$-direction. Treat it as many parallel wires: a strip of width $dz$ carries $dI = K\,dz$ and, at distance $r=\sqrt{z^2+y^2}$, produces a field of magnitude $\mu_0\,dI/2\pi r$ circling the strip. The components normal to the sheet cancel between strips at $\pm z$, and the components parallel to the sheet add, with a factor $\cos\theta = |y|/r$:
 \[
-    B = \int_{-w/2}^{w/2} \frac{\mu_0 I}{2\pi r_w} \, dx \cdot \cos\theta
+    |B| = \int_{-\infty}^{\infty} \frac{\mu_0 K\,dz}{2\pi r}\,\frac{|y|}{r}
+        = \frac{\mu_0 K |y|}{2\pi}\int_{-\infty}^{\infty} \frac{dz}{z^2+y^2}
+        = \frac{\mu_0 K}{2}.
 \]
-
+Compactly, $\vect{B} = \frac{\mu_0}{2}\,\vect{K}\times\uvect{n}$, with $\uvect{n}$ the unit normal pointing from the sheet toward the field point: here $\vect{B} = \pm\frac{\mu_0K}{2}\,\khat$ above and below.
+\begin{formula}[Field of an infinite current sheet]
 \[
-    B = \int_{-w/2}^{w/2} \frac{\mu_0 I \, y}{2\pi w (x^2 + y^2)} \, dx
+    |\vect{B}| = \frac{\mu_0 K}{2},
 \]
+parallel to the sheet and perpendicular to the current, reversing direction across the sheet and independent of the distance from it.
+\end{formula}
+Crossing the sheet, the parallel component of $\vect{B}$ jumps by $\mu_0K$, the magnetic analogue of the jump $\sigma/\varepsilon_0$ in the normal component of $\vect{E}$ across a sheet of charge.
 
-Using the standard integral $\displaystyle\int_{-a}^{a} \frac{1}{x^2 + y^2} \, dy = \frac{\pi}{y}$, so:
-
-\[
-    \Rightarrow \quad B = \frac{\mu_0 I}{2w} \, \hat{x}
-\]
+Amp\`ere's law gives the same result directly: a rectangular loop of length $\ell$ straddling the sheet encloses current $K\ell$, and only its two sides parallel to the sheet contribute, so $2B\ell = \mu_0K\ell$.
 
 \section{Magnetic Field of Two Parallel Planes}
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
-  % Two sheets
-  \fill[orange!15] (-3.5,0.9) rectangle (3.5,1.15);
-  \fill[orange!15] (-3.5,-1.15) rectangle (3.5,-0.9);
-  \draw[thick, orange!70!black] (-3.5,1.0) -- (3.5,1.0) node[right]{$K\hat{x}$};
-  \draw[thick, orange!70!black] (-3.5,-1.0) -- (3.5,-1.0) node[right]{$-K\hat{x}$};
-  % Between sheets: B fields add (pointing in +y direction, shown as arrows)
-  \foreach \x in {-2.5,-1.5,-0.5,0.5,1.5,2.5} {
-    \draw[-{Stealth[length=4pt]}, thick, blue!70!black]
-      (\x, -0.85) -- (\x, 0.85);
+\begin{tikzpicture}[scale=1.22]
+  % Two sheets (edge-on), currents along x
+  \fill[orange!15] (-3.5,1.0) rectangle (3.5,1.2);
+  \fill[orange!15] (-3.5,-1.2) rectangle (3.5,-1.0);
+  \draw[thick, orange!70!black] (-3.5,1.1) -- (3.5,1.1);
+  \draw[thick, orange!70!black] (-3.5,-1.1) -- (3.5,-1.1);
+  \draw[-{Stealth[length=6pt]}, very thick, orange!70!black] (-3.2,1.45) -- (-1.8,1.45) node[right] {$+K\ihat$};
+  \draw[-{Stealth[length=6pt]}, very thick, orange!70!black] (-1.8,-1.45) -- (-3.2,-1.45) node[left] {$-K\ihat$};
+  % Between: B into the page
+  \foreach \x in {-2.4,-1.2,1.2,2.4} {
+    \foreach \y in {-0.45,0.45} {
+      \draw[blue!70!black] (\x,\y) circle (0.14);
+      \draw[blue!70!black] (\x-0.1,\y-0.1) -- (\x+0.1,\y+0.1) (\x-0.1,\y+0.1) -- (\x+0.1,\y-0.1);
+    }
   }
-  \node[blue!70!black] at (0,0) {$\vect{B} = \mu_0 K\hat{y}$};
-  % Outside: fields cancel
-  \node[gray, font=\small] at (0,1.55) {$\vect{B} = 0$ (outside)};
-  \node[gray, font=\small] at (0,-1.55) {$\vect{B} = 0$ (outside)};
+  \node[blue!70!black, fill=white, inner sep=2pt] at (0,0) {$|\vect{B}| = \mu_0 K$ (into page)};
+  \node[gray, anchor=west] at (0.4,1.6) {$\vect{B} = 0$};
+  \node[gray, anchor=west] at (0.4,-1.6) {$\vect{B} = 0$};
 \end{tikzpicture}
 \end{center}
-\caption{Two infinite parallel current sheets with opposite surface current densities $+K\hat{x}$ and $-K\hat{x}$. Between the sheets the magnetic fields add ($B = \mu_0 K$); outside they cancel ($B = 0$). This is the magnetic analogue of a parallel-plate capacitor.}
+\caption{Two infinite parallel current sheets, seen edge-on, with opposite surface currents $\pm K\ihat$. Between the sheets their fields add to $\mu_0 K$, parallel to the sheets and perpendicular to the current; outside they cancel. This is the magnetic analogue of a parallel-plate capacitor.}
 \end{figure}
 
-The enclosed current is $I = \int \vect{J} \cdot d\vect{S}$, and Amp\`{e}re's law in differential form is:
+Superposing two sheets with opposite currents $\pm K\ihat$, the fields $\frac{\mu_0}{2}\vect{K}\times\uvect{n}$ add between the sheets and cancel outside, giving $|\vect{B}|=\mu_0K$ between and $0$ outside. In terms of the volume current density, Amp\`ere's law in differential form is
 \[
     \curl \vect{B} = \mu_0 \vect{J}
-\]
-
-\subsection{Amp\`{e}re's Law for an Infinite Sheet}
-
-Draw an Amp\`{e}rian loop of length $L$ straddling the sheet:
-\[
-    2BL = \mu_0 K L \quad \Rightarrow \quad B = \frac{\mu_0 K}{2}
 \]
 
 \subsection{Solenoid}
@@ -62,28 +59,24 @@ where $n$ is the number of turns per unit length.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
-  % Solenoid body (series of ellipses for coil)
-  \foreach \i in {0,1,2,3,4,5,6,7} {
-    \draw[thick, blue!60!black] ({0.5*\i},0) ellipse (0.18 and 0.6);
+\begin{tikzpicture}[scale=1.22]
+  % Solenoid in cross-section: current out of page on top, into page on bottom
+  \foreach \x in {0,0.4,...,4.0} {
+    \draw[blue!60!black] (\x,0.8) circle (0.1); \fill[blue!60!black] (\x,0.8) circle (0.03);
+    \draw[blue!60!black] (\x,-0.8) circle (0.1);
+    \draw[blue!60!black] (\x-0.07,-0.87) -- (\x+0.07,-0.73) (\x-0.07,-0.73) -- (\x+0.07,-0.87);
   }
-  % Axis
-  \draw[dashed, gray] (-0.5,0) -- (4.5,0);
   % Uniform B field inside
-  \foreach \y in {-0.3,0,0.3} {
-    \draw[-{Stealth[length=4pt]}, thick, red!70!black]
-      (0.2,\y) -- (3.3,\y);
+  \foreach \y in {-0.35,0,0.35} {
+    \draw[-{Stealth[length=4pt]}, thick, red!70!black] (0.1,\y) -- (3.9,\y);
   }
-  \node[red!70!black] at (1.75,0.5) {$\vect{B} = \mu_0 nI$};
-  % Outside B = 0
-  \node[gray, font=\small] at (4.2,0.8) {$B=0$};
-  % Amperian rectangle
-  \draw[dashed, green!60!black, thick]
-    (0.6,-0.9) rectangle (3.0,0.9);
-  % Amperian loop label
-  \node[green!60!black, font=\small] at (1.8,-1.2) {Amp\`{e}rian loop ($L$)};
-  % Current I annotation
-  \node[font=\small] at (-0.3,-0.8) {$I$};
+  \node[red!70!black, anchor=west] at (4.3,0) {$\vect{B} = \mu_0 nI$};
+  % Amperian rectangle: one long side inside, one outside
+  \draw[dashed, green!60!black, thick] (1.0,0.2) rectangle (2.6,1.35);
+  \node[green!60!black, font=\small, anchor=south] at (1.8,1.4) {Amp\`erian loop, length $L$};
+  \node[gray, font=\small, anchor=west] at (3.2,1.25) {$B=0$};
+  \node[font=\small, anchor=east] at (-0.2,0.8) {$I$ out};
+  \node[font=\small, anchor=east] at (-0.2,-0.8) {$I$ in};
 \end{tikzpicture}
 \end{center}
 \caption{Solenoid with $n$ turns per unit length. The Amp\`{e}rian rectangle (dashed) of length $L$ has one side inside (field $B$) and one outside ($B=0$). Amp\`{e}re's law gives $BL = \mu_0 nIL$, so $B = \mu_0 nI$.}
@@ -93,7 +86,7 @@ where $n$ is the number of turns per unit length.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
+\begin{tikzpicture}[scale=1.22]
   % Conductor body
   \fill[yellow!15] (0,-0.8) rectangle (4.5,0.8);
   \draw[thick] (0,-0.8) rectangle (4.5,0.8);
@@ -102,14 +95,14 @@ where $n$ is the number of turns per unit length.
     \draw[-{Stealth[length=4pt]}, thick, red!70!black]
       (0.5,\y) -- (1.8,\y);
   }
-  \node[red!70!black] at (1.1,0.55) {$I$};
+  \node[red!70!black, anchor=east] at (0.45,0) {$I$};
   % Magnetic field B downward (into page, shown as crosses)
-  \foreach \x in {0.5,1.5,2.5,3.5,4.0} {
-    \draw[gray!60] (\x,1.4) circle (0.12) node[font=\tiny]{$\times$};
+  \foreach \x in {0.5,1.5,2.5,3.5,4.5} {
+    \draw[gray!60] (\x,1.4) circle (0.12) (\x-0.08,1.32) -- (\x+0.08,1.48) (\x-0.08,1.48) -- (\x+0.08,1.32);
   }
   \node[gray, font=\small] at (2.0,1.8) {$\vect{B}$ (into page)};
   % Charge accumulation on bottom
-  \foreach \x in {1.0,2.0,3.0,4.0} {
+  \foreach \x in {2.2,3.0,3.8} {
     \node[blue!70!black, font=\small] at (\x,-0.65) {$-$};
     \node[red!70!black, font=\small] at (\x,0.65) {$+$};
   }
@@ -118,7 +111,7 @@ where $n$ is the number of turns per unit length.
     (4.8,-0.8) -- (4.8,0.8) node[midway, right]{$V_H$};
   % Hall E field arrow
   \draw[-{Stealth[length=5pt]}, thick, blue!60!black]
-    (2.3,-0.5) -- (2.3,0.5) node[right, font=\small]{$E_H$};
+    (2.6,-0.45) -- (2.6,0.45) node[pos=0.5, right, font=\small]{$E_H$};
 \end{tikzpicture}
 \end{center}
 \caption{Hall effect: current $I$ flows right in a conductor; field $\vect{B}$ is directed into the page. Charge carriers deflect downward (for electrons), building up $E_H$ until $eE_H = evB$. The Hall voltage $V_H = BIh/(neh\ell) = BI/(ne\ell)$ measures charge carrier density $n$.}
@@ -145,187 +138,120 @@ The sign of the Hall voltage reveals the sign of the charge carriers, and its ma
 
 \section{Magnetic Vector Potential}
 
-Let $\vect{B} = \curl \vect{A}$ (the \emph{magnetic vector potential}). Then $\div\vect{B} = 0$ is automatically satisfied because $\div(\curl \vect{A}) = 0$. The vector potential $\vect{A}$ is not uniquely defined: adding any gradient $\grad f$ to $\vect{A}$ leaves $\vect{B}$ unchanged (gauge freedom). The Coulomb gauge $\div\vect{A}=0$ is the standard choice in magnetostatics; it leads to $\laplacian\vect{A} = -\mu_0\vect{J}$, a vector Poisson equation analogous to the scalar Poisson equation $\laplacian\phi = -\rho/\epsilon_0$.
-
-In component form:
+Since $\div\vect{B}=0$, $\vect{B}$ can always be written as a curl,
 \[
-    \vect{B} = \begin{vmatrix} \hat{x} & \hat{y} & \hat{z} \\ \partial_x & \partial_y & \partial_z \\ A_x & A_y & A_z \end{vmatrix}
-    \quad \Rightarrow \quad B_x = \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}, \quad \text{etc.}
+    \vect{B} = \curl\vect{A},
 \]
+which satisfies $\div\vect{B}=\div(\curl\vect{A})=0$ automatically. $\vect{A}$ is the \emph{magnetic vector potential}. For example, the uniform field $\vect{B}=B_0\khat$ is produced by $\vect{A}=B_0x\,\jhat$, or equally by $\vect{A}=-B_0y\,\ihat$, or by $\vect{A}=\tfrac12B_0(-y\,\ihat+x\,\jhat)$.
 
-Example: for a uniform field $\vect{B} = B_0 \hat{z}$,
+\subsection{Gauge Freedom}
+
+As the example shows, $\vect{A}$ is not unique. Two potentials give the same $\vect{B}$ if and only if $\curl(\vect{A}-\vect{A}')=0$, i.e.\ $\vect{A}' = \vect{A}+\grad\psi$ for some scalar $\psi$. This freedom can be used to impose the \emph{Coulomb gauge} $\div\vect{A}=0$: if $\div\vect{A}=f\neq0$, choose $\psi$ with $\laplacian\psi=-f$, which is an electrostatics-type Poisson problem and always solvable, and then $\div\vect{A}'=0$.
+
+\subsection{The Vector Poisson Equation}
+
+In the Coulomb gauge, Amp\`ere's law $\curl\vect{B}=\mu_0\vect{J}$ becomes
 \[
-    \vect{A} = B_0 x \hat{y} \quad \text{or} \quad \vect{A} = -B_0 y \hat{x}
+    \curl(\curl\vect{A}) = \grad(\div\vect{A}) - \laplacian\vect{A} = -\laplacian\vect{A} = \mu_0\vect{J}.
 \]
-
-\subsection{Is \texorpdfstring{$\vect{A}$}{A} Unique? (Gauge Freedom)}
-
-We also know $\curl(\grad f) = 0$ for any scalar $f$. So if $\vect{A}$ and $\vect{A}'$ both give the same $\vect{B}$:
+\begin{formula}[Poisson equation for the vector potential]
 \[
-    \curl(\vect{A} - \vect{A}') = 0 \quad \Rightarrow \quad \vect{A} - \vect{A}' = \grad\psi
+    \laplacian\vect{A} = -\mu_0\vect{J},
+    \qquad\text{i.e.}\qquad
+    \laplacian A_i = -\mu_0 J_i \quad (i=x,y,z),
 \]
-for some scalar field $\psi$.
+three copies of the electrostatic Poisson equation $\laplacian\phi=-\rho/\varepsilon_0$.
+\end{formula}
+Each component is therefore solved exactly as in electrostatics, with $\rho/\varepsilon_0\to\mu_0J_i$:
 
-We can fix the gauge by imposing $\div \vect{A} = 0$ (Coulomb gauge):
+\begin{formula}[Vector potential of a current distribution]
 \[
-    \vect{A} - \vect{A}' = \grad\psi \quad \Rightarrow \quad \div\vect{A} - \div\vect{A}' = \nabla^2 \psi
+    \vect{A}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV',
+    \qquad
+    \vect{A}(\lvect{r}) = \frac{\mu_0 I}{4\pi}\oint\frac{d\lvect{\ell}\,'}{|\lvect{r}-\lvect{r}\,'|}\ \ \text{(thin wire)},
 \]
-
-Suppose we have $\curl\vect{A} = \vect{B}$ and $\div\vect{A} = f(\lvect{r})$. We know:
-\[
-    \div\vect{E} = \frac{\rho(x,y,z)}{\varepsilon_0}
-\]
-We can find a vector field such that $\div\vect{A}' = f(\lvect{r})$, then subtract it.
-
-\begin{fact}
-Be careful about integrating electric/magnetic fields from scratch: you could get a wrong answer automatically by not considering volume currents infinitely close to the point in question (see exercise 1.69, pg.\ 305). Solution: remove a thin strip.
-\end{fact}
-
-We already know for electrostatics:
-\[
-    \vect{E} = -\grad\phi, \qquad \nabla^2\phi = -\frac{\rho}{\varepsilon_0}
-\]
-
-\subsection{Uniform Magnetic Field and the Vector Potential Poisson Equation}
-
-In the Coulomb gauge ($\div\vect{A}=0$), Amp\`{e}re's law becomes:
-\[
-    \curl\vect{B} = \mu_0\vect{J}
-\]
-\[
-    \curl(\curl\vect{A}) = \mu_0\vect{J}
-\]
-\[
-    = \grad(\div\vect{A}) - \nabla^2\vect{A} = -\nabla^2\vect{A}
-\]
-since $\div\vect{A} = 0$. This gives three decoupled Poisson equations:
-
-\begin{formula}[Poisson Equations for the Vector Potential]
-\[
-    \nabla^2 A_x = -\mu_0 J_x, \qquad \nabla^2 A_y = -\mu_0 J_y, \qquad \nabla^2 A_z = -\mu_0 J_z
-\]
+using $\vect{J}\,dV = I\,d\lvect{\ell}$ for a wire.
 \end{formula}
 
-These are exactly analogous to $\nabla^2\phi = -\rho/\varepsilon_0$.
-
-\section{Solution for \texorpdfstring{$\vect{A}$}{A}: Analogy with Electrostatics}
-
-Recall that:
+\begin{example}[Long straight wire]
+A wire along $x$ carries current $I$. $A_x$ obeys the same equation as the potential of a line charge, with $\lambda/\varepsilon_0\to\mu_0I$, so by analogy with $\phi=\frac{\lambda}{2\pi\varepsilon_0}\ln(a/r)$,
 \[
-    \phi(\lvect{r}_1) = \iiint \frac{\rho_2}{4\pi\varepsilon_0 r_{12}} \, dV_2
+    A_x = \frac{\mu_0 I}{2\pi}\ln\frac{a}{r},
 \]
+with $r$ the distance from the wire and $a$ an arbitrary reference radius. Its curl gives $|\vect{B}| = |\partial A_x/\partial r| = \mu_0I/2\pi r$, circling the wire, as from Amp\`ere's law.
+\end{example}
 
-So for $A_x$:
+\section{The Biot--Savart Law}
+
+For a single current element, $d\vect{A} = \frac{\mu_0 I}{4\pi}\frac{d\lvect{\ell}}{r}$, with $r$ the distance from the element to the field point. Since $d\lvect{\ell}$ is fixed, $\curl(d\lvect{\ell}/r) = \grad(1/r)\times d\lvect{\ell}$, and $\grad(1/r) = -\rhat/r^2$ where $\rhat$ points from the element to the field point. Hence $d\vect{B}=\curl(d\vect{A})$ is
+
+\begin{formula}[Biot--Savart law]
 \[
-    A_x = \frac{\mu_0}{4\pi} \int \frac{J_x}{r_{12}} \, dV
-\]
-
-In general:
-\begin{formula}[Magnetic Vector Potential from Current]
-\[
-    \vect{A}(\lvect{r}_1) = \frac{\mu_0}{4\pi} \int \frac{\vect{J}(\lvect{r}_2)}{r_{12}} \, dV
-\]
-\end{formula}
-
-\subsection{Example: Long Wire}
-
-By analogy with the cylindrical capacitor ($E_r = \frac{\lambda}{2\pi\varepsilon_0 r}$, $\phi = \frac{\lambda}{2\pi\varepsilon_0}\ln(a/r)= \frac{\rho a^2}{2\varepsilon_0}\ln(a/r)$):
-
-\[
-    A_x = \frac{J_x \mu_0 a^2}{2} \ln\!\left(\frac{a}{r}\right) = \frac{\mu_0 I}{2\pi} \ln\!\left(\frac{a}{r}\right)
-\]
-
-So $\vect{A} = (A_x, 0, 0)$ and $\vect{B} = \curl\vect{A}$.
-
-\[
-    \vect{B} = -\frac{\partial A_x}{\partial z}\,\hat{z} + \cdots
-\]
-\[
-    \frac{\partial A_x}{\partial z} = \left(\frac{-\mu_0 I z}{2\pi r^2}\right) = B_y, \quad \text{etc.}
-\]
-
-\section{Biot--Savart Law from the Vector Potential}
-
-Biot-Savart gives the magnetic field produced by a steady current element $Id\vect{\ell}$ at displacement $\lvect{r}$. Note the cross product: the field circles around the current element, unlike the radial Coulomb field.
-
-\[
-    d\vect{B} = \curl(d\vect{A}), \quad \text{where} \quad d\vect{A} = \frac{\mu_0 I}{4\pi r}\,d\vect{\ell}
-\]
-\[
-    d\vect{B} = \frac{\mu_0 I}{4\pi}\,\curl\!\left(\frac{d\vect{\ell}}{r}\right)
-\]
-
-Using the product rule $\curl\!\left(\frac{d\vect{\ell}}{r}\right) = \frac{1}{r}\,\curl(d\vect{\ell}) + \grad\!\left(\frac{1}{r}\right)\times d\vect{\ell}$, and noting that $d\vect{\ell}$ is constant so $\curl(d\vect{\ell})=0$, and $\grad(1/r) = -\hat{r}/r^2$:
-
-\[
-    d\vect{B} = \frac{\mu_0 I}{4\pi}\left(d\vect{\ell} \times \grad\!\left(\frac{1}{r}\right)\right), \qquad \grad\!\left(\frac{1}{r}\right) = -\frac{\hat{r}}{r^2}
-\]
-
-\begin{formula}[Biot--Savart Law]
-\[
-    d\vect{B} = \frac{\mu_0 I}{4\pi r^2}\, d\vect{\ell} \times \hat{r}
+    d\vect{B} = \frac{\mu_0 I}{4\pi}\,\frac{d\lvect{\ell}\times\rhat}{r^2},
+    \qquad
+    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times(\lvect{r}-\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|^3}\,dV'.
 \]
 \end{formula}
+Unlike the radial Coulomb field, the field of a current element circles the element.
 
-\subsection{Field on Axis of a Circular Loop}
+\subsection{Field on the Axis of a Circular Loop}
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.35]
   % Circular loop (ellipse to suggest 3D)
   \draw[thick, blue!70!black] (0,0) ellipse (1.8 and 0.5);
   % Axis (z)
-  \draw[->] (0,-1.8) -- (0,2.8) node[right]{$z$};
+  \draw[->] (0,-1.0) -- (0,3.2) node[above]{$z$};
   % Field point P on z-axis
-  \filldraw[black] (0,2.0) circle (3pt) node[right]{$P$};
+  \filldraw[black] (0,2.0) circle (2pt) node[left=3pt]{$P$};
   % z label
-  \draw[<->, gray] (0.25,0) -- (0.25,2.0) node[midway,right, font=\small]{$z$};
+  \draw[<->, gray] (-0.75,0) -- (-0.75,1.85) node[midway,left, font=\small]{$z$};
   % R label
-  \draw[<->, gray] (0,0.08) -- (1.8,0.08) node[midway,above, font=\small]{$R$};
+  \draw[<->, gray] (0,0) -- (-1.8,0) node[midway,below, font=\small]{$R$};
   % Line element dl on loop
   \draw[-{Stealth[length=5pt]}, thick, red!70!black]
-    (1.6,0.3) -- (1.0,0.48)
-    node[above right, font=\small]{$d\vect{\ell}$};
+    (1.55,-0.26) -- (1.8,0.1)
+    node[right, font=\small]{$d\vect{\ell}$};
   % r vector from dl to P
   \draw[dashed, orange!80!black, -{Stealth[length=4pt]}]
-    (1.6,0.3) -- (0,2.0) node[midway, right, font=\small]{$r$};
+    (1.8,0) -- (0.05,1.95) node[midway, above right, font=\small]{$r$};
   % dB direction (along z at axis by symmetry)
   \draw[-{Stealth[length=5pt]}, thick, green!60!black]
-    (0,2.0) -- (0,2.7) node[right, font=\small]{$d\vect{B}$};
+    (0,2.0) -- (0,2.8) node[pos=0.6, right, font=\small]{$d\vect{B}_z$};
   % Loop label
-  \node[blue!60!black, font=\small] at (-2.2,0) {current $I$};
+  \node[blue!60!black, font=\small, anchor=north] at (0,-0.55) {current $I$};
 \end{tikzpicture}
 \end{center}
 \caption{Circular current loop of radius $R$ in the $xy$-plane. The field point $P$ is on the $z$-axis at height $z$. By symmetry, transverse components of $d\vect{B}$ cancel, and the net field is along $\hat{z}$.}
 \end{figure}
 
+Every element $d\lvect{\ell}$ of a loop of radius $R$ is perpendicular to the line to a point $P$ on the axis at height $z$, at distance $r=\sqrt{R^2+z^2}$, so $|d\vect{B}| = \mu_0 I\,d\ell/4\pi r^2$. The components perpendicular to the axis cancel around the loop; the axial component carries a factor $R/r$. Integrating $d\ell$ around the loop gives $2\pi R$:
+\begin{formula}[Field on the axis of a circular loop]
 \[
-    B = \frac{\mu_0 I}{4\pi r^2} \int \frac{d\vect{\ell}\times\hat{r}}{r}
-\]
-\[
-    \vect{B} = \frac{\mu_0 I}{4\pi} \int \frac{R\sin\theta}{R^2 + z^2} \, d\phi
-\]
-
-\begin{formula}[Field on Axis of a Circular Loop]
-\[
-    \vect{B} = \frac{\mu_0 I}{2} \frac{R^2}{(R^2 + z^2)^{3/2}}\,\hat{z}
+    \vect{B} = \frac{\mu_0 I}{4\pi}\,\frac{2\pi R}{r^2}\,\frac{R}{r}\,\khat = \frac{\mu_0 I}{2}\,\frac{R^2}{(R^2+z^2)^{3/2}}\,\khat,
+    \qquad
+    B_\text{centre} = \frac{\mu_0 I}{2R}.
 \]
 \end{formula}
 
-\subsection{Field on Axis of a Finite Solenoid}
+\subsection{Field on the Axis of a Solenoid}
 
-Each ring of the solenoid contributes:
+A solenoid with $n$ turns per unit length is a stack of loops; a slice $dz$ carries current $nI\,dz$. Measure the position of each slice by the angle $\theta$ between the axis and the line from the field point to the loop's rim, so that $z = R\cot\theta$ and $dz = -R\,d\theta/\sin^2\theta$, while $R^2/(R^2+z^2)^{3/2} = \sin^3\theta/R$. Then
 \[
-    d\vect{B} = \frac{\mu_0 R^2}{2(R^2+z^2)^{3/2}} n I \, dz
+    B_z = \frac{\mu_0 nI}{2}\int_{\theta_1}^{\theta_2}\sin\theta\,d\theta
+        = \frac{\mu_0 nI}{2}\bigl(\cos\theta_1-\cos\theta_2\bigr),
 \]
-Integrating from $-L/2$ to $L/2$:
+where $\theta_1,\theta_2$ are the angles subtended by the two ends.
+\begin{formula}[Field on the axis of a solenoid]
 \[
-    \vect{B} = \frac{\mu_0 n I}{2} \int_{-L/2}^{L/2} \frac{R^2}{(R^2+z^2)^{3/2}} \, dz
+    B_z = \frac{\mu_0 nI}{2}\bigl(\cos\theta_1-\cos\theta_2\bigr)
+    \;\xrightarrow{\ \text{centre, length }L\ }\;
+    \mu_0 nI\,\frac{L}{\sqrt{L^2+4R^2}}
+    \;\xrightarrow{\ L\to\infty\ }\;
+    \mu_0 nI .
 \]
-\[
-    \vect{B} = \mu_0 n I \frac{L}{\sqrt{L^2 + 4R^2}}\,\hat{z}
-\]
-
+\end{formula}
 
 \section{Lorentz Force}
 
@@ -371,47 +297,6 @@ Equilibrium condition $\vect{F}_g + \vect{F}_B = 0$ with $\vect{F}_g = m\lvect{g
 Thus $IB\ell = mg$, giving:
 \[
     \vect{I} = \frac{mg}{B\ell}\,\hat{y}
-\]
-
-\section{Example: Field of a Plane Current Sheet}
-
-A single infinite wire gives $\vect{B} = \frac{\mu_0 J}{2\pi r}\,\hat{\phi}$.
-
-In the continuum limit (many wires $\to$ a sheet), the surface current density is:
-\[
-    K = \text{line current density} = \frac{I}{\ell}
-\]
-The current in a strip of width $dx$ is $dI = K\,dx$.
-
-\[
-    dB_x = \frac{\mu_0 I}{2\pi r} \cdot \frac{K\,dx}{r} \cdot \cos\theta, \qquad \cos\theta = \frac{y}{r}
-\]
-\[
-    dB_x = \frac{\mu_0 K}{2\pi} \cdot \frac{y\,dx}{x^2+y^2}
-\]
-\[
-    B_x = \int_{-\infty}^{\infty} \frac{\mu_0 K y \, dx}{2\pi(x^2+y^2)} = \frac{\mu_0 K y}{2|y|}\,\hat{x}
-\]
-
-Thus:
-\[
-    \vect{B} = \begin{cases} \dfrac{\mu_0 K}{2}\,\hat{x} & y \geq 0 \\[6pt] -\dfrac{\mu_0 K}{2}\,\hat{x} & y \leq 0 \end{cases}
-\]
-
-The infinite sheet is independent of $y$ (distance from the sheet). When we cross the sheet of current:
-\[
-    |\Delta\vect{B}| = \mu_0 K
-\]
-This is similar to crossing a sheet of charge, where $|\Delta\vect{E}| = \sigma/\varepsilon_0$, but the $B$ field is parallel (not perpendicular) to the sheet.
-
-\subsection{Amp\`{e}re's Law Verification}
-
-Using a rectangular Amp\`{e}rian loop of width $\ell$ straddling the sheet:
-\[
-    \oint \vect{B}\cdot d\vect{\ell} = I_{\text{enc}}\,\mu_0
-\]
-\[
-    2B\ell = K\ell \quad \Rightarrow \quad |\vect{B}| = \frac{\mu_0 K}{2}
 \]
 
 \section{How the Fields Transform}
