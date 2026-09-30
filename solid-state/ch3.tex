@@ -838,24 +838,25 @@ Assume a single-atom-like wavefunction $\phi(\lvect{x})$ close to the true $\psi
 and build the crystal state as
 \begin{equation}
     \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\, \phi(\lvect{x}-\cvect{R}),
-    \qquad b_n = \braket{\psi_n | \phi}.
+    \qquad b_n = \braket{\psi_n}{\phi}.
 \end{equation}
+Here the $\psi_n$ are the \emph{exact atomic orbitals} (eigenstates of $H_{\text{at}}$), $\phi$ is the trial orbital that will sit at each site, and $b_n=\braket{\psi_n}{\phi}$ is the amplitude of atomic orbital $n$ in $\phi$ --- the inner product of $\psi_n$ with $\phi$. The $b_n$ are not known in advance; they are the unknowns fixed below.
 \end{formula}
 
 \subsection{Finding the Coefficients}
 
-We need the $b_n(\lvect{k})$. Start from $H\ket{\psi_{\lvect{k}}} = (H_{\text{at}} + \Delta U)\ket{\psi_{\lvect{k}}} = \varepsilon(\lvect{k})\ket{\psi_{\lvect{k}}}$ and project onto an atomic orbital. Since $\bra{\psi_m} H_{\text{at}} \ket{\psi_{\lvect{k}}} = E_m \braket{\psi_m | \psi_{\lvect{k}}}$,
+We need the $b_n(\lvect{k})$. Start from $H\ket{\psi_{\lvect{k}}} = (H_{\text{at}} + \Delta U)\ket{\psi_{\lvect{k}}} = \varepsilon(\lvect{k})\ket{\psi_{\lvect{k}}}$ and project onto an atomic orbital. Since $\bra{\psi_m} H_{\text{at}} \ket{\psi_{\lvect{k}}} = E_m \braket{\psi_m}{\psi_{\lvect{k}}}$,
 \begin{equation}
-    \bra{\psi_m} H \ket{\psi_{\lvect{k}}} = E_m \braket{\psi_m|\psi_{\lvect{k}}} + \bra{\psi_m}\Delta U\ket{\psi_{\lvect{k}}} = \varepsilon(\lvect{k}) \braket{\psi_m|\psi_{\lvect{k}}},
+    \bra{\psi_m} H \ket{\psi_{\lvect{k}}} = E_m \braket{\psi_m}{\psi_{\lvect{k}}} + \bra{\psi_m}\Delta U\ket{\psi_{\lvect{k}}} = \varepsilon(\lvect{k}) \braket{\psi_m}{\psi_{\lvect{k}}},
 \end{equation}
 so that
 \begin{equation}
-    \bigl(\varepsilon(\lvect{k}) - E_m\bigr) \braket{\psi_m | \psi_{\lvect{k}}} = \bra{\psi_m} \Delta U \ket{\psi_{\lvect{k}}}.
+    \bigl(\varepsilon(\lvect{k}) - E_m\bigr) \braket{\psi_m}{\psi_{\lvect{k}}} = \bra{\psi_m} \Delta U \ket{\psi_{\lvect{k}}}.
 \end{equation}
-Now insert $\ket{\psi_{\lvect{k}}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} \sum_n b_n \ket{\psi_n(\lvect{x}-\cvect{R})}$ and use $\braket{\psi_m|\psi_n} = \delta_{mn}$:
+Now insert $\ket{\psi_{\lvect{k}}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} \sum_n b_n \ket{\psi_n(\lvect{x}-\cvect{R})}$ and use $\braket{\psi_m}{\psi_n} = \delta_{mn}$:
 \begin{equation}
     \bigl(\varepsilon(\lvect{k}) - E_m\bigr) \sum_n b_n \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}
-    \underbrace{\braket{\psi_m | \psi_n(\lvect{x}-\cvect{R})}}_{\displaystyle \alpha_{mn}(\cvect{R})}
+    \underbrace{\braket{\psi_m}{\psi_n(\lvect{x}-\cvect{R})}}_{\displaystyle \alpha_{mn}(\cvect{R})}
     = \sum_n b_n \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}
     \underbrace{\bra{\psi_m} \Delta U \ket{\psi_n(\lvect{x}-\cvect{R})}}_{\displaystyle \gamma_{mn}(\cvect{R})}.
 \end{equation}
@@ -868,34 +869,38 @@ Rearranging gives the general constraint
 
 \subsection{The Tight-Binding Equation}
 
-Assume now that $\alpha_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})$ are negligible for $|\cvect{R}|$ beyond the nearest neighbours, so that the lattice sums run over a finite set. Define
-\begin{equation}
-    \alpha_{mn}(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} \alpha_{mn}(\cvect{R}),
-    \qquad
-    H_{mn}(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} H_{mn}(\cvect{R}),
-    \qquad
-    H_{mn}(\cvect{R}) = E_m \alpha_{mn}(\cvect{R}) + \gamma_{mn}(\cvect{R}).
-\end{equation}
-Then~\eqref{eq:bloch-tb-constraint} reads $\varepsilon(\lvect{k}) \sum_n b_n \alpha_{mn}(\lvect{k}) = \sum_n b_n H_{mn}(\lvect{k})$.
+Assume now that $\alpha_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})$ are negligible for $|\cvect{R}|$ beyond the nearest neighbours, so that the lattice sums run over a finite set, and define the matrices $\alpha_{mn}(\lvect{k})$ and $H_{mn}(\lvect{k})$ in the box below. Then~\eqref{eq:bloch-tb-constraint} reads $\varepsilon(\lvect{k}) \sum_n b_n \alpha_{mn}(\lvect{k}) = \sum_n b_n H_{mn}(\lvect{k})$.
 
 \begin{formula}[Tight-binding equation]
 \begin{equation}
     \varepsilon(\lvect{k})\, \alpha(\lvect{k})\, \lvect{c} = H(\lvect{k})\, \lvect{c},
-    \qquad \lvect{c} = (b_1, \ldots, b_n)^T.
+    \qquad \lvect{c} = (b_1, \ldots, b_n)^T,
 \end{equation}
+an $n\times n$ matrix eigenvalue problem at each $\lvect{k}$, where $n$ is the number of atomic orbitals $\psi_n$ kept, and
+\begin{gather}
+    \alpha_{mn}(\cvect{R}) = \braket{\psi_m}{\psi_n(\lvect{x}-\cvect{R})} = \int d\lvect{x}\;\psi_m^*(\lvect{x})\,\psi_n(\lvect{x}-\cvect{R}),\\
+    \gamma_{mn}(\cvect{R}) = \bra{\psi_m}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})} = \int d\lvect{x}\;\psi_m^*(\lvect{x})\,\Delta U(\lvect{x})\,\psi_n(\lvect{x}-\cvect{R}),\\
+    H_{mn}(\cvect{R}) = E_m\,\alpha_{mn}(\cvect{R}) + \gamma_{mn}(\cvect{R}),\\
+    \alpha_{mn}(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}}\,\alpha_{mn}(\cvect{R}),
+    \qquad
+    H_{mn}(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}}\,H_{mn}(\cvect{R}).
+\end{gather}
+$\alpha_{mn}(\cvect{R})$ is the overlap of orbital $m$ on the origin site with orbital $n$ on site $\cvect{R}$, and $\gamma_{mn}(\cvect{R})$ is the corresponding hopping integral of the potential $\Delta U$. $E_m$ is the atomic energy of orbital $\psi_m$, $\Delta U = H - H_{\text{at}}$ is the part of the crystal potential not belonging to the atom at the origin, and the sums run over $\cvect{R}=0$ and the nearest-neighbour lattice vectors. The coefficients $b_n$ are those of the expansion $\phi=\sum_n b_n\psi_n$. For a single orbital with $\alpha(\lvect{k})=1$ this reduces to $\varepsilon = E_s-\beta-\sum\gamma\cos(\lvect{k}\cdot\cvect{R})$ below.
 \end{formula}
+
+The $\gamma_{mn}(\cvect{R})$ here is the raw matrix element. The single-orbital formula below writes $\gamma\equiv-\gamma_{mm}(\cvect{R})$, with a sign flip so that the positive number $\gamma$ multiplies the cosines; this is the same quantity.
 
 \subsection{Application to an $s$-Band}
 
 \begin{example}[Single $s$-band]
-If there is only one band then $\alpha(\lvect{k}) = \mathbb{1}$ and $\lvect{c} \to 1$, so $\varepsilon(\lvect{k})\mathbb{1} = H(\lvect{k})$. With $\alpha_{mn}(\cvect{R}) = \delta_{mn}\delta_{\cvect{R},0}$,
+If there is only one band then $\alpha(\lvect{k}) = \mathbb{I}$ and $\lvect{c} \to 1$, so $\varepsilon(\lvect{k})\mathbb{I} = H(\lvect{k})$. With $\alpha_{mn}(\cvect{R}) = \delta_{mn}\delta_{\cvect{R},0}$,
 \begin{equation}
     H(\lvect{k}) = \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} \bigl( E_m \delta_{\cvect{R},0} + \gamma(\cvect{R}) \bigr)
     = E_m - \beta + \sum_{\text{n.n.}} e^{i\lvect{k}\cdot\cvect{R}} \gamma(\cvect{R}),
 \end{equation}
-where $-\beta = \gamma(0)$ is the on-site term. By inversion symmetry of the lattice $\Delta U(-\cvect{R}) = \Delta U(\cvect{R})$, so $\gamma(\cvect{R}) = \gamma$ is the same for all nearest neighbours and the exponentials combine into cosines:
+where $-\beta = \gamma(0)$ is the on-site term and the remaining sum excludes $\cvect{R}=0$. Inversion symmetry pairs each neighbour $\cvect{R}$ with $-\cvect{R}$ and gives $\gamma(-\cvect{R}) = \gamma(\cvect{R})$, so the exponentials combine into cosines. Writing the (negative) hopping integral as $\gamma(\cvect{R}) \equiv -\gamma$ with $\gamma>0$,
 \begin{equation}
-    \varepsilon(\lvect{k}) = E_s - \beta + \sum_{\text{n.n.}} \gamma \cos(\lvect{k}\cdot\cvect{R}).
+    \varepsilon(\lvect{k}) = E_s - \beta - \sum_{\text{n.n.}} \gamma \cos(\lvect{k}\cdot\cvect{R}).
 \end{equation}
 \end{example}
 
@@ -919,7 +924,7 @@ The 12 nearest neighbours of the origin in an FCC lattice sit at
 \end{equation}
 so $\lvect{k}\cdot\cvect{R} = \tfrac{a}{2}(\pm k_i \pm k_j)$ with $ij = xy,\, yz,\, xz$. Summing the twelve exponentials gives
 \begin{equation}
-    \varepsilon(\lvect{k}) = E_s - \beta - 4\gamma \sum_{ij} \cos(k_i a)\cos(k_j a).
+    \varepsilon(\lvect{k}) = E_s - \beta - 4\gamma \sum_{ij} \cos\tfrac{k_i a}{2}\cos\tfrac{k_j a}{2}.
 \end{equation}
 The intuition to carry away: the smaller the orbital overlap integral, the narrower the band.
 \end{example}
@@ -1035,10 +1040,10 @@ so $\lvect{d}_B=\lvect{\delta}_1$ with $\lvect{d}_A=0$. Two of these neighbours 
 \end{equation}
 The next-nearest neighbours of an $A$ atom are other $A$ atoms at distance $a>a/\sqrt3$, and are dropped.
 
-\paragraph{The overlap matrix $\alpha(\lvect{k})$.} By the orthogonality assumption of the single-orbital formula, $\alpha_{mn}(\cvect{R})=\braket{\psi_m|\psi_n(\lvect{x}-\cvect{R})}=\delta_{mn}\delta_{\cvect{R},0}$: the orbital on one atom is orthogonal to every other. (The true overlap between neighbouring carbon $p_z$ orbitals is nonzero but small; it changes the bandwidth by a factor, not the qualitative results.) Then
+\paragraph{The overlap matrix $\alpha(\lvect{k})$.} By the orthogonality assumption of the single-orbital formula, $\alpha_{mn}(\cvect{R})=\braket{\psi_m}{\psi_n(\lvect{x}-\cvect{R})}=\delta_{mn}\delta_{\cvect{R},0}$: the orbital on one atom is orthogonal to every other. (The true overlap between neighbouring carbon $p_z$ orbitals is nonzero but small; it changes the bandwidth by a factor, not the qualitative results.) Then
 \begin{equation}
     \alpha_{mn}(\lvect{k}) = \sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}\,\delta_{mn}\delta_{\cvect{R},0} = \delta_{mn},
-    \qquad\text{i.e.}\quad \alpha(\lvect{k})=\mathbb{1},
+    \qquad\text{i.e.}\quad \alpha(\lvect{k})=\mathbb{I},
 \end{equation}
 which is why $\alpha(\lvect{k})$ ``went away'': it is the identity and the tight-binding equation reduces to an ordinary eigenvalue problem, $\varepsilon(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$, as in the single-band example.
 
@@ -1048,7 +1053,7 @@ which is why $\alpha(\lvect{k})$ ``went away'': it is the identity and the tight
     \begin{equation}
         H_{AA}=E_p+\gamma_{AA}(0)\equiv\varepsilon=H_{BB}.
     \end{equation}
-    This $\varepsilon=E_p-\beta$ is the on-site energy of the single-band example, in which $-\beta=\gamma(0)$. There is no $\cvect{k}$-dependence because there are no same-sublattice hoppings.
+    This $\varepsilon=E_p-\beta$ is the on-site energy of the single-band example, in which $-\beta=\gamma(0)$. There is no $\lvect{k}$-dependence because there are no same-sublattice hoppings.
     \item \emph{Off-diagonal, $H_{AB}$.} Here $\alpha_{AB}(\cvect{R})=0$, so $H_{AB}(\cvect{R})=\gamma_{AB}(\cvect{R})$, and this is nonzero only for the three cell vectors listed above. By the equivalence of the three bonds, all three have the same value, which we call $-t$:
     \begin{equation}
         \gamma_{AB}(\cvect{R}) = \bra{\psi_A}\Delta U\ket{\psi_B(\lvect{x}-\cvect{R})} \equiv -t\qquad(\cvect{R}\in\{0,-\cvect{a}_2,\cvect{a}_1-\cvect{a}_2\}).
@@ -1137,8 +1142,8 @@ The dispersion is a cone, linear in $|\lvect{q}|$ --- \emph{not} the quadratic $
     xlabel={$k_x a$}, ylabel={$k_y a$}, zlabel={$(E-\varepsilon)/t$},
     domain=-4.2:4.2, y domain=-4.2:4.2, samples=26,
     zmin=-3.2, zmax=3.2, ticks=none, colormap/viridis]
-  \addplot3[surf, opacity=0.9] {0.6+sqrt(0.09+max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
-  \addplot3[surf, opacity=0.9] {0.6-sqrt(0.09+max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
+  \addplot3[surf, opacity=0.9] {0.6+sqrt(0.36+max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
+  \addplot3[surf, opacity=0.9] {0.6-sqrt(0.36+max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
 \end{axis}
 \end{tikzpicture}
 \caption{The two $\pi$ bands of graphene over the $(k_x,k_y)$ plane. Left: $\Delta=0$, the bands touch at the Dirac points. Right: a sublattice offset $\Delta\neq0$ (here $\Delta=1.2t$, energy measured from $\varepsilon$) opens a gap.}
@@ -1179,7 +1184,7 @@ and by Bloch's theorem it must be that $f_n(\cvect{R},\lvect{x}) = \phi_n(\lvect
 
 \begin{fact}[Orthogonality]
 \begin{equation}
-    \braket{\phi_n | \phi_m} = \braket{\phi_n(\lvect{x}-\cvect{R}_a) | \phi_n(\lvect{x}-\cvect{R}_b)} = 0.
+    \braket{\phi_n(\lvect{x}-\cvect{R}_a)}{\phi_m(\lvect{x}-\cvect{R}_b)} = \delta_{nm}\,\delta_{\cvect{R}_a\cvect{R}_b}.
 \end{equation}
 \end{fact}
 

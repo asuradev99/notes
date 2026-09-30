@@ -12,7 +12,7 @@ Localized spins $\lvect{S}_i$ on a lattice, coupled between neighbours by exchan
 \begin{equation}
     H = -J\sum_{\langle ij\rangle} \lvect{S}_i\cdot\lvect{S}_j,\qquad J>0,
 \end{equation}
-with each nearest-neighbour bond counted once. The ground state has all spins aligned, total spin $NS$. The lowest excitations are not single spin flips, which cost an energy of order $JS^2z$ ($z$ neighbours), but a spin deviation spread coherently over the whole lattice: one spin's worth of reduction, $\Delta S_{\text{tot}}=-1$, shared among all $N$ sites as a wave. Solving in the low-density (Holstein--Primakoff) approximation gives plane-wave excitations, the magnons, with
+with each nearest-neighbour bond counted once. The ground state has all spins aligned, total spin $NS$. The lowest excitations are not single spin flips, which cost an energy $2zJS$ ($z$ neighbours), but a spin deviation spread coherently over the whole lattice: one spin's worth of reduction, $\Delta S_{\text{tot}}=-1$, shared among all $N$ sites as a wave. Solving in the low-density (Holstein--Primakoff) approximation gives plane-wave excitations, the magnons, with
 
 \begin{formula}[Magnon dispersion]
 \begin{equation}
@@ -23,7 +23,7 @@ with each nearest-neighbour bond counted once. The ground state has all spins al
 where $\lvect{\delta}$ runs over the nearest neighbours.
 \end{formula}
 
-Unlike an acoustic phonon, the dispersion is \emph{quadratic}, $\omega\propto k^2$, not linear. The reason is that the uniform $\lvect{k}=0$ mode is a global rotation of all spins, which costs no energy (the Hamiltonian is rotationally invariant), but the ferromagnetic ground state has a net magnetisation, which is conserved: the ``velocity'' of the mode is proportional to the magnetisation and so does not vanish when the mode is at rest. Each magnon carries one unit of spin, so it \emph{lowers} the magnetisation by $g\mu_B$. Magnons are bosons, with occupation $n_{\lvect{k}}=1/(e^{\hbar\omega_{\lvect{k}}/k_BT}-1)$ and no conserved number, so there is no chemical potential.
+Unlike an acoustic phonon, the dispersion is \emph{quadratic}, $\omega\propto k^2$, not linear. The $\lvect{k}=0$ mode is a uniform rotation of all spins, which costs no energy because $H$ is rotationally invariant, so $\omega\to0$ as $k\to0$ as for any Goldstone mode. The difference from phonons is dynamical: the transverse spin components $S^x,S^y$ are conjugate to each other (spins precess, $\hbar\dot{\lvect{S}}=\lvect{S}\times\lvect{h}_{\text{eff}}$), so the equation of motion is first order in time and $\omega\propto k^2$; for phonons position and momentum are independent, the equation is second order, and $\omega^2\propto k^2$. Each magnon carries one unit of spin, so it \emph{lowers} the magnetisation by $g\mu_B$. Magnons are bosons, with occupation $n_{\lvect{k}}=1/(e^{\hbar\omega_{\lvect{k}}/k_BT}-1)$ and no conserved number, so there is no chemical potential.
 
 \subsection{Thermodynamics}
 
