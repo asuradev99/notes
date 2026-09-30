@@ -1,0 +1,76 @@
+\chapter{Magnetism}
+
+Phonons are the quantized oscillations of the ion positions; \emph{magnons} are the quantized oscillations of the ordered spins in a magnet. They are the low-energy excitations of a ferromagnet and bear the same relationship to its thermodynamics that phonons do to the lattice's.
+
+% ============================================================
+\section{Magnons}
+% ============================================================
+
+\subsection{The Heisenberg Ferromagnet}
+
+Localized spins $\lvect{S}_i$ on a lattice, coupled between neighbours by exchange, are described by
+\begin{equation}
+    H = -J\sum_{\langle ij\rangle} \lvect{S}_i\cdot\lvect{S}_j,\qquad J>0,
+\end{equation}
+with each nearest-neighbour bond counted once. The ground state has all spins aligned, total spin $NS$. The lowest excitations are not single spin flips, which cost an energy of order $JS^2z$ ($z$ neighbours), but a spin deviation spread coherently over the whole lattice: one spin's worth of reduction, $\Delta S_{\text{tot}}=-1$, shared among all $N$ sites as a wave. Solving in the low-density (Holstein--Primakoff) approximation gives plane-wave excitations, the magnons, with
+
+\begin{formula}[Magnon dispersion]
+\begin{equation}
+    \hbar\omega(\lvect{k}) = 2JS\sum_{\lvect{\delta}}\bigl(1-\cos\lvect{k}\cdot\lvect{\delta}\bigr)
+    \;\xrightarrow{\;ka\ll1\;}\; D\,k^2,
+    \qquad D = 2JSa^2\ \text{(simple cubic)},
+\end{equation}
+where $\lvect{\delta}$ runs over the nearest neighbours.
+\end{formula}
+
+Unlike an acoustic phonon, the dispersion is \emph{quadratic}, $\omega\propto k^2$, not linear. The reason is that the uniform $\lvect{k}=0$ mode is a global rotation of all spins, which costs no energy (the Hamiltonian is rotationally invariant), but the ferromagnetic ground state has a net magnetisation, which is conserved: the ``velocity'' of the mode is proportional to the magnetisation and so does not vanish when the mode is at rest. Each magnon carries one unit of spin, so it \emph{lowers} the magnetisation by $g\mu_B$. Magnons are bosons, with occupation $n_{\lvect{k}}=1/(e^{\hbar\omega_{\lvect{k}}/k_BT}-1)$ and no conserved number, so there is no chemical potential.
+
+\subsection{Thermodynamics}
+
+\paragraph{Density of states.} A quadratic dispersion in $d$ dimensions has $g(\varepsilon)\propto \varepsilon^{d/2-1}$; in three dimensions $g(\varepsilon)=\dfrac{V}{4\pi^2}\Bigl(\dfrac{1}{D}\Bigr)^{3/2}\varepsilon^{1/2}$.
+
+\paragraph{Magnetisation.} At temperature $T$ the magnon population reduces the magnetisation from its saturation value $M_0$ by
+\begin{equation}
+    \Delta M = g\mu_B\int\frac{\dd^3k}{(2\pi)^3}\frac{1}{e^{Dk^2/k_BT}-1}
+    = g\mu_B\,\zeta(\tfrac32)\left(\frac{k_BT}{4\pi D}\right)^{3/2},
+\end{equation}
+and therefore
+
+\begin{formula}[Bloch $T^{3/2}$ law]
+\begin{equation}
+    M(T) = M_0\Bigl[1 - c\,T^{3/2}\Bigr],
+\end{equation}
+with $c$ set by $D$ and the spin density. The same integrals give the magnon energy and heat capacity,
+\begin{equation}
+    \frac{U}{V}=\tfrac32\zeta(\tfrac52)\,k_BT\left(\frac{k_BT}{4\pi D}\right)^{3/2},
+    \qquad
+    \frac{C_V}{V}=\tfrac{15}{4}\zeta(\tfrac52)\,k_B\left(\frac{k_BT}{4\pi D}\right)^{3/2}\propto T^{3/2}.
+\end{equation}
+\end{formula}
+
+\paragraph{Estimating $T_c$.} The spin-wave picture is only valid while few magnons are present, but extrapolating the Bloch law to $M(T_c)=0$ gives
+\begin{equation}
+    k_BT_c\sim 4\pi D\left(\frac{n_s}{\zeta(3/2)}\right)^{2/3}\!,
+\end{equation}
+where $n_s$ is the spin density (the deficit $\Delta M/g\mu_B$ equals $n_s$); $T_c$ is of order $JS$ times a number of order unity. This is the right scale but not quantitatively reliable, since it uses the small-$k$ dispersion and the non-interacting boson picture precisely where magnons are numerous and interact strongly; it typically errs by a factor of order two.
+
+\subsection{Magnons in $d$ Dimensions and Mermin--Wagner}
+
+Repeating the calculation with $g(\varepsilon)\propto\varepsilon^{d/2-1}$ gives $U\propto T^{d/2+1}$ and $C_V\propto T^{d/2}$, while for phonons $C_V\propto T^d$ and for electrons $C_V\propto T$ in every dimension:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+ & phonons ($\omega\propto k$) & magnons ($\omega\propto k^2$) & electrons \\
+\midrule
+$d$ dimensions & $T^{d}$ & $T^{d/2}$ & $T$ \\
+$d=3$ & $T^3$ & $T^{3/2}$ & $T$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The magnetisation deficit is
+\begin{equation}
+    \Delta M\propto\int\frac{k^{d-1}\dd k}{e^{Dk^2/k_BT}-1}\;\sim\;\int_0\frac{k_BT}{D}\,k^{d-3}\,\dd k,
+\end{equation}
+which converges at small $k$ only for $d>2$. In $d=1$ and $d=2$ the integral diverges at the infrared end: thermal magnons destroy the order at any $T>0$. This is the spin-wave version of the \emph{Mermin--Wagner theorem}: a continuous symmetry (here spin rotations) cannot be spontaneously broken at finite temperature in $d\le2$ for short-range interactions. In $d=3$ the integral converges, and order survives up to $T_c$.

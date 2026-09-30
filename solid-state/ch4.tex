@@ -579,6 +579,38 @@ The Debye frequency is thus the maximum possible phonon frequency of the lattice
 \end{fact}
 
 % ============================================================
+\section{Heat Capacity in Other Dimensions}
+% ============================================================
+
+The Debye $T^3$ law is a three-dimensional statement; the same machinery in other dimensions shows how it arises from the density of states.
+
+\begin{example}[One-dimensional chain]
+For the monatomic chain, $\omega(k)=\omega_m\sin(ka/2)$ with $\omega_m = 2\sqrt{K/m}$ (Section on the one-dimensional chain). Counting both signs of $k$,
+\begin{equation}
+    g(\omega) = 2\cdot\frac{L}{2\pi}\Big/\frac{\dd\omega}{\dd k} = \frac{2N}{\pi\sqrt{\omega_m^2-\omega^2}},
+    \qquad \int_0^{\omega_m} g\,\dd\omega = N.
+\end{equation}
+The sum rule is satisfied with no free parameter, and $g$ has a van Hove divergence at the zone-boundary frequency $\omega_m$, where the dispersion is flat. At low $T$ only $g(0)=2N/\pi\omega_m$, a constant, matters, and
+\begin{equation}
+    C_V = k_B\int_0^\infty g(\omega)\,\frac{x^2e^x}{(e^x-1)^2}\,\dd\omega
+    \;\approx\; k_B\,g(0)\,\frac{k_BT}{\hbar}\cdot\frac{\pi^2}{3}
+    = \frac{2\pi}{3}\,Nk_B\,\frac{k_BT}{\hbar\omega_m},
+    \qquad x=\frac{\hbar\omega}{k_BT},
+\end{equation}
+linear in $T$.
+\end{example}
+
+\begin{fact}[Phonon heat capacity in $d$ dimensions]
+With a linear dispersion $\omega=vk$ the density of states is $g(\omega)\propto\omega^{d-1}$, so the energy is $U\propto\int\omega^{d-1}\,\omega\,n(\omega)\,\dd\omega\propto T^{d+1}$ and
+\begin{equation}
+    C_V^{\text{phonon}}\propto T^{d}.
+\end{equation}
+The convergence of the dimensionless integral $\int_0^\infty x^{d+1}e^x/(e^x-1)^2\,\dd x$ is not in doubt for any $d\ge1$: the integrand is $\sim x^{d}$ near $0$ and decays exponentially at large $x$.
+\end{fact}
+
+Electrons behave differently. Only states within $k_BT$ of the Fermi energy can be excited, and their number is $g(E_F)\,k_BT$ with $g(E_F)$ finite, so $C_V^{\text{el}}=\gamma T$ in \emph{every} dimension; the dimension enters only through the prefactor. The two contributions are equal at a crossover temperature $T^\ast=\sqrt{\gamma/A}$ (with $C_V=\gamma T+AT^3$), below which the electrons dominate; for a simple metal such as copper this lies at a few kelvin, so a plot of $C_V/T$ against $T^2$ is a straight line with intercept $\gamma$ and slope $A$.
+
+% ============================================================
 \section{Thermal Conductivity}
 % ============================================================
 

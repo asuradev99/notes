@@ -975,6 +975,155 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
     \item The method still assumes the independent-electron approximation, and so fails for magnetic materials.
 \end{enumerate}
 
+\subsection{Example: Graphene}
+\label{sec:bloch-graphene}
+
+Graphene is a single sheet of carbon atoms on a honeycomb lattice. The honeycomb is not a Bravais lattice; it is a \emph{triangular} Bravais lattice with a two-atom basis (sublattices $A$ and $B$), so remark~4 above applies and the tight-binding problem is a $2\times2$ matrix problem, one row per sublattice. Take one relevant orbital per atom (the $p_z$ orbital, which forms the low-energy $\pi$ bands) with on-site energy $\varepsilon$ and nearest-neighbour hopping $-t$ (this $t$ is the $\gamma$ of the single-orbital formula).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+    \def\d{0.9}
+    % honeycomb lattice: A sites on triangular lattice, B displaced by (0,d)
+    \foreach \i in {-2,...,2}{
+      \foreach \j in {-1,...,1}{
+        \pgfmathsetmacro{\x}{1.5588*\i+0.7794*\j}
+        \pgfmathsetmacro{\y}{1.35*\j}
+        \coordinate (A\i\j) at (\x,\y);
+        \coordinate (B\i\j) at (\x,\y+\d);
+        \draw[gray] (\x,\y) -- (\x,\y+\d);
+        \draw[gray] (\x,\y) -- (\x-0.7794,\y-0.45);
+        \draw[gray] (\x,\y) -- (\x+0.7794,\y-0.45);
+      }
+    }
+    \foreach \i in {-2,...,2}{
+      \foreach \j in {-1,...,1}{
+        \pgfmathsetmacro{\x}{1.5588*\i+0.7794*\j}
+        \pgfmathsetmacro{\y}{1.35*\j}
+        \fill[blue!70] (\x,\y) circle (2.5pt);
+        \fill[red!70] (\x,\y+\d) circle (2.5pt);
+      }
+    }
+    % unit cell and basis vectors from A site at origin
+    \draw[-{Stealth}, thick] (0,0) -- (1.5588,0) node[below, pos=0.6] {$\cvect{a}_1$};
+    \draw[-{Stealth}, thick] (0,0) -- (0.7794,1.35) node[left, pos=0.55] {$\cvect{a}_2$};
+    \draw[-{Stealth}, thick, green!50!black] (0,0) -- (0,\d) node[right, pos=0.5] {$\lvect{\delta}_1$};
+    \node[blue!70, font=\small] at (-0.3,-0.3) {$A$};
+    \node[red!70, font=\small] at (0.3,\d+0.35) {$B$};
+\end{tikzpicture}
+\caption{The honeycomb lattice: triangular Bravais lattice (vectors $\cvect{a}_1,\cvect{a}_2$, $|\cvect{a}_i|=a$) with $A$ (blue) and $B$ (red) atoms in the basis. Nearest-neighbour separation $a/\sqrt3$; the three vectors $\lvect{\delta}_j$ run from an $A$ atom to its $B$ neighbours.}
+\label{fig:graphene-lattice}
+\end{figure}
+
+\paragraph{Hamiltonian.} Choose $\cvect{a}_1 = a(1,0)$ and $\cvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$. An $A$ atom has three nearest neighbours, all of type $B$, at
+\begin{equation}
+    \lvect{\delta}_1 = \tfrac{a}{\sqrt3}(0,1), \qquad
+    \lvect{\delta}_2 = \tfrac{a}{\sqrt3}\bigl(-\tfrac{\sqrt3}{2},-\tfrac12\bigr), \qquad
+    \lvect{\delta}_3 = \tfrac{a}{\sqrt3}\bigl(\tfrac{\sqrt3}{2},-\tfrac12\bigr),
+\end{equation}
+and each $B$ atom has three $A$ neighbours at $-\lvect{\delta}_j$. Writing $\psi = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigl(a_{\lvect{k}}\phi_A + b_{\lvect{k}}\phi_B\bigr)$ and keeping only nearest-neighbour hopping, the tight-binding equation becomes $H(\lvect{k})\lvect{c}=E\lvect{c}$ with $\lvect{c}=(a_{\lvect{k}},b_{\lvect{k}})^T$ and
+\begin{equation}
+    H(\lvect{k}) = \begin{pmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{pmatrix},
+    \qquad
+    f(\lvect{k}) = \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j}
+    = e^{ik_y a/\sqrt3} + 2e^{-ik_y a/2\sqrt3}\cos\tfrac{k_x a}{2}.
+\end{equation}
+The diagonal entries vanish (beyond $\varepsilon$) because an $A$ atom has no $A$ nearest neighbours: hopping always connects the two sublattices. The eigenvalues are
+\begin{equation}
+    E_\pm(\lvect{k}) = \varepsilon \pm t\,|f(\lvect{k})|,
+    \qquad
+    |f|^2 = 1 + 4\cos^2\tfrac{k_x a}{2} + 4\cos\tfrac{k_x a}{2}\cos\tfrac{\sqrt3 k_y a}{2}.
+\end{equation}
+Two bands, symmetric about $\varepsilon$, as expected from a two-atom basis.
+
+\paragraph{Dirac points.} The bands touch where $f=0$. The reciprocal lattice is triangular too, and its Brillouin zone is a hexagon (Fig.~\ref{fig:graphene-bz}) whose corners lie at distance $4\pi/3a$ from the centre. At the corner $\lvect{K}=(4\pi/3a,\,0)$, $\cos(k_xa/2)=-\tfrac12$ and $|f|^2 = 1+1-2=0$; the six corners fall into two inequivalent sets, $K$ and $K'=-K$, three corners each.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.6]
+    \foreach \ang in {0,60,...,300}{
+      \coordinate (c\ang) at (\ang:1);
+    }
+    \draw[thick] (c0) -- (c60) -- (c120) -- (c180) -- (c240) -- (c300) -- cycle;
+    \foreach \ang/\lab in {0/K,120/K,240/K}{
+      \fill[blue!70] (\ang:1) circle (1.6pt);
+    }
+    \foreach \ang in {60,180,300}{
+      \fill[red!70] (\ang:1) circle (1.6pt);
+    }
+    \node[blue!70, right] at (c0) {$K$};
+    \node[red!70, above right] at (c60) {$K'$};
+    \node[blue!70, above left] at (c120) {$K$};
+    \node[red!70, left] at (c180) {$K'$};
+    \node[blue!70, below left] at (c240) {$K$};
+    \node[red!70, below right] at (c300) {$K'$};
+    \fill (0,0) circle (1.2pt) node[below left, font=\small] {$\Gamma$};
+    \draw[-{Stealth}] (-1.4,0) -- (1.5,0) node[right] {$k_x$};
+    \draw[-{Stealth}] (0,-1.15) -- (0,1.2) node[above] {$k_y$};
+\end{tikzpicture}
+\caption{The hexagonal Brillouin zone of graphene. The six corners split into two inequivalent classes, $K$ (blue) and $K'$ (red); the bands touch at these points.}
+\label{fig:graphene-bz}
+\end{figure}
+
+\paragraph{Dirac cone.} Expand about $\lvect{K}$ with $\lvect{k}=\lvect{K}+\lvect{q}$, $|\lvect{q}|a\ll1$. Using $\cos(2\pi/3+\theta)\approx-\tfrac12-\tfrac{\sqrt3}{2}\theta$,
+\begin{equation}
+    f(\lvect{K}+\lvect{q}) \approx \frac{\sqrt3 a}{2}\,(i q_y - q_x),
+    \qquad
+    E_\pm \approx \varepsilon \pm \hbar v_F |\lvect{q}|,
+    \qquad
+    v_F = \frac{\sqrt3\, a\, t}{2\hbar}.
+\end{equation}
+The dispersion is a cone, linear in $|\lvect{q}|$ --- \emph{not} the quadratic $\hbar^2q^2/2m$ of a free electron --- and near $K$ the Hamiltonian takes the Dirac form $H\simeq\varepsilon+\hbar v_F\,\vec\sigma\cdot\lvect{q}$ (up to a fixed rotation of the Pauli matrices), so the low-energy electrons behave as massless relativistic fermions with $v_F$ playing the role of the speed of light ($v_F\sim c/300$ in practice). The same holds at $K'$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=7.2cm, height=6.2cm, view={30}{25},
+    xlabel={$k_x a$}, ylabel={$k_y a$}, zlabel={$(E-\varepsilon)/t$},
+    domain=-4.2:4.2, y domain=-4.2:4.2, samples=26,
+    zmin=-3.2, zmax=3.2, ticks=none, colormap/viridis, hide axis=false]
+  \addplot3[surf, opacity=0.9] {sqrt(max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
+  \addplot3[surf, opacity=0.9] {-sqrt(max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    width=7.2cm, height=6.2cm, view={30}{25},
+    xlabel={$k_x a$}, ylabel={$k_y a$}, zlabel={$(E-\varepsilon)/t$},
+    domain=-4.2:4.2, y domain=-4.2:4.2, samples=26,
+    zmin=-3.2, zmax=3.2, ticks=none, colormap/viridis]
+  \addplot3[surf, opacity=0.9] {0.6+sqrt(0.09+max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
+  \addplot3[surf, opacity=0.9] {0.6-sqrt(0.09+max(0,1+4*cos(deg(x/2))^2+4*cos(deg(x/2))*cos(deg(0.866025*y))))};
+\end{axis}
+\end{tikzpicture}
+\caption{The two $\pi$ bands of graphene over the $(k_x,k_y)$ plane. Left: $\Delta=0$, the bands touch at the Dirac points. Right: a sublattice offset $\Delta\neq0$ (here $\Delta=1.2t$, energy measured from $\varepsilon$) opens a gap.}
+\label{fig:graphene-bands}
+\end{figure}
+
+\paragraph{Filling and density of states.} There is one $p_z$ electron per atom, hence two per unit cell, and with spin degeneracy exactly filling the lower band; the Fermi level sits at the Dirac points, $E_F=\varepsilon$. The band structure has no gap but the Fermi surface degenerates to the six points $K,K'$. Counting two valleys and two spins, the cone gives a density of states per unit area
+\begin{equation}
+    g(E) = \frac{2\,|E-\varepsilon|}{\pi\hbar^2 v_F^2},
+\end{equation}
+which vanishes linearly at $E_F$. Graphene is therefore a \emph{semimetal} (zero-gap semiconductor): no gap, but no states at the Fermi level either. This is a result of the two-band structure with symmetric sublattices, not of any filling accident.
+
+\paragraph{Breaking sublattice symmetry.} If the $A$ and $B$ atoms are inequivalent (e.g.\ graphene on hexagonal boron nitride, or BN itself), the on-site energies differ, $\varepsilon_A=\varepsilon+\Delta$, $\varepsilon_B=\varepsilon$, and
+\begin{equation}
+    H = \begin{pmatrix} \varepsilon+\Delta & -tf \\ -tf^* & \varepsilon \end{pmatrix},
+    \qquad
+    E_\pm = \varepsilon + \frac{\Delta}{2} \pm \sqrt{\frac{\Delta^2}{4} + t^2|f(\lvect{k})|^2}.
+\end{equation}
+Now $f=0$ no longer closes the gap: at $K$ the bands are split by exactly $\Delta$. Near the band edge, expanding the square root,
+\begin{equation}
+    E_\pm \approx \varepsilon+\frac{\Delta}{2} \pm\left(\frac{\Delta}{2} + \frac{\hbar^2 v_F^2 q^2}{\Delta}\right)
+    \;\Longrightarrow\;
+    \frac{\hbar^2q^2}{2m},
+    \qquad
+    m = \frac{\Delta}{2v_F^2} = \frac{2\Delta\hbar^2}{3t^2a^2}.
+\end{equation}
+The massless Dirac fermion has acquired a mass set by the gap: an ordinary band edge with a \emph{massive}, relativistic-looking dispersion $E=\sqrt{(\Delta/2)^2+(\hbar v_Fq)^2}$, and the semimetal has become an insulator.
+
 \subsection{Wannier Functions}
 
 Wannier functions form a basis for the atomic wavefunctions $\phi$. Any Bloch function can be written in the form
@@ -992,73 +1141,6 @@ and by Bloch's theorem it must be that $f_n(\cvect{R},\lvect{x}) = \phi_n(\lvect
 \end{fact}
 
 Because they are localized, Wannier functions are important for modelling semiclassical electron transport and defect states in semiconductors.
-
-% ============================================================
-\section{Lattice Fourier Transforms and Identities}
-% ============================================================
-
-Both models above lean on a handful of lattice Fourier identities, which we now collect. The starting point is that the plane waves $e^{i\lvect{k}\cdot\lvect{x}}$ form a complete basis for any well-behaved function on $\mathbb{R}^3$.
-
-\subsection{Functions Periodic in Real Space}
-
-If $f(\lvect{x}+\cvect{R}) = f(\lvect{x})$, then only those plane waves periodic in the lattice can appear --- that is, those with reciprocal lattice wavevectors:
-\begin{equation}
-    f(\lvect{x}) = \sum_{\cvect{G}} f_{\cvect{G}}\, e^{i\cvect{G}\cdot\lvect{x}},
-    \qquad
-    f_{\cvect{G}} = \frac{1}{v}\int_C d\lvect{x}\; e^{-i\cvect{G}\cdot\lvect{x}} f(\lvect{x}),
-\end{equation}
-where the integral runs over any primitive cell $C$ of volume $v$.
-
-\begin{theorem}[Vanishing of the cell integral]
-For a nonzero reciprocal lattice vector $\cvect{G}$, $\int_C d\lvect{x}\, e^{i\cvect{G}\cdot\lvect{x}} = 0$. Translating the unit cell does not change the integral, so
-\begin{equation}
-    \int_C d\lvect{x}\; e^{i\cvect{G}\cdot\lvect{x}} = \int_C d\lvect{x}\; e^{i\cvect{G}\cdot(\lvect{x}+\lvect{d})}
-    \;\Longrightarrow\;
-    \left(\int_C d\lvect{x}\; e^{i\cvect{G}\cdot\lvect{x}}\right)\bigl(e^{i\cvect{G}\cdot\lvect{d}} - 1\bigr) = 0.
-\end{equation}
-The second factor is never zero for generic $\lvect{d}$, so the integral vanishes.
-\end{theorem}
-
-\subsection{Functions Periodic in Reciprocal Space}
-
-Dually, a function periodic in reciprocal space is expanded on direct lattice vectors:
-\begin{equation}
-    \phi(\lvect{k}) = \sum_{\cvect{R}} e^{i\cvect{R}\cdot\lvect{k}}\, \phi_{\cvect{R}},
-    \qquad
-    \phi_{\cvect{R}} \equiv V \int \frac{d\lvect{k}}{(2\pi)^3}\, e^{-i\cvect{R}\cdot\lvect{k}}\, \phi(\lvect{k}).
-\end{equation}
-
-\subsection{Functions Periodic under Born--von Karman Boundary Conditions}
-
-The BVK boundary condition is $f(\lvect{x} + N_i \lvect{a}_i) = f(\lvect{x})$, which restricts the allowed wavevectors to
-\begin{equation}
-    \lvect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\, \lvect{b}_i, \qquad m_i \in \mathbb{Z}.
-\end{equation}
-The expansion then takes the form
-\begin{equation}
-    f(\lvect{x}) = \sum_{\lvect{k}} f_{\lvect{k}}\, e^{i\lvect{k}\cdot\lvect{x}},
-    \qquad
-    f_{\lvect{k}} \equiv \frac{1}{V}\int d\lvect{x}\; e^{-i\lvect{k}\cdot\lvect{x}} f(\lvect{x}),
-\end{equation}
-and again $\int_V d\lvect{x}\, e^{i\lvect{k}\cdot\lvect{x}} = 0$ for $\lvect{k} \neq 0$.
-
-\begin{theorem}[Sum of exponentials identity]
-For $\cvect{R}$ running over the lattice sites $\sum_{i=1}^3 n_i \lvect{a}_i$ with $0 \leq n_i < N_i$ and $N_1 N_2 N_3 = N$,
-\begin{equation}
-    \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} = N \delta_{\lvect{k},0}.
-\end{equation}
-The sum is invariant under displacing every site by a lattice vector $\cvect{R}_0$,
-\begin{equation}
-    \sum_{\cvect{R}} e^{i\lvect{k}\cdot(\cvect{R}+\cvect{R}_0)} = e^{i\lvect{k}\cdot\cvect{R}_0} \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}},
-\end{equation}
-so that $\bigl(e^{i\lvect{k}\cdot\cvect{R}_0} - 1\bigr)\bigl(\sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigr) = 0$. If $\lvect{k} = 0$ the sum is $\sum_{\cvect{R}} 1 = N$; if $\lvect{k} \neq 0$ the sum must vanish.
-\end{theorem}
-
-\begin{formula}[BVK identity]
-\begin{equation}
-    \sum_{\lvect{k}} e^{i\lvect{k}\cdot\cvect{R}} = N \delta_{\cvect{R},0}.
-\end{equation}
-\end{formula}
 
 % ============================================================
 \section{Wave Packets of Bloch Electrons}

@@ -548,6 +548,73 @@ The remainder of the story is that the form factor is what a single electron's s
 
 
 % ============================================================
+\section{Lattice Fourier Transforms and Identities}
+% ============================================================
+
+The reciprocal lattice enters everything that follows through a handful of lattice Fourier identities, collected here for reference: the diffraction sums above, and later the Bloch and tight-binding calculations, all use them. The starting point is that the plane waves $e^{i\lvect{k}\cdot\lvect{x}}$ form a complete basis for any well-behaved function on $\mathbb{R}^3$; below, $\lvect{b}_i$ are the reciprocal basis vectors $2\pi\lvect{a}^{\,*}_i$ of Section~\ref{sec:xrd-reciprocal}.
+
+\subsection{Functions Periodic in Real Space}
+
+If $f(\lvect{x}+\cvect{R}) = f(\lvect{x})$, then only those plane waves periodic in the lattice can appear --- that is, those with reciprocal lattice wavevectors:
+\begin{equation}
+    f(\lvect{x}) = \sum_{\cvect{G}} f_{\cvect{G}}\, e^{i\cvect{G}\cdot\lvect{x}},
+    \qquad
+    f_{\cvect{G}} = \frac{1}{v}\int_C d\lvect{x}\; e^{-i\cvect{G}\cdot\lvect{x}} f(\lvect{x}),
+\end{equation}
+where the integral runs over any primitive cell $C$ of volume $v$.
+
+\begin{theorem}[Vanishing of the cell integral]
+For a nonzero reciprocal lattice vector $\cvect{G}$, $\int_C d\lvect{x}\, e^{i\cvect{G}\cdot\lvect{x}} = 0$. Translating the unit cell does not change the integral, so
+\begin{equation}
+    \int_C d\lvect{x}\; e^{i\cvect{G}\cdot\lvect{x}} = \int_C d\lvect{x}\; e^{i\cvect{G}\cdot(\lvect{x}+\lvect{d})}
+    \;\Longrightarrow\;
+    \left(\int_C d\lvect{x}\; e^{i\cvect{G}\cdot\lvect{x}}\right)\bigl(e^{i\cvect{G}\cdot\lvect{d}} - 1\bigr) = 0.
+\end{equation}
+The second factor is never zero for generic $\lvect{d}$, so the integral vanishes.
+\end{theorem}
+
+\subsection{Functions Periodic in Reciprocal Space}
+
+Dually, a function periodic in reciprocal space is expanded on direct lattice vectors:
+\begin{equation}
+    \phi(\lvect{k}) = \sum_{\cvect{R}} e^{i\cvect{R}\cdot\lvect{k}}\, \phi_{\cvect{R}},
+    \qquad
+    \phi_{\cvect{R}} \equiv V \int \frac{d\lvect{k}}{(2\pi)^3}\, e^{-i\cvect{R}\cdot\lvect{k}}\, \phi(\lvect{k}).
+\end{equation}
+
+\subsection{Functions Periodic under Born--von Karman Boundary Conditions}
+
+The BVK boundary condition is $f(\lvect{x} + N_i \lvect{a}_i) = f(\lvect{x})$, which restricts the allowed wavevectors to
+\begin{equation}
+    \lvect{k} = \sum_{i=1}^{3} \frac{m_i}{N_i}\, \lvect{b}_i, \qquad m_i \in \mathbb{Z}.
+\end{equation}
+The expansion then takes the form
+\begin{equation}
+    f(\lvect{x}) = \sum_{\lvect{k}} f_{\lvect{k}}\, e^{i\lvect{k}\cdot\lvect{x}},
+    \qquad
+    f_{\lvect{k}} \equiv \frac{1}{V}\int d\lvect{x}\; e^{-i\lvect{k}\cdot\lvect{x}} f(\lvect{x}),
+\end{equation}
+and again $\int_V d\lvect{x}\, e^{i\lvect{k}\cdot\lvect{x}} = 0$ for $\lvect{k} \neq 0$.
+
+\begin{theorem}[Sum of exponentials identity]
+For $\cvect{R}$ running over the lattice sites $\sum_{i=1}^3 n_i \lvect{a}_i$ with $0 \leq n_i < N_i$ and $N_1 N_2 N_3 = N$,
+\begin{equation}
+    \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} = N \delta_{\lvect{k},0}.
+\end{equation}
+The sum is invariant under displacing every site by a lattice vector $\cvect{R}_0$,
+\begin{equation}
+    \sum_{\cvect{R}} e^{i\lvect{k}\cdot(\cvect{R}+\cvect{R}_0)} = e^{i\lvect{k}\cdot\cvect{R}_0} \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}} = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}},
+\end{equation}
+so that $\bigl(e^{i\lvect{k}\cdot\cvect{R}_0} - 1\bigr)\bigl(\sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigr) = 0$. If $\lvect{k} = 0$ the sum is $\sum_{\cvect{R}} 1 = N$; if $\lvect{k} \neq 0$ the sum must vanish.
+\end{theorem}
+
+\begin{formula}[BVK identity]
+\begin{equation}
+    \sum_{\lvect{k}} e^{i\lvect{k}\cdot\cvect{R}} = N \delta_{\cvect{R},0}.
+\end{equation}
+\end{formula}
+
+% ============================================================
 \section{X-Ray Diffraction}
 % ============================================================
 
