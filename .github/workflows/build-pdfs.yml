@@ -1,0 +1,62 @@
+name: Build PDFs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-latex-recommended texlive-latex-extra \
+            texlive-science texlive-pictures texlive-fonts-recommended
+
+      - name: Build every subject
+        run: |
+          mkdir -p site
+          for d in thermo-stat-mech class-mech electro methods waves solid-state circuits; do
+            (cd "$d" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex)
+            cp "$d"/*.pdf site/
+          done
+
+      - name: Write index page
+        run: |
+          {
+            echo '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            echo '<title>Physics Notes</title><h1>Physics Notes</h1><ul>'
+            for f in site/*.pdf; do
+              b=$(basename "$f")
+              echo "<li><a href=\"$b\">${b%.pdf}</a></li>"
+            done
+            echo '</ul>'
+          } > site/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
