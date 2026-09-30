@@ -410,6 +410,20 @@ summed over all reciprocal lattice vectors, with the coefficients $c_{\lvect{k}-
     \qquad \varepsilon^0_{\lvect{k}} \equiv \frac{\hbar^2 k^2}{2m}.
     \label{eq:bloch-central-eps}
 \end{equation}
+Labelling the reciprocal lattice vectors $\cvect{G}_1,\cvect{G}_2,\ldots$, this is one row of an (infinite) matrix eigenvalue problem for the column vector of plane-wave coefficients:
+\begin{equation}
+    \begin{bmatrix}
+        \varepsilon^0_{\lvect{k}-\cvect{G}_1} & U_{\cvect{G}_2-\cvect{G}_1} & U_{\cvect{G}_3-\cvect{G}_1} & \cdots \\
+        U_{\cvect{G}_1-\cvect{G}_2} & \varepsilon^0_{\lvect{k}-\cvect{G}_2} & U_{\cvect{G}_3-\cvect{G}_2} & \cdots \\
+        U_{\cvect{G}_1-\cvect{G}_3} & U_{\cvect{G}_2-\cvect{G}_3} & \varepsilon^0_{\lvect{k}-\cvect{G}_3} & \cdots \\
+        \vdots & \vdots & \vdots & \ddots
+    \end{bmatrix}
+    \begin{bmatrix} c_{\lvect{k}-\cvect{G}_1} \\ c_{\lvect{k}-\cvect{G}_2} \\ c_{\lvect{k}-\cvect{G}_3} \\ \vdots \end{bmatrix}
+    = \varepsilon
+    \begin{bmatrix} c_{\lvect{k}-\cvect{G}_1} \\ c_{\lvect{k}-\cvect{G}_2} \\ c_{\lvect{k}-\cvect{G}_3} \\ \vdots \end{bmatrix}
+    \qquad (U_0=0).
+\end{equation}
+The kinetic energies sit on the diagonal and the potential couples plane waves differing by a reciprocal lattice vector. For $U=0$ the matrix is diagonal, so each eigenvector is a single plane wave; the two cases below are perturbation theory on this matrix.
 For free electrons $U = 0$ and this collapses to
 \begin{equation}
     \bigl( \varepsilon^0_{\lvect{k}-\cvect{G}} - \varepsilon \bigr)\, c_{\lvect{k}-\cvect{G}} = 0,
@@ -516,6 +530,18 @@ so that to leading order the second sum drops out.
     = \sum_{j=1}^{m} U_{\cvect{G}_j-\cvect{G}_i}\, c_{\lvect{k}-\cvect{G}_j}.
     \label{eq:bloch-degen-system}
 \end{equation}
+In matrix form this is the $m\times m$ block of the full matrix above, restricted to the nearly degenerate plane waves:
+\begin{equation}
+    \begin{bmatrix}
+        \varepsilon^0_{\lvect{k}-\cvect{G}_1} & U_{\cvect{G}_2-\cvect{G}_1} & \cdots & U_{\cvect{G}_m-\cvect{G}_1} \\
+        U_{\cvect{G}_1-\cvect{G}_2} & \varepsilon^0_{\lvect{k}-\cvect{G}_2} & \cdots & U_{\cvect{G}_m-\cvect{G}_2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        U_{\cvect{G}_1-\cvect{G}_m} & U_{\cvect{G}_2-\cvect{G}_m} & \cdots & \varepsilon^0_{\lvect{k}-\cvect{G}_m}
+    \end{bmatrix}
+    \begin{bmatrix} c_{\lvect{k}-\cvect{G}_1} \\ c_{\lvect{k}-\cvect{G}_2} \\ \vdots \\ c_{\lvect{k}-\cvect{G}_m} \end{bmatrix}
+    = \varepsilon
+    \begin{bmatrix} c_{\lvect{k}-\cvect{G}_1} \\ c_{\lvect{k}-\cvect{G}_2} \\ \vdots \\ c_{\lvect{k}-\cvect{G}_m} \end{bmatrix}.
+\end{equation}
 \end{formula}
 
 \subsection{The Bragg Plane Condition}
@@ -562,9 +588,15 @@ Take $m = 2$, i.e.\ two electron levels within $U$ of each other. Then~\eqref{eq
     \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_1}\bigr) c_{\lvect{k}-\cvect{G}_1} &= U_{\cvect{G}_2-\cvect{G}_1}\, c_{\lvect{k}-\cvect{G}_2}, \\
     \bigl(\varepsilon - \varepsilon^0_{\lvect{k}-\cvect{G}_2}\bigr) c_{\lvect{k}-\cvect{G}_2} &= U_{\cvect{G}_1-\cvect{G}_2}\, c_{\lvect{k}-\cvect{G}_1}.
 \end{align}
-Letting $\lvect{q} = \lvect{k} - \cvect{G}_1$ and $\cvect{G} = \cvect{G}_2 - \cvect{G}_1$, a nontrivial solution requires
+Letting $\lvect{q} = \lvect{k} - \cvect{G}_1$ and $\cvect{G} = \cvect{G}_2 - \cvect{G}_1$ (and using $U_{-\cvect{G}}=U^*_{\cvect{G}}$ for a real potential), this is the $2\times2$ eigenvalue problem
 \begin{equation}
-    \det \begin{pmatrix} \varepsilon - \varepsilon^0_{\lvect{q}} & -U_{\cvect{G}} \\[2pt] -U^*_{\cvect{G}} & \varepsilon - \varepsilon^0_{\lvect{q}-\cvect{G}} \end{pmatrix} = 0,
+    \begin{bmatrix} \varepsilon^0_{\lvect{q}} & U_{\cvect{G}} \\[2pt] U^*_{\cvect{G}} & \varepsilon^0_{\lvect{q}-\cvect{G}} \end{bmatrix}
+    \begin{bmatrix} c_{\lvect{q}} \\ c_{\lvect{q}-\cvect{G}} \end{bmatrix}
+    = \varepsilon \begin{bmatrix} c_{\lvect{q}} \\ c_{\lvect{q}-\cvect{G}} \end{bmatrix},
+\end{equation}
+and a nontrivial solution requires
+\begin{equation}
+    \det \begin{bmatrix} \varepsilon - \varepsilon^0_{\lvect{q}} & -U_{\cvect{G}} \\[2pt] -U^*_{\cvect{G}} & \varepsilon - \varepsilon^0_{\lvect{q}-\cvect{G}} \end{bmatrix} = 0,
 \end{equation}
 whose roots are
 \begin{equation}
@@ -874,9 +906,26 @@ Assume now that $\alpha_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})$ are neglig
 \begin{formula}[Tight-binding equation]
 \begin{equation}
     \varepsilon(\lvect{k})\, \alpha(\lvect{k})\, \lvect{c} = H(\lvect{k})\, \lvect{c},
-    \qquad \lvect{c} = (b_1, \ldots, b_n)^T,
+    \qquad \lvect{c} = (b_1, \ldots, b_N)^T,
 \end{equation}
-an $n\times n$ matrix eigenvalue problem at each $\lvect{k}$, where $n$ is the number of atomic orbitals $\psi_n$ kept, and
+an $N\times N$ (generalised) matrix eigenvalue problem at each $\lvect{k}$, where $N$ is the number of atomic orbitals $\psi_n$ kept. Written out,
+\begin{equation}
+    \varepsilon(\lvect{k})
+    \begin{bmatrix}
+        \alpha_{11}(\lvect{k}) & \cdots & \alpha_{1N}(\lvect{k}) \\
+        \vdots & \ddots & \vdots \\
+        \alpha_{N1}(\lvect{k}) & \cdots & \alpha_{NN}(\lvect{k})
+    \end{bmatrix}
+    \begin{bmatrix} b_1 \\ \vdots \\ b_N \end{bmatrix}
+    =
+    \begin{bmatrix}
+        H_{11}(\lvect{k}) & \cdots & H_{1N}(\lvect{k}) \\
+        \vdots & \ddots & \vdots \\
+        H_{N1}(\lvect{k}) & \cdots & H_{NN}(\lvect{k})
+    \end{bmatrix}
+    \begin{bmatrix} b_1 \\ \vdots \\ b_N \end{bmatrix}:
+\end{equation}
+the matrices are indexed by pairs of orbitals $(m,n)$, the vector by a single orbital, and the energies are the roots of $\det\bigl[H(\lvect{k})-\varepsilon\,\alpha(\lvect{k})\bigr]=0$. The entries are
 \begin{gather}
     \alpha_{mn}(\cvect{R}) = \braket{\psi_m}{\psi_n(\lvect{x}-\cvect{R})} = \int d\lvect{x}\;\psi_m^*(\lvect{x})\,\psi_n(\lvect{x}-\cvect{R}),\\
     \gamma_{mn}(\cvect{R}) = \bra{\psi_m}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})} = \int d\lvect{x}\;\psi_m^*(\lvect{x})\,\Delta U(\lvect{x})\,\psi_n(\lvect{x}-\cvect{R}),\\
@@ -1045,9 +1094,19 @@ The next-nearest neighbours of an $A$ atom are other $A$ atoms at distance $a>a/
     \alpha_{mn}(\lvect{k}) = \sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}\,\delta_{mn}\delta_{\cvect{R},0} = \delta_{mn},
     \qquad\text{i.e.}\quad \alpha(\lvect{k})=\mathbb{I},
 \end{equation}
+that is,
+\begin{equation}
+    \alpha(\lvect{k}) = \begin{bmatrix} \alpha_{AA}(\lvect{k}) & \alpha_{AB}(\lvect{k}) \\ \alpha_{BA}(\lvect{k}) & \alpha_{BB}(\lvect{k}) \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+\end{equation}
 which is why $\alpha(\lvect{k})$ ``went away'': it is the identity and the tight-binding equation reduces to an ordinary eigenvalue problem, $\varepsilon(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$, as in the single-band example.
 
-\paragraph{The matrix $H(\lvect{k})$.} The elements are $H_{mn}(\lvect{k})=\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}H_{mn}(\cvect{R})$ with $H_{mn}(\cvect{R})=E_p\,\alpha_{mn}(\cvect{R})+\gamma_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})=\bra{\psi_m}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})}$. Evaluate them one at a time.
+\paragraph{The matrix $H(\lvect{k})$.} The elements are $H_{mn}(\lvect{k})=\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}H_{mn}(\cvect{R})$ with $H_{mn}(\cvect{R})=E_p\,\alpha_{mn}(\cvect{R})+\gamma_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})=\bra{\psi_m}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})}$. They are the four entries of
+\begin{equation}
+    H(\lvect{k}) = \begin{bmatrix} H_{AA}(\lvect{k}) & H_{AB}(\lvect{k}) \\ H_{BA}(\lvect{k}) & H_{BB}(\lvect{k}) \end{bmatrix},
+    \qquad
+    H(\lvect{k})\begin{bmatrix} b_A \\ b_B \end{bmatrix} = \varepsilon(\lvect{k})\begin{bmatrix} b_A \\ b_B \end{bmatrix},
+\end{equation}
+where row and column $A$ refer to the orbital on the $A$ atom, and $B$ to the $B$ atom. Evaluate them one at a time.
 \begin{itemize}
     \item \emph{Diagonal, $m=n=A$ (and likewise $B$).} Only the on-site term $\cvect{R}=0$ survives, since the same-sublattice neighbours are dropped. With $\alpha_{AA}(0)=1$,
     \begin{equation}
@@ -1074,7 +1133,11 @@ where $H_{BA}=H_{AB}^*$ because $H$ is Hermitian (equivalently, the $A$ neighbou
 \end{equation}
 since $\lvect{\delta}_j-\lvect{\delta}_1\in\{0,-\cvect{a}_2,\cvect{a}_1-\cvect{a}_2\}$. The phase $e^{-i\lvect{k}\cdot\lvect{\delta}_1}$ arises because the cell-vector convention $e^{i\lvect{k}\cdot\cvect{R}}$ ignores where inside the cell the $B$ atom sits; it can be absorbed into the definition of $b_B\to e^{i\lvect{k}\cdot\lvect{\delta}_1}b_B$, a unitary change of basis that leaves the energies unchanged. Doing so, $f(\lvect{k})$ is simply the sum over the three bond vectors of $e^{i\lvect{k}\cdot\lvect{\delta}}$, and
 \begin{equation}
-    H(\lvect{k}) = \begin{pmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{pmatrix}.
+    \begin{bmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{bmatrix}
+    \begin{bmatrix} b_A \\ b_B \end{bmatrix}
+    = E \begin{bmatrix} b_A \\ b_B \end{bmatrix},
+    \qquad
+    \det\begin{bmatrix} \varepsilon-E & -t f \\ -t f^* & \varepsilon-E \end{bmatrix} = (\varepsilon-E)^2 - t^2|f|^2 = 0.
 \end{equation}
 Hopping always connects the two sublattices, hence the off-diagonal form. The eigenvalues are
 \begin{equation}
@@ -1158,7 +1221,7 @@ which vanishes linearly at $E_F$. Graphene is therefore a \emph{semimetal} (zero
 
 \paragraph{Breaking sublattice symmetry.} If the $A$ and $B$ atoms are inequivalent (e.g.\ graphene on hexagonal boron nitride, or BN itself), the two diagonal entries differ, $H_{AA}=\varepsilon+\Delta$ and $H_{BB}=\varepsilon$ (in the notation above, $E_m$ and $\gamma_{mm}(0)$ differ for $m=A,B$), while the off-diagonal hopping is unchanged:
 \begin{equation}
-    H = \begin{pmatrix} \varepsilon+\Delta & -tf \\ -tf^* & \varepsilon \end{pmatrix},
+    H = \begin{bmatrix} \varepsilon+\Delta & -tf \\ -tf^* & \varepsilon \end{bmatrix},
     \qquad
     E_\pm = \varepsilon + \frac{\Delta}{2} \pm \sqrt{\frac{\Delta^2}{4} + t^2|f(\lvect{k})|^2}.
 \end{equation}
