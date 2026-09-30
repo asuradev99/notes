@@ -86,28 +86,19 @@ How does light know which path to take through a block?
 \begin{figure}[H]
 \begin{center}
 \begin{tikzpicture}[scale=1.0, >=Stealth]
-  % Interface
-  \draw[thick,dashed] (-1.5,0) -- (3.0,0);
-  % Media labels
-  \node[above left] at (-1.0,0.8) {$n_1$ (medium 1)};
-  \node[below left] at (-1.0,-0.5) {$n_2$ (medium 2)};
-  % Fill media
   \fill[blue!8] (-1.5,0) rectangle (3.0,2.0);
   \fill[orange!8] (-1.5,-1.5) rectangle (3.0,0);
-  % Incident ray
-  \draw[->,thick,blue] (-1.0,1.8) -- (1.0,0);
-  % Refracted ray
-  \draw[->,thick,red] (1.0,0) -- (2.5,-1.3);
-  % Normal line
-  \draw[dashed,gray] (1.0,1.5) -- (1.0,-1.2);
-  % Angle theta1
-  \draw (1.0,0.7) arc[start angle=90,end angle=118,radius=0.7];
-  \node[left,scale=0.85] at (0.7,0.85) {$\theta_1$};
-  % Angle theta2
-  \draw (1.0,-0.6) arc[start angle=270,end angle=302,radius=0.6];
-  \node[right,scale=0.85] at (1.2,-0.7) {$\theta_2$};
-  % Snell label
-  \node[right] at (2.6,-0.4) {$n_1\sin\theta_1 = n_2\sin\theta_2$};
+  \draw[thick,dashed] (-1.5,0) -- (3.0,0);
+  \node[anchor=north west] at (-1.45,1.95) {$n_1$ (medium 1)};
+  \node[anchor=south west] at (-1.45,-1.45) {$n_2$ (medium 2)};
+  \draw[->,thick,blue] (-0.2,1.8) -- (1.0,0);
+  \draw[->,thick,red] (1.0,0) -- (1.8,-1.4);
+  \draw[dashed,gray] (1.0,1.7) -- (1.0,-1.4);
+  \draw (1.0,0.8) arc[start angle=90,end angle=123.7,radius=0.8];
+  \node at (0.75,1.1) {$\theta_1$};
+  \draw (1.0,-0.8) arc[start angle=270,end angle=299.7,radius=0.8];
+  \node at (1.3,-1.05) {$\theta_2$};
+  \node[anchor=north] at (0.75,-1.6) {$n_1\sin\theta_1 = n_2\sin\theta_2$};
 \end{tikzpicture}
 \end{center}
 \caption{Snell's law from Fermat's principle: light refracts at the interface between media with speeds $v_1 = c/n_1$ and $v_2 = c/n_2$. The path of least time gives $n_1\sin\theta_1 = n_2\sin\theta_2$.}
@@ -134,11 +125,11 @@ that allows you to discern the path?
 ]
   % True path (parabola)
   \addplot[thick,blue,domain=0.5:3.5,samples=50]
-    {0.8 + 0.75*(x-0.5) + 0.04*(x-0.5)^2} node[pos=0.55,above,scale=0.8]{$x_0(t)$};
+    {0.8 + 0.5*(x-0.5) + 0.022*(x-0.5)^2} node[pos=0.7,below right]{$x_0(t)$};
   % Varied path (different curve)
   \addplot[thick,dashed,red,domain=0.5:3.5,samples=50]
-    {0.8 + 0.75*(x-0.5) + 0.04*(x-0.5)^2 + 0.25*sin(deg(pi*(x-0.5)/3))}
-    node[pos=0.45,below,scale=0.8]{$x_0+\delta$};
+    {0.8 + 0.5*(x-0.5) + 0.022*(x-0.5)^2 + 0.35*sin(deg(pi*(x-0.5)/3))}
+    node[pos=0.4,above left]{$x_0+\delta x$};
   % Endpoint marks
   \addplot[only marks,mark=*,mark size=1.5pt] coordinates {(0.5,0.8)(3.5,2.5)};
 \end{axis}
@@ -181,10 +172,10 @@ that allows you to discern the path?
   xlabel={$t$}, ylabel={$x(t)$},
   xmin=0, xmax=4, ymin=0, ymax=3,
   xtick={0.5,3.5}, xticklabels={$t_a$,$t_b$},
-  ytick={}, axis lines=left,
+  ytick=\empty, axis lines=left,
 ]
   \addplot[thick,blue,domain=0.5:3.5,samples=60]
-    {0.5+0.6*(x-0.5)+0.1*(x-0.5)^2} node[pos=0.6,above,scale=0.85]{$x(t)$};
+    {0.5+0.45*(x-0.5)+0.055*(x-0.5)^2} node[pos=0.6,above left]{$x(t)$};
   \addplot[only marks,mark=*,mark size=1.5pt] coordinates {(0.5,0.5)(3.5,2.35)};
 \end{axis}
 \end{tikzpicture}

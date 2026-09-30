@@ -17,25 +17,22 @@
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.1, >=Stealth]
-  % Contours of f (ellipses)
+\begin{tikzpicture}[scale=1.49, >=Stealth]
+  % Contours of f (ellipses centred on the unconstrained minimum)
   \foreach \r in {0.4,0.8,1.2,1.6} {
     \draw[blue!50,thin] (1.5,1.2) ellipse[x radius=\r, y radius=0.65*\r];
   }
-  \node[blue,scale=0.8] at (2.9,1.7) {$f = \text{const}$};
-  % Constraint curve g=0 (a line)
-  \draw[red,thick] (0.2,2.2) to[out=-30,in=170] (3.2,0.4);
-  \node[red,scale=0.8] at (3.0,0.7) {$g = 0$};
+  \node[blue,scale=0.8,anchor=east] at (-0.15,1.2) {$f = \text{const}$};
+  % Constraint g = 0, tangent to the r = 0.8 contour at P
+  \coordinate (P) at (1.9,1.650);
+  \draw[red,thick] ($(P)+(-1.8*0.936,1.8*0.351)$) -- ($(P)+(1.8*0.936,-1.8*0.351)$) node[right,scale=0.8]{$g = 0$};
   % Unconstrained minimum
-  \fill[blue] (1.5,1.2) circle[radius=0.06];
-  \node[above right,blue,scale=0.8] at (1.5,1.2) {unconstrained min};
-  % Constrained minimum (on curve)
-  \fill[ForestGreen] (1.7,1.7) circle[radius=0.07];
-  \node[above,ForestGreen,scale=0.8] at (1.7,1.7) {constrained min};
-  % Gradient arrows at constrained point
-  \draw[->,thick,blue] (1.7,1.7) -- (1.3,2.2) node[above,blue,scale=0.75]{$\nabla f$};
-  \draw[->,thick,red] (1.7,1.7) -- (1.3,2.2);  % parallel gradients
-  \node[right,red,scale=0.75] at (2.0,2.1) {$\nabla g \parallel \nabla f$};
+  \fill[blue] (1.5,1.2) circle[radius=0.05];
+  \node[below,blue,scale=0.8,fill=white,inner sep=1pt] at (1.5,1.12) {unconstrained min};
+  % Constrained minimum and parallel gradients
+  \fill[ForestGreen] (P) circle[radius=0.06];
+  \draw[->,thick,red] (P) -- ++(69.4:0.7) node[above right,scale=0.8]{$\nabla f\parallel\nabla g$};
+  \node[ForestGreen,scale=0.8,fill=white,inner sep=1pt,anchor=south east] at ($(P)+(-0.1,0.05)$) {constrained min};
 \end{tikzpicture}
 \end{center}
 \caption{Constrained minimization (Lagrange multipliers). The unconstrained minimum of $f$ (blue dot) lies off the constraint curve $g=0$ (red). The constrained minimum (green dot) occurs where $\nabla f = -\lambda\, \nabla g$, i.e.\ the gradients are parallel.}
@@ -80,7 +77,7 @@ We want $\hat{\nabla} \mathcal{L} = 0 \Rightarrow \vec{\nabla} f + \lambda \vec{
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0, >=Stealth]
+\begin{tikzpicture}[scale=2.52, >=Stealth]
   % Pivot
   \fill[pattern=north east lines] (-0.4,3.0) rectangle (0.4,3.3);
   \draw[thick] (-0.4,3.0) -- (0.4,3.0);
@@ -96,7 +93,7 @@ We want $\hat{\nabla} \mathcal{L} = 0 \Rightarrow \vec{\nabla} f + \lambda \vec{
   \draw (0,2.3) arc[start angle=270,end angle=299,radius=0.7];
   \node at (0.28,2.1) {$\theta$};
   % r label
-  \node[left] at (0.35,2.25) {$r=\ell$};
+  \node[right] at (0.55,2.25) {$r=\ell$};
   % Constraint label
   \node[below,red,scale=0.85] at (0.5,0.9) {constraint: $f(r,\theta) = r - \ell = 0$};
 \end{tikzpicture}

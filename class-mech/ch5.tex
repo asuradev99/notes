@@ -160,17 +160,17 @@ where $\vect{R}$ is the center of mass position.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0, >=Stealth]
+\begin{tikzpicture}[scale=1.35, >=Stealth]
   % Origin
   \fill (0,0) circle[radius=0.05];
   \node[below left] at (0,0) {$O$};
   % Particles
   \fill[blue!60] (1.5,2.2) circle[radius=0.09]; \node[above right] at (1.5,2.2) {$m_1$};
   \fill[blue!60] (3.0,1.0) circle[radius=0.09]; \node[right] at (3.0,1.0) {$m_2$};
-  \fill[blue!60] (2.2,0.4) circle[radius=0.09]; \node[below] at (2.2,0.4) {$m_3$};
+  \fill[blue!60] (2.2,0.4) circle[radius=0.09]; \node[below right] at (2.2,0.4) {$m_3$};
   % Position vectors
   \draw[->,gray] (0,0) -- (1.5,2.2); \node[left,gray,scale=0.85] at (0.6,1.3) {$\lvect{r}_1$};
-  \draw[->,gray] (0,0) -- (3.0,1.0); \node[below,gray,scale=0.85] at (1.7,0.55) {$\lvect{r}_2$};
+  \draw[->,gray] (0,0) -- (3.0,1.0); \node[above,gray,scale=0.85] at (2.1,0.72) {$\lvect{r}_2$};
   \draw[->,gray] (0,0) -- (2.2,0.4); \node[below left,gray,scale=0.85] at (1.2,0.2) {$\lvect{r}_3$};
   % CoM
   \fill[red] (2.2,1.2) circle[radius=0.1]; \node[above] at (2.2,1.3) {$\vect{R}$ (CoM)};
@@ -609,34 +609,26 @@ A rocket expels mass $\Delta m$ during a time interval $\Delta t$ at exhaust vel
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.95, >=Stealth]
+\begin{tikzpicture}[scale=1.28, >=Stealth]
   % === Before (top) ===
-  \node[left] at (-0.2,2.5) {\small\textbf{time $t$:}};
-  % Rocket body
+  \node[left] at (-1.4,2.5) {\small\textbf{time $t$:}};
   \fill[gray!30] (0.5,2.1) rectangle (2.5,2.9);
-  \draw[thick] (0.5,2.1) -- (2.5,2.1) -- (2.5,2.9) -- (0.5,2.9) -- cycle;
-  \draw[thick] (2.5,2.5) -- (3.0,2.5);  % nozzle
-  % Nose cone
-  \fill[gray!50] (0.0,2.5) -- (0.5,2.1) -- (0.5,2.9) -- cycle;
+  \draw[thick] (0.5,2.1) rectangle (2.5,2.9);
+  \fill[gray!50] (2.5,2.1) -- (3.0,2.5) -- (2.5,2.9) -- cycle;   % nose cone (front)
   \node at (1.5,2.5) {$M$};
-  % Velocity arrow
-  \draw[->,thick,blue] (3.0,2.5) -- (4.2,2.5) node[right]{$v$};
-
+  \draw[->,thick,blue] (3.1,2.5) -- (4.2,2.5) node[right]{$v$};
   % === After (bottom) ===
-  \node[left] at (-0.2,0.8) {\small\textbf{time $t+\Delta t$:}};
-  % Rocket body (lighter)
-  \fill[gray!30] (0.5,0.4) rectangle (2.2,1.2);
-  \draw[thick] (0.5,0.4) -- (2.2,0.4) -- (2.2,1.2) -- (0.5,1.2) -- cycle;
-  \draw[thick] (2.2,0.8) -- (2.6,0.8);
-  \fill[gray!50] (0.0,0.8) -- (0.5,0.4) -- (0.5,1.2) -- cycle;
-  \node at (1.35,0.8) {$M{-}\Delta m$};
-  % Rocket velocity
-  \draw[->,thick,blue] (2.6,0.8) -- (3.9,0.8) node[right]{$v{+}\Delta v$};
-  % Exhaust gas
-  \fill[orange!40] (2.8,0.55) rectangle (3.8,0.35);
-  \draw[thick,orange] (2.8,0.55) rectangle (3.8,0.35);
-  \node[below,orange,scale=0.8] at (3.3,0.35) {$\Delta m$};
-  \draw[->,thick,orange] (2.8,0.45) -- (1.8,0.45) node[left,scale=0.8]{exhaust $u$};
+  \node[left] at (-1.4,0.8) {\small\textbf{time $t+\Delta t$:}};
+  \fill[gray!30] (0.7,0.4) rectangle (2.5,1.2);
+  \draw[thick] (0.7,0.4) rectangle (2.5,1.2);
+  \fill[gray!50] (2.5,0.4) -- (3.0,0.8) -- (2.5,1.2) -- cycle;
+  \node at (1.6,0.8) {$M{-}\Delta m$};
+  \draw[->,thick,blue] (3.1,0.8) -- (4.2,0.8) node[right]{$v{+}\Delta v$};
+  % Exhaust leaves backward
+  \fill[orange!40] (-0.3,0.65) rectangle (0.3,0.95);
+  \draw[thick,orange] (-0.3,0.65) rectangle (0.3,0.95);
+  \node[below,orange] at (0,0.62) {$\Delta m$};
+  \draw[->,thick,orange] (-0.35,0.8) -- (-1.2,0.8) node[above,pos=0.5]{$u$};
 \end{tikzpicture}
 \end{center}
 \caption{Rocket of mass $M$ moving at $v$ (top). After $\Delta t$ (bottom): rocket has mass $M-\Delta m$ at speed $v+\Delta v$, expelled gas $\Delta m$ moves backward at exhaust speed $u$ relative to rocket.}
@@ -747,7 +739,7 @@ where $\dot{\lvect{p}}$ is the rate at which momentum flows through a hypothetic
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=1.55, >=Stealth]
   % Surface (vertical wall)
   \fill[pattern=north east lines] (3.5,-0.5) rectangle (3.8,1.5);
   \draw[thick] (3.5,-0.5) -- (3.5,1.5);

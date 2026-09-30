@@ -20,7 +20,7 @@ The entropy of an isolated system never decreases:
 The second law is not a consequence of any individual microscopic equation of motion (which is time-reversal invariant) but a statement about \emph{ensembles} of microstates. An initial macrostate corresponds to a compact blob in the $6N$-dimensional phase space. By Liouville's theorem, the blob's volume is conserved as it evolves, but it stretches and folds to overlap with an overwhelmingly larger number of macrostates --- entropy grows because of this increased overlap, not any change in volume.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   % Time axis (vertical)
   \draw[->,thick] (0,0) -- (0,5.2) node[left] {time};
 
@@ -42,10 +42,10 @@ The second law is not a consequence of any individual microscopic equation of mo
     .. controls (4.0,4.55) and (5.5,4.55) .. (6.0,4.0)
     .. controls (5.5,3.5)  and (4.0,3.45) .. (3.3,3.95)
     .. controls (2.6,3.45) and (1.5,3.45) .. (1.2,4.0);
-  \node at (3.6,4.0) {\small same volume};
+  \node[above] at (3.6,4.5) {\small same volume, spread out};
 
   % Annotation
-  \node[align=center,text width=4.2cm] at (5.5,2.4)
+  \node[align=center,text width=3.2cm] at (7.0,2.4)
     {\small same volume,\\ more macrostates\\ overlapped};
 
   % Flow arrows
@@ -182,17 +182,11 @@ Directly contacting a cold body at $T_C$ with a reservoir at $T_H > T_C$ is irre
   % System circles between reservoirs
   \foreach \i in {0,1,2,3} {
     \draw[thick,fill=yellow!50] (\i*2.1+1.6+0.25, 0.5) circle (0.22);
-    \node at (\i*2.1+1.6+0.25, 0.5) {\tiny S};
-  }
-
-  % Heat-flow arrows (downward into system from each reservoir)
-  \foreach \i in {0,1,2,3} {
-    \draw[->,red!70!black,thick] (\i*2.1+0.8, 0) -- (\i*2.1+1.6+0.25-0.18, 0.42);
+    \node at (\i*2.1+1.6+0.25, 0.5) {\footnotesize S};
   }
 
   % Process label
-  \node[above] at (4.2, 1.0) {\small reversible heating};
-  \draw[->] (0.8,1.0) -- (8.4+0.8,1.0) node[right] {};
+  \draw[->] (0.8,1.35) -- (8.4+0.8,1.35) node[midway,above] {\small reversible heating: $S$ touches each reservoir in turn};
 
   % Cold/Hot labels
   \node[below] at (0.8,-0.15) {\small cold};
@@ -217,7 +211,7 @@ The following statements are equivalent:
 Statements 1 and 2 are linked by $S(T) = S(0) + \int_0^T C(T')/T'\,dT'$: convergence of this integral as $T' \to 0$ requires $C(T') \to 0$. Statement 3 follows because as $T \to 0$ each isothermal step can remove only a vanishingly small amount of entropy, so each subsequent adiabatic temperature drop also vanishes --- absolute zero is approached only asymptotically.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   % Axes
   \draw[->,thick] (0,0) -- (6.5,0) node[right] {$S$};
   \draw[->,thick] (0,0) -- (0,5.0) node[above] {$T$};
@@ -225,8 +219,8 @@ Statements 1 and 2 are linked by $S(T) = S(0) + \int_0^T C(T')/T'\,dT'$: converg
 
   % Draw staircase
   \draw[thick,blue!70!black]
-    (5.8,4.2) -- (4.0,4.2) node[midway,above] {\tiny isothermal}
-              -- (4.0,3.0) node[midway,right] {\tiny adiabatic}
+    (5.8,4.2) -- (4.0,4.2)
+              -- (4.0,3.0)
               -- (2.7,3.0) -- (2.7,2.1) -- (1.7,2.1) -- (1.7,1.4)
               -- (1.05,1.4) -- (1.05,0.85) -- (0.6,0.85)
               -- (0.6,0.45) -- (0.32,0.45) -- (0.32,0.22);
@@ -262,7 +256,7 @@ A heat engine operates cyclically, absorbing heat $Q_+$ from a reservoir at $T_+
 \end{definition}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   % Hot reservoir (top)
   \draw[thick,fill=red!20] (1.5,4.0) rectangle (5.5,5.2);
   \node at (3.5,4.6) {\textbf{Hot reservoir} $T_+$};
@@ -312,12 +306,14 @@ The Carnot cycle is the canonical reversible heat engine operating between $T_+$
     % Carnot cycle: A(top-left), B(top-right), C(bottom-right), D(bottom-left)
     % Upper isotherm A->B (convex down)
     \draw[thick,blue!70!black] (0.7,3.8) .. controls (1.8,3.0) and (2.8,2.6) .. (3.8,2.2)
-      node[midway,above=2pt] {\tiny $T_+$, absorbs $Q_+$};
+;
+    \node[blue!70!black, anchor=south west] at (2.2,2.95) {\footnotesize $T_+$, absorbs $Q_+$};
     % Adiabatic expansion B->C (steeper)
     \draw[thick,green!50!black] (3.8,2.2) .. controls (4.2,1.5) and (4.4,1.0) .. (4.5,0.7);
     % Lower isotherm C->D
     \draw[thick,red!70!black] (4.5,0.7) .. controls (3.5,0.9) and (2.3,1.1) .. (1.2,1.4)
-      node[midway,below=2pt] {\tiny $T_-$, rejects $Q_-$};
+;
+    \node[red!70!black, anchor=north] at (2.9,0.8) {\footnotesize $T_-$, rejects $Q_-$};
     % Adiabatic compression D->A
     \draw[thick,green!50!black] (1.2,1.4) .. controls (0.9,2.2) and (0.75,3.0) .. (0.7,3.8);
 
@@ -352,8 +348,8 @@ The Carnot cycle is the canonical reversible heat engine operating between $T_+$
     % Rectangle: lower-left (S1,T-) to upper-right (S2,T+)
     \def\Sa{0.6} \def\Sb{3.8} \def\Tm{1.0} \def\Tp{3.8}
     \fill[gray!25] (\Sa,\Tm) rectangle (\Sb,\Tp);
-    \draw[thick,blue!70!black]   (\Sa,\Tp) -- (\Sb,\Tp) node[midway,above] {\tiny absorbs $Q_+$};
-    \draw[thick,red!70!black]    (\Sb,\Tm) -- (\Sa,\Tm) node[midway,below] {\tiny rejects $Q_-$};
+    \draw[thick,blue!70!black]   (\Sa,\Tp) -- (\Sb,\Tp) node[midway,above] {\footnotesize absorbs $Q_+$};
+    \draw[thick,red!70!black]    (\Sb,\Tm) -- (\Sa,\Tm) node[midway,below] {\footnotesize rejects $Q_-$};
     \draw[thick,green!50!black]  (\Sa,\Tm) -- (\Sa,\Tp);
     \draw[thick,green!50!black]  (\Sb,\Tp) -- (\Sb,\Tm);
 
@@ -371,11 +367,11 @@ The Carnot cycle is the canonical reversible heat engine operating between $T_+$
 
     % Area label
     \node[align=center] at (2.2,2.4) {$W$};
-    \node[align=center,font=\tiny] at (2.2,1.9) {$=(T_+-T_-)\Delta S$};
+    \node[align=center,font=\footnotesize] at (2.2,1.9) {$=(T_+-T_-)\Delta S$};
 
     % Adiabatic labels
-    \node[left,font=\tiny]  at (\Sa,2.4) {adiab.};
-    \node[right,font=\tiny] at (\Sb,2.4) {adiab.};
+    \node[left,font=\footnotesize]  at (\Sa,2.4) {adiab.};
+    \node[right,font=\footnotesize] at (\Sb,2.4) {adiab.};
   \end{scope}
 \end{tikzpicture}\\[3pt]
 {\small\itshape Carnot cycle: $P$--$V$ diagram (left) and $T$--$S$ diagram (right, a rectangle).}
@@ -435,7 +431,7 @@ Proof by contradiction: suppose engine $X$ has $\eta_X > \eta_\text{Carnot}$. Co
 Running the Carnot cycle in reverse: work $W_\text{in}$ is supplied, heat $Q_-$ is absorbed from the cold reservoir, and $Q_+ = Q_- + W_\text{in}$ is expelled to the hot reservoir.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   % Hot reservoir (top)
   \draw[thick,fill=red!20] (1.5,4.0) rectangle (5.5,5.2);
   \node at (3.5,4.6) {\textbf{Hot reservoir} $T_+$};
@@ -507,7 +503,8 @@ The Stirling cycle replaces the Carnot's adiabatic legs with \emph{isochoric} (c
     % Upper isotherm at T+ from V_A to V_C
     \draw[thick,blue!70!black]
       (1.0,4.3) .. controls (2.0,3.0) and (3.2,2.4) .. (4.0,2.0)
-      node[midway,above=3pt] {\small isothermal $T_+$};
+;
+    \node[blue!70!black, anchor=south west] at (2.3,3.2) {\small isothermal $T_+$};
 
     % Right isochoric: V_C, from T+ isotherm down to T- isotherm
     \draw[thick,orange!80!black] (4.0,2.0) -- (4.0,0.9)
@@ -516,7 +513,7 @@ The Stirling cycle replaces the Carnot's adiabatic legs with \emph{isochoric} (c
     % Lower isotherm at T- from V_C back to V_A
     \draw[thick,red!70!black]
       (4.0,0.9) .. controls (3.0,1.1) and (1.8,1.3) .. (1.0,1.6)
-      node[midway,below=3pt] {\small isothermal $T_-$};
+      node[pos=0.25,below] {\small isothermal $T_-$};
 
     % Left isochoric: V_A, from T- isotherm up to T+ isotherm
     \draw[thick,orange!80!black] (1.0,1.6) -- (1.0,4.3)
@@ -545,10 +542,10 @@ The Stirling cycle replaces the Carnot's adiabatic legs with \emph{isochoric} (c
     % Stirling rectangle (wider)
     \def\Sa{0.4} \def\Sb{4.4} \def\Tm{1.0} \def\Tp{3.8}
     \fill[gray!20] (\Sa,\Tm) rectangle (\Sb,\Tp);
-    \draw[thick,blue!70!black]  (\Sa,\Tp) -- (\Sb,\Tp) node[midway,above]{\tiny isothermal $T_+$};
-    \draw[thick,red!70!black]   (\Sb,\Tm) -- (\Sa,\Tm) node[midway,below]{\tiny isothermal $T_-$};
-    \draw[thick,orange!80!black](\Sa,\Tm) -- (\Sa,\Tp) node[midway,left,align=right,font=\tiny]{isochoric\\$C_V(T_+-T_-)$};
-    \draw[thick,orange!80!black](\Sb,\Tp) -- (\Sb,\Tm) node[midway,right,align=left,font=\tiny]{isochoric\\$C_V(T_+-T_-)$};
+    \draw[thick,blue!70!black]  (\Sa,\Tp) -- (\Sb,\Tp) node[midway,above]{\footnotesize isothermal $T_+$};
+    \draw[thick,red!70!black]   (\Sb,\Tm) -- (\Sa,\Tm) node[midway,below]{\footnotesize isothermal $T_-$};
+    \draw[thick,orange!80!black](\Sa,\Tm) -- (\Sa,\Tp);
+    \draw[thick,orange!80!black](\Sb,\Tp) -- (\Sb,\Tm) node[midway,right,align=left,font=\footnotesize]{isochoric\\$C_V(T_+-T_-)$};
 
     % T axis labels
     \node[left] at (0,\Tp) {$T_+$};
@@ -559,10 +556,9 @@ The Stirling cycle replaces the Carnot's adiabatic legs with \emph{isochoric} (c
     % Dashed Carnot rectangle for comparison
     \def\Sc{1.5} \def\Sd{3.3}
     \draw[dashed,gray!70,thick] (\Sc,\Tm) rectangle (\Sd,\Tp);
-    \node[gray!70,font=\tiny] at (2.4,2.4) {Carnot};
-
-    \node at (2.4,2.4) {};
-    \node[font=\small] at (2.4,2.4) {$W$};
+    \node[gray,font=\footnotesize,above] at (2.4,\Tp) {};
+    \node[gray!80,font=\footnotesize] at (2.4,1.4) {Carnot};
+    \node[font=\small] at (2.4,2.6) {$W$};
   \end{scope}
 \end{tikzpicture}\\[3pt]
 {\small\itshape Stirling cycle: $P$--$V$ (left) and $T$--$S$ (right) diagrams; the Carnot rectangle is shown dashed.}
@@ -599,86 +595,64 @@ Despite lower efficiency, the Stirling engine can produce more net work per cycl
 The efficiency penalty arises entirely from the isochoric heat exchanges: Step 2 rejects $C_V(T_+ - T_-)$ while Step 4 requires the same amount. A \textbf{regenerator} --- a thermally massive medium (porous mesh or packed bed) between the hot and cold ends --- stores the heat rejected in Step 2 and returns it in Step 4, eliminating the need for external supply during isochoric heating.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
-  %--- Panel 1: Isothermal expansion T+ (top-left) ---
-  \begin{scope}[xshift=0cm, yshift=3.8cm]
-    \draw[thick] (0,0) rectangle (4.0,2.8);
-    % Piston (moving right)
-    \draw[thick,fill=gray!40] (2.2,0) rectangle (2.5,2.8);
-    % Arrow showing piston moving right
-    \draw[->,very thick] (2.5,1.4) -- (3.3,1.4) node[right]{\tiny expand};
-    % Heat arrow entering from top
-    \draw[->,red!70!black,thick] (1.0,2.8) -- (1.0,2.1) node[below,font=\tiny]{$Q_+$ in};
-    % Label
-    \node[above,font=\small\bfseries] at (2.0,2.8) {1. Isothermal exp.\ $T_+$};
-    % Gas shading (left of piston)
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\footnotesize}]
+  % Panels arranged clockwise: 1 top-left, 2 top-right, 3 bottom-right, 4 bottom-left
+  %--- Panel 1: isothermal expansion at T+ ---
+  \begin{scope}[xshift=0cm, yshift=4.2cm]
     \fill[blue!10] (0,0) rectangle (2.2,2.8);
-  \end{scope}
-
-  %--- Panel 2: Isochoric cooling through regenerator (top-right) ---
-  \begin{scope}[xshift=5.0cm, yshift=3.8cm]
     \draw[thick] (0,0) rectangle (4.0,2.8);
-    % Regenerator (hatched block in the middle)
+    \draw[thick,fill=gray!40] (2.2,0) rectangle (2.5,2.8);
+    \draw[->,very thick] (2.6,1.4) -- (3.4,1.4) node[above]{expand};
+    \draw[->,red!70!black,thick] (1.1,3.3) -- (1.1,2.3);
+    \node[red!70!black, anchor=west] at (1.2,3.1) {$Q_+$ in};
+    \node[above,font=\small\bfseries] at (2.0,3.5) {1. Isothermal exp.\ $T_+$};
+  \end{scope}
+  %--- Panel 2: isochoric cooling through regenerator ---
+  \begin{scope}[xshift=5.4cm, yshift=4.2cm]
+    \draw[thick] (0,0) rectangle (4.0,2.8);
     \fill[pattern=north east lines, pattern color=gray!70] (1.6,0.4) rectangle (2.4,2.4);
     \draw[thick] (1.6,0.4) rectangle (2.4,2.4);
-    \node[font=\tiny] at (2.0,1.4) {regen.};
-    % Hot side label
-    \node[font=\tiny,red!70!black] at (0.7,1.4) {hot};
-    % Cold side label
-    \node[font=\tiny,blue!70!black] at (3.3,1.4) {cold};
-    % Gas flow arrows (left to right through regenerator)
-    \draw[->,orange!80!black,thick] (0.2,1.8) -- (1.5,1.8);
-    \draw[->,orange!80!black,thick] (2.5,1.8) -- (3.8,1.8);
-    \draw[->,orange!80!black,thick] (0.2,1.0) -- (1.5,1.0);
-    \draw[->,orange!80!black,thick] (2.5,1.0) -- (3.8,1.0);
-    % Heat deposited into regenerator
-    \draw[->,gray!60,thick] (2.0,1.9) -- (2.0,2.3) node[above,font=\tiny]{heat stored};
-    % Label
-    \node[above,font=\small\bfseries] at (2.0,2.8) {2. Isochoric cooling};
+    \node[fill=white, inner sep=1pt] at (2.0,1.4) {regen.};
+    \node[red!70!black] at (0.8,2.3) {hot};
+    \node[blue!70!black] at (3.2,2.3) {cold};
+    \foreach \y in {1.0,1.8} {
+      \draw[->,orange!80!black,thick] (0.2,\y) -- (1.5,\y);
+      \draw[->,orange!80!black,thick] (2.5,\y) -- (3.8,\y);
+    }
+    \node[gray] at (2.0,0.2) {heat stored};
+    \node[above,font=\small\bfseries] at (2.0,3.5) {2. Isochoric cooling};
   \end{scope}
-
-  %--- Panel 3: Isothermal compression T- (bottom-left) ---
+  %--- Panel 3: isothermal compression at T- ---
+  \begin{scope}[xshift=5.4cm, yshift=0cm]
+    \fill[blue!10] (0,0) rectangle (1.3,2.8);
+    \draw[thick] (0,0) rectangle (4.0,2.8);
+    \draw[thick,fill=gray!40] (1.3,0) rectangle (1.6,2.8);
+    \draw[->,very thick] (2.5,1.4) -- (1.7,1.4);
+    \node[anchor=south] at (2.3,1.5) {compress};
+    \draw[->,blue!70!black,thick] (0.65,0.9) -- (0.65,-0.4);
+    \node[blue!70!black, anchor=west] at (0.75,-0.3) {$Q_-$ out};
+    \node[above,font=\small\bfseries] at (2.0,2.85) {3. Isothermal comp.\ $T_-$};
+  \end{scope}
+  %--- Panel 4: isochoric heating through regenerator ---
   \begin{scope}[xshift=0cm, yshift=0cm]
     \draw[thick] (0,0) rectangle (4.0,2.8);
-    % Piston (moving left, more compressed)
-    \draw[thick,fill=gray!40] (1.3,0) rectangle (1.6,2.8);
-    % Arrow showing piston moving left
-    \draw[->,very thick] (1.3,1.4) -- (0.5,1.4) node[left]{\tiny compress};
-    % Heat arrow leaving at bottom
-    \draw[->,blue!70!black,thick] (2.8,0.7) -- (2.8,0) node[below,font=\tiny]{$Q_-$ out};
-    % Gas shading (left of piston)
-    \fill[blue!10] (0,0) rectangle (1.3,2.8);
-    % Label
-    \node[above,font=\small\bfseries] at (2.0,2.8) {3. Isothermal comp.\ $T_-$};
-  \end{scope}
-
-  %--- Panel 4: Isochoric heating through regenerator (bottom-right) ---
-  \begin{scope}[xshift=5.0cm, yshift=0cm]
-    \draw[thick] (0,0) rectangle (4.0,2.8);
-    % Regenerator (hatched block)
     \fill[pattern=north east lines, pattern color=gray!70] (1.6,0.4) rectangle (2.4,2.4);
     \draw[thick] (1.6,0.4) rectangle (2.4,2.4);
-    \node[font=\tiny] at (2.0,1.4) {regen.};
-    % Cold side label
-    \node[font=\tiny,blue!70!black] at (0.7,1.4) {cold};
-    % Hot side label
-    \node[font=\tiny,red!70!black]  at (3.3,1.4) {hot};
-    % Gas flow arrows (right to left through regenerator)
-    \draw[->,orange!80!black,thick] (3.8,1.8) -- (2.5,1.8);
-    \draw[->,orange!80!black,thick] (1.5,1.8) -- (0.2,1.8);
-    \draw[->,orange!80!black,thick] (3.8,1.0) -- (2.5,1.0);
-    \draw[->,orange!80!black,thick] (1.5,1.0) -- (0.2,1.0);
-    % Heat recovered from regenerator
-    \draw[->,gray!60,thick] (2.0,2.3) -- (2.0,1.9) node[below,font=\tiny]{heat returned};
-    % Label
-    \node[above,font=\small\bfseries] at (2.0,2.8) {4. Isochoric heating};
+    \node[fill=white, inner sep=1pt] at (2.0,1.4) {regen.};
+    \node[blue!70!black] at (3.2,2.3) {cold};
+    \node[red!70!black] at (0.8,2.3) {hot};
+    \foreach \y in {1.0,1.8} {
+      \draw[->,orange!80!black,thick] (3.8,\y) -- (2.5,\y);
+      \draw[->,orange!80!black,thick] (1.5,\y) -- (0.2,\y);
+    }
+    \node[gray] at (2.0,0.2) {heat returned};
+    \node[above,font=\small\bfseries] at (2.0,2.85) {4. Isochoric heating};
   \end{scope}
-
-  % Cycle arrows between panels
-  \draw[->,thick,gray!80] (4.0+0.0,5.2) -- (5.0,5.2);   % 1->2
-  \draw[->,thick,gray!80] (7.0,3.8) -- (7.0,2.8+0.1);   % 2->3 (right side going down)
-  \draw[->,thick,gray!80] (4.0,1.4) -- (5.0,1.4);        % 3->4
-  \draw[->,thick,gray!80] (2.0,3.8) -- (2.0,2.8+0.1);   % top to bottom on left
+  % Cycle arrows (clockwise)
+  \draw[->,thick,gray!80] (4.1,5.6) -- (5.3,5.6);    % 1 -> 2
+  \draw[->,thick,gray!80] (9.7,4.2) -- (9.7,2.8);    % 2 -> 3
+  \draw[->,thick,gray!80] (5.3,1.4) -- (4.1,1.4);    % 3 -> 4
+  \draw[->,thick,gray!80] (-0.3,2.8) -- (-0.3,4.2);  % 4 -> 1
 \end{tikzpicture}\\[3pt]
 {\small\itshape Stirling engine four-step cycle; the regenerator (hatched) stores and returns heat during isochoric steps.}
 \end{center}

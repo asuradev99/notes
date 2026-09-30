@@ -250,8 +250,8 @@ This scheme also makes the origin of the word ``band'' transparent: a continuous
   }
   \foreach \b in {-1.5,-0.5,0.5,1.5} {\draw[dashed, black!35] (\b,0) -- (\b,3.0);}
   \node[font=\small] at (0.2,-0.45) {periodic};
-  \node[font=\scriptsize] at (0.5,-0.85) {$\pi/a$};
-  \node[font=\scriptsize] at (-0.55,-0.85) {$-\pi/a$};
+  \node[font=\footnotesize] at (0.5,-0.85) {$\pi/a$};
+  \node[font=\footnotesize] at (-0.55,-0.85) {$-\pi/a$};
 \end{scope}
 % ---- reduced scheme ----
 \begin{scope}[xshift=4.6cm]
@@ -300,7 +300,7 @@ The Fermi surface concerns the ground state of $N$ Bloch electrons. Because each
         \draw[dashed] (-1.8,0.2) -- (1.2,0.2);
         \node[right, font=\small] at (1.2,0.2) {$\varepsilon_F$};
         \draw[{Stealth}-{Stealth}] (-0.25,-0.15) -- (-0.25,0.55);
-        \node[left, font=\small] at (-0.3,0.2) {$\Delta E$};
+        \node[anchor=east, font=\small, fill=white, inner sep=1pt] at (-0.3,0.4) {$\Delta E$};
         \node[font=\small] at (0.1,-1.85) {insulator};
     \end{scope}
     % --- metal ---
@@ -366,7 +366,7 @@ where the perpendicular separation of the two surfaces follows from $\varepsilon
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.35]
     \draw[thick] plot[smooth cycle, tension=0.8] coordinates {(0,1.9) (1.8,0.5) (1.2,-1.5) (-1.1,-1.6) (-1.9,0.3)};
     \draw[thick] plot[smooth cycle, tension=0.8] coordinates {(0,1.15) (1.05,0.3) (0.7,-0.9) (-0.65,-0.95) (-1.15,0.2)};
     \node[font=\small] at (0,0.2) {$S_n(\varepsilon)$};
@@ -749,11 +749,11 @@ Points and lines of the Brillouin zone left invariant by a subgroup of the point
     \addplot[Periwinkle, thick] coordinates {(0.0000,3.0000) (0.0167,3.0336) (2.1128,3.0256) (2.1246,2.9901) (2.1364,2.9550) (2.1482,2.9201) (2.1600,2.8856) (2.1718,2.8512) (2.1835,2.8172) (2.1953,2.7835) (2.2071,2.7500) (2.2071,2.7500) (2.2215,2.7585) (2.2360,2.7675) (2.2504,2.7769) (2.2648,2.7867) (2.2793,2.7969) (2.2937,2.8075) (2.3081,2.8185) (2.3226,2.8300) (2.3370,2.8419) (2.3514,2.8542) (2.3659,2.8669) (2.3803,2.8800) (2.3947,2.8935) (2.4092,2.9075) (2.4236,2.9219) (2.4380,2.9367) (2.4525,2.9519) (2.4669,2.9675) (2.4813,2.9835) (2.4958,3.0000) (2.5102,3.0169) (2.5246,3.0342) (3.0443,3.0342) (3.0587,3.0169) (3.0731,3.0000) (3.0731,3.0000) (3.0908,3.0003) (3.1085,3.0012) (3.1262,3.0028) (3.1438,3.0050) (3.1615,3.0078) (3.1792,3.0112) (3.1969,3.0153) (3.2146,3.0200) (3.2322,3.0253) (3.2499,3.0312) (3.2676,3.0378) (3.2853,3.0450)};
     \addplot[Periwinkle, thick] coordinates {(0.0000,3.0000) (0.0167,3.0336) (2.1128,3.0256) (2.1246,2.9901) (2.1364,2.9550) (2.1482,2.9201) (2.1600,2.8856) (2.1718,2.8512) (2.1835,2.8172) (2.1953,2.7835) (2.2071,2.7500) (2.2071,2.7500) (2.2215,2.7585) (2.2360,2.7675) (2.2504,2.7769) (2.2648,2.7867) (2.2793,2.7969) (2.2937,2.8075) (2.3081,2.8185) (2.3226,2.8300) (2.3370,2.8419) (2.3514,2.8542) (2.3659,2.8669) (2.3803,2.8800) (2.3947,2.8935) (2.4092,2.9075) (2.4236,2.9219) (2.4380,2.9367) (2.4525,2.9519) (2.4669,2.9675) (2.4813,2.9835) (2.4958,3.0000) (2.5102,3.0169) (2.5246,3.0342) (3.0443,3.0342) (3.0587,3.0169) (3.0731,3.0000) (3.0731,3.0000)};
     \addplot[Orange, dashed, thin, forget plot] coordinates {(0,0.611)(4.9244,0.611)};
-    \node[Orange, font=\scriptsize, anchor=west] at (axis cs:0.07,0.701) {$n_e=1$};
+    \node[Orange, font=\footnotesize, anchor=west] at (axis cs:0.07,0.701) {$n_e=1$};
     \addplot[Orange, dashed, thin, forget plot] coordinates {(0,0.97)(4.9244,0.97)};
-    \node[Orange, font=\scriptsize, anchor=west] at (axis cs:0.07,1.06) {$n_e=2$};
+    \node[Orange, font=\footnotesize, anchor=west] at (axis cs:0.07,1.06) {$n_e=2$};
     \addplot[Orange, dashed, thin, forget plot] coordinates {(0,1.271)(4.9244,1.271)};
-    \node[Orange, font=\scriptsize, anchor=west] at (axis cs:0.07,1.361) {$n_e=3$};
+    \node[Orange, font=\footnotesize, anchor=west] at (axis cs:0.07,1.361) {$n_e=3$};
 \end{axis}
 \end{tikzpicture}
 \caption{Empty lattice bands for the FCC structure along $\Gamma$--$X$--$W$--$L$--$\Gamma$--$K$--$X$, in units of $\varepsilon_X$. Each curve is $|\lvect{k}-\cvect{G}|^2$ for one reciprocal lattice vector, folded back into the first zone. Dashed lines mark the free-electron Fermi level for one, two and three electrons per primitive cell. The crossings are where a weak potential opens gaps.}
@@ -785,7 +785,7 @@ Note that two electrons per cell does \emph{not} produce an insulator here, sinc
     % free-electron Fermi circle
     \draw[very thick, Orange] (0,0) circle (\r);
     \fill (0,0) circle (1.1pt);
-    \node[font=\small] at (0,-2.0) {$n_e=\n$};
+    \node[font=\small] at (0,-2.35) {$n_e=\n$};
   \end{scope}
 }
 \end{tikzpicture}
@@ -989,11 +989,15 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
     \begin{scope}
         \draw[-{Stealth}] (0,0) -- (0,3.2) node[above] {$V(r)$};
         \draw[-{Stealth}] (-1.9,0) -- (2.4,0) node[right] {$r$};
-        \draw[thick, domain=0.32:2.2, samples=100, variable=\t] plot ({\t}, {-0.9/\t + 1.4});
-        \draw[thick, domain=-2.2:-0.32, samples=100, variable=\t] plot ({\t}, {0.9/\t + 1.4});
-        \draw[dashed] (-1.9,0.35) -- (1.9,0.35) node[right, font=\small] {$n=1$};
-        \draw[dashed] (-1.5,0.95) -- (1.5,0.95) node[right, font=\small] {$n=2$};
-        \draw[dashed] (-1.2,1.3) -- (1.2,1.3) node[right, font=\small] {$n=3$};
+        \draw[thick, domain=0.65:2.2, samples=100, variable=\t] plot ({\t}, {-0.9/\t + 1.4});
+        \draw[thick, domain=-2.2:-0.65, samples=100, variable=\t] plot ({\t}, {0.9/\t + 1.4});
+        \draw[dashed] (-0.8,0.35) -- (0.8,0.35);
+        \draw[dashed] (-1.5,0.95) -- (1.5,0.95);
+        \draw[dashed] (-2.0,1.3) -- (2.0,1.3);
+        \node[font=\small, anchor=west] at (2.4,0.35) {$n=1$};
+        \node[font=\small, anchor=west] at (2.4,0.95) {$n=2$};
+        \node[font=\small, anchor=west] at (2.4,1.3) {$n=3$};
+        \draw[dotted, gray] (0.85,0.35) -- (2.35,0.35) (1.55,0.95) -- (2.35,0.95) (2.05,1.3) -- (2.35,1.3);
         \node[align=center, font=\small] at (0.2,-0.75) {electronic levels in\\a single-atom potential};
     \end{scope}
     % --- right: levels broadening into bands ---
@@ -1083,7 +1087,7 @@ Graphene is a single sheet of carbon atoms arranged on a honeycomb. The honeycom
     }
     % unit cell and basis vectors from A site at origin
     \draw[-{Stealth}, thick] (0,0) -- (1.5588,0) node[below, pos=0.6] {$\lvect{a}_1$};
-    \draw[-{Stealth}, thick] (0,0) -- (0.7794,1.35) node[left, pos=0.55] {$\lvect{a}_2$};
+    \draw[-{Stealth}, thick] (0,0) -- (0.7794,1.35) node[right, pos=0.7] {$\lvect{a}_2$};
     \draw[-{Stealth}, thick, green!50!black] (0,0) -- (0,\d) node[right, pos=0.5] {$\lvect{\delta}_1$};
     \node[blue!70, font=\small] at (-0.3,-0.3) {$A$};
     \node[red!70, font=\small] at (0.3,\d+0.35) {$B$};
@@ -1149,7 +1153,7 @@ The eigenvalues follow from $\det\bigl[H(\lvect{k})-E\bigr] = (\varepsilon-E)^2 
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[scale=2.16]
     \foreach \ang in {0,60,...,300}{
       \coordinate (c\ang) at (\ang:1);
     }

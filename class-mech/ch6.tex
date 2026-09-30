@@ -137,7 +137,7 @@ Letting $v_a = v_b = 0$ gives $\tfrac{1}{2}mv_a^2 = mgh$.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=2.34, >=Stealth]
   % Wall
   \fill[pattern=north east lines] (-0.2,-0.35) rectangle (0,0.35);
   \draw[thick] (0,-0.35) -- (0,0.35);
@@ -317,25 +317,25 @@ Thus:
     axis lines=left, samples=80,
   ]
     \addplot[thick,blue,domain=-2:2]{x^2};
-    \addplot[thick,dashed,red,domain=-1.55:1.55]{1.5} node[pos=0.9,above,scale=0.7]{$E_\text{tot}$};
+    \addplot[thick,dashed,red,domain=-1.55:1.55]{1.5} node[pos=0.5,above,scale=0.8]{$E_\text{tot}$};
     \addplot[only marks,mark=*,mark size=1.5pt,red] coordinates {(-1.225,1.5)(1.225,1.5)};
   \end{axis}
   \end{scope}
   %--- Center: gravitational potential well ---
-  \begin{scope}[xshift=4.8cm]
+  \begin{scope}[xshift=6.3cm]
   \begin{axis}[
     name=ax2,
     width=0.32\textwidth, height=4.5cm,
     xlabel={$r$}, ylabel={$U$},
-    title={\small Gravity (bound)},
-    xmin=0.3, xmax=4, ymin=-2.5, ymax=0.5,
+    title={\small Gravity ($U_\text{eff}$)},
+    xmin=0.3, xmax=4, ymin=-0.8, ymax=1.0,
     xtick={1}, xticklabels={$r_0$},
-    ytick={-2,0}, yticklabels={$E_\text{min}$,$0$},
+    ytick={-0.5,0}, yticklabels={$E_\text{min}$,$0$},
     axis lines=left, samples=100,
   ]
-    \addplot[thick,blue,domain=0.38:4]{-1/x};
-    \addplot[thick,dashed,red,domain=0.5:4]{-0.9} node[pos=0.85,above,scale=0.7]{$E<0$};
-    \addplot[thick,dashed,ForestGreen,domain=0.5:4]{0.0} node[pos=0.85,above,scale=0.7]{$E>0$};
+    \addplot[thick,blue,domain=0.42:4]{0.5/(x*x)-1/x};
+    \addplot[thick,dashed,red,domain=0.613:2.72]{-0.3} node[pos=0.55,above]{$E<0$};
+    \addplot[thick,dashed,ForestGreen,domain=0.5:4]{0.4} node[pos=0.8,above]{$E>0$};
   \end{axis}
   \end{scope}
 \end{tikzpicture}
@@ -373,7 +373,7 @@ Thus,
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.85, >=Stealth]
+\begin{tikzpicture}[scale=1.15, >=Stealth]
   % Ground level
   \draw[thick] (0,0) -- (7.5,0);
   % Ramp (inclined)
@@ -387,13 +387,14 @@ Thus,
   % Center of loop
   \fill (5.0,1.0) circle[radius=0.04];
   % Radius label
-  \draw[<->,gray] (5.0,1.0) -- (5.0,2.0) node[midway,right]{$R$};
+  \draw[<->,gray] (5.0,1.0) -- ++(-30:1.0) node[midway,below left, inner sep=1pt]{$R$};
   % Ball at top of loop
   \fill[blue!60] (5.0,2.0) circle[radius=0.13];
   % Force arrow at top
-  \draw[->,red] (5.0,2.0) -- (5.0,1.4) node[right,scale=0.8]{$mg+N$};
+  \draw[->,red] (5.0,1.87) -- (5.0,1.3) node[pos=0.6,left,scale=0.8]{$mg+N$};
   % Height 2R label
-  \draw[<->,gray] (4.1,0) -- (4.1,2.0) node[midway,left]{$2R$};
+  \draw[<->,gray] (6.3,0) -- (6.3,2.0) node[midway,right]{$2R$};
+  \draw[dotted,gray] (5.15,2.0) -- (6.4,2.0);
   % Ball at bottom
   \fill[blue!60] (4.0,0) circle[radius=0.13];
 \end{tikzpicture}

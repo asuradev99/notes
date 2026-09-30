@@ -129,7 +129,7 @@ By the useful fact (speeds unchanged in COM frame under elastic collision):
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=2.34, >=Stealth]
   % Pivot
   \fill[pattern=north east lines] (-0.4,3.0) rectangle (0.4,3.3);
   \draw[thick] (-0.4,3.0) -- (0.4,3.0);
@@ -141,18 +141,18 @@ By the useful fact (speeds unchanged in COM frame under elastic collision):
   \draw[thick] (0,1.0) circle[radius=0.2];
   \node[right] at (0.22,1.0) {$M$};
   % String length
-  \node[left] at (-0.1,2.1) {$\ell$};
+  \node[left] at (-0.05,2.5) {$\ell$};
   % Bullet
-  \fill[red!70] (-1.5,1.0) -- (-0.9,0.88) -- (-0.9,1.12) -- cycle;
-  \draw[->,thick,red] (-1.8,1.0) -- (-0.25,1.0) node[above,pos=0.3]{$m,\;v_i$};
+  \fill[red!70] (-0.75,0.95) rectangle (-0.55,1.05);
+  \draw[->,thick,red] (-1.8,1.0) -- (-0.8,1.0) node[above,pos=0.45]{$m,\;v_i$};
   % After collision: swung to angle phi
   \draw[dashed,gray] (0,3.0) -- (0,0.8);
   \draw[thick,blue] (0,3.0) -- (0.85,1.55);
   \fill[blue!50] (0.85,1.35) circle[radius=0.2];
   \draw[thick,blue] (0.85,1.35) circle[radius=0.2];
   % Angle arc
-  \draw (0,2.0) arc[start angle=270,end angle=242,radius=1.0];
-  \node[below left] at (0.1,2.0) {$\phi$};
+  \draw (0,2.0) arc[start angle=270,end angle=300,radius=1.0];
+  \node at (0.22,2.2) {$\phi$};
   % Height h
   \draw[<->,gray] (1.3,1.35) -- (1.3,1.0) node[midway,right]{$h$};
 \end{tikzpicture}
@@ -368,7 +368,7 @@ where $w$ is the mass per unit volume (density).
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=1.22, >=Stealth]
   % Ring
   \draw[thick] (0,0) circle[radius=1.2];
   \draw[dashed,gray] (0,0) circle[radius=0.08];
@@ -422,20 +422,20 @@ In polar coordinates, $dA = \rho\,d\rho\,d\theta$, so:
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=1.22, >=Stealth]
   % Stick
   \draw[thick,gray!70,fill=gray!30] (-2.0,-0.12) rectangle (2.0,0.12);
   % Centre marker
   \fill (0,0) circle[radius=0.06];
-  \draw[->,gray,dashed] (0,-0.5) -- (0,0.5) node[above,scale=0.8]{axis};
+  \draw[->,gray,dashed] (0,-0.25) -- (0,0.5) node[above,scale=0.8]{axis};
   % Length arrows
-  \draw[<->] (-2.0,-0.4) -- (2.0,-0.4) node[midway,below]{$L$};
+  \draw[<->] (-2.0,-0.4) -- (2.0,-0.4) node[pos=0.8,below]{$L$};
   % Element dx
   \draw[thick,red,fill=red!30] (0.6,-0.12) rectangle (0.85,0.12);
   \node[red,above,scale=0.8] at (0.72,0.12) {$dx$};
   \draw[<->] (0,-0.65) -- (0.72,-0.65) node[midway,below,scale=0.8]{$x$};
   % Label
-  \node[below] at (0,-0.9) {$I = \tfrac{1}{12}ML^2$};
+  \node[below] at (0,-1.0) {$I = \tfrac{1}{12}ML^2$};
 \end{tikzpicture}
 \end{center}
 \caption{Uniform thin stick of mass $M$ and length $L$ rotating about its centre ($x=0$). A mass element $dm = (M/L)\,dx$ at position $x$ contributes $x^2\,dm$ to the moment of inertia.}
@@ -478,7 +478,7 @@ where $I_0$ is the moment of inertia about an axis through the COM, and $\ell$ i
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.85, >=Stealth]
+\begin{tikzpicture}[scale=1.15, >=Stealth]
   % Object (ellipse)
   \draw[thick,gray!60,fill=gray!20] (0,0) ellipse[x radius=1.5, y radius=0.8];
   % COM axis

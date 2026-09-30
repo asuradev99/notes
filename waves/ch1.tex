@@ -14,7 +14,7 @@ For every degree of freedom, Newton's second law will give us a second-order dif
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1.0]
+    \begin{tikzpicture}[scale=1.72]
         % wall
         \fill[pattern=north east lines] (-0.3,-0.6) rectangle (0,1.0);
         \draw[thick] (0,-0.6) -- (0,1.0);
@@ -279,7 +279,7 @@ and $x(t)$ satisfies exactly the SHM equation $\ddot{x} = -\omega^2 x$. Simple h
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1.6]
+    \begin{tikzpicture}[scale=2.16]
         % axes
         \draw[->] (-1.4,0) -- (1.6,0) node[right] {$x$};
         \draw[->] (0,-1.4) -- (0,1.5) node[above] {$y$};
@@ -290,7 +290,7 @@ and $x(t)$ satisfies exactly the SHM equation $\ddot{x} = -\omega^2 x$. Simple h
         \coordinate (P) at (\ang:1);
         \draw[thick, -{Stealth}] (0,0) -- (P);
         \draw (0.35,0) arc (0:\ang:0.35);
-        \node at (0.55,0.25) {$\omega t$};
+        \node at (0.45,0.18) {\small$\omega t$};
         % point
         \fill (P) circle (1.2pt);
         \node[above right] at (P) {};
@@ -299,7 +299,7 @@ and $x(t)$ satisfies exactly the SHM equation $\ddot{x} = -\omega^2 x$. Simple h
         \fill[Orange] (\ang:1 |- 0,0) circle (1.2pt);
         \draw[->, Orange, thick] (0,-0.15) -- ($({cos(\ang)},0)+(0,-0.15)$);
         \node[Orange, below] at (0.3,-0.2) {$x=R\cos\omega t$};
-        \node[right] at (1.02,-0.02) {$R$};
+        \node[above right] at (1.0,0.0) {$R$};
     \end{tikzpicture}
     \caption{A particle in uniform circular motion at angular speed $\omega$; its projection onto the $x$-axis executes simple harmonic motion $x(t)=R\cos\omega t$. The shadow oscillates while the particle merely rotates.}
     \label{fig:circular-shadow}

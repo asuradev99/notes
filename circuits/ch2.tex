@@ -25,16 +25,14 @@ When an op-amp is connected with \emph{negative feedback} (output fed back to $V
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}
-  \draw (0,0) node[op amp, yscale=-1] (opamp) {};
-  \draw (opamp.+) -- ++(-0.5,0) node[ground]{};
-  \draw (opamp.-) -- ++(-0.5,0) coordinate (minnode);
-  \draw (minnode) -- ++(-0.8,0) coordinate (Rin_right);
-  \draw (Rin_right) to[R, l=$R_\text{in}$, -*] ++(-1.6,0) node[left]{$V_\text{in}$};
-  \draw (minnode) -- ++(0,1.2) coordinate (top);
-  \draw (top) to[R, l=$R_f$] ++(2.6,0) coordinate (top_right);
-  \draw (top_right) -- ++(0,-1.2);
-  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
+\begin{tikzpicture}[scale=1.35]
+  \draw (0,0) node[op amp] (oa) {};
+  \draw (oa.+) -- ++(-0.4,0) -- ++(0,-0.4) node[ground]{};
+  \draw (oa.-) -- ++(-0.7,0) coordinate (m);
+  \draw (m) to[R, l_=$R_\text{in}$, *-o] ++(-2.2,0) node[left]{$V_\text{in}$};
+  \draw (m) -- ++(0,1.1) coordinate (t);
+  \draw (t) to[R, l=$R_f$] (t -| oa.out) -- (oa.out);
+  \draw (oa.out) to[short, *-o] ++(0.8,0) node[right]{$V_\text{out}$};
 \end{tikzpicture}
 \end{center}
 \caption{Inverting amplifier: $R_\text{in}$ at input, $R_f$ as feedback from output to $V_-$.}
@@ -66,15 +64,15 @@ The negative sign indicates phase inversion. Input impedance is $R_\text{in}$; o
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}
-  \draw (0,0) node[op amp] (opamp) {};
-  \draw (opamp.+) -- ++(-0.5,0) node[left]{$V_\text{in}$};
-  \draw (opamp.-) -- ++(-0.5,0) coordinate (minnode);
-  \draw (minnode) -- ++(0,-0.8) to[R, l=$R_\text{in}$] ++(0,-1.0) node[ground]{};
-  \draw (minnode) -- ++(0,1.2) coordinate (top);
-  \draw (top) to[R, l=$R_f$] ++(2.6,0) coordinate (top_right);
-  \draw (top_right) -- ++(0,-1.55);
-  \draw (opamp.out) -- ++(0.3,0) node[right]{$V_\text{out}$};
+\begin{tikzpicture}[scale=1.35]
+  \draw (0,0) node[op amp, noinv input up] (oa) {};
+  \draw (oa.+) to[short, -o] ++(-1.4,0) node[left]{$V_\text{in}$};
+  \draw (oa.-) -- ++(-0.7,0) coordinate (m);
+  \draw (m) to[R, l=$R_\text{in}$, *-] ++(-2.0,0) coordinate (g);
+  \draw (g) -- ++(0,-0.3) node[ground]{};
+  \draw (m) -- ++(0,-1.1) coordinate (b);
+  \draw (b) to[R, l_=$R_f$] (b -| oa.out) -- (oa.out);
+  \draw (oa.out) to[short, *-o] ++(0.8,0) node[right]{$V_\text{out}$};
 \end{tikzpicture}
 \end{center}
 \caption{Non-inverting amplifier: input at $V_+$, resistor divider $R_f/R_\text{in}$ sets gain.}
@@ -337,7 +335,7 @@ A red LED has $V_f \approx 2.0\,\text{V}$. We want $I = 20\,\text{mA} = 0.020\,\
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=1.35]
   % supply rail
   \draw (0,2) -- (0,3) node[above]{$+5\,\text{V}$};
   \draw (0,2) to[R, l=$R$] (0,0.8);
@@ -379,7 +377,7 @@ so the device acts as a linear amplifier. In \textbf{saturation}, $V_{BE} > 0.7\
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=1.35]
   % NPN transistor switch
   \draw (0,0) node[npn] (Q) {};
   % collector load resistor to supply
@@ -482,14 +480,14 @@ so $|H| \approx 0$ for $f \ll f_c$ and $|H| \approx 1$ for $f \gg f_c$: low freq
   \draw (2.5,1.5) to[C, l=$C$] (2.5,0) node[ground]{};
   \draw (0,1.5) -- (0,1.5);
   % labels
-  \node at (1.5,-0.7) {(a) Low-pass filter};
+  \node at (1.75,-1.2) {(a) Low-pass filter};
   % High-pass filter circuit (shifted right)
   \begin{scope}[xshift=6.5cm]
     \draw (0,1.5) node[left]{$V_\text{in}$}
           to[C, l=$C$] (2.5,1.5)
           to[short, -o] (3.5,1.5) node[right]{$V_\text{out}$};
     \draw (2.5,1.5) to[R, l=$R$] (2.5,0) node[ground]{};
-    \node at (1.5,-0.7) {(b) High-pass filter};
+    \node at (1.75,-1.2) {(b) High-pass filter};
   \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -526,12 +524,12 @@ The 555 timer IC is built around a \textbf{voltage divider} of three equal resis
 \begin{center}
 \begin{circuitikz}[american]
   \node[draw, minimum width=2.8cm, minimum height=3.6cm, font=\bfseries] (IC) at (0,0) {555};
-  \node[right, font=\scriptsize] at (-1.4,1.2) {7 DIS};
-  \node[right, font=\scriptsize] at (-1.4,-0.3) {6 THR};
-  \node[right, font=\scriptsize] at (-1.4,-1.1) {2 TRIG};
-  \node[left, font=\scriptsize] at (1.4,0.6) {OUT 3};
-  \node[below right, font=\scriptsize] at (0.05,1.8) {8};
-  \node[above right, font=\scriptsize] at (0.05,-1.8) {1};
+  \node[right, font=\footnotesize] at (-1.4,1.2) {7 DIS};
+  \node[right, font=\footnotesize] at (-1.4,-0.3) {6 THR};
+  \node[right, font=\footnotesize] at (-1.4,-1.1) {2 TRIG};
+  \node[left, font=\footnotesize] at (1.4,0.6) {OUT 3};
+  \node[below right, font=\footnotesize] at (0.05,1.8) {8};
+  \node[above right, font=\footnotesize] at (0.05,-1.8) {1};
   % supply rail and timing resistor
   \draw (0,1.8) -- (0,2.8) node[above]{$V_{CC}$};
   \draw (0,2.8) -- (-3.0,2.8);
@@ -574,12 +572,12 @@ $T = 1.1 \times 10^5 \times 10^{-5} = 1.1\,\text{s}$.
 \begin{center}
 \begin{circuitikz}[american]
   \node[draw, minimum width=2.8cm, minimum height=3.6cm, font=\bfseries] (IC) at (0,0) {555};
-  \node[right, font=\scriptsize] at (-1.4,1.2) {7 DIS};
-  \node[right, font=\scriptsize] at (-1.4,-0.3) {6 THR};
-  \node[right, font=\scriptsize] at (-1.4,-1.1) {2 TRIG};
-  \node[left, font=\scriptsize] at (1.4,0.6) {OUT 3};
-  \node[below right, font=\scriptsize] at (0.05,1.8) {8};
-  \node[above right, font=\scriptsize] at (0.05,-1.8) {1};
+  \node[right, font=\footnotesize] at (-1.4,1.2) {7 DIS};
+  \node[right, font=\footnotesize] at (-1.4,-0.3) {6 THR};
+  \node[right, font=\footnotesize] at (-1.4,-1.1) {2 TRIG};
+  \node[left, font=\footnotesize] at (1.4,0.6) {OUT 3};
+  \node[below right, font=\footnotesize] at (0.05,1.8) {8};
+  \node[above right, font=\footnotesize] at (0.05,-1.8) {1};
   % supply rail, R_A to pin 7, R_B from pin 7 down to pins 6/2
   \draw (0,1.8) -- (0,2.8) node[above]{$V_{CC}$};
   \draw (0,2.8) -- (-3.0,2.8);

@@ -174,20 +174,15 @@ Consider an $RC$ circuit (resistor $R$ and capacitor $C$ in series with EMF $\ma
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.95]
+\begin{tikzpicture}[scale=1.28]
   % RC circuit schematic
   \draw (0,2) to[battery1, l=$\mathcal{E}$] (0,0);
-  \draw (0,2) to[R, l=$R$] (2.5,2);
-  \draw (2.5,2) to[C, l=$C$] (2.5,0);
+  \draw (0,2) to[R, l=$R$, i>_=$I$] (2.5,2);
+  \draw (2.5,2) to[C, l_=$C$, v^<=$V_C$] (2.5,0);
   \draw (0,0) -- (2.5,0);
-  % Current arrow
-  \draw[-{Stealth[length=5pt]}, thick, red!70!black]
-    (0.3,2.15) -- (1.0,2.15) node[above]{$I$};
-  % Voltage labels
-  \node[right, font=\small] at (2.7,1.0) {$V_C$};
 \end{tikzpicture}
 \hspace{1.5cm}
-\begin{tikzpicture}[scale=0.95]
+\begin{tikzpicture}[scale=1.28]
   % V_C vs time: charging curve
   \draw[->] (0,0) -- (4.5,0) node[right]{$t$};
   \draw[->] (0,0) -- (0,2.8) node[above]{$V_C$};
@@ -242,7 +237,7 @@ In the relaxed state, the entire population of negative charge carriers redistri
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.35]
   % Voltage source on left
   \draw (0,3) node[above]{$V_\text{in}$} -- (0,2.5)
         to[R, l=$R_1$] (0,1.0)

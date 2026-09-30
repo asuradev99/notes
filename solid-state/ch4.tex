@@ -164,7 +164,7 @@ The simplest concrete realization is a chain of identical masses $m$ connected b
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[
+\begin{tikzpicture}[scale=1.35,
     spring/.style={decorate, decoration={coil, aspect=0.5, segment length=4pt, amplitude=4pt, pre length=3pt, post length=3pt}},
     mass/.style={draw, thick, fill=LightGray, minimum width=0.9cm, minimum height=0.9cm}
 ]
@@ -227,7 +227,7 @@ The dispersion is plotted in Figure~\ref{fig:phon-1d-disp}. It is periodic in $k
     axis lines=middle,
     xtick={-3.14159, 0, 3.14159},
     xticklabels={$-\pi/a$, $0$, $\pi/a$},
-    ytick={2}, yticklabels={$2\sqrt{K/m}$},
+    ytick=\empty,
     every axis plot/.append style={thick},
     clip=false
 ]
@@ -236,6 +236,7 @@ The dispersion is plotted in Figure~\ref{fig:phon-1d-disp}. It is periodic in $k
     \draw[gray, dashed] (axis cs:-3.14159,0) -- (axis cs:-3.14159,2);
     \draw[gray, dashed] (axis cs:3.14159,0) -- (axis cs:3.14159,2);
     \draw[gray, dashed] (axis cs:-3.14159,2) -- (axis cs:3.14159,2);
+    \node[anchor=east] at (axis cs:-3.2,2) {$2\sqrt{K/m}$};
 \end{axis}
 \end{tikzpicture}
 \caption{Dispersion relation~\eqref{eq:phon-1d-disp} of the monatomic chain (solid), shown across the first Brillouin zone. Near $k=0$ it is linear (dashed), $\omega = v_p k$, which is the sound-wave regime; at the zone boundary the group velocity vanishes and the mode is a standing wave.}
@@ -692,21 +693,21 @@ Figure~\ref{fig:phon-scattering} contrasts the three relevant scattering channel
     \begin{scope}
         \node[above] at (1.4,2.9) {Normal (N)};
         \draw[fill=LightGray!40] (0,0) rectangle (2.8,2.6);
-        \node[anchor=north west, font=\scriptsize] at (0.05,2.58) {BZ};
+        \node[anchor=north west, font=\footnotesize] at (0.05,2.58) {BZ};
         \coordinate (o) at (1.3,0.9);
         \draw[-{Latex}, thick] (o) -- ++(-0.5,1.3) node[above] {$\lvect{k}$};
         \draw[-{Latex}, thick] (o) -- ++(0.7,-0.6) node[below] {$\lvect{k}'$};
-        \draw[-{Latex}, thick, Periwinkle] (o) -- ++(0.9,0.6) node[right] {$\lvect{k}+\lvect{k}'$};
+        \draw[-{Latex}, thick, Periwinkle] (o) -- ++(0.9,0.6) node[above] {$\lvect{k}+\lvect{k}'$};
     \end{scope}
     % --- Umklapp scattering ---
     \begin{scope}[xshift=4.6cm]
         \node[above] at (1.4,2.9) {Umklapp (U)};
         \draw[fill=LightGray!40] (0,0) rectangle (2.8,2.6);
-        \node[anchor=north west, font=\scriptsize] at (0.05,2.58) {BZ};
+        \node[anchor=north west, font=\footnotesize] at (0.05,2.58) {BZ};
         \coordinate (o2) at (1.5,1.2);
         \draw[-{Latex}, thick] (o2) -- ++(0.7,1.1) node[above] {$\lvect{k}'$};
         \draw[-{Latex}, thick] (o2) -- ++(0.6,-0.9) node[below] {$\lvect{k}$};
-        \draw[-{Latex}, thick, Periwinkle] (o2) -- ++(-1.2,0) node[left] {$\lvect{k}+\lvect{k}'+\cvect{G}$};
+        \draw[-{Latex}, thick, Periwinkle] (o2) -- ++(-1.2,0) node[below, xshift=6pt] {$\lvect{k}+\lvect{k}'+\cvect{G}$};
         \draw[-{Latex}, thick, Orange, dashed] (o2) ++(0.05,-0.22) -- ++(1.3,0) node[right] {$\cvect{G}$};
     \end{scope}
     % --- Boundary / defect scattering ---
@@ -795,16 +796,16 @@ Reality is more complicated: defect (Rayleigh) scattering, with $\tau_D^{-1} \si
     xlabel={$T$}, ylabel={$\kappa$},
     xmode=log, ymode=log,
     domain=1:400, samples=200,
-    xmin=1, xmax=400, ymin=0.5, ymax=400,
+    xmin=1, xmax=400, ymin=0.05, ymax=400,
     axis lines=left,
     xtick=\empty, ytick=\empty,
     every axis plot/.append style={thick},
-    clip=false
+    clip=true
 ]
-    \addplot[Periwinkle] {1/( 1/(0.9*x^3) + 1/(300*exp(20/x)) + x/25 )};
-    \node[Orange, anchor=west] at (axis cs:1.3,20) {$\propto T^3$};
-    \node[Orange, anchor=west] at (axis cs:11,220) {$\propto \exp(\theta_D/2T)$};
-    \node[Orange, anchor=west] at (axis cs:150,25) {$\propto 1/T$};
+    \addplot[Periwinkle] {1/( 1/(0.9*x^3) + x*exp(-40/x)/30 )};
+    \node[Orange, anchor=east] at (axis cs:2.6,12) {$\propto T^3$};
+    \node[Orange, anchor=west] at (axis cs:18,60) {$\propto e^{\theta_D/2T}$};
+    \node[Orange, anchor=west] at (axis cs:90,1.2) {$\propto 1/T$};
 \end{axis}
 \end{tikzpicture}
 \caption{Schematic phonon thermal conductivity of a good insulating crystal on log--log axes. Boundary scattering gives $\kappa \propto T^3$ at low $T$; Umklapp activation gives the exponential rise and the peak at intermediate $T$; frequent Umklapp scattering gives $\kappa \propto 1/T$ at high $T$.}

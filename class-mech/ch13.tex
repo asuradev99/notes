@@ -75,10 +75,10 @@ Therefore:
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.95, >=Stealth]
+\begin{tikzpicture}[scale=1.28, >=Stealth]
   % Target
   \fill[gray!40] (3.5,0) circle[radius=0.18];
-  \node[above right] at (3.7,0.1) {$M$};
+  \node[below] at (3.5,-0.2) {$M$};
   % Incoming particle trajectory
   \draw[->,thick,blue] (0,0.6) -- (2.8,0.6);
   \node[above,blue,scale=0.85] at (1.0,0.6) {$\lvect{p}_i$};
@@ -783,7 +783,7 @@ By the parallel axis theorem (shifting to point A):
   width=0.45\textwidth, height=4.5cm,
   xlabel={$q$}, ylabel={$p$},
   xmin=-2, xmax=2, ymin=-2, ymax=2,
-  xtick={}, ytick={},
+  xtick=\empty, ytick=\empty,
   axis lines=center, axis equal,
 ]
   % Closed ellipse = phase-space orbit
@@ -796,7 +796,7 @@ By the parallel axis theorem (shifting to point A):
   \addplot[thick,blue,->,domain=89:91,samples=5]
     ({1.4*cos(x)}, {1.1*sin(x)});
   % Action area label
-  \node[scale=0.85] at (axis cs:0,0) {$J = \oint p\,dq$};
+  \node[scale=0.85, fill=red!10, inner sep=1pt] at (axis cs:-0.6,-0.5) {$J = \oint p\,dq$};
 \end{axis}
 \end{tikzpicture}
 \end{center}

@@ -41,28 +41,28 @@ To show that $\vect{\tau}_B = \dv{\vect{L}_B}{t}$: we know that $\vect{L}_B = M\
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0, >=Stealth]
+\begin{tikzpicture}[scale=2.60, >=Stealth]
   % Pivot A
   \fill[pattern=north east lines] (-0.4,3.3) rectangle (0.4,3.6);
   \draw[thick] (-0.4,3.3) -- (0.4,3.3);
-  \fill (0,3.3) circle[radius=0.06]; \node[right] at (0.08,3.35) {\small$A$};
+  \fill (0,3.3) circle[radius=0.06]; \node[below left] at (-0.03,3.28) {\small$A$};
   % Vertical reference
   \draw[dashed,gray] (0,3.3) -- (0,0.9);
   % String at angle phi
   \draw[thick] (0,3.3) -- (0.9,1.6);
   % Angle
   \draw (0,2.5) arc[start angle=270,end angle=297,radius=0.8];
-  \node at (0.3,2.35) {$\phi$};
+  \node at (0.2,2.3) {$\phi$};
   % Bob
   \fill[gray!50] (0.9,1.4) circle[radius=0.18];
   \draw[thick] (0.9,1.4) circle[radius=0.18];
   \node[right] at (1.1,1.4) {$M$};
   % String length label
-  \node[left] at (0.35,2.45) {$\ell$};
+  \node[right] at (0.3,2.95) {$\ell$};
   % Weight
   \draw[->,thick,blue] (0.9,1.22) -- (0.9,0.5) node[below]{$Mg$};
   % Tension
-  \draw[->,thick,red] (0.9,1.4) -- ++(117:1.0) node[above]{$T$};
+  \draw[->,thick,red] (0.83,1.56) -- ++(118:0.8) node[pos=0.6,left]{$T$};
   % Torque arm
   \draw[dashed,blue,thin] (0.9,1.4) -- (0.9,3.3);
   \node[right,scale=0.8,blue] at (0.9,2.35) {$\ell\sin\phi$};
@@ -127,7 +127,7 @@ The torque equation gives $-Mg\ell\sin\phi = I_A\ddot{\phi}$, so
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=1.22, >=Stealth]
   % Rotation axis (z, vertical)
   \draw[->,gray,dashed] (0,-1.8) -- (0,2.0) node[above,scale=0.85]{$z$-axis};
   \fill (0,0) circle[radius=0.05]; \node[left,scale=0.8] at (-0.1,0) {$A$};
@@ -136,7 +136,7 @@ The torque equation gives $-Mg\ell\sin\phi = I_A\ddot{\phi}$, so
     to[out=10,in=100] (2.0,0.6) to[out=280,in=30] (1.8,-0.5)
     to[out=210,in=300] (0.8,-0.8) to[out=120,in=260] (0.2,0.1);
   % Mass element
-  \fill[red!70] (1.5,0.8) circle[radius=0.1]; \node[above right,red,scale=0.8] at (1.5,0.8) {$dm_j$};
+  \fill[red!70] (1.5,0.8) circle[radius=0.1]; \node[below right,red,scale=0.8] at (1.55,0.75) {$dm_j$};
   % Rho vector (perpendicular distance to axis)
   \draw[->,blue,thick] (0,0.8) -- (1.5,0.8) node[midway,above,scale=0.85,blue]{$\rho_j$};
   % Velocity arrow (tangential)
@@ -386,30 +386,30 @@ Integrating:
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
-  % Incline
+\begin{tikzpicture}[scale=1.22, >=Stealth]
+  % Incline, angle beta = atan(1/2)
   \draw[thick,fill=gray!10] (0,0) -- (5,0) -- (5,2.5) -- cycle;
-  \node at (0.8,0.15) {$\beta$};
-  \draw (0.7,0) arc[start angle=0,end angle=27,radius=0.7];
-  % Cylinder on slope
-  \def\cx{2.2}\def\cy{1.1}
-  \draw[thick,fill=gray!40] (\cx,\cy) circle[radius=0.5];
-  \fill (\cx,\cy) circle[radius=0.04];
-  % Rolling velocity arrow
-  \draw[->,thick,blue] (\cx,\cy) -- ++(27:1.2) node[above right]{$v$};
-  % Rotation arrow (curved)
-  \draw[->,thick,red] (\cx+0.35,\cy+0.35) arc[start angle=45,end angle=350,radius=0.4]
-    node[right,scale=0.8]{$\omega$};
-  % Contact point label
-  \fill (\cx-0.43,\cy-0.25) circle[radius=0.04];
-  \node[below left,scale=0.75] at (\cx-0.43,\cy-0.25) {contact};
-  % Forces
-  \draw[->,ForestGreen,thick] (\cx,\cy) -- (\cx,-0.2+\cy-0.7) node[below left,scale=0.8]{$f$ (friction)};
-  \draw[->,blue,thick] (\cx,\cy) -- ++(117:0.7) node[above,scale=0.8]{$N$};
+  \draw (0.8,0) arc[start angle=0,end angle=26.57,radius=0.8];
+  \node at (1.05,0.2) {$\beta$};
+  % Cylinder of radius 0.5 resting on the slope: contact at (2,1), centre along the normal
+  \coordinate (P) at (2.0,1.0);
+  \coordinate (C) at ($(P)+(116.57:0.5)$);
+  \draw[thick,fill=gray!40] (C) circle[radius=0.5];
+  \fill (C) circle[radius=0.04];
+  \fill (P) circle[radius=0.04];
+  % Rolling velocity along the slope
+  \draw[->,thick,blue] (C) -- ++(26.57:1.1) node[above]{$\lvect{v}$};
+  % Rotation arrow
+  \draw[->,thick,red] ($(C)+(60:0.3)$) arc[start angle=60,end angle=-200,radius=0.3];
+  \node[red] at ($(C)+(0,0.12)$) {\small$\omega$};
+  % Forces: weight at the centre, normal and friction at the contact point
+  \draw[->,thick,black!70] (C) -- ++(0,-1.1) node[pos=0.85,right]{$M\lvect{g}$};
+  \draw[->,thick,ForestGreen] (P) -- ++(206.57:0.9) node[above left, inner sep=1pt]{$\lvect{f}$};
+  \draw[->,thick,blue!60!black] (P) -- ++(116.57:0.45);
+  \node[blue!60!black, anchor=west, inner sep=1pt] at ($(P)+(116.57:0.3)+(0.05,0)$) {$\vect{N}$};
   % Height h
   \draw[<->,gray] (5.2,0) -- (5.2,2.5) node[midway,right]{$h$};
-  % Rolling constraint label
-  \node[below] at (2.5,-0.1) {$v = b\omega$ (no slip)};
+  \node[below] at (2.5,-0.15) {$v = b\omega$ (no slip)};
 \end{tikzpicture}
 \end{center}
 \caption{Cylinder (radius $b$, mass $M$) rolling without slipping down an incline at angle $\beta$. The rolling constraint $v = b\omega$ links translational and rotational motion. Friction $f$ provides the torque about the centre of mass.}

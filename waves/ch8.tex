@@ -62,8 +62,8 @@ A reliable anchor when memory fails: a biconvex lens in air must converge, so $f
   \filldraw (5.3,0) circle (1.7pt);
   \node[above] at (5.3,0.06) {\small$C$};
   % the flipped cases
-  \node[gray,align=center] at (-1.95,0.95) {\scriptsize an image here\\ \scriptsize instead: $s_i < 0$};
-  \node[gray,align=center] at (1.65,1.25) {\scriptsize an object here\\ \scriptsize instead: $s_o < 0$};
+  \node[gray,align=center] at (-1.95,0.95) {\footnotesize an image here\\ \footnotesize instead: $s_i < 0$};
+  \node[gray,align=center] at (1.65,1.25) {\footnotesize an object here\\ \footnotesize instead: $s_o < 0$};
   % signed distances
   \draw[<->] (-4,-2.3) -- (0,-2.3) node[midway,fill=white,inner sep=1.5pt] {\small$s_o > 0$};
   \draw[<->] (0,-2.3) -- (3.1,-2.3) node[midway,fill=white,inner sep=1.5pt] {\small$s_i > 0$};
@@ -238,7 +238,7 @@ A lens is two spherical surfaces in series, and nothing beyond the paraxial sing
   % media
   \node at (-4.3,1.9) {\small$n_m$};
   \node at (3.9,1.9) {\small$n_m$};
-  \node at (0,-0.85) {\scriptsize$n_l$};
+  \node at (0,-0.85) {\footnotesize$n_l$};
   % distance brackets
   \draw[<->] (-0.45,-2.05) -- (0.45,-2.05);
   \node[below] at (0,-2.07) {\small$d$};
@@ -317,7 +317,7 @@ so paraxially $f = R/2$, and the thin-lens equation $1/s_o + 1/s_i = 1/f$ applie
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[>=Stealth, scale=0.95]
+\begin{tikzpicture}[>=Stealth, scale=1.28]
   \def\R{4}
   % mirror arc (concave toward the left, centre of curvature at the origin)
   \draw[very thick] plot[domain=-48:48,samples=90] ({\R*cos(\x)},{\R*sin(\x)});

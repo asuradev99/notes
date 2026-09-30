@@ -9,7 +9,7 @@
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.1, >=Stealth]
+\begin{tikzpicture}[scale=1.49, >=Stealth]
   % Inclined plane triangle
   \draw[thick] (0,0) -- (4,0) -- (4,2.3) -- cycle;
   \node at (0.7,0.18) {$\theta$};
@@ -47,7 +47,7 @@ y&: \quad N - w\cos\theta = 0
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=2.34, >=Stealth]
   % Pulley support and axle
   \draw[thick] (-0.1,3.2) -- (0.1,3.2);
   \draw[thick] (0,3.2) -- (0,2.8);
@@ -229,7 +229,7 @@ A block of mass $m$ sits on a wedge at angle $\theta$. Forces: normal $N$, frict
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0, >=Stealth]
+\begin{tikzpicture}[scale=1.35, >=Stealth]
   % Inclined wedge
   \draw[thick,fill=gray!10] (0,0) -- (3.5,0) -- (3.5,2.0) -- cycle;
   \node at (0.65,0.15) {$\theta$};
@@ -411,7 +411,7 @@ where $x_0$ is the length of the spring at equilibrium.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.0, >=Stealth]
+\begin{tikzpicture}[scale=2.33, >=Stealth]
   % Wall
   \fill[pattern=north east lines] (-0.2,-0.4) rectangle (0,0.4);
   \draw[thick] (0,-0.4) -- (0,0.4);
@@ -427,7 +427,7 @@ where $x_0$ is the length of the spring at equilibrium.
   \node[below] at (2.8,-0.85) {$x_0$};
   % Spring force arrow
   \draw[->,thick,red] (3.1,0) -- (3.9,0) node[right]{$x$};
-  \draw[->,thick,blue] (2.5,0) -- (1.7,0) node[left]{$F_s$};
+  \draw[->,thick,blue] (2.5,0.45) -- (1.8,0.45) node[left]{$F_s$};
   % Ground line
   \draw[thick] (-0.2,-0.4) -- (4.0,-0.4);
 \end{tikzpicture}
@@ -490,7 +490,7 @@ Substituting:
   xticklabels={$T/4$, $T/2$, $3T/4$, $T$},
   ytick={-1,0,1},
   yticklabels={$-A$, $0$, $A$},
-  axis lines=left,
+  axis lines=left, clip=false,
   tick align=outside,
   samples=200,
 ]
@@ -572,26 +572,27 @@ A mass $m$ hangs from a spring (spring constant $k$) attached to a ceiling. Let 
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.9, >=Stealth]
+\begin{tikzpicture}[scale=2.34, >=Stealth]
   % Ceiling
   \fill[pattern=north east lines] (-0.5,4.0) rectangle (0.5,4.3);
   \draw[thick] (-0.5,4.0) -- (0.5,4.0);
   % Spring
   \draw[thick, decorate, decoration={zigzag, segment length=6pt, amplitude=4pt}]
     (0,4.0) -- (0,2.3);
-  \node[right] at (0.3,3.15) {$k$};
+  \node[left] at (-0.2,3.15) {$k$};
   % Mass block
   \fill[gray!40] (-0.35,1.9) rectangle (0.35,2.3);
   \draw[thick] (-0.35,1.9) rectangle (0.35,2.3);
   \node at (0,2.1) {$m$};
   % Equilibrium level dashed line
   \draw[dashed,gray] (-0.8,2.1) -- (0.8,2.1);
-  \node[right] at (0.85,2.1) {$x_0 = mg/k$};
+  \node[right] at (1.25,2.1) {$x_0 = mg/k$};
   % Force arrows
   \draw[->,thick,red] (0,1.9) -- (0,1.0) node[below]{$mg$ (down)};
-  \draw[->,thick,blue] (0,2.3) -- (0,3.2) node[above]{$T$ (up)};
+  \draw[->,thick,blue] (0.18,2.3) -- (0.18,3.0) node[pos=0.6, right]{$T$ (up)};
   % x-axis label
   \draw[->] (1.1,4.0) -- (1.1,1.2) node[below]{$x$ (down)};
+  \fill[white] (1.02,2.02) rectangle (1.18,2.18);
 \end{tikzpicture}
 \end{center}
 \caption{Vertical spring-mass system: spring attached to ceiling, block hangs in equilibrium at $x_0 = mg/k$. Gravity $mg$ acts downward, spring tension $T = kx$ acts upward.}
@@ -626,7 +627,7 @@ A ball on a string of length $\ell$ swings in a plane. System: \{ball\}.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=1.1, >=Stealth]
+\begin{tikzpicture}[scale=2.69, >=Stealth]
   % Pivot
   \fill[pattern=north east lines] (-0.4,0) rectangle (0.4,0.2);
   \draw[thick] (-0.4,0) -- (0.4,0);
@@ -695,7 +696,7 @@ This is SHM in $\theta$:
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.85, >=Stealth]
+\begin{tikzpicture}[scale=1.56, >=Stealth]
   %--- (A) Series ---
   \node[above] at (0,5.5) {\textbf{(A) Series}};
   % Ceiling

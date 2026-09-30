@@ -19,7 +19,7 @@ so Newton's second law becomes the linear, homogeneous, time-translation-invaria
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[>=Stealth, line width=0.8pt]
+\begin{tikzpicture}[scale=1.54, >=Stealth, line width=0.8pt]
     % wall
     \fill[pattern=north east lines] (-0.35,-1.5) rectangle (0,1.5);
     \draw[line width=1pt] (0,-1.5) -- (0,1.5);
@@ -144,8 +144,8 @@ Figure~\ref{fig:damped-decay} contrasts the three regimes for a mass released fr
     width=0.85\textwidth, height=6.2cm,
     xlabel={$t$ (units of $1/\omega_0$)}, ylabel={$x(t)/x(0)$},
     domain=0:16, samples=200,
-    xmin=0, xmax=16, ymin=-0.55, ymax=1.05,
-    axis lines=middle,
+    xmin=0, xmax=16, ymin=-0.85, ymax=1.05,
+    axis x line=bottom, axis y line=left,
     every axis x label/.style={at={(axis description cs:0.5,-0.12)},anchor=north},
     every axis y label/.style={at={(axis description cs:-0.06,0.5)},rotate=90,anchor=south},
     legend pos=north east, legend cell align=left,

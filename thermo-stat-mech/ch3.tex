@@ -42,7 +42,7 @@ Specifying $N_\uparrow$ determines both the energy and the multiplicity.
 Model a solid as quantum harmonic oscillators with energies in discrete units $\varepsilon = hf$. In 3D, each atom has 3 independent oscillators, giving $N = 3N_{\text{atoms}}$ total.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   \foreach \ox in {0, 2.6, 5.2} {
     \draw[thick] (\ox+0.0, 2.0) -- (\ox+0.7, 0.1) -- (\ox+1.4, 2.0);
     \draw[blue] (\ox+0.18, 0.40) -- (\ox+1.22, 0.40);
@@ -56,10 +56,10 @@ Model a solid as quantum harmonic oscillators with energies in discrete units $\
   \fill[red] (3.30, 0.85) circle (2.5pt);
   \fill[red] (3.30, 1.35) circle (2.5pt);
   \fill[red] (5.90, 0.40) circle (2.5pt);
-  \node[right, font=\tiny] at (1.22, 0.40) {$\tfrac{1}{2}hf$};
-  \node[right, font=\tiny] at (1.30, 0.85) {$\tfrac{3}{2}hf$};
-  \node[right, font=\tiny] at (1.36, 1.35) {$\tfrac{5}{2}hf$};
-  \node[right, font=\tiny] at (1.40, 1.82) {$\tfrac{7}{2}hf$};
+  \node[right, font=\footnotesize] at (1.22, 0.40) {$\tfrac{1}{2}hf$};
+  \node[right, font=\footnotesize] at (1.30, 0.85) {$\tfrac{3}{2}hf$};
+  \node[right, font=\footnotesize] at (1.36, 1.35) {$\tfrac{5}{2}hf$};
+  \node[right, font=\footnotesize] at (1.40, 1.82) {$\tfrac{7}{2}hf$};
   \node[below, font=\small] at (0.70, 0.0) {Oscillator $i$};
   \node[below, font=\small] at (3.30, 0.0) {Oscillator $j$};
   \node[below, font=\small] at (5.90, 0.0) {Oscillator $k$};
@@ -84,7 +84,7 @@ Check: $\Omega(4,5) = \binom{8}{5} = 56$.
 Two Einstein solids A and B in thermal contact share total energy $q = q_A + q_B$. Their multiplicities multiply:
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   \draw[dashed, thick] (-0.4, -0.5) rectangle (8.4, 2.0);
   \node[above, font=\small\itshape] at (4.0, 2.0) {Isolated system};
   \draw[thick, fill=blue!10] (0.0, 0.0) rectangle (3.2, 1.5);
@@ -277,7 +277,7 @@ Two different ideal gases initially at the same $T$ and $P$ in volumes $(1-x)V$ 
 Non-negative for all $0 \leq x \leq 1$; vanishes only for pure species. Equivalently, $\Delta S_{\text{mix}} = k\ln\binom{N}{N_A}$ by Stirling's approximation.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.15]
   \draw[thick, fill=blue!10] (0.0, 0.2) rectangle (1.8, 1.8);
   \node[align=center, font=\small] at (0.9, 1.0)
     {Gas A\\$T,\,P$};
@@ -302,7 +302,7 @@ When the gases are \emph{identical}, $\Delta S_{\text{mix}} = 0$: the $1/N!$ fac
 \subsection{Free Expansion}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
+\begin{tikzpicture}[scale=1.14]
   \draw[thick] (0.0, 0.0) rectangle (3.6, 2.0);
   \draw[dashed, thick] (1.8, 0.0) -- (1.8, 2.0);
   \foreach \x/\y in {0.4/0.5, 0.9/1.2, 1.3/0.7, 0.6/1.6, 1.1/0.3, 1.5/1.5}{
@@ -350,7 +350,7 @@ Two subsystems A and B in thermal contact with $U_A + U_B$ fixed. The condition 
     xlabel={$q_A$},
     ylabel={$S$},
     xmin=0, xmax=10,
-    ymin=0, ymax=3.8,
+    ymin=0, ymax=6,
     xtick=\empty,
     ytick=\empty,
     axis lines=left,
@@ -358,16 +358,16 @@ Two subsystems A and B in thermal contact with $U_A + U_B$ fixed. The condition 
     every axis x label/.style={at={(axis description cs:1.02,0)}, anchor=west},
     every axis y label/.style={at={(axis description cs:0,1.02)}, anchor=south},
   ]
-    \addplot[thick, blue, domain=0.1:9.9, samples=80]
+    \addplot[thick, blue, domain=0.5:9.5, samples=80]
       {1.6*ln(x+0.5)};
-    \node[right, blue, font=\small] at (axis cs: 9.8, 3.6) {$S_A$};
-    \addplot[thick, red, domain=0.1:9.9, samples=80]
+    \node[below right, blue, font=\small] at (axis cs: 2.5, 1.76) {$S_A$};
+    \addplot[thick, red, domain=0.5:9.5, samples=80]
       {1.6*ln(10.5-x)};
-    \node[right, red, font=\small] at (axis cs: 9.8, 0.6) {$S_B$};
-    \addplot[thick, black, domain=0.1:9.9, samples=80]
+    \node[below left, red, font=\small] at (axis cs: 7.5, 1.76) {$S_B$};
+    \addplot[thick, black, domain=0.5:9.5, samples=80]
       {1.6*ln(x+0.5) + 1.6*ln(10.5-x)};
-    \node[above, black, font=\small] at (axis cs: 5.0, 3.75) {$S_{\text{total}}$};
-    \addplot[dashed, gray, thick] coordinates {(5.0, 0) (5.0, 3.72)};
+    \node[above, black, font=\small] at (axis cs: 5.0, 5.5) {$S_{\text{total}}$};
+    \addplot[dashed, gray, thick] coordinates {(5.0, 0) (5.0, 5.45)};
     \node[below, font=\small] at (axis cs: 5.0, 0) {equilibrium};
   \end{axis}
 \end{tikzpicture}\\[3pt]
@@ -488,12 +488,11 @@ At $kT \ll \mu B$: $\tanh \to 1$, so $U \to -N\mu B$ and $M \to N\mu$ (full satu
     \addplot[thick, blue, domain=0.05:6, samples=120]
       {tanh(1/x)};
     \node[right, blue, font=\small] at (axis cs: 5.5, 0.22) {$\tanh(\mu B/k_BT)$};
-    \addplot[thick, dashed, red, domain=0.5:6, samples=60]
+    \addplot[thick, dashed, red, domain=0.87:6, samples=60]
       {1/x};
     \node[right, red, font=\small] at (axis cs: 5.5, 0.30) {Curie law $\propto 1/T$};
     \addplot[dotted, gray] coordinates {(1.0, 0) (1.0, 0.76)};
-    \node[below, gray, font=\small] at (axis cs: 1.0, 0) {$k_BT\!\sim\!\mu B$};
-    \node[left, font=\small] at (axis cs: 0, 1.0) {$1$};
+    \node[anchor=south west, gray, font=\small] at (axis cs: 1.05, 0.02) {$k_BT\!\sim\!\mu B$};
   \end{axis}
 \end{tikzpicture}\\[3pt]
 {\small\itshape Paramagnet: magnetization saturates at low $T$ and follows Curie's law at high $T$.}

@@ -105,20 +105,20 @@ Thus,
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[
-  width=0.9\textwidth, height=10cm,
+  width=0.6\textwidth, height=5.5cm,
   xlabel={$r$}, ylabel={$U_\text{eff}$},
-  xmin=0.3, xmax=5, ymin=-2.5, ymax=2.5,
-  xtick={1.0}, xticklabels={$r_0$},
-  ytick={-2.0,0}, yticklabels={$E_\text{min}$,$0$},
-  axis lines=left, samples=150,
+  xmin=0.3, xmax=5, ymin=-0.9, ymax=1.2,
+  xtick={1.8}, xticklabels={$r_0$},
+  ytick={-0.556,0}, yticklabels={$E_\text{min}$,$0$},
+  axis lines=left, samples=150, clip=false,
 ]
-  % Effective potential: L^2/(2mr^2) - C/r
-  \addplot[thick,blue,domain=0.42:5]{1.8/(x*x) - 2.0/x} node[pos=0.05,right,scale=0.75]{$U_\text{eff}$};
-  % Horizontal energy lines
-  \addplot[thick,dashed,red,domain=0.4:5]{0.4}    node[pos=0.9,above,scale=0.75]{$E>0$};
-  \addplot[thick,dashed,orange,domain=0.4:5]{0.0} node[pos=0.9,above,scale=0.75]{$E=0$};
-  \addplot[thick,dashed,ForestGreen,domain=0.5:5]{-0.8} node[pos=0.9,above,scale=0.75]{$E<0$};
-  \addplot[thick,dashed,purple,domain=0.8:1.3]{-2.0} node[pos=0.5,below,scale=0.75]{$E_\text{min}$};
+  % Effective potential: L^2/(2mr^2) - C/r, minimum at r_0 = 1.8
+  \addplot[thick,blue,domain=0.62:5]{1.8/(x*x) - 2.0/x};
+  \addplot[thick,dashed,red,domain=0.9:5]{0.5}    node[pos=1,right]{$E>0$};
+  \addplot[thick,dashed,orange,domain=0.9:5]{0.0} node[pos=1,right]{$E=0$};
+  \addplot[thick,dashed,ForestGreen,domain=1.05:3.95]{-0.3} node[pos=1,right]{$E<0$};
+  \addplot[only marks,mark=*,mark size=1.5pt,purple] coordinates {(1.8,-0.556)};
+  \draw[dotted,gray] (axis cs:1.8,-0.9) -- (axis cs:1.8,-0.556);
 \end{axis}
 \end{tikzpicture}
 \end{center}
