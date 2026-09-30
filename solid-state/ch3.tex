@@ -1119,17 +1119,17 @@ Graphene is a single sheet of carbon atoms arranged on a honeycomb. The honeycom
       }
     }
     % unit cell and basis vectors from A site at origin
-    \draw[-{Stealth}, thick] (0,0) -- (1.5588,0) node[below, pos=0.6] {$\cvect{a}_1$};
-    \draw[-{Stealth}, thick] (0,0) -- (0.7794,1.35) node[left, pos=0.55] {$\cvect{a}_2$};
+    \draw[-{Stealth}, thick] (0,0) -- (1.5588,0) node[below, pos=0.6] {$\lvect{a}_1$};
+    \draw[-{Stealth}, thick] (0,0) -- (0.7794,1.35) node[left, pos=0.55] {$\lvect{a}_2$};
     \draw[-{Stealth}, thick, green!50!black] (0,0) -- (0,\d) node[right, pos=0.5] {$\lvect{\delta}_1$};
     \node[blue!70, font=\small] at (-0.3,-0.3) {$A$};
     \node[red!70, font=\small] at (0.3,\d+0.35) {$B$};
 \end{tikzpicture}
-\caption{The honeycomb lattice: triangular Bravais lattice (vectors $\cvect{a}_1,\cvect{a}_2$, $|\cvect{a}_i|=a$) with $A$ (blue) and $B$ (red) atoms in the basis. Nearest-neighbour separation $a/\sqrt3$; the three vectors $\lvect{\delta}_j$ run from an $A$ atom to its $B$ neighbours.}
+\caption{The honeycomb lattice: triangular Bravais lattice (vectors $\lvect{a}_1,\lvect{a}_2$, $|\lvect{a}_i|=a$) with $A$ (blue) and $B$ (red) atoms in the basis. Nearest-neighbour separation $a/\sqrt3$; the three vectors $\lvect{\delta}_j$ run from an $A$ atom to its $B$ neighbours.}
 \label{fig:graphene-lattice}
 \end{figure}
 
-\paragraph{Geometry.} Take $\cvect{a}_1 = a(1,0)$, $\cvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$, and basis positions $\lvect{d}_A=0$, $\lvect{d}_B=\lvect{\delta}_1$. Each $A$ atom has three nearest neighbours, all on the $B$ sublattice, at the bond vectors
+\paragraph{Geometry.} Take $\lvect{a}_1 = a(1,0)$, $\lvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$, and basis positions $\lvect{d}_A=0$, $\lvect{d}_B=\lvect{\delta}_1$. Each $A$ atom has three nearest neighbours, all on the $B$ sublattice, at the bond vectors
 \begin{equation}
     \lvect{\delta}_1 = \tfrac{a}{\sqrt3}(0,1), \qquad
     \lvect{\delta}_2 = \tfrac{a}{\sqrt3}\bigl(-\tfrac{\sqrt3}{2},-\tfrac12\bigr), \qquad
@@ -1137,29 +1137,46 @@ Graphene is a single sheet of carbon atoms arranged on a honeycomb. The honeycom
 \end{equation}
 of length $a/\sqrt3$, and each $B$ atom has three $A$ neighbours at $-\lvect{\delta}_j$. The nearest atoms on the same sublattice lie at the larger distance $a$, and in the nearest-neighbour approximation their overlaps are neglected.
 
-\paragraph{Matrix elements.} Denote by $\psi$ the $p_z$ orbital, with atomic energy $E_p$, so that $\psi_A=\psi_B=\psi$ centred on the respective atoms. We assume orthogonal orbitals, $\alpha_{mn}(\lvect{r})=\delta_{mn}\delta_{\lvect{r},0}$, and define the on-site energy and the hopping integral
+\paragraph{Real-space matrix elements.} Denote by $\psi$ the $p_z$ orbital, with atomic energy $E_p$, so that $\psi_A=\psi_B=\psi$ and $E_A=E_B=E_p$. The first step is to list, for each pair $(m,n)$, the bond vectors $\lvect{r}$ that enter the sums and the values of $\alpha_{mn}(\lvect{r})$ and $\gamma_{mn}(\lvect{r})$ on them. In the nearest-neighbour approximation:
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c|c|c|c|c}
+    $(m,n)$ & bond vectors $\lvect{r}$ & $\alpha_{mn}(\lvect{r})$ & $\gamma_{mn}(\lvect{r})$ & $H_{mn}(\lvect{r}) = E_p\alpha_{mn}+\gamma_{mn}$ \\ \hline
+    $(A,A)$ & $0$ & $1$ & $\gamma_{AA}(0)$ & $E_p+\gamma_{AA}(0)\equiv\varepsilon$ \\
+    $(B,B)$ & $0$ & $1$ & $\gamma_{BB}(0)$ & $E_p+\gamma_{BB}(0)=\varepsilon$ \\
+    $(A,B)$ & $\lvect{\delta}_1,\lvect{\delta}_2,\lvect{\delta}_3$ & $0$ & $-t$ & $-t$ \\
+    $(B,A)$ & $-\lvect{\delta}_1,-\lvect{\delta}_2,-\lvect{\delta}_3$ & $0$ & $-t$ & $-t$
+\end{tabular}
+\end{center}
+Three inputs go into this table. First, the orbitals are taken orthogonal, $\alpha_{mn}(\lvect{r})=\delta_{mn}\delta_{\lvect{r},0}$, so the overlap is $1$ on-site and $0$ on every bond. Second, the on-site energy $\varepsilon\equiv E_p+\gamma_{AA}(0)$ is the same on both sublattices because the two atoms are identical; in the single-orbital notation, $\varepsilon=E_s-\beta$. Third, the hopping integral
 \begin{equation}
-    \varepsilon \equiv E_p + \gamma_{AA}(0) = E_p + \gamma_{BB}(0),
+    \gamma_{AB}(\lvect{\delta}_j) = \bra{\psi(\lvect{x})}\Delta U_A\ket{\psi(\lvect{x}-\lvect{\delta}_j)} \equiv -t
+\end{equation}
+is the same for all three bonds, since they are related by the threefold rotation symmetry of the lattice; $t=\gamma>0$ in the notation of the single-orbital formula. The $(B,A)$ row follows in the same way from the bonds $-\lvect{\delta}_j$ leaving a $B$ atom.
+
+\paragraph{Summing over bonds.} Each entry of the $k$-space matrices is now obtained by applying $X_{mn}(\lvect{k})=\sum_{\lvect{r}}e^{i\lvect{k}\cdot\lvect{r}}X_{mn}(\lvect{r})$ to the corresponding row of the table. For the overlap matrix only $\lvect{r}=0$ contributes, with $e^{i\lvect{k}\cdot 0}=1$:
+\begin{equation}
+    \alpha_{AA}(\lvect{k}) = \alpha_{BB}(\lvect{k}) = 1,
     \qquad
-    -t \equiv \gamma_{AB}(\lvect{\delta}_j) = \bra{\psi(\lvect{x})}\Delta U_A\ket{\psi(\lvect{x}-\lvect{\delta}_j)},
+    \alpha_{AB}(\lvect{k}) = \sum_{j=1}^3 e^{i\lvect{k}\cdot\lvect{\delta}_j}\cdot 0 = 0 = \alpha_{BA}(\lvect{k}),
+    \qquad\Longrightarrow\qquad
+    \alpha(\lvect{k}) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
 \end{equation}
-the latter independent of $j$ because the three bonds are related by the threefold rotation symmetry of the lattice. In the notation of the single-orbital formula, $\varepsilon=E_s-\beta$ and $t=\gamma>0$. The overlap matrix is then the identity,
+so the tight-binding equation $\varepsilon\,\alpha\,\lvect{c}=H\lvect{c}$ reduces to an ordinary eigenvalue problem. For the Hamiltonian, the diagonal entries again have a single term, while each off-diagonal entry is a sum of three terms, one per bond:
+\begin{align}
+    H_{AA}(\lvect{k}) &= e^{i\lvect{k}\cdot 0}\,\varepsilon = \varepsilon, \qquad H_{BB}(\lvect{k}) = \varepsilon, \\
+    H_{AB}(\lvect{k}) &= e^{i\lvect{k}\cdot\lvect{\delta}_1}(-t) + e^{i\lvect{k}\cdot\lvect{\delta}_2}(-t) + e^{i\lvect{k}\cdot\lvect{\delta}_3}(-t) = -t\,f(\lvect{k}), \\
+    H_{BA}(\lvect{k}) &= e^{-i\lvect{k}\cdot\lvect{\delta}_1}(-t) + e^{-i\lvect{k}\cdot\lvect{\delta}_2}(-t) + e^{-i\lvect{k}\cdot\lvect{\delta}_3}(-t) = -t\,f^*(\lvect{k}),
+\end{align}
+consistent with $H_{BA}=H_{AB}^*$ as required by hermiticity. The diagonal entries carry no $\lvect{k}$-dependence because there is no hopping between atoms of the same sublattice.
+
+\paragraph{The structure factor $f(\lvect{k})$.} Inserting the bond vectors, $\lvect{k}\cdot\lvect{\delta}_1 = k_ya/\sqrt3$ and $\lvect{k}\cdot\lvect{\delta}_{2,3} = \mp k_xa/2 - k_ya/2\sqrt3$, so
 \begin{equation}
-    \alpha(\lvect{k}) = \begin{bmatrix} \alpha_{AA}(\lvect{k}) & \alpha_{AB}(\lvect{k}) \\ \alpha_{BA}(\lvect{k}) & \alpha_{BB}(\lvect{k}) \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+    f(\lvect{k}) \equiv \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j}
+    = e^{ik_ya/\sqrt3} + e^{-ik_ya/2\sqrt3}\bigl(e^{-ik_xa/2}+e^{ik_xa/2}\bigr)
+    = e^{ik_ya/\sqrt3}+2e^{-ik_ya/2\sqrt3}\cos\tfrac{k_xa}{2}.
 \end{equation}
-and the tight-binding equation reduces to an ordinary eigenvalue problem. Only $\lvect{r}=0$ contributes to the diagonal elements, while the off-diagonal element sums over the three bond vectors from an $A$ atom to its $B$ neighbours:
-\begin{equation}
-    H_{AA}(\lvect{k}) = H_{BB}(\lvect{k}) = \varepsilon,
-    \qquad
-    H_{AB}(\lvect{k}) = \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j}\,(-t) = -t\,f(\lvect{k}),
-    \qquad
-    H_{BA}(\lvect{k}) = -t\,f^*(\lvect{k}),
-\end{equation}
-where
-\begin{equation}
-    f(\lvect{k}) \equiv \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j} = e^{ik_ya/\sqrt3}+2e^{-ik_ya/2\sqrt3}\cos\tfrac{k_xa}{2},
-\end{equation}
-and $H_{BA}$ follows either from hermiticity or directly from the bond vectors $-\lvect{\delta}_j$.
+Collecting the four entries into a matrix gives the result.
 
 \begin{formula}[Graphene tight-binding Hamiltonian]
 \begin{equation}
