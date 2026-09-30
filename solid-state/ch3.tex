@@ -1015,16 +1015,56 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 \label{fig:bloch-levels}
 \end{figure}
 
+\subsection{Crystals with a Basis}
+\label{sec:bloch-tb-basis}
+
+So far every orbital sat on a lattice point. When the unit cell contains several atoms, at positions $\lvect{d}_1,\lvect{d}_2,\ldots$ relative to the lattice point $\cvect{R}$, each orbital in the expansion is attached to a particular atom, and it is natural to let the index $n$ label both the orbital and the atom it sits on, with $\lvect{d}_n$ the position of that atom in the cell. The orbital $n$ of the cell at $\cvect{R}$ is then centred at $\cvect{R}+\lvect{d}_n$.
+
+\begin{definition}[Tight-binding ansatz, atom convention]
+\begin{equation}
+    \psi_{\lvect{k}}(\lvect{x}) = \sum_{\cvect{R}}\sum_n b_n\, e^{i\lvect{k}\cdot(\cvect{R}+\lvect{d}_n)}\, \psi_n(\lvect{x}-\cvect{R}-\lvect{d}_n).
+    \label{eq:bloch-tb-basis}
+\end{equation}
+Each orbital carries the Bloch phase of the point on which it is actually centred, rather than that of its cell.
+\end{definition}
+
+Since $\cvect{R}\to\cvect{R}+\cvect{R}'$ merely relabels the sum, \eqref{eq:bloch-tb-basis} satisfies Bloch's theorem exactly as before. Repeating the projection of the preceding subsections, now onto orbital $m$ on the atom at $\lvect{d}_m$ in the cell at the origin, gives the same tight-binding equation with the phases shifted accordingly.
+
+\begin{formula}[Tight-binding equation with a basis]
+\begin{equation}
+    \varepsilon(\lvect{k})\,\alpha(\lvect{k})\,\lvect{c} = H(\lvect{k})\,\lvect{c},
+    \qquad \lvect{c}=(b_1,\ldots,b_N)^T,
+\end{equation}
+with
+\begin{gather}
+    \alpha_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\,\alpha_{mn}(\lvect{r}),
+    \qquad
+    H_{mn}(\lvect{k}) = \sum_{\lvect{r}} e^{i\lvect{k}\cdot\lvect{r}}\,\bigl(E_m\,\alpha_{mn}(\lvect{r})+\gamma_{mn}(\lvect{r})\bigr),\\
+    \alpha_{mn}(\lvect{r}) = \braket{\psi_m(\lvect{x})}{\psi_n(\lvect{x}-\lvect{r})},
+    \qquad
+    \gamma_{mn}(\lvect{r}) = \bra{\psi_m(\lvect{x})}\Delta U_m\ket{\psi_n(\lvect{x}-\lvect{r})}.
+\end{gather}
+Here $\lvect{r} = \cvect{R}+\lvect{d}_n-\lvect{d}_m$ runs over the displacement vectors from an atom of type $m$ to the atoms of type $n$ that it overlaps (including $\lvect{r}=0$ when $m=n$), the orbitals $\psi_m$ are centred at the origin, and $\Delta U_m = H - H_{\text{at}}$ with $H_{\text{at}}$ the Hamiltonian of the atom of type $m$.
+\end{formula}
+
+The advantage is that every matrix element is a sum over \emph{physical bond vectors}, each weighted by $e^{i\lvect{k}\cdot\lvect{r}}$; one never needs to track which cell a neighbour belongs to. For a one-atom basis $\lvect{d}_n=0$, $\lvect{r}=\cvect{R}$, and the formulas reduce to those above.
+
+\begin{fact}[Cell convention versus atom convention]
+One may instead attach the phase of the cell, $e^{i\lvect{k}\cdot\cvect{R}}$, to every orbital in it. The coefficients of the two conventions are related by $b^{\text{cell}}_n = e^{i\lvect{k}\cdot\lvect{d}_n}\,b_n$, so
+\begin{equation}
+    H^{\text{atom}}(\lvect{k}) = D^\dagger(\lvect{k})\,H^{\text{cell}}(\lvect{k})\,D(\lvect{k}),
+    \qquad
+    D(\lvect{k}) = \begin{bmatrix} e^{i\lvect{k}\cdot\lvect{d}_1} & & \\ & \ddots & \\ & & e^{i\lvect{k}\cdot\lvect{d}_N}\end{bmatrix},
+\end{equation}
+a unitary change of basis: the band energies are identical. The price of the atom convention is that $H(\lvect{k})$ is no longer periodic in reciprocal space, $H(\lvect{k}+\cvect{G}) = D^\dagger(\cvect{G})\,H(\lvect{k})\,D(\cvect{G})$, although its eigenvalues are. This distinction is irrelevant for energies, but matters for quantities built from the eigenvectors, such as Berry phases.
+\end{fact}
+
 \subsection{Remarks on the Tight-Binding Method}
 
 \begin{enumerate}
     \item The number of atomic levels kept in the expansion determines the number of bands, and equals the dimension of the matrix problem --- as one sees from the indices of $H_{mn}$.
     \item The width of a band (lowest to highest energy within it) scales with the overlap integrals $\gamma_{mn}(\cvect{R})$. Rule of thumb: as the energy of a given atomic level increases, so does the spatial extent of its wavefunction.
     \item The more overlap, the greater $\partial\varepsilon/\partial \lvect{k}$, which means the electrons have a larger mean velocity.
-    \item For materials with more than one atom in the basis, use
-    \begin{equation}
-        \psi(\lvect{x}) = \sum_{\cvect{R}} e^{i\lvect{k}\cdot\cvect{R}}\bigl( a\,\phi(\lvect{x}-\cvect{R}) + b\,\phi(\lvect{x}-\lvect{d}-\cvect{R}) \bigr).
-    \end{equation}
     \item When spin--orbit coupling is present (as in heavier elements), include in $\Delta U(\lvect{x})$ the electron's interaction with neighbouring atomic spins, and approximate $\phi$ as a linear combination of the same orbital wavefunctions but of opposite spin --- which doubles the size of the tight-binding matrix.
     \item The method still assumes the independent-electron approximation, and so fails for magnetic materials.
 \end{enumerate}
@@ -1032,15 +1072,7 @@ Figure~\ref{fig:bloch-levels} contrasts the discrete levels of an electron in a 
 \subsection{Example: Graphene}
 \label{sec:bloch-graphene}
 
-Graphene is a single sheet of carbon atoms on a honeycomb lattice. The honeycomb is not a Bravais lattice; it is a \emph{triangular} Bravais lattice with a two-atom basis (sublattices $A$ and $B$), as in remark~4 above. This example shows how the general formalism of the previous subsections specialises to that case; the only new ingredient is that the ``orbital label'' $n$ now runs over the atoms of the basis.
-
-\paragraph{Dictionary to the general notation.} Let $\psi(\lvect{x})$ be the single carbon $p_z$ orbital --- the orbital that forms the low-energy $\pi$ bands --- with atomic energy $E_p$. In the general formulation the functions $\psi_n$ are the atomic orbitals, $\phi=\sum_n b_n\psi_n$ is the trial orbital, and $n$ labels which orbital sits at each lattice point $\cvect{R}$. Here there are two per unit cell:
-\begin{equation}
-    \psi_A(\lvect{x}-\cvect{R}) = \psi(\lvect{x}-\cvect{R}-\lvect{d}_A),
-    \qquad
-    \psi_B(\lvect{x}-\cvect{R}) = \psi(\lvect{x}-\cvect{R}-\lvect{d}_B),
-\end{equation}
-the same orbital $\psi$ centred on the $A$ and on the $B$ atom of the cell at $\cvect{R}$. So $m,n\in\{A,B\}$, the coefficient vector is $\lvect{c}=(b_A,b_B)^T$, and the Bloch state is $\psi_{\lvect{k}}=\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}\bigl(b_A\psi_A(\lvect{x}-\cvect{R})+b_B\psi_B(\lvect{x}-\cvect{R})\bigr)$ --- exactly remark~4. The tight-binding equation $\varepsilon\,\alpha(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$ is therefore a $2\times2$ problem, and we only have to evaluate the matrices $\alpha_{mn}(\lvect{k})$ and $H_{mn}(\lvect{k})$ of the previous subsections.
+Graphene is a single sheet of carbon atoms arranged on a honeycomb. The honeycomb is not a Bravais lattice: it is a triangular Bravais lattice with a two-atom basis, the two atoms defining sublattices $A$ and $B$ (Fig.~\ref{fig:graphene-lattice}). The low-energy bands are formed from the carbon $p_z$ orbitals, the $\pi$ bands, so we keep one orbital per atom and apply the formalism of Section~\ref{sec:bloch-tb-basis} with $n\in\{A,B\}$.
 
 \begin{figure}[ht]
 \centering
@@ -1077,77 +1109,55 @@ the same orbital $\psi$ centred on the $A$ and on the $B$ atom of the cell at $\
 \label{fig:graphene-lattice}
 \end{figure}
 
-\paragraph{Geometry.} Choose $\cvect{a}_1 = a(1,0)$ and $\cvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$, and put the $A$ atom of the cell $\cvect{R}=0$ at the origin. Its three nearest neighbours are all $B$ atoms, at
+\paragraph{Geometry.} Take $\cvect{a}_1 = a(1,0)$, $\cvect{a}_2 = a(\tfrac12,\tfrac{\sqrt3}{2})$, and basis positions $\lvect{d}_A=0$, $\lvect{d}_B=\lvect{\delta}_1$. Each $A$ atom has three nearest neighbours, all on the $B$ sublattice, at the bond vectors
 \begin{equation}
     \lvect{\delta}_1 = \tfrac{a}{\sqrt3}(0,1), \qquad
     \lvect{\delta}_2 = \tfrac{a}{\sqrt3}\bigl(-\tfrac{\sqrt3}{2},-\tfrac12\bigr), \qquad
     \lvect{\delta}_3 = \tfrac{a}{\sqrt3}\bigl(\tfrac{\sqrt3}{2},-\tfrac12\bigr),
 \end{equation}
-so $\lvect{d}_B=\lvect{\delta}_1$ with $\lvect{d}_A=0$. Two of these neighbours lie in neighbouring unit cells: $\lvect{\delta}_2=\lvect{\delta}_1-\cvect{a}_2$ and $\lvect{\delta}_3=\lvect{\delta}_1+\cvect{a}_1-\cvect{a}_2$. In the language of the general formalism, the $B$ orbitals that overlap $\psi_A$ are those with cell vectors
-\begin{equation}
-    \cvect{R}\in\{\,0,\; -\cvect{a}_2,\; \cvect{a}_1-\cvect{a}_2\,\}.
-\end{equation}
-The next-nearest neighbours of an $A$ atom are other $A$ atoms at distance $a>a/\sqrt3$, and are dropped.
+of length $a/\sqrt3$, and each $B$ atom has three $A$ neighbours at $-\lvect{\delta}_j$. The nearest atoms on the same sublattice lie at the larger distance $a$, and in the nearest-neighbour approximation their overlaps are neglected.
 
-\paragraph{The overlap matrix $\alpha(\lvect{k})$.} By the orthogonality assumption of the single-orbital formula, $\alpha_{mn}(\cvect{R})=\braket{\psi_m}{\psi_n(\lvect{x}-\cvect{R})}=\delta_{mn}\delta_{\cvect{R},0}$: the orbital on one atom is orthogonal to every other. (The true overlap between neighbouring carbon $p_z$ orbitals is nonzero but small; it changes the bandwidth by a factor, not the qualitative results.) Then
+\paragraph{Matrix elements.} Denote by $\psi$ the $p_z$ orbital, with atomic energy $E_p$, so that $\psi_A=\psi_B=\psi$ centred on the respective atoms. We assume orthogonal orbitals, $\alpha_{mn}(\lvect{r})=\delta_{mn}\delta_{\lvect{r},0}$, and define the on-site energy and the hopping integral
 \begin{equation}
-    \alpha_{mn}(\lvect{k}) = \sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}\,\delta_{mn}\delta_{\cvect{R},0} = \delta_{mn},
-    \qquad\text{i.e.}\quad \alpha(\lvect{k})=\mathbb{I},
+    \varepsilon \equiv E_p + \gamma_{AA}(0) = E_p + \gamma_{BB}(0),
+    \qquad
+    -t \equiv \gamma_{AB}(\lvect{\delta}_j) = \bra{\psi(\lvect{x})}\Delta U_A\ket{\psi(\lvect{x}-\lvect{\delta}_j)},
 \end{equation}
-that is,
+the latter independent of $j$ because the three bonds are related by the threefold rotation symmetry of the lattice. In the notation of the single-orbital formula, $\varepsilon=E_s-\beta$ and $t=\gamma>0$. The overlap matrix is then the identity,
 \begin{equation}
     \alpha(\lvect{k}) = \begin{bmatrix} \alpha_{AA}(\lvect{k}) & \alpha_{AB}(\lvect{k}) \\ \alpha_{BA}(\lvect{k}) & \alpha_{BB}(\lvect{k}) \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
 \end{equation}
-which is why $\alpha(\lvect{k})$ ``went away'': it is the identity and the tight-binding equation reduces to an ordinary eigenvalue problem, $\varepsilon(\lvect{k})\lvect{c}=H(\lvect{k})\lvect{c}$, as in the single-band example.
+and the tight-binding equation reduces to an ordinary eigenvalue problem. Only $\lvect{r}=0$ contributes to the diagonal elements, while the off-diagonal element sums over the three bond vectors from an $A$ atom to its $B$ neighbours:
+\begin{equation}
+    H_{AA}(\lvect{k}) = H_{BB}(\lvect{k}) = \varepsilon,
+    \qquad
+    H_{AB}(\lvect{k}) = \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j}\,(-t) = -t\,f(\lvect{k}),
+    \qquad
+    H_{BA}(\lvect{k}) = -t\,f^*(\lvect{k}),
+\end{equation}
+where
+\begin{equation}
+    f(\lvect{k}) \equiv \sum_{j=1}^{3} e^{i\lvect{k}\cdot\lvect{\delta}_j} = e^{ik_ya/\sqrt3}+2e^{-ik_ya/2\sqrt3}\cos\tfrac{k_xa}{2},
+\end{equation}
+and $H_{BA}$ follows either from hermiticity or directly from the bond vectors $-\lvect{\delta}_j$.
 
-\paragraph{The matrix $H(\lvect{k})$.} The elements are $H_{mn}(\lvect{k})=\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}}H_{mn}(\cvect{R})$ with $H_{mn}(\cvect{R})=E_p\,\alpha_{mn}(\cvect{R})+\gamma_{mn}(\cvect{R})$ and $\gamma_{mn}(\cvect{R})=\bra{\psi_m}\Delta U\ket{\psi_n(\lvect{x}-\cvect{R})}$. They are the four entries of
-\begin{equation}
-    H(\lvect{k}) = \begin{bmatrix} H_{AA}(\lvect{k}) & H_{AB}(\lvect{k}) \\ H_{BA}(\lvect{k}) & H_{BB}(\lvect{k}) \end{bmatrix},
-    \qquad
-    H(\lvect{k})\begin{bmatrix} b_A \\ b_B \end{bmatrix} = \varepsilon(\lvect{k})\begin{bmatrix} b_A \\ b_B \end{bmatrix},
-\end{equation}
-where row and column $A$ refer to the orbital on the $A$ atom, and $B$ to the $B$ atom. Evaluate them one at a time.
-\begin{itemize}
-    \item \emph{Diagonal, $m=n=A$ (and likewise $B$).} Only the on-site term $\cvect{R}=0$ survives, since the same-sublattice neighbours are dropped. With $\alpha_{AA}(0)=1$,
-    \begin{equation}
-        H_{AA}=E_p+\gamma_{AA}(0)\equiv\varepsilon=H_{BB}.
-    \end{equation}
-    This $\varepsilon=E_p-\beta$ is the on-site energy of the single-band example, in which $-\beta=\gamma(0)$. There is no $\lvect{k}$-dependence because there are no same-sublattice hoppings.
-    \item \emph{Off-diagonal, $H_{AB}$.} Here $\alpha_{AB}(\cvect{R})=0$, so $H_{AB}(\cvect{R})=\gamma_{AB}(\cvect{R})$, and this is nonzero only for the three cell vectors listed above. By the equivalence of the three bonds, all three have the same value, which we call $-t$:
-    \begin{equation}
-        \gamma_{AB}(\cvect{R}) = \bra{\psi_A}\Delta U\ket{\psi_B(\lvect{x}-\cvect{R})} \equiv -t\qquad(\cvect{R}\in\{0,-\cvect{a}_2,\cvect{a}_1-\cvect{a}_2\}).
-    \end{equation}
-    \item \emph{Relation to $\gamma$.} The single-orbital formula defined $\gamma\equiv-\bra{\phi}\Delta U\ket{\phi(\lvect{x}-\cvect{R})}$ with a minus sign so that it is positive for an attractive $\Delta U$. The hopping matrix element above is the same integral, so $t=\gamma$: $t$ is nothing but the nearest-neighbour $\gamma$ between the two orbitals, and it is positive. (Hence ``$-t$'' in the Hamiltonian, and the minus sign in $\varepsilon=E_s-\beta-\sum\gamma\cos$.)
-\end{itemize}
-Summing the three off-diagonal terms with their Bloch phases,
-\begin{equation}
-    H_{AB}(\lvect{k}) = -t\sum_{\cvect{R}}e^{i\lvect{k}\cdot\cvect{R}} = -t\bigl(1+e^{-i\lvect{k}\cdot\cvect{a}_2}+e^{i\lvect{k}\cdot(\cvect{a}_1-\cvect{a}_2)}\bigr),
-    \qquad H_{BA}=H_{AB}^*,
-\end{equation}
-where $H_{BA}=H_{AB}^*$ because $H$ is Hermitian (equivalently, the $A$ neighbours of a $B$ atom sit at $-\cvect{R}$). It is more convenient to factor out the phase $e^{-i\lvect{k}\cdot\lvect{\delta}_1}$:
-\begin{equation}
-    H_{AB}(\lvect{k})=-t\,e^{-i\lvect{k}\cdot\lvect{\delta}_1}f(\lvect{k}),
-    \qquad
-    f(\lvect{k})\equiv\sum_{j=1}^3e^{i\lvect{k}\cdot\lvect{\delta}_j}
-    = e^{ik_ya/\sqrt3}+2e^{-ik_ya/2\sqrt3}\cos\tfrac{k_xa}{2},
-\end{equation}
-since $\lvect{\delta}_j-\lvect{\delta}_1\in\{0,-\cvect{a}_2,\cvect{a}_1-\cvect{a}_2\}$. The phase $e^{-i\lvect{k}\cdot\lvect{\delta}_1}$ arises because the cell-vector convention $e^{i\lvect{k}\cdot\cvect{R}}$ ignores where inside the cell the $B$ atom sits; it can be absorbed into the definition of $b_B\to e^{i\lvect{k}\cdot\lvect{\delta}_1}b_B$, a unitary change of basis that leaves the energies unchanged. Doing so, $f(\lvect{k})$ is simply the sum over the three bond vectors of $e^{i\lvect{k}\cdot\lvect{\delta}}$, and
+\begin{formula}[Graphene tight-binding Hamiltonian]
 \begin{equation}
     \begin{bmatrix} \varepsilon & -t f(\lvect{k}) \\ -t f^*(\lvect{k}) & \varepsilon \end{bmatrix}
     \begin{bmatrix} b_A \\ b_B \end{bmatrix}
     = E \begin{bmatrix} b_A \\ b_B \end{bmatrix},
     \qquad
-    \det\begin{bmatrix} \varepsilon-E & -t f \\ -t f^* & \varepsilon-E \end{bmatrix} = (\varepsilon-E)^2 - t^2|f|^2 = 0.
-\end{equation}
-Hopping always connects the two sublattices, hence the off-diagonal form. The eigenvalues are
-\begin{equation}
     E_\pm(\lvect{k}) = \varepsilon \pm t\,|f(\lvect{k})|,
-    \qquad
-    |f|^2 = 1 + 4\cos^2\tfrac{k_x a}{2} + 4\cos\tfrac{k_x a}{2}\cos\tfrac{\sqrt3 k_y a}{2}.
 \end{equation}
-Two bands, symmetric about $\varepsilon$, as expected from a two-atom basis: the dimension of the matrix equals the number of orbitals kept (remark~1).
+with
+\begin{equation}
+    |f(\lvect{k})|^2 = 1 + 4\cos^2\tfrac{k_x a}{2} + 4\cos\tfrac{k_x a}{2}\cos\tfrac{\sqrt3 k_y a}{2}.
+\end{equation}
+\end{formula}
 
-\paragraph{Dirac points.} The bands touch where $f=0$. The reciprocal lattice is triangular too, and its Brillouin zone is a hexagon (Fig.~\ref{fig:graphene-bz}) whose corners lie at distance $4\pi/3a$ from the centre. At the corner $\lvect{K}=(4\pi/3a,\,0)$, $\cos(k_xa/2)=-\tfrac12$ and $|f|^2 = 1+1-2=0$; the six corners fall into two inequivalent sets, $K$ and $K'=-K$, three corners each.
+The eigenvalues follow from $\det\bigl[H(\lvect{k})-E\bigr] = (\varepsilon-E)^2 - t^2|f|^2 = 0$. The diagonal is constant because hopping always connects opposite sublattices; the two orbitals per cell give two bands, symmetric about $\varepsilon$.
+
+\paragraph{Dirac points.} The bands touch where $f(\lvect{k})=0$. The reciprocal lattice is again triangular, and the Brillouin zone is a hexagon (Fig.~\ref{fig:graphene-bz}) whose corners lie at distance $4\pi/3a$ from $\Gamma$. At the corner $\lvect{K}=(4\pi/3a,\,0)$ one has $\cos(k_xa/2)=-\tfrac12$ and $|f|^2 = 1+1-2=0$. The six corners form two classes, $K$ and $K'$, each consisting of three corners related by reciprocal lattice vectors; $K'$ is related to $K$ by inversion.
 
 \begin{figure}[ht]
 \centering
@@ -1176,15 +1186,15 @@ Two bands, symmetric about $\varepsilon$, as expected from a two-atom basis: the
 \label{fig:graphene-bz}
 \end{figure}
 
-\paragraph{Dirac cone.} Expand about $\lvect{K}$ with $\lvect{k}=\lvect{K}+\lvect{q}$, $|\lvect{q}|a\ll1$. Using $\cos(2\pi/3+\theta)\approx-\tfrac12-\tfrac{\sqrt3}{2}\theta$,
+\paragraph{Dirac cone.} Write $\lvect{k}=\lvect{K}+\lvect{q}$ with $|\lvect{q}|a\ll1$. Expanding with $\cos(2\pi/3+\theta)\approx-\tfrac12-\tfrac{\sqrt3}{2}\theta$ gives $f(\lvect{K}+\lvect{q}) \approx -\tfrac{\sqrt3 a}{2}(q_x - i q_y)$, so that
 \begin{equation}
-    f(\lvect{K}+\lvect{q}) \approx \frac{\sqrt3 a}{2}\,(i q_y - q_x),
+    H(\lvect{K}+\lvect{q}) \approx \varepsilon\,\mathbb{I} + \hbar v_F
+    \begin{bmatrix} 0 & q_x - i q_y \\ q_x + i q_y & 0 \end{bmatrix}
+    = \varepsilon\,\mathbb{I} + \hbar v_F\,(\sigma_x q_x + \sigma_y q_y),
     \qquad
-    E_\pm \approx \varepsilon \pm \hbar v_F |\lvect{q}|,
-    \qquad
-    v_F = \frac{\sqrt3\, a\, t}{2\hbar}.
+    v_F = \frac{\sqrt3\, a\, t}{2\hbar},
 \end{equation}
-The dispersion is a cone, linear in $|\lvect{q}|$ --- \emph{not} the quadratic $\hbar^2q^2/2m$ of a free electron --- and near $K$ the Hamiltonian takes the Dirac form $H\simeq\varepsilon+\hbar v_F\,\vec\sigma\cdot\lvect{q}$ (up to a fixed rotation of the Pauli matrices), so the low-energy electrons behave as massless relativistic fermions with $v_F$ playing the role of the speed of light ($v_F\sim c/300$ in practice). The same holds at $K'$.
+with eigenvalues $E_\pm = \varepsilon \pm \hbar v_F|\lvect{q}|$. Near $K$ the Hamiltonian is the two-dimensional Dirac Hamiltonian for a massless particle, with the sublattice index playing the role of spin (``pseudospin'') and $v_F\approx c/300$ playing the role of the speed of light. The dispersion is a cone, linear in $|\lvect{q}|$, in contrast with the quadratic dispersion of a free electron. An analogous expansion holds about $K'$.
 
 \begin{figure}[ht]
 \centering
@@ -1213,27 +1223,27 @@ The dispersion is a cone, linear in $|\lvect{q}|$ --- \emph{not} the quadratic $
 \label{fig:graphene-bands}
 \end{figure}
 
-\paragraph{Filling and density of states.} There is one $p_z$ electron per atom, hence two per unit cell, and with spin degeneracy exactly filling the lower band; the Fermi level sits at the Dirac points, $E_F=\varepsilon$. The band structure has no gap but the Fermi surface degenerates to the six points $K,K'$. Counting two valleys and two spins, the cone gives a density of states per unit area
+\paragraph{Filling and density of states.} Each carbon atom contributes one $p_z$ electron, so there are two per unit cell, which with spin degeneracy exactly fill the lower band. The Fermi level therefore lies at the Dirac points, $E_F=\varepsilon$, and the Fermi surface degenerates to the points $K$ and $K'$. Including the twofold valley and twofold spin degeneracy, the density of states per unit area near $E_F$ is
 \begin{equation}
     g(E) = \frac{2\,|E-\varepsilon|}{\pi\hbar^2 v_F^2},
 \end{equation}
-which vanishes linearly at $E_F$. Graphene is therefore a \emph{semimetal} (zero-gap semiconductor): no gap, but no states at the Fermi level either. This is a result of the two-band structure with symmetric sublattices, not of any filling accident.
+which vanishes linearly at the Fermi level. Graphene is thus a \emph{semimetal}: its bands have no gap, yet there are no states at the Fermi energy. The band touching is protected by the equivalence of the two sublattices.
 
-\paragraph{Breaking sublattice symmetry.} If the $A$ and $B$ atoms are inequivalent (e.g.\ graphene on hexagonal boron nitride, or BN itself), the two diagonal entries differ, $H_{AA}=\varepsilon+\Delta$ and $H_{BB}=\varepsilon$ (in the notation above, $E_m$ and $\gamma_{mm}(0)$ differ for $m=A,B$), while the off-diagonal hopping is unchanged:
+\paragraph{Breaking sublattice symmetry.} If the two atoms of the basis differ, as in hexagonal boron nitride or graphene on a substrate that distinguishes $A$ from $B$, their on-site energies differ, $H_{AA}=\varepsilon+\Delta$ and $H_{BB}=\varepsilon$, while the hopping is unchanged:
 \begin{equation}
-    H = \begin{bmatrix} \varepsilon+\Delta & -tf \\ -tf^* & \varepsilon \end{bmatrix},
+    \begin{bmatrix} \varepsilon+\Delta & -tf(\lvect{k}) \\ -tf^*(\lvect{k}) & \varepsilon \end{bmatrix}
+    \begin{bmatrix} b_A \\ b_B \end{bmatrix}
+    = E \begin{bmatrix} b_A \\ b_B \end{bmatrix},
     \qquad
     E_\pm = \varepsilon + \frac{\Delta}{2} \pm \sqrt{\frac{\Delta^2}{4} + t^2|f(\lvect{k})|^2}.
 \end{equation}
-Now $f=0$ no longer closes the gap: at $K$ the bands are split by exactly $\Delta$. Near the band edge, expanding the square root,
+At $K$ the bands are now separated by a gap $\Delta$. Measured from mid-gap, $E = \pm\sqrt{(\Delta/2)^2+(\hbar v_Fq)^2}$, the dispersion of a massive relativistic particle; near the band edge,
 \begin{equation}
-    E_\pm \approx \varepsilon+\frac{\Delta}{2} \pm\left(\frac{\Delta}{2} + \frac{\hbar^2 v_F^2 q^2}{\Delta}\right)
-    \;\Longrightarrow\;
-    \frac{\hbar^2q^2}{2m},
+    E_\pm \approx \varepsilon+\frac{\Delta}{2} \pm\left(\frac{\Delta}{2} + \frac{\hbar^2 q^2}{2m}\right),
     \qquad
     m = \frac{\Delta}{2v_F^2} = \frac{2\Delta\hbar^2}{3t^2a^2}.
 \end{equation}
-The massless Dirac fermion has acquired a mass set by the gap: an ordinary band edge with a \emph{massive}, relativistic-looking dispersion $E=\sqrt{(\Delta/2)^2+(\hbar v_Fq)^2}$, and the semimetal has become an insulator.
+The sublattice asymmetry gives the Dirac fermions a mass proportional to the gap, and the semimetal becomes an insulator.
 
 \subsection{Wannier Functions}
 
