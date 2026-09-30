@@ -1,1 +1,163 @@
-% (merged into ch_em4.tex)
+% =====================================================================
+\chapter{Multipoles and Dielectrics}
+% =====================================================================
+
+The dipole of Section~\ref{sec:em-dipole} is the first correction to the field of a neutral pair of charges. This chapter makes that systematic --- the multipole expansion of an arbitrary localised charge distribution --- and then uses the dipole term to describe insulating matter, whose response to a field is to polarise.
+
+% =====================================================================
+\section{The Multipole Expansion}
+% =====================================================================
+
+For a localised charge distribution $\rho(\lvect{r}')$ the potential is
+\[
+    \phi(\lvect{r}) = \frac{1}{4\pi\varepsilon_0}\int\frac{\rho(\lvect{r}')}{|\lvect{r}-\lvect{r}'|}\,d^3r' .
+\]
+Let $\alpha$ be the angle between $\lvect{r}$ and $\lvect{r}'$. By the law of cosines,
+\[
+    |\lvect{r}-\lvect{r}'| = r\sqrt{1+\epsilon},
+    \qquad
+    \epsilon = \frac{r'}{r}\left(\frac{r'}{r}-2\cos\alpha\right).
+\]
+Far outside the distribution $r'\ll r$, so $\epsilon\ll1$ and the binomial series applies:
+\[
+    \frac{1}{|\lvect{r}-\lvect{r}'|} = \frac1r\left(1-\tfrac12\epsilon+\tfrac38\epsilon^2-\tfrac{5}{16}\epsilon^3+\cdots\right).
+\]
+Collecting powers of $r'/r$, the coefficients turn out to be the Legendre polynomials:
+
+\begin{formula}[Legendre generating function]
+\[
+    \frac{1}{|\lvect{r}-\lvect{r}'|} = \frac1r\sum_{n=0}^{\infty}\left(\frac{r'}{r}\right)^{n} P_n(\cos\alpha),
+    \qquad r'<r,
+\]
+with $P_0(x)=1$, $P_1(x)=x$, $P_2(x)=\tfrac12(3x^2-1)$, $P_3(x)=\tfrac12(5x^3-3x)$.
+\end{formula}
+
+\begin{formula}[Multipole expansion]
+\[
+    \phi(\lvect{r}) = \frac{1}{4\pi\varepsilon_0}\sum_{n=0}^{\infty}\frac{1}{r^{n+1}}\int (r')^{n}P_n(\cos\alpha)\,\rho(\lvect{r}')\,d^3r' .
+\]
+\end{formula}
+
+The $n=0$ (monopole) term is $\phi_\text{mon} = Q/4\pi\varepsilon_0 r$ with $Q=\int\rho\,d^3r'$, and dominates at large $r$ unless $Q=0$. The next, $n=1$, term uses $r'\cos\alpha = \rhat\cdot\lvect{r}'$:
+\[
+    \phi_\text{dip}(\lvect{r}) = \frac{1}{4\pi\varepsilon_0}\frac{1}{r^2}\,\rhat\cdot\int\lvect{r}'\rho(\lvect{r}')\,d^3r' .
+\]
+
+\begin{definition}[Dipole moment]
+\[
+    \lvect{p} = \int\lvect{r}'\rho(\lvect{r}')\,d^3r',
+    \qquad
+    \phi_\text{dip}(\lvect{r}) = \frac{1}{4\pi\varepsilon_0}\frac{\lvect{p}\cdot\rhat}{r^2}.
+\]
+For point charges $\lvect{p}=\sum_i q_i\lvect{r}_i$; for a pair $\pm q$ separated by $\lvect{d}$ (from $-q$ to $+q$), $\lvect{p}=q\lvect{d}$, recovering Section~\ref{sec:em-dipole}.
+\end{definition}
+
+\begin{fact}[Origin dependence]
+Shifting the origin by $\lvect{a}$ changes the dipole moment to $\bar{\lvect{p}} = \int(\lvect{r}'-\lvect{a})\rho\,d^3r' = \lvect{p}-Q\lvect{a}$. The dipole moment of a \emph{neutral} distribution is therefore independent of the origin.
+\end{fact}
+
+\subsection{The Pure Dipole}
+
+A \emph{pure} (point) dipole is one whose potential is exactly $\phi_\text{dip}$, with no higher multipoles: the limit $q\to\infty$, $d\to0$ of a physical dipole at fixed $p=qd$. Its field was computed in Section~\ref{sec:em-dipole}, $\vect{E} = \frac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\rhat+\sin\theta\,\tthat)$. Writing $\lvect{p} = p\cos\theta\,\rhat - p\sin\theta\,\tthat$, one has $3(\lvect{p}\cdot\rhat)\rhat-\lvect{p} = 2p\cos\theta\,\rhat+p\sin\theta\,\tthat$, so
+
+\begin{formula}[Dipole field, coordinate-free]
+\[
+    \vect{E}_\text{dip}(\lvect{r}) = \frac{1}{4\pi\varepsilon_0 r^3}\bigl[3(\lvect{p}\cdot\rhat)\rhat-\lvect{p}\bigr].
+\]
+\end{formula}
+
+% =====================================================================
+\section{Dielectrics and Polarisation}
+% =====================================================================
+
+A conductor has an unlimited supply of free charge. In an \emph{insulator} every charge is bound to an atom or molecule and can only shift slightly within it; an insulator whose charges shift to form induced dipoles is a \emph{dielectric}.
+
+\subsection{Atomic Polarisability}
+
+\begin{example}[Toy model of an atom]
+Model an atom as a point nucleus $+q$ inside a uniformly charged electron cloud of charge $-q$ and radius $a$. An external field $\vect{E}$ displaces the nucleus by $d$ relative to the cloud's centre, where the cloud's field (Gauss's law inside a uniform ball) is
+\[
+    E_\text{cloud} = \frac{1}{4\pi\varepsilon_0}\frac{qd}{a^3}.
+\]
+Equilibrium requires $E_\text{cloud}=E$, so $d = 4\pi\varepsilon_0 a^3E/q$ and the induced moment is
+\[
+    p = qd = 4\pi\varepsilon_0a^3\,E .
+\]
+\end{example}
+
+\begin{definition}[Atomic polarisability]
+For a weak field the induced moment is linear, $\lvect{p}=\alpha\vect{E}$; $\alpha$ is the \emph{atomic polarisability}. The toy model gives $\alpha=4\pi\varepsilon_0a^3$.
+\end{definition}
+
+For hydrogen, with $a$ the Bohr radius $5.3\times10^{-11}$\,m, the toy model predicts $\alpha/4\pi\varepsilon_0\approx1.5\times10^{-31}\,\text{m}^3$ against the measured $6.7\times10^{-31}\,\text{m}^3$ --- right to within a factor of about four, which is good for so crude a model.
+
+\begin{definition}[Polarisation]
+In a field, a dielectric fills with aligned induced dipoles and is said to be \emph{polarised}. The \emph{polarisation} $\vect{P}(\lvect{r})$ is the dipole moment per unit volume.
+\end{definition}
+
+\subsection{Bound Charges}
+
+Summing the dipole potential over the volume elements $\vect{P}\,d^3r'$ of a polarised object,
+\[
+    \phi(\lvect{r}) = \frac{1}{4\pi\varepsilon_0}\int_V\frac{\vect{P}(\lvect{r}')\cdot(\lvect{r}-\lvect{r}')}{|\lvect{r}-\lvect{r}'|^3}\,d^3r'
+    = \frac{1}{4\pi\varepsilon_0}\int_V\vect{P}\cdot\grad'\!\left(\frac{1}{|\lvect{r}-\lvect{r}'|}\right)d^3r' .
+\]
+The product rule $\grad'\cdot(\vect{P}/|\lvect{r}-\lvect{r}'|) = \vect{P}\cdot\grad'(1/|\lvect{r}-\lvect{r}'|) + (\grad'\cdot\vect{P})/|\lvect{r}-\lvect{r}'|$ and the divergence theorem turn this into
+\[
+    \phi(\lvect{r}) = \frac{1}{4\pi\varepsilon_0}\oint_S\frac{\vect{P}\cdot\uvect{n}'}{|\lvect{r}-\lvect{r}'|}\,da'
+    + \frac{1}{4\pi\varepsilon_0}\int_V\frac{-\grad'\cdot\vect{P}}{|\lvect{r}-\lvect{r}'|}\,d^3r' .
+\]
+
+\begin{theorem}[Bound charges]
+The potential of a polarised object is that of a surface charge and a volume charge,
+\[
+    \sigma_b = \vect{P}\cdot\uvect{n},
+    \qquad
+    \rho_b = -\div\vect{P}.
+\]
+\end{theorem}
+
+These are genuine accumulations of charge: $\sigma_b$ is the uncompensated end of each column of dipoles at the surface, and $\rho_b$ appears where the polarisation is non-uniform so that neighbouring dipoles fail to cancel. In practice one computes the bound charges, forgets the material, and solves an ordinary electrostatics problem.
+
+\subsection{Example: The Uniformly Polarised Ball}
+
+A ball of radius $R$ carries uniform polarisation $\vect{P}=P\khat$. Then $\rho_b=0$ and $\sigma_b = P\cos\theta$. Rather than integrate Coulomb's law, solve Laplace's equation inside and outside and match at the surface.
+
+\paragraph{Separation of variables.} With azimuthal symmetry, Laplace's equation in spherical coordinates,
+\[
+    \frac{1}{r^2}\pdv{}{r}\!\left(r^2\pdv{\phi}{r}\right) + \frac{1}{r^2\sin\theta}\pdv{}{\theta}\!\left(\sin\theta\pdv{\phi}{\theta}\right) = 0,
+\]
+separates for $\phi = R(r)\Theta(\theta)$ into
+\[
+    \frac{d}{dr}\!\left(r^2\frac{dR}{dr}\right) = \ell(\ell+1)R,
+    \qquad
+    \frac{1}{\sin\theta}\frac{d}{d\theta}\!\left(\sin\theta\frac{d\Theta}{d\theta}\right) = -\ell(\ell+1)\Theta .
+\]
+The radial solutions are $r^\ell$ and $r^{-(\ell+1)}$; the angular solutions are finite at $\theta=0,\pi$ only for integer $\ell\ge0$, where they are $P_\ell(\cos\theta)$.
+
+\begin{formula}[Axisymmetric solution of Laplace's equation]
+\[
+    \phi(r,\theta) = \sum_{\ell=0}^{\infty}\left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell+1}}\right)P_\ell(\cos\theta),
+    \qquad
+    \int_{-1}^{1}P_\ell(x)P_{\ell'}(x)\,dx = \frac{2}{2\ell+1}\,\delta_{\ell\ell'} .
+\]
+\end{formula}
+
+\paragraph{Matching.} Finiteness at $r=0$ and $r\to\infty$ leaves $\phi_\text{in}=\sum A_\ell r^\ell P_\ell$ and $\phi_\text{out}=\sum B_\ell r^{-(\ell+1)}P_\ell$. Continuity at $r=R$ and orthogonality of the $P_\ell$ give $B_\ell = A_\ell R^{2\ell+1}$. The jump in the radial field equals the surface charge (Section~\ref{sec:em-surface}),
+\[
+    \left.\pdv{\phi_\text{out}}{r}-\pdv{\phi_\text{in}}{r}\right|_{r=R} = -\frac{\sigma_b}{\varepsilon_0}
+    \quad\Longrightarrow\quad
+    \sum_\ell(2\ell+1)A_\ell R^{\ell-1}P_\ell(\cos\theta) = \frac{P}{\varepsilon_0}\cos\theta,
+\]
+and since $\cos\theta=P_1(\cos\theta)$, only $\ell=1$ survives: $A_1 = P/3\varepsilon_0$, $B_1 = PR^3/3\varepsilon_0$.
+
+\begin{formula}[Uniformly polarised ball]
+\[
+    \phi(r,\theta) =
+    \begin{cases}
+        \dfrac{P}{3\varepsilon_0}\,r\cos\theta, & r\le R,\\[3mm]
+        \dfrac{PR^3}{3\varepsilon_0}\dfrac{\cos\theta}{r^2}, & r\ge R.
+    \end{cases}
+\]
+Inside, $r\cos\theta=z$ and the field is \emph{uniform}, $\vect{E}=-\vect{P}/3\varepsilon_0$. Outside, the potential is exactly that of a pure dipole at the centre with the ball's total moment $\lvect{p}=\tfrac43\pi R^3\vect{P}$.
+\end{formula}

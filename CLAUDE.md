@@ -58,7 +58,7 @@ Content is split across files differently per subject:
 
 - **`thermo-stat-mech/`**: `main.tex` inputs `ch1.tex` through `ch7.tex`
 - **`waves/`**: `main.tex` inputs `ch1.tex` through `ch8.tex`
-- **`electro/`**: `main.tex` inputs `ch_em1.tex`, `ch_em3.tex`, `ch_em4.tex`, `ch_em6.tex`, `ch_em9.tex`, `ch_em10.tex` (the numbering has gaps; `ch_em9.tex` holds three chapters)
+- **`electro/`**: `main.tex` inputs `ch_em1.tex`, `ch_em3.tex`, `ch_em4.tex`, `ch_em5.tex`, `ch_em6.tex`, `ch_em9.tex`, `ch_em10.tex` (the numbering has gaps; `ch_em9.tex` holds three chapters)
 - **`circuits/`**: `main.tex` inputs `ch1.tex` (batteries and DC networks) and `ch2.tex` (electronics); split out of `electro/` so the EM notes stay field-theoretic
 - **`class-mech/`**: `main.tex` contains the first two chapters inline, then inputs `ch4.tex` through `ch13.tex`
 - **`solid-state/`**: `main.tex` inputs `ch1.tex` through `ch5.tex`

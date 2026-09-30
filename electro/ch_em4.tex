@@ -325,6 +325,7 @@ For any conductor in equilibrium, whatever its shape and whatever external charg
 
 % =====================================================================
 \section{The Boundary-Value Problem and Uniqueness}
+\label{sec:em-uniqueness}
 % =====================================================================
 
 Since $\phi$ is a scalar it is easier to work with than $\vect{E}$. We seek $\phi$ with $\laplacian\phi = -\rho/\varepsilon_0$ subject to conditions on the bounding conductors.
@@ -570,6 +571,22 @@ The induced charge is densest directly beneath the point charge and falls off as
     = -qh\left[\frac{-1}{\sqrt{r^2+h^2}}\right]_0^\infty = -q ,
 \]
 so the plane draws up exactly the charge of the image it is standing in for --- a satisfying check that the construction is doing what we asked of it.
+
+\subsection{Force and Energy}
+
+The force on $q$ is that exerted by the image, since the field above the plane is the two-charge field:
+\[
+    \vect{F} = -\frac{1}{4\pi\varepsilon_0}\frac{q^2}{(2h)^2}\,\khat ,
+\]
+an attraction toward the plane. The energy, however, is \emph{not} that of the two-charge system. For the charge and its image,
+\[
+    W_\text{pair} = -\frac{1}{4\pi\varepsilon_0}\frac{q^2}{2h},
+\]
+while for the real charge above the plane
+\[
+    W = -\frac{1}{4\pi\varepsilon_0}\frac{q^2}{4h} = \tfrac12 W_\text{pair}.
+\]
+Two ways to see the factor of $\tfrac12$: in $W = \frac{\varepsilon_0}{2}\int E^2\,d^3r$ the real field fills only the half-space $z>0$, whereas the image field fills all space symmetrically; equivalently, bringing $q$ in from infinity against the force above, $W = -\int_\infty^h F(z)\,dz = -\int_\infty^h \frac{-q^2}{4\pi\varepsilon_0(2z)^2}\,dz$, gives $-q^2/(16\pi\varepsilon_0 h)$, because the image moves as $q$ does. The image problem and the real problem share the potential in $z\ge0$ and everything derived from it locally, but they are different physical systems: images reproduce \emph{some}, not all, quantities of the original problem.
 
 \subsection{General Strategy}
 
