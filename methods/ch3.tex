@@ -1,0 +1,323 @@
+\chapter{Vector Analysis}
+
+\section{Vector Products and Index Notation}
+
+\begin{definition}[Levi-Civita symbol]
+For an $n$-object system, $\varepsilon_{i_1 i_2\cdots i_n}$ is $+1$ if $i_1i_2\cdots i_n$ is an even permutation of $12\cdots n$, $-1$ if it is odd, and $0$ if any index repeats. A permutation is \emph{even} (\emph{odd}) if it takes an even (odd) number of pairwise interchanges to restore the reference order; e.g.\ $1234\to4132$.
+\end{definition}
+
+\begin{formula}[Cross product in index notation]
+\[
+    \uvect{e}_i\times\uvect{e}_j = \sum_k \varepsilon_{ijk}\,\uvect{e}_k,
+    \qquad
+    \vect{C} = \vect{A}\times\vect{B},\quad C_i = \sum_{jk}\varepsilon_{ijk}A_jB_k,
+    \qquad
+    \vect{C} = \begin{vmatrix} \uvect{e}_x & \uvect{e}_y & \uvect{e}_z \\ A_x & A_y & A_z \\ B_x & B_y & B_z \end{vmatrix}.
+\]
+$|\vect{A}\times\vect{B}| = |\vect{A}||\vect{B}|\sin\theta$, perpendicular to both $\vect{A}$ and $\vect{B}$ by the right-hand rule.
+\end{formula}
+
+\begin{fact}[Kronecker--Levi-Civita identities]
+\[
+    \sum_i\delta_{ii} = 3,\qquad
+    \sum_{ij}\delta_{ij}\varepsilon_{ijk} = 0,\qquad
+    \sum_{k}\varepsilon_{ijk}\varepsilon_{pqk} = \delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp},\qquad
+    \sum_{jk}\varepsilon_{ijk}\varepsilon_{pjk} = 2\delta_{ip},\qquad
+    \sum_{ijk}\varepsilon_{ijk}^2 = 6.
+\]
+The third (contraction) identity follows because $\sum_k\varepsilon_{ijk}\varepsilon_{pqk}\neq0$ only if $i\neq j$ and $\{p,q\}=\{i,j\}$: it is $+1$ for $i=p,\,j=q$ and $-1$ for $i=q,\,j=p$. The last says there are $3!=6$ permutations of $i,j,k$.
+\end{fact}
+
+\begin{definition}[Scalar triple product]
+\[
+    \vect{A}\cdot(\vect{B}\times\vect{C}) = \begin{vmatrix} A_x & A_y & A_z \\ B_x & B_y & B_z \\ C_x & C_y & C_z \end{vmatrix}
+    = \vect{B}\cdot(\vect{C}\times\vect{A}) = \vect{C}\cdot(\vect{A}\times\vect{B}) = -\vect{C}\cdot(\vect{B}\times\vect{A}),
+\]
+the (signed) volume of the parallelepiped spanned by $\vect{A},\vect{B},\vect{C}$. Cyclic permutations leave it unchanged; swapping two vectors swaps two rows of the determinant and flips the sign. It vanishes if and only if the three vectors are coplanar.
+\end{definition}
+
+\begin{theorem}[Vector triple product, ``BAC--CAB'']
+\[
+    \vect{A}\times(\vect{B}\times\vect{C}) = \vect{B}(\vect{A}\cdot\vect{C}) - \vect{C}(\vect{A}\cdot\vect{B}),
+\]
+which in general differs from $(\vect{A}\times\vect{B})\times\vect{C}$.
+\end{theorem}
+\begin{proof}
+\[
+    [\vect{A}\times(\vect{B}\times\vect{C})]_i = \sum_{jk}\varepsilon_{ijk}A_j\sum_{pq}\varepsilon_{kpq}B_pC_q
+    = \sum_{jpq}(\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp})A_jB_pC_q
+    = B_i(\vect{A}\cdot\vect{C}) - C_i(\vect{A}\cdot\vect{B}).\qedhere
+\]
+\end{proof}
+
+\begin{fact}[Products of cross products]
+\begin{align*}
+    (\vect{A}\times\vect{B})\cdot(\vect{C}\times\vect{D}) &= (\vect{A}\cdot\vect{C})(\vect{B}\cdot\vect{D}) - (\vect{A}\cdot\vect{D})(\vect{B}\cdot\vect{C}),\\
+    (\vect{A}\times\vect{B})^2 &= A^2B^2 - (\vect{A}\cdot\vect{B})^2 \qquad\text{(Lagrange's identity)},\\
+    (\vect{A}\times\vect{B})\times(\vect{C}\times\vect{D}) &= \vect{C}\,[\vect{A}\cdot(\vect{B}\times\vect{D})] - \vect{D}\,[\vect{A}\cdot(\vect{B}\times\vect{C})],\\
+    \vect{A}\times(\vect{B}\times\vect{C}) + \vect{B}\times(\vect{C}\times\vect{A}) + \vect{C}\times(\vect{A}\times\vect{B}) &= 0 \qquad\text{(Jacobi identity)}.
+\end{align*}
+Each follows from the contraction identity; the third is BAC--CAB with $\vect{A}\times\vect{B}$ playing the role of the first vector.
+\end{fact}
+
+\begin{example}[Magnetic force between moving charges]
+The Lorentz force is $\vect{F} = q\vect{E} + q\lvect{v}\times\vect{B}$. Charge $q_1$ moving with $\lvect{v}_1$ produces at $q_2$ (displacement $\lvect{r}_{12}$ from 1 to 2) the field $\vect{B} = \frac{\mu_0}{4\pi}q_1\frac{\lvect{v}_1\times\uvect{r}_{12}}{r^2}$, so
+\[
+    \vect{F}_2 = \frac{\mu_0q_1q_2}{4\pi r^2}\,\lvect{v}_2\times(\lvect{v}_1\times\uvect{r}_{12}),
+    \qquad
+    \vect{F}_1 = \frac{\mu_0q_1q_2}{4\pi r^2}\,\lvect{v}_1\times(\lvect{v}_2\times\uvect{r}_{21}).
+\]
+By BAC--CAB these are generally not equal and opposite: the magnetic forces between two moving charges violate Newton's third law (momentum is carried by the field).
+\end{example}
+
+\begin{example}[Area of a triangle in space]
+A triangle with vertices at $\vect{A},\vect{B},\vect{C}$ has area $\tfrac12|(\vect{A}-\vect{B})\times(\vect{C}-\vect{B})| = \tfrac12|\vect{A}\times\vect{B} + \vect{B}\times\vect{C} + \vect{C}\times\vect{A}|$.
+\end{example}
+
+\section{Lines, Curves and Sets}
+
+\paragraph{Lines.} Through two points $P,Q$ there is a unique line, and a point $R$ is on it iff $\overrightarrow{PR} = t\,\overrightarrow{PQ}$ for some real $t$. In general a line is $\lvect{l}(t) = \vect{A} + t\vect{B}$.
+
+\paragraph{Level sets.} The level curve (or surface) of a scalar function $f$ at $c$ is $\{\lvect{x}\in\mathbb{R}^n : f(\lvect{x}) = c\}$. A surface generally cannot be written as a graph $y=f(\lvect{x})$, but can be described as a level set.
+
+\begin{definition}[Open and closed sets]
+The \emph{open ball} of radius $\varepsilon>0$ about $P$ is $B_\varepsilon(P) = \{Q\in\mathbb{R}^n : \|\overrightarrow{PQ}\|<\varepsilon\}$; the \emph{closed ball} uses $\le\varepsilon$.
+\begin{itemize}
+    \item A set $A$ is \emph{open} if for every $P\in A$ there is an $\varepsilon$ with $B_\varepsilon(P)\subseteq A$: however close to the edge you are, you can go a little further without leaving.
+    \item $A$ is \emph{closed} if its complement $A^c$ is open.
+    \item $P$ is a \emph{boundary point} of $A$ if every $B_\varepsilon(P)$ contains points both in $A$ and not in $A$.
+\end{itemize}
+\end{definition}
+
+\section{Determinants and the Direct Product}
+
+\begin{definition}[Direct (Kronecker) product]
+For an $m\times n$ matrix $A$ and an $m'\times n'$ matrix $B$, $C = A\otimes B$ is the $mm'\times nn'$ matrix with
+\[
+    C_{\alpha\beta} = A_{ij}B_{kl},\qquad \alpha = m'(i-1)+k,\quad \beta = n'(j-1)+l .
+\]
+For example $\begin{pmatrix}x_1\\x_2\end{pmatrix}\otimes\begin{pmatrix}y_1\\y_2\end{pmatrix} = (x_1y_1,\,x_1y_2,\,x_2y_1,\,x_2y_2)^T$.
+\end{definition}
+The direct product is distributive, $C\otimes(A+B) = C\otimes A + C\otimes B$ and $(A+B)\otimes C = A\otimes C + B\otimes C$, and satisfies $(A\otimes B)(A'\otimes B') = (AA')\otimes(BB')$ whenever the products are defined.
+
+\section{Coordinate Rotations}
+
+Rotate the axes by $\varphi$: the new unit vectors are $\uvect{e}'_x = (\cos\varphi,\sin\varphi)$, $\uvect{e}'_y = (-\sin\varphi,\cos\varphi)$. Solving for the old ones,
+\[
+    \uvect{e}_x = \cos\varphi\,\uvect{e}'_x - \sin\varphi\,\uvect{e}'_y,\qquad
+    \uvect{e}_y = \sin\varphi\,\uvect{e}'_x + \cos\varphi\,\uvect{e}'_y,
+\]
+so the components of a fixed vector transform as $\vect{A}' = S\vect{A}$ with
+\[
+    S = \begin{pmatrix} \uvect{e}'_x\cdot\uvect{e}_x & \uvect{e}'_x\cdot\uvect{e}_y \\ \uvect{e}'_y\cdot\uvect{e}_x & \uvect{e}'_y\cdot\uvect{e}_y\end{pmatrix}
+    = \begin{pmatrix}\cos\varphi & \sin\varphi\\ -\sin\varphi & \cos\varphi\end{pmatrix}.
+\]
+Rotating the axes by $\varphi$ is the same as rotating the vector by $-\varphi$.
+
+\begin{definition}[Orthogonal matrix]
+$S$ is orthogonal if $SS^T = S^TS = \mathbb{I}$: its rows (and columns) are orthonormal. Then $\det S = \pm1$, and orthogonal transformations preserve dot products, $(S\lvect{x})^T(S\lvect{y}) = \lvect{x}^TS^TS\lvect{y} = \lvect{x}^T\lvect{y}$. $\det S=+1$ for rotations and $-1$ for transformations that include a reflection.
+\end{definition}
+
+\paragraph{Inversion.} $S = -\mathbb{I}$ reverses every coordinate, $(x,y,z)\to(-x,-y,-z)$, with $\det S = -1$; it turns a right-handed coordinate system into a left-handed one. Ordinary (\emph{polar}) vectors transform as $\vect{A}' = S\vect{A}$, but the cross product of two polar vectors does not change sign under inversion; such \emph{axial} vectors (angular momentum, $\vect{B}$) transform as $\vect{C}' = \det(S)\,S\vect{C}$.
+
+\paragraph{Rotations in $\mathbb{R}^3$.} In general $S_{\mu\nu} = \uvect{e}'_\mu\cdot\uvect{e}_\nu = \partial x'_\mu/\partial x_\nu = \partial x_\nu/\partial x'_\mu$, the projection of each new axis on each old one. Orthonormality leaves only three independent parameters (e.g.\ the Euler angles), compared with one angle in two dimensions.
+
+\begin{example}[Composition of rotations]
+Successive rotations about the same axis compose by matrix multiplication; for 2D rotations by $\varphi_1$ then $\varphi_2$, multiplying out $S(\varphi_2)S(\varphi_1)$ gives $S(\varphi_1+\varphi_2)$ and reproduces the angle-addition formulas for $\cos(\varphi_1+\varphi_2)$ and $\sin(\varphi_1+\varphi_2)$. Reflections in the three mutually perpendicular coordinate planes are diagonal and commute; their product is the inversion $-\mathbb{I}$.
+\end{example}
+
+\section{Differential Vector Operators}
+
+\begin{definition}[Gradient]
+For a scalar field $\varphi(\lvect{r})$, $d\varphi = \sum_i \pdv{\varphi}{x_i}dx_i$ and $d\lvect{r} = \sum_i dx_i\,\uvect{e}_i$, so
+\[
+    \grad\varphi = \Bigl(\pdv{\varphi}{x_1},\pdv{\varphi}{x_2},\pdv{\varphi}{x_3}\Bigr),\qquad d\varphi = (\grad\varphi)\cdot d\lvect{r}.
+\]
+$d\varphi$ is largest when $d\lvect{r}$ points along $\grad\varphi$; the gradient is normal to the level surfaces of $\varphi$. It is a genuine vector: under a rotation $(\grad\varphi)' = S(\grad\varphi)$.
+\end{definition}
+The operator $\nabla = \uvect{e}_x\partial_x + \uvect{e}_y\partial_y + \uvect{e}_z\partial_z$ acting on a scalar gives a vector. Useful gradients, with $r = \sqrt{x^2+y^2+z^2}$:
+\[
+    \grad r = \rhat,\qquad \grad\frac1r = -\frac{\rhat}{r^2},\qquad \grad r^n = nr^{n-1}\rhat,\qquad \grad f(r) = f'(r)\rhat,
+\]
+and $\grad|\lvect{r}_1-\lvect{r}_2| = (\lvect{r}_1-\lvect{r}_2)/|\lvect{r}_1-\lvect{r}_2|$.
+
+\begin{definition}[Divergence]
+$\div\vect{A} = \pdv{A_x}{x}+\pdv{A_y}{y}+\pdv{A_z}{z}$: a vector in, a scalar out.
+\end{definition}
+
+\paragraph{Interpretation.} Let a fluid of density $\rho$ have velocity $\lvect{v}$, so the flux density is $\rho\lvect{v}$. Through the two faces of a small box perpendicular to $x$, the net outflow per unit time is
+\[
+    \bigl[(\rho v_x)|_{x+dx/2} - (\rho v_x)|_{x-dx/2}\bigr]dy\,dz = \pdv{(\rho v_x)}{x}\,dx\,dy\,dz,
+\]
+evaluating $\rho v_x$ at the centre of each face. Adding the other faces, the net outflow per unit time is $\div(\rho\lvect{v})\,dx\,dy\,dz$: the divergence is the outflow per unit volume. Mass conservation then gives the
+
+\begin{formula}[Continuity equation]
+\[
+    \pdv{\rho}{t} + \div(\rho\lvect{v}) = 0.
+\]
+\end{formula}
+A field with $\div\vect{B} = 0$ is \emph{solenoidal}. Its flow lines cannot begin or end in the region; in general they begin at points of positive divergence and end at points of negative divergence.
+
+\begin{definition}[Curl]
+\[
+    \curl\vect{V} = \begin{vmatrix}\uvect{e}_x & \uvect{e}_y & \uvect{e}_z\\ \partial_x & \partial_y & \partial_z \\ V_x & V_y & V_z\end{vmatrix},
+    \qquad (\curl\vect{V})_i = \sum_{jk}\varepsilon_{ijk}\partial_jV_k .
+\]
+\end{definition}
+
+\paragraph{Interpretation.} Integrate $\vect{B}\cdot d\lvect{s}$ counter-clockwise around a small rectangle $\Delta x\times\Delta y$ centred at $(x_0,y_0)$. The bottom and top edges give $[B_x(x_0,y_0-\tfrac{\Delta y}{2}) - B_x(x_0,y_0+\tfrac{\Delta y}{2})]\Delta x \approx -\pdv{B_x}{y}\Delta x\Delta y$; the right and left edges give $+\pdv{B_y}{x}\Delta x\Delta y$. Hence
+\[
+    \oint\vect{B}\cdot d\lvect{s} \approx \Bigl(\pdv{B_y}{x}-\pdv{B_x}{y}\Bigr)\Delta x\,\Delta y = (\curl\vect{B})_z\,\Delta x\,\Delta y:
+\]
+the curl is the circulation per unit area. A field with $\curl\vect{B}=0$ is \emph{irrotational}.
+
+\begin{example}[Central force fields]
+For $\vect{F} = f(r)\rhat$: $\div(f(r)\rhat) = \frac{2f}{r} + \dv{f}{r}$, and $\curl(f(r)\rhat) = 0$, since each component of the curl, e.g.\ $\partial_y(fz/r) - \partial_z(fy/r)$, cancels.
+\end{example}
+
+\section{Second Derivatives and Vector Identities}
+
+\begin{definition}[Laplacian]
+$\laplacian\varphi = \div\grad\varphi = \pdv[2]{\varphi}{x}+\pdv[2]{\varphi}{y}+\pdv[2]{\varphi}{z}$. For the vector Laplacian, $\laplacian\vect{V} = \sum_i\uvect{e}_i\laplacian V_i$ in Cartesian coordinates.
+\end{definition}
+
+\begin{fact}[Second-derivative identities]
+\begin{align*}
+    \curl\grad\varphi &= 0 &&\text{(gradients are irrotational)},\\
+    \div(\curl\vect{V}) &= 0 &&\text{(curls are solenoidal)},\\
+    \curl(\curl\vect{V}) &= \grad(\div\vect{V}) - \laplacian\vect{V}.
+\end{align*}
+The first two follow because the determinants have two identical rows once mixed partials commute.
+\end{fact}
+
+\begin{example}[Electromagnetic waves]
+In vacuum ($\rho = 0$, $\vect{J} = 0$), Maxwell's equations are $\div\vect{E} = 0$, $\div\vect{B} = 0$, $\curl\vect{B} = \varepsilon_0\mu_0\,\partial_t\vect{E}$, $\curl\vect{E} = -\partial_t\vect{B}$. Taking the curl of the last,
+\[
+    \curl\curl\vect{E} = \grad(\div\vect{E}) - \laplacian\vect{E} = -\laplacian\vect{E}
+    \quad\text{and}\quad
+    \curl\curl\vect{E} = -\partial_t(\curl\vect{B}) = -\varepsilon_0\mu_0\,\partial_t^2\vect{E},
+\]
+so $\laplacian\vect{E} = \frac{1}{c^2}\partial_t^2\vect{E}$ with $c = 1/\sqrt{\varepsilon_0\mu_0}$: a wave equation for light.
+\end{example}
+
+\begin{fact}[Product rules]
+For scalars $f,u,v$ and vectors $\vect{A},\vect{B},\lvect{a},\lvect{b}$:
+\begin{align*}
+    \grad(uv) &= u\grad v + v\grad u,\\
+    \div(f\vect{V}) &= (\grad f)\cdot\vect{V} + f\div\vect{V},\\
+    \curl(f\vect{V}) &= f\,\curl\vect{V} + (\grad f)\times\vect{V},\\
+    \div(\lvect{a}\times\lvect{b}) &= \lvect{b}\cdot(\curl\lvect{a}) - \lvect{a}\cdot(\curl\lvect{b}),\\
+    \curl(\vect{A}\times\vect{B}) &= (\vect{B}\cdot\grad)\vect{A} - \vect{B}(\div\vect{A}) + \vect{A}(\div\vect{B}) - (\vect{A}\cdot\grad)\vect{B},\\
+    \grad(\vect{A}\cdot\vect{B}) &= (\vect{B}\cdot\grad)\vect{A} + (\vect{A}\cdot\grad)\vect{B} + \vect{B}\times(\curl\vect{A}) + \vect{A}\times(\curl\vect{B}),\\
+    d\vect{F} &= (d\lvect{r}\cdot\grad)\vect{F} + \pdv{\vect{F}}{t}\,dt,\\
+    \dv{t}(\vect{A}\cdot\vect{B}) &= \dot{\vect{A}}\cdot\vect{B} + \vect{A}\cdot\dot{\vect{B}},\qquad \dv{t}(\vect{A}\times\vect{B}) = \dot{\vect{A}}\times\vect{B} + \vect{A}\times\dot{\vect{B}}.
+\end{align*}
+\end{fact}
+\begin{proof}[Proof of the divergence of a cross product]
+$\div(\lvect{a}\times\lvect{b}) = \sum_{ijk}\varepsilon_{ijk}\partial_i(a_jb_k) = \sum_{ijk}\varepsilon_{ijk}(\partial_ia_j)b_k + \sum_{ijk}\varepsilon_{ijk}a_j\partial_ib_k$. The first sum is $\sum_k b_k(\curl\lvect{a})_k$; in the second, $\varepsilon_{ijk} = -\varepsilon_{jik}$ gives $-\sum_ja_j(\curl\lvect{b})_j$.
+\end{proof}
+
+The gradient of a dot product is the subtlest: $\nabla$ acts on both factors, so write $\nabla = \nabla_A + \nabla_B$, each acting only on the vector labelled. Applying BAC--CAB with the differentiated vector kept on the right, $\vect{A}\times(\nabla_B\times\vect{B}) = \nabla_B(\vect{A}\cdot\vect{B}) - (\vect{A}\cdot\nabla)\vect{B}$, and similarly with $A\leftrightarrow B$; adding gives the identity above.
+
+\begin{example}[Consequences of the identities]
+\begin{itemize}
+    \item If $\lvect{u},\lvect{v}$ are irrotational, $\lvect{u}\times\lvect{v}$ is solenoidal.
+    \item If $\vect{A}$ is irrotational, $\vect{A}\times\lvect{r}$ is solenoidal (using $\curl\lvect{r} = 0$).
+    \item If $\lvect{v}\neq0$ but $g\lvect{v}$ is irrotational for some scalar $g$, then $\lvect{v}\cdot(\curl\lvect{v}) = 0$: from $g\,\curl\lvect{v} = -\grad g\times\lvect{v}$, which is perpendicular to $\lvect{v}$.
+    \item $\curl\vect{F} = \curl\vect{G}$ if $\vect{F} = \vect{G} + \grad f$: fields with the same curl differ by a gradient.
+    \item $(\grad u)\times(\grad v)$ is solenoidal.
+    \item If $\laplacian\varphi = 0$, then $\grad\varphi$ is both solenoidal and irrotational.
+    \item If $\curl\curl\vect{A} - k^2\vect{A} = 0$, then $\div\vect{A} = 0$ (take the divergence) and hence $\laplacian\vect{A} + k^2\vect{A} = 0$.
+    \item $\laplacian(\tfrac{k}{2}\phi^2) = k(\grad\phi)^2$ when $\laplacian\phi = 0$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Angular momentum operator]
+With $\lvect{p} = -i\grad$, $\vect{L} = \lvect{r}\times\lvect{p}$ has components $L_i = -i\sum_{jk}\varepsilon_{ijk}x_j\partial_k$, e.g.\ $L_x = -i(y\partial_z - z\partial_y)$. Using the contraction identity, $[L_i,L_j] = i\sum_k\varepsilon_{ijk}L_k$.
+\end{example}
+
+\section{Line, Surface and Volume Integrals}
+
+\paragraph{Line integrals.} Along a path $C$,
+\[
+    \int_C\varphi\,d\lvect{r} = \uvect{e}_x\int_C\varphi\,dx + \uvect{e}_y\int_C\varphi\,dy + \uvect{e}_z\int_C\varphi\,dz,
+    \qquad
+    \int_C\vect{F}\cdot d\lvect{r} = \int_C(F_x\,dx + F_y\,dy + F_z\,dz),
+\]
+which require the path, e.g.\ $y(x)$ and $z(x)$. The integral $\int_C\vect{F}\times d\lvect{r}$ is handled similarly.
+
+\paragraph{Surface integrals.} $d\boldsymbol{\sigma} = \uvect{n}\,dA$, with $\uvect{n}$ the unit normal. For a closed surface $\uvect{n}$ points outward by convention; for an open surface its direction is fixed by the orientation of the boundary via the right-hand rule.
+
+\paragraph{Volume integrals.} $\int\lvect{v}\,d\tau = \uvect{e}_x\int v_x\,d\tau + \uvect{e}_y\int v_y\,d\tau + \uvect{e}_z\int v_z\,d\tau$, with $d\tau = d^3r = dx\,dy\,dz$.
+
+\begin{theorem}[Integration by parts in three dimensions]
+If $\vect{A}$ or $f$ vanishes at infinity,
+\[
+    \int\vect{A}\cdot\grad f\,d^3r = -\int f\,\div\vect{A}\,d^3r,
+    \qquad
+    \int\vect{C}\cdot(\curl\vect{A})\,d^3r = \int\vect{A}\cdot(\curl\vect{C})\,d^3r.
+\]
+\end{theorem}
+\begin{proof}
+For the $x$ term, integrate by parts in $x$: $\int A_x\partial_xf\,dx = [A_xf]_{-\infty}^{\infty} - \int f\partial_xA_x\,dx$, and the boundary term vanishes. Adding the three components gives the first identity; the second follows the same way using $\div(\vect{A}\times\vect{C})$.
+\end{proof}
+
+\begin{example}[Line integrals]
+\begin{itemize}
+    \item $\vect{F} = (-y,x)/(x^2+y^2)$ around the upper unit semicircle from $(1,0)$ to $(-1,0)$: with $x=\cos t$, $y=\sin t$, $\int\vect{F}\cdot d\lvect{r} = \int_0^\pi(\sin^2t+\cos^2t)\,dt = \pi$.
+    \item $\lvect{r} = \grad\bigl(\tfrac12r^2\bigr)$, so $\oint\lvect{r}\cdot d\lvect{r} = 0$ around any closed path.
+    \item For the unit cube, $\tfrac13\oint\lvect{r}\cdot d\boldsymbol{\sigma} = 1$, its volume (only the three faces away from the origin contribute, each giving $1$).
+\end{itemize}
+\end{example}
+
+\section{Integral Theorems}
+
+\begin{theorem}[Gauss's (divergence) theorem]
+If $\vect{A}$ and its first derivatives are continuous over a simply connected region $V$ with boundary $\partial V$,
+\[
+    \oint_{\partial V}\vect{A}\cdot d\boldsymbol{\sigma} = \int_V\div\vect{A}\,d\tau .
+\]
+\end{theorem}
+\textit{Proof idea:} divide $V$ into small cells; the flows through interior faces cancel between neighbouring cells, leaving only the outer boundary, while each cell contributes $\div\vect{A}\,d\tau$. If $V$ is all of $\mathbb{R}^3$ and the field falls off fast enough, $\int\div\vect{A}\,d\tau = 0$.
+
+\begin{theorem}[Green's theorem]
+Applying Gauss to $\div(u\grad v) = u\laplacian v + \grad u\cdot\grad v$ and subtracting the same with $u\leftrightarrow v$:
+\[
+    \int_V(u\laplacian v - v\laplacian u)\,d\tau = \oint_{\partial V}(u\grad v - v\grad u)\cdot d\boldsymbol{\sigma},
+    \qquad
+    \oint_{\partial V}u\grad v\cdot d\boldsymbol{\sigma} = \int_Vu\laplacian v\,d\tau + \int_V\grad u\cdot\grad v\,d\tau .
+\]
+\end{theorem}
+
+\begin{fact}[Other forms of Gauss's theorem]
+\[
+    \oint_{\partial V}B\,d\boldsymbol{\sigma} = \int_V\grad B\,d\tau,
+    \qquad
+    \oint_{\partial V}d\boldsymbol{\sigma}\times\vect{P} = \int_V\curl\vect{P}\,d\tau .
+\]
+For the first, apply Gauss to $B\lvect{a}$ with $\lvect{a}$ a constant vector: $\lvect{a}\cdot\bigl[\oint B\,d\boldsymbol{\sigma} - \int\grad B\,d\tau\bigr] = 0$ for every $\lvect{a}$. The second follows the same way. In particular $\oint_S d\boldsymbol{\sigma} = 0$ for any closed surface, and $\tfrac13\oint\lvect{r}\cdot d\boldsymbol{\sigma} = V$.
+\end{fact}
+
+\begin{theorem}[Stokes's theorem]
+\[
+    \oint_{\partial S}\vect{B}\cdot d\lvect{r} = \int_S(\curl\vect{B})\cdot d\boldsymbol{\sigma},
+\]
+with the direction of the boundary fixed by the right-hand rule relative to $d\boldsymbol{\sigma}$.
+\end{theorem}
+\textit{Proof idea:} from the interpretation of the curl, each small rectangle gives $\sum_{4\text{ sides}}\vect{B}\cdot d\lvect{r} = (\curl\vect{B})\cdot d\boldsymbol{\sigma}$; tiling $S$ with rectangles, the line integrals along shared interior edges cancel. For a closed surface $\oint(\curl\vect{B})\cdot d\boldsymbol{\sigma} = 0$, since it has no boundary.
+
+\begin{fact}[Other forms of Stokes's theorem]
+\[
+    \int_Sd\boldsymbol{\sigma}\times\grad\varphi = \oint_{\partial S}\varphi\,d\lvect{r},
+    \qquad
+    \int_S(d\boldsymbol{\sigma}\times\grad)\times\vect{P} = \oint_{\partial S}d\lvect{r}\times\vect{P}.
+\]
+Applied to Maxwell's equations, these give Oersted's and Faraday's laws in integral form. As an application, the area enclosed by a plane curve is $A = \tfrac12\oint(x\,dy - y\,dx)$, since $\curl(-y,x,0) = (0,0,2)$.
+\end{fact}
+
+\begin{example}[Field energy from Gauss's theorem]
+With $\vect{E} = -\grad\varphi$ and $\div\vect{E} = \rho/\varepsilon_0$, and fields vanishing at infinity,
+\[
+    \int\rho\varphi\,d\tau = \varepsilon_0\int(\div\vect{E})\varphi\,d\tau = -\varepsilon_0\int\vect{E}\cdot\grad\varphi\,d\tau = \varepsilon_0\int E^2\,d\tau .
+\]
+\end{example}

@@ -1,0 +1,89 @@
+\chapter{Calculus Tools}
+
+\section{Partial Derivatives}
+
+\begin{definition}[Partial derivative]
+$\displaystyle\pdv{F}{x_1} = \lim_{\Delta x_1\to0}\frac{F(x_1+\Delta x_1,x_2,\ldots) - F(x_1,x_2,\ldots)}{\Delta x_1}$, with the other variables held fixed.
+\end{definition}
+
+For $x(y,z)$, $dx = \pdv{x}{y}\big|_z dy + \pdv{x}{z}\big|_y dz$. Holding $z$ fixed gives the inverse rule, and holding $x$ fixed ($dx = 0$) gives $\dv*{z}{y}$:
+
+\begin{formula}[Relations among first partials]
+\[
+    \pdv{x}{y}\bigg|_z = \Bigl(\pdv{y}{x}\bigg|_z\Bigr)^{-1},
+    \qquad
+    \pdv{z}{y}\bigg|_x = -\frac{(\partial x/\partial y)_z}{(\partial x/\partial z)_y},
+    \qquad
+    \pdv{x}{y}\bigg|_z\pdv{y}{z}\bigg|_x\pdv{z}{x}\bigg|_y = -1 .
+\]
+\end{formula}
+Mixed second partials commute: if $\pdv{x}{y}\big|_z = f_1(y,z)$ and $\pdv{x}{z}\big|_y = f_2(y,z)$, then $\pdv{f_1}{z}\big|_y = \pdv{f_2}{y}\big|_z = \frac{\partial^2x}{\partial y\,\partial z}$.
+
+\section{Exact and Inexact Differentials}
+
+\begin{definition}[Exact differential]
+$df = a(y,z)\,dy + b(y,z)\,dz$ is \emph{exact}, i.e.\ there is a function $f(y,z)$ of which it is the differential, iff the mixed partials agree:
+\[
+    \pdv{a}{z}\bigg|_y = \pdv{b}{y}\bigg|_z .
+\]
+\end{definition}
+
+\paragraph{Constructing $f$.} Integrate $a$ with respect to $y$, adding an undetermined function of $z$: $f(y,z) = \int^y a(y',z)\,dy' + g(z)$. Then $b = \pdv{f}{z}\big|_y = \int^y\pdv{a(y',z)}{z}\,dy' + g'(z)$ determines $g'(z)$, which is integrated to get $g$.
+
+\paragraph{Inexact differentials.} Otherwise $df$ only defines a path-dependent quantity: for a path $C$ from $P_0 = (y_0,z_0)$ to $P = (y,z)$,
+\[
+    f_C(P;P_0) = \int_C df = \int_C\bigl(a\,dy' + b\,dz'\bigr) = \int_C d\lvect{x}\cdot\lvect{v},\qquad \lvect{v} = (a,b).
+\]
+The difference between two paths $C,C'$ is a closed line integral, and by Stokes's theorem
+\[
+    f_C - f_{C'} = \oint d\lvect{x}\cdot\lvect{v} = \int_A dA\,(\curl\lvect{v}),\qquad
+    \curl\lvect{v} = \pdv{a}{z}\bigg|_y - \pdv{b}{y}\bigg|_z ,
+\]
+which vanishes for every path only if $df$ is exact.
+
+\section{The Dirac Delta Function}
+
+\begin{definition}[Dirac delta]
+$\delta(x-a) = 0$ for $x\neq a$, and $\int_{x_0}^{x_1}\delta(x-a)\,dx = 1$ if $a\in(x_0,x_1)$ and $0$ otherwise. For any well-behaved $f$,
+\[
+    \int_{x_0}^{x_1}f(x)\,\delta(x-a)\,dx = f(a),\qquad a\in(x_0,x_1).
+\]
+\end{definition}
+
+\begin{formula}[Delta functions of more complicated arguments]
+\[
+    \int f(x)\,\delta(cx)\,dx = \frac{f(0)}{|c|},\qquad
+    \int f(x)\,\delta(cx-a)\,dx = \frac{1}{|c|}f\Bigl(\frac{a}{c}\Bigr),\qquad
+    \int f(x)\,\delta(g(x))\,dx = \sum_{i}\frac{f(x_i)}{|g'(x_i)|},
+\]
+where the $x_i$ are the simple zeros of $g$. (Substitute $u = cx$; for $g$, expand $g$ linearly about each zero.)
+\end{formula}
+
+The indefinite integral of the delta function is the step function, $\int_{-\infty}^x\delta(x')\,dx' = \theta(x)$, equal to $1$ for $x>0$ and $0$ for $x<0$; conversely $\theta'(x) = \delta(x)$.
+
+\paragraph{Gaussian representation.} $\delta_\varepsilon(x) = \frac{1}{\sqrt{2\pi\varepsilon}}e^{-x^2/2\varepsilon}$ has unit area and width $O(\sqrt\varepsilon)$, and $\delta_\varepsilon\to\delta$ as $\varepsilon\to0$.
+
+\subsection{Distributions of Functions of a Random Variable}
+
+Let $x$ have probability density $p(x) = dP/dx$, and let $y = g(x)$. Writing $p(x) = \int dx'\,\delta(x-x')p(x')$, the density of $y$ is
+\[
+    \dv{P}{y} = \int dx'\,\delta\bigl(y - g(x')\bigr)\,p(x') = \sum_j\frac{p(x_j)}{|g'(x_j)|}\bigg|_{g(x_j)=y},
+\]
+summing over all values $x_j$ that map to the same $y$.
+
+\begin{example}[Projection of uniform circular motion]
+A particle moves at constant speed on the unit circle, so its angle is uniform: $p(\theta) = 1/2\pi$ on $[0,2\pi)$. For $x = \cos\theta$ with $|x|<1$, the solutions are $\theta_1 = \cos^{-1}x$ and $\theta_2 = 2\pi - \theta_1$, each with $|g'| = |\sin\theta| = \sqrt{1-x^2}$, so
+\[
+    \dv{P}{x} = 2\cdot\frac{1}{2\pi}\cdot\frac{1}{\sqrt{1-x^2}} = \frac{1}{\pi\sqrt{1-x^2}},\qquad |x|<1,
+\]
+and $0$ for $|x|>1$. The density diverges at $x = \pm1$, where the particle moves slowest in $x$, but its integral is finite and equals $1$.
+\end{example}
+
+\section{Fourier Series}
+
+A periodic function on $[-\pi,\pi]$ can be expanded as
+\[
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty\bigl(a_n\cos nx + b_n\sin nx\bigr),
+    \qquad
+    a_n = \frac1\pi\int_{-\pi}^{\pi}f(x)\cos nx\,dx,\quad b_n = \frac1\pi\int_{-\pi}^{\pi}f(x)\sin nx\,dx .
+\]

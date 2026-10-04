@@ -1,0 +1,74 @@
+\chapter{Integration Techniques and Series}
+
+\section{Integral Tricks}
+
+\paragraph{Integration by parts.} $\displaystyle\int_a^b u\,dv = uv\Big|_a^b - \int_a^b v\,du$.
+
+\begin{definition}[Special functions defined by integrals]
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{l|l}
+Gamma function & $\Gamma(x) = \displaystyle\int_0^\infty t^{x-1}e^{-t}\,dt$ \\
+Factorial & $n! = \displaystyle\int_0^\infty t^n e^{-t}\,dt = \Gamma(n+1)$ \\
+Riemann zeta function & $\zeta(x) = \dfrac{1}{\Gamma(x)}\displaystyle\int_0^\infty \frac{t^{x-1}}{e^t-1}\,dt$ \\
+Exponential integral & $E_n(x) = \displaystyle\int_1^\infty \frac{e^{-xt}}{t^n}\,dt$ \\
+Sine integral & $\operatorname{si}(x) = -\displaystyle\int_x^\infty \frac{\sin t}{t}\,dt$ \\
+Cosine integral & $\operatorname{Ci}(x) = -\displaystyle\int_x^\infty \frac{\cos t}{t}\,dt$ \\
+Error functions & $\operatorname{erf}(x) = \dfrac{2}{\sqrt\pi}\displaystyle\int_0^x e^{-t^2}\,dt, \quad \operatorname{erfc}(x) = \dfrac{2}{\sqrt\pi}\displaystyle\int_x^\infty e^{-t^2}\,dt$ \\
+Dilogarithm & $\operatorname{Li}_2(x) = -\displaystyle\int_0^x \frac{\ln(1-t)}{t}\,dt$
+\end{tabular}
+\end{center}
+\end{definition}
+
+\paragraph{Differentiating with respect to a parameter.} Introduce a parameter into the integrand and differentiate under the integral sign (Leibniz's rule):
+\[
+    \frac{d}{d\alpha}\int_a^b f(x,\alpha)\,dx = \int_a^b \pdv{f(x,\alpha)}{\alpha}\,dx .
+\]
+For example, from $\int_0^\infty e^{-\alpha x}\,dx = 1/\alpha$, differentiating $n$ times gives $\int_0^\infty x^n e^{-\alpha x}\,dx = n!/\alpha^{n+1}$.
+
+\paragraph{Expand, then integrate.} Expand the integrand in an infinite series, integrate term by term, and then sum the resulting series in closed form. Alternatively, rewrite trigonometric functions in complex-exponential form, e.g.\ $\int e^{ax}\cos bx\,dx = \operatorname{Re}\int e^{(a+ib)x}\,dx$.
+
+\paragraph{Recursion.} Integrate by parts to relate $I_n$ to $I_{n-1}$ (or $I_{n-2}$), and iterate down to an integral that can be done directly.
+
+\section{Series Convergence Tests}
+
+\begin{definition}[Partial sums and convergence]
+The $i$th partial sum of $\sum u_n$ is $s_i = \sum_{n=1}^i u_n$. The series \emph{converges} if $\lim_{i\to\infty} s_i = S$ exists, and \emph{diverges} if $s_i\to\pm\infty$ (or oscillates). A necessary (but not sufficient) condition for convergence is $\lim_{n\to\infty} u_n = 0$.
+\end{definition}
+
+\begin{theorem}[Cauchy criterion]
+$\sum u_n$ converges if and only if for every $\varepsilon>0$ there is an $N$ such that $|s_j - s_i| < \varepsilon$ for all $i,j>N$: the partial sums cluster together further out in the sequence.
+\end{theorem}
+
+\begin{example}[Geometric series]
+With $u_0=1$ and constant ratio $r = u_{n+1}/u_n$, the partial sums are
+\[
+    s_n = \sum_{i=0}^{n-1} r^i = \frac{1-r^n}{1-r}.
+\]
+(By induction: $s_n = s_{n-1} + r^{n-1} = \frac{1-r^{n-1}+(1-r)r^{n-1}}{1-r} = \frac{1-r^n}{1-r}$.) For $|r|<1$, $r^n\to0$ and the series converges to $1/(1-r)$; for $|r|\ge1$ it diverges.
+\end{example}
+
+\begin{theorem}[Comparison test]
+If $0\le u_n\le a_n$ and $\sum a_n$ converges, then $\sum u_n$ converges. Conversely, if $u_n\ge b_n\ge0$ and $\sum b_n$ diverges, so does $\sum u_n$.
+\end{theorem}
+\begin{proof}
+The partial sums satisfy $s_j - s_i = \sum_{n=i+1}^j u_n \le \sum_{n=i+1}^j a_n < \varepsilon$ for large $i,j$, because $\sum a_n$ is Cauchy; hence $\sum u_n$ is Cauchy.
+\end{proof}
+The geometric series and the harmonic series $\sum 1/n$ are the usual comparison series.
+
+\begin{theorem}[Cauchy root test]
+If $(a_n)^{1/n}\le r<1$ for all sufficiently large $n$, with $r$ independent of $n$, then $\sum a_n$ converges. If $(a_n)^{1/n}\ge1$ for all sufficiently large $n$, it diverges.
+\end{theorem}
+\begin{proof}
+$a_n\le r^n$ with $r<1$, so $\sum a_n$ converges by comparison with the geometric series.
+\end{proof}
+
+\begin{theorem}[d'Alembert (Cauchy) ratio test]
+If $a_{n+1}/a_n\le r<1$ for all sufficiently large $n$, with $r$ independent of $n$, then $\sum a_n$ converges; if $a_{n+1}/a_n\ge1$ for all sufficiently large $n$, it diverges. Equivalently,
+\[
+    \lim_{n\to\infty}\frac{a_{n+1}}{a_n} \;\begin{cases} <1 & \text{convergent},\\ >1 & \text{divergent},\\ =1 & \text{indeterminate}.\end{cases}
+\]
+\end{theorem}
+\begin{proof}
+From some index on, $a_{n+k}\le r^k a_n$, so the tail is bounded by a convergent geometric series. Adding the finitely many earlier terms does not affect convergence.
+\end{proof}
