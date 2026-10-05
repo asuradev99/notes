@@ -120,36 +120,11 @@ The potential of a polarised object is that of a surface charge and a volume cha
 These are genuine accumulations of charge: $\sigma_b$ is the uncompensated end of each column of dipoles at the surface, and $\rho_b$ appears where the polarisation is non-uniform so that neighbouring dipoles fail to cancel. In practice one computes the bound charges, forgets the material, and solves an ordinary electrostatics problem.
 
 \subsection{Example: The Uniformly Polarised Ball}
+\label{sec:em-polarised-ball}
 
 A ball of radius $R$ carries uniform polarisation $\vect{P}=P\khat$. Then $\rho_b=0$ and $\sigma_b = P\cos\theta$. Rather than integrate Coulomb's law, solve Laplace's equation inside and outside and match at the surface.
 
-\paragraph{Separation of variables.} With azimuthal symmetry, Laplace's equation in spherical coordinates,
-\[
-    \frac{1}{r^2}\pdv{}{r}\!\left(r^2\pdv{\phi}{r}\right) + \frac{1}{r^2\sin\theta}\pdv{}{\theta}\!\left(\sin\theta\pdv{\phi}{\theta}\right) = 0,
-\]
-separates for $\phi = R(r)\Theta(\theta)$ into
-\[
-    \frac{d}{dr}\!\left(r^2\frac{dR}{dr}\right) = \ell(\ell+1)R,
-    \qquad
-    \frac{1}{\sin\theta}\frac{d}{d\theta}\!\left(\sin\theta\frac{d\Theta}{d\theta}\right) = -\ell(\ell+1)\Theta .
-\]
-The radial solutions are $r^\ell$ and $r^{-(\ell+1)}$; the angular solutions are finite at $\theta=0,\pi$ only for integer $\ell\ge0$, where they are $P_\ell(\cos\theta)$.
-
-\begin{formula}[Axisymmetric solution of Laplace's equation]
-\[
-    \phi(r,\theta) = \sum_{\ell=0}^{\infty}\left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell+1}}\right)P_\ell(\cos\theta),
-    \qquad
-    \int_{-1}^{1}P_\ell(x)P_{\ell'}(x)\,dx = \frac{2}{2\ell+1}\,\delta_{\ell\ell'} .
-\]
-\end{formula}
-
-\paragraph{Matching.} Finiteness at $r=0$ and $r\to\infty$ leaves $\phi_\text{in}=\sum A_\ell r^\ell P_\ell$ and $\phi_\text{out}=\sum B_\ell r^{-(\ell+1)}P_\ell$. Continuity at $r=R$ and orthogonality of the $P_\ell$ give $B_\ell = A_\ell R^{2\ell+1}$. The jump in the radial field equals the surface charge (Section~\ref{sec:em-surface}),
-\[
-    \left.\pdv{\phi_\text{out}}{r}-\pdv{\phi_\text{in}}{r}\right|_{r=R} = -\frac{\sigma_b}{\varepsilon_0}
-    \quad\Longrightarrow\quad
-    \sum_\ell(2\ell+1)A_\ell R^{\ell-1}P_\ell(\cos\theta) = \frac{P}{\varepsilon_0}\cos\theta,
-\]
-and since $\cos\theta=P_1(\cos\theta)$, only $\ell=1$ survives: $A_1 = P/3\varepsilon_0$, $B_1 = PR^3/3\varepsilon_0$.
+Using the axisymmetric solution of Section~\ref{sec:em-separation}, with $A_\ell r^\ell$ inside and $B_\ell r^{-(\ell+1)}$ outside, the matching formula there with $\sigma_0=\sigma_b=P\cos\theta=P\,P_1(\cos\theta)$ leaves only $\ell=1$: $A_1=P/3\varepsilon_0$ and $B_1=A_1R^3=PR^3/3\varepsilon_0$.
 
 \begin{formula}[Uniformly polarised ball]
 \[

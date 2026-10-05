@@ -663,11 +663,15 @@ Most integrands in practice depend on the separation between a field point and a
 \]
 \end{formula}
 
-The class of functions that satisfy Laplace's equation are called \emph{harmonic functions}, and they have the following property:
+Its solutions are called \emph{harmonic functions}. Coulomb's integral gives $\phi$ only when all the charge is known; with conductors present the induced charge is not known in advance, only each conductor's potential or total charge, so instead one solves $\laplacian\phi=0$ in the charge-free region subject to boundary data (Sections~\ref{sec:em-uniqueness} and~\ref{sec:em-separation}).
+
+\paragraph{One dimension.} If $\phi=\phi(x)$, then $\phi''=0$ and $\phi=mx+b$, two constants fixed by two boundary conditions. Two features of this trivial case survive in higher dimensions: $\phi(x)=\tfrac12[\phi(x+a)+\phi(x-a)]$, and $\phi$ has no interior maximum or minimum. In three dimensions these become:
 
 \begin{fact}[Mean value property]
 If $\laplacian\phi=0$ in a region, the value of $\phi$ at any point equals its average over any sphere centred there and lying in the region. (Proved in Section~\ref{sec:em-meanvalue}.)
 \end{fact}
+
+\paragraph{No interior extrema.} If $\phi$ had a local maximum at a point, every value on a small sphere around it would be lower, so their average could not equal the centre value. The extreme values of a harmonic function therefore occur on the boundary: Laplace's equation picks the most featureless function consistent with the boundary data. This is also the basis of numerical \emph{relaxation}: fix $\phi$ on the boundary, guess interior values on a grid, and repeatedly replace each by the average of its neighbours until the values stop changing.
 
 \begin{theorem}[Earnshaw's Theorem]
 It is impossible to construct an electrostatic field that will hold a charged particle in stable equilibrium in free (empty) space.
@@ -678,6 +682,7 @@ Gauss's Law proof: Suppose we had an electric field in which, contrary to the th
 
 \textit{Second method:} a stable position for a positive charge must be a strict local minimum of $\phi$, lower than every point on a small sphere around it. But $\phi$ equals its average over that sphere, so it cannot be lower than all of them.
 \end{proof}
+For example, a positive charge at the centre of a cube with positive charges at its corners looks trapped, but the centre is a saddle point: a minimum along some directions and a maximum along others (towards the faces).
 
 \subsection*{Distinguishing the Physics from the Mathematics}
 
@@ -996,6 +1001,12 @@ Let $q'$ be brought in from infinity to a distance $R$, so that $W = \dfrac{qq'}
     = \frac{q}{4\pi\varepsilon_0 z},
 \end{align*}
 the potential at the centre.
+
+If charge $Q_\text{enc}$ lies inside the sphere, the average picks up an extra term,
+\[
+    \phi_\text{ave} = \phi_\text{centre} + \frac{Q_\text{enc}}{4\pi\varepsilon_0R},
+\]
+where $\phi_\text{centre}$ is the potential at the centre due to the external charges only (each internal charge contributes its value on the sphere, $q/4\pi\varepsilon_0R$, by the shell theorem).
 
 \subsection{A General Proof via Green's Identities}
 
