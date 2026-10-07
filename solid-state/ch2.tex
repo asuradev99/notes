@@ -363,6 +363,66 @@ Of the 230 three-dimensional space groups, 73 are symmorphic and 157 are nonsymm
 Having more than one atom per primitive cell does \emph{not} by itself make a structure nonsymmorphic. The honeycomb lattice is not a Bravais lattice, since its two sublattices are inequivalent under translation, yet its space group $p6mm$ is symmorphic: every symmetry, including the inversion that swaps the two sublattices, fixes the centre of a hexagon. The question is whether all point operations share a common fixed point, not whether all atoms are equivalent under translation. Diamond, by contrast, is nonsymmorphic --- the inversion swapping its two FCC sublattices is centred on a bond midpoint while the fourfold operations are centred on an atom, and no single origin serves both.
 \end{fact}
 
+
+\subsection{The Point Group and the Action on Atoms}
+\label{sec:xrd-site-symmetry}
+
+The general group theory used here (homomorphisms, cosets, actions, orbit--stabilizer) is in the mathematical-methods notes. Write $\Lambda$ for the set of Bravais-lattice vectors $\cvect{R}$, so that $T = \{\{E\mid\cvect{R}\}:\cvect{R}\in\Lambda\}$.
+
+\begin{theorem}[The point group preserves the lattice]
+The map $\pi:G\to O(3)$, $\pi(\{R\mid\lvect{t}\}) = R$, is a homomorphism with image $P$. Hence $P$ is a group (a subgroup of $O(3)$, though not in general of $G$). Moreover $R\Lambda = \Lambda$ for every $R\in P$.
+\end{theorem}
+\begin{proof}
+By~\eqref{eq:xrd-seitz-product} the rotation part of a product is the product of the rotation parts, and the image of a homomorphism is a subgroup. For $\{R\mid\lvect{t}\}\in G$ and $\cvect{R}\in\Lambda$,
+\[
+    \{R\mid\lvect{t}\}\{E\mid\cvect{R}\}\{R\mid\lvect{t}\}^{-1} = \{E\mid R\cvect{R}\}\in G,
+\]
+so $R\Lambda\subseteq\Lambda$. Applying this to $R^{-1}\in P$ gives the reverse inclusion.
+\end{proof}
+
+This is why the point group of a nonsymmorphic crystal is still a genuine crystallographic point group. Bulk 2H-MoSe$_2$ ($P6_3/mmc$) has $P = D_{6h}$, even though its sixfold operation occurs only as the screw $\{C_6\mid\tfrac{c}{2}\uvect{z}\}$, which swaps the two layers, so that $C_6$ alone is a symmetry about no point. Monolayer MoSe$_2$ ($P\bar{6}m2$, point group $D_{3h}$), by contrast, is symmorphic: with the origin on Mo, every operation has $\lvect{t} = 0$.
+
+\begin{theorem}[Space-group action on the atoms of a cell]
+Let the atoms sit at $\lvect{r}_\kappa + \Lambda$, $\kappa = 1,\ldots,N$, with the $\lvect{r}_\kappa$ distinct modulo $\Lambda$. For $g = \{R\mid\lvect{t}\}\in G$ and each $\kappa$ there is a unique $\kappa'$ and a unique $\cvect{R}\in\Lambda$ with
+\[
+    R\lvect{r}_\kappa + \lvect{t} = \lvect{r}_{\kappa'} + \cvect{R}.
+\]
+Setting $g\cdot\kappa = \kappa'$ defines an action of $G$ on $\{1,\ldots,N\}$ in which every pure translation acts trivially. Consequently, two operations with the same rotation part $R$ permute the atoms identically, so this is effectively an action of the point group $P$.
+\end{theorem}
+\begin{proof}
+$g$ maps the crystal to itself preserving species, so $g\lvect{r}_\kappa = \lvect{r}_{\kappa'}+\cvect{R}$ for some $\kappa'$ and $\cvect{R}$. These are unique because the $\lvect{r}_\kappa$ are distinct mod $\Lambda$. For the composition law, write $h\lvect{r}_\kappa = \lvect{r}_{h\cdot\kappa}+\cvect{R}_1$ and $g\lvect{r}_{h\cdot\kappa} = \lvect{r}_{g\cdot(h\cdot\kappa)}+\cvect{R}_2$. Then
+\[
+    (gh)\lvect{r}_\kappa = \lvect{r}_{g\cdot(h\cdot\kappa)} + \cvect{R}_2 + R\cvect{R}_1,
+\]
+and $R\cvect{R}_1\in\Lambda$ by the previous theorem. Translations fix every $\kappa$. Finally, $\{R\mid\lvect{t}'\} = \{R\mid\lvect{t}\}\{E\mid R^{-1}(\lvect{t}'-\lvect{t})\}$, and the second factor is a pure translation in $G$.
+\end{proof}
+
+\begin{definition}[Site-symmetry group and Wyckoff orbit]
+The stabilizer $G_\kappa = \{R\in P : R\cdot\kappa = \kappa\}$ is the \emph{site-symmetry group} of atom $\kappa$. Its orbit $O_\kappa$ is the set of atoms related to it by symmetry. By orbit--stabilizer,
+\begin{equation}
+    |O_\kappa|\,|G_\kappa| = |P|,
+\end{equation}
+so in particular the order of every site-symmetry group divides $|P|$. The atoms of an orbit are related by the cosets of $G_\kappa$: the operations in $gG_\kappa$ are exactly those sending $\kappa$ to $g\cdot\kappa$.
+\end{definition}
+
+\begin{example}[Site symmetry in MoSe$_2$ and CrI$_3$]
+\textbf{Monolayer MoSe$_2$} ($P\bar{6}m2$, $|D_{3h}| = 12$). With $a = 3.32$\,\AA{} and $h = 1.67$\,\AA, take
+\[
+    \lvect{a}_1 = a\bigl(\tfrac{\sqrt3}{2},-\tfrac12,0\bigr),\quad \lvect{a}_2 = a\bigl(\tfrac{\sqrt3}{2},\tfrac12,0\bigr),\quad
+    \lvect{r}_{\text{Mo}} = 0,\quad \lvect{r}_{\text{Se}\pm} = \bigl(\tfrac{a}{\sqrt3},0,\pm h\bigr).
+\]
+Mo is fixed by every operation, so $G_{\text{Mo}} = D_{3h}$ and $|O_{\text{Mo}}| = 1$. The top Se is fixed exactly by $C_{3v} = \ker s$ (the operations with $R_{zz} = +1$), and sent to the bottom Se by the other coset $\sigma_hC_{3v}$. So $|O_{\text{Se}}| = 12/6 = 2$.
+
+\textbf{Monolayer CrI$_3$} ($P\bar{3}1m$, $D_{3d} = D_3\cup ID_3$, $|D_{3d}| = 12$). The Cr atoms form a honeycomb with two Cr per cell, at $\pm(a/\sqrt3,0,0)$ for $a = 6.87$\,\AA. Each Cr is octahedrally coordinated by six I atoms, and the octahedra share edges. Each Cr is fixed by the $C_2'$ axes through it, so its site group is $D_3$, and inversion exchanges the two Cr: $|O_{\text{Cr}}| = 12/6 = 2$. The six I atoms form a single orbit, so orbit--stabilizer forces $|G_{\text{I}}| = 2$ with no further computation: the site group is $\{E,\sigma_d\}$, where $\sigma_d$ is the vertical mirror through the Cr--Cr bond midpoint, perpendicular to the bond.
+\end{example}
+
+\begin{fact}[Why site symmetry matters]
+For any per-atom property (a force-constant block, an atomic Raman tensor, a local moment), the orbit says which atoms' tensors follow from one computed tensor, by applying the coset representatives. The stabilizer says which components of that tensor must vanish: they must be invariant under $G_\kappa$.
+\end{fact}
+
+\begin{fact}[The crystal Hamiltonian commutes with the space group]
+If $g\in G$ and $X_0$ is the equilibrium nuclear configuration, then $g\cdot X_0 = X_0$. So the symmetry operators $U_g$ of quantum mechanics commute with the clamped-nucleus Hamiltonian, $U_gH_{X_0}U_g^\dagger = H_{X_0}$, and each energy eigenspace is invariant under the whole space group. The same holds for the dynamical matrix of the phonons of Chapter~4. This is the input to Bloch's theorem, which uses the translation subgroup $T$, and to every symmetry-based degeneracy and selection rule.
+\end{fact}
 The distinction is not merely taxonomic. It has a direct consequence for band structure, which we take up once Bloch's theorem is available, in Section~\ref{sec:bloch-sticking}.
 
 % ============================================================

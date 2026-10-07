@@ -1,0 +1,245 @@
+\chapter{Group Theory}
+\label{ch:groups}
+
+Symmetry is described by groups. This chapter collects the parts of finite group theory that physics uses to constrain degeneracies, selection rules and tensor forms. Every example is drawn from the point group $D_{3h}$ of monolayer MoSe$_2$, whose twelve elements are listed first. Applications to crystals (space groups, site symmetry) are in the solid-state notes.
+
+\section{A Running Example: $D_{3h}$}
+
+For an angle $\varphi$ put $\uvect{n}_\varphi = (\cos\varphi,\sin\varphi,0)$ and $\Phi = \{0, 2\pi/3, 4\pi/3\}$. Define
+\[
+    C_3 = \begin{pmatrix} -\tfrac12 & -\tfrac{\sqrt3}{2} & 0\\ \tfrac{\sqrt3}{2} & -\tfrac12 & 0 \\ 0&0&1\end{pmatrix},\quad
+    C_2'(\varphi) = \begin{pmatrix} \cos2\varphi & \sin2\varphi & 0\\ \sin2\varphi & -\cos2\varphi & 0 \\ 0&0&-1\end{pmatrix},\quad
+    \sigma_h = \begin{pmatrix} 1&0&0\\0&1&0\\0&0&-1\end{pmatrix},
+\]
+together with $S_3 = \sigma_hC_3$, $S_3^5 = \sigma_hC_3^2$ and $\sigma_v(\varphi) = \sigma_hC_2'(\varphi)$. Here $C_2'(\varphi)$ is the rotation by $\pi$ about $\uvect{n}_\varphi$, and $\sigma_v(\varphi)$ is the reflection in the plane spanned by $\uvect{z}$ and $\uvect{n}_\varphi$. Then
+\[
+    D_{3h} = \{E, C_3, C_3^2\}\cup\{C_2'(\varphi)\}_{\varphi\in\Phi}\cup\{\sigma_h, S_3, S_3^5\}\cup\{\sigma_v(\varphi)\}_{\varphi\in\Phi}.
+\]
+Every element is block-diagonal: $R = \operatorname{diag}\bigl(B(R),\,s(R)\bigr)$ with $B(R)\in O(2)$ and $s(R) = R_{zz} = \pm1$. Its value is $s = +1$ on $\{E, C_3, C_3^2, \sigma_v\}$ and $s=-1$ on $\{C_2', \sigma_h, S_3, S_3^5\}$.
+
+\section{Groups and Subgroups}
+
+\begin{definition}[Group]
+A \emph{group} is a set $G$ with a map $G\times G\to G$, $(g,h)\mapsto gh$, such that
+\begin{enumerate}
+    \item (associativity) $(gh)k = g(hk)$ for all $g,h,k$;
+    \item (identity) there is $e\in G$ with $eg = ge = g$ for all $g$;
+    \item (inverses) for each $g$ there is $g^{-1}$ with $gg^{-1} = g^{-1}g = e$.
+\end{enumerate}
+Closure is built into the requirement that the product lands in $G$. $G$ is \emph{abelian} if $gh = hg$ always. The \emph{order} $|G|$ is the number of elements.
+\end{definition}
+
+\begin{theorem}[Symmetries form a group]
+Let $X$ be any object (a set of labelled atoms, a Hamiltonian, a tensor). The invertible maps of a fixed type (e.g.\ Euclidean motions) that send $X$ to itself form a group under composition.
+\end{theorem}
+\begin{proof}
+Composition is associative and the identity map fixes $X$. If $f, f'$ fix $X$ then so does $f\circ f'$. If $f(X) = X$ then $f^{-1}(X) = f^{-1}(f(X)) = X$.
+\end{proof}
+
+\begin{example}[Groups and a non-group]
+The orthogonal matrices mapping the MoSe$_2$ sheet onto itself (origin on Mo, species preserved) form the group $D_{3h}$ above. $\{E, C_3\}$ is not a group, because $C_3C_3 = C_3^2\notin\{E,C_3\}$. $D_{3h}$ is not abelian: in the $xy$ blocks,
+\[
+    B(C_3)B(C_2'(0)) = \begin{pmatrix}-\tfrac12&\tfrac{\sqrt3}2\\\tfrac{\sqrt3}2&\tfrac12\end{pmatrix}
+    \neq
+    \begin{pmatrix}-\tfrac12&-\tfrac{\sqrt3}2\\-\tfrac{\sqrt3}2&\tfrac12\end{pmatrix} = B(C_2'(0))B(C_3).
+\]
+On the other hand $\{E, C_3, C_3^2\}$ is abelian, since all its elements are powers of $C_3$.
+\end{example}
+
+\begin{theorem}[Elementary properties]
+In any group:
+\begin{enumerate}
+    \item the identity is unique;
+    \item each inverse is unique;
+    \item $gh = gk\Rightarrow h = k$, and $hg = kg \Rightarrow h = k$ (cancellation);
+    \item $(gh)^{-1} = h^{-1}g^{-1}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) $e = ee' = e'$. (b) If $h,k$ both invert $g$, then $h = h(gk) = (hg)k = k$. (c) Multiply by $g^{-1}$. (d) $(gh)(h^{-1}g^{-1}) = geg^{-1} = e$, and similarly in the other order; then apply (b).
+\end{proof}
+Part (d) is the reason wavefunctions transform with $g^{-1}$ (Section~\ref{sec:groups-qm}).
+
+\begin{definition}[Subgroup]
+$H\subseteq G$ is a \emph{subgroup}, written $H\le G$, if $e\in H$ and $H$ is closed under products and inverses.
+\end{definition}
+
+\begin{example}[Subgroups of $D_{3h}$]
+The physically important subgroups are
+\[
+    D_3 = \{E, C_3, C_3^2, C_2'(\varphi)\},\qquad
+    C_{3v} = \{E, C_3, C_3^2, \sigma_v(\varphi)\},\qquad
+    C_{3h} = \{E, C_3, C_3^2, \sigma_h, S_3, S_3^5\}.
+\]
+\end{example}
+
+\begin{theorem}[Rearrangement theorem]
+For fixed $k\in G$, the maps $g\mapsto kg$, $g\mapsto gk$ and $g\mapsto g^{-1}$ are bijections $G\to G$. Consequently, for any function $F$ on a finite group,
+\begin{equation}
+    \sum_{g\in G}F(kg) = \sum_{g\in G}F(gk) = \sum_{g\in G}F(g^{-1}) = \sum_{g\in G}F(g).
+    \label{eq:groups-rearrangement}
+\end{equation}
+\end{theorem}
+\begin{proof}
+$g\mapsto kg$ is injective by cancellation and surjective since $x = k(k^{-1}x)$. The map $g\mapsto g^{-1}$ is its own inverse. A bijection only reorders a finite sum.
+\end{proof}
+Every group-averaging argument rests on~\eqref{eq:groups-rearrangement}.
+
+\section{Homomorphisms}
+
+\begin{definition}[Homomorphism]
+A map $f:G\to G'$ is a \emph{homomorphism} if $f(gh) = f(g)f(h)$. Its kernel and image are
+\[
+    \ker f = \{g : f(g) = e'\},\qquad \operatorname{im}f = \{f(g): g\in G\}.
+\]
+A bijective homomorphism is an \emph{isomorphism}, written $G\cong G'$.
+\end{definition}
+
+\begin{theorem}[Properties of homomorphisms]
+$f(e) = e'$, $f(g^{-1}) = f(g)^{-1}$, $\ker f\le G$ and $\operatorname{im} f\le G'$.
+\end{theorem}
+\begin{proof}
+$f(e) = f(e)f(e)$; cancel. Then $f(g)f(g^{-1}) = f(e) = e'$. Closure of the kernel and image follows from $f(gh) = f(g)f(h)$ and the first two facts.
+\end{proof}
+
+\begin{example}[Two homomorphisms out of $D_{3h}$]
+\leavevmode
+\begin{enumerate}
+    \item $\det: D_{3h}\to\{\pm1\}$, since $\det(RS) = \det R\det S$. Its kernel is the set of proper rotations, $D_3$.
+    \item $s: D_{3h}\to\{\pm1\}$, $s(R) = R_{zz}$. This is a homomorphism because the $zz$ entry of a product of block-diagonal matrices is the product of the $zz$ entries. Its kernel is $C_{3v}$. Physically, $s(R) = -1$ means $R$ flips the layer.
+\end{enumerate}
+\end{example}
+
+\section{Cosets and Lagrange's Theorem}
+
+\begin{definition}[Cosets and index]
+For $H\le G$, the \emph{left coset} of $g$ is $gH = \{gh : h\in H\}$, and the right coset is $Hg$. The number of distinct left cosets is the \emph{index} $[G:H]$.
+\end{definition}
+
+\begin{theorem}[Lagrange]
+Let $G$ be finite and $H\le G$.
+\begin{enumerate}
+    \item $g'\in gH$ if and only if $g^{-1}g'\in H$, and in that case $g'H = gH$.
+    \item Distinct left cosets are disjoint, and each has exactly $|H|$ elements.
+    \item $|G| = [G:H]\,|H|$; in particular $|H|$ divides $|G|$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) $g' = gh$ means $g^{-1}g' = h\in H$, and then $g'H = ghH = gH$ by rearrangement inside $H$. (b) If $x\in gH\cap g'H$ then by (a) $gH = xH = g'H$. The map $h\mapsto gh$ is a bijection $H\to gH$ by cancellation. (c) Each $g$ lies in $gH$, so the cosets cover $G$, and by (b) they are disjoint and of equal size $|H|$.
+\end{proof}
+
+\begin{example}[Cosets of $C_{3v}$ in $D_{3h}$]
+$C_{3v}$ has index $12/6 = 2$, with cosets
+\[
+    C_{3v} = \{E, C_3, C_3^2, \sigma_v(\varphi)\},\qquad \sigma_hC_{3v} = \{\sigma_h, S_3, S_3^5, C_2'(\varphi)\},
+\]
+using $\sigma_h\sigma_v(\varphi) = \sigma_h^2C_2'(\varphi) = C_2'(\varphi)$. Equivalently, these are the two cosets of $\ker s$: the operations that keep the layer up, and those that flip it.
+\end{example}
+
+\section{Group Actions, Orbits and Stabilizers}
+
+\begin{definition}[Group action]
+An \emph{action} of $G$ on a set $X$ assigns to each $g$ a map $x\mapsto g\cdot x$ with $e\cdot x = x$ and $g\cdot(h\cdot x) = (gh)\cdot x$. The \emph{orbit} of $x$ is $O_x = \{g\cdot x : g\in G\}$, and the \emph{stabilizer} of $x$ is $G_x = \{g : g\cdot x = x\}$.
+\end{definition}
+
+The stabilizer is a subgroup: $e\in G_x$; if $g,h\in G_x$ then $(gh)\cdot x = g\cdot x = x$; and $g^{-1}\cdot x = g^{-1}\cdot(g\cdot x) = x$.
+
+\begin{theorem}[Orbit--stabilizer]
+For finite $G$, the map $gG_x\mapsto g\cdot x$ is a well-defined bijection from the left cosets of $G_x$ onto $O_x$. Hence
+\begin{equation}
+    |O_x|\,|G_x| = |G|.
+    \label{eq:groups-orbit-stabilizer}
+\end{equation}
+\end{theorem}
+\begin{proof}
+$g\cdot x = g'\cdot x \iff (g^{-1}g')\cdot x = x \iff g^{-1}g'\in G_x \iff gG_x = g'G_x$, the last step by Lagrange (a). Reading ``$\Leftarrow$'' gives well-definedness and ``$\Rightarrow$'' gives injectivity. Surjectivity is the definition of $O_x$. So $|O_x| = [G:G_x] = |G|/|G_x|$.
+\end{proof}
+
+The main physical use is $G$ acting on the atoms of a crystal: the orbit is a set of symmetry-equivalent atoms, and the stabilizer is the atom's site-symmetry group. This is worked out in the solid-state notes.
+
+\section{Conjugacy Classes}
+
+\begin{definition}[Conjugacy]
+$b$ is \emph{conjugate} to $a$ if $b = gag^{-1}$ for some $g\in G$.
+\end{definition}
+
+\begin{theorem}[Classes partition the group]
+Conjugacy is an equivalence relation, so $G$ is a disjoint union of \emph{conjugacy classes}. $\{e\}$ is always a class on its own. For matrix groups, $\det$ and $\operatorname{tr}$ are constant on each class.
+\end{theorem}
+\begin{proof}
+Reflexive: $a = eae^{-1}$. Symmetric: $b = gag^{-1}\Rightarrow a = g^{-1}b(g^{-1})^{-1}$. Transitive: $c = hbh^{-1}$ and $b = gag^{-1}$ give $c = (hg)a(hg)^{-1}$. $geg^{-1} = e$. Finally, $\det(gag^{-1}) = \det a$ and $\operatorname{tr}(gag^{-1}) = \operatorname{tr}(ag^{-1}g) = \operatorname{tr}a$.
+\end{proof}
+
+To find the classes of point groups, write $C_{\uvect{n}}(\theta)$ for the right-handed rotation by $\theta$ about the unit vector $\uvect{n}$, and $\sigma_{\uvect{n}}$ for the reflection in the plane with normal $\uvect{n}$:
+\begin{equation}
+    C_{\uvect{n}}(\theta)\lvect{v} = \cos\theta\,\lvect{v} + \sin\theta\,(\uvect{n}\times\lvect{v}) + (1-\cos\theta)(\uvect{n}\cdot\lvect{v})\,\uvect{n},
+    \qquad
+    \sigma_{\uvect{n}}\lvect{v} = \lvect{v} - 2(\uvect{n}\cdot\lvect{v})\,\uvect{n}.
+\end{equation}
+The first is Rodrigues' formula. Setting $\theta = \pi$ shows that $\sigma_{\uvect{n}} = -C_{\uvect{n}}(\pi)$.
+
+\begin{theorem}[Conjugating rotations and reflections]
+For every $g\in O(3)$,
+\begin{equation}
+    g\,C_{\uvect{n}}(\theta)\,g^{-1} = C_{g\uvect{n}}\bigl(\det(g)\,\theta\bigr),
+    \qquad
+    g\,\sigma_{\uvect{n}}\,g^{-1} = \sigma_{g\uvect{n}},
+    \qquad
+    C_{-\uvect{n}}(\theta) = C_{\uvect{n}}(-\theta).
+\end{equation}
+Conjugation moves the axis to $g\uvect{n}$, and an improper $g$ also reverses the sense of rotation.
+\end{theorem}
+\begin{proof}
+For orthogonal $g$, $g\lvect{a}\cdot g\lvect{b} = \lvect{a}\cdot\lvect{b}$ and $g(\lvect{a}\times\lvect{b}) = \det(g)\,(g\lvect{a})\times(g\lvect{b})$. Apply Rodrigues' formula to $g^{-1}\lvect{v}$, then apply $g$:
+\[
+    gC_{\uvect{n}}(\theta)g^{-1}\lvect{v} = \cos\theta\,\lvect{v} + \det(g)\sin\theta\,(g\uvect{n}\times\lvect{v}) + (1-\cos\theta)(g\uvect{n}\cdot\lvect{v})\,g\uvect{n}.
+\]
+This is Rodrigues' formula for axis $g\uvect{n}$ and angle $\det(g)\theta$. Flipping $\uvect{n}$ flips only the sine term. For reflections, $g\sigma_{\uvect{n}}g^{-1} = -C_{g\uvect{n}}(\pm\pi) = \sigma_{g\uvect{n}}$.
+\end{proof}
+
+\begin{example}[Conjugacy classes of $D_{3h}$ and $D_{3d}$]
+The classes of $D_{3h}$ are
+\[
+    \{E\},\quad \{C_3, C_3^2\},\quad \{C_2'(\varphi)\}_{\varphi\in\Phi},\quad \{\sigma_h\},\quad \{S_3, S_3^5\},\quad \{\sigma_v(\varphi)\}_{\varphi\in\Phi}.
+\]
+Every $g\in D_{3h}$ has $g\uvect{z} = s(g)\uvect{z}$. So $gC_3g^{-1} = C_{\uvect{z}}\bigl(s(g)\det(g)\,2\pi/3\bigr)\in\{C_3,C_3^2\}$, and taking $g = C_2'(0)$ (with $s = -1$, $\det = +1$) gives $C_3^2$. Conjugating $C_2'(0)$ by $C_3^{\pm1}$ rotates its axis onto the other two in-plane axes. $\sigma_h$ commutes with everything, so it is a class on its own. $gS_3g^{-1} = \sigma_h\,gC_3g^{-1}\in\{S_3, S_3^5\}$. Conjugating $\sigma_v(0)$ by $C_3^{\pm1}$ gives all three vertical mirrors. These six sets are disjoint and exhaust all twelve elements.
+
+For $D_{3d} = D_3\cup ID_3$ (monolayer CrI$_3$), the same argument with inversion $I$ in place of $\sigma_h$ gives six classes: $\{E\}$, $2C_3$, $3C_2'$, $\{I\}$, $2S_6 = \{IC_3, IC_3^2\}$ and $3\sigma_d = \{IC_2'(\varphi)\}$.
+\end{example}
+
+\section{Symmetry in Quantum Mechanics}
+\label{sec:groups-qm}
+
+Let $g = \{R\mid\lvect{t}\}: \lvect{r}\mapsto R\lvect{r}+\lvect{t}$ be a Euclidean motion. On $N_e$-electron wavefunctions (spin suppressed), define
+\begin{equation}
+    (U_g\psi)(\lvect{r}_1,\ldots,\lvect{r}_{N_e}) = \psi(g^{-1}\lvect{r}_1,\ldots,g^{-1}\lvect{r}_{N_e}).
+\end{equation}
+
+\begin{theorem}[Symmetry operators are a unitary representation]
+Each $U_g$ is unitary, $U_gU_h = U_{gh}$, and $U_g^\dagger = U_{g^{-1}}$. For each electron's position operator,
+\[
+    U_g^\dagger\,\hat{\lvect{r}}_k\,U_g = R\hat{\lvect{r}}_k + \lvect{t}.
+\]
+\end{theorem}
+\begin{proof}
+The change of variables $\lvect{r}_k\mapsto g\lvect{r}_k$ has Jacobian $|\det R|^{N_e} = 1$, so $\|U_g\psi\| = \|\psi\|$. Next,
+\[
+    (U_gU_h\psi)(\ldots,\lvect{r}_k,\ldots) = \psi(\ldots,h^{-1}g^{-1}\lvect{r}_k,\ldots) = \psi(\ldots,(gh)^{-1}\lvect{r}_k,\ldots).
+\]
+Without the inverse in the definition, the product would come out as $U_{hg}$. Then $U_gU_{g^{-1}} = 1$ gives $U_g^\dagger = U_g^{-1} = U_{g^{-1}}$. Finally, $(U_g^\dagger\hat{\lvect{r}}_kU_g\psi)(\lvect{r}_k) = g\lvect{r}_k\,\psi(g^{-1}g\lvect{r}_k) = (R\lvect{r}_k+\lvect{t})\,\psi(\lvect{r}_k)$.
+\end{proof}
+
+\begin{theorem}[Transforming a Hamiltonian]
+For a multiplication operator, $(U_gVU_g^\dagger)(\lvect{r}_1,\ldots) = V(g^{-1}\lvect{r}_1,\ldots)$. For the electronic Hamiltonian $H_X$ with nuclei at positions $X = \{(\lvect{X}_\kappa, Z_\kappa)\}$,
+\[
+    H_X = \sum_k\frac{\hat{p}_k^2}{2m} + \sum_{k<l}\frac{e^2}{|\hat{\lvect{r}}_k-\hat{\lvect{r}}_l|} - \sum_{k,\kappa}\frac{Z_\kappa e^2}{|\hat{\lvect{r}}_k-\lvect{X}_\kappa|},
+\]
+one has $U_gH_XU_g^\dagger = H_{g\cdot X}$, where $g\cdot X = \{(g\lvect{X}_\kappa, Z_\kappa)\}$.
+\end{theorem}
+\begin{proof}
+Isometries preserve $|\lvect{r}_k-\lvect{r}_l|$, and $|g^{-1}\lvect{r}_k-\lvect{X}_\kappa| = |\lvect{r}_k - g\lvect{X}_\kappa|$. The Laplacian is invariant because $\nabla\mapsto R^T\nabla$ and $RR^T = 1$.
+\end{proof}
+
+\begin{fact}[Symmetries preserve eigenspaces]
+If $g\cdot X = X$, then $[U_g, H_X] = 0$. So if $H\psi = E\psi$, then $H(U_g\psi) = E\,U_g\psi$: every energy eigenspace is mapped into itself by every symmetry operator. This is the starting point of all symmetry-based degeneracy arguments.
+\end{fact}

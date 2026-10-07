@@ -61,7 +61,7 @@ Content is split across files differently per subject:
 - **`electro/`**: `main.tex` inputs `ch_em1.tex`, `ch_em3.tex`, `ch_em4.tex`, `ch_em5.tex`, `ch_em6.tex`, `ch_em9.tex`, `ch_em10.tex` (the numbering has gaps; `ch_em9.tex` holds three chapters)
 - **`circuits/`**: `main.tex` inputs `ch1.tex` (batteries and DC networks) and `ch2.tex` (electronics); split out of `electro/` so the EM notes stay field-theoretic
 - **`class-mech/`**: `main.tex` contains the first two chapters inline, then inputs `ch4.tex` through `ch13.tex`
-- **`methods/`**: `main.tex` contains the first chapter (Preliminaries) inline, then inputs `ch2.tex` (integration and series), `ch3.tex` (vector analysis), `ch4.tex` (linear algebra), `ch5.tex` (partial derivatives, differentials, delta function)
+- **`methods/`**: `main.tex` contains the first chapter (Preliminaries) inline, then inputs `ch2.tex` (integration and series), `ch3.tex` (vector analysis), `ch4.tex` (linear algebra), `ch5.tex` (partial derivatives, differentials, delta function), `ch6.tex` (group theory)
 - **`solid-state/`**: `main.tex` inputs `ch1.tex` through `ch5.tex`
 
 ## Theorem Numbering
