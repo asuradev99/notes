@@ -420,10 +420,53 @@ Mo is fixed by every operation, so $G_{\text{Mo}} = D_{3h}$ and $|O_{\text{Mo}}|
 For any per-atom property (a force-constant block, an atomic Raman tensor, a local moment), the orbit says which atoms' tensors follow from one computed tensor, by applying the coset representatives. The stabilizer says which components of that tensor must vanish: they must be invariant under $G_\kappa$.
 \end{fact}
 
+
+The distinction is not merely taxonomic. It has a direct consequence for band structure, which we take up once Bloch's theorem is available, in Section~\ref{sec:bloch-sticking}.
+
+\section{Group Theory and Symmetries}
+\label{sec:ss-symmetry}
+
+A symmetry of a crystal becomes useful in quantum mechanics once it is turned into an operator on wavefunctions. This section builds those operators, using the group theory of the mathematical-methods notes and the space groups of Section~\ref{sec:xrd-site-symmetry}.
+
+\subsection{Symmetry in Quantum Mechanics}
+
+Let $g = \{R\mid\lvect{t}\}: \lvect{r}\mapsto R\lvect{r}+\lvect{t}$ be a Euclidean motion. On $N_e$-electron wavefunctions (spin suppressed), define
+\begin{equation}
+    (U_g\psi)(\lvect{r}_1,\ldots,\lvect{r}_{N_e}) = \psi(g^{-1}\lvect{r}_1,\ldots,g^{-1}\lvect{r}_{N_e}).
+\end{equation}
+
+\begin{theorem}[Symmetry operators are a unitary representation]
+Each $U_g$ is unitary, $U_gU_h = U_{gh}$, and $U_g^\dagger = U_{g^{-1}}$. For each electron's position operator,
+\[
+    U_g^\dagger\,\hat{\lvect{r}}_k\,U_g = R\hat{\lvect{r}}_k + \lvect{t}.
+\]
+\end{theorem}
+\begin{proof}
+The change of variables $\lvect{r}_k\mapsto g\lvect{r}_k$ has Jacobian $|\det R|^{N_e} = 1$, so $\|U_g\psi\| = \|\psi\|$. Next,
+\[
+    (U_gU_h\psi)(\ldots,\lvect{r}_k,\ldots) = \psi(\ldots,h^{-1}g^{-1}\lvect{r}_k,\ldots) = \psi(\ldots,(gh)^{-1}\lvect{r}_k,\ldots).
+\]
+Without the inverse in the definition, the product would come out as $U_{hg}$. Then $U_gU_{g^{-1}} = 1$ gives $U_g^\dagger = U_g^{-1} = U_{g^{-1}}$. Finally, $(U_g^\dagger\hat{\lvect{r}}_kU_g\psi)(\lvect{r}_k) = g\lvect{r}_k\,\psi(g^{-1}g\lvect{r}_k) = (R\lvect{r}_k+\lvect{t})\,\psi(\lvect{r}_k)$.
+\end{proof}
+
+\begin{theorem}[Transforming a Hamiltonian]
+For a multiplication operator, $(U_gVU_g^\dagger)(\lvect{r}_1,\ldots) = V(g^{-1}\lvect{r}_1,\ldots)$. For the electronic Hamiltonian $H_X$ with nuclei at positions $X = \{(\lvect{X}_\kappa, Z_\kappa)\}$,
+\[
+    H_X = \sum_k\frac{\hat{p}_k^2}{2m} + \sum_{k<l}\frac{e^2}{|\hat{\lvect{r}}_k-\hat{\lvect{r}}_l|} - \sum_{k,\kappa}\frac{Z_\kappa e^2}{|\hat{\lvect{r}}_k-\lvect{X}_\kappa|},
+\]
+one has $U_gH_XU_g^\dagger = H_{g\cdot X}$, where $g\cdot X = \{(g\lvect{X}_\kappa, Z_\kappa)\}$.
+\end{theorem}
+\begin{proof}
+Isometries preserve $|\lvect{r}_k-\lvect{r}_l|$, and $|g^{-1}\lvect{r}_k-\lvect{X}_\kappa| = |\lvect{r}_k - g\lvect{X}_\kappa|$. The Laplacian is invariant because $\nabla\mapsto R^T\nabla$ and $RR^T = 1$.
+\end{proof}
+
+\begin{fact}[Symmetries preserve eigenspaces]
+If $g\cdot X = X$, then $[U_g, H_X] = 0$. So if $H\psi = E\psi$, then $H(U_g\psi) = E\,U_g\psi$: every energy eigenspace is mapped into itself by every symmetry operator. This is the starting point of all symmetry-based degeneracy arguments.
+\end{fact}
+
 \begin{fact}[The crystal Hamiltonian commutes with the space group]
 If $g\in G$ and $X_0$ is the equilibrium nuclear configuration, then $g\cdot X_0 = X_0$. So the symmetry operators $U_g$ of quantum mechanics commute with the clamped-nucleus Hamiltonian, $U_gH_{X_0}U_g^\dagger = H_{X_0}$, and each energy eigenspace is invariant under the whole space group. The same holds for the dynamical matrix of the phonons of Chapter~4. This is the input to Bloch's theorem, which uses the translation subgroup $T$, and to every symmetry-based degeneracy and selection rule.
 \end{fact}
-The distinction is not merely taxonomic. It has a direct consequence for band structure, which we take up once Bloch's theorem is available, in Section~\ref{sec:bloch-sticking}.
 
 % ============================================================
 \section{Reciprocal Space}
