@@ -184,6 +184,13 @@ With $\cvect{E} = 0$ two quantities are conserved.
 \end{itemize}
 In $k$-space an electron therefore moves along the intersection of a constant-energy surface with a plane perpendicular to $\cvect{B}$. At the Fermi energy these curves are slices of the Fermi surface.
 
+Take $\cvect{B} = B\uvect{z}$, so the conserved component is $k_z$. An orbit lies in a plane perpendicular to $\cvect{B}$, with $k_z$ labelling which plane, so every closed orbit is specified by two numbers, and so is the $k$-space area it encloses: $A_k = A_k(\varepsilon, k_z)$. Changing either one changes the area,
+\begin{equation}
+    dA_k = \left.\pdv{A_k}{\varepsilon}\right|_{k_z}d\varepsilon + \left.\pdv{A_k}{k_z}\right|_{\varepsilon}dk_z.
+    \label{eq:semi-dA}
+\end{equation}
+The first term describes the orbit growing within one plane as the energy rises. The second describes moving between planes along the Fermi surface. The cyclotron mass turns out to be controlled entirely by the first, because a single electron never leaves its plane.
+
 \begin{definition}[Closed and open orbits]
 If the slice is a closed curve, the orbit is \emph{closed}, and periodic in time. If the Fermi surface is open and the slice runs through the zone boundary without closing, the orbit is \emph{open}: extended and aperiodic in real space along one direction.
 \end{definition}
@@ -243,26 +250,66 @@ At $B = 10$\,T, $\ell\approx8$\,nm. With $k_F\sim10^{10}$\,m$^{-1}$, the cyclotr
 
 \subsection{Cyclotron Period and Cyclotron Mass}
 
-The speed along the $k$-space orbit is $|\dot{\lvect{k}}| = |q|v_\perp B/\hbar$, so one revolution takes
+The cross product in the equation of motion discards the component of $\lvect{v}$ along $\cvect{B}$. Only the in-plane part
+\begin{equation}
+    \lvect{v}_\perp = (v_x, v_y) = \frac{1}{\hbar}\nabla_\perp\varepsilon,
+    \qquad
+    \nabla_\perp\varepsilon \equiv \left(\pdv{\varepsilon}{k_x}, \pdv{\varepsilon}{k_y}\right),
+\end{equation}
+drives the motion around the orbit, with $|\lvect{v}\times\cvect{B}| = v_\perp B$ and so $|\dot{\lvect{k}}| = |q|Bv_\perp/\hbar$. Within the plane, $\lvect{v}_\perp$ points along the normal to the orbit: $\varepsilon$ does not change along the orbit, so its in-plane gradient has no tangential component. The electron moves \emph{along} the orbit in $k$-space while its in-plane velocity points \emph{across} it. If $dk$ is an element of arc length along the orbit, the time spent on it is $dt = dk/|\dot{\lvect{k}}|$, and the period is
 \begin{equation}
     T = \oint\frac{dk}{|\dot{\lvect{k}}|} = \frac{\hbar}{|q|B}\oint\frac{dk}{v_\perp}.
+    \label{eq:semi-T-loop}
 \end{equation}
-The same loop integral gives the rate at which the enclosed area grows with energy. Moving the contour out by $\delta\varepsilon$ shifts each point by $\delta\varepsilon/|\nabla_{\lvect{k}}\varepsilon| = \delta\varepsilon/(\hbar v_\perp)$, so
+The electron lingers where $v_\perp$ is small, that is, where the band is flat within the plane.
+
+Now hold $k_z$ fixed and compare the orbits at $\varepsilon$ and $\varepsilon + d\varepsilon$. From a point $\lvect{k}$ on the inner orbit, step a distance $\delta k$ along the in-plane normal $\uvect{n} = \nabla_\perp\varepsilon/|\nabla_\perp\varepsilon|$. Taylor expanding, $\varepsilon(\lvect{k} + \delta k\,\uvect{n}) \approx \varepsilon(\lvect{k}) + |\nabla_\perp\varepsilon|\,\delta k$. Landing on the outer orbit means this equals $\varepsilon + d\varepsilon$, so the local spacing between neighbouring orbits is
 \begin{equation}
-    \pdv{A_k}{\varepsilon} = \oint\frac{dk}{\hbar v_\perp}.
+    \delta k = \frac{d\varepsilon}{|\nabla_\perp\varepsilon|} = \frac{d\varepsilon}{\hbar v_\perp},
 \end{equation}
+the two-dimensional version of $dx = df/f'(x)$. Like contour lines on a map, neighbouring orbits are close together where the energy changes steeply and far apart where it changes slowly.
+
+Only the in-plane gradient appears because the step stays in the plane, so $\partial\varepsilon/\partial k_z = \hbar v_z$ never contributes. Geometrically, the surfaces at $\varepsilon$ and $\varepsilon + d\varepsilon$ bound a thin shell of thickness $d\varepsilon/(\hbar|\lvect{v}|)$. A plane of fixed $k_z$ generally cuts this shell at an angle (think of an off-centre slice through a thin spherical shell), so the annulus it leaves is wider than the shell is thick: $\delta k = d\varepsilon/(\hbar v_\perp) \ge d\varepsilon/(\hbar|\lvect{v}|)$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.15,>=Stealth]
+  \def\outer{plot[smooth cycle] coordinates {(2.05,0) (1.15,1.25) (-0.55,1.3) (-1.75,0.35) (-1.3,-1.0) (0.6,-1.25)}}
+  \def\inner{plot[smooth cycle] coordinates {(1.6,0) (0.9,0.95) (-0.5,1.05) (-1.5,0.3) (-1.1,-0.85) (0.5,-1.0)}}
+  \fill[orange!30] \outer;
+  \fill[white] \inner;
+  \draw[thick,red!60!black] \outer;
+  \draw[thick,blue!60!black] \inner;
+  \draw[->,thick] (1.6,0) -- (2.05,0);
+  \node[right] at (2.1,0) {$\delta k=\dfrac{d\varepsilon}{\hbar v_\perp}$};
+  \node at (0,0) {$\varepsilon$};
+  \node[red!60!black] at (1.9,1.3) {$\varepsilon+d\varepsilon$};
+\end{tikzpicture}
+\caption{Neighbouring orbits at fixed $k_z$. The shaded strip between them has area $dA_k = \oint\delta k\,dk$.}
+\label{fig:semi-strip}
+\end{figure}
+
+An arc element $dk$ of the inner orbit contributes an area $\delta k\,dk$ to the strip between the two orbits (Figure~\ref{fig:semi-strip}). Summing around the loop,
+\begin{equation}
+    dA_k = \oint\delta k\,dk = d\varepsilon\oint\frac{dk}{\hbar v_\perp}
+    \qquad\Longrightarrow\qquad
+    \left.\pdv{A_k}{\varepsilon}\right|_{k_z} = \oint\frac{dk}{\hbar v_\perp}.
+    \label{eq:semi-dAde}
+\end{equation}
+
+The loop integrals in~\eqref{eq:semi-T-loop} and~\eqref{eq:semi-dAde} are identical up to a factor of $\hbar$. This is not a coincidence: the same in-plane velocity sets both how fast the electron moves around the orbit and how far apart neighbouring orbits are. Substituting, and defining the cyclotron mass through the free-electron form $\omega_c = |q|B/m^*$:
 
 \begin{formula}[Cyclotron frequency for an arbitrary closed orbit]
 \begin{equation}
-    T = \frac{\hbar^2}{|q|B}\,\pdv{A_k}{\varepsilon},
+    T = \frac{\hbar^2}{|q|B}\left.\pdv{A_k}{\varepsilon}\right|_{k_z},
     \qquad
     \omega_c = \frac{2\pi}{T} = \frac{|q|B}{m^*},
     \qquad
-    m^* \equiv \frac{\hbar^2}{2\pi}\,\pdv{A_k}{\varepsilon}.
+    m^* \equiv \frac{\hbar^2}{2\pi}\left.\pdv{A_k(\varepsilon,k_z)}{\varepsilon}\right|_{k_z}.
 \end{equation}
 \end{formula}
 
-For $\varepsilon = \hbar^2k^2/2m$, $A_k = \pi k^2 = 2\pi m\varepsilon/\hbar^2$, so $m^* = m$. In general $m^*$ depends on $k_\parallel$ and on the field direction.
+For free electrons the orbit is a circle with $\hbar v_\perp = \hbar^2k/m$ everywhere, so $\oint dk/(\hbar v_\perp) = 2\pi m/\hbar^2 = d(\pi k^2)/d\varepsilon$, and $m^* = m$. In general $m^*$ is a property of a whole orbit, not of a point in $k$-space: it measures how fast the orbit area grows with energy, and it depends on $\varepsilon$, on $k_z$, and on the direction of $\cvect{B}$ (which sets the family of planes). The derivative is taken at fixed $k_z$ because the period refers to one orbit, and one orbit stays in one plane. Comparing orbits on different planes would bring in the second term of~\eqref{eq:semi-dA}, a change of area from sliding along the Fermi surface that has nothing to do with how long the electron takes to go around.
 
 % ============================================================
 \section{Onsager Quantization and Landau Levels}
@@ -428,6 +475,15 @@ Because $\hbar A/(eB)$ is huge, the phase varies rapidly with $k_z$ and the cont
 \begin{fact}[Extremal cross-sections]
 Only cross-sections with $\partial A/\partial k_z = 0$ contribute. Each extremal orbit (a maximum or minimum of $A(k_z)$) contributes one frequency $F_i = \hbar A_{\text{ext},i}/(2\pi e)$. Several extremal orbits give several frequencies, and their superposition produces \emph{beating}. Rotating $\cvect{B}$ and tracking $F(\theta)$ maps out the Fermi surface.
 \end{fact}
+
+The extremal plane $k_z^{\text{ext}}(\varepsilon)$ shifts slightly as the energy changes, so following the extremal area from $\varepsilon$ to $\varepsilon+d\varepsilon$ really does compare orbits on different planes. But by~\eqref{eq:semi-dA} the extra term is proportional to $\partial A_k/\partial k_z$, which vanishes there. To first order, $dA_{\text{ext}}/d\varepsilon = \partial A_k/\partial\varepsilon|_{k_z^{\text{ext}}}$, so the cyclotron mass of an extremal orbit is unambiguous.
+
+\begin{formula}[Cyclotron mass of an extremal orbit]
+\begin{equation}
+    m^* = \frac{\hbar^2}{2\pi}\left.\frac{dA_{\text{ext}}}{d\varepsilon}\right|_{\varepsilon_F}.
+\end{equation}
+This is the mass that appears in the Lifshitz--Kosevich temperature factor below.
+\end{formula}
 
 \begin{example}[Silver]
 The Fermi surface of silver has a large ``belly'' cross-section and small ``necks'' at the zone faces. This gives a high frequency (the belly) and a low frequency (the necks).
