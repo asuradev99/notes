@@ -136,3 +136,161 @@ Using the axisymmetric solution of Section~\ref{sec:em-separation}, with $A_\ell
 \]
 Inside, $r\cos\theta=z$ and the field is \emph{uniform}, $\vect{E}=-\vect{P}/3\varepsilon_0$. Outside, the potential is exactly that of a pure dipole at the centre with the ball's total moment $\lvect{p}=\tfrac43\pi R^3\vect{P}$.
 \end{formula}
+
+\section{The Electric Displacement}
+\label{sec:em-displacement}
+
+\subsection{Gauss's Law in Matter}
+
+Inside a dielectric the total charge density is $\rho = \rho_b + \rho_f$, where $\rho_b = -\div\vect{P}$ is the bound charge of the previous section and the \emph{free} charge $\rho_f$ is everything else: the charge we control. Gauss's law becomes
+\[
+    \varepsilon_0\div\vect{E} = -\div\vect{P} + \rho_f
+    \qquad\Longrightarrow\qquad
+    \div\bigl(\varepsilon_0\vect{E} + \vect{P}\bigr) = \rho_f .
+\]
+
+\begin{definition}[Electric displacement]
+\[
+    \vect{D} \defeq \varepsilon_0\vect{E} + \vect{P},
+    \qquad
+    \div\vect{D} = \rho_f,
+    \qquad
+    \oint_S\vect{D}\cdot d\lvect{a} = Q_{f,\text{enc}} .
+\]
+Only the free charge appears.
+\end{definition}
+
+\subsection{\texorpdfstring{$\vect{D}$}{D} Is Not the Field of the Free Charge}
+
+The curl of $\vect{D}$ need not vanish:
+\[
+    \curl\vect{D} = \varepsilon_0\curl\vect{E} + \curl\vect{P} = \curl\vect{P}.
+\]
+Consequently there is no potential with $\vect{D} = -\grad\phi'$, no Poisson equation $\laplacian\phi' = -\rho_f$, and no Coulomb law:
+\[
+    \vect{D}(\lvect{r}) \neq \frac{1}{4\pi}\int\frac{\lvect{r}-\lvect{r}'}{|\lvect{r}-\lvect{r}'|^3}\,\rho_f(\lvect{r}')\,d^3r' .
+\]
+The right-hand side is curl-free, which contradicts $\curl\vect{D} = \curl\vect{P}\neq0$ in general. By the Helmholtz theorem a field needs both its divergence and its curl to be determined, and knowing $\rho_f$ supplies only the first.
+
+\begin{fact}[When Gauss's law for $\vect{D}$ is useful]
+Gauss's law is one scalar equation. It fixes $\vect{D}$ only when symmetry (spherical, cylindrical or planar) already fixes its direction and dependence. Then
+\[
+    \oint\vect{D}\cdot d\lvect{a} = Q_{f,\text{enc}}\;\Rightarrow\;\vect{D},
+    \qquad
+    \vect{E} = \frac{\vect{D}-\vect{P}}{\varepsilon_0}\quad\Bigl(=\frac{\vect{D}}{\varepsilon}\ \text{if linear}\Bigr).
+\]
+Without such symmetry, solve for $\phi$ with boundary conditions instead.
+\end{fact}
+
+\subsection{Boundary Conditions}
+
+At an interface with normal $\uvect{n}$ pointing from ``below'' to ``above'', a pillbox gives the normal components from the divergences and a thin loop gives the tangential components from the curls.
+
+\begin{formula}[Boundary conditions in matter]
+\begin{align*}
+    D^\perp_{\text{above}} - D^\perp_{\text{below}} &= \sigma_f, &
+    E^\perp_{\text{above}} - E^\perp_{\text{below}} &= \frac{\sigma_f+\sigma_b}{\varepsilon_0},\\
+    \vect{D}^\parallel_{\text{above}} - \vect{D}^\parallel_{\text{below}} &= \vect{P}^\parallel_{\text{above}} - \vect{P}^\parallel_{\text{below}}, &
+    \vect{E}^\parallel_{\text{above}} - \vect{E}^\parallel_{\text{below}} &= 0.
+\end{align*}
+In terms of the potential, which is continuous across the interface, in linear media
+\[
+    \varepsilon_{\text{above}}\pdv{\phi_{\text{above}}}{n} - \varepsilon_{\text{below}}\pdv{\phi_{\text{below}}}{n} = -\sigma_f .
+\]
+\end{formula}
+
+\subsection{Linear Dielectrics}
+
+\begin{definition}[Linear dielectric]
+For fields that are not too strong, most materials respond linearly:
+\[
+    \vect{P} = \varepsilon_0\chi_e\vect{E},
+    \qquad
+    \vect{D} = \varepsilon\vect{E},
+    \qquad
+    \varepsilon = \varepsilon_0(1+\chi_e),
+    \qquad
+    \varepsilon_r = 1+\chi_e = \frac{\varepsilon}{\varepsilon_0}.
+\]
+$\chi_e$ is the \emph{electric susceptibility}, $\varepsilon$ the \emph{permittivity} and $\varepsilon_r$ the \emph{dielectric constant}. For hydrogen gas $\varepsilon_r\approx1.00025$; for water $\varepsilon_r\approx80.1$.
+\end{definition}
+
+Even in linear media, $\curl\vect{D} = 0$ only \emph{inside} each homogeneous region. A loop straddling two regions with different $\varepsilon$ has $\oint\vect{E}\cdot d\lvect{l} = 0$, but in general $\oint\vect{D}\cdot d\lvect{l}\neq0$, because the ratio $D/E = \varepsilon$ jumps.
+
+\begin{fact}[All space filled with one dielectric]
+If a single homogeneous linear dielectric fills all space, then $\curl\vect{D} = 0$ everywhere, so $\vect{D}$ is $\varepsilon_0$ times the vacuum field of the free charge. Every vacuum result then holds with $\varepsilon_0\to\varepsilon$:
+\[
+    \vect{E} = \frac{1}{4\pi\varepsilon}\frac{q}{r^2}\rhat,
+    \qquad
+    C = \varepsilon_r\,C_{\text{vac}}\quad\text{(filled capacitor)}.
+\]
+Inside a homogeneous linear dielectric, bound charge sits only where free charge is:
+\[
+    \rho_b = -\div\Bigl(\frac{\varepsilon_0\chi_e}{\varepsilon}\vect{D}\Bigr) = -\frac{\chi_e}{1+\chi_e}\,\rho_f .
+\]
+\end{fact}
+
+\subsection{Examples}
+
+\begin{example}[Insulated wire]
+A wire carries line charge $\lambda$ and is wrapped in rubber insulation of permittivity $\varepsilon$ out to radius $b$. By symmetry $\vect{D} = D(s)\,\uvect{s}$, and a Gaussian cylinder of radius $s$ and length $l$ gives $D\,2\pi sl = \lambda l$:
+\[
+    \vect{D} = \frac{\lambda}{2\pi s}\uvect{s}\quad\text{(all $s$)},
+    \qquad
+    \vect{E} =
+    \begin{cases}
+        \dfrac{\lambda}{2\pi\varepsilon s}\uvect{s}, & s<b,\\[3mm]
+        \dfrac{\lambda}{2\pi\varepsilon_0 s}\uvect{s}, & s>b.
+    \end{cases}
+\]
+\end{example}
+
+\begin{example}[Dielectric shell around a charged sphere]
+A metal sphere of radius $a$ carries charge $Q$ and is surrounded by a linear dielectric $\varepsilon$ for $a<r<b$. Then
+\[
+    \vect{D} = \frac{Q}{4\pi r^2}\rhat\ (r>a),
+    \qquad
+    \vect{E} = \frac{Q}{4\pi\varepsilon r^2}\rhat\ (a<r<b),
+    \qquad
+    \vect{E} = \frac{Q}{4\pi\varepsilon_0 r^2}\rhat\ (r>b).
+\]
+Integrating in from infinity, the potential at the centre (equal to that of the conductor) is
+\[
+    \phi(0) = \frac{Q}{4\pi}\left(\frac{1}{\varepsilon_0 b} + \frac{1}{\varepsilon a} - \frac{1}{\varepsilon b}\right).
+\]
+\end{example}
+
+\begin{example}[Polarised cylindrical shell with no free charge]
+Let $\vect{P} = (k/s)\,\uvect{s}$ for $a<s<b$. The bound charges are
+\[
+    \rho_b = -\frac1s\pdv{}{s}\Bigl(s\cdot\frac ks\Bigr) = 0,
+    \qquad
+    \sigma_b(b) = \frac kb,
+    \qquad
+    \sigma_b(a) = -\frac ka .
+\]
+Symmetry gives $\vect{D} = D(s)\,\uvect{s}$, and $Q_f = 0$, so $D\,2\pi sl = 0$ and $\vect{D} = 0$ everywhere. Hence
+\[
+    \vect{E} = -\frac{\vect{P}}{\varepsilon_0} = -\frac{k}{\varepsilon_0 s}\uvect{s}\quad(a<s<b),
+    \qquad
+    \vect{E} = 0\ \text{otherwise},
+\]
+in agreement with summing the fields of the bound surface charges directly.
+\end{example}
+
+\subsection{Summary}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l|c|c}
+    & $\vect{E}$ & $\vect{D}$\\\hline
+    Divergence & $\div\vect{E} = \rho/\varepsilon_0$ & $\div\vect{D} = \rho_f$\\
+    Curl & $\curl\vect{E} = 0$ & $\curl\vect{D} = \curl\vect{P}$\\
+    Normal jump & $\sigma/\varepsilon_0$ (total) & $\sigma_f$ (free)\\
+    Tangential jump & $0$ & $\Delta\vect{P}^\parallel$\\
+    Potential / Coulomb law & yes & no (in general)
+\end{tabular}
+\caption{Comparison of $\vect{E}$ and $\vect{D}$.}
+\label{tab:em-e-vs-d}
+\end{table}
