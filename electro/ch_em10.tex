@@ -82,6 +82,32 @@ where $n$ is the number of turns per unit length.
 \caption{Solenoid with $n$ turns per unit length. The Amp\`{e}rian rectangle (dashed) of length $L$ has one side inside (field $B$) and one outside ($B=0$). Amp\`{e}re's law gives $BL = \mu_0 nIL$, so $B = \mu_0 nI$.}
 \end{figure}
 
+\subsection{Symmetry, Vector Potential and Aharonov--Bohm}
+\label{sec:em-solenoid}
+
+The argument above assumed that $\vect{B}$ points along the axis and vanishes outside. Both follow from symmetry. Take an ideal solenoid of radius $R$, with $n$ turns per unit length carrying current $I$, so that $\vect{K} = nI\,\hat{\boldsymbol{\phi}}$. It is symmetric under translations along $z$ and rotations about it, so each component of $\vect{B}$ depends on $s$ alone.
+\begin{itemize}
+    \item $B_s = 0$: a coaxial Gaussian cylinder has $\oint\vect{B}\cdot d\lvect{a} = B_s\,2\pi sL = 0$, the end caps cancelling.
+    \item $B_\phi = 0$: a coaxial circle bounds a disk that no $\hat{\boldsymbol{\phi}}$-directed current crosses, so $B_\phi\,2\pi s = 0$.
+\end{itemize}
+So $\vect{B} = B_z(s)\,\khat$ everywhere. (A real helical winding also carries a net current $I$ along $z$, which adds $B_\phi = \mu_0I/2\pi s$ outside. The ideal solenoid drops it.)
+
+Outside, a rectangular loop that no wire pierces has $\oint\vect{B}\cdot d\lvect{l} = 0$. Its radial sides contribute nothing, since $\vect{B}\perp d\lvect{l}$ there, so $B(a)L - B(b)L = 0$: $B$ is uniform outside. It must vanish at infinity, so $B_{\text{out}} = 0$. Inside, a loop straddling the winding then picks up only its inner side, giving $B_{\text{in}} = \mu_0nI$, uniform: the magnetic analogue of the parallel-plate capacitor.
+
+\begin{formula}[Vector potential of an infinite solenoid]
+The current extends to infinity, so the integral formula for $\vect{A}$ fails. Instead use $\oint\vect{A}\cdot d\lvect{l} = \Phi$ on coaxial circles, with $\vect{A} = A_\phi(s)\,\hat{\boldsymbol{\phi}}$:
+\[
+    \vect{A}_{\text{in}} = \frac{\mu_0nI}{2}\,s\,\hat{\boldsymbol{\phi}},
+    \qquad
+    \vect{A}_{\text{out}} = \frac{\mu_0nIR^2}{2s}\,\hat{\boldsymbol{\phi}}.
+\]
+\end{formula}
+As a check, $(\curl\vect{A})_z = \frac1s\partial_s(sA_\phi)$ --- not $\partial_sA_\phi$, since $\hat{\boldsymbol{\phi}}$ itself varies --- gives $\mu_0nI$ inside and $0$ outside, and $A_\phi$ is continuous at $s = R$.
+
+\begin{fact}[Aharonov--Bohm effect]
+Outside the solenoid $\vect{B} = 0$, yet $\oint\vect{A}\cdot d\lvect{l} = \Phi\neq0$, so $\vect{A}$ cannot be gauged away there. Electrons passing on either side of the solenoid pick up a measurable relative phase $q\Phi/\hbar$, although they never enter a region of nonzero field.
+\end{fact}
+
 \section{Hall Effect}
 
 \begin{figure}[H]
@@ -147,6 +173,16 @@ which satisfies $\div\vect{B}=\div(\curl\vect{A})=0$ automatically. $\vect{A}$ i
 \subsection{Gauge Freedom}
 
 As the example shows, $\vect{A}$ is not unique. Two potentials give the same $\vect{B}$ if and only if $\curl(\vect{A}-\vect{A}')=0$, i.e.\ $\vect{A}' = \vect{A}+\grad\psi$ for some scalar $\psi$. This freedom can be used to impose the \emph{Coulomb gauge} $\div\vect{A}=0$: if $\div\vect{A}=f\neq0$, choose $\psi$ with $\laplacian\psi=-f$, which is an electrostatics-type Poisson problem and always solvable, and then $\div\vect{A}'=0$.
+Explicitly, given $\vect{A}_0$ with $\div\vect{A}_0\neq0$, the gauge function
+\[
+    \psi(\lvect{r}) = \frac{1}{4\pi}\int\frac{\grad'\cdot\vect{A}_0(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV'
+\]
+solves $\laplacian\psi = -\div\vect{A}_0$, so the Coulomb gauge is always reachable.
+
+By Stokes' theorem the line integral of $\vect{A}$ is the magnetic flux, the analogue of Amp\`ere's law with $\vect{B}\to\vect{A}$ and $\mu_0I_{\text{enc}}\to\Phi$:
+\[
+    \oint\vect{A}\cdot d\lvect{l} = \int\vect{B}\cdot d\lvect{a} = \Phi .
+\]
 
 \subsection{The Vector Poisson Equation}
 
@@ -173,6 +209,12 @@ Each component is therefore solved exactly as in electrostatics, with $\rho/\var
 using $\vect{J}\,dV = I\,d\lvect{\ell}$ for a wire.
 \end{formula}
 
+This solution is consistent with the gauge condition it assumed only for steady currents. Taking its divergence and integrating by parts, for a localized $\vect{J}$,
+\[
+    \div\vect{A} = \frac{\mu_0}{4\pi}\int\frac{\grad'\cdot\vect{J}(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV' = 0
+    \quad\text{since } \grad'\cdot\vect{J} = 0 .
+\]
+
 \begin{example}[Long straight wire]
 A wire along $x$ carries current $I$. $A_x$ obeys the same equation as the potential of a line charge, with $\lambda/\varepsilon_0\to\mu_0I$, so by analogy with $\phi=\frac{\lambda}{2\pi\varepsilon_0}\ln(a/r)$,
 \[
@@ -193,6 +235,22 @@ For a single current element, $d\vect{A} = \frac{\mu_0 I}{4\pi}\frac{d\lvect{\el
 \]
 \end{formula}
 Unlike the radial Coulomb field, the field of a current element circles the element.
+
+Write $\lvect{\mathfrak{r}} = \lvect{r}-\lvect{r}\,'$ for the separation vector from source to field point. For line, surface and volume currents, with $I = \lambda v$, $\vect{K} = d\vect{I}/dl_\perp = \sigma\lvect{v}$ and $\vect{J} = d\vect{I}/da_\perp = \rho\lvect{v}$,
+\[
+    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{I\,d\lvect{l}\,'\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}
+    = \frac{\mu_0}{4\pi}\int\frac{\vect{K}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,da'
+    = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,dV' .
+\]
+Here it was derived from $\div\vect{B} = 0$ and $\curl\vect{B} = \mu_0\vect{J}$. Logically one may equally take Biot--Savart as the experimental starting law of magnetostatics, playing the role of Coulomb's law, and derive the field equations from it (Section~\ref{sec:em-bs-div-curl}).
+
+\begin{fact}[A moving point charge is not a steady current]
+For $\rho = q\,\delta^3(\lvect{r}-\lvect{r}(t))$ and $\vect{J} = q\lvect{v}\,\delta^3(\lvect{r}-\lvect{r}(t))$, continuity holds, but
+\[
+    \div\vect{J} = q\lvect{v}\cdot\grad\delta^3(\lvect{r}-\lvect{r}(t)) = -\pdv{\rho}{t}\neq0 .
+\]
+The density at a fixed point changes as the charge arrives and leaves, so Biot--Savart does \emph{not} give the field of a single moving charge.
+\end{fact}
 
 \subsection{Field on the Axis of a Circular Loop}
 
@@ -235,6 +293,29 @@ Every element $d\lvect{\ell}$ of a loop of radius $R$ is perpendicular to the li
 \]
 \end{formula}
 
+The same result follows without the symmetry argument by writing everything in Cartesian components:
+\[
+    \lvect{r}\,' = R(\cos\phi',\sin\phi',0),
+    \quad
+    d\lvect{l}\,' = R\,d\phi'(-\sin\phi',\cos\phi',0),
+    \quad
+    \lvect{\mathfrak{r}} = (-R\cos\phi',-R\sin\phi',z),
+\]
+\[
+    d\lvect{l}\,'\times\lvect{\mathfrak{r}} = R\,d\phi'\,(z\cos\phi',\ z\sin\phi',\ R),
+\]
+and the $x$ and $y$ parts integrate to zero over $0\le\phi'\le2\pi$. Position-dependent unit vectors such as $\uvect{s}$ and $\hat{\boldsymbol{\phi}}$ must be written in Cartesian components \emph{before} integrating, since they point in different directions at different source points.
+
+\begin{fact}[Far field of a loop]
+For $z\gg R$,
+\[
+    \vect{B} \approx \frac{\mu_0}{4\pi}\,\frac{2\lvect{m}}{z^3},
+    \qquad
+    \lvect{m} = I\pi R^2\,\khat = I\lvect{a},
+\]
+the same form as the on-axis field of an electric dipole, $E_z = \frac{1}{4\pi\varepsilon_0}\frac{2p}{z^3}$, with $1/\varepsilon_0\to\mu_0$ and $\lvect{p}\to\lvect{m}$.
+\end{fact}
+
 \subsection{Field on the Axis of a Solenoid}
 
 A solenoid with $n$ turns per unit length is a stack of loops; a slice $dz$ carries current $nI\,dz$. Measure the position of each slice by the angle $\theta$ between the axis and the line from the field point to the loop's rim, so that $z = R\cot\theta$ and $dz = -R\,d\theta/\sin^2\theta$, while $R^2/(R^2+z^2)^{3/2} = \sin^3\theta/R$. Then
@@ -252,6 +333,95 @@ where $\theta_1,\theta_2$ are the angles subtended by the two ends.
     \mu_0 nI .
 \]
 \end{formula}
+
+\section{Divergence and Curl of the Biot--Savart Field}
+\label{sec:em-bs-div-curl}
+
+Starting from Biot--Savart instead, the field equations follow. Write $\vect{B} = \frac{\mu_0}{4\pi}\int\vect{J}(\lvect{r}\,')\times(\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2)\,dV'$. Here $\grad$ acts on $\lvect{r}$ only, so $\vect{J}(\lvect{r}\,')$ passes through it as a constant.
+
+\paragraph{Divergence.}
+\[
+    \div\Bigl(\vect{J}\times\frac{\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\Bigr)
+    = \frac{\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\cdot(\curl\vect{J}) - \vect{J}\cdot\Bigl(\curl\frac{\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\Bigr) = 0 .
+\]
+The first term vanishes because $\vect{J}$ depends only on $\lvect{r}\,'$. The second vanishes because $\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2 = -\grad(1/\mathfrak{r})$ is a gradient, with no hidden delta function in its curl. Hence $\div\vect{B} = 0$: Biot--Savart fields have no magnetic monopoles.
+
+\paragraph{Curl.}
+\[
+    \curl\Bigl(\vect{J}\times\frac{\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\Bigr)
+    = \vect{J}\Bigl(\div\frac{\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\Bigr) - (\vect{J}\cdot\grad)\frac{\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2} .
+\]
+This divergence is \emph{not} zero: $\div(\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2) = 4\pi\delta^3(\lvect{r}-\lvect{r}\,')$, so the first term gives $\mu_0\vect{J}(\lvect{r})$. In the second, replace $\grad\to-\grad'$ and use
+\[
+    (\vect{J}\cdot\grad')f = \grad'\cdot(f\vect{J}) - f\,(\grad'\cdot\vect{J}) .
+\]
+The last piece vanishes for steady currents, and the total divergence becomes a surface integral over a boundary enclosing all the current, where $\vect{J} = 0$. Hence $\curl\vect{B} = \mu_0\vect{J}$.
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{l|l}
+    Fact used & Role\\\hline
+    $\curl(\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2) = 0$ & gives $\div\vect{B} = 0$\\
+    $\div(\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2) = 4\pi\delta^3$ & source term, gives $\mu_0\vect{J}$\\
+    $\grad'\cdot\vect{J} = 0$ & kills the leftover term (steady currents)
+\end{tabular}
+\caption{The three facts behind $\div\vect{B} = 0$ and $\curl\vect{B} = \mu_0\vect{J}$.}
+\end{table}
+
+\section{Magnetostatic Boundary Conditions}
+\label{sec:em-mag-bc}
+
+Let a surface carry current $\vect{K}$, with normal $\uvect{n}$ pointing from ``below'' to ``above''. Pillbox and thin-loop arguments go through as in electrostatics: as the height $\epsilon\to0$, the side contributions (proportional to $\epsilon$ times a finite field) vanish, and only sources concentrated on the surface survive. The pillbox and $\div\vect{B} = 0$ give a continuous normal component; a thin loop and Amp\`ere's law give a jump $\mu_0K$ in the tangential component perpendicular to $\vect{K}$.
+
+\begin{formula}[Boundary conditions on $\vect{B}$ and $\vect{A}$]
+\[
+    B^\perp_{\text{above}} = B^\perp_{\text{below}},
+    \qquad
+    \vect{B}_{\text{above}} - \vect{B}_{\text{below}} = \mu_0\,\vect{K}\times\uvect{n},
+\]
+\[
+    \vect{A}_{\text{above}} = \vect{A}_{\text{below}},
+    \qquad
+    \pdv{\vect{A}_{\text{above}}}{n} - \pdv{\vect{A}_{\text{below}}}{n} = -\mu_0\vect{K}.
+\]
+\end{formula}
+
+\begin{example}[Solenoid check]
+At $s = R$, $\uvect{n} = \uvect{s}$ and $\vect{K}\times\uvect{n} = nI\,\hat{\boldsymbol{\phi}}\times\uvect{s} = -nI\,\khat$, so $\vect{B}_{\text{out}} - \vect{B}_{\text{in}} = -\mu_0nI\,\khat$, as found in Section~\ref{sec:em-solenoid}. Likewise $\partial_sA^{\text{out}}_\phi - \partial_sA^{\text{in}}_\phi = -\mu_0nI$.
+\end{example}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{l|c|c}
+    & Electrostatics ($\sigma$) & Magnetostatics ($\vect{K}$)\\\hline
+    Potential & $\phi$ continuous & $\vect{A}$ continuous\\
+    Field jump & $\vect{E}_{\text{above}} - \vect{E}_{\text{below}} = \dfrac{\sigma}{\varepsilon_0}\uvect{n}$ & $\vect{B}_{\text{above}} - \vect{B}_{\text{below}} = \mu_0\vect{K}\times\uvect{n}$\\
+    Derivative jump & $\partial_n\phi_{\text{above}} - \partial_n\phi_{\text{below}} = -\sigma/\varepsilon_0$ & $\partial_n\vect{A}_{\text{above}} - \partial_n\vect{A}_{\text{below}} = -\mu_0\vect{K}$
+\end{tabular}
+\caption{Boundary conditions at a charged and at a current-carrying surface.}
+\end{table}
+
+\section{Summary: Electrostatics and Magnetostatics}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{l|c|c}
+    & Electrostatics & Magnetostatics\\\hline
+    Force law & Coulomb & Biot--Savart\\
+    Divergence & $\div\vect{E} = \rho/\varepsilon_0$ & $\div\vect{B} = 0$\\
+    Curl & $\curl\vect{E} = 0$ & $\curl\vect{B} = \mu_0\vect{J}$\\
+    Potential & $\vect{E} = -\grad\phi$ & $\vect{B} = \curl\vect{A}$\\
+    Ambiguity & $\phi\to\phi+c$ & $\vect{A}\to\vect{A}+\grad\psi$\\
+    Poisson & $\laplacian\phi = -\rho/\varepsilon_0$ & $\laplacian\vect{A} = -\mu_0\vect{J}$ (Coulomb gauge)\\
+    Integral law & $\oint\vect{E}\cdot d\lvect{a} = Q_{\text{enc}}/\varepsilon_0$ & $\oint\vect{B}\cdot d\lvect{l} = \mu_0I_{\text{enc}}$\\
+    Uniform-field device & parallel plates & solenoid\\
+    Dipole on axis & $\frac{1}{4\pi\varepsilon_0}\frac{2p}{z^3}$ & $\frac{\mu_0}{4\pi}\frac{2m}{z^3}$
+\end{tabular}
+\caption{Electrostatics and magnetostatics side by side.}
+\end{table}
 
 \section{Lorentz Force}
 
@@ -278,12 +448,23 @@ Force balance:
 
 The Wien filter balances electric and magnetic forces so that only particles with $v = E/B$ pass straight through. It selects a single speed regardless of the charge or mass of the particle.
 
+\begin{fact}[Magnetic forces do no work]
+\[
+    \frac{dW}{dt} = \vect{F}\cdot\lvect{v} = q(\lvect{v}\times\vect{B})\cdot\lvect{v} = 0 .
+\]
+$\vect{B}$ changes the direction of $\lvect{v}$, never the speed. When a magnetic force appears to lift a current loop (as in the example below), the work is supplied by whatever maintains the current, such as the battery; the magnetic force only redirects it.
+\end{fact}
+
 
 \section{Force on a Current-Carrying Wire}
 
 The force on a current element $dq\,\lvect{v} = dq\,\frac{d\lvect{s}}{dt} = I\,d\lvect{s}$ in a field $\vect{B}$:
 \[
     \vect{F} = \int I\,d\lvect{s}\times\vect{B}
+\]
+For surface and volume currents, $I\,d\lvect{s}\to\vect{K}\,da\to\vect{J}\,dV$:
+\[
+    \vect{F} = \int\vect{K}\times\vect{B}\,da = \int\vect{J}\times\vect{B}\,dV .
 \]
 
 \subsection{Example: Current Loop Levitated by Magnetic Force}
