@@ -1,248 +1,73 @@
-\section{Magnetic Field of an Infinite Current Sheet}
+\chapter{Magnetostatics}
+\label{ch:em-magnetostatics}
 
-A sheet in the plane $y=0$ carries surface current density $K$ (current per unit width) in the $x$-direction. Treat it as many parallel wires: a strip of width $dz$ carries $dI = K\,dz$ and, at distance $r=\sqrt{z^2+y^2}$, produces a field of magnitude $\mu_0\,dI/2\pi r$ circling the strip. The components normal to the sheet cancel between strips at $\pm z$, and the components parallel to the sheet add, with a factor $\cos\theta = |y|/r$:
+Magnetostatics is the study of the magnetic fields of \emph{steady} currents. The chapter parallels electrostatics step by step: the force law, the source law (Biot--Savart in place of Coulomb), the field equations ($\div\vect{B}$ and $\curl\vect{B}$), a potential, and boundary conditions, ending with a side-by-side comparison.
+
+\section{Currents and the Magnetic Force}
+
+\begin{definition}[Magnetic field]
+The magnetic field $\vect{B}$ is defined by the velocity-dependent part of the force on a test charge, the Lorentz force
 \[
-    |B| = \int_{-\infty}^{\infty} \frac{\mu_0 K\,dz}{2\pi r}\,\frac{|y|}{r}
-        = \frac{\mu_0 K |y|}{2\pi}\int_{-\infty}^{\infty} \frac{dz}{z^2+y^2}
-        = \frac{\mu_0 K}{2}.
+    \vect{F} = q\vect{E} + q\lvect{v}\times\vect{B},
 \]
-Compactly, $\vect{B} = \frac{\mu_0}{2}\,\vect{K}\times\uvect{n}$, with $\uvect{n}$ the unit normal pointing from the sheet toward the field point: here $\vect{B} = \pm\frac{\mu_0K}{2}\,\khat$ above and below.
-\begin{formula}[Field of an infinite current sheet]
+with $\vect{E}$ and $\vect{B}$ evaluated at the particle's position, in the frame in which $\lvect{v}$ is measured.
+\end{definition}
+
+\begin{definition}[Line, surface and volume currents]
 \[
-    |\vect{B}| = \frac{\mu_0 K}{2},
-\]
-parallel to the sheet and perpendicular to the current, reversing direction across the sheet and independent of the distance from it.
-\end{formula}
-Crossing the sheet, the parallel component of $\vect{B}$ jumps by $\mu_0K$, the magnetic analogue of the jump $\sigma/\varepsilon_0$ in the normal component of $\vect{E}$ across a sheet of charge.
-
-Amp\`ere's law gives the same result directly: a rectangular loop of length $\ell$ straddling the sheet encloses current $K\ell$, and only its two sides parallel to the sheet contribute, so $2B\ell = \mu_0K\ell$.
-
-\section{Magnetic Field of Two Parallel Planes}
-
-\begin{figure}[H]
-\begin{center}
-\begin{tikzpicture}[scale=1.22]
-  % Two sheets (edge-on), currents along x
-  \fill[orange!15] (-3.5,1.0) rectangle (3.5,1.2);
-  \fill[orange!15] (-3.5,-1.2) rectangle (3.5,-1.0);
-  \draw[thick, orange!70!black] (-3.5,1.1) -- (3.5,1.1);
-  \draw[thick, orange!70!black] (-3.5,-1.1) -- (3.5,-1.1);
-  \draw[-{Stealth[length=6pt]}, very thick, orange!70!black] (-3.2,1.45) -- (-1.8,1.45) node[right] {$+K\ihat$};
-  \draw[-{Stealth[length=6pt]}, very thick, orange!70!black] (-1.8,-1.45) -- (-3.2,-1.45) node[left] {$-K\ihat$};
-  % Between: B into the page
-  \foreach \x in {-2.4,-1.2,1.2,2.4} {
-    \foreach \y in {-0.45,0.45} {
-      \draw[blue!70!black] (\x,\y) circle (0.14);
-      \draw[blue!70!black] (\x-0.1,\y-0.1) -- (\x+0.1,\y+0.1) (\x-0.1,\y+0.1) -- (\x+0.1,\y-0.1);
-    }
-  }
-  \node[blue!70!black, fill=white, inner sep=2pt] at (0,0) {$|\vect{B}| = \mu_0 K$ (into page)};
-  \node[gray, anchor=west] at (0.4,1.6) {$\vect{B} = 0$};
-  \node[gray, anchor=west] at (0.4,-1.6) {$\vect{B} = 0$};
-\end{tikzpicture}
-\end{center}
-\caption{Two infinite parallel current sheets, seen edge-on, with opposite surface currents $\pm K\ihat$. Between the sheets their fields add to $\mu_0 K$, parallel to the sheets and perpendicular to the current; outside they cancel. This is the magnetic analogue of a parallel-plate capacitor.}
-\end{figure}
-
-Superposing two sheets with opposite currents $\pm K\ihat$, the fields $\frac{\mu_0}{2}\vect{K}\times\uvect{n}$ add between the sheets and cancel outside, giving $|\vect{B}|=\mu_0K$ between and $0$ outside. In terms of the volume current density, Amp\`ere's law in differential form is
-\[
-    \curl \vect{B} = \mu_0 \vect{J}
-\]
-
-\subsection{Solenoid}
-
-Using an Amp\`{e}rian loop of length $L$ inside and outside the solenoid (outside $B=0$, inside $\oint \vect{B}\cdot d\vect{\ell} = \mu_0 I_{\text{enc}}$):
-\[
-    \mu_0 I n L = BL \quad \Rightarrow \quad B = \mu_0 n I
-\]
-where $n$ is the number of turns per unit length.
-
-\begin{figure}[H]
-\begin{center}
-\begin{tikzpicture}[scale=1.22]
-  % Solenoid in cross-section: current out of page on top, into page on bottom
-  \foreach \x in {0,0.4,...,4.0} {
-    \draw[blue!60!black] (\x,0.8) circle (0.1); \fill[blue!60!black] (\x,0.8) circle (0.03);
-    \draw[blue!60!black] (\x,-0.8) circle (0.1);
-    \draw[blue!60!black] (\x-0.07,-0.87) -- (\x+0.07,-0.73) (\x-0.07,-0.73) -- (\x+0.07,-0.87);
-  }
-  % Uniform B field inside
-  \foreach \y in {-0.35,0,0.35} {
-    \draw[-{Stealth[length=4pt]}, thick, red!70!black] (0.1,\y) -- (3.9,\y);
-  }
-  \node[red!70!black, anchor=west] at (4.3,0) {$\vect{B} = \mu_0 nI$};
-  % Amperian rectangle: one long side inside, one outside
-  \draw[dashed, green!60!black, thick] (1.0,0.2) rectangle (2.6,1.35);
-  \node[green!60!black, font=\small, anchor=south] at (1.8,1.4) {Amp\`erian loop, length $L$};
-  \node[gray, font=\small, anchor=west] at (3.2,1.25) {$B=0$};
-  \node[font=\small, anchor=east] at (-0.2,0.8) {$I$ out};
-  \node[font=\small, anchor=east] at (-0.2,-0.8) {$I$ in};
-\end{tikzpicture}
-\end{center}
-\caption{Solenoid with $n$ turns per unit length. The Amp\`{e}rian rectangle (dashed) of length $L$ has one side inside (field $B$) and one outside ($B=0$). Amp\`{e}re's law gives $BL = \mu_0 nIL$, so $B = \mu_0 nI$.}
-\end{figure}
-
-\subsection{Symmetry, Vector Potential and Aharonov--Bohm}
-\label{sec:em-solenoid}
-
-The argument above assumed that $\vect{B}$ points along the axis and vanishes outside. Both follow from symmetry. Take an ideal solenoid of radius $R$, with $n$ turns per unit length carrying current $I$, so that $\vect{K} = nI\,\hat{\boldsymbol{\phi}}$. It is symmetric under translations along $z$ and rotations about it, so each component of $\vect{B}$ depends on $s$ alone.
-\begin{itemize}
-    \item $B_s = 0$: a coaxial Gaussian cylinder has $\oint\vect{B}\cdot d\lvect{a} = B_s\,2\pi sL = 0$, the end caps cancelling.
-    \item $B_\phi = 0$: a coaxial circle bounds a disk that no $\hat{\boldsymbol{\phi}}$-directed current crosses, so $B_\phi\,2\pi s = 0$.
-\end{itemize}
-So $\vect{B} = B_z(s)\,\khat$ everywhere. (A real helical winding also carries a net current $I$ along $z$, which adds $B_\phi = \mu_0I/2\pi s$ outside. The ideal solenoid drops it.)
-
-Outside, a rectangular loop that no wire pierces has $\oint\vect{B}\cdot d\lvect{l} = 0$. Its radial sides contribute nothing, since $\vect{B}\perp d\lvect{l}$ there, so $B(a)L - B(b)L = 0$: $B$ is uniform outside. It must vanish at infinity, so $B_{\text{out}} = 0$. Inside, a loop straddling the winding then picks up only its inner side, giving $B_{\text{in}} = \mu_0nI$, uniform: the magnetic analogue of the parallel-plate capacitor.
-
-\begin{formula}[Vector potential of an infinite solenoid]
-The current extends to infinity, so the integral formula for $\vect{A}$ fails. Instead use $\oint\vect{A}\cdot d\lvect{l} = \Phi$ on coaxial circles, with $\vect{A} = A_\phi(s)\,\hat{\boldsymbol{\phi}}$:
-\[
-    \vect{A}_{\text{in}} = \frac{\mu_0nI}{2}\,s\,\hat{\boldsymbol{\phi}},
+    I = \lambda v,
     \qquad
-    \vect{A}_{\text{out}} = \frac{\mu_0nIR^2}{2s}\,\hat{\boldsymbol{\phi}}.
-\]
-\end{formula}
-As a check, $(\curl\vect{A})_z = \frac1s\partial_s(sA_\phi)$ --- not $\partial_sA_\phi$, since $\hat{\boldsymbol{\phi}}$ itself varies --- gives $\mu_0nI$ inside and $0$ outside, and $A_\phi$ is continuous at $s = R$.
-
-\begin{fact}[Aharonov--Bohm effect]
-Outside the solenoid $\vect{B} = 0$, yet $\oint\vect{A}\cdot d\lvect{l} = \Phi\neq0$, so $\vect{A}$ cannot be gauged away there. Electrons passing on either side of the solenoid pick up a measurable relative phase $q\Phi/\hbar$, although they never enter a region of nonzero field.
-\end{fact}
-
-\section{Hall Effect}
-
-\begin{figure}[H]
-\begin{center}
-\begin{tikzpicture}[scale=1.22]
-  % Conductor body
-  \fill[yellow!15] (0,-0.8) rectangle (4.5,0.8);
-  \draw[thick] (0,-0.8) rectangle (4.5,0.8);
-  % Current to the right
-  \foreach \y in {-0.4,0,0.4} {
-    \draw[-{Stealth[length=4pt]}, thick, red!70!black]
-      (0.5,\y) -- (1.8,\y);
-  }
-  \node[red!70!black, anchor=east] at (0.45,0) {$I$};
-  % Magnetic field B downward (into page, shown as crosses)
-  \foreach \x in {0.5,1.5,2.5,3.5,4.5} {
-    \draw[gray!60] (\x,1.4) circle (0.12) (\x-0.08,1.32) -- (\x+0.08,1.48) (\x-0.08,1.48) -- (\x+0.08,1.32);
-  }
-  \node[gray, font=\small] at (2.0,1.8) {$\vect{B}$ (into page)};
-  % Charge accumulation on bottom
-  \foreach \x in {2.2,3.0,3.8} {
-    \node[blue!70!black, font=\small] at (\x,-0.65) {$-$};
-    \node[red!70!black, font=\small] at (\x,0.65) {$+$};
-  }
-  % Hall voltage arrow
-  \draw[<->, thick, orange!80!black]
-    (4.8,-0.8) -- (4.8,0.8) node[midway, right]{$V_H$};
-  % Hall E field arrow
-  \draw[-{Stealth[length=5pt]}, thick, blue!60!black]
-    (2.6,-0.45) -- (2.6,0.45) node[pos=0.5, right, font=\small]{$E_H$};
-\end{tikzpicture}
-\end{center}
-\caption{Hall effect: current $I$ flows right in a conductor; field $\vect{B}$ is directed into the page. Charge carriers deflect downward (for electrons), building up $E_H$ until $eE_H = evB$. The Hall voltage $V_H = BIh/(neh\ell) = BI/(ne\ell)$ measures charge carrier density $n$.}
-\end{figure}
-
-In the Hall effect, a transverse magnetic field deflects current carriers to one side of the conductor, building up a transverse electric field that balances the magnetic force. In steady state the electric force exactly cancels the magnetic force:
-\[
-    eE_H = ev B \quad \Rightarrow \quad E_H = vB.
-\]
-The current density $\vect{J} = -ne\lvect{v}$ gives the drift speed $v = J/(ne) = I/(neh\ell)$, and the Hall voltage $V_H = E_H \ell$ becomes:
-\[
-    V_H = \left(\frac{B}{neh}\right) I.
-\]
-The sign of the Hall voltage reveals the sign of the charge carriers, and its magnitude measures the carrier density $n$.
-
-\section{Maxwell's Equations So Far}
-
-\begin{formula}[Maxwell's Equations (magnetostatics)]
-\begin{align*}
-    \div \vect{E} &= \frac{\rho}{\varepsilon_0} & \div \vect{B} &= 0 \\
-    \curl \vect{E} &= 0 & \curl \vect{B} &= \mu_0 \vect{J}
-\end{align*}
-\end{formula}
-
-\section{Magnetic Vector Potential}
-
-Since $\div\vect{B}=0$, $\vect{B}$ can always be written as a curl,
-\[
-    \vect{B} = \curl\vect{A},
-\]
-which satisfies $\div\vect{B}=\div(\curl\vect{A})=0$ automatically. $\vect{A}$ is the \emph{magnetic vector potential}. For example, the uniform field $\vect{B}=B_0\khat$ is produced by $\vect{A}=B_0x\,\jhat$, or equally by $\vect{A}=-B_0y\,\ihat$, or by $\vect{A}=\tfrac12B_0(-y\,\ihat+x\,\jhat)$.
-
-\subsection{Gauge Freedom}
-
-As the example shows, $\vect{A}$ is not unique. Two potentials give the same $\vect{B}$ if and only if $\curl(\vect{A}-\vect{A}')=0$, i.e.\ $\vect{A}' = \vect{A}+\grad\psi$ for some scalar $\psi$. This freedom can be used to impose the \emph{Coulomb gauge} $\div\vect{A}=0$: if $\div\vect{A}=f\neq0$, choose $\psi$ with $\laplacian\psi=-f$, which is an electrostatics-type Poisson problem and always solvable, and then $\div\vect{A}'=0$.
-Explicitly, given $\vect{A}_0$ with $\div\vect{A}_0\neq0$, the gauge function
-\[
-    \psi(\lvect{r}) = \frac{1}{4\pi}\int\frac{\grad'\cdot\vect{A}_0(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV'
-\]
-solves $\laplacian\psi = -\div\vect{A}_0$, so the Coulomb gauge is always reachable.
-
-By Stokes' theorem the line integral of $\vect{A}$ is the magnetic flux, the analogue of Amp\`ere's law with $\vect{B}\to\vect{A}$ and $\mu_0I_{\text{enc}}\to\Phi$:
-\[
-    \oint\vect{A}\cdot d\lvect{l} = \int\vect{B}\cdot d\lvect{a} = \Phi .
-\]
-
-\subsection{The Vector Poisson Equation}
-
-In the Coulomb gauge, Amp\`ere's law $\curl\vect{B}=\mu_0\vect{J}$ becomes
-\[
-    \curl(\curl\vect{A}) = \grad(\div\vect{A}) - \laplacian\vect{A} = -\laplacian\vect{A} = \mu_0\vect{J}.
-\]
-\begin{formula}[Poisson equation for the vector potential]
-\[
-    \laplacian\vect{A} = -\mu_0\vect{J},
-    \qquad\text{i.e.}\qquad
-    \laplacian A_i = -\mu_0 J_i \quad (i=x,y,z),
-\]
-three copies of the electrostatic Poisson equation $\laplacian\phi=-\rho/\varepsilon_0$.
-\end{formula}
-Each component is therefore solved exactly as in electrostatics, with $\rho/\varepsilon_0\to\mu_0J_i$:
-
-\begin{formula}[Vector potential of a current distribution]
-\[
-    \vect{A}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV',
+    \vect{K} = \frac{d\vect{I}}{dl_\perp} = \sigma\lvect{v},
     \qquad
-    \vect{A}(\lvect{r}) = \frac{\mu_0 I}{4\pi}\oint\frac{d\lvect{\ell}\,'}{|\lvect{r}-\lvect{r}\,'|}\ \ \text{(thin wire)},
+    \vect{J} = \frac{d\vect{I}}{da_\perp} = \rho\lvect{v}.
 \]
-using $\vect{J}\,dV = I\,d\lvect{\ell}$ for a wire.
+$\vect{K}$ is the current per unit width perpendicular to the flow, and $\vect{J}$ the current per unit area.
+\end{definition}
+
+A wire element $d\lvect{s}$ carrying current $I = \lambda v$ holds charge $dq = \lambda\,ds$, and $dq\,\lvect{v} = I\,d\lvect{s}$. Summing the Lorentz force over the moving charges:
+
+\begin{formula}[Force on a current]
+\[
+    \vect{F} = \int I\,d\lvect{s}\times\vect{B} = \int\vect{K}\times\vect{B}\,da = \int\vect{J}\times\vect{B}\,dV .
+\]
 \end{formula}
 
-This solution is consistent with the gauge condition it assumed only for steady currents. Taking its divergence and integrating by parts, for a localized $\vect{J}$,
+\begin{example}[Current loop levitated by a magnetic force]
+Equilibrium condition $\vect{F}_g + \vect{F}_B = 0$ with $\vect{F}_g = m\lvect{g} = -mg\,\hat{z}$:
+
 \[
-    \div\vect{A} = \frac{\mu_0}{4\pi}\int\frac{\grad'\cdot\vect{J}(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV' = 0
-    \quad\text{since } \grad'\cdot\vect{J} = 0 .
+    \vect{F}_B = \int I\,d\lvect{s}\times\vect{B} = \int_0^\ell I\,d\lvect{s}\times B\,\hat{x} = \int_0^\ell I\,dy\,B\,\hat{z} = IB\ell\,\hat{z}
 \]
 
-\begin{example}[Long straight wire]
-A wire along $x$ carries current $I$. $A_x$ obeys the same equation as the potential of a line charge, with $\lambda/\varepsilon_0\to\mu_0I$, so by analogy with $\phi=\frac{\lambda}{2\pi\varepsilon_0}\ln(a/r)$,
+Thus $IB\ell = mg$, giving:
 \[
-    A_x = \frac{\mu_0 I}{2\pi}\ln\frac{a}{r},
+    \vect{I} = \frac{mg}{B\ell}\,\hat{y}
 \]
-with $r$ the distance from the wire and $a$ an arbitrary reference radius. Its curl gives $|\vect{B}| = |\partial A_x/\partial r| = \mu_0I/2\pi r$, circling the wire, as from Amp\`ere's law.
 \end{example}
 
-\section{The Biot--Savart Law}
 
-For a single current element, $d\vect{A} = \frac{\mu_0 I}{4\pi}\frac{d\lvect{\ell}}{r}$, with $r$ the distance from the element to the field point. Since $d\lvect{\ell}$ is fixed, $\curl(d\lvect{\ell}/r) = \grad(1/r)\times d\lvect{\ell}$, and $\grad(1/r) = -\rhat/r^2$ where $\rhat$ points from the element to the field point. Hence $d\vect{B}=\curl(d\vect{A})$ is
-
-\begin{formula}[Biot--Savart law]
+\begin{fact}[Magnetic forces do no work]
 \[
-    d\vect{B} = \frac{\mu_0 I}{4\pi}\,\frac{d\lvect{\ell}\times\rhat}{r^2},
-    \qquad
-    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times(\lvect{r}-\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|^3}\,dV'.
+    \frac{dW}{dt} = \vect{F}\cdot\lvect{v} = q(\lvect{v}\times\vect{B})\cdot\lvect{v} = 0 .
 \]
-\end{formula}
-Unlike the radial Coulomb field, the field of a current element circles the element.
+$\vect{B}$ changes the direction of $\lvect{v}$, never the speed. When a magnetic force appears to lift a current loop (as in the example below), the work is supplied by whatever maintains the current, such as the battery; the magnetic force only redirects it.
+\end{fact}
 
-Write $\lvect{\mathfrak{r}} = \lvect{r}-\lvect{r}\,'$ for the separation vector from source to field point. For line, surface and volume currents, with $I = \lambda v$, $\vect{K} = d\vect{I}/dl_\perp = \sigma\lvect{v}$ and $\vect{J} = d\vect{I}/da_\perp = \rho\lvect{v}$,
+\begin{example}[Wien filter (velocity selector)]
+Force balance:
 \[
-    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{I\,d\lvect{l}\,'\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}
-    = \frac{\mu_0}{4\pi}\int\frac{\vect{K}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,da'
-    = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,dV' .
+    \vect{F} = q(\vect{E} + \lvect{v}\times\vect{B}) = q(E + vB) = 0
 \]
-Here it was derived from $\div\vect{B} = 0$ and $\curl\vect{B} = \mu_0\vect{J}$. Logically one may equally take Biot--Savart as the experimental starting law of magnetostatics, playing the role of Coulomb's law, and derive the field equations from it (Section~\ref{sec:em-bs-div-curl}).
+\[
+    \Rightarrow \quad E = -vB \quad \Rightarrow \quad v = \frac{E}{B}
+\]
+
+The Wien filter balances electric and magnetic forces so that only particles with $v = E/B$ pass straight through. It selects a single speed regardless of the charge or mass of the particle.
+\end{example}
+
+\section{Steady Currents}
+
+Charge conservation gives the continuity equation $\partial\rho/\partial t + \div\vect{J} = 0$ (Section~\ref{sec:em-continuity}). Magnetostatics means \emph{steady} currents, $\partial\rho/\partial t = 0$, and hence $\div\vect{J} = 0$: as much current flows out of any region as flows in.
 
 \begin{fact}[A moving point charge is not a steady current]
 For $\rho = q\,\delta^3(\lvect{r}-\lvect{r}(t))$ and $\vect{J} = q\lvect{v}\,\delta^3(\lvect{r}-\lvect{r}(t))$, continuity holds, but
@@ -252,7 +77,54 @@ For $\rho = q\,\delta^3(\lvect{r}-\lvect{r}(t))$ and $\vect{J} = q\lvect{v}\,\de
 The density at a fixed point changes as the charge arrives and leaves, so Biot--Savart does \emph{not} give the field of a single moving charge.
 \end{fact}
 
-\subsection{Field on the Axis of a Circular Loop}
+\section{The Biot--Savart Law}
+
+\begin{formula}[Biot--Savart law]
+\[
+    d\vect{B} = \frac{\mu_0 I}{4\pi}\,\frac{d\lvect{\ell}\times\rhat}{r^2},
+    \qquad
+    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times(\lvect{r}-\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|^3}\,dV',
+\]
+with $\mu_0 = 4\pi\times10^{-7}\ \text{N/A}^2$ and $\rhat$ pointing from the current element to the field point.
+\end{formula}
+Unlike the radial Coulomb field, the field of a current element circles the element.
+
+Write $\lvect{\mathfrak{r}} = \lvect{r}-\lvect{r}\,'$ for the separation vector from source to field point. For line, surface and volume currents, with $I = \lambda v$, $\vect{K} = d\vect{I}/dl_\perp = \sigma\lvect{v}$ and $\vect{J} = d\vect{I}/da_\perp = \rho\lvect{v}$,
+\[
+    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{I\,d\lvect{l}\,'\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}
+    = \frac{\mu_0}{4\pi}\int\frac{\vect{K}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,da'
+    = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,dV' .
+\]
+Within magnetostatics this is the experimental starting law, playing the role of Coulomb's law: the field equations $\div\vect{B} = 0$ and $\curl\vect{B} = \mu_0\vect{J}$ are derived from it in Section~\ref{sec:em-bs-div-curl}. Logically the reverse direction also works, and Section~\ref{sec:em-bs-from-a} recovers Biot--Savart from the field equations via the vector potential.
+
+
+
+
+\begin{formula}[Relation between $\mu_0$ and $\varepsilon_0$]
+\[
+    \mu_0 = \frac{1}{\varepsilon_0c^2} = 4\pi\times10^{-7}\ \frac{\text{kg}\cdot\text{m}}{\text{C}^2}.
+\]
+\end{formula}
+
+\section{Fields from Biot--Savart}
+
+\subsection{Infinite Straight Wire}
+
+For a wire along $z$, each element contributes a field circling the wire, and the integral over the whole wire gives
+\[
+    \vect{B} = \frac{\mu_0I}{2\pi s}\,\hat{\boldsymbol{\phi}},
+\]
+with $s$ the distance from the wire and direction by the right-hand rule.
+
+\begin{example}[Force between parallel wires]
+Wire 1 produces $B_1 = \mu_0I_1/2\pi d$ at wire 2, a distance $d$ away, perpendicular to wire 2. The force on a length $\ell$ of wire 2 is $F = I_2B_1\ell$:
+\[
+    \frac{F}{\ell} = \frac{\mu_0I_1I_2}{2\pi d},
+\]
+attractive for parallel currents and repulsive for antiparallel ones.
+\end{example}
+
+\subsection{Circular Loop, on Axis}
 
 \begin{figure}[H]
 \begin{center}
@@ -316,7 +188,8 @@ For $z\gg R$,
 the same form as the on-axis field of an electric dipole, $E_z = \frac{1}{4\pi\varepsilon_0}\frac{2p}{z^3}$, with $1/\varepsilon_0\to\mu_0$ and $\lvect{p}\to\lvect{m}$.
 \end{fact}
 
-\subsection{Field on the Axis of a Solenoid}
+
+\subsection{Finite Solenoid, on Axis}
 
 A solenoid with $n$ turns per unit length is a stack of loops; a slice $dz$ carries current $nI\,dz$. Measure the position of each slice by the angle $\theta$ between the axis and the line from the field point to the loop's rim, so that $z = R\cot\theta$ and $dz = -R\,d\theta/\sin^2\theta$, while $R^2/(R^2+z^2)^{3/2} = \sin^3\theta/R$. Then
 \[
@@ -334,10 +207,28 @@ where $\theta_1,\theta_2$ are the angles subtended by the two ends.
 \]
 \end{formula}
 
-\section{Divergence and Curl of the Biot--Savart Field}
+
+\section{Amp\`ere's Law}
+
+\begin{formula}[Amp\`ere's law]
+\[
+    \oint_{\partial S}\vect{B}\cdot d\lvect{l} = \mu_0I_{\text{enc}} = \mu_0\int_S\vect{J}\cdot d\lvect{a}
+    \qquad\Longleftrightarrow\qquad
+    \curl\vect{B} = \mu_0\vect{J},
+\]
+the two forms related by Stokes' theorem. The sense of the loop and the sign of $I_{\text{enc}}$ are related by the right-hand rule.
+\end{formula}
+
+\paragraph{From the infinite wire.} With $\vect{B} = (\mu_0I/2\pi s)\,\hat{\boldsymbol{\phi}}$ and $d\lvect{l} = ds\,\uvect{s} + s\,d\phi\,\hat{\boldsymbol{\phi}} + dz\,\khat$,
+\[
+    \vect{B}\cdot d\lvect{l} = \frac{\mu_0I}{2\pi s}\,s\,d\phi = \frac{\mu_0I}{2\pi}\,d\phi .
+\]
+The shape of the loop drops out: only the angle swept about the wire matters. A loop that encircles the wire once has $\oint d\phi = 2\pi$; one that does not returns $\phi$ to its starting value, so $\oint d\phi = 0$. By superposition over a bundle of straight wires, $\oint\vect{B}\cdot d\lvect{l} = \mu_0I_{\text{enc}}$.
+
+\subsection{Divergence and Curl of the Biot--Savart Field}
 \label{sec:em-bs-div-curl}
 
-Starting from Biot--Savart instead, the field equations follow. Write $\vect{B} = \frac{\mu_0}{4\pi}\int\vect{J}(\lvect{r}\,')\times(\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2)\,dV'$. Here $\grad$ acts on $\lvect{r}$ only, so $\vect{J}(\lvect{r}\,')$ passes through it as a constant.
+Ampère's law holds for any steady current, not just bundles of straight wires: both field equations follow from Biot--Savart. Write $\vect{B} = \frac{\mu_0}{4\pi}\int\vect{J}(\lvect{r}\,')\times(\hat{\lvect{\mathfrak{r}}}/\mathfrak{r}^2)\,dV'$. Here $\grad$ acts on $\lvect{r}$ only, so $\vect{J}(\lvect{r}\,')$ passes through it as a constant.
 
 \paragraph{Divergence.}
 \[
@@ -368,6 +259,217 @@ The last piece vanishes for steady currents, and the total divergence becomes a 
 \end{tabular}
 \caption{The three facts behind $\div\vect{B} = 0$ and $\curl\vect{B} = \mu_0\vect{J}$.}
 \end{table}
+
+
+\begin{theorem}[Uniqueness]
+If $\vect{B}$ vanishes at infinity, then $\div\vect{B} = 0$ and $\curl\vect{B} = \mu_0\vect{J}$ determine $\vect{B}$ uniquely for a given $\vect{J}$. This is a special case of the Helmholtz theorem.
+\end{theorem}
+
+\subsection{Maxwell's Equations So Far}
+
+\begin{formula}[Maxwell's Equations (magnetostatics)]
+\begin{align*}
+    \div \vect{E} &= \frac{\rho}{\varepsilon_0} & \div \vect{B} &= 0 \\
+    \curl \vect{E} &= 0 & \curl \vect{B} &= \mu_0 \vect{J}
+\end{align*}
+\end{formula}
+
+
+\subsection{Using Amp\`ere's Law}
+
+Like Gauss's law, Amp\`ere's law determines $\vect{B}$ only when symmetry fixes its direction and dependence.
+
+\begin{example}[Infinite straight wire]
+A circle of radius $s$ around the wire gives $B\cdot2\pi s = \mu_0I$, so $B = \mu_0I/2\pi s$, as from Biot--Savart.
+\end{example}
+
+\begin{example}[Solid cylindrical wire]
+Inside a wire carrying uniform current density $\vect{J} = J\khat$, a circle of radius $s$ encloses $J\pi s^2$, so $B\cdot2\pi s = \mu_0J\pi s^2$ and
+\[
+    \vect{B} = \frac{\mu_0Js}{2}\,\hat{\boldsymbol{\phi}} = \frac{\mu_0}{2}\,\vect{J}\times\lvect{s},
+\]
+where $\lvect{s}$ is the perpendicular position vector from the axis. Outside, the wire looks like a line current.
+\end{example}
+
+\subsection{Infinite Current Sheet}
+
+A sheet in the plane $y=0$ carries surface current density $K$ (current per unit width) in the $x$-direction. Treat it as many parallel wires: a strip of width $dz$ carries $dI = K\,dz$ and, at distance $r=\sqrt{z^2+y^2}$, produces a field of magnitude $\mu_0\,dI/2\pi r$ circling the strip. The components normal to the sheet cancel between strips at $\pm z$, and the components parallel to the sheet add, with a factor $\cos\theta = |y|/r$:
+\[
+    |B| = \int_{-\infty}^{\infty} \frac{\mu_0 K\,dz}{2\pi r}\,\frac{|y|}{r}
+        = \frac{\mu_0 K |y|}{2\pi}\int_{-\infty}^{\infty} \frac{dz}{z^2+y^2}
+        = \frac{\mu_0 K}{2}.
+\]
+Compactly, $\vect{B} = \frac{\mu_0}{2}\,\vect{K}\times\uvect{n}$, with $\uvect{n}$ the unit normal pointing from the sheet toward the field point: here $\vect{B} = \pm\frac{\mu_0K}{2}\,\khat$ above and below.
+\begin{formula}[Field of an infinite current sheet]
+\[
+    |\vect{B}| = \frac{\mu_0 K}{2},
+\]
+parallel to the sheet and perpendicular to the current, reversing direction across the sheet and independent of the distance from it.
+\end{formula}
+Crossing the sheet, the parallel component of $\vect{B}$ jumps by $\mu_0K$, the magnetic analogue of the jump $\sigma/\varepsilon_0$ in the normal component of $\vect{E}$ across a sheet of charge.
+
+Amp\`ere's law gives the same result directly: a rectangular loop of length $\ell$ straddling the sheet encloses current $K\ell$, and only its two sides parallel to the sheet contribute, so $2B\ell = \mu_0K\ell$.
+
+
+\subsection{Two Parallel Current Sheets}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.22]
+  % Two sheets (edge-on), currents along x
+  \fill[orange!15] (-3.5,1.0) rectangle (3.5,1.2);
+  \fill[orange!15] (-3.5,-1.2) rectangle (3.5,-1.0);
+  \draw[thick, orange!70!black] (-3.5,1.1) -- (3.5,1.1);
+  \draw[thick, orange!70!black] (-3.5,-1.1) -- (3.5,-1.1);
+  \draw[-{Stealth[length=6pt]}, very thick, orange!70!black] (-3.2,1.45) -- (-1.8,1.45) node[right] {$+K\ihat$};
+  \draw[-{Stealth[length=6pt]}, very thick, orange!70!black] (-1.8,-1.45) -- (-3.2,-1.45) node[left] {$-K\ihat$};
+  % Between: B into the page
+  \foreach \x in {-2.4,-1.2,1.2,2.4} {
+    \foreach \y in {-0.45,0.45} {
+      \draw[blue!70!black] (\x,\y) circle (0.14);
+      \draw[blue!70!black] (\x-0.1,\y-0.1) -- (\x+0.1,\y+0.1) (\x-0.1,\y+0.1) -- (\x+0.1,\y-0.1);
+    }
+  }
+  \node[blue!70!black, fill=white, inner sep=2pt] at (0,0) {$|\vect{B}| = \mu_0 K$ (into page)};
+  \node[gray, anchor=west] at (0.4,1.6) {$\vect{B} = 0$};
+  \node[gray, anchor=west] at (0.4,-1.6) {$\vect{B} = 0$};
+\end{tikzpicture}
+\end{center}
+\caption{Two infinite parallel current sheets, seen edge-on, with opposite surface currents $\pm K\ihat$. Between the sheets their fields add to $\mu_0 K$, parallel to the sheets and perpendicular to the current; outside they cancel. This is the magnetic analogue of a parallel-plate capacitor.}
+\end{figure}
+
+
+\section{The Vector Potential and Gauge}
+\label{sec:em-vector-potential}
+
+Since $\div\vect{B}=0$, $\vect{B}$ can always be written as a curl,
+\[
+    \vect{B} = \curl\vect{A},
+\]
+which satisfies $\div\vect{B}=\div(\curl\vect{A})=0$ automatically. $\vect{A}$ is the \emph{magnetic vector potential}. For example, the uniform field $\vect{B}=B_0\khat$ is produced by $\vect{A}=B_0x\,\jhat$, or equally by $\vect{A}=-B_0y\,\ihat$, or by $\vect{A}=\tfrac12B_0(-y\,\ihat+x\,\jhat)$.
+
+\subsection{Gauge Freedom}
+
+As the example shows, $\vect{A}$ is not unique. Two potentials give the same $\vect{B}$ if and only if $\curl(\vect{A}-\vect{A}')=0$, i.e.\ $\vect{A}' = \vect{A}+\grad\psi$ for some scalar $\psi$. This freedom can be used to impose the \emph{Coulomb gauge} $\div\vect{A}=0$: if $\div\vect{A}=f\neq0$, choose $\psi$ with $\laplacian\psi=-f$, which is an electrostatics-type Poisson problem and always solvable, and then $\div\vect{A}'=0$.
+Explicitly, given $\vect{A}_0$ with $\div\vect{A}_0\neq0$, the gauge function
+\[
+    \psi(\lvect{r}) = \frac{1}{4\pi}\int\frac{\grad'\cdot\vect{A}_0(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV'
+\]
+solves $\laplacian\psi = -\div\vect{A}_0$, so the Coulomb gauge is always reachable.
+
+By Stokes' theorem the line integral of $\vect{A}$ is the magnetic flux, the analogue of Amp\`ere's law with $\vect{B}\to\vect{A}$ and $\mu_0I_{\text{enc}}\to\Phi$:
+\[
+    \oint\vect{A}\cdot d\lvect{l} = \int\vect{B}\cdot d\lvect{a} = \Phi .
+\]
+
+\subsection{The Vector Poisson Equation}
+
+In the Coulomb gauge, Amp\`ere's law $\curl\vect{B}=\mu_0\vect{J}$ becomes
+\[
+    \curl(\curl\vect{A}) = \grad(\div\vect{A}) - \laplacian\vect{A} = -\laplacian\vect{A} = \mu_0\vect{J}.
+\]
+\begin{formula}[Poisson equation for the vector potential]
+\[
+    \laplacian\vect{A} = -\mu_0\vect{J},
+    \qquad\text{i.e.}\qquad
+    \laplacian A_i = -\mu_0 J_i \quad (i=x,y,z),
+\]
+three copies of the electrostatic Poisson equation $\laplacian\phi=-\rho/\varepsilon_0$.
+\end{formula}
+Each component is therefore solved exactly as in electrostatics, with $\rho/\varepsilon_0\to\mu_0J_i$:
+
+\begin{formula}[Vector potential of a current distribution]
+\[
+    \vect{A}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV',
+    \qquad
+    \vect{A}(\lvect{r}) = \frac{\mu_0 I}{4\pi}\oint\frac{d\lvect{\ell}\,'}{|\lvect{r}-\lvect{r}\,'|}\ \ \text{(thin wire)},
+\]
+using $\vect{J}\,dV = I\,d\lvect{\ell}$ for a wire.
+\end{formula}
+
+This solution is consistent with the gauge condition it assumed only for steady currents. Taking its divergence and integrating by parts, for a localized $\vect{J}$,
+\[
+    \div\vect{A} = \frac{\mu_0}{4\pi}\int\frac{\grad'\cdot\vect{J}(\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|}\,dV' = 0
+    \quad\text{since } \grad'\cdot\vect{J} = 0 .
+\]
+
+\begin{example}[Long straight wire]
+A wire along $x$ carries current $I$. $A_x$ obeys the same equation as the potential of a line charge, with $\lambda/\varepsilon_0\to\mu_0I$, so by analogy with $\phi=\frac{\lambda}{2\pi\varepsilon_0}\ln(a/r)$,
+\[
+    A_x = \frac{\mu_0 I}{2\pi}\ln\frac{a}{r},
+\]
+with $r$ the distance from the wire and $a$ an arbitrary reference radius. Its curl gives $|\vect{B}| = |\partial A_x/\partial r| = \mu_0I/2\pi r$, circling the wire, as from Amp\`ere's law.
+\end{example}
+
+\subsection{Recovering Biot--Savart}
+\label{sec:em-bs-from-a}
+
+For a single current element, $d\vect{A} = \frac{\mu_0 I}{4\pi}\frac{d\lvect{\ell}}{r}$, with $r$ the distance from the element to the field point. Since $d\lvect{\ell}$ is fixed, $\curl(d\lvect{\ell}/r) = \grad(1/r)\times d\lvect{\ell}$, and $\grad(1/r) = -\rhat/r^2$ where $\rhat$ points from the element to the field point. Hence $d\vect{B}=\curl(d\vect{A})$ is
+\[
+    d\vect{B} = \frac{\mu_0 I}{4\pi}\,\frac{d\lvect{\ell}\times\rhat}{r^2},
+    \qquad
+    \vect{B}(\lvect{r}) = \frac{\mu_0}{4\pi}\int\frac{\vect{J}(\lvect{r}\,')\times(\lvect{r}-\lvect{r}\,')}{|\lvect{r}-\lvect{r}\,'|^3}\,dV'.
+\]
+
+This is Biot--Savart, now derived from the field equations.
+
+\section{The Infinite Solenoid}
+\label{sec:em-solenoid}
+
+Take an ideal solenoid of radius $R$, with $n$ turns per unit length carrying current $I$, so that $\vect{K} = nI\,\hat{\boldsymbol{\phi}}$. It is symmetric under translations along $z$ and rotations about it, so each component of $\vect{B}$ depends on $s$ alone.
+\begin{itemize}
+    \item $B_s = 0$: a coaxial Gaussian cylinder has $\oint\vect{B}\cdot d\lvect{a} = B_s\,2\pi sL = 0$, the end caps cancelling.
+    \item $B_\phi = 0$: a coaxial circle bounds a disk that no $\hat{\boldsymbol{\phi}}$-directed current crosses, so $B_\phi\,2\pi s = 0$.
+\end{itemize}
+So $\vect{B} = B_z(s)\,\khat$ everywhere. (A real helical winding also carries a net current $I$ along $z$, which adds $B_\phi = \mu_0I/2\pi s$ outside. The ideal solenoid drops it.)
+
+Outside, a rectangular loop that no wire pierces has $\oint\vect{B}\cdot d\lvect{l} = 0$. Its radial sides contribute nothing, since $\vect{B}\perp d\lvect{l}$ there, so $B(a)L - B(b)L = 0$: $B$ is uniform outside. It must vanish at infinity, so $B_{\text{out}} = 0$. Inside, an Amp\`erian rectangle of length $L$ with one side inside and one outside (Figure~\ref{fig:em-solenoid}) picks up only its inner side, so $B_{\text{in}}L = \mu_0nIL$:
+\[
+    \vect{B}_{\text{in}} = \mu_0nI\,\khat,
+\]
+uniform: the magnetic analogue of the parallel-plate capacitor.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.22]
+  % Solenoid in cross-section: current out of page on top, into page on bottom
+  \foreach \x in {0,0.4,...,4.0} {
+    \draw[blue!60!black] (\x,0.8) circle (0.1); \fill[blue!60!black] (\x,0.8) circle (0.03);
+    \draw[blue!60!black] (\x,-0.8) circle (0.1);
+    \draw[blue!60!black] (\x-0.07,-0.87) -- (\x+0.07,-0.73) (\x-0.07,-0.73) -- (\x+0.07,-0.87);
+  }
+  % Uniform B field inside
+  \foreach \y in {-0.35,0,0.35} {
+    \draw[-{Stealth[length=4pt]}, thick, red!70!black] (0.1,\y) -- (3.9,\y);
+  }
+  \node[red!70!black, anchor=west] at (4.3,0) {$\vect{B} = \mu_0 nI$};
+  % Amperian rectangle: one long side inside, one outside
+  \draw[dashed, green!60!black, thick] (1.0,0.2) rectangle (2.6,1.35);
+  \node[green!60!black, font=\small, anchor=south] at (1.8,1.4) {Amp\`erian loop, length $L$};
+  \node[gray, font=\small, anchor=west] at (3.2,1.25) {$B=0$};
+  \node[font=\small, anchor=east] at (-0.2,0.8) {$I$ out};
+  \node[font=\small, anchor=east] at (-0.2,-0.8) {$I$ in};
+\end{tikzpicture}
+\end{center}
+\caption{Solenoid with $n$ turns per unit length. The Amp\`{e}rian rectangle (dashed) of length $L$ has one side inside (field $B$) and one outside ($B=0$). Amp\`{e}re's law gives $BL = \mu_0 nIL$, so $B = \mu_0 nI$.}
+\label{fig:em-solenoid}
+\end{figure}
+
+
+\begin{formula}[Vector potential of an infinite solenoid]
+The current extends to infinity, so the integral formula for $\vect{A}$ fails. Instead use $\oint\vect{A}\cdot d\lvect{l} = \Phi$ on coaxial circles, with $\vect{A} = A_\phi(s)\,\hat{\boldsymbol{\phi}}$:
+\[
+    \vect{A}_{\text{in}} = \frac{\mu_0nI}{2}\,s\,\hat{\boldsymbol{\phi}},
+    \qquad
+    \vect{A}_{\text{out}} = \frac{\mu_0nIR^2}{2s}\,\hat{\boldsymbol{\phi}}.
+\]
+\end{formula}
+As a check, $(\curl\vect{A})_z = \frac1s\partial_s(sA_\phi)$ --- not $\partial_sA_\phi$, since $\hat{\boldsymbol{\phi}}$ itself varies --- gives $\mu_0nI$ inside and $0$ outside, and $A_\phi$ is continuous at $s = R$.
+
+\begin{fact}[Aharonov--Bohm effect]
+Outside the solenoid $\vect{B} = 0$, yet $\oint\vect{A}\cdot d\lvect{l} = \Phi\neq0$, so $\vect{A}$ cannot be gauged away there. Electrons passing on either side of the solenoid pick up a measurable relative phase $q\Phi/\hbar$, although they never enter a region of nonzero field.
+\end{fact}
+
 
 \section{Magnetostatic Boundary Conditions}
 \label{sec:em-mag-bc}
@@ -403,6 +505,7 @@ At $s = R$, $\uvect{n} = \uvect{s}$ and $\vect{K}\times\uvect{n} = nI\,\hat{\bol
 \caption{Boundary conditions at a charged and at a current-carrying surface.}
 \end{table}
 
+
 \section{Summary: Electrostatics and Magnetostatics}
 
 \begin{table}[ht]
@@ -423,77 +526,52 @@ At $s = R$, $\uvect{n} = \uvect{s}$ and $\vect{K}\times\uvect{n} = nI\,\hat{\bol
 \caption{Electrostatics and magnetostatics side by side.}
 \end{table}
 
-\section{Lorentz Force}
 
-\begin{formula}[Lorentz Force]
+\section{Application: The Hall Effect}
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=1.22]
+  % Conductor body
+  \fill[yellow!15] (0,-0.8) rectangle (4.5,0.8);
+  \draw[thick] (0,-0.8) rectangle (4.5,0.8);
+  % Current to the right
+  \foreach \y in {-0.4,0,0.4} {
+    \draw[-{Stealth[length=4pt]}, thick, red!70!black]
+      (0.5,\y) -- (1.8,\y);
+  }
+  \node[red!70!black, anchor=east] at (0.45,0) {$I$};
+  % Magnetic field B downward (into page, shown as crosses)
+  \foreach \x in {0.5,1.5,2.5,3.5,4.5} {
+    \draw[gray!60] (\x,1.4) circle (0.12) (\x-0.08,1.32) -- (\x+0.08,1.48) (\x-0.08,1.48) -- (\x+0.08,1.32);
+  }
+  \node[gray, font=\small] at (2.0,1.8) {$\vect{B}$ (into page)};
+  % Charge accumulation on bottom
+  \foreach \x in {2.2,3.0,3.8} {
+    \node[blue!70!black, font=\small] at (\x,-0.65) {$-$};
+    \node[red!70!black, font=\small] at (\x,0.65) {$+$};
+  }
+  % Hall voltage arrow
+  \draw[<->, thick, orange!80!black]
+    (4.8,-0.8) -- (4.8,0.8) node[midway, right]{$V_H$};
+  % Hall E field arrow
+  \draw[-{Stealth[length=5pt]}, thick, blue!60!black]
+    (2.6,-0.45) -- (2.6,0.45) node[pos=0.5, right, font=\small]{$E_H$};
+\end{tikzpicture}
+\end{center}
+\caption{Hall effect: current $I$ flows right in a conductor; field $\vect{B}$ is directed into the page. Charge carriers deflect downward (for electrons), building up $E_H$ until $eE_H = evB$. The Hall voltage $V_H = BIh/(neh\ell) = BI/(ne\ell)$ measures charge carrier density $n$.}
+\end{figure}
+
+In the Hall effect, a transverse magnetic field deflects current carriers to one side of the conductor, building up a transverse electric field that balances the magnetic force. In steady state the electric force exactly cancels the magnetic force:
 \[
-    \vect{F} = q\left(\vect{E} + \lvect{v}\times\vect{B}\right)
+    eE_H = ev B \quad \Rightarrow \quad E_H = vB.
 \]
-\end{formula}
-
-For a long straight wire, the field is:
+The current density $\vect{J} = -ne\lvect{v}$ gives the drift speed $v = J/(ne) = I/(neh\ell)$, and the Hall voltage $V_H = E_H \ell$ becomes:
 \[
-    \vect{B} = \frac{\mu_0 I}{2\pi r}\left(\hat{\imath}\times\hat{r}\right) = \frac{\mu_0 I}{2\pi r}\,\hat{\phi}
+    V_H = \left(\frac{B}{neh}\right) I.
 \]
+The sign of the Hall voltage reveals the sign of the charge carriers, and its magnitude measures the carrier density $n$.
 
-\subsection{Example: Wien's Filter (Velocity Selector)}
-
-Force balance:
-\[
-    \vect{F} = q(\vect{E} + \lvect{v}\times\vect{B}) = q(E + vB) = 0
-\]
-\[
-    \Rightarrow \quad E = -vB \quad \Rightarrow \quad v = \frac{E}{B}
-\]
-
-The Wien filter balances electric and magnetic forces so that only particles with $v = E/B$ pass straight through. It selects a single speed regardless of the charge or mass of the particle.
-
-\begin{fact}[Magnetic forces do no work]
-\[
-    \frac{dW}{dt} = \vect{F}\cdot\lvect{v} = q(\lvect{v}\times\vect{B})\cdot\lvect{v} = 0 .
-\]
-$\vect{B}$ changes the direction of $\lvect{v}$, never the speed. When a magnetic force appears to lift a current loop (as in the example below), the work is supplied by whatever maintains the current, such as the battery; the magnetic force only redirects it.
-\end{fact}
-
-
-\section{Force on a Current-Carrying Wire}
-
-The force on a current element $dq\,\lvect{v} = dq\,\frac{d\lvect{s}}{dt} = I\,d\lvect{s}$ in a field $\vect{B}$:
-\[
-    \vect{F} = \int I\,d\lvect{s}\times\vect{B}
-\]
-For surface and volume currents, $I\,d\lvect{s}\to\vect{K}\,da\to\vect{J}\,dV$:
-\[
-    \vect{F} = \int\vect{K}\times\vect{B}\,da = \int\vect{J}\times\vect{B}\,dV .
-\]
-
-\subsection{Example: Current Loop Levitated by Magnetic Force}
-
-Equilibrium condition $\vect{F}_g + \vect{F}_B = 0$ with $\vect{F}_g = m\lvect{g} = -mg\,\hat{z}$:
-
-\[
-    \vect{F}_B = \int I\,d\lvect{s}\times\vect{B} = \int_0^\ell I\,d\lvect{s}\times B\,\hat{x} = \int_0^\ell I\,dy\,B\,\hat{z} = IB\ell\,\hat{z}
-\]
-
-Thus $IB\ell = mg$, giving:
-\[
-    \vect{I} = \frac{mg}{B\ell}\,\hat{y}
-\]
-
-\section{How the Fields Transform}
-
-\subsection{Field Transformation Under a Lorentz Boost}
-
-\subsection{Summary of Field Transformations}
-
-\begin{formula}[Electromagnetic Field Transformations]
-\begin{align*}
-    E'_\| &= E_\| & E'_\perp &= \gamma\left(E_\perp + \lvect{v}\times\vect{B}_\perp\right) \\[4pt]
-    B'_\| &= B_\| & B'_\perp &= \gamma\left(\vect{B}_\perp - \frac{\lvect{v}}{c^2}\times\vect{E}_\perp\right)
-\end{align*}
-\end{formula}
-
-where $\|$ and $\perp$ refer to directions parallel and perpendicular to the boost velocity $\lvect{v}$.
 
 \chapter{Electromagnetic Induction}
 

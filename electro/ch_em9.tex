@@ -356,128 +356,14 @@ Force is $F = d\lvect{p}/dt$ where $\lvect{p}$ and $t$ are both measured in the 
 \]
 To find $dp'/dt$ in $F'$, one uses the momentum transformation rules together with these expressions.
 
-%───────────────────────────────────────────────────────────────────
-% RECITATION 14: AMPERE'S LAW  (p. 215)
-%───────────────────────────────────────────────────────────────────
+\section{How the Fields Transform}
 
-\chapter{The Magnetic Field}
-
-\section*{Ampere's Law}
-
-\begin{formula}[Ampere's Law]
-\[
-  \oint_{\partial S} \vect{B}\cdot d\vect{\ell} = \mu_0 I_{\text{enc}}
-\]
-\end{formula}
-
-\textbf{Important:} direction defined by right-hand rule.
-
-\section*{Symmetry}
-
-By symmetry for a long straight wire:
-\[
-  \oint \vect{B}\cdot ds = |\vect{B}|\cdot 2\pi r = \mu_0 I
-  \quad\Rightarrow\quad
-  |\vect{B}| = \frac{\mu_0 I}{2\pi r}\,\hat{\phi}
-\]
-
-First, solve the $\vect{B}$ field of a solid cylindrical wire:
-
+\begin{formula}[Electromagnetic Field Transformations]
 \begin{align*}
-  \oint \vect{B}\cdot d\vect{\ell} &= \mu_0 I_{\text{enc}} \\
-  |\vect{B}|\cdot 2\pi r &= \mu_0 J \pi r^2 \\
-  |\vect{B}| &= \frac{\mu_0 J r}{2}\,\hat{\phi} \quad\text{inside} \quad(\phi \text{ direction}) \\
-             &= \frac{\mu_0 J r}{2}(\hat{z}\times\hat{r}) \\
-             &= \frac{\mu_0}{2}\vect{J}\times\lvect{r}
+    E'_\| &= E_\| & E'_\perp &= \gamma\left(E_\perp + \lvect{v}\times\vect{B}_\perp\right) \\[4pt]
+    B'_\| &= B_\| & B'_\perp &= \gamma\left(\vect{B}_\perp - \frac{\lvect{v}}{c^2}\times\vect{E}_\perp\right)
 \end{align*}
-
-%───────────────────────────────────────────────────────────────────
-% SECTIONS 6.1--6.5: THE MAGNETIC FIELD  (pp. 217--221)
-%───────────────────────────────────────────────────────────────────
-
-\section{Definition of the Magnetic Field}
-
-\begin{definition}[Magnetic Field]
-\[
-  \vect{F} = q\vect{E} + q\lvect{v}\times\vect{B}
-\]
-$\vect{B}$ is the magnetic field at that same time and place; $\vect{E}$ is the electric field at the moving particle's position in the \underline{stationary frame}.
-\end{definition}
-
-\subsection*{Magnetic Field of a Straight Infinite Wire}
-
-\[
-  \vect{B} = \hat{z}\,\frac{1}{2\pi\epsilon_0 c^2} = \frac{\mu_0 I}{2\pi r}\,\hat{\phi}
-  \qquad\text{($B$ is in units of Teslas)}
-\]
-\begin{formula}[Relation between $\mu_0$ and $\epsilon_0$]
-\[
-  \frac{1}{\epsilon_0 c^2} = \mu_0 = 4\pi\times 10^{-7}\,\frac{\text{kg}\cdot\text{m}}{\text{C}^2}
-\]
 \end{formula}
 
-\subsection*{Example: Calculating Magnetic Field Between Two Wires}
+where $\|$ and $\perp$ refer to directions parallel and perpendicular to the boost velocity $\lvect{v}$.
 
-\begin{align*}
-  B_1 &= \frac{\mu_0 I_1}{2\pi r} \\
-  I_2 &= n_2\, q_2\, v_2
-\end{align*}
-
-By $F = qE + q(v\times B)$: since $v\perp B_1$ and $qE=0$:
-\[
-  F_{q_2} = q_2 v_2 B_1
-\]
-Thus the force on each meter length of wire 2 is $n_2\,q_2\,v_2\,B_1 = I_2 B_1$.
-
-Thus the force on a length $\ell$ of wire 2 is:
-\[
-  F = I_2 B_1 \ell = \frac{\mu_0 I_1 I_2 \ell}{2\pi r}
-\]
-
-\subsection*{Force on a Small Current-Carrying Wire}
-
-For a small element of wire of length $d\ell$ carrying current $I = \lambda v$, the charge in that element is $dq = \lambda\,d\ell$. The magnetic force is $dF = dq\,\lvect{v}\times\vect{B}$, which gives:
-
-\begin{formula}[Force on a Current Element]
-\[
-    d\vect{F} = \lambda v\,d\vect{\ell}\times\vect{B} = I\,d\vect{\ell}\times\vect{B}
-\]
-where $d\vect{\ell}$ gives the direction and magnitude of the small piece.
-\end{formula}
-
-For two parallel wires this yields the special result $F = I_2 B_1 \ell$.
-
-\section{Properties of the Magnetic Field}
-
-The $\hat{z}$ direction is defined with respect to the plane created by the current and the point of interest. The line integral of $\vect{B}$ around any closed path that does not enclose current is zero.
-
-\begin{formula}[Ampere's Law]
-\[
-  \oint \vect{B}\cdot d\lvect{s} = \mu_0 I_c
-  \qquad (I_c = \text{current enclosed by path})
-\]
-\end{formula}
-
-Note the sign convention: by the right-hand rule, current going into the page (clockwise loop) is positive; current out of the page (counter-clockwise loop) is negative.
-
-\paragraph{Why the shape of the loop drops out.} For an infinite straight wire, $\vect{B} = (\mu_0I/2\pi s)\,\hat{\boldsymbol{\phi}}$. With $d\lvect{l} = ds\,\uvect{s} + s\,d\phi\,\hat{\boldsymbol{\phi}} + dz\,\khat$,
-\[
-    \vect{B}\cdot d\lvect{l} = \frac{\mu_0I}{2\pi s}\,s\,d\phi = \frac{\mu_0I}{2\pi}\,d\phi .
-\]
-Only the angle swept about the wire matters. A loop that encircles the wire once has $\oint d\phi = 2\pi$; one that does not returns $\phi$ to its starting value, so $\oint d\phi = 0$. By superposition over a bundle of straight wires, $\oint\vect{B}\cdot d\lvect{l} = \mu_0I_{\text{enc}}$. The general proof, for any steady current, is in Section~\ref{sec:em-bs-div-curl}.
-
-\subsection*{More General Ampere's Law}
-
-Since $\div\vect{J}=0$ in magnetostatics and the enclosed current is $I_c = \int_S \vect{J}\cdot d\lvect{a}$, the integral form $\oint_C \vect{B}\cdot d\lvect{s} = \mu_0 I_c$ leads directly to the differential form:
-\[
-  \boxed{\curl\vect{B} = \mu_0\vect{J}} \quad (1)
-\]
-Together with the no-monopole condition:
-\[
-  \boxed{\div\vect{B} = 0} \quad (2)
-\]
-these two equations, given $\vect{J}$, uniquely determine $\vect{B}$ (by the Helmholtz theorem, provided $\vect{B}$ vanishes at infinity).
-
-\begin{theorem}[Uniqueness Theorem]
-Assuming $\vect{B}$ vanishes at infinity, (1) and (2) determine $\vect{B}$, if $\vect{J}$ is given --- a special case of the \underline{Helmholtz Theorem}. (Proof: see Purcell p.\ 292.)
-\end{theorem}
