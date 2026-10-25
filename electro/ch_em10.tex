@@ -471,6 +471,117 @@ Outside the solenoid $\vect{B} = 0$, yet $\oint\vect{A}\cdot d\lvect{l} = \Phi\n
 \end{fact}
 
 
+\section{The Magnetic Multipole Expansion}
+\label{sec:em-mag-multipole}
+
+\subsection{Expanding the Vector Potential}
+
+For $r>r'$, with $\alpha$ the angle between $\lvect{r}$ and $\lvect{r}\,'$, the Legendre expansion used for the electric multipoles (Section~\ref{sec:em-multipole}) gives
+\[
+    \frac{1}{|\lvect{r}-\lvect{r}\,'|} = \frac1r\sum_{n=0}^\infty\left(\frac{r'}{r}\right)^nP_n(\cos\alpha).
+\]
+Applied to a thin loop,
+\[
+    \vect{A}(\lvect{r}) = \frac{\mu_0I}{4\pi}\oint\frac{d\lvect{l}\,'}{|\lvect{r}-\lvect{r}\,'|}
+    = \frac{\mu_0I}{4\pi}\sum_n\frac{1}{r^{n+1}}\oint(r')^nP_n(\cos\alpha)\,d\lvect{l}\,'.
+\]
+
+\begin{fact}[No magnetic monopole term]
+\[
+    \vect{A}_{\text{mono}} = \frac{\mu_0I}{4\pi r}\oint d\lvect{l}\,' = 0 .
+\]
+The displacements around a closed loop sum to zero. There is no magnetic analogue of the total charge $Q$: steady currents close on themselves ($\div\vect{J} = 0$), equivalently $\div\vect{B} = 0$. For a localized steady volume current, $\int\vect{J}\,dV' = 0$ as well. The dipole term therefore dominates far away, with $A\propto1/r^2$ and $B\propto1/r^3$.
+\end{fact}
+
+\subsection{The Dipole Term}
+
+The $n = 1$ term is
+\[
+    \vect{A}_{\text{dip}} = \frac{\mu_0I}{4\pi r^2}\oint(\rhat\cdot\lvect{r}\,')\,d\lvect{l}\,'.
+\]
+
+\begin{theorem}[A corollary of Stokes' theorem]
+For any scalar $T$,
+\[
+    \oint T\,d\lvect{l} = -\int\grad T\times d\lvect{a}.
+\]
+\end{theorem}
+\begin{proof}
+For a constant vector $\lvect{c}$, Stokes' theorem applied to $\lvect{c}\,T$ gives $\lvect{c}\cdot\oint T\,d\lvect{l} = \int(\grad T\times\lvect{c})\cdot d\lvect{a} = -\lvect{c}\cdot\int\grad T\times d\lvect{a}$. Since $\lvect{c}$ is arbitrary, the vectors agree.
+\end{proof}
+
+With $T = \rhat\cdot\lvect{r}\,'$ ($\rhat$ is fixed during the source integration), $\grad'T = \rhat$, so $\oint(\rhat\cdot\lvect{r}\,')\,d\lvect{l}\,' = -\rhat\times\int d\lvect{a}\,' = \lvect{a}\times\rhat$.
+
+\begin{formula}[Magnetic dipole potential]
+\[
+    \vect{A}_{\text{dip}} = \frac{\mu_0}{4\pi}\frac{\lvect{m}\times\rhat}{r^2},
+    \qquad
+    \lvect{m} = I\lvect{a} = I\int d\lvect{a},
+    \qquad
+    \lvect{m} = \frac12\int\lvect{r}\times\vect{J}\,dV\ \ \text{(volume current)}.
+\]
+\end{formula}
+
+The vector area $\lvect{a}$ depends only on the loop, not on the surface chosen: two surfaces with the same boundary form a closed surface, and $\oint d\lvect{a} = 0$. For a flat loop, $\lvect{a}$ is the area times the right-hand normal.
+
+\subsection{The Vector Area as a Line Integral}
+
+The vector area can be written without choosing any surface:
+
+\begin{formula}[Vector area]
+\[
+    \lvect{a} = \int_S d\lvect{a} = \frac12\oint\lvect{r}\times d\lvect{l}
+    \qquad\Longrightarrow\qquad
+    \lvect{m} = \frac I2\oint\lvect{r}\times d\lvect{l}.
+\]
+\end{formula}
+
+\paragraph{Geometric meaning.} The triangle with vertices at the origin, $\lvect{r}$ and $\lvect{r}+d\lvect{l}$ has vector area $\frac12\lvect{r}\times d\lvect{l}$: half the parallelogram spanned by $\lvect{r}$ and $d\lvect{l}$, with normal by the right-hand rule. Going around the loop, these slivers form a cone from the origin to the curve, a surface bounded by the loop, so their sum is $\lvect{a}$. For a planar loop with the origin in its plane this is the shoelace formula $A = \frac12\oint(x\,dy - y\,dx)$, which is Kepler's equal-areas idea: $|\lvect{r}\times d\lvect{l}|/2$ is the area swept by the position vector.
+
+Shifting the origin, $\lvect{r}\to\lvect{r}+\lvect{c}$, adds $\frac12\lvect{c}\times\oint d\lvect{l} = 0$, so the result is origin-independent. For a non-planar loop, $a_z$ is the area of the loop's projection onto the $xy$-plane, and similarly for the other components.
+
+\begin{proof}
+Apply the Stokes corollary to each component $T = x_j$:
+\[
+    \Bigl(\oint\lvect{r}\times d\lvect{l}\Bigr)_i = \epsilon_{ijk}\oint x_j\,dl_k
+    = -\epsilon_{ijk}\epsilon_{kmn}\int\partial_mx_j\,da_n
+    = -\epsilon_{ijk}\epsilon_{kjn}\int da_n
+    = 2\int da_i . \qedhere
+\]
+\end{proof}
+
+The form $\frac12\oint\lvect{r}\times I\,d\lvect{l}$ generalizes at once to any current distribution via $I\,d\lvect{l}\to\vect{J}\,dV$, giving the general definition $\lvect{m} = \frac12\int\lvect{r}\times\vect{J}\,dV$.
+
+\begin{example}[Gyromagnetic ratio]
+For a charge $q$ of mass $m_e$ in a circular orbit, $\vect{J}\,dV\to q\lvect{v}$ gives
+\[
+    \lvect{m} = \frac q2\,\lvect{r}\times\lvect{v} = \frac{q}{2m_e}\vect{L}.
+\]
+\end{example}
+
+\subsection{Field of a Pure Dipole}
+
+Take $\lvect{m} = m\khat$, so $\vect{A}_{\text{dip}} = \frac{\mu_0}{4\pi}\frac{m\sin\theta}{r^2}\hat{\boldsymbol{\phi}}$. The spherical curl of an azimuthal field is
+\[
+    B_r = \frac{1}{r\sin\theta}\partial_\theta(\sin\theta\,A_\phi),
+    \qquad
+    B_\theta = -\frac1r\partial_r(rA_\phi).
+\]
+
+\begin{formula}[Magnetic dipole field]
+\[
+    \vect{B}_{\text{dip}} = \frac{\mu_0m}{4\pi r^3}\bigl(2\cos\theta\,\rhat + \sin\theta\,\tthat\bigr)
+    = \frac{\mu_0}{4\pi}\frac{3(\lvect{m}\cdot\rhat)\rhat - \lvect{m}}{r^3},
+\]
+identical in form to the electric dipole field with $\lvect{p}/\varepsilon_0\to\mu_0\lvect{m}$.
+\end{formula}
+
+On the axis ($\theta = 0$), $B_z = \frac{\mu_0}{4\pi}\frac{2m}{z^3}$ with $m = I\pi R^2$ for a ring: the far-field limit of the exact on-axis field of a loop found earlier.
+
+\begin{fact}[Where the dipole formula holds]
+The expansion assumes that all the current lies closer to the origin than the field point ($r'<r$). It therefore describes the field \emph{outside} a source, never inside. If the current has a single angular mode with $\ell = 1$ (for example $\vect{J}\propto\sin\theta\,\hat{\boldsymbol{\phi}}$, as on a spinning charged sphere), every other multipole vanishes and the dipole field is \emph{exact} outside.
+\end{fact}
+
 \section{Magnetostatic Boundary Conditions}
 \label{sec:em-mag-bc}
 
