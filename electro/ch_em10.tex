@@ -638,6 +638,184 @@ At $s = R$, $\uvect{n} = \uvect{s}$ and $\vect{K}\times\uvect{n} = nI\,\hat{\bol
 \end{table}
 
 
+\section{Magnetic Fields in Matter}
+\label{sec:em-magnetization}
+
+This section parallels the treatment of dielectrics (Sections~\ref{sec:em-polarised-ball} and~\ref{sec:em-displacement}), with current loops in place of charge pairs.
+
+\subsection{Magnetization}
+
+\begin{definition}[Magnetization]
+The magnetization $\vect{M}(\lvect{r})$ is the magnetic dipole moment per unit volume (units A/m):
+\[
+    \vect{M} = \frac{d\lvect{m}}{dV},
+    \qquad
+    \lvect{m}_{\text{tot}} = \int_V\vect{M}\,dV .
+\]
+\end{definition}
+
+\begin{fact}[Three kinds of magnetic response]
+\leavevmode
+\begin{itemize}
+    \item \textbf{Paramagnetism:} permanent atomic moments (unpaired spins, orbital angular momentum) are torqued toward $\vect{B}$ by $\vect{N} = \lvect{m}\times\vect{B}$. Thermal agitation opposes the alignment, so $M\propto B/T$ (Curie's law), with $\vect{M}\parallel\vect{B}$.
+    \item \textbf{Diamagnetism:} present in all matter. It is an induced orbital response, with $\vect{M}$ antiparallel to $\vect{B}$ and nearly independent of temperature.
+    \item \textbf{Ferromagnetism:} the exchange interaction aligns neighbouring spins into domains, giving a large spontaneous $\vect{M}$ with no applied field.
+\end{itemize}
+\end{fact}
+
+\subsection{Diamagnetism of an Electron Orbit}
+
+Take an electron (charge $-e$, mass $m_e$) in a circular orbit of radius $r$ in the $xy$-plane, and orient the loop counterclockwise seen from $+z$, so that $d\lvect{l}\parallel\hat{\boldsymbol{\phi}}$ and $d\lvect{a}\parallel\khat$. Ramp up $\vect{B} = B\khat$ with $r$ fixed. Three minus signs have to be tracked.
+
+\paragraph{Induced field.} By Faraday's law,
+\[
+    E_\phi\,(2\pi r) = -\frac{d}{dt}\bigl(B\pi r^2\bigr)
+    \qquad\Longrightarrow\qquad
+    E_\phi = -\frac r2\frac{dB}{dt},
+\]
+clockwise for growing $B$, as Lenz's law requires.
+
+\paragraph{Force on the electron.} The charge supplies a second minus sign:
+\[
+    F_\phi = (-e)E_\phi = +\frac{er}{2}\frac{dB}{dt}
+    \qquad\Longrightarrow\qquad
+    \Delta v_\phi = \frac{eBr}{2m_e}.
+\]
+
+\paragraph{Change in moment.} The current $I = -ev_\phi/(2\pi r)$ is opposite to the velocity (the third minus sign), so $m_z = I\pi r^2 = -ev_\phi r/2$.
+
+\begin{formula}[Induced moment of an orbit]
+\[
+    \Delta\lvect{m} = -\frac{e^2r^2}{4m_e}\,\vect{B}.
+\]
+\end{formula}
+
+$\Delta v_\phi$ is the same whichever way the electron circulates: one orbit speeds up and the other slows down. So $\Delta\lvect{m}$ always opposes $\vect{B}$. Diamagnetism is universal, but it is usually masked by paramagnetism when permanent moments exist.
+
+\subsection{Bound Currents}
+
+Each volume element is a dipole $d\lvect{m} = \vect{M}\,dV'$. With $\lvect{\mathfrak{r}} = \lvect{r}-\lvect{r}\,'$ and the dipole potential of Section~\ref{sec:em-mag-multipole},
+\[
+    \vect{A}(\lvect{r}) = \frac{\mu_0}{4\pi}\int_V\frac{\vect{M}(\lvect{r}\,')\times\hat{\lvect{\mathfrak{r}}}}{\mathfrak{r}^2}\,dV'
+    = \frac{\mu_0}{4\pi}\int_V\vect{M}\times\grad'\frac1{\mathfrak{r}}\,dV' .
+\]
+Using $\grad'\times(f\lvect{v}) = f\,\grad'\times\lvect{v} - \lvect{v}\times\grad'f$ with $f = 1/\mathfrak{r}$ and $\lvect{v} = \vect{M}$,
+\[
+    \vect{A} = \frac{\mu_0}{4\pi}\int_V\frac{\grad'\times\vect{M}}{\mathfrak{r}}\,dV' - \frac{\mu_0}{4\pi}\int_V\grad'\times\Bigl(\frac{\vect{M}}{\mathfrak{r}}\Bigr)dV' .
+\]
+The total curl becomes a surface term via $\int_V\curl\lvect{v}\,dV = -\oint_S\lvect{v}\times d\lvect{a}$.
+
+\begin{theorem}[Bound currents]
+The vector potential of a magnetized object is that of a volume and a surface current,
+\[
+    \vect{A} = \frac{\mu_0}{4\pi}\int_V\frac{\vect{J}_b}{\mathfrak{r}}\,dV' + \frac{\mu_0}{4\pi}\oint_S\frac{\vect{K}_b}{\mathfrak{r}}\,da',
+    \qquad
+    \vect{J}_b = \curl\vect{M},
+    \qquad
+    \vect{K}_b = \vect{M}\times\uvect{n}.
+\]
+\end{theorem}
+
+\paragraph{Physical picture.} Model the material as tiny current loops. Inside a uniformly magnetized region, adjacent loop segments carry opposite currents and cancel, so $\vect{J}_b = 0$. At the boundary the outermost segments have no partner. For a slab of thickness $t$ made of loops of area $a$ and current $I$, $M = Ia/(at) = I/t$, so the edge current per unit length is $K_b = M$. It flows tangent to the surface and perpendicular to $\vect{M}$, with the right-hand-rule sense: $\vect{K}_b = \vect{M}\times\uvect{n}$. Only the tangential part of $\vect{M}$ contributes: if $\vect{M}\parallel\uvect{n}$, the loops lie flat on the surface and still cancel. If $\vect{M}$ varies, neighbours cancel imperfectly, leaving $\curl\vect{M}$.
+
+\subsection{Example: The Uniformly Magnetized Sphere}
+
+Let $\vect{M} = M_0\khat$ in a sphere of radius $R$. Then $\vect{J}_b = \curl\vect{M} = 0$, and with $\uvect{n} = \rhat$ and $\khat = \cos\theta\,\rhat - \sin\theta\,\tthat$,
+\[
+    \vect{K}_b = M_0\khat\times\rhat = M_0\sin\theta\,\hat{\boldsymbol{\phi}}.
+\]
+This is the surface current of a spinning charged shell, $\vect{K} = \sigma\omega R\sin\theta\,\hat{\boldsymbol{\phi}}$, with $\sigma\omega R\to M_0$. That current has a single $\ell = 1$ angular mode, so the field outside is an exact dipole (Section~\ref{sec:em-mag-multipole}). Inside, the shell's vector potential is $\vect{A}_{\text{in}} = \frac{\mu_0R\sigma}{3}\bm{\omega}\times\lvect{r}$, and $\curl(\bm{\omega}\times\lvect{r}) = 2\bm{\omega}$, so $\vect{B}_{\text{in}} = \frac23\mu_0\sigma R\,\bm{\omega}$ is uniform. (In general an interior $A_\phi\propto r\sin\theta$ always gives a uniform field.)
+
+\begin{formula}[Uniformly magnetized sphere]
+\[
+    \vect{B}_{\text{in}} = \frac23\mu_0\vect{M},
+    \qquad
+    \vect{B}_{\text{out}} = \frac{\mu_0}{4\pi}\frac{3(\lvect{m}\cdot\rhat)\rhat - \lvect{m}}{r^3}
+    = \frac{\mu_0M_0R^3}{3r^3}\bigl(2\cos\theta\,\rhat + \sin\theta\,\tthat\bigr),
+\]
+with the sphere's total moment $\lvect{m} = \frac{4\pi}{3}R^3M_0\khat$.
+\end{formula}
+
+\paragraph{Boundary check at $r = R$.} $B_r = \frac23\mu_0M_0\cos\theta$ on both sides, so it is continuous. $B_\theta$ is $\frac13\mu_0M_0\sin\theta$ outside and $-\frac23\mu_0M_0\sin\theta$ inside, a jump of $\mu_0M_0\sin\theta = \mu_0K_b$. This matches $\vect{B}_{\text{above}} - \vect{B}_{\text{below}} = \mu_0\vect{K}\times\uvect{n}$ (Section~\ref{sec:em-mag-bc}), since $\hat{\boldsymbol{\phi}}\times\rhat = \tthat$.
+
+\begin{fact}[Why $\vect{B}_{\text{in}}\parallel\vect{M}$ but $\vect{E}_{\text{in}}$ is antiparallel to $\vect{P}$]
+Inside a current loop, $\vect{B}$ points along $\lvect{m}$: the field lines close through the loop. Between the charges of an electric dipole, $\vect{E}$ runs from $+$ to $-$, opposite to $\lvect{p}$. The bulk field inherits each microscopic dipole's interior field, so the uniformly magnetized sphere has $\vect{B}_{\text{in}} = +\frac23\mu_0\vect{M}$ while the uniformly polarised ball has $\vect{E}_{\text{in}} = -\vect{P}/3\varepsilon_0$.
+\end{fact}
+
+\subsection{The Auxiliary Field \texorpdfstring{$\vect{H}$}{H}}
+
+Split the current into free and bound parts, $\vect{J} = \vect{J}_f + \curl\vect{M}$, in $\curl\vect{B} = \mu_0\vect{J}$:
+\[
+    \curl\Bigl(\frac{\vect{B}}{\mu_0} - \vect{M}\Bigr) = \vect{J}_f .
+\]
+
+\begin{definition}[The $\vect{H}$ field]
+\[
+    \vect{H} \defeq \frac{\vect{B}}{\mu_0} - \vect{M},
+    \qquad
+    \curl\vect{H} = \vect{J}_f,
+    \qquad
+    \oint\vect{H}\cdot d\lvect{l} = I_{f,\text{enc}} .
+\]
+Only the free current appears.
+\end{definition}
+
+\begin{fact}[The catch]
+Using $\div\vect{B} = 0$,
+\[
+    \div\vect{H} = -\div\vect{M}\neq0\quad\text{in general}.
+\]
+By the Helmholtz theorem, a field vanishing at infinity is fixed by its divergence \emph{and} its curl, and Amp\`ere's law supplies only the curl. So $\vect{H}$ follows from $I_{f,\text{enc}}$ alone only when symmetry (cylindrical, planar, toroidal) fixes its direction and dependence. For example, a bar magnet has $\vect{J}_f = 0$ yet $\vect{H}\neq0$, sourced by the effective ``magnetic charge'' $-\div\vect{M}$ on its end faces. This is the mirror image of $\curl\vect{D} = \curl\vect{P}$.
+\end{fact}
+
+\subsection{Boundary Conditions on \texorpdfstring{$\vect{H}$}{H}}
+
+Let $\uvect{n}$ point from below to above, and let the surface carry free current $\vect{K}_f$.
+
+\paragraph{Normal component.} $\div\vect{B} = 0$ (a pillbox) makes $B^\perp$ continuous, so with $H^\perp = B^\perp/\mu_0 - M^\perp$,
+\[
+    H^\perp_{\text{above}} - H^\perp_{\text{below}} = -\bigl(M^\perp_{\text{above}} - M^\perp_{\text{below}}\bigr).
+\]
+
+\paragraph{Tangential components.} Take local axes $\uvect{n} = \khat$ and $\vect{K}_f = K\ihat$, and use thin loops whose side contributions vanish as their height goes to zero.
+\begin{itemize}
+    \item A loop in the $yz$-plane (normal $+\ihat$, pierced by $\vect{K}$), with its bottom side along $+\jhat$, gives $H_y^{\text{below}}l - H_y^{\text{above}}l = Kl$, so $H_y^{\text{above}} - H_y^{\text{below}} = -K$.
+    \item A loop in the $xz$-plane (normal $\jhat$, no current through it) shows that $H_x$ is continuous.
+\end{itemize}
+Since $\vect{K}\times\uvect{n} = K\ihat\times\khat = -K\jhat$:
+
+\begin{formula}[Boundary conditions on $\vect{H}$]
+\[
+    \vect{H}^\parallel_{\text{above}} - \vect{H}^\parallel_{\text{below}} = \vect{K}_f\times\uvect{n}
+    \quad\Longleftrightarrow\quad
+    \uvect{n}\times\bigl(\vect{H}_{\text{above}} - \vect{H}_{\text{below}}\bigr) = \vect{K}_f,
+\]
+\[
+    H^\perp_{\text{above}} - H^\perp_{\text{below}} = -\bigl(M^\perp_{\text{above}} - M^\perp_{\text{below}}\bigr).
+\]
+These are the conditions of Section~\ref{sec:em-mag-bc} with $\vect{B}/\mu_0\to\vect{H}$ and the total $\vect{K}\to\vect{K}_f$.
+\end{formula}
+
+As a check, an infinite sheet $\vect{K} = K\ihat$ at $z = 0$ has $\vect{H} = \mp\frac K2\jhat$ above and below, a jump of $-K\jhat$.
+
+\subsection{Summary: Polarization and Magnetization}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l|c|c}
+    & Dielectric ($\vect{P}$) & Magnetic ($\vect{M}$)\\\hline
+    Microscopic dipole & charge pair $\lvect{p} = q\lvect{d}$ & current loop $\lvect{m} = I\lvect{a}$\\
+    Volume source & $\rho_b = -\div\vect{P}$ & $\vect{J}_b = \curl\vect{M}$\\
+    Surface source & $\sigma_b = \vect{P}\cdot\uvect{n}$ & $\vect{K}_b = \vect{M}\times\uvect{n}$\\
+    Auxiliary field & $\vect{D} = \varepsilon_0\vect{E} + \vect{P}$ & $\vect{H} = \vect{B}/\mu_0 - \vect{M}$\\
+    Free-source law & $\div\vect{D} = \rho_f$ & $\curl\vect{H} = \vect{J}_f$\\
+    The catch & $\curl\vect{D} = \curl\vect{P}$ & $\div\vect{H} = -\div\vect{M}$\\
+    Uniform sphere, inside & $\vect{E} = -\vect{P}/3\varepsilon_0$ & $\vect{B} = \frac23\mu_0\vect{M}$
+\end{tabular}
+\caption{Polarization and magnetization side by side.}
+\end{table}
+
 \section{Application: The Hall Effect}
 
 \begin{figure}[H]
