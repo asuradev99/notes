@@ -231,6 +231,135 @@ Inside a homogeneous linear dielectric, bound charge sits only where free charge
 \]
 \end{fact}
 
+\subsection{Dielectric Constants at Three Scales}
+
+Three constants describe a linear dielectric, one at each level of description.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth, font=\small]
+  % one atom
+  \node[font=\bfseries] at (0,3.3) {One atom};
+  \draw[->,gray,thick] (-1.2,2.7) -- (1.2,2.7) node[midway,above] {$\vect{E}_{\text{else}}$};
+  \fill[blue!12] (0.2,1.5) ellipse (0.85 and 0.7);
+  \draw[blue!60,thin] (0.2,1.5) ellipse (0.85 and 0.7);
+  \fill[red!70] (-0.15,1.5) circle (0.12);
+  \node at (-0.15,1.1) {$+$};
+  \draw[->,very thick,violet] (-0.5,0.55) -- (0.6,0.55) node[right] {$\lvect{p}$};
+  \node[draw,rounded corners,fill=violet!8,minimum width=2.6cm] (A) at (0,-0.3) {$\lvect{p}=\alpha\,\vect{E}_{\text{else}}$};
+  \node[align=center,font=\footnotesize] at (0,-1.1) {$\alpha$: how soft one\\ electron cloud is};
+  % bulk material
+  \node[font=\bfseries] at (4.5,3.3) {Bulk material};
+  \draw[gray] (3.3,0.6) rectangle (5.7,2.7);
+  \foreach \y in {0.95,1.65,2.35}
+    \foreach \x in {3.55,4.25,4.95}
+      \draw[->,thick,violet] (\x,\y) -- (\x+0.45,\y);
+  \node[left] at (3.3,1.65) {$-\sigma_b$};
+  \node[right] at (5.7,1.65) {$+\sigma_b$};
+  \node[draw,rounded corners,fill=teal!8,minimum width=2.6cm] (B) at (4.5,-0.3) {$\vect{P}=\varepsilon_0\chi_e\,\vect{E}$};
+  \node[align=center,font=\footnotesize] at (4.5,-1.1) {$\chi_e$: dipole moment per\\ volume per unit field};
+  % field equations
+  \node[font=\bfseries] at (9,3.3) {Field equations};
+  \fill[red!60] (7.8,0.6) rectangle (7.95,2.7);
+  \fill[blue!60] (10.05,0.6) rectangle (10.2,2.7);
+  \fill[teal!12] (7.95,0.6) rectangle (10.05,2.7);
+  \draw[->,thick,teal!70!black] (8.1,2.1) -- (9.9,2.1);
+  \draw[->,thick,teal!70!black] (8.1,1.2) -- (9.9,1.2);
+  \node at (9,1.65) {$\varepsilon_r$};
+  \node[draw,rounded corners,fill=orange!10,minimum width=2.6cm] (C) at (9,-0.3) {$\vect{D}=\varepsilon\,\vect{E}$};
+  \node[align=center,font=\footnotesize] at (9,-1.1) {$\varepsilon_0\to\varepsilon$ in every\\ vacuum formula};
+  % connectors
+  \draw[->,thick] (A.east) -- (B.west);
+  \node[align=center,font=\footnotesize] at (2.25,-2.2) {$\times N$, local field\\ (Clausius--Mossotti)};
+  \draw[->,thick] (B.east) -- (C.west);
+  \node[align=center,font=\footnotesize] at (6.75,-2.2) {$\varepsilon=\varepsilon_0(1+\chi_e)$\\ $\varepsilon_r=1+\chi_e$};
+\end{tikzpicture}
+\caption{From one atom to the field equations: the polarisability $\alpha$, the susceptibility $\chi_e$, and the permittivity $\varepsilon$.}
+\label{fig:em-three-scales}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{l|l|l}
+    Constant & Level & Answers\\\hline
+    $\alpha$ & one atom & How polarisable is a single molecule?\\
+    $\chi_e$ & bulk material & How much polarisation per unit macroscopic field?\\
+    $\varepsilon,\ \varepsilon_r$ & field equations & Solve with $\varepsilon_0\to\varepsilon$; $C = \varepsilon_rC_{\text{vac}}$
+\end{tabular}
+\caption{The three dielectric constants.}
+\end{table}
+
+$\chi_e$ and $\varepsilon_r$ carry the same information: use $\chi_e$ when you want $\vect{P}$ or the bound charges, and $\varepsilon$ when you just want the fields. The step from $\alpha$ to $\chi_e$ is less trivial than it looks, and is the subject of the next subsection.
+
+\subsection{The Clausius--Mossotti Relation}
+
+Naively $\vect{P} = N\lvect{p} = N\alpha\vect{E}$, giving $\chi_e = N\alpha/\varepsilon_0$. But two different fields are in play:
+\begin{itemize}
+    \item $\vect{E}_{\text{else}}$, the field of everything \emph{except} a given atom (external sources plus all the other atoms). This is what polarises the atom: $\lvect{p} = \alpha\vect{E}_{\text{else}}$.
+    \item $\vect{E}$, the macroscopic field: the total field averaged over a region, \emph{including} the atom's own field. This is what enters $\vect{P} = \varepsilon_0\chi_e\vect{E}$.
+\end{itemize}
+
+\begin{theorem}[Average field over a sphere]
+For charges inside a sphere of radius $R$ with total dipole moment $\lvect{p}$,
+\[
+    \langle\vect{E}\rangle_{\text{inside}} = -\frac{1}{4\pi\varepsilon_0}\frac{\lvect{p}}{R^3},
+\]
+independent of the details of the distribution. For charges \emph{outside}, the average over the sphere equals the field at its centre.
+\end{theorem}
+\begin{proof}[Sketch]
+A single charge $q$ at $\lvect{r}$ produces the same average field over the sphere as the field at $\lvect{r}$ of a uniform ball of density $-q/\tfrac43\pi R^3$, namely $-q\lvect{r}/4\pi\varepsilon_0R^3$. Superposing over all the enclosed charges gives $-\lvect{p}/4\pi\varepsilon_0R^3$. The statement for outside charges is the mean value property of the harmonic potential (Section~\ref{sec:em-meanvalue}).
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth, font=\small]
+  \foreach \i in {0,...,4}
+    \foreach \j in {0,...,2} {
+      \pgfmathsetmacro{\x}{1.3*\i}
+      \pgfmathsetmacro{\y}{1.3*\j}
+      \draw[gray!60] (\x,\y) circle (0.6);
+      \fill[blue!12] (\x+0.08,\y) ellipse (0.24 and 0.2);
+      \fill[red!70] (\x-0.05,\y) circle (0.05);
+      \draw[->,thick,violet] (\x-0.25,\y) -- (\x+0.3,\y);
+    }
+  \draw[very thick,teal!70!black] (2.6,1.3) circle (0.6);
+  \draw[<->,teal!70!black] (2.6,1.3) -- ++(60:0.6) node[midway,above left=-2pt,font=\footnotesize] {$R$};
+  \draw[->,very thick,orange!80!black] (2.85,0.92) -- (2.35,0.92);
+  \draw[->,thick,gray] (-1.1,3.3) -- (6.3,3.3) node[right] {$\vect{E}_{\text{ext}}$};
+  \node[right,align=left,font=\footnotesize] at (6.3,2.0) {\textcolor{violet}{$\lvect{p}=\alpha\vect{E}_{\text{else}}$} (each atom)};
+  \node[right,align=left,font=\footnotesize] at (6.3,1.3) {\textcolor{teal!70!black}{cell of one atom, $N=1/\tfrac43\pi R^3$}};
+  \node[right,align=left,font=\footnotesize] at (6.3,0.6) {\textcolor{orange!80!black}{$\vect{E}_{\text{self}}=-\dfrac{\lvect{p}}{4\pi\varepsilon_0R^3}$ (cell average)}};
+  \node[right,align=left,font=\footnotesize] at (6.3,-0.1) {$\vect{E}_{\text{else}}$: external field + all other cells};
+  \draw[gray,dashed] (6.25,0.6) -- (2.9,0.92);
+  \draw[gray,dashed] (6.25,1.3) -- (3.2,1.3);
+\end{tikzpicture}
+\caption{The cell picture. Each atom sits in a sphere of radius $R$ with $N = 1/\tfrac43\pi R^3$. Its own field, averaged over its cell, opposes $\lvect{p}$.}
+\label{fig:em-cm-cells}
+\end{figure}
+
+Give each atom a cell of radius $R$ with $N = 1/(\tfrac43\pi R^3)$, so that $1/(4\pi R^3) = N/3$ (Figure~\ref{fig:em-cm-cells}). Averaging the total field over one cell,
+\[
+    \vect{E} = \langle\vect{E}\rangle_{\text{cell}} = \vect{E}_{\text{else}} + \vect{E}_{\text{self}},
+    \qquad
+    \vect{E}_{\text{self}} = -\frac{1}{4\pi\varepsilon_0}\frac{\lvect{p}}{R^3} = -\frac{\alpha\vect{E}_{\text{else}}}{4\pi\varepsilon_0R^3} = -\frac{N\alpha}{3\varepsilon_0}\vect{E}_{\text{else}} .
+\]
+The atom's field outside its own cell is part of its neighbours' $\vect{E}_{\text{else}}$, so nothing is double counted. Hence
+\[
+    \vect{E} = \Bigl(1-\frac{N\alpha}{3\varepsilon_0}\Bigr)\vect{E}_{\text{else}} :
+\]
+the macroscopic field is weaker than the field each atom feels, because the atom's own average field opposes $\lvect{p}$. Setting $\vect{P} = N\alpha\vect{E}_{\text{else}} = \varepsilon_0\chi_e\vect{E}$:
+
+\begin{formula}[Clausius--Mossotti relation]
+\[
+    \chi_e = \frac{N\alpha/\varepsilon_0}{1-N\alpha/3\varepsilon_0}
+    \qquad\Longleftrightarrow\qquad
+    \alpha = \frac{3\varepsilon_0}{N}\left(\frac{\varepsilon_r-1}{\varepsilon_r+2}\right).
+\]
+\end{formula}
+
+For a dilute gas ($N\alpha/\varepsilon_0\ll1$) this reduces to the naive $\chi_e\approx N\alpha/\varepsilon_0$. For dense liquids and solids the correction matters, and it always makes $\chi_e$ larger than the naive value.
+
 \subsection{Examples}
 
 \begin{example}[Insulated wire]
