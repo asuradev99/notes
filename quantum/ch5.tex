@@ -1,0 +1,210 @@
+\chapter{Three Dimensions: Angular Momentum and Hydrogen}
+\label{ch:3d}
+
+% ============================================================
+\section{The Schr\"odinger Equation in Three Dimensions}
+% ============================================================
+
+In three dimensions $\hat{\lvect{x}} = (\hat{x},\hat{y},\hat{z})$ and $\hat{\lvect{p}} = -i\hbar\grad$, with $[\hat{x}_i,\hat{p}_j] = i\hbar\delta_{ij}$, and
+\[
+    \hat{H} = \frac{\hat{\lvect{p}}^2}{2m} + V(\lvect{r}) = -\frac{\hbar^2}{2m}\laplacian + V(\lvect{r}),
+    \qquad
+    \int|\Psi|^2d^3r = 1 .
+\]
+(Two particles need $\Psi(\lvect{r}_1,\lvect{r}_2)$, six coordinates in all.) For a \emph{central potential} $V = V(r)$, such as the Coulomb potential $-Ze^2/r$, use spherical coordinates. The Laplacian splits into a radial part and an angular part, which is exactly the squared orbital angular momentum:
+\[
+    \laplacian = \frac1r\pdv[2]{r}r - \frac{\hat{\lvect{L}}^2}{\hbar^2r^2},
+    \qquad
+    \hat{\lvect{L}}^2 = -\hbar^2\Bigl[\frac{1}{\sin\theta}\pdv{\theta}\Bigl(\sin\theta\pdv{\theta}\Bigr) + \frac{1}{\sin^2\theta}\pdv[2]{\phi}\Bigr].
+\]
+
+\begin{formula}[Hamiltonian for a central potential]
+\[
+    \hat{H} = -\frac{\hbar^2}{2m}\frac1r\pdv[2]{r}r + \frac{\hat{\lvect{L}}^2}{2mr^2} + V(r).
+\]
+\end{formula}
+
+% ============================================================
+\section{Momentum and Angular Momentum as Generators}
+% ============================================================
+
+Momentum generates translations. Define $\hat{T}_a = \exp(-ia\hat{p}/\hbar) = \exp(-a\partial_x)$; by Taylor's theorem
+\[
+    \hat{T}_a\psi(x) = \sum_n\frac{(-a)^n}{n!}\psi^{(n)}(x) = \psi(x-a).
+\]
+Its eigenvalue $\hbar k$ measures phase per unit translation: low momentum means translating a little gives only a little phase. Likewise $\hat{H}$ generates translations in time, $\Psi(t) = e^{-i\hat{H}t/\hbar}\Psi(0)$ for time-independent $\hat{H}$, and energy is phase per unit time.
+
+\begin{definition}[Orbital angular momentum]
+\[
+    \hat{\lvect{L}} = \hat{\lvect{r}}\times\hat{\lvect{p}},
+    \qquad
+    \hat{L}_i = \epsilon_{ijk}\hat{x}_j\hat{p}_k,
+    \qquad
+    \hat{\lvect{L}}^2 = \hat{L}_x^2+\hat{L}_y^2+\hat{L}_z^2 .
+\]
+Each $\hat{L}_i$ is Hermitian. In spherical coordinates, $\partial_\phi = x\partial_y - y\partial_x$, so $\hat{L}_z = -i\hbar\,\partial_\phi$.
+\end{definition}
+
+Thus $\hat{L}_z$ generates rotations about $\hat{z}$, $\hat{R}_z(\alpha) = e^{-i\alpha\hat{L}_z/\hbar}$ with $\hat{R}_z(\alpha)\psi(r,\theta,\phi) = \psi(r,\theta,\phi-\alpha)$, and in general $\hat{R}_{\uvect{n}}(\alpha) = e^{-i\alpha\uvect{n}\cdot\hat{\lvect{L}}/\hbar}$. The $\hat{L}_i$ are the generators of the rotation group, and their commutators encode its multiplication rules.
+
+\begin{formula}[Angular momentum algebra]
+\[
+    [\hat{L}_i,\hat{L}_j] = i\hbar\epsilon_{ijk}\hat{L}_k,
+    \qquad
+    [\hat{\lvect{L}}^2,\hat{L}_i] = 0 .
+\]
+\end{formula}
+For example $[\hat{L}_x,\hat{L}_y] = [y\hat{p}_z - z\hat{p}_y,\ z\hat{p}_x - x\hat{p}_z] = y[\hat{p}_z,z]\hat{p}_x + \hat{p}_y[z,\hat{p}_z]x = i\hbar(x\hat{p}_y - y\hat{p}_x) = i\hbar\hat{L}_z$. The second follows from $[\hat{\lvect{L}}^2,\hat{L}_j] = \sum_i(\hat{L}_i[\hat{L}_i,\hat{L}_j] + [\hat{L}_i,\hat{L}_j]\hat{L}_i) = i\hbar\sum_{ik}\epsilon_{ijk}(\hat{L}_i\hat{L}_k + \hat{L}_k\hat{L}_i) = 0$, since the bracket is symmetric in $i,k$ while $\epsilon$ is antisymmetric.
+
+\begin{theorem}[Simultaneous eigenbases]
+Two commuting Hermitian operators can be simultaneously diagonalized: there is a common eigenbasis $\hat{A}\psi_{ab} = a\psi_{ab}$, $\hat{B}\psi_{ab} = b\psi_{ab}$.
+\end{theorem}
+
+So $\hat{\lvect{L}}^2$ and one component, conventionally $\hat{L}_z$, can be diagonalized together. The components $\hat{L}_x,\hat{L}_y,\hat{L}_z$ cannot: they do not commute, and have no common eigenfunctions with nonzero eigenvalues.
+
+% ============================================================
+\section{Spherical Harmonics}
+% ============================================================
+
+Solving $\hat{L}_zY = \hbar mY$ gives $Y\propto e^{im\phi}$, and single-valuedness, $e^{im(\phi+2\pi)} = e^{im\phi}$, forces $m\in\mathbb{Z}$: angular momentum is quantized. Write $Y_{\ell m} = e^{im\phi}P_\ell^m(\cos\theta)$. With $\mu = \cos\theta$, the eigenvalue equation $\hat{\lvect{L}}^2Y = \hbar^2\ell(\ell+1)Y$ becomes the associated Legendre equation
+\[
+    \frac{d}{d\mu}\Bigl[(1-\mu^2)\frac{dP}{d\mu}\Bigr] + \Bigl[\ell(\ell+1) - \frac{m^2}{1-\mu^2}\Bigr]P = 0,
+\]
+whose regular solutions require $\ell\in\{0,1,2,\ldots\}$ and $|m|\le\ell$:
+\[
+    P_\ell(\mu) = \frac{1}{2^\ell\ell!}\frac{d^\ell}{d\mu^\ell}(\mu^2-1)^\ell,
+    \qquad
+    P_\ell^m(\mu) = (1-\mu^2)^{|m|/2}\frac{d^{|m|}}{d\mu^{|m|}}P_\ell(\mu).
+\]
+
+\begin{formula}[Spherical harmonics]
+\[
+    \hat{\lvect{L}}^2Y_{\ell m} = \hbar^2\ell(\ell+1)Y_{\ell m},
+    \qquad
+    \hat{L}_zY_{\ell m} = \hbar mY_{\ell m},
+    \qquad
+    \int d\Omega\,Y_{\ell m}^*Y_{\ell'm'} = \delta_{\ell\ell'}\delta_{mm'},
+\]
+\[
+    Y_{00} = \frac{1}{\sqrt{4\pi}},
+    \qquad
+    Y_{10} = \sqrt{\frac{3}{4\pi}}\cos\theta = \sqrt{\frac{3}{4\pi}}\frac zr,
+    \qquad
+    Y_{1,\pm1} = \mp\sqrt{\frac{3}{8\pi}}\sin\theta\,e^{\pm i\phi} = \mp\sqrt{\frac{3}{8\pi}}\frac{x\pm iy}{r},
+\]
+$Y_{20}\propto3z^2/r^2-1$, $Y_{2,\pm1}\propto z(x\pm iy)/r^2$, $Y_{2,\pm2}\propto(x\pm iy)^2/r^2$. They form a complete basis for functions of angle: a Fourier decomposition on the sphere, built from the monomials in $x/r$, $y/r$, $z/r$.
+\end{formula}
+
+$\ell$ sets the magnitude of the total angular momentum and $m$ its $z$-component. The $s$ ($\ell = 0$), $p$ ($\ell = 1$) and $d$ ($\ell = 2$) orbitals are the familiar sphere, dumbbell and cloverleaf shapes.
+
+\subsection{Ladder Operators for Angular Momentum}
+
+\begin{definition}[Angular momentum ladder operators]
+$\hat{L}_\pm = \hat{L}_x\pm i\hat{L}_y$, with $(\hat{L}_+)^\dagger = \hat{L}_-$ and $\hat{L}_x = (\hat{L}_++\hat{L}_-)/2$.
+\end{definition}
+
+From the algebra, $[\hat{\lvect{L}}^2,\hat{L}_\pm] = 0$, $[\hat{L}_z,\hat{L}_\pm] = \pm\hbar\hat{L}_\pm$, and $[\hat{L}_+,\hat{L}_-] = 2\hbar\hat{L}_z$. So $\hat{L}_\pm Y_{\ell m}$ is still an $\hat{\lvect{L}}^2$ eigenstate with the same $\ell$, while $\hat{L}_z(\hat{L}_\pm Y_{\ell m}) = \hbar(m\pm1)\hat{L}_\pm Y_{\ell m}$: $\hat{L}_\pm$ raises or lowers $m$ by one. Using $\hat{L}_\mp\hat{L}_\pm = \hat{\lvect{L}}^2 - \hat{L}_z^2\mp\hbar\hat{L}_z$,
+\[
+    \|\hat{L}_\pm Y_{\ell m}\|^2 = \hbar^2\bigl[\ell(\ell+1) - m(m\pm1)\bigr]\ge0 .
+\]
+
+\begin{formula}[Action of $\hat{L}_\pm$]
+\[
+    \hat{L}_\pm Y_{\ell m} = \hbar\sqrt{\ell(\ell+1) - m(m\pm1)}\;Y_{\ell,m\pm1}.
+\]
+The ladder terminates at $m = \pm\ell$, which is why $|m|\le\ell$; for the ladder to terminate at all, $\ell$ must be an integer (for orbital angular momentum).
+\end{formula}
+
+\begin{example}[Measuring $L_z$]
+For $\psi(r,\phi) = Ae^{-r^2/2a^2}\cos^2\phi$, write $\cos^2\phi = \frac14e^{2i\phi} + \frac12 + \frac14e^{-2i\phi}$. Normalizing the weights $\frac1{16},\frac14,\frac1{16}$: $P(L_z = 0) = \frac23$ and $P(L_z = \pm2\hbar) = \frac16$ each.
+\end{example}
+
+% ============================================================
+\section{The Radial Equation}
+% ============================================================
+
+With $\psi(r,\theta,\phi) = R(r)Y_{\ell m}(\theta,\phi)$ and $u(r) = rR(r)$, the Schr\"odinger equation becomes one-dimensional.
+
+\begin{formula}[Radial equation]
+\[
+    -\frac{\hbar^2}{2m}u'' + V_{\text{eff}}(r)\,u = Eu,
+    \qquad
+    V_{\text{eff}}(r) = V(r) + \frac{\hbar^2\ell(\ell+1)}{2mr^2},
+\]
+with $u(0) = 0$ and normalization $\int_0^\infty|u|^2dr = 1$.
+\end{formula}
+
+The centrifugal term is the quantum version of the effective potential in planetary motion. $E$, $u$ and $R$ depend on $\ell$ (and a radial quantum number $n$) but never on $m$: rotational symmetry makes each level $(2\ell+1)$-fold degenerate.
+
+\begin{example}[Free particle in 3D]
+For $V = 0$ and $\rho = kr$, $u'' = \bigl[\ell(\ell+1)/\rho^2 - 1\bigr]u$. For $\ell = 0$, $u = \sin\rho$ (the $\cos\rho$ solution makes $R\sim1/r$ singular), an outgoing spherical wave. In general, near $\rho = 0$, $u\sim\rho^{\ell+1}$ or $\rho^{-\ell}$; the regular solutions are the spherical Bessel functions $j_\ell(\rho)\sim\rho^\ell$, e.g.\ $j_0 = \sin\rho/\rho$ and $j_1 = \sin\rho/\rho^2 - \cos\rho/\rho$. Higher $\ell$ keeps the particle further from the origin.
+\end{example}
+
+% ============================================================
+\section{The Hydrogen Atom}
+% ============================================================
+
+For $V = -Ze^2/r$ (Gaussian units), define
+\[
+    \alpha = \frac{e^2}{\hbar c}\approx\frac1{137},
+    \qquad
+    a_0 = \frac{\hbar^2}{me^2}\approx0.529\ \text{\AA},
+    \qquad
+    R_y = \frac{e^2}{2a_0} = \frac12\alpha^2mc^2\approx13.6\ \text{eV}.
+\]
+With $\rho = \kappa r$ and $\kappa^2 = -2mE/\hbar^2$ (bound states have $E<0$), the radial equation becomes
+\[
+    u'' = \Bigl[\frac{\ell(\ell+1)}{\rho^2} - \frac{2Z}{\kappa a_0\rho} + 1\Bigr]u .
+\]
+As $\rho\to\infty$, $u\sim e^{-\rho}$; as $\rho\to0$, $u\sim\rho^{\ell+1}$. Writing $u = \rho^{\ell+1}e^{-\rho}W(\rho)$ with $W = \sum_jc_j\rho^j$, the recursion is
+\[
+    \frac{c_{j+1}}{c_j} = \frac{2(j+\ell+1) - 2Z/\kappa a_0}{(j+1)(j+2\ell+2)}.
+\]
+If the series did not terminate, $c_{j+1}/c_j\to2/j$, so $W\sim e^{2\rho}$ and $u$ would blow up. It must therefore terminate at some $j = N$, which requires $Z/\kappa a_0 = N+\ell+1\equiv n$.
+
+\begin{formula}[Hydrogen spectrum]
+\[
+    E_n = -\frac{R_yZ^2}{n^2},
+    \qquad
+    \psi_{n\ell m}(r,\theta,\phi) = \mathcal{N}\Bigl(\frac{Zr}{na_0}\Bigr)^\ell W_{n\ell}\Bigl(\frac{Zr}{na_0}\Bigr)e^{-Zr/na_0}Y_{\ell m}(\theta,\phi),
+\]
+with $W_{n\ell}$ a polynomial of degree $n-\ell-1$ (an associated Laguerre polynomial) and quantum numbers $n>\ell\ge|m|$. The energy depends only on $n$, so the degeneracy of $E_n$ is $\sum_{\ell=0}^{n-1}(2\ell+1) = n^2$ (or $2n^2$ with spin).
+\end{formula}
+
+\begin{example}[Low-lying hydrogen states]
+\[
+    \psi_{100} = \frac{1}{\sqrt{\pi a_0^3}}e^{-r/a_0},
+    \qquad
+    \psi_{200}\propto\Bigl(1-\frac{r}{2a_0}\Bigr)e^{-r/2a_0},
+    \qquad
+    \psi_{21m}\propto\frac{r}{a_0}e^{-r/2a_0}Y_{1m},
+\]
+\[
+    R_{30}\propto\Bigl(1 - \frac{2r}{3a_0} + \frac{2}{27}\frac{r^2}{a_0^2}\Bigr)e^{-r/3a_0},
+    \qquad
+    R_{31}\propto\Bigl(1-\frac{r}{6a_0}\Bigr)\frac{r}{a_0}e^{-r/3a_0},
+    \qquad
+    R_{32}\propto\frac{r^2}{a_0^2}e^{-r/3a_0}.
+\]
+In spectroscopic notation these are $1s$, $2s$, $2p$, $3s$, $3p$, $3d$ (with $\ell = 0,1,2,3\to s,p,d,f$). Chemists use the real combinations $2p_x,2p_y,2p_z$, and hybrid orbitals such as $s+p$.
+\end{example}
+
+\paragraph{The proton.} The proton is not infinitely heavy ($m_p/m_e\approx1800$). Treating both particles, the Hamiltonian separates into centre-of-mass and relative coordinates, $\vect{R} = (m_p\lvect{r}_p + m_e\lvect{r}_e)/M$ and $\lvect{r} = \lvect{r}_e - \lvect{r}_p$, with conjugate momenta $\vect{P} = \lvect{p}_e+\lvect{p}_p$ and $\lvect{p} = (m_p\lvect{p}_e - m_e\lvect{p}_p)/M$:
+\[
+    \hat{H} = \frac{\hat{\vect{P}}^2}{2M} + \frac{\hat{\lvect{p}}^2}{2\mu} + V(\lvect{r}),
+    \qquad
+    \mu = \frac{m_em_p}{m_e+m_p},
+\]
+so the hydrogen results hold with $m\to\mu$. Further corrections are \emph{fine structure}, of relative order $\alpha^2$, from the electron's spin coupling to its orbit ($\propto\hat{\lvect{L}}\cdot\hat{\lvect{S}}$), and \emph{hyperfine structure}, smaller by a further $m_e/m_p$, from the proton's spin.
+
+\subsection{The Periodic Table}
+
+Electrons are fermions, so a many-electron wavefunction is antisymmetric under exchange, $\Psi(\ldots\lvect{r}_i\ldots\lvect{r}_j\ldots) = -\Psi(\ldots\lvect{r}_j\ldots\lvect{r}_i\ldots)$, and vanishes if two electrons share a state. For non-interacting electrons in single-particle states $\psi_\alpha$, the two-electron state is $\psi_\alpha(\lvect{r}_1)\psi_\beta(\lvect{r}_2) - \psi_\beta(\lvect{r}_1)\psi_\alpha(\lvect{r}_2)$, requiring $\alpha\neq\beta$.
+
+\begin{fact}[Pauli exclusion and shell filling]
+No two electrons occupy the same state. With spin, each hydrogen level holds $2n^2$ electrons: 2, 8, 18, \ldots, matching the first rows of the periodic table (2 and 8 elements). In multi-electron atoms the inner electrons \emph{screen} the nucleus, so an electron that stays far away sees an effective charge near $+1$, while one that penetrates close sees more of the nucleus. Low-$\ell$ orbitals penetrate more, so $E_{2s}<E_{2p}$ and the filling order is $1s, 2s, 2p, 3s, 3p, 4s, 3d,\ldots$: the screening is strong enough that $4s$ lies below $3d$, which is why the third row also has 8 elements rather than 18.
+\end{fact}
+
+\begin{example}[Sudden change of the nucleus]
+In tritium ($Z = 1$) beta decay to $^3$He$^+$ ($Z = 2$), the electron wavefunction does not have time to change. The probability of finding the new ion in its ground state is $|\langle\psi_{100}^{Z=2}|\psi_{100}^{Z=1}\rangle|^2 = 512/729\approx0.70$.
+\end{example}

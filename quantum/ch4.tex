@@ -1,0 +1,128 @@
+\chapter{The Harmonic Oscillator}
+\label{ch:sho}
+
+Near the minimum of any potential, $V(x)\approx V(x_0) + \frac12V''(x_0)(x-x_0)^2$, so the harmonic oscillator models every small vibration, from a molecular bond (the step in the heat capacity of diatomic gases) to phonons and photons.
+
+\[
+    \hat{H} = \frac{\hat{p}^2}{2m} + \frac12m\omega^2\hat{x}^2 .
+\]
+
+\begin{definition}[Natural scales]
+Balancing $\hbar^2/2mx_0^2$ against $\frac12m\omega^2x_0^2$ gives
+\[
+    x_0 = \sqrt{\frac{\hbar}{m\omega}},
+    \qquad
+    p_0 = \frac{\hbar}{x_0} = \sqrt{\hbar m\omega},
+    \qquad
+    \hat{H} = \frac{\hbar\omega}{2}\Bigl[\Bigl(\frac{\hat{p}}{p_0}\Bigr)^2 + \Bigl(\frac{\hat{x}}{x_0}\Bigr)^2\Bigr].
+\]
+\end{definition}
+
+% ============================================================
+\section{Solving the Differential Equation}
+% ============================================================
+
+With $u = x/x_0$ and $\varepsilon = 2E/\hbar\omega$, the Schr\"odinger equation becomes
+\[
+    \psi''(u) = (u^2-\varepsilon)\psi(u).
+\]
+For $u^2\gg\varepsilon$ (deep in the forbidden region), $\psi''\approx u^2\psi$, solved by $e^{\pm u^2/2}$; normalizability picks $e^{-u^2/2}$. Write $\psi = h(u)e^{-u^2/2}$, so that
+\[
+    h'' - 2uh' + (\varepsilon-1)h = 0 .
+\]
+A power series $h = \sum_ja_ju^j$ gives the recursion
+\[
+    a_{j+2} = \frac{2j+1-\varepsilon}{(j+1)(j+2)}a_j .
+\]
+If the series did not terminate, $a_{j+2}\approx\frac2ja_j$ for large $j$, so $h\sim e^{u^2}$ and $\psi\sim e^{u^2/2}$, which is not normalizable. So the series must terminate: $\varepsilon = 2n+1$, with the other parity series set to zero ($a_1 = 0$ for even $n$, $a_0 = 0$ for odd $n$). Then $h$ is a polynomial, the Hermite polynomial $H_n(u) = (-1)^ne^{u^2}\frac{d^n}{du^n}e^{-u^2}$: $H_0 = 1$, $H_1 = 2u$, $H_2 = 4u^2-2$, $H_3 = 8u^3-12u$.
+
+\begin{formula}[Harmonic oscillator eigenstates]
+\[
+    E_n = \hbar\omega\bigl(n+\tfrac12\bigr),
+    \qquad
+    \varphi_n(x) = \frac{1}{\sqrt{2^nn!}}\frac{1}{\pi^{1/4}x_0^{1/2}}H_n\Bigl(\frac{x}{x_0}\Bigr)e^{-x^2/2x_0^2},
+    \qquad
+    n = 0,1,2,\ldots
+\]
+\end{formula}
+
+The levels are equally spaced, so each level above the ground state can be read as $n$ excitations (quanta) of energy $\hbar\omega$ each: phonons for mechanical oscillations, photons for the EM field. The ground state has the \emph{zero-point energy} $\hbar\omega/2\neq0$: $\langle x\rangle = \langle p\rangle = 0$, but $\langle x^2\rangle$ and $\langle p^2\rangle$ cannot both vanish.
+
+% ============================================================
+\section{Ladder Operators}
+\label{sec:ladder}
+% ============================================================
+
+To factorize $\hat{H}$ as one would $A^2+B^2 = (A-iB)(A+iB)$, we must account for $[\hat{x},\hat{p}] = i\hbar$:
+\[
+    \Bigl(\frac{\hat{x}}{x_0} - \frac{i\hat{p}}{p_0}\Bigr)\Bigl(\frac{\hat{x}}{x_0} + \frac{i\hat{p}}{p_0}\Bigr) = \frac{\hat{x}^2}{x_0^2} + \frac{\hat{p}^2}{p_0^2} + \frac{i}{x_0p_0}[\hat{x},\hat{p}] = \frac{\hat{x}^2}{x_0^2} + \frac{\hat{p}^2}{p_0^2} - 1 .
+\]
+
+\begin{definition}[Ladder operators]
+\[
+    \hat{a} = \frac{1}{\sqrt2}\Bigl(\frac{\hat{x}}{x_0} + \frac{i\hat{p}}{p_0}\Bigr),
+    \qquad
+    \hat{a}^\dagger = \frac{1}{\sqrt2}\Bigl(\frac{\hat{x}}{x_0} - \frac{i\hat{p}}{p_0}\Bigr),
+    \qquad
+    \hat{N} = \hat{a}^\dagger\hat{a}.
+\]
+Here $\hat{A}^\dagger$ is the adjoint, defined by $\langle f,\hat{A}g\rangle = \langle\hat{A}^\dagger f,g\rangle$; $\hat{x}$ and $\hat{p}$ are their own adjoints, $\partial_x^\dagger = -\partial_x$ and $i^\dagger = -i$. $\hat{a}$ is the annihilation (lowering) and $\hat{a}^\dagger$ the creation (raising) operator.
+\end{definition}
+
+\begin{formula}[Oscillator in ladder operators]
+\[
+    \hat{H} = \hbar\omega\bigl(\hat{N}+\tfrac12\bigr),
+    \qquad
+    [\hat{a},\hat{a}^\dagger] = 1,
+    \qquad
+    \hat{x} = \frac{x_0}{\sqrt2}(\hat{a}+\hat{a}^\dagger),
+    \qquad
+    \hat{p} = \frac{p_0}{\sqrt2\,i}(\hat{a}-\hat{a}^\dagger).
+\]
+\end{formula}
+
+\begin{fact}[Commutator rules]
+$[\hat{A}\hat{B},\hat{C}] = \hat{A}[\hat{B},\hat{C}] + [\hat{A},\hat{C}]\hat{B}$, like a product rule. Hence
+\[
+    [\hat{N},\hat{a}] = -\hat{a},
+    \qquad
+    [\hat{N},\hat{a}^\dagger] = \hat{a}^\dagger,
+    \qquad
+    [\hat{a},(\hat{a}^\dagger)^n] = n(\hat{a}^\dagger)^{n-1}.
+\]
+\end{fact}
+
+\begin{theorem}[Ladder property]
+If $\hat{N}\psi = \lambda\psi$, then $\hat{N}(\hat{a}\psi) = (\lambda-1)\hat{a}\psi$ and $\hat{N}(\hat{a}^\dagger\psi) = (\lambda+1)\hat{a}^\dagger\psi$.
+\end{theorem}
+\begin{proof}
+$\hat{N}\hat{a}\psi = \hat{a}\hat{N}\psi + [\hat{N},\hat{a}]\psi = (\lambda-1)\hat{a}\psi$, and similarly for $\hat{a}^\dagger$.
+\end{proof}
+
+The ladder cannot go down forever: for any $\psi$, $\langle\hat{N}\rangle = \langle\psi,\hat{a}^\dagger\hat{a}\psi\rangle = \|\hat{a}\psi\|^2\ge0$, so $\langle\hat{H}\rangle\ge\hbar\omega/2$, with equality only if $\hat{a}\psi = 0$. That condition is a first-order differential equation:
+\[
+    \Bigl(\frac{x}{x_0} + x_0\frac{d}{dx}\Bigr)\varphi_0 = 0
+    \quad\Longrightarrow\quad
+    \varphi_0(x) = \frac{1}{\pi^{1/4}x_0^{1/2}}e^{-x^2/2x_0^2}.
+\]
+
+\begin{formula}[Oscillator states from the ladder]
+\[
+    \varphi_n = \frac{(\hat{a}^\dagger)^n}{\sqrt{n!}}\varphi_0,
+    \qquad
+    \hat{a}^\dagger\varphi_n = \sqrt{n+1}\,\varphi_{n+1},
+    \qquad
+    \hat{a}\varphi_n = \sqrt{n}\,\varphi_{n-1},
+    \qquad
+    \hat{N}\varphi_n = n\varphi_n .
+\]
+\end{formula}
+The normalization follows from $C_n = \|(\hat{a}^\dagger)^n\varphi_0\|^2 = \langle\varphi_0,\hat{a}^n(\hat{a}^\dagger)^n\varphi_0\rangle = nC_{n-1}$, using $[\hat{a},(\hat{a}^\dagger)^n] = n(\hat{a}^\dagger)^{n-1}$ and $\hat{a}\varphi_0 = 0$, so $C_n = n!$.
+
+\begin{example}[Uncertainty in $\varphi_n$]
+$\langle\hat{x}\rangle_n = \frac{x_0}{\sqrt2}\langle\varphi_n,(\hat{a}+\hat{a}^\dagger)\varphi_n\rangle = 0$, since $\hat{a}\varphi_n$ and $\hat{a}^\dagger\varphi_n$ are orthogonal to $\varphi_n$. Similarly
+\[
+    \langle\hat{x}^2\rangle_n = \frac{x_0^2}{2}\|(\hat{a}+\hat{a}^\dagger)\varphi_n\|^2 = \frac{x_0^2}{2}\bigl\|\sqrt{n}\varphi_{n-1} + \sqrt{n+1}\varphi_{n+1}\bigr\|^2 = x_0^2\bigl(n+\tfrac12\bigr),
+\]
+and likewise $\langle\hat{p}^2\rangle_n = p_0^2(n+\tfrac12)$, so $\Delta x\,\Delta p = \hbar(n+\tfrac12)$: only the ground state saturates the uncertainty bound.
+\end{example}

@@ -1,0 +1,233 @@
+\chapter{One-Dimensional Potentials}
+\label{ch:1d}
+
+To solve a problem with potential $V$, find the eigenstates $\hat{H}\phi_E = E\phi_E$, expand $\Psi(x,0) = \sum_Ea_E\phi_E$, and evolve each with $e^{-iEt/\hbar}$. This chapter does the first step for the standard one-dimensional potentials.
+
+\begin{fact}[General properties of 1D eigenfunctions]
+\leavevmode
+\begin{itemize}
+    \item $\psi'' = \frac{2m}{\hbar^2}(V-E)\psi$. If $V$ is finite, $\psi''$ is finite, so $\psi'$ and $\psi$ are continuous. (Finite kinetic energy, $\langle T\rangle = \frac{\hbar^2}{2m}\int|\psi'|^2$, also requires $\psi$ continuous.) At an infinite wall $\psi = 0$; at a delta function $\psi'$ jumps.
+    \item $E$ must exceed $\min V$. Where $E>V$ the solution oscillates (classically allowed); where $E<V$ it grows or decays exponentially (classically forbidden).
+    \item \emph{Bound states} ($E<V(\pm\infty)$) are normalizable and have a discrete spectrum. In 1D they are non-degenerate, and the $n$th bound state has $n-1$ nodes. \emph{Scattering states} ($E>V$ at infinity) are not normalizable and have a continuous spectrum: two solutions per energy if the particle is free on both sides, one if free on one side only.
+    \item The ground state is a trade-off between kinetic energy, which favours spreading out, and potential energy.
+\end{itemize}
+\end{fact}
+
+% ============================================================
+\section{The Infinite Square Well}
+% ============================================================
+
+Let $V = 0$ for $0\le x\le a$ and $\infty$ elsewhere. Outside, $\psi = 0$ (otherwise $\langle V\rangle = \infty$), so $\psi(0) = \psi(a) = 0$. Inside, $\psi'' = -k^2\psi$ with $k = \sqrt{2mE}/\hbar$, so $\psi = A\sin kx + B\cos kx$. The boundary conditions give $B = 0$ and $\sin ka = 0$.
+
+\begin{formula}[Infinite square well]
+\[
+    \phi_n(x) = \sqrt{\frac2a}\sin\Bigl(\frac{n\pi x}{a}\Bigr),
+    \qquad
+    E_n = \frac{\hbar^2\pi^2}{2ma^2}n^2,
+    \qquad
+    n = 1,2,3,\ldots
+\]
+\end{formula}
+
+\begin{fact}[Features of the well's eigenfunctions]
+\leavevmode
+\begin{enumerate}
+    \item $\phi_n$ has $n-1$ nodes in $(0,a)$.
+    \item The eigenfunctions alternate between symmetric and antisymmetric about $x = a/2$.
+    \item They are orthonormal, $\langle\phi_m,\phi_n\rangle = \frac2a\int_0^a\sin\frac{m\pi x}{a}\sin\frac{n\pi x}{a}dx = \delta_{mn}$, and form a basis for functions on $[0,a]$ vanishing at both ends. The expansion $\psi = \sum a_n\phi_n$ is unique, with $a_n = \langle\phi_n,\psi\rangle$.
+\end{enumerate}
+\end{fact}
+
+\begin{example}[Interference in time]
+Let $\Psi(x,0) = \sqrt{\tfrac13}\phi_1 + \sqrt{\tfrac23}\phi_2$. Then
+\[
+    |\Psi(x,t)|^2 = \tfrac13\phi_1^2 + \tfrac23\phi_2^2 + \tfrac{2\sqrt2}{3}\phi_1\phi_2\cos\Bigl(\frac{(E_2-E_1)t}{\hbar}\Bigr):
+\]
+the first two terms are what a classical mixture would give, and the last is quantum interference, oscillating at the Bohr frequency.
+\end{example}
+
+\begin{example}[Physical scales]
+Confining an electron to $a = 1$\,\AA\ gives $E_1 = \pi^2\hbar^2/2ma^2\approx6.6\times10^{-18}$\,J $\approx40$\,eV, the scale of atomic binding (hydrogen's ground state is at $-13.6$\,eV). The same balance explains white dwarfs: gravitational energy $\sim-C_1/a$ wants the star to collapse, but confining electrons costs kinetic energy $\sim+C_2/a^2$ (with the Pauli principle), so the energy has a minimum at finite size. If the electrons become relativistic, the kinetic energy $\sim pc\sim c\hbar/a$ scales like the gravitational term and the star can collapse.
+\end{example}
+
+\begin{example}[Particle on a ring]
+Identifying $x = 0$ with $x = a$ requires $\psi(x+a) = \psi(x)$, so $\phi_n = e^{2\pi inx/a}/\sqrt{a}$ with $n\in\mathbb{Z}$ and $E_n = 2\pi^2\hbar^2n^2/ma^2$. Now $\pm n$ are degenerate, and the counting of nodes no longer holds.
+\end{example}
+
+% ============================================================
+\section{Parity}
+% ============================================================
+
+\begin{definition}[Parity operator]
+$\hat{P}f(x) = f(-x)$, with $\hat{P}^2 = 1$, so its eigenvalues are $\pm1$ (even and odd functions).
+\end{definition}
+
+By the chain rule $\hat{P}\partial_x = -\partial_x\hat{P}$, so $\hat{P}$ commutes with $\partial_x^2$, and with $V(x)$ if $V$ is even. So for an even potential $[\hat{P},\hat{H}] = 0$.
+
+\begin{theorem}[Commuting operators share eigenfunctions]
+If $[\hat{Q},\hat{H}] = 0$ and $\hat{H}\psi = E\psi$, then $\hat{H}(\hat{Q}\psi) = \hat{Q}\hat{H}\psi = E\hat{Q}\psi$: $\hat{Q}\psi$ is also an eigenfunction with energy $E$. One can therefore find simultaneous eigenfunctions of $\hat{Q}$ and $\hat{H}$.
+\end{theorem}
+
+For an even potential, $\psi\pm\hat{P}\psi$ are even and odd eigenfunctions of the same energy, at least one of them nonzero. So the energy eigenstates can always be chosen to have definite parity; in 1D, with no degeneracy, they automatically do.
+
+% ============================================================
+\section{The Finite Square Well}
+% ============================================================
+
+Let $V = -V_0$ for $|x|\le a$ and $0$ elsewhere, a toy model of an attractive potential. For bound states, $-V_0<E<0$. Define
+\[
+    \kappa = \frac{\sqrt{-2mE}}{\hbar},
+    \qquad
+    q = \frac{\sqrt{2m(E+V_0)}}{\hbar}.
+\]
+Normalizability kills the growing exponentials, and by parity the solutions are even or odd:
+\[
+    \psi(x) = \begin{cases}Ae^{\kappa x} & x<-a\\ C\cos qx\ \text{or}\ C\sin qx & |x|\le a\\ \pm Ae^{-\kappa x} & x>a\end{cases}
+\]
+Continuity of $\psi'/\psi$ at $x = a$ gives $\kappa = q\tan qa$ (even) or $\kappa = -q\cot qa$ (odd). With the dimensionless variables $\xi = \kappa a$ and $\eta = qa$:
+
+\begin{formula}[Finite well quantization]
+\[
+    \xi = \eta\tan\eta\ \ \text{(even)},
+    \qquad
+    \xi = -\eta\cot\eta\ \ \text{(odd)},
+    \qquad
+    \xi^2 + \eta^2 = \frac{2mV_0a^2}{\hbar^2}\equiv z_0^2 .
+\]
+\end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.9]
+  \draw[->] (0,0) -- (6.2,0) node[right]{$\eta$};
+  \draw[->] (0,0) -- (0,5.2) node[above]{$\xi$};
+  \draw[thick,blue!60!black,domain=0:1.35,samples=40] plot (\x,{\x*tan(\x r)});
+  \draw[thick,blue!60!black,domain=3.1416:4.5,samples=40] plot (\x,{\x*tan(\x r)});
+  \draw[thick,red!60!black,domain=1.62:2.95,samples=40] plot (\x,{-\x*cot(\x r)});
+  \draw[thick,red!60!black,domain=4.75:5.9,samples=40] plot (\x,{min(5,-\x*cot(\x r))});
+  \draw[dashed] (4.5,0) arc (0:90:4.5);
+  \foreach \x/\l in {1.5708/{\pi/2},3.1416/{\pi},4.7124/{3\pi/2}} {\draw (\x,0.08) -- (\x,-0.08) node[below]{$\l$};}
+  \node[right] at (3.3,3.5) {$\xi^2+\eta^2=z_0^2$};
+\end{tikzpicture}
+\caption{Graphical solution of the finite well. Bound states lie where the circle of radius $z_0$ meets $\xi = \eta\tan\eta$ (even, blue) or $\xi = -\eta\cot\eta$ (odd, red).}
+\end{figure}
+
+\begin{fact}[Bound states of the finite well]
+There is always at least one (even) bound state, however shallow the well. The number of bound states is $\lceil z_0/(\pi/2)\rceil$, consistent with the infinite well of width $2a$: its levels $E_n = \hbar^2\pi^2n^2/2m(2a)^2$ fit below $V_0$ for $n\le z_0/(\pi/2)$.
+\end{fact}
+
+% ============================================================
+\section{The Delta-Function Potential}
+% ============================================================
+
+Shrink the well to zero width at fixed strength $\alpha = 2aV_0$: $V(x) = -\alpha\,\delta(x)$, with $[\alpha] = $ energy$\cdot$length. Integrating the Schr\"odinger equation across $x = 0$:
+
+\begin{formula}[Delta-function matching condition]
+For $V = \lambda\,\delta(x-a)$ plus a finite potential,
+\[
+    \psi'(a^+) - \psi'(a^-) = \frac{2m\lambda}{\hbar^2}\psi(a),
+\]
+while $\psi$ stays continuous. A delta function makes $\psi'$ discontinuous wherever $\psi\neq0$.
+\end{formula}
+
+For the attractive delta, $V = -\alpha\delta(x)$, the bound state is $\psi = Ae^{-\kappa|x|}$ (the odd combination would be discontinuous). The jump condition gives $-2\kappa A = -\frac{2m\alpha}{\hbar^2}A$:
+
+\begin{formula}[Bound state of the delta function]
+\[
+    \kappa = \frac{m\alpha}{\hbar^2},
+    \qquad
+    E = -\frac{m\alpha^2}{2\hbar^2},
+    \qquad
+    \psi = \sqrt\kappa\,e^{-\kappa|x|}.
+\]
+There is exactly one bound state.
+\end{formula}
+
+% ============================================================
+\section{Scattering}
+% ============================================================
+
+\subsection{The Step Potential}
+
+Let $V = 0$ for $x<0$ and $V_0$ for $x>0$, with a particle incident from the left. For $E>V_0$, with $k = \sqrt{2mE}/\hbar$ and $q = \sqrt{2m(E-V_0)}/\hbar$,
+\[
+    \psi = \begin{cases}e^{ikx} + re^{-ikx} & x<0\\ te^{iqx} & x>0\end{cases}
+\]
+Continuity of $\psi$ and $\psi'$ gives $1 + r = t$ and $k(1-r) = qt$.
+
+\begin{formula}[Step potential]
+\[
+    r = \frac{k-q}{k+q},
+    \qquad
+    t = \frac{2k}{k+q},
+    \qquad
+    R = |r|^2,
+    \qquad
+    T = \frac{q}{k}|t|^2,
+    \qquad
+    R + T = 1 .
+\]
+\end{formula}
+
+Note $|r|^2+|t|^2\neq1$: what is conserved is the probability current. With $J_{\text{inc}} = \hbar k/m$, $J_{\text{ref}} = \hbar k|r|^2/m$ and $J_{\text{trans}} = \hbar q|t|^2/m$, current conservation $J_{\text{inc}} = J_{\text{ref}} + J_{\text{trans}}$ is $R+T = 1$.
+
+\begin{fact}[Limits of the step]
+As $V_0\to0$, $q\to k$, so $t\to1$ and $r\to0$. As $E\to V_0^+$, $q\to0$ and $R\to1$: it is very hard to enter the barrier. For $V_0\ll E$, $q\approx k(1-\delta)$ with $R\approx\delta^2/4$, quadratic in the step size. Dividing a total step into $N$ small steps gives total reflection at most $\sim N\cdot1/4N^2\to0$: a slowly varying potential does not reflect (the \emph{adiabatic principle}).
+\end{fact}
+
+For $0<E<V_0$, $q = i\kappa$ with $\kappa = \sqrt{2m(V_0-E)}/\hbar$, and
+\[
+    r = \frac{k-i\kappa}{k+i\kappa} = -e^{2i\delta},
+    \qquad
+    \delta = \tan^{-1}\frac{k}{\kappa} = \sin^{-1}\sqrt{\frac{E}{V_0}},
+\]
+so $|r| = 1$: total reflection, as classically, but with a phase shift and an evanescent tail $e^{-\kappa x}$ penetrating the barrier, which carries no current.
+
+\subsection{Wavepackets and Time Delay}
+
+Plane waves are idealizations ($\Delta p = 0$, $\Delta x = \infty$). A real particle is a wavepacket $\Psi(x,t) = \int\frac{dk}{\sqrt{2\pi}}f(k)\phi_k(x)e^{-i\omega(k)t}$ with $f(k)$ peaked at $k_0$. A Gaussian packet of width $a$ spreads as $a(t)^2 = a^2 + (\hbar t/2ma)^2$, so it behaves like a plane wave for $t\ll2ma^2/\hbar$.
+
+\begin{theorem}[Stationary phase approximation]
+In $\int dk\,f(k)e^{i\varphi(k)}$ with $f$ peaked at $k_0$, contributions cancel where the phase varies rapidly. The integral is large only where the phase is stationary at the peak, $\varphi'(k_0) = 0$.
+\end{theorem}
+\begin{proof}[Sketch]
+For $f = e^{-(k-k_0)^2a^2}$, expand $\varphi$ to second order about $k_0$ and complete the square: the result is $\propto\exp\bigl(-\varphi'(k_0)^2/4a^2\bigr)$, small unless $\varphi'(k_0)\approx0$.
+\end{proof}
+
+With $\varphi = kx-\omega(k)t$, the packet's peak is at $x = \omega'(k_0)t$: it moves at the group velocity $v_g = d\omega/dk = \hbar k_0/m$, while crests move at $v_p = \omega/k = v_g/2$. For the step:
+\begin{itemize}
+    \item The incident packet peaks at $x = \hbar k_0t/m$, present only for $t<0$; the reflected packet at $x = -\hbar k_0t/m$ and the transmitted one at $x = \hbar q_0t/m$, present only for $t>0$.
+    \item For $E<V_0$, the reflection phase $2\delta(E)$ adds to $\varphi$, and the reflected peak is at $x = -\frac{\hbar k_0}{m}(t - 2\hbar\delta'(E_0))$. The packet is \emph{delayed} by
+    \[
+        \Delta t = 2\hbar\,\delta'(E) = \frac{\hbar}{\sqrt{E(V_0-E)}},
+    \]
+    the time it spends in the forbidden region.
+\end{itemize}
+
+\subsection{Tunnelling}
+
+For a barrier $V_0$ on $|x|<a$ with $0<E<V_0$, matching $Ae^{ikx}+Be^{-ikx}$, $Fe^{\kappa x}+Ge^{-\kappa x}$ and $Ce^{ikx}$ at $x = \pm a$ gives
+
+\begin{formula}[Transmission through a barrier]
+\[
+    \frac1T = 1 + \frac{V_0^2}{4E(V_0-E)}\sinh^2(2\kappa a),
+    \qquad
+    \kappa = \frac{\sqrt{2m(V_0-E)}}{\hbar}.
+\]
+For a thick barrier, $\sinh^2(2\kappa a)\approx e^{4\kappa a}/4$, so
+\[
+    T\sim\exp\Bigl(-\frac{4\sqrt2a}{\hbar}\sqrt{m(V_0-E)}\Bigr).
+\]
+\end{formula}
+
+Tunnelling explains why fusion in the Sun happens far more often than the classical estimate predicts. The exponential suppression resembles a thermal activation: for $N$ particles each with energy $E\pm\Delta E$, the probability that their total exceeds $N(E+\delta)$ is $\sim e^{-N\delta^2/2\Delta E^2}$, exponentially small in an extensive quantity times an intensive one. Tunnelling is likewise $\sim\exp(-\text{size}\times\sqrt{\text{energy deficit}})$.
+
+\begin{example}[Scattering off a delta function]
+For $V = -\lambda\delta(x)$ (attractive, $\lambda>0$) with $\psi = Ae^{ikx}+A_re^{-ikx}$ for $x<0$ and $Be^{ikx}$ for $x>0$, continuity and the jump condition give
+\[
+    \frac{A_r}{A} = \frac{-1}{1+i\hbar^2k/m\lambda},
+    \qquad
+    R = \frac{1}{1+\hbar^4k^2/m^2\lambda^2} = \frac{m\lambda^2}{m\lambda^2+2E\hbar^2}.
+\]
+As $\lambda\to0$, $R\to0$; as $E\to0$, $R\to1$. The same result holds for a repulsive delta.
+\end{example}

@@ -1,0 +1,265 @@
+\chapter{The Schr\"odinger Equation}
+\label{ch:schrodinger}
+
+% ============================================================
+\section{Wavefunctions and Operators}
+% ============================================================
+
+The double-slit experiment (Section~\ref{sec:double-slit}) tells us that a particle is described by a complex wavefunction $\Psi(x,t)$ whose squared modulus is a probability density. A plane wave $e^{i(kx-\omega t)}$ has a definite momentum $p = \hbar k$ (de Broglie) and energy $E = \hbar\omega$ (Planck--Einstein). Classically a state is a point $(x,p)$; quantum mechanically, the momentum is encoded in how fast the phase of $\Psi$ changes with $x$, and measurable quantities become \emph{linear operators}: $\hat{L}(c\Psi) = c\hat{L}\Psi$ and $\hat{L}(\Psi_1+\Psi_2) = \hat{L}\Psi_1 + \hat{L}\Psi_2$. Examples are $\partial_x$, $\hat{x}\Psi = x\Psi$, translation $T_a\Psi(x) = \Psi(x-a)$ and reflection $R\Psi(x) = \Psi(-x)$.
+
+\begin{definition}[Position, momentum and Hamiltonian operators]
+\[
+    \hat{x}\psi(x) = x\psi(x),
+    \qquad
+    \hat{p} = -i\hbar\pdv{x},
+    \qquad
+    \hat{H} = \frac{\hat{p}^2}{2m} + V(\hat{x}) = -\frac{\hbar^2}{2m}\pdv[2]{x} + V(x).
+\]
+Acting on a plane wave, $\hat{p}e^{ikx} = \hbar k\,e^{ikx}$ and $i\hbar\partial_te^{-i\omega t} = \hbar\omega\,e^{-i\omega t}$, which is what motivates these definitions.
+\end{definition}
+
+\begin{formula}[Time-dependent Schr\"odinger equation]
+\[
+    i\hbar\pdv{t}\Psi(x,t) = \hat{H}\Psi(x,t) = \left[-\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)\right]\Psi(x,t).
+\]
+For a free particle ($V = 0$), $\Psi = e^{i(kx-\omega t)}$ solves it with the dispersion relation $\hbar\omega = \hbar^2k^2/2m$, i.e.\ $E = p^2/2m$.
+\end{formula}
+
+The equation cannot be derived from classical mechanics, but the converse works: it reproduces $E = p^2/2m + V$ on plane waves. Its key features:
+\begin{enumerate}
+    \item It is \emph{linear}: if $\Psi_1$, $\Psi_2$ are solutions, so is $c_1\Psi_1+c_2\Psi_2$ for all $c_i\in\mathbb{C}$ (superposition). QM is in this sense simpler than classical mechanics.
+    \item It is \emph{first order in time}: $\Psi(x,0)$ determines $\Psi(x,t)$ for all $t$. Evolution is unitary and deterministic until a measurement.
+    \item Time and space are treated differently, so it is non-relativistic; the relativistic generalization is the Dirac equation.
+    \item Unlike the wave equation $(\partial_t^2 - v^2\partial_x^2)\phi = 0$, whose normal modes all travel at speed $v$, the Schr\"odinger equation allows any $E/p$. Unlike the diffusion equation $(\partial_t - D\partial_x^2)\phi = 0$, whose solutions $e^{ikx-Dk^2t}$ decay, the factor of $i$ makes the modes oscillate.
+\end{enumerate}
+
+\begin{definition}[Probability density and normalization]
+$\rho(x,t) = |\Psi(x,t)|^2$ is the probability density, so the probability of finding the particle in $[a,b]$ is $\int_a^b|\Psi|^2dx$, and a normalized wavefunction has
+\[
+    \int_{-\infty}^\infty|\Psi(x,t)|^2\,dx = 1 .
+\]
+Wavefunctions differing by a constant factor represent the same state; physically realizable states are square-integrable, so $\Psi\to0$ as $|x|\to\infty$. A tip for checking: $[\Psi] = 1/\sqrt{\text{length}}$ in one dimension.
+\end{definition}
+
+\begin{formula}[Probability current]
+\[
+    J(x,t) = \frac{\hbar}{2mi}\Bigl(\Psi^*\pdv{\Psi}{x} - \Psi\pdv{\Psi^*}{x}\Bigr) = \frac\hbar m\,\mathrm{Im}\Bigl(\Psi^*\pdv{\Psi}{x}\Bigr),
+    \qquad
+    \pdv{\rho}{t} + \pdv{J}{x} = 0 .
+\]
+In integral form, $\frac{d}{dt}\int_a^b\rho\,dx = J(a,t) - J(b,t)$: probability flows into $[a,b]$ through its ends. In particular the total probability is conserved, which (Section~\ref{sec:hermitian}) is equivalent to $\hat{H}$ being Hermitian.
+\end{formula}
+
+% ============================================================
+\section{Stationary States}
+\label{sec:stationary}
+% ============================================================
+
+For a time-independent potential, try a separated solution $\Psi(x,t) = T(t)\psi(x)$. Then
+\[
+    i\hbar\frac{1}{T}\frac{dT}{dt} = \frac{1}{\psi}\Bigl[-\frac{\hbar^2}{2m}\psi'' + V\psi\Bigr],
+\]
+and since the left side depends only on $t$ and the right only on $x$, both equal a constant $E$. So $T(t) = e^{-iEt/\hbar}$.
+
+\begin{formula}[Time-independent Schr\"odinger equation]
+\[
+    \hat{H}\psi_E(x) = E\psi_E(x),
+    \qquad
+    \Psi(x,t) = e^{-iEt/\hbar}\psi_E(x).
+\]
+The energy eigenstates $\psi_E$ are \emph{stationary}: only their phase changes in time, so $|\Psi(x,t)|^2 = |\psi_E(x)|^2$ and every expectation value is constant.
+\end{formula}
+
+\begin{itemize}
+    \item The equation is second order, so two boundary conditions fix $\psi$. The set of allowed $E$ is the \emph{spectrum} of $\hat{H}$; it is \emph{degenerate} if distinct solutions share an $E$.
+    \item Conservation of the norm requires $E\in\mathbb{R}$: if $E = e+if$, the norm grows as $e^{2ft/\hbar}$.
+    \item Mathematically this is a Sturm--Liouville problem: the eigenfunctions are orthonormal, $\int\psi_m^*\psi_n\,dx = \delta_{mn}$, and complete, $\sum_n\psi_n^*(y)\psi_n(x) = \delta(x-y)$.
+\end{itemize}
+
+\begin{formula}[General solution]
+Expand the initial state in energy eigenstates, $\Psi(x,0) = \sum_Ea_E\psi_E(x)$ with $a_E = \int\psi_E^*\Psi(x,0)\,dx$. By linearity,
+\[
+    \Psi(x,t) = \sum_Ea_E\,e^{-iE t/\hbar}\psi_E(x),
+\]
+each component acquiring its own phase. Then $\langle\hat{H}\rangle = \sum_E|a_E|^2E$ is time-independent, while other observables oscillate through the \emph{relative} phases $e^{-i(E-E')t/\hbar}$.
+\end{formula}
+
+% ============================================================
+\section{Free Particles and Fourier Transforms}
+% ============================================================
+
+For $V = 0$, $\hat{H}$ has eigenstates $e^{ikx}$ with $E = \hbar^2k^2/2m$, so the general solution is a superposition
+\[
+    \Psi(x,t) = \int_{-\infty}^\infty\frac{dk}{\sqrt{2\pi}}\,\tilde\psi(k)\,e^{i(kx-\omega(k)t)},
+    \qquad
+    \omega(k) = \frac{\hbar k^2}{2m}.
+\]
+
+\begin{formula}[Fourier transform]
+\[
+    \psi(x) = \frac{1}{\sqrt{2\pi}}\int dk\,\tilde\psi(k)e^{ikx},
+    \qquad
+    \tilde\psi(k) = \frac{1}{\sqrt{2\pi}}\int dx\,\psi(x)e^{-ikx}.
+\]
+In terms of momentum, $\phi(p) = \tilde\psi(p/\hbar)/\sqrt\hbar$:
+\[
+    \psi(x) = \frac{1}{\sqrt{2\pi\hbar}}\int dp\,\phi(p)e^{ipx/\hbar},
+    \qquad
+    \phi(p) = \frac{1}{\sqrt{2\pi\hbar}}\int dx\,\psi(x)e^{-ipx/\hbar}.
+\]
+$|\phi(p)|^2$ is the momentum probability density, and Parseval's theorem $\int|\psi|^2dx = \int|\phi|^2dp$ keeps both normalized. The two representations contain exactly the same information.
+\end{formula}
+
+The inversion theorem rests on the delta function:
+\[
+    \int\frac{dx}{2\pi}e^{i(k-k')x} = \delta(k-k'),
+    \qquad
+    \int dx\,f(x)\delta(x-x_0) = f(x_0),
+    \qquad
+    \int dx\,f(x)\delta'(x-x_0) = -f'(x_0).
+\]
+The first can be regularized as $\lim_{\alpha\to0}\int\frac{dx}{2\pi}e^{ikx-\alpha x^2} = \lim_{\alpha\to0}\frac{1}{2\sqrt{\pi\alpha}}e^{-k^2/4\alpha}$; the delta function is also the derivative of the step function $\theta(x)$.
+
+\begin{fact}[Fourier transform rules]
+\leavevmode
+\begin{itemize}
+    \item Translation $\psi(x-x_0)\leftrightarrow e^{-ikx_0}\tilde\psi(k)$: shifting a wavepacket does not change $|\tilde\psi|^2$.
+    \item A boost $\psi(x)e^{ik_0x}\leftrightarrow\tilde\psi(k-k_0)$ shifts the momentum distribution.
+    \item Scaling $\psi(ax)\leftrightarrow\frac1a\tilde\psi(k/a)$: narrowing in $x$ broadens in $k$.
+    \item $\partial_x\psi\leftrightarrow ik\tilde\psi$. In momentum space $\hat{p} = \hbar k$ and $\hat{x} = i\partial_k$.
+\end{itemize}
+\end{fact}
+
+\begin{example}[Two transforms]
+The Gaussian integral $\int dx\,e^{-\alpha(x-\beta)^2} = \sqrt{\pi/\alpha}$ (square it and use polar coordinates), and $\int x^2e^{-\alpha x^2}dx = -\partial_\alpha\sqrt{\pi/\alpha} = \frac12\sqrt{\pi/\alpha^3}$. For $\psi(x) = \sqrt\alpha\,e^{-\alpha|x|}$,
+\[
+    \tilde\psi(k) = \sqrt{\frac{\alpha}{2\pi}}\Bigl(\frac{1}{\alpha-ik} + \frac{1}{\alpha+ik}\Bigr) = \sqrt{\frac{2}{\pi}}\frac{\alpha^{3/2}}{\alpha^2+k^2},
+\]
+of width $\sim\alpha$ while $\psi$ has width $\sim1/\alpha$.
+\end{example}
+
+A wavepacket $\mathrm{Re}\,\psi\propto e^{-x^2/a^2}\cos(k_0x)$ has an envelope moving at the \emph{group velocity} $d\omega/dk$ and crests moving at the \emph{phase velocity} $\omega/k$. For a free particle, $d\omega/dk = \hbar k/m = 2\omega/k$, so the group velocity is the classical velocity and exceeds the phase velocity, and each Fourier component evolves as $\tilde\psi(k,t) = \tilde\psi(k,0)e^{-i\hbar k^2t/2m}$: the packet spreads.
+
+\begin{formula}[Eigenstates of position and momentum]
+\[
+    \hat{x}\,\delta(x-x_0) = x_0\,\delta(x-x_0),
+    \qquad
+    \hat{p}\,\frac{e^{ip_0x/\hbar}}{\sqrt{2\pi\hbar}} = p_0\,\frac{e^{ip_0x/\hbar}}{\sqrt{2\pi\hbar}} .
+\]
+In momentum space the roles swap: the momentum eigenstate is $\delta(p-p_0)$ and the position eigenstate is $e^{-ipx_0/\hbar}/\sqrt{2\pi\hbar}$. Neither is normalizable, but each is a complete basis, and normalizable states are superpositions of them.
+\end{formula}
+
+\paragraph{Three representations of one state.} A state can be expanded in position, momentum or energy eigenstates:
+\[
+    \psi(x) = \int dx'\,\psi(x')\,\delta(x'-x) = \int dp\,\phi(p)\,\frac{e^{ipx/\hbar}}{\sqrt{2\pi\hbar}} = \sum_n b_n\psi_n(x).
+\]
+In each, the information about the state is in the coefficients, $\psi(x')$, $\phi(p)$ or $b_n$: complex probability amplitudes for each eigenvalue. They are like the components of one vector in different rotated coordinate bases. Discretizing $x$ on a grid of spacing $\varepsilon$ makes this literal: $\psi$ becomes a column vector $(\psi(0),\psi(\varepsilon),\ldots)^T$, $\hat{x}$ becomes $\operatorname{diag}(0,\varepsilon,2\varepsilon,\ldots)$, $\hat{p}$ becomes the central-difference matrix $\frac{\hbar}{2i\varepsilon}(\delta_{j+1,k}-\delta_{j-1,k})$, and $\hat{H}$ a tridiagonal matrix plus $\operatorname{diag}V$. This is the starting point of the vector-space formalism of Chapter~\ref{ch:formalism}.
+
+% ============================================================
+\section{Observables and Hermitian Operators}
+\label{sec:hermitian}
+% ============================================================
+
+\begin{definition}[Inner product and Hermitian operators]
+For $f,g:\mathbb{R}\to\mathbb{C}$,
+\[
+    \langle f,g\rangle = \int dx\,f^*(x)g(x),
+    \qquad
+    \langle f,f\rangle = \int|f|^2dx .
+\]
+An operator $\hat{T}$ is \emph{Hermitian} if $\langle f,\hat{T}g\rangle = \langle\hat{T}f,g\rangle$ for all normalizable $f,g$.
+\end{definition}
+
+\begin{example}[$\hat{x}$, $\hat{V}$, $\hat{p}$ and $\hat{H}$ are Hermitian]
+Multiplication by a real function, $\hat{V}f = V(x)f$, is Hermitian since $\int f^*Vg = \int(Vf)^*g$ when $V = V^*$. For momentum, integrating by parts,
+\[
+    \langle\hat{p}f,g\rangle - \langle f,\hat{p}g\rangle = i\hbar\int dx\,\frac{d}{dx}(f^*g) = i\hbar\bigl[f^*g\bigr]_{-\infty}^\infty = 0
+\]
+for normalizable functions, which vanish at infinity. Then $\langle\hat{p}^2f,g\rangle = \langle\hat{p}f,\hat{p}g\rangle = \langle f,\hat{p}^2g\rangle$, so $\hat{H} = \hat{p}^2/2m + \hat{V}$ is Hermitian.
+\end{example}
+
+\begin{theorem}[Hermitian operators conserve probability]
+Using $\partial_t\Psi = -\frac{i}{\hbar}\hat{H}\Psi$,
+\[
+    \frac{d}{dt}\int|\Psi|^2dx = \frac{i}{\hbar}\bigl[\langle\hat{H}\Psi,\Psi\rangle - \langle\Psi,\hat{H}\Psi\rangle\bigr],
+\]
+which vanishes for all $\Psi$ precisely when $\hat{H}$ is Hermitian.
+\end{theorem}
+
+\begin{theorem}[Properties of Hermitian operators]
+The eigenvalues of a Hermitian operator are real, and eigenfunctions with different eigenvalues are orthogonal.
+\end{theorem}
+\begin{proof}
+If $\hat{Q}\phi_1 = \lambda_1\phi_1$ and $\hat{Q}\phi_2 = \lambda_2\phi_2$, then
+\[
+    \lambda_2\langle\phi_1,\phi_2\rangle = \langle\phi_1,\hat{Q}\phi_2\rangle = \langle\hat{Q}\phi_1,\phi_2\rangle = \lambda_1^*\langle\phi_1,\phi_2\rangle,
+\]
+so $(\lambda_1^*-\lambda_2)\langle\phi_1,\phi_2\rangle = 0$. Taking $\phi_1 = \phi_2$ gives $\lambda_1 = \lambda_1^*$; for $\lambda_1\neq\lambda_2$ it gives $\langle\phi_1,\phi_2\rangle = 0$.
+\end{proof}
+
+\begin{fact}[Measurement postulates]
+\leavevmode
+\begin{enumerate}
+    \item Each observable corresponds to a Hermitian operator $\hat{Q}$, whose eigenfunctions $\hat{Q}\phi_\lambda = \lambda\phi_\lambda$ form a complete orthonormal basis.
+    \item Expanding $\Psi = \sum_\lambda a_\lambda\phi_\lambda$ with $a_\lambda = \langle\phi_\lambda,\Psi\rangle$, a measurement of $Q$ yields $\lambda$ with probability $|a_\lambda|^2$ (the \emph{Born rule}).
+    \item After a measurement giving $\lambda$, the state collapses to $\phi_\lambda$, and an immediate repeat gives $\lambda$ again.
+\end{enumerate}
+\end{fact}
+
+\begin{formula}[Expectation values]
+\[
+    \langle\hat{Q}\rangle = \sum_\lambda|a_\lambda|^2\lambda = \langle\Psi,\hat{Q}\Psi\rangle .
+\]
+For example $\langle x\rangle = \int x|\Psi|^2dx$, and $\langle\hat{T}\rangle = \frac{\hbar^2}{2m}\int|\Psi'|^2dx\ge0$: higher kinetic energy is assigned to rapidly varying wavefunctions.
+\end{formula}
+The second form follows from the first: $\langle\Psi,\hat{Q}\Psi\rangle = \sum_{\lambda,\lambda'}a_\lambda^*a_{\lambda'}\lambda'\langle\phi_\lambda,\phi_{\lambda'}\rangle = \sum_\lambda|a_\lambda|^2\lambda$.
+
+% ============================================================
+\section{Uncertainty}
+% ============================================================
+
+\begin{definition}[Uncertainty]
+\[
+    (\Delta Q)^2 = \langle(\hat{Q}-\langle\hat{Q}\rangle)^2\rangle = \langle\hat{Q}^2\rangle - \langle\hat{Q}\rangle^2 .
+\]
+$\Delta Q\ge0$, with $\Delta Q = 0$ if and only if $\Psi$ is an eigenfunction of $\hat{Q}$: then every measurement gives the same eigenvalue.
+\end{definition}
+
+\begin{definition}[Commutator]
+$[\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}$. Acting on a test function, $[\hat{x},\hat{p}]f = -i\hbar\bigl(xf' - (xf)'\bigr) = i\hbar f$, so
+\[
+    [\hat{x},\hat{p}] = i\hbar .
+\]
+\end{definition}
+
+\begin{theorem}[Heisenberg uncertainty relation]
+For any state,
+\[
+    \Delta x\,\Delta p\ge\frac\hbar2,
+\]
+and more generally $\Delta A\,\Delta B\ge\bigl|\langle\Psi,\frac{1}{2i}[\hat{A},\hat{B}]\Psi\rangle\bigr|$.
+\end{theorem}
+\begin{proof}[Proof for $x$ and $p$]
+Shift coordinates so that $\langle x\rangle = \langle k\rangle = 0$. For real $\lambda$,
+\[
+    I(\lambda) = \int dx\,\bigl|x\psi + \lambda\psi'\bigr|^2\ge0 .
+\]
+Expanding, $\int x^2|\psi|^2 = (\Delta x)^2$; the cross term is $\lambda\int x\,\partial_x|\psi|^2 = -\lambda$ after integrating by parts; and $\lambda^2\int|\psi'|^2 = \lambda^2\int k^2|\tilde\psi|^2dk = \lambda^2(\Delta k)^2$. So
+\[
+    I(\lambda) = (\Delta x)^2 - \lambda + \lambda^2(\Delta k)^2 = (\Delta x)^2 + \Bigl(\lambda\Delta k - \frac{1}{2\Delta k}\Bigr)^2 - \frac{1}{4(\Delta k)^2}\ge0 .
+\]
+Choosing $\lambda = 1/2(\Delta k)^2$ gives $\Delta x\,\Delta k\ge\frac12$, i.e.\ $\Delta x\,\Delta p\ge\hbar/2$. The general version is proved in Chapter~\ref{ch:formalism}.
+\end{proof}
+
+The uncertainty principle is not about the disturbance caused by measuring. It concerns counterfactual results: a state cannot have sharp values of both $x$ and $p$, whichever one is actually measured.
+
+\begin{example}[Gaussian wavepacket]
+\[
+    \psi(x) = (2\pi a^2)^{-1/4}\exp\Bigl(-\frac{x^2}{4a^2}\Bigr)
+\]
+has $\langle x\rangle = 0$, $\Delta x = a$ and $\Delta p = \hbar/2a$, saturating the bound: it is as close to classical as possible. Translating and boosting,
+\[
+    \psi_{x_0,p_0}(x) = (2\pi a^2)^{-1/4}\exp\Bigl(-\frac{(x-x_0)^2}{4a^2}\Bigr)e^{ip_0x/\hbar}
+\]
+has $\langle x\rangle = x_0$ and $\langle p\rangle = p_0$ with the same widths, a quantum stand-in for a classical particle at $(x_0,p_0)$. Under free evolution $\Delta x$ grows: the packet spreads. Classical objects do not visibly spread because they constantly interact with their surroundings and are effectively being measured.
+\end{example}
