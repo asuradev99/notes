@@ -46,6 +46,21 @@ If the series did not terminate, $a_{j+2}\approx\frac2ja_j$ for large $j$, so $h
 \]
 \end{formula}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=7cm,xlabel={$x/x_0$},ylabel={$E/\hbar\omega$},axis lines=left,xmin=-4.2,xmax=4.2,ymin=0,ymax=5,domain=-4.2:4.2,samples=150]
+\addplot[thick,black]{x^2/2};
+\addplot[thick,blue!70!black]{0.5+0.6*exp(-x^2/2)};
+\addplot[thick,blue!70!black]{1.5+0.6*1.41*x*exp(-x^2/2)};
+\addplot[thick,blue!70!black]{2.5+0.6*0.71*(2*x^2-1)*exp(-x^2/2)};
+\addplot[thick,blue!70!black]{3.5+0.6*0.29*(2*x^3-3*x)*exp(-x^2/2)};
+\foreach \e in {0.5,1.5,2.5,3.5} {\edef\t{\noexpand\addplot[dotted,gray]{\e};}\t}
+\end{axis}
+\end{tikzpicture}
+\caption{The harmonic oscillator potential with its first four eigenfunctions, each drawn at its energy $\hbar\omega(n+\frac12)$. The wavefunctions leak into the classically forbidden region beyond the turning points.}
+\end{figure}
+
 The levels are equally spaced, so each level above the ground state can be read as $n$ excitations (quanta) of energy $\hbar\omega$ each: phonons for mechanical oscillations, photons for the EM field. The ground state has the \emph{zero-point energy} $\hbar\omega/2\neq0$: $\langle x\rangle = \langle p\rangle = 0$, but $\langle x^2\rangle$ and $\langle p^2\rangle$ cannot both vanish.
 
 % ============================================================
@@ -125,4 +140,47 @@ $\langle\hat{x}\rangle_n = \frac{x_0}{\sqrt2}\langle\varphi_n,(\hat{a}+\hat{a}^\
     \langle\hat{x}^2\rangle_n = \frac{x_0^2}{2}\|(\hat{a}+\hat{a}^\dagger)\varphi_n\|^2 = \frac{x_0^2}{2}\bigl\|\sqrt{n}\varphi_{n-1} + \sqrt{n+1}\varphi_{n+1}\bigr\|^2 = x_0^2\bigl(n+\tfrac12\bigr),
 \]
 and likewise $\langle\hat{p}^2\rangle_n = p_0^2(n+\tfrac12)$, so $\Delta x\,\Delta p = \hbar(n+\tfrac12)$: only the ground state saturates the uncertainty bound.
+\end{example}
+
+\begin{example}[Higher moments]
+Writing $\hat{x}^2\varphi_n = \frac{x_0^2}{2}\bigl(\sqrt{n(n-1)}\varphi_{n-2} + (2n+1)\varphi_n + \sqrt{(n+1)(n+2)}\varphi_{n+2}\bigr)$ and using orthonormality,
+\[
+    \langle\hat{x}^4\rangle_n = \|\hat{x}^2\varphi_n\|^2 = \frac{x_0^4}{4}\bigl(6n^2+6n+3\bigr).
+\]
+The ladder operators reduce every polynomial expectation value to counting.
+\end{example}
+
+\begin{example}[A breathing superposition]
+For $|\Psi(0)\rangle = \frac{1}{\sqrt2}(|0\rangle + |2\rangle)$, each component picks up its own phase, $|\Psi(t)\rangle = \frac{1}{\sqrt2}\bigl(e^{-i\omega t/2}|0\rangle + e^{-5i\omega t/2}|2\rangle\bigr)$. Since $\hat{x}$ changes $n$ by one, $\langle\hat{x}\rangle = 0$ at all times, but $\hat{x}^2$ connects $|0\rangle$ and $|2\rangle$:
+\[
+    \langle\hat{x}^2\rangle(t) = \frac{x_0^2}{4}\bigl(6 + 2\sqrt2\cos2\omega t\bigr).
+\]
+The packet stays centred but its width oscillates at $2\omega$, the Bohr frequency $(E_2-E_0)/\hbar$.
+\end{example}
+
+\begin{fact}[$\hat{a}^\dagger$ has no eigenstates]
+$\hat{a}$ has eigenstates for every $\alpha\in\mathbb{C}$ (the coherent states of Chapter~\ref{ch:dynamics}). But solving $\hat{a}^\dagger\psi = \alpha\psi$ gives $\psi\propto\exp\bigl(\frac{x^2}{2x_0^2} - \frac{\sqrt2\alpha x}{x_0}\bigr)$, which is not normalizable.
+\end{fact}
+
+% ============================================================
+\section{Thermal Oscillators and the Three-Dimensional Oscillator}
+% ============================================================
+
+At temperature $T$, with $\beta = 1/k_BT$, the partition function $Z = \sum_ne^{-\beta E_n}$ gives $\langle E\rangle = -\partial_\beta\ln Z$ and $C_V = k_B\beta^2\partial_\beta^2\ln Z$. For the oscillator,
+\[
+    Z = \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}},
+    \qquad
+    C_V = k_B\frac{(\beta\hbar\omega)^2e^{-\beta\hbar\omega}}{(1-e^{-\beta\hbar\omega})^2}
+    \approx\begin{cases}k_B\,(\beta\hbar\omega)^2e^{-\beta\hbar\omega}, & k_BT\ll\hbar\omega,\\ k_B, & k_BT\gg\hbar\omega.\end{cases}
+\]
+The vibration is frozen out until $k_BT\sim\hbar\omega$, then contributes the classical $k_B$: the steps in the heat capacity of diatomic gases (Chapter~\ref{ch:experiment}). For H$_2$, estimating $\frac12m\omega^2a_0^2\sim1$\,Ry gives $\hbar\omega/k_B\sim10^4$\,K.
+
+\begin{example}[Isotropic oscillator in three dimensions]
+$\hat{H} = \frac{\hat{\lvect{p}}^2}{2m} + \frac12m\omega^2r^2$ separates in Cartesian coordinates, so $E = \hbar\omega(n_x+n_y+n_z+\frac32) = \hbar\omega(N+\frac32)$ with degeneracy $\frac12(N+1)(N+2)$. In spherical coordinates, with $s = r/x_0$ and $u = s^{\ell+1}e^{-s^2/2}w(s)$, the radial equation gives a terminating series for $w$ only if
+\[
+    E = \hbar\omega\bigl(2k+\ell+\tfrac32\bigr),
+    \qquad
+    k = 0,1,2,\ldots,
+\]
+so level $N$ contains $\ell = N, N-2,\ldots,1$ or $0$. For $N = 3$: $\ell = 3,1$, giving $7+3 = 10$ states, matching the Cartesian count.
 \end{example}

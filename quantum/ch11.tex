@@ -68,6 +68,18 @@ $1\otimes\frac12 = \frac32\oplus\frac12$: six states. In the coupled basis,
 and similarly for negative $m_j$. Then $\langle\hat{\vect{L}}\cdot\hat{\vect{S}}_e\rangle = \frac{\hbar^2}{2}(+1)$ for the four $j = \frac32$ states and $\frac{\hbar^2}{2}(-2)$ for the two $j = \frac12$ states: the six-fold level splits into a quartet and a doublet.
 \end{example}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[yscale=0.9]
+  \draw[thick] (0,2) -- (1.6,2) node[midway,above]{\small $n=2$, $\ell=1$ (6 states)};
+  \draw[thick] (3,2.8) -- (4.6,2.8) node[right]{\small $j=\frac32$ (4 states), $+\frac{\hbar^2}{2}$};
+  \draw[thick] (3,0.8) -- (4.6,0.8) node[right]{\small $j=\frac12$ (2 states), $-\hbar^2$};
+  \draw[dashed] (1.6,2) -- (3,2.8); \draw[dashed] (1.6,2) -- (3,0.8);
+  \node at (0.8,0.3) {\small $\hat{H}_0$}; \node at (3.8,0.3) {\small $+\Delta\hat{H}_{SL}$};
+\end{tikzpicture}
+\caption{Spin--orbit splitting of an $\ell = 1$ level, labelled by $\langle\hat{\vect{L}}\cdot\hat{\vect{S}}_e\rangle$.}
+\end{figure}
+
 % ============================================================
 \section{Hyperfine Structure}
 % ============================================================

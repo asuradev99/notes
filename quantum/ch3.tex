@@ -29,6 +29,21 @@ Let $V = 0$ for $0\le x\le a$ and $\infty$ elsewhere. Outside, $\psi = 0$ (other
 \]
 \end{formula}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=8cm,height=6.5cm,xlabel={$x/a$},ylabel={$E$},axis lines=left,xmin=-0.15,xmax=1.15,ymin=0,ymax=19,ytick={1,4,9,16},yticklabels={$E_1$,$4E_1$,$9E_1$,$16E_1$},domain=0:1,samples=100]
+\draw[very thick] (axis cs:0,0) -- (axis cs:0,19); \draw[very thick] (axis cs:1,0) -- (axis cs:1,19);
+\foreach \n in {1,2,3,4} {
+  \edef\temp{\noexpand\addplot[thick,blue!70!black]{\n*\n + 1.3*sin(deg(\n*pi*x))};
+  \noexpand\addplot[dotted,gray]{\n*\n};}
+  \temp
+}
+\end{axis}
+\end{tikzpicture}
+\caption{The first four eigenfunctions of the infinite square well, each drawn at the height of its energy. $\phi_n$ has $n-1$ nodes.}
+\end{figure}
+
 \begin{fact}[Features of the well's eigenfunctions]
 \leavevmode
 \begin{enumerate}
@@ -143,6 +158,22 @@ For the attractive delta, $V = -\alpha\delta(x)$, the bound state is $\psi = Ae^
 There is exactly one bound state.
 \end{formula}
 
+\begin{example}[Double delta well and tunnelling splitting]
+For $V = -\frac{\hbar^2\lambda}{ma}\bigl[\delta(x-a)+\delta(x+a)\bigr]$, bound states have $\psi\propto e^{\kappa x}$ outside and $\cosh\kappa x$ (even) or $\sinh\kappa x$ (odd) inside. With $\epsilon = \kappa a$ the jump conditions give
+\[
+    \lambda = \frac\epsilon2\bigl(1+\tanh\epsilon\bigr)\ \ \text{(even)},
+    \qquad
+    \lambda = \frac\epsilon2\bigl(1+\coth\epsilon\bigr)\ \ \text{(odd)},
+    \qquad
+    E = -\frac{\hbar^2\epsilon^2}{2ma^2}.
+\]
+Both right-hand sides increase monotonically. The even state always exists; the odd one only for $\lambda>\frac12$. For a strong, widely separated pair ($\lambda\gg1$), $\epsilon\approx\lambda(1\mp e^{-2\lambda})$, so the two levels are split by
+\[
+    E_{\text{odd}} - E_{\text{even}}\approx\frac{\hbar^2}{2ma^2}\,4\lambda^2e^{-2\lambda},
+\]
+exponentially small in the barrier between the wells: the same physics as the ammonia molecule (Chapter~\ref{ch:twostate}).
+\end{example}
+
 % ============================================================
 \section{Scattering}
 % ============================================================
@@ -183,6 +214,20 @@ For $0<E<V_0$, $q = i\kappa$ with $\kappa = \sqrt{2m(V_0-E)}/\hbar$, and
 \]
 so $|r| = 1$: total reflection, as classically, but with a phase shift and an evanescent tail $e^{-\kappa x}$ penetrating the barrier, which carries no current.
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=4.5cm,axis lines=middle,xlabel={$x$},ytick=\empty,xtick={0},xmin=-4,xmax=3,ymin=-2.4,ymax=2.6,samples=200]
+\addplot[thick,blue!70!black,domain=-4:0]{cos(deg(3*x)) + 0.6*cos(deg(-3*x+1.2))};
+\addplot[thick,blue!70!black,domain=0:3]{1.36*exp(-2*x)};
+\fill[orange!25] (axis cs:0,-2.4) rectangle (axis cs:3,2.6);
+\addplot[thick,blue!70!black,domain=0:3]{1.36*exp(-2*x)};
+\node at (axis cs:1.5,2.1) {\small $V_0>E$};
+\end{axis}
+\end{tikzpicture}
+\caption{A wave reflecting from a step with $E<V_0$. The incident and reflected waves form a standing wave on the left; an evanescent tail $e^{-\kappa x}$ penetrates the barrier but carries no current.}
+\end{figure}
+
 \subsection{Wavepackets and Time Delay}
 
 Plane waves are idealizations ($\Delta p = 0$, $\Delta x = \infty$). A real particle is a wavepacket $\Psi(x,t) = \int\frac{dk}{\sqrt{2\pi}}f(k)\phi_k(x)e^{-i\omega(k)t}$ with $f(k)$ peaked at $k_0$. A Gaussian packet of width $a$ spreads as $a(t)^2 = a^2 + (\hbar t/2ma)^2$, so it behaves like a plane wave for $t\ll2ma^2/\hbar$.
@@ -221,6 +266,10 @@ For a thick barrier, $\sinh^2(2\kappa a)\approx e^{4\kappa a}/4$, so
 \end{formula}
 
 Tunnelling explains why fusion in the Sun happens far more often than the classical estimate predicts. The exponential suppression resembles a thermal activation: for $N$ particles each with energy $E\pm\Delta E$, the probability that their total exceeds $N(E+\delta)$ is $\sim e^{-N\delta^2/2\Delta E^2}$, exponentially small in an extensive quantity times an intensive one. Tunnelling is likewise $\sim\exp(-\text{size}\times\sqrt{\text{energy deficit}})$.
+
+\begin{fact}[Transmission resonances]
+For $E>V_0$ over a barrier of width $2a$, the transmission is $1/T = 1 + \frac{V_0^2}{4E(E-V_0)}\sin^2(2qa)$ with $q = \sqrt{2m(E-V_0)}/\hbar$. It reaches $T = 1$ when $2qa = n\pi$, i.e.\ $E = V_0 + \frac{\hbar^2n^2\pi^2}{8ma^2}$: reflections from the two edges cancel when a whole number of half-wavelengths fits across the barrier.
+\end{fact}
 
 \begin{example}[Scattering off a delta function]
 For $V = -\lambda\delta(x)$ (attractive, $\lambda>0$) with $\psi = Ae^{ikx}+A_re^{-ikx}$ for $x<0$ and $Be^{ikx}$ for $x>0$, continuity and the jump condition give

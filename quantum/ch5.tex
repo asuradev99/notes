@@ -134,6 +134,21 @@ With $\psi(r,\theta,\phi) = R(r)Y_{\ell m}(\theta,\phi)$ and $u(r) = rR(r)$, the
 with $u(0) = 0$ and normalization $\int_0^\infty|u|^2dr = 1$.
 \end{formula}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=5cm,xlabel={$r$},ylabel={$V_{\text{eff}}$},axis lines=middle,xmin=0,xmax=10,ymin=-1.2,ymax=1,ytick=\empty,xtick=\empty,samples=200,legend style={draw=none,at={(0.98,0.98)},anchor=north east,font=\small}]
+\addplot[thick,blue!70!black,domain=0.4:10]{-2/x};
+\addlegendentry{$\ell=0$}
+\addplot[thick,red!70!black,domain=0.55:10]{-2/x+2/x^2};
+\addlegendentry{$\ell=1$}
+\addplot[thick,green!50!black,domain=0.9:10]{-2/x+6/x^2};
+\addlegendentry{$\ell=2$}
+\end{axis}
+\end{tikzpicture}
+\caption{The effective radial potential for the Coulomb problem. The centrifugal barrier $\hbar^2\ell(\ell+1)/2mr^2$ keeps states with $\ell>0$ away from the origin.}
+\end{figure}
+
 The centrifugal term is the quantum version of the effective potential in planetary motion. $E$, $u$ and $R$ depend on $\ell$ (and a radial quantum number $n$) but never on $m$: rotational symmetry makes each level $(2\ell+1)$-fold degenerate.
 
 \begin{example}[Free particle in 3D]
@@ -171,6 +186,23 @@ If the series did not terminate, $c_{j+1}/c_j\to2/j$, so $W\sim e^{2\rho}$ and $
 with $W_{n\ell}$ a polynomial of degree $n-\ell-1$ (an associated Laguerre polynomial) and quantum numbers $n>\ell\ge|m|$. The energy depends only on $n$, so the degeneracy of $E_n$ is $\sum_{\ell=0}^{n-1}(2\ell+1) = n^2$ (or $2n^2$ with spin).
 \end{formula}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=5.5cm,xlabel={$r/a_0$},ylabel={$r^2|R_{n\ell}|^2$},axis lines=left,xmin=0,xmax=20,ymin=0,domain=0:20,samples=200,legend style={draw=none,font=\small}]
+\addplot[thick,blue!70!black]{4*x^2*exp(-2*x)};
+\addlegendentry{$1s$}
+\addplot[thick,red!70!black]{0.5*x^2*(1-x/2)^2*exp(-x)};
+\addlegendentry{$2s$}
+\addplot[thick,green!50!black]{x^4*exp(-x)/24};
+\addlegendentry{$2p$}
+\addplot[thick,orange!80!black]{(4/27)*x^2*(1-2*x/3+2*x^2/27)^2*exp(-2*x/3)};
+\addlegendentry{$3s$}
+\end{axis}
+\end{tikzpicture}
+\caption{Radial probability densities of hydrogen. The $ns$ states have $n-1$ radial nodes, and higher $\ell$ at fixed $n$ means fewer nodes and less weight near the nucleus.}
+\end{figure}
+
 \begin{example}[Low-lying hydrogen states]
 \[
     \psi_{100} = \frac{1}{\sqrt{\pi a_0^3}}e^{-r/a_0},
@@ -189,6 +221,24 @@ with $W_{n\ell}$ a polynomial of degree $n-\ell-1$ (an associated Laguerre polyn
 In spectroscopic notation these are $1s$, $2s$, $2p$, $3s$, $3p$, $3d$ (with $\ell = 0,1,2,3\to s,p,d,f$). Chemists use the real combinations $2p_x,2p_y,2p_z$, and hybrid orbitals such as $s+p$.
 \end{example}
 
+\begin{theorem}[Virial theorem]
+In a stationary state $\langle[\hat\Omega,\hat{H}]\rangle = 0$ for any $\hat\Omega$. Choosing $\hat\Omega = \hat{\lvect{r}}\cdot\hat{\lvect{p}}$, with $[\hat\Omega,\hat{T}] = 2i\hbar\hat{T}$ and $[\hat\Omega,\hat{V}] = -i\hbar\,\hat{\lvect{r}}\cdot\grad V$,
+\[
+    2\langle T\rangle = \langle\lvect{r}\cdot\grad V\rangle .
+\]
+For $V\propto r^k$ this is $2\langle T\rangle = k\langle V\rangle$. For hydrogen ($k = -1$), $\langle T\rangle = -\frac12\langle V\rangle = -E_n$.
+\end{theorem}
+
+\begin{example}[Speeds and radii in hydrogen]
+From $\langle T\rangle = \frac12m\langle v^2\rangle = -E_n = \frac{\alpha^2mc^2Z^2}{2n^2}$,
+\[
+    \frac{\sqrt{\langle v^2\rangle}}{c} = \frac{Z\alpha}{n},
+    \qquad
+    \Bigl\langle\frac1r\Bigr\rangle = \frac{Z}{n^2a_0}.
+\]
+For $Z = n = 1$ the electron moves at $c/137$: hydrogen is non-relativistic, and relativistic corrections are of relative order $\alpha^2$ (Chapter~\ref{ch:fine}).
+\end{example}
+
 \paragraph{The proton.} The proton is not infinitely heavy ($m_p/m_e\approx1800$). Treating both particles, the Hamiltonian separates into centre-of-mass and relative coordinates, $\vect{R} = (m_p\lvect{r}_p + m_e\lvect{r}_e)/M$ and $\lvect{r} = \lvect{r}_e - \lvect{r}_p$, with conjugate momenta $\vect{P} = \lvect{p}_e+\lvect{p}_p$ and $\lvect{p} = (m_p\lvect{p}_e - m_e\lvect{p}_p)/M$:
 \[
     \hat{H} = \frac{\hat{\vect{P}}^2}{2M} + \frac{\hat{\lvect{p}}^2}{2\mu} + V(\lvect{r}),
@@ -196,6 +246,18 @@ In spectroscopic notation these are $1s$, $2s$, $2p$, $3s$, $3p$, $3d$ (with $\e
     \mu = \frac{m_em_p}{m_e+m_p},
 \]
 so the hydrogen results hold with $m\to\mu$. Further corrections are \emph{fine structure}, of relative order $\alpha^2$, from the electron's spin coupling to its orbit ($\propto\hat{\lvect{L}}\cdot\hat{\lvect{S}}$), and \emph{hyperfine structure}, smaller by a further $m_e/m_p$, from the proton's spin.
+
+\begin{fact}[Concept checks]
+\leavevmode
+\begin{itemize}
+    \item Oscillator eigenstates form a complete basis, so any state can be expanded in them; the components evolve with phases $e^{-iE_nt/\hbar}$, and since the $E_n$ are equally spaced the motion is periodic.
+    \item A hydrogen radial function $R_{n\ell}$ is a polynomial of degree $n-\ell-1$ times an exponential, so it has $n-\ell-1$ radial nodes (not $n-1$).
+    \item For a spherically symmetric $V$, every component of $\hat{\vect{L}}$ commutes with $\hat{H}$ (Noether: rotational symmetry conserves angular momentum).
+    \item $\hat{L}_x = y\hat{p}_z - z\hat{p}_y$ commutes with $\hat{x}$ but not with $\hat{y}$; different components of $\hat{\vect{L}}$ (or of spin) never commute with each other.
+    \item For a free particle $[\hat{H},\hat{p}] = 0$, so $\langle p\rangle$ and $\Delta p$ are constant, but $[\hat{H},\hat{x}^2]\neq0$, so $\langle x^2\rangle$ changes: the packet spreads.
+    \item Where $V(x) = E$, $\psi'' = 0$: the classical turning points are inflection points of $\psi$.
+\end{itemize}
+\end{fact}
 
 \subsection{The Periodic Table}
 

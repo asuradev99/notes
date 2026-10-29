@@ -39,6 +39,19 @@ Light is made of quanta (photons) of energy $E_n = h\nu_n$. If $k_BT\gg E_n$ the
 in agreement with experiment.
 \end{fact}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=5.5cm,xlabel={$h\nu/k_BT$},ylabel={energy density (arb.)},xmin=0,xmax=10,ymin=0,ymax=2,axis lines=left,legend style={draw=none,at={(0.97,0.95)},anchor=north east},domain=0.01:10,samples=120]
+\addplot[thick,blue!70!black]{x^3/(exp(x)-1)};
+\addlegendentry{Planck}
+\addplot[thick,dashed,red!70!black,domain=0.01:2.2]{x^2};
+\addlegendentry{Rayleigh--Jeans}
+\end{axis}
+\end{tikzpicture}
+\caption{Blackbody spectrum. The classical (Rayleigh--Jeans) result $\propto\nu^2$ agrees at low frequency but diverges; quantization suppresses modes with $h\nu\gg k_BT$.}
+\end{figure}
+
 The same idea explains the heat capacity of diatomic gases. Classically $C_V = k_B\cdot(\#\text{d.o.f.})/2$ per molecule: a monatomic gas has $C_V = \frac32Nk_B$, and a diatomic gas with 3 translational, 2 rotational and 2 vibrational (kinetic and potential) degrees of freedom should have $C_V = \frac72Nk_B$ at all temperatures. Measured, $C_V/Nk_B$ climbs in steps from $\frac32$ to $\frac52$ (around $10^2$\,K) to $\frac72$ (around $10^3$--$10^4$\,K): each degree of freedom has a characteristic energy it needs before it can be excited, and is frozen out below it.
 
 \begin{formula}[Heisenberg uncertainty principle]
@@ -195,6 +208,13 @@ For $E = p^2/2m + \frac12m\omega^2x^2$, the orbit in phase space is an ellipse w
 so $E_n = n\hbar\omega = nh\nu$: Planck's quantization.
 \end{example}
 
+\begin{example}[Bohr quantization in a quartic potential]
+For circular orbits in $V = Ar^4$, the force balance $mr\omega^2 = 4Ar^3$ and $L = mr^2\omega = n\hbar$ give $r^6 = n^2\hbar^2/4Am$, and the energy $E = \frac12mr^2\omega^2 + Ar^4 = 3Ar^4$:
+\[
+    E_n = 3A\Bigl(\frac{n^2\hbar^2}{4Am}\Bigr)^{2/3}\propto n^{4/3}.
+\]
+\end{example}
+
 % ============================================================
 \section{The Double-Slit Experiment}
 \label{sec:double-slit}
@@ -211,6 +231,19 @@ the last term being the interference. Taking $\Psi_{A,B} = Ce^{ikL_{A,B}}$ with 
     |\Psi_{AB}|^2 = 4|C|^2\cos^2\Bigl(\frac{k\,yd}{2L}\Bigr),
 \]
 with peaks at $y_n = n\lambda L/d$. An extra relative phase $\phi_B-\phi_A$ shifts the pattern. Finite slit width supplies an envelope.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=4.5cm,xlabel={$y$},ylabel={$P(y)$},axis lines=left,ytick=\empty,xtick=\empty,domain=-3:3,samples=300,ymin=0,legend style={draw=none,at={(0.98,0.98)},anchor=north east,font=\small}]
+\addplot[thick,blue!70!black]{4*cos(deg(4*x))^2*exp(-x^2/2)};
+\addlegendentry{$P_{AB}$}
+\addplot[thick,dashed,red!70!black]{2*exp(-x^2/2)};
+\addlegendentry{$P_A+P_B$}
+\end{axis}
+\end{tikzpicture}
+\caption{Two-slit pattern. With both slits open the amplitudes add, giving fringes under the single-slit envelope; with which-path information the probabilities add and the fringes disappear.}
+\end{figure}
 
 \begin{fact}[Which-path information destroys interference]
 If we determine which path the electron took, there is no interference and $P_{AB} = P_A + P_B$. To see the electron with light, the photon must resolve the slits, $\lambda_{\text{ph}}<d$, so it kicks the electron by $\Delta p_y\sim h/\lambda_{\text{ph}}$, which shifts its landing point by $\Delta y\sim\lambda_eL/\lambda_{\text{ph}}>\lambda_eL/d$: more than the fringe spacing, washing out the pattern. If the photon hits with probability $\pi$, the distribution is $\pi(P_A+P_B) + (1-\pi)P_{AB}$.

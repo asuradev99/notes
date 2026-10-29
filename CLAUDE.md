@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A collection of LaTeX physics notes organized by subject. Each subject lives in its own directory and compiles to a single PDF via `main.tex`.
 
-Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`, `waves/`, `solid-state/`, `circuits/`
+Subject directories: `thermo-stat-mech/`, `class-mech/`, `electro/`, `methods/`, `waves/`, `solid-state/`, `circuits/`, `quantum/`
 
 ## Build Commands
 
@@ -26,6 +26,7 @@ Each directory has a `.latexmkrc` that sets `$jobname` for a descriptive PDF nam
 - `waves/` → `waves-and-optics.pdf`
 - `solid-state/` → `solid-state-physics.pdf`
 - `circuits/` → `circuits.pdf`
+- `quantum/` → `quantum-mechanics.pdf`
 
 ## Document Structure
 
@@ -50,6 +51,7 @@ Per-subject additions (content-driven, intentionally differ):
 - `circuits`: loads `tikz`/`circuitikz` for circuit schematics.
 - `methods`: needs no extra packages beyond the shared preamble.
 - `solid-state`: loads `tikz`/`pgfplots` for lattice diagrams and band structures.
+- `quantum`: loads `tikz`/`pgfplots` for potentials, wavefunctions and spectra.
 - `thermo-stat-mech` additionally defines `\dbar` (inexact differential).
 
 ## Chapter File Organization
@@ -62,6 +64,7 @@ Content is split across files differently per subject:
 - **`circuits/`**: `main.tex` inputs `ch1.tex` (batteries and DC networks) and `ch2.tex` (electronics); split out of `electro/` so the EM notes stay field-theoretic
 - **`class-mech/`**: `main.tex` contains the first two chapters inline, then inputs `ch4.tex` through `ch13.tex`
 - **`methods/`**: `main.tex` contains the first chapter (Preliminaries) inline, then inputs `ch2.tex` (integration and series), `ch3.tex` (vector analysis), `ch4.tex` (linear algebra), `ch5.tex` (partial derivatives, differentials, delta function), `ch6.tex` (group theory)
+- **`quantum/`**: `main.tex` inputs `ch1.tex` through `ch12.tex`, condensed from 8.04 (chapters 1--5: experimental basis, Schr\"odinger equation, 1D potentials, oscillator, 3D/hydrogen) and 8.05 (chapters 6--12: formalism, dynamics, two-state systems, entanglement, angular momentum addition, fine/hyperfine structure, density matrices)
 - **`solid-state/`**: `main.tex` inputs `ch1.tex`, `ch2.tex`, `symmetry.tex` (group theory and symmetries), `ch3.tex`, `semiclassical.tex` (semiclassical dynamics, Landau levels, quantum oscillations), `qhe.tex` (integer quantum Hall effect), `ch4.tex`, `ch5.tex`
 
 ## Theorem Numbering
