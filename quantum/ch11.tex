@@ -1,0 +1,108 @@
+\chapter{Fine and Hyperfine Structure of Hydrogen}
+\label{ch:fine}
+
+% ============================================================
+\section{Spin in the Hydrogen Atom}
+% ============================================================
+
+So far the electron in hydrogen was described by $|n,\ell,m\rangle$, eigenstates of $\{\hat{H}_{\text{Coul}},\hat{\vect{L}}^2,\hat{L}_z\}$. Including the spins of the electron and proton, the Hilbert space is $\mathcal{H} = \mathcal{H}_{\mathbb{R}^3}\otimes\mathcal{H}^{(e)}_{1/2}\otimes\mathcal{H}^{(p)}_{1/2}$, with CSCO $\{\hat{H}_{\text{Coul}},\hat{\vect{L}}^2,\hat{L}_z,\hat{\vect{S}}_e^2,\hat{S}_{ez},\hat{\vect{S}}_p^2,\hat{S}_{pz}\}$. The Coulomb interaction is spin-independent, so this tensor product would be trivial. But there are small additional effects:
+\[
+    \hat{H} = \hat{H}_{\text{Coul}} + \underbrace{\alpha\,\hat{\vect{S}}_e\cdot\hat{\vect{L}}}_{\text{spin--orbit}} + \underbrace{\beta\,\hat{\vect{S}}_e\cdot\hat{\vect{S}}_p}_{\text{hyperfine}} .
+\]
+Now $[\hat{H},\hat{L}_z] = -i\alpha\hbar\epsilon_{ij3}\hat{S}_{ei}\hat{L}_j\neq0$, and likewise $\hat{S}_{ez}$ and $\hat{S}_{pz}$ no longer commute with $\hat{H}$. The total $\hat{\vect{J}} = \hat{\vect{L}} + \hat{\vect{S}}_e + \hat{\vect{S}}_p$ does: $[\hat{H},\hat{J}_z] = [\hat{H},\hat{\vect{J}}^2] = 0$.
+
+The set $\{\hat{H},\hat{\vect{L}}^2,\hat{\vect{S}}_e^2,\hat{\vect{S}}_p^2,\hat{\vect{J}}^2,\hat{J}_z\}$ is not yet complete: $\ell\otimes\frac12\otimes\frac12 = (\ell+1)\oplus\ell\oplus\ell\oplus(\ell-1)$ contains two $j = \ell$ multiplets. One more operator is needed to separate them. Partial sums such as $\hat{\vect{J}}_{ep}^2 = (\hat{\vect{S}}_e+\hat{\vect{S}}_p)^2$ would do mathematically, but none commutes with $\hat{H}$. Only the combination $\hat{J}_{\alpha\beta}^2 = \frac\alpha2\hat{\vect{J}}_{eL}^2 + \frac\beta2\hat{\vect{J}}_{ep}^2$, which equals $\Delta\hat{H}$ plus Casimirs, does, completing the CSCO.
+
+% ============================================================
+\section{First-Order Perturbation Theory}
+% ============================================================
+
+\begin{theorem}[Feynman--Hellmann]
+If $\hat{H}(\lambda)|\Psi(\lambda)\rangle = E(\lambda)|\Psi(\lambda)\rangle$ with $|\Psi(\lambda)\rangle$ normalized, then
+\[
+    \frac{dE}{d\lambda} = \Bigl\langle\Psi(\lambda)\Bigl|\frac{d\hat{H}}{d\lambda}\Bigr|\Psi(\lambda)\Bigr\rangle .
+\]
+\end{theorem}
+\begin{proof}
+Differentiate $E = \langle\Psi|\hat{H}|\Psi\rangle$; the terms from differentiating the states give $E\,\frac{d}{d\lambda}\langle\Psi|\Psi\rangle = 0$.
+\end{proof}
+
+\begin{formula}[First-order energy shift]
+For $\hat{H}(\lambda) = \hat{H}_0 + \lambda\hat{H}_1$ with $\lambda\ll1$, the shift of the eigenvalue of an $\hat{H}_0$ eigenstate $|\Psi_0\rangle$ is
+\[
+    \Delta E = \langle\Psi_0|\Delta\hat{H}|\Psi_0\rangle + O(\lambda^2),
+\]
+the expectation value of the perturbation in the unperturbed state. ($|\Psi_0\rangle$ is not an eigenstate of $\hat{H}$; this simplest form of perturbation theory says nothing about the new states.)
+\end{formula}
+
+% ============================================================
+\section{Spin--Orbit Coupling}
+% ============================================================
+
+In the electron's rest frame the proton is a moving charge, producing a field $\vect{B}\approx-\frac1c\lvect{v}\times\vect{E}$. With the radial field $\vect{E} = \frac{1}{4\pi\varepsilon_0}\frac{e}{r^2}\rhat$ this is $\vect{B} = \frac{1}{4\pi\varepsilon_0}\frac{e}{m_ecr^3}\vect{L}$, which couples to the electron's moment. The electron's frame is not inertial, and the relativistic correction (Thomas precession) effectively replaces $g_e\approx2$ by $g_e-1\approx1$:
+
+\begin{formula}[Spin--orbit Hamiltonian]
+\[
+    \Delta\hat{H}_{SL} = \frac{e^2}{8\pi\varepsilon_0m_e^2c^2}\frac{1}{r^3}\,\hat{\vect{S}}_e\cdot\hat{\vect{L}} .
+\]
+\end{formula}
+
+The radial expectation value is $\langle n,\ell,m|r^{-3}|n,\ell,m\rangle = [n^3a^3\ell(\ell+1)(\ell+\frac12)]^{-1}$ for $\ell\neq0$. (For $\ell = 0$ this naive calculation fails, since the electron sits on the proton; there the dominant correction is the Darwin term.) $\hat{L}_z$ and $\hat{S}_{ez}$ do not commute with $\Delta\hat{H}_{SL}$, but with $\hat{\vect{J}} = \hat{\vect{L}} + \hat{\vect{S}}_e$,
+\[
+    \hat{\vect{L}}\cdot\hat{\vect{S}}_e = \frac12\bigl(\hat{\vect{J}}^2 - \hat{\vect{L}}^2 - \hat{\vect{S}}_e^2\bigr),
+\]
+which is diagonal in the coupled basis $|n,\ell,s,j,m_j\rangle$:
+\[
+    \hat{\vect{L}}\cdot\hat{\vect{S}}_e|n,\ell,s,j,m_j\rangle = \frac{\hbar^2}{2}\Bigl[j(j+1) - \ell(\ell+1) - \frac34\Bigr]|n,\ell,s,j,m_j\rangle .
+\]
+
+\begin{example}[The $\ell = 1$ level]
+$1\otimes\frac12 = \frac32\oplus\frac12$: six states. In the coupled basis,
+\[
+    |\tfrac32,\tfrac32\rangle = |1,1\rangle|{\uparrow}\rangle,
+    \qquad
+    |\tfrac32,\tfrac12\rangle = \sqrt{\tfrac23}|1,0\rangle|{\uparrow}\rangle + \sqrt{\tfrac13}|1,1\rangle|{\downarrow}\rangle,
+    \qquad
+    |\tfrac12,\tfrac12\rangle = -\sqrt{\tfrac13}|1,0\rangle|{\uparrow}\rangle + \sqrt{\tfrac23}|1,1\rangle|{\downarrow}\rangle,
+\]
+and similarly for negative $m_j$. Then $\langle\hat{\vect{L}}\cdot\hat{\vect{S}}_e\rangle = \frac{\hbar^2}{2}(+1)$ for the four $j = \frac32$ states and $\frac{\hbar^2}{2}(-2)$ for the two $j = \frac12$ states: the six-fold level splits into a quartet and a doublet.
+\end{example}
+
+% ============================================================
+\section{Hyperfine Structure}
+% ============================================================
+
+The proton is also spin-$\frac12$, with magnetic moment $\bm{\mu}_p = +\frac{g_pe}{2m_p}\hat{\vect{S}}_p$, $g_p\approx5.6$ (far from 2, because of the proton's internal structure), compared with $\bm{\mu}_e = -\frac{g_ee}{2m_e}\hat{\vect{S}}_e$. Its dipole field, including the contact term at the origin (from the vector potential $\vect{A} = -\bm{\mu}_p\times\grad\frac1r$ and $\laplacian\frac1r = -4\pi\delta^3(\lvect{r})$), is
+\[
+    \vect{B}_p(\lvect{r}) = \frac{1}{c^2r^3}\bigl[3(\bm{\mu}_p\cdot\rhat)\rhat - \bm{\mu}_p\bigr] + \frac{8\pi}{3c^2}\bm{\mu}_p\,\delta^3(\lvect{r}),
+\]
+giving
+\[
+    \Delta\hat{H}_{HF} = -\bm{\mu}_e\cdot\vect{B}_p = Q\,\hat{S}_{ei}\hat{S}_{pj}X_{ij}(\lvect{r}),
+    \qquad
+    X_{ij} = \frac{3\hat{r}_i\hat{r}_j - \delta_{ij}}{r^3} + \frac{8\pi}{3}\delta_{ij}\delta^3(\lvect{r}),
+    \qquad
+    Q = \frac{g_pe^2}{2m_em_pc^2}.
+\]
+In the ground state the first term in $X_{ij}$ integrates to zero over angles, leaving the contact term with $|\psi_{100}(0)|^2 = 1/\pi a^3$:
+\[
+    \langle\Delta\hat{H}_{HF}\rangle_{100} = \frac{8Q}{3a^3}\hat{\vect{S}}_e\cdot\hat{\vect{S}}_p = \underbrace{\frac43g_p\frac{m_e}{m_p}m_ec^2\alpha^4}_{\Delta E_{HF}\,\approx\,5.9\times10^{-6}\,\text{eV}}\frac{\hat{\vect{S}}_e\cdot\hat{\vect{S}}_p}{\hbar^2},
+\]
+still an operator on the spins. With $\hat{\vect{S}}_e\cdot\hat{\vect{S}}_p = \frac12(\hat{\vect{J}}^2 - \frac32\hbar^2)$ and $\frac12\otimes\frac12 = 1\oplus0$, the triplet shifts up by $\frac14\Delta E_{HF}$ and the singlet down by $\frac34\Delta E_{HF}$.
+
+\begin{fact}[The hydrogen 21\,cm line]
+The hyperfine transition from the triplet to the singlet emits a photon of $\lambda = hc/\Delta E_{HF} = 21.1$\,cm ($\nu = 1420$\,MHz). The lifetime is $\sim10^7$\,years, but the cosmic microwave background ($k_BT\approx2\times10^{-4}$\,eV $\gg\Delta E_{HF}$) keeps re-exciting hydrogen throughout the galaxy. The 21\,cm radiation passes through dust, was first seen in 1951, and revealed the spiral structure of the Milky Way. Its Doppler shifts in other galaxies show their outer parts rotating too fast for the visible matter: evidence for dark matter.
+\end{fact}
+
+\begin{example}[Muonic hydrogen and the proton radius]
+A muon ($m_\mu\approx207m_e$) bound to a proton has a Bohr radius $\sim200$ times smaller, $\sim10^{-12}$\,m, so it is far more sensitive to the proton's finite charge radius $r_{\text{ch}} = |\langle\hat{r}^2\rangle_{\text{proton}}|^{1/2}$. Measured from hyperfine and Lamb-shift transitions, electronic hydrogen gave $r_{\text{ch}} = 0.8775(51)$\,fm and muonic hydrogen $0.84087(39)$\,fm, a $7\sigma$ discrepancy (the ``proton radius puzzle''). Later electronic measurements have moved toward the muonic value.
+\end{example}
+
+\begin{fact}[Hierarchy of hydrogen energy scales]
+\begin{align*}
+    &\text{Bohr energy} && \sim\alpha^2m_ec^2,\\
+    &\text{fine structure (spin--orbit, relativistic)} && \sim\alpha^4m_ec^2 &&(\text{relative }10^{-4}),\\
+    &\text{Lamb shift (QED)} && \sim\alpha^5m_ec^2 &&(\text{relative }10^{-6}),\\
+    &\text{hyperfine splitting} && \sim\alpha^4m_ec^2\,m_e/m_p &&(\text{relative }10^{-7}).
+\end{align*}
+\end{fact}

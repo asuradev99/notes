@@ -1,0 +1,209 @@
+\chapter{Quantum Dynamics}
+\label{ch:dynamics}
+
+In non-relativistic quantum mechanics, time is a parameter labelling how states evolve, not an operator like $\hat{x}$. Measured quantities are expectation values $\langle\Psi|\hat{A}|\Psi\rangle$, and their time dependence can be placed in the state (the \emph{Schr\"odinger picture}) or in the operators (the \emph{Heisenberg picture}).
+
+% ============================================================
+\section{Schr\"odinger Dynamics}
+% ============================================================
+
+In the Schr\"odinger picture the state traces out a path in $\mathcal{H}$, $|\Psi,t\rangle = \sum_nc_n(t)|e_n\rangle$, while operators are fixed. Preserving the norm requires unitary evolution:
+\[
+    |\Psi,t\rangle = U(t,t_0)|\Psi,t_0\rangle,
+    \qquad
+    U^\dagger U = I .
+\]
+$U$ is unique and independent of the state, $U(t_0,t_0) = I$, it composes, $U(t_2,t_0) = U(t_2,t_1)U(t_1,t_0)$, and Hermitian conjugation reverses time, $U(t_0,t_1) = U^\dagger(t_1,t_0)$.
+
+Differentiating, $\partial_t|\Psi,t\rangle = (\partial_tU)U^\dagger|\Psi,t\rangle$. Define
+\[
+    \hat{H}(t) \defeq i\hbar\,\pdv{U(t,t_0)}{t}U^\dagger(t,t_0).
+\]
+Differentiating $UU^\dagger = I$ shows $\hat{H} = \hat{H}^\dagger$, and the composition law shows it is independent of $t_0$. This gives the Schr\"odinger equation.
+
+\begin{formula}[Schr\"odinger equation]
+\[
+    i\hbar\pdv{t}|\Psi,t\rangle = \hat{H}(t)|\Psi,t\rangle,
+    \qquad
+    i\hbar\pdv{t}U(t,t_0) = \hat{H}(t)U(t,t_0).
+\]
+\end{formula}
+
+Any Hermitian operator can generate time evolution; the question is which physical system it describes. Classically $\frac{d}{dt}Q(x,p) = \{Q,H\}_{\text{PB}}$; quantum mechanically, for $\partial_t\hat{Q} = 0$,
+\[
+    \frac{d}{dt}\langle\hat{Q}\rangle = \frac{i}{\hbar}\langle[\hat{H},\hat{Q}]\rangle .
+\]
+So a classical system is quantized by promoting $x,p\to\hat{x},\hat{p}$ in $H(x,p)$. No classical correspondence is needed, though: for present-day quantum hardware the question is rather which Hamiltonians can be implemented reliably.
+
+\begin{formula}[Solving for $U$]
+\begin{enumerate}
+    \item \textbf{Time-independent $\hat{H}$} (e.g.\ the oscillator): $U(t,t_0) = \exp\bigl[-\frac{i}{\hbar}\hat{H}(t-t_0)\bigr]$.
+    \item \textbf{$[\hat{H}(t_1),\hat{H}(t_2)] = 0$} (e.g.\ spin in $\vect{B} = B(t)\khat$): $U(t,t_0) = \exp\bigl[-\frac{i}{\hbar}\int_{t_0}^tdt'\,\hat{H}(t')\bigr]$.
+    \item \textbf{General case} (e.g.\ $\vect{B} = B_x(t)\ihat + B_z(t)\khat$): the time-ordered exponential
+    \[
+        U(t,t_0) = \mathcal{T}\exp\Bigl[-\frac{i}{\hbar}\int_{t_0}^tdt'\,\hat{H}(t')\Bigr]
+        = 1 + \Bigl(-\frac{i}{\hbar}\Bigr)\int_{t_0}^tdt_1\hat{H}(t_1) + \Bigl(-\frac{i}{\hbar}\Bigr)^2\int_{t_0}^tdt_1\hat{H}(t_1)\int_{t_0}^{t_1}dt_2\hat{H}(t_2) + \cdots,
+    \]
+    ordered $t\ge t_1\ge t_2\ge\cdots\ge t_0$ (with no $1/n!$, since the ordering removes the permutations).
+\end{enumerate}
+\end{formula}
+Case 2 works because $G = -\frac{i}{\hbar}\int\hat{H}$ commutes with $G' = -\frac{i}{\hbar}\hat{H}(t)$, so $\partial_te^G = G'e^G$ term by term. In case 3 this fails.
+
+% ============================================================
+\section{Heisenberg Dynamics}
+% ============================================================
+
+Since $\langle\Psi,t|\hat{A}_S|\Psi,t\rangle = \langle\Psi,t_0|U^\dagger\hat{A}_SU|\Psi,t_0\rangle$, we can instead evolve the operators.
+
+\begin{definition}[Heisenberg operator]
+\[
+    \hat{A}_H(t) = U^\dagger(t,t_0)\,\hat{A}_S\,U(t,t_0).
+\]
+\end{definition}
+
+Products and commutators carry over, $(\hat{A}\hat{B})_H = \hat{A}_H\hat{B}_H$ and $[\hat{A}_H,\hat{B}_H] = U^\dagger[\hat{A}_S,\hat{B}_S]U$; in particular $[\hat{x}_H(t),\hat{p}_H(t)] = i\hbar$. If $\hat{A}_S$ commutes with $\hat{H}_S$, then $\hat{A}_H = \hat{A}_S$; and $\hat{H}_H = \hat{H}_S$ when $\hat{H}$ commutes with itself at different times.
+
+\begin{formula}[Heisenberg equation of motion]
+\[
+    i\hbar\frac{d}{dt}\hat{A}_H(t) = [\hat{A}_H(t),\hat{H}_H(t)] + i\hbar\Bigl(\pdv{\hat{A}_S}{t}\Bigr)_H .
+\]
+\end{formula}
+
+\begin{theorem}[Ehrenfest's theorem]
+For $\hat{H} = \hat{p}^2/2m + V(\hat{x})$,
+\[
+    \frac{d}{dt}\langle\hat{x}\rangle = \frac{\langle\hat{p}\rangle}{m},
+    \qquad
+    \frac{d}{dt}\langle\hat{p}\rangle = -\Bigl\langle\pdv{V}{x}\Bigr\rangle,
+    \qquad
+    m\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\Bigl\langle\pdv{V}{x}\Bigr\rangle,
+\]
+the quantum analogue of Newton's second law. (Use $[\hat{x},\hat{p}^2] = 2i\hbar\hat{p}$ and $[\hat{p},V(\hat{x})] = -i\hbar V'(\hat{x})$.)
+\end{theorem}
+
+\begin{example}[Oscillator in the Heisenberg picture]
+For the oscillator (Chapter~\ref{ch:sho}, with $|n\rangle$ the number states), $\frac{d}{dt}\hat{x}_H = \hat{p}_H/m$ and $\frac{d}{dt}\hat{p}_H = -m\omega^2\hat{x}_H$, so
+\[
+    \hat{x}_H(t) = \hat{x}\cos\omega t + \frac{\hat{p}}{m\omega}\sin\omega t,
+    \qquad
+    \hat{p}_H(t) = \hat{p}\cos\omega t - m\omega\hat{x}\sin\omega t,
+\]
+and $[\hat{H},\hat{a}] = -\hbar\omega\hat{a}$ gives $\hat{a}_H(t) = e^{-i\omega t}\hat{a}$, $\hat{a}^\dagger_H(t) = e^{i\omega t}\hat{a}^\dagger$. These look like the classical equations of motion, but in an energy eigenstate $\langle n|\hat{x}_H(t)|n\rangle = 0$: energy eigenstates do not behave classically.
+\end{example}
+
+% ============================================================
+\section{Coherent States}
+% ============================================================
+
+Coherent states behave classically in many ways, and describe lasers and much of quantum optics.
+
+\begin{definition}[Translation operator]
+\[
+    \hat{T}_{x_0} = \exp\Bigl(-\frac{i}{\hbar}x_0\hat{p}\Bigr).
+\]
+Translations form a commutative group, $\hat{T}_{x_0}\hat{T}_{y_0} = \hat{T}_{x_0+y_0}$, and $\hat{T}_{-x_0} = \hat{T}_{x_0}^\dagger = \hat{T}_{x_0}^{-1}$ is unitary. They translate the position operator, $\hat{T}_{x_0}^\dagger\hat{x}\hat{T}_{x_0} = \hat{x} + x_0$, and the states, $\hat{T}_{x_0}|x_1\rangle = |x_1+x_0\rangle$, so $\langle x|\hat{T}_{x_0}|\psi\rangle = \psi(x-x_0)$.
+\end{definition}
+
+\begin{definition}[Coherent state]
+The coherent (Glauber) state is the translated oscillator ground state,
+\[
+    |\tilde{x}_0\rangle = \hat{T}_{x_0}|0\rangle,
+    \qquad
+    \langle x|\tilde{x}_0\rangle = \psi_0(x-x_0).
+\]
+\end{definition}
+
+It is normalized, with $\langle\hat{x}\rangle = x_0$, $\langle\hat{p}\rangle = 0$ and $\langle\hat{H}\rangle = \frac12\hbar\omega + \frac12m\omega^2x_0^2$: the zero-point energy plus the classical potential energy at $x_0$. In the Heisenberg picture,
+\[
+    \langle\hat{x}_H(t)\rangle = x_0\cos\omega t,
+    \qquad
+    \langle\hat{p}_H(t)\rangle = -m\omega x_0\sin\omega t,
+\]
+classical harmonic motion, and $\Delta x^2 = \hbar/2m\omega$, $\Delta p^2 = m\hbar\omega/2$ at all times. So $\Delta x\,\Delta p = \hbar/2$ for all $t$: the Gaussian oscillates in the potential without changing shape.
+
+With $d = \sqrt{\hbar/m\omega}$, write $\hat{T}_{x_0} = \exp\bigl(\frac{x_0}{\sqrt2d}(\hat{a}^\dagger-\hat{a})\bigr)$ and use the Baker--Campbell--Hausdorff formula $e^{A+B} = e^Ae^Be^{-\frac12[A,B]}$ (valid when $[A,B]$ is a number):
+\[
+    |\tilde{x}_0\rangle = e^{-x_0^2/4d^2}\sum_{n=0}^\infty\frac{1}{\sqrt{n!}}\Bigl(\frac{x_0}{\sqrt2d}\Bigr)^n|n\rangle .
+\]
+The occupation probabilities are Poisson, $P_n = \lambda^ne^{-\lambda}/n!$ with $\lambda = x_0^2/2d^2$, so $\langle N\rangle = \lambda$, $\Delta N = \sqrt\lambda$, and $\Delta H = \hbar\omega\sqrt\lambda$. For $x_0\gg d$, $\hbar\omega\ll\Delta H\ll\langle H\rangle$: the energy is sharp relative to its size, and the state becomes classical (Bohr's correspondence principle).
+
+\begin{formula}[General coherent states]
+With the displacement operator $D(\alpha) = \exp(\alpha\hat{a}^\dagger - \alpha^*\hat{a})$, $\alpha\in\mathbb{C}$,
+\[
+    |\tilde\alpha\rangle = D(\alpha)|0\rangle = e^{-|\alpha|^2/2}e^{\alpha\hat{a}^\dagger}|0\rangle,
+    \qquad
+    \hat{a}|\tilde\alpha\rangle = \alpha|\tilde\alpha\rangle,
+\]
+\[
+    \langle\hat{x}\rangle = \sqrt2d\,\mathrm{Re}\,\alpha,
+    \qquad
+    \langle\hat{p}\rangle = \frac{\sqrt2\hbar}{d}\mathrm{Im}\,\alpha,
+    \qquad
+    |\tilde\alpha,t\rangle = e^{-i\omega t/2}|\widetilde{\alpha e^{-i\omega t}}\rangle .
+\]
+Coherent states are eigenstates of $\hat{a}$, which can serve as their definition; complex eigenvalues are allowed since $\hat{a}$ is not Hermitian.
+\end{formula}
+
+\begin{fact}[Coherent states are an overcomplete basis]
+They are not orthogonal, $|\langle\tilde\alpha|\tilde\beta\rangle|^2 = e^{-|\alpha-\beta|^2}$, but they are complete,
+\[
+    I = \int\frac{d^2\alpha}{\pi}|\tilde\alpha\rangle\langle\tilde\alpha|,
+\]
+with $d^2\alpha/\pi = d\langle x\rangle\,d\langle p\rangle/2\pi\hbar$ the phase-space volume. In phase space a coherent state is a blob of fixed size $\Delta x\Delta p\sim\hbar$ circling the origin at frequency $\omega$, with number--phase uncertainty $\Delta N\sim|\alpha|$, $\Delta\varphi\sim1/|\alpha|$. A number state instead fills an annulus, $|\langle\tilde\alpha|n\rangle|^2 = e^{-|\alpha|^2}|\alpha|^{2n}/n!$.
+\end{fact}
+
+% ============================================================
+\section{Squeezed States}
+% ============================================================
+
+Another class of minimum-uncertainty states, \emph{squeezed states}, matters in quantum optics and is critical to Advanced LIGO. Suddenly change an oscillator from $(m_1,\omega_1)$ to $(m_2,\omega_2)$. The old ground state $|0\rangle_{(1)}$ is no longer stationary but still has $\Delta x\Delta p = \hbar/2$, with $\Delta x = e^{-\gamma}\sqrt{\hbar/2m_2\omega_2}$ and $e^\gamma = \sqrt{m_1\omega_1/m_2\omega_2}$. The two sets of ladder operators are related by a Bogoliubov transformation,
+\[
+    \begin{pmatrix}\hat{a}_1\\\hat{a}_1^\dagger\end{pmatrix} = \begin{pmatrix}\cosh\gamma&\sinh\gamma\\\sinh\gamma&\cosh\gamma\end{pmatrix}\begin{pmatrix}\hat{a}_2\\\hat{a}_2^\dagger\end{pmatrix}.
+\]
+Solving $\hat{a}_1|0\rangle_{(1)} = 0$ with the ansatz $|0\rangle_{(1)} = N\exp(-\frac12f\hat{a}_2^{\dagger2})|0\rangle_{(2)}$ gives $f = \tanh\gamma$ and $N = 1/\sqrt{\cosh\gamma}$.
+
+\begin{formula}[Squeezed states]
+For any oscillator,
+\[
+    |0\rangle_\gamma = \frac{1}{\sqrt{\cosh\gamma}}\exp\Bigl(-\frac12\tanh\gamma\,\hat{a}^{\dagger2}\Bigr)|0\rangle = S(\gamma)|0\rangle,
+    \qquad
+    S(\gamma) = \exp\Bigl(-\frac12(\gamma^*\hat{a}^2 - \gamma\hat{a}^{\dagger2})\Bigr),
+\]
+with $S(\gamma)$ unitary. More generally $|\tilde\alpha\rangle_\gamma = D(\alpha)S(\gamma)|0\rangle$, an eigenstate of $\hat{a}\cosh\gamma + \hat{a}^\dagger\sinh\gamma$ with eigenvalue $\alpha$. All are minimum-uncertainty states.
+\end{formula}
+
+As $\gamma\to\infty$, $|0\rangle_\infty\propto e^{-\hat{a}^{\dagger2}/2}|0\rangle$ is annihilated by $\hat{x}\propto\hat{a}+\hat{a}^\dagger$: it is the position eigenstate $|x = 0\rangle$, and translations give the others. As $\gamma\to-\infty$ one obtains momentum eigenstates. In phase space, squeezing deforms the round blob of the coherent state into an ellipse.
+
+% ============================================================
+\section{The Quantized Electromagnetic Field}
+% ============================================================
+
+A single mode of the field in a cubic cavity of volume $V = L^3$ has
+\[
+    E_x(z,t) = \sqrt{\frac{2\omega^2}{\varepsilon_0V}}\,q(t)\sin kz,
+    \qquad
+    B_y(z,t) = \frac{\mu_0\varepsilon_0}{k}\sqrt{\frac{2\omega^2}{\varepsilon_0V}}\,p(t)\cos kz,
+    \qquad
+    k = \frac\omega c = \frac{n\pi}{L},
+\]
+where Maxwell's equations require $p = \dot{q}$. The energy is
+\[
+    H = \frac12\int dV\Bigl[\varepsilon_0E^2 + \frac{1}{\mu_0}B^2\Bigr] = \frac12\bigl(p^2 + \omega^2q^2\bigr),
+\]
+an oscillator with $m = 1$. Quantize by promoting $q,p$ to operators with $[\hat{q},\hat{p}] = i\hbar$, and define $\hat{a} = (\omega\hat{q} + i\hat{p})/\sqrt{2\hbar\omega}$, which removes a photon.
+
+\begin{formula}[Field operators]
+\[
+    \hat{E}_x(z,t) = \mathcal{E}_0\bigl(\hat{a}e^{-i\omega t} + \hat{a}^\dagger e^{i\omega t}\bigr)\sin kz,
+    \qquad
+    \mathcal{E}_0 = \sqrt{\frac{\hbar\omega}{\varepsilon_0V}} .
+\]
+\end{formula}
+
+In a number state, $\langle n|\hat{E}_x|n\rangle = 0$ and $\Delta E_x = \mathcal{E}_0|\sin kz|\sqrt{2n+1}$: nothing like a classical field. In a coherent state,
+\[
+    \langle\tilde\alpha|\hat{E}_x|\tilde\alpha\rangle = 2\mathcal{E}_0|\alpha|\sin kz\cos(\omega t-\theta),
+    \qquad
+    \Delta E_x = \mathcal{E}_0|\sin kz|,
+\]
+with $\alpha = |\alpha|e^{i\theta}$, an oscillating field with fixed, $\alpha$-independent noise. For $|\alpha|\gg1$ it behaves like the classical field, and the single-mode field of a laser is idealized as a coherent state. Squeezed states trade noise between quadratures: amplitude-squeezed or phase-squeezed light. A general mode with wavevector $\lvect{k}$ and polarization $\lvect{e}_s$ is $\hat{\vect{E}}_{\lvect{k},s}\propto\lvect{e}_s\bigl(\hat{a}_{\lvect{k}}e^{i(\lvect{k}\cdot\lvect{r}-\omega t)} + \hat{a}_{\lvect{k}}^\dagger e^{-i(\lvect{k}\cdot\lvect{r}-\omega t)}\bigr)$, with $\omega = c|\lvect{k}|$.

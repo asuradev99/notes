@@ -1,0 +1,142 @@
+\chapter{Two-State Systems}
+\label{ch:twostate}
+
+A system with a two-dimensional Hilbert space is the simplest quantum system. Examples are electron spin, the two orientations of a molecule, two neutrino flavours, photon polarization, and any pair of atomic levels when the rest of the spectrum is too high in energy to matter. Two-state systems are the basis of quantum information (qubits), and whatever their physical origin they share one mathematical description: any Hamiltonian on a 2D Hilbert space is a $2\times2$ Hermitian matrix.
+
+% ============================================================
+\section{Spin-\texorpdfstring{$\tfrac12$}{1/2}}
+% ============================================================
+
+The spin states and operators were introduced in Section~\ref{sec:spin-half-intro}: the basis $|\hat{z},\pm\rangle\leftrightarrow(1,0)^T,(0,1)^T$, with $\hat{S}_i = \frac\hbar2\sigma_i$.
+
+\begin{fact}[Pauli matrix identities]
+\[
+    [\sigma_i,\sigma_j] = 2i\epsilon_{ijk}\sigma_k,
+    \qquad
+    \{\sigma_i,\sigma_j\} = 2\delta_{ij}I,
+    \qquad
+    \sigma_i^2 = I,
+    \qquad
+    \operatorname{tr}\sigma_i = 0,
+\]
+\[
+    (\bm{\sigma}\cdot\lvect{a})(\bm{\sigma}\cdot\lvect{b}) = (\lvect{a}\cdot\lvect{b})I + i(\lvect{a}\times\lvect{b})\cdot\bm{\sigma}.
+\]
+\end{fact}
+
+For a unit vector $\uvect{n} = (\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$, the spin along $\uvect{n}$ is
+\[
+    \hat{S}_{\uvect{n}} = \uvect{n}\cdot\hat{\lvect{S}} = \frac\hbar2\begin{pmatrix}\cos\theta & \sin\theta\,e^{-i\varphi}\\ \sin\theta\,e^{i\varphi} & -\cos\theta\end{pmatrix},
+\]
+with $\operatorname{tr}\hat{S}_{\uvect{n}} = 0$ and $\hat{S}_{\uvect{n}}^2 = \frac{\hbar^2}{4}I$, so its eigenvalues are $\pm\hbar/2$.
+
+\begin{formula}[Spin states along $\uvect{n}$]
+\[
+    |\uvect{n},+\rangle = \cos\tfrac\theta2|\hat{z},+\rangle + e^{i\varphi}\sin\tfrac\theta2|\hat{z},-\rangle,
+    \qquad
+    |\uvect{n},-\rangle = -e^{-i\varphi}\sin\tfrac\theta2|\hat{z},+\rangle + \cos\tfrac\theta2|\hat{z},-\rangle .
+\]
+\end{formula}
+Note the half-angles: rotating the spin direction by $\theta$ changes the state by $\theta/2$. Every spin-$\frac12$ state is $|\uvect{n},+\rangle$ for some direction $\uvect{n}$ (the point on the Bloch sphere).
+
+\begin{formula}[General two-state Hamiltonian]
+\[
+    \hat{H} = g_0I + \lvect{g}\cdot\bm{\sigma} = \begin{pmatrix}g_0+g_3 & g_1-ig_2\\ g_1+ig_2 & g_0-g_3\end{pmatrix},
+    \qquad
+    g_0,g_i\in\mathbb{R}.
+\]
+With $\lvect{g} = g\uvect{n}$, the eigenstates are $|\uvect{n},\pm\rangle$ with energies $g_0\pm g$, a splitting of $2g$.
+\end{formula}
+
+% ============================================================
+\section{Spin Precession}
+% ============================================================
+
+The electron's spin produces a magnetic moment $\bm{\mu} = \gamma\hat{\lvect{S}}$, with $\gamma = -ge/2m_e$ and $g\approx2$ (the Land\'e $g$-factor). Classically a current loop has $\bm{\mu} = \frac{q}{2m}\vect{L}$, so spin has twice the classical ratio. The moment couples to a field through
+\[
+    \hat{H}_S = -\bm{\mu}\cdot\vect{B} = -\gamma\,\vect{B}\cdot\hat{\lvect{S}} .
+\]
+In an inhomogeneous field this produces the Stern--Gerlach force. For a constant field $\vect{B} = B\khat$,
+\[
+    U(t,0) = \exp\Bigl(\frac{i\gamma Bt}{\hbar}\hat{S}_z\Bigr),
+\]
+a rotation by $\phi = -\gamma Bt$ about $\hat{z}$. Starting from $|\uvect{n}_0,+\rangle$,
+\[
+    |\Psi,t\rangle = e^{i\gamma Bt/2}\Bigl(\cos\tfrac{\theta_0}{2}|\hat{z},+\rangle + \sin\tfrac{\theta_0}{2}e^{i(\varphi_0-\gamma Bt)}|\hat{z},-\rangle\Bigr) = e^{i\gamma Bt/2}|\uvect{n}(t),+\rangle,
+\]
+a spin whose direction precesses about $\vect{B}$. Classically too, the torque $\bm{\tau} = \bm{\mu}\times\vect{B}$ changes the angular momentum, $d\lvect{S}/dt = -\gamma\vect{B}\times\lvect{S} = \bm{\omega}_L\times\lvect{S}$, precessing at the \emph{Larmor frequency} $\bm{\omega}_L = -\gamma\vect{B}$.
+
+% ============================================================
+\section{The Ammonia Molecule and the Maser}
+% ============================================================
+
+NH$_3$ is a flattened tetrahedron, with the nitrogen either above or below the plane of hydrogens: states $|{\uparrow}\rangle$ and $|{\downarrow}\rangle$. Its electronic, vibrational and rotational excitations cost much more energy and can be ignored. Classically the two configurations are degenerate minima of a double-well potential, separated by a barrier. With an infinite barrier, $\hat{H}_0 = E_0I$ in this basis. Tunnelling makes $\langle{\downarrow}|\hat{H}|{\uparrow}\rangle\neq0$; taking it real,
+\[
+    \hat{H}_0 = \begin{pmatrix}E_0 & -\Delta\\ -\Delta & E_0\end{pmatrix} = E_0I - \Delta\sigma_1 .
+\]
+The eigenstates are the symmetric ground state $|G\rangle = \frac{1}{\sqrt2}(|{\uparrow}\rangle + |{\downarrow}\rangle)$ with $E_0-\Delta$, and the antisymmetric excited state $|E\rangle = \frac{1}{\sqrt2}(|{\uparrow}\rangle - |{\downarrow}\rangle)$ with $E_0+\Delta$. A molecule starting in $|{\uparrow}\rangle$ oscillates between the wells:
+\[
+    P_\uparrow(t) = \cos^2\frac{\Delta t}{\hbar},
+    \qquad
+    P_\downarrow(t) = \sin^2\frac{\Delta t}{\hbar}.
+\]
+Experimentally $2\Delta = 0.9782\times10^{-4}$\,eV, a microwave photon of $\nu = 23.87$\,GHz ($\lambda = 1.26$\,cm).
+
+\paragraph{In an electric field.} Ammonia has an electric dipole moment $\bm{\mu}_E = -\mu\hat{z}$, adding $\delta\hat{H} = -\bm{\mu}_E\cdot\vect{\mathcal{E}} = \mu\mathcal{E}\sigma_3$:
+\[
+    \hat{H} = E_0I - \Delta\sigma_1 + \mu\mathcal{E}\sigma_3,
+    \qquad
+    E_{E,G} = E_0\pm\sqrt{\Delta^2 + \mu^2\mathcal{E}^2}.
+\]
+For weak fields $E_{E,G}\approx E_0\pm(\Delta + \mu^2\mathcal{E}^2/2\Delta)$, and for strong fields $E_{E,G}\approx E_0\pm\mu\mathcal{E}$. In a field gradient, $|G\rangle$ molecules move toward strong field and $|E\rangle$ molecules toward weak field, splitting a beam into its two energy eigenstates.
+
+\paragraph{The maser.} Pass the $|E\rangle$ beam through a cavity with an oscillating field $\mathcal{E}(t) = 2\mathcal{E}_0\cos\omega_0t$ tuned to resonance, $\omega_0 = 2\Delta/\hbar$. In the $\{|E\rangle,|G\rangle\}$ basis, $\hat{H} = \begin{pmatrix}\Delta & \mu\mathcal{E}\\ \mu\mathcal{E} & -\Delta\end{pmatrix}$ (dropping $E_0$). Writing $C_E = e^{-i\Delta t/\hbar}B_E$ and $C_G = e^{i\Delta t/\hbar}B_G$,
+\[
+    \frac{d}{dt}\begin{pmatrix}B_E\\B_G\end{pmatrix} = -\frac{i\mu\mathcal{E}_0}{\hbar}\begin{pmatrix}0 & 1+e^{2i\omega_0t}\\ 1+e^{-2i\omega_0t} & 0\end{pmatrix}\begin{pmatrix}B_E\\B_G\end{pmatrix}.
+\]
+For $\mu\mathcal{E}_0\ll\Delta$, $B_{E,G}$ vary slowly, so the rapidly oscillating terms average to zero (the \emph{rotating-wave approximation}). Then
+\[
+    B_E(t) = \cos\frac{\mu\mathcal{E}_0t}{\hbar},
+    \qquad
+    B_G(t) = -i\sin\frac{\mu\mathcal{E}_0t}{\hbar},
+    \qquad
+    P_E(t) = \cos^2\frac{\mu\mathcal{E}_0t}{\hbar}.
+\]
+If each molecule spends $T = \frac{\hbar}{\mu\mathcal{E}_0}\frac\pi2(2n+1)$ in the cavity, it leaves in $|G\rangle$, having deposited a photon of energy $2\Delta$ into the field. This builds up a coherent single-mode field: microwave amplification by stimulated emission of radiation (Townes, Gordon and Zeiger, 1953). Ammonia masers were the first atomic clocks, and also occur naturally in astrophysics.
+
+% ============================================================
+\section{Nuclear Magnetic Resonance}
+% ============================================================
+
+Consider a spin-$\frac12$ particle in a static field along $\hat{z}$ plus a circularly polarized RF field:
+\[
+    \vect{B}(t) = B_0\khat + B_1(\cos\omega t\,\ihat - \sin\omega t\,\jhat),
+    \qquad
+    \hat{H}(t) = -\gamma\bigl(B_0\hat{S}_z + B_1\cos\omega t\,\hat{S}_x - B_1\sin\omega t\,\hat{S}_y\bigr).
+\]
+Now $[\hat{H}(t_1),\hat{H}(t_2)]\neq0$. Rather than a time-ordered exponential, transform to a rotating frame. One shows (by differentiating $f(\theta) = e^{i\theta\sigma_3}\sigma_1e^{-i\theta\sigma_3}$ twice, giving $f'' = -4f$) that
+\[
+    \cos\omega t\,\hat{S}_x - \sin\omega t\,\hat{S}_y = e^{i\omega t\hat{S}_z/\hbar}\hat{S}_xe^{-i\omega t\hat{S}_z/\hbar}.
+\]
+In terms of the rotating-frame state $|\Psi_R,t\rangle = e^{-i\omega t\hat{S}_z/\hbar}|\Psi,t\rangle$, the Hamiltonian becomes time-independent:
+\[
+    i\hbar\frac{d}{dt}|\Psi_R,t\rangle = \bigl[(\omega-\gamma B_0)\hat{S}_z - \gamma B_1\hat{S}_x\bigr]|\Psi_R,t\rangle = -\gamma\vect{B}_{\text{eff}}\cdot\hat{\lvect{S}}\,|\Psi_R,t\rangle,
+    \qquad
+    \vect{B}_{\text{eff}} = \Bigl(B_0-\frac\omega\gamma\Bigr)\khat + B_1\ihat .
+\]
+
+\begin{formula}[NMR solution]
+\[
+    |\Psi,t\rangle = e^{i\omega t\hat{S}_z/\hbar}\,e^{i\gamma\vect{B}_{\text{eff}}\cdot\hat{\lvect{S}}t/\hbar}\,|\Psi,0\rangle .
+\]
+\end{formula}
+
+Take $B_0\gg B_1$ and $|\Psi,0\rangle = |\hat{z},+\rangle$. Off resonance, $\vect{B}_{\text{eff}}\approx\hat{z}$ and nothing happens. On resonance, $\omega = \omega_0 = \gamma B_0$, $\vect{B}_{\text{eff}} = B_1\ihat$, and the spin precesses about the rotating $x$-axis; after $\Delta t = \pi/2\gamma B_1$ (a ``$90^\circ$ pulse'') it points along the rotating $y$-axis. Switching off $B_1$ leaves it precessing rapidly in the $xy$-plane. In the lab frame the spin spirals slowly from the $z$-axis down into the $xy$-plane while precessing rapidly about $z$.
+
+\begin{fact}[Magnetic resonance imaging]
+The body is mostly water, so mostly protons, which are spin-$\frac12$. A large static field $B_0\approx2$\,T aligns the spins along $\hat{z}$. A $90^\circ$ pulse with $B_1\sim0.01$\,T sets them rotating in the $xy$-plane at the Larmor frequency, and the rotating dipoles emit a radio-frequency signal picked up by receiver coils. The signal locates the protons, and its decay time, set by interactions between spins, distinguishes tissues. NMR is also used to study materials and to manipulate qubits.
+\end{fact}
+
+\begin{fact}[Spin and spin statistics]
+Spin is an intrinsic angular momentum: it obeys the same algebra as $\hat{\lvect{L}}$, and total angular momentum (orbital plus spin) is conserved, but it can be half-integer and has no spatial wavefunction. Particles with half-integer spin are \emph{fermions}; those with integer spin are \emph{bosons}. Including spin, a hydrogen eigenstate is $|n,\ell,m,s\rangle$, with degeneracy $2n^2$.
+\end{fact}

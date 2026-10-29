@@ -1,0 +1,169 @@
+\chapter{Angular Momentum and Its Addition}
+\label{ch:angmom}
+
+Chapter~\ref{ch:3d} found the orbital angular momentum eigenstates by solving differential equations. Here the same results, and more, follow from the commutation relations alone.
+
+% ============================================================
+\section{The Algebra of Angular Momentum}
+% ============================================================
+
+A triplet of operators $(\hat{V}_1,\hat{V}_2,\hat{V}_3)$ transforms as a vector under rotations if $[\hat{L}_i,\hat{V}_j] = i\hbar\epsilon_{ijk}\hat{V}_k$; $\hat{\lvect{L}}$ itself is such a vector. Consider now any Hermitian $\hat{J}_1,\hat{J}_2,\hat{J}_3$ with
+\[
+    [\hat{J}_i,\hat{J}_j] = i\hbar\epsilon_{ijk}\hat{J}_k .
+\]
+Define $\hat{\vect{J}}^2 = \sum_i\hat{J}_i^2$ and $\hat{J}_\pm = \hat{J}_x\pm i\hat{J}_y$, with $\hat{J}_+^\dagger = \hat{J}_-$. Then
+\[
+    [\hat{J}_i,\hat{\vect{J}}^2] = 0,
+    \qquad
+    [\hat{J}_+,\hat{J}_-] = 2\hbar\hat{J}_z,
+    \qquad
+    [\hat{J}_z,\hat{J}_\pm] = \pm\hbar\hat{J}_\pm,
+    \qquad
+    \hat{\vect{J}}^2 = \hat{J}_\mp\hat{J}_\pm + \hat{J}_z^2\pm\hbar\hat{J}_z .
+\]
+$\hat{\vect{J}}^2$ and $\hat{J}_z$ commute, so they share an orthonormal eigenbasis
+\[
+    \hat{\vect{J}}^2|j,m\rangle = \hbar^2j(j+1)|j,m\rangle,
+    \qquad
+    \hat{J}_z|j,m\rangle = \hbar m|j,m\rangle,
+\]
+with $j\ge0$ (since $\langle\hat{\vect{J}}^2\rangle = \sum_i\|\hat{J}_i|j,m\rangle\|^2\ge0$; the branch $j\le-1$ is redundant).
+
+\begin{theorem}[Angular momentum multiplets]
+\[
+    \hat{J}_\pm|j,m\rangle = \hbar\sqrt{j(j+1) - m(m\pm1)}\;|j,m\pm1\rangle,
+\]
+the allowed values are $j\in\{0,\tfrac12,1,\tfrac32,\ldots\}$ and $m\in\{-j,-j+1,\ldots,j\}$, and each $j$ forms a $(2j+1)$-dimensional multiplet.
+\end{theorem}
+\begin{proof}
+$\hat{J}_\pm$ commutes with $\hat{\vect{J}}^2$ and shifts $m$ by $\pm1$, so $\hat{J}_\pm|j,m\rangle = C_\pm|j,m\pm1\rangle$. Its norm is $|C_\pm|^2 = \langle j,m|\hat{J}_\mp\hat{J}_\pm|j,m\rangle = \hbar^2[j(j+1)-m(m\pm1)]\ge0$, which requires $-j\le m\le j$. For the ladder to stop, $C_+$ must vanish at the top, which happens only at $m = j$, and $C_-$ at the bottom, only at $m = -j$. Reaching $-j$ from $j$ in integer steps needs $2j\in\mathbb{Z}$.
+\end{proof}
+
+Orbital angular momentum allows only integer $j$ (single-valuedness of $e^{im\phi}$), but the algebra also allows half-integers: spin-$\frac12$ is the multiplet $\{|\tfrac12,\pm\tfrac12\rangle\} = \{|\hat{z},\pm\rangle\}$. The full space of angular momentum states is $\mathcal{H} = \bigoplus_j\mathcal{H}_j$.
+
+% ============================================================
+\section{Two Spin-\texorpdfstring{$\tfrac12$}{1/2} Particles}
+% ============================================================
+
+For two spins (e.g.\ the proton and electron in hydrogen), define the total spin $\hat{J}_i = \hat{J}_i^{(1)}\otimes I + I\otimes\hat{J}_i^{(2)}$. It satisfies the same algebra, and
+\[
+    \hat{\vect{J}}^2 = \hat{\vect{J}}^{(1)2} + \hat{\vect{J}}^{(2)2} + \hat{J}_+^{(1)}\hat{J}_-^{(2)} + \hat{J}_-^{(1)}\hat{J}_+^{(2)} + 2\hat{J}_z^{(1)}\hat{J}_z^{(2)} .
+\]
+$|{\uparrow\uparrow}\rangle$ has $m = 1$ and $\hat{\vect{J}}^2|{\uparrow\uparrow}\rangle = 2\hbar^2|{\uparrow\uparrow}\rangle$, so it is $|1,1\rangle$. Lowering with $\hat{J}_- = \hat{J}_-^{(1)} + \hat{J}_-^{(2)}$ generates the rest of the $j = 1$ multiplet, and the remaining orthogonal $m = 0$ state has $j = 0$.
+
+\begin{formula}[Triplet and singlet]
+\begin{align*}
+    |1,1\rangle &= |{\uparrow\uparrow}\rangle, & |1,0\rangle &= \tfrac{1}{\sqrt2}\bigl(|{\uparrow\downarrow}\rangle + |{\downarrow\uparrow}\rangle\bigr), & |1,-1\rangle &= |{\downarrow\downarrow}\rangle,\\
+    |0,0\rangle &= \tfrac{1}{\sqrt2}\bigl(|{\uparrow\downarrow}\rangle - |{\downarrow\uparrow}\rangle\bigr).
+\end{align*}
+The triplet is symmetric under exchanging the particles and the singlet antisymmetric:
+\[
+    \tfrac12\otimes\tfrac12 = 1\oplus0 .
+\]
+\end{formula}
+
+Mathematically, this decomposes a reducible representation of the rotation group into irreducible ones: in the coupled basis the $4\times4$ matrices of the total spin operators are block diagonal, with a $3\times3$ block ($j = 1$) and a $1\times1$ block ($j = 0$).
+
+% ============================================================
+\section{General Addition of Angular Momenta}
+% ============================================================
+
+For $\hat{\vect{J}} = \hat{\vect{J}}_1 + \hat{\vect{J}}_2$ there are two natural bases of $\mathcal{H}^{(j_1)}\otimes\mathcal{H}^{(j_2)}$, from two different CSCOs:
+\begin{itemize}
+    \item the \emph{uncoupled basis} $|j_1,j_2;m_1,m_2\rangle = |j_1,m_1\rangle\otimes|j_2,m_2\rangle$, eigenstates of $\{\hat{\vect{J}}_1^2,\hat{\vect{J}}_2^2,\hat{J}_{1z},\hat{J}_{2z}\}$;
+    \item the \emph{coupled basis} $|j_1,j_2;j,m\rangle$, eigenstates of $\{\hat{\vect{J}}_1^2,\hat{\vect{J}}_2^2,\hat{\vect{J}}^2,\hat{J}_z\}$. (Note $[\hat{\vect{J}}^2,\hat{J}_{1z}]\neq0$.)
+\end{itemize}
+
+\begin{definition}[Clebsch--Gordan coefficients]
+Inserting a complete set,
+\[
+    |j_1,j_2;j,m\rangle = \sum_{m_1,m_2}|j_1,j_2;m_1,m_2\rangle\,\underbrace{\langle j_1,j_2;m_1,m_2|j_1,j_2;j,m\rangle}_{C(j_1,j_2,j;m_1,m_2,m)}.
+\]
+\end{definition}
+
+\begin{theorem}[Addition of angular momenta]
+$C(j_1,j_2,j;m_1,m_2,m) = 0$ unless $m = m_1+m_2$ and $|j_1-j_2|\le j\le j_1+j_2$, and each allowed $j$ appears exactly once:
+\[
+    j_1\otimes j_2 = (j_1+j_2)\oplus(j_1+j_2-1)\oplus\cdots\oplus|j_1-j_2| .
+\]
+\end{theorem}
+\begin{proof}[Sketch]
+The selection rule $m = m_1+m_2$ follows from $\langle\cdot|\hat{J}_z - \hat{J}_{1z} - \hat{J}_{2z}|\cdot\rangle = 0$. Counting states by $m$: there is one state with $m = j_1+j_2$, two with $m = j_1+j_2-1$, and so on, up to $2j_2+1$ states (for $j_1\ge j_2$). Each new state at the next lower $m$ starts a new multiplet. The dimensions agree: $\sum_{j=j_1-j_2}^{j_1+j_2}(2j+1) = (2j_1+1)(2j_2+1)$.
+\end{proof}
+
+\begin{fact}[Building the coupled basis]
+Start from $|j_1+j_2,j_1+j_2\rangle = |j_1,j_1\rangle\otimes|j_2,j_2\rangle$ (so that coefficient is 1), lower repeatedly with $\hat{J}_-$, and at each new $m$ orthogonalize to start the next multiplet. The Clebsch--Gordan coefficients form a real unitary matrix, satisfy the recursion
+\[
+    \sqrt{j(j+1)-m(m\pm1)}\,C(\ldots;m_1,m_2,m\pm1) = \sqrt{j_1(j_1+1)-m_1(m_1\mp1)}\,C(\ldots;m_1\mp1,m_2,m) + (1\leftrightarrow2),
+\]
+and the orthogonality relations $\sum_{j,m}C(\ldots;m_1,m_2,m)C(\ldots;m_1',m_2',m) = \delta_{m_1m_1'}\delta_{m_2m_2'}$ and $\sum_{m_1,m_2}C(j;\ldots)C(j';\ldots) = \delta_{jj'}\delta_{mm'}$. They have no closed form, but are tabulated for small $j_1,j_2$.
+\end{fact}
+
+More than two angular momenta are added recursively, $j_1\otimes j_2\otimes j_3 = (j_1\otimes j_2)\otimes j_3$, in any order.
+
+\begin{example}[Three spin-$\tfrac12$ particles]
+$\frac12\otimes\frac12\otimes\frac12 = (1\oplus0)\otimes\frac12 = \frac32\oplus\frac12\oplus\frac12$, i.e.\ $8 = 4+2+2$ states. Starting from $|\tfrac32,\tfrac32\rangle = |{\uparrow\uparrow\uparrow}\rangle$ and lowering,
+\[
+    |\tfrac32,\tfrac12\rangle = \tfrac{1}{\sqrt3}\bigl(|{\downarrow\uparrow\uparrow}\rangle + |{\uparrow\downarrow\uparrow}\rangle + |{\uparrow\uparrow\downarrow}\rangle\bigr).
+\]
+Two further $m = \frac12$ states must be orthogonal to this, with a free choice in the first:
+\[
+    |\tfrac12,\tfrac12\rangle_A = \tfrac{1}{\sqrt2}\bigl(|{\uparrow\downarrow\uparrow}\rangle - |{\uparrow\uparrow\downarrow}\rangle\bigr),
+    \qquad
+    |\tfrac12,\tfrac12\rangle_B = \tfrac{1}{\sqrt6}\bigl(2|{\downarrow\uparrow\uparrow}\rangle - |{\uparrow\downarrow\uparrow}\rangle - |{\uparrow\uparrow\downarrow}\rangle\bigr).
+\]
+The remaining states follow by lowering or by symmetry.
+\end{example}
+
+% ============================================================
+\section{Hydrogen by Factorization}
+% ============================================================
+
+\begin{theorem}[Supersymmetric partner Hamiltonians]
+For a smooth real ``superpotential'' $W(x)$, let $\hat{A} = \frac{d}{dx} + W(x)$ and $\hat{A}^\dagger = -\frac{d}{dx} + W(x)$, and form
+\[
+    H^{(1)} = \hat{A}^\dagger\hat{A} = -\frac{d^2}{dx^2} + W^2 - W',
+    \qquad
+    H^{(2)} = \hat{A}\hat{A}^\dagger = -\frac{d^2}{dx^2} + W^2 + W'.
+\]
+Then:
+\begin{enumerate}
+    \item If $H^{(1)}|\phi_n\rangle = E_n|\phi_n\rangle$, then $H^{(2)}(\hat{A}|\phi_n\rangle) = E_n\hat{A}|\phi_n\rangle$, and vice versa with $\hat{A}^\dagger$: the nonzero eigenvalues of $H^{(1)}$ and $H^{(2)}$ coincide.
+    \item Both are non-negative, $\langle H^{(1)}\rangle = \|\hat{A}\psi\|^2\ge0$.
+    \item At most one of them has a zero-energy state: $\phi_0 = Ce^{-\int^xW}$ (annihilated by $\hat{A}$) or $\chi_0 = Ce^{+\int^xW}$ (annihilated by $\hat{A}^\dagger$), and at most one of these is normalizable.
+\end{enumerate}
+Conversely, any $H$ with ground state $\psi_0$ can be factorized with $W = -\frac{d}{dx}\ln\psi_0$.
+\end{theorem}
+
+\begin{example}[A partner of the infinite well]
+For $W = \tan x$ on $(-\frac\pi2,\frac\pi2)$, $H^{(1)} = -\frac{d^2}{dx^2} - 1$, an infinite square well shifted down, with $\phi_{n-1}\propto\cos nx$ or $\sin nx$ and $E_{n-1} = n^2-1$. Its partner $H^{(2)} = -\frac{d^2}{dx^2} + 2\sec^2x - 1$ is not obviously solvable, but has exactly the same spectrum without the zero state, with eigenfunctions $\hat{A}\phi_{n-1}$.
+\end{example}
+
+For hydrogen, with $r = bx$ and $b = \hbar^2/2\mu Ze^2$, the radial equation becomes $H_\ell^{\text{Coul}}u = -\kappa^2u$ with
+\[
+    H_\ell^{\text{Coul}} = -\frac{d^2}{dx^2} + \frac{\ell(\ell+1)}{x^2} - \frac1x,
+    \qquad
+    \kappa^2 = -\frac{\hbar^2E}{2\mu e^4Z^2}.
+\]
+Choose $W_\ell = -\frac{\ell+1}{x} + \frac{1}{2(\ell+1)}$. A short calculation gives
+\[
+    H_\ell^{(1)} = H_\ell^{\text{Coul}} + \varepsilon_\ell,
+    \qquad
+    H_\ell^{(2)} = H_{\ell+1}^{(1)} + (\varepsilon_\ell - \varepsilon_{\ell+1}),
+    \qquad
+    \varepsilon_\ell = \frac{1}{4(\ell+1)^2}.
+\]
+The ground state of $H_\ell^{(1)}$ is annihilated by $\hat{A}_\ell$: $\varphi_{0,\ell} = x^{\ell+1}e^{-x/2(\ell+1)}$, with zero energy, so $H_\ell^{\text{Coul}}$ has eigenvalue $-\varepsilon_\ell$. The second relation says $H_\ell^{(2)}$ and $H_{\ell+1}^{(1)}$ share eigenstates, so the zero-energy state of $H_{\ell+1}^{(1)}$ becomes an excited state of $H_\ell^{(1)}$ via $\hat{A}_\ell^\dagger$. Iterating,
+\[
+    \varphi_{\nu,\ell} = \hat{A}_\ell^\dagger\hat{A}_{\ell+1}^\dagger\cdots\hat{A}_{\ell+\nu-1}^\dagger\,\varphi_{0,\ell+\nu},
+    \qquad
+    E_{\nu,\ell} = -\frac{\mu e^4Z^2}{2\hbar^2(\ell+\nu+1)^2} = -\frac{\mu e^4Z^2}{2\hbar^2n^2}.
+\]
+This recovers the Bohr levels with $n = \ell+\nu+1$, where $\nu$ is the number of radial nodes, and builds the radial functions explicitly with differential operators: for example
+\[
+    \varphi_{2,0} = \hat{A}_0^\dagger\hat{A}_1^\dagger\varphi_{0,2}\propto\bigl(54x - 18x^2 + x^3\bigr)e^{-x/6}.
+\]
+
+\begin{fact}[Hidden symmetry of the Coulomb problem]
+The degeneracy in $m$ comes from rotational symmetry, $[\hat{H},\hat{L}_z] = 0$. The extra degeneracy between different $\ell$ at the same $n$ points to a further symmetry. Classically, the $1/r$ potential conserves the Runge--Lenz vector $\vect{M} = \frac{1}{2m}(\lvect{p}\times\vect{L} - \vect{L}\times\lvect{p}) - \lvect{r}/r$, and its quantum analogue commutes with $\hat{H}^{\text{Coul}}$.
+\end{fact}

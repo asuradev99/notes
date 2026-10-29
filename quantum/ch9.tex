@@ -1,0 +1,100 @@
+\chapter{Multiparticle States and Entanglement}
+\label{ch:entanglement}
+
+% ============================================================
+\section{Tensor Product Spaces}
+% ============================================================
+
+Consider two \emph{distinguishable} particles, particle 1 described by a vector in $V$ and particle 2 by a vector in $W$. (Indistinguishable particles are treated in 8.06.) The simple states of the combined system are $|v\rangle\otimes|w\rangle$, elements of the tensor product $V\otimes W$: an ordered pair, not a multiplication. $V\otimes W$ becomes a vector space by requiring
+\[
+    \alpha(|v\rangle\otimes|w\rangle) = (\alpha|v\rangle)\otimes|w\rangle = |v\rangle\otimes(\alpha|w\rangle),
+\]
+\[
+    |v_1\rangle\otimes|w\rangle + |v_2\rangle\otimes|w\rangle = (|v_1\rangle+|v_2\rangle)\otimes|w\rangle,
+\]
+and likewise in the second slot. If $\{|e_i\rangle\}$ and $\{|f_j\rangle\}$ are bases of $V$ and $W$, then $\{|e_i\rangle\otimes|f_j\rangle\}$ is a basis of $V\otimes W$, and $\dim(V\otimes W) = \dim V\cdot\dim W$.
+
+Operators act factor by factor, $(T\otimes S)(|v\rangle\otimes|w\rangle) = T|v\rangle\otimes S|w\rangle$; an operator on $V$ alone is upgraded to $T\otimes I$. The inner product is $(\langle v|\otimes\langle w|)(|x\rangle\otimes|y\rangle) = \langle v|x\rangle\langle w|y\rangle$, extended by linearity.
+
+\begin{definition}[Product and entangled states]
+A general state is $|q\rangle = \sum_{ij}q_{ij}|e_i\rangle\otimes|f_j\rangle$. It is a \emph{product state} if it can be written $|v\rangle\otimes|w\rangle$, in which case $q_{ij} = v_iw_j$ is a rank-one matrix. Otherwise it is \emph{entangled}: its information is not of the form (information about $V$)(information about $W$). For $\dim V = \dim W = 2$, a state is a product state if and only if $\det q = 0$.
+\end{definition}
+
+% ============================================================
+\section{The Bell Basis}
+% ============================================================
+
+For two spin-$\frac12$ particles, $V = V_1\otimes V_2$ has the product basis $\{|{\uparrow\uparrow}\rangle,|{\uparrow\downarrow}\rangle,|{\downarrow\uparrow}\rangle,|{\downarrow\downarrow}\rangle\}$, writing $|{\uparrow\downarrow}\rangle = |{\uparrow}\rangle_1\otimes|{\downarrow}\rangle_2$. An equally good orthonormal basis consists of entangled states.
+
+\begin{definition}[Bell basis]
+\[
+    |\Phi^\pm\rangle = \frac{1}{\sqrt2}\bigl(|{\uparrow\uparrow}\rangle\pm|{\downarrow\downarrow}\rangle\bigr),
+    \qquad
+    |\Psi^\pm\rangle = \frac{1}{\sqrt2}\bigl(|{\uparrow\downarrow}\rangle\pm|{\downarrow\uparrow}\rangle\bigr).
+\]
+Equivalently $|\Phi_0\rangle = |\Phi^+\rangle$ and $|\Phi_k\rangle = (I\otimes\sigma_k)|\Phi_0\rangle$, so $|\Phi_1\rangle = |\Psi^+\rangle$, $|\Phi_2\rangle = i|\Psi^-\rangle$, $|\Phi_3\rangle = |\Phi^-\rangle$.
+\end{definition}
+
+The Bell states are orthonormal and entangled (e.g.\ $|\Psi^-\rangle$ has $q = \frac{1}{\sqrt2}\begin{pmatrix}0&1\\-1&0\end{pmatrix}$, $\det q\neq0$). The Hadamard gate $U_H = \frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$ and the CNOT gate $|a,b\rangle\mapsto|a,a+b\bmod2\rangle$ map between the Bell and product bases.
+
+An operator acting nontrivially on only one factor, like $\sigma_3^{(1)}\otimes I$, is \emph{local}: an observer holding only that part can measure it. One acting on both, like $\sigma_1^{(1)}\otimes\sigma_3^{(2)}$, is \emph{collective}, and creating entanglement requires a collective operation. On the Bell states, $\sigma_1^{(1)}\otimes I$ swaps $\Phi\leftrightarrow\Psi$ and $\sigma_3^{(1)}\otimes I$ swaps $+\leftrightarrow-$, while the Bell states are eigenstates of the collective $\sigma_1^{(1)}\sigma_1^{(2)}$ (measuring the sign label) and $\sigma_3^{(1)}\sigma_3^{(2)}$ (measuring $\Phi$ versus $\Psi$).
+
+% ============================================================
+\section{Quantum Teleportation}
+% ============================================================
+
+Alice holds a qubit $|\psi\rangle_C = \alpha|{\uparrow}\rangle_C + \beta|{\downarrow}\rangle_C$ and wants to send it to Bob. She cannot simply measure it: that returns only $\uparrow$ or $\downarrow$, and even many copies give $\alpha,\beta$ only approximately. Suppose instead Alice and Bob share an entangled pair $|\Phi_0\rangle_{AB}$, Alice holding $A$ and Bob $B$. Regrouping the three-particle state in the Bell basis of $AC$,
+\[
+    |\Phi_0\rangle_{AB}\otimes|\psi\rangle_C = \frac12\sum_{\mu=0}^3|\Phi_\mu\rangle_{AC}\otimes\sigma_\mu^{(B)}|\psi\rangle_B,
+    \qquad
+    \sigma_0 = I,
+\]
+where $|\psi\rangle_B = \alpha|{\uparrow}\rangle_B + \beta|{\downarrow}\rangle_B$ has the same coefficients Alice started with.
+
+\begin{fact}[Teleportation protocol]
+Alice measures $\sigma_1^{(A)}\sigma_1^{(C)}$ and $\sigma_3^{(A)}\sigma_3^{(C)}$ on her two particles, learning $\mu$ and leaving Bob with $\sigma_\mu|\psi\rangle_B$. She sends him the two classical bits $\mu$, and he applies $\sigma_\mu$, using $\sigma_\mu^2 = I$ to recover $|\psi\rangle_B$. The state has not been copied (Alice no longer has it), and neither party learns $\alpha$ or $\beta$.
+\end{fact}
+
+\begin{theorem}[No-cloning theorem]
+There is no unitary $U$ such that $U|\phi\rangle_A\otimes|\chi\rangle_B = e^{i\theta}|\phi\rangle_A\otimes|\phi\rangle_B$ for every state $|\phi\rangle$ and a fixed blank state $|\chi\rangle$.
+\end{theorem}
+\begin{proof}
+For two states $|\phi\rangle$ and $|\psi\rangle$, unitarity preserves the inner product of $|\phi\rangle|\chi\rangle$ and $|\psi\rangle|\chi\rangle$, so
+\[
+    \langle\phi|\psi\rangle = \langle\phi|\psi\rangle\langle\chi|\chi\rangle = e^{i\beta}\langle\phi|\psi\rangle^2,
+\]
+which forces $\langle\phi|\psi\rangle = 0$ or $|\langle\phi|\psi\rangle| = 1$. So $|\psi\rangle$ cannot be arbitrary.
+\end{proof}
+
+% ============================================================
+\section{Bell's Inequality}
+% ============================================================
+
+Entanglement troubled many, including Einstein, because it appears to violate \emph{local realism}: that measurements reveal pre-existing aspects of reality, and are independent of causally disconnected actions. In the singlet state $|\Psi^-\rangle$, measuring the spin of particle 1 fixes that of particle 2, however far apart they are. A \emph{hidden variable} theory proposes that quantum mechanics is incomplete: each particle carries extra variables $\lambda$ that deterministically fix every measurement outcome, so the correlations are just correlations between hidden variables, with no non-locality.
+
+The singlet has total spin zero, $(\bm{\sigma}^{(1)} + \bm{\sigma}^{(2)})|\Psi^-\rangle = 0$, so $\bm{\sigma}^{(1)}|\Psi^-\rangle = -\bm{\sigma}^{(2)}|\Psi^-\rangle$. For unit vectors with $\uvect{n}\cdot\uvect{m} = \cos\theta$, using $\sigma_i\sigma_j = \delta_{ij} + i\epsilon_{ijk}\sigma_k$,
+\[
+    \langle\Psi^-|(\uvect{n}\cdot\bm{\sigma}^{(1)})(\uvect{m}\cdot\bm{\sigma}^{(2)})|\Psi^-\rangle = -\cos\theta .
+\]
+With the projectors $E^{(i)}(\uvect{n},\pm) = \frac12(1\pm\uvect{n}\cdot\bm{\sigma}^{(i)})$, the probability that both spins are found ``up'' along $\uvect{n}$ and $\uvect{m}$ respectively is $\frac14(1-\cos\theta)$, so
+\[
+    P_{\text{same}} = \frac12(1-\cos\theta),
+    \qquad
+    P_{\text{diff}} = \frac12(1+\cos\theta).
+\]
+
+Now take three axes in a plane at $120^\circ$ to one another. Alice measures particle 1 along one axis and Bob measures particle 2 along another; since the spins are perfectly anticorrelated along any common axis, this effectively measures particle 1 along two axes. Quantum mechanics predicts, for each pair of axes, $P_{\text{same}}(i,j) = \frac12(1+\cos\frac{2\pi}{3}) = \frac14$, so
+\[
+    P_{\text{same}}(1,2) + P_{\text{same}}(1,3) + P_{\text{same}}(2,3) = \frac34 .
+\]
+In a hidden-variable theory each particle has definite values $(\pm,\pm,\pm)$ along all three axes, and at least two of the three must agree. Summing over all eight possibilities,
+\[
+    Q_{\text{same}}(1,2) + Q_{\text{same}}(1,3) + Q_{\text{same}}(2,3) = 1 + 2P(+++) + 2P(---)\ge1,
+\]
+whatever the (possibly correlated) distribution of hidden variables.
+
+\begin{theorem}[Bell (1964)]
+No local hidden-variable theory can reproduce all the predictions of quantum mechanics: the two give different, experimentally testable answers.
+\end{theorem}
+
+From 1982, Alain Aspect tested closely related inequalities with entangled photons: quantum mechanics was right and local hidden variables wrong (Nobel Prize, 2022).
