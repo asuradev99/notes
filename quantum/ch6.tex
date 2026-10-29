@@ -91,6 +91,27 @@ The eigenstates of $\hat{S}_x$ follow at once:
 \]
 Each basis can be expressed in terms of the other, consistent with the intensities seen in experiments 3 and 4.
 
+\begin{example}[Reproducing the Stern--Gerlach sequences]
+Experiment 3: after the first device the state is $|\hat{z},+\rangle = \frac{1}{\sqrt2}(|\hat{x},+\rangle + |\hat{x},-\rangle)$, so SG($\hat{x}$) gives each outcome with probability $|\langle\hat{x},\pm|\hat{z},+\rangle|^2 = \frac12$, i.e.\ $\frac14$ of the original beam each. Experiment 4: keeping $|\hat{x},+\rangle = \frac{1}{\sqrt2}(|\hat{z},+\rangle + |\hat{z},-\rangle)$ and measuring $S_z$ gives $\pm$ with probability $\frac12$ each, so $\frac18$ of the original beam: the $S_x$ measurement projected away all memory of the earlier $S_z = +\hbar/2$. More generally, a spin prepared along $\uvect{n}$ and measured along $\uvect{m}$ gives $+\hbar/2$ with probability $|\langle\uvect{m},+|\uvect{n},+\rangle|^2 = \cos^2(\theta_{nm}/2)$, where $\theta_{nm}$ is the angle between the axes.
+\end{example}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,box/.style={draw,thick,minimum width=1.4cm,minimum height=0.9cm,fill=gray!10}]
+  \node[box] (a) at (0,0) {SG$\hat{z}$};
+  \node[box] (b) at (3,0.6) {SG$\hat{x}$};
+  \node[box] (c) at (6,1.2) {SG$\hat{z}$};
+  \draw[->] (-1.6,0) -- (a);
+  \draw[->] (a.east) -- node[above,sloped]{\small $+$} (b.west);
+  \draw[->] (a.east) -- ++(0.6,-0.6) node[right]{\small $-$ (blocked)};
+  \draw[->] (b.east) -- node[above,sloped]{\small $+$} (c.west);
+  \draw[->] (b.east) -- ++(0.6,-0.6) node[right]{\small $-$ (blocked)};
+  \draw[->] (c.east) -- ++(1,0.4) node[right]{\small $+$: $\frac18$};
+  \draw[->] (c.east) -- ++(1,-0.4) node[right]{\small $-$: $\frac18$};
+\end{tikzpicture}
+\caption{Experiment 4. Measuring $S_x$ in between erases the result of the first $S_z$ measurement.}
+\end{figure}
+
 % ============================================================
 \section{Inner Products and Hilbert Space}
 % ============================================================
@@ -128,6 +149,16 @@ An \emph{orthonormal basis} has $\langle e_i,e_j\rangle = \delta_{ij}$, and then
 \begin{definition}[Hilbert space]
 A complex vector space with an inner product is a \emph{Hilbert space} $\mathcal{H}$. If it is infinite-dimensional we also require completeness: every Cauchy sequence converges to a vector in $\mathcal{H}$.
 \end{definition}
+
+\begin{example}[Gram--Schmidt on polynomials]
+On $[-1,1]$ with $\langle f,g\rangle = \int_{-1}^1f^*g\,dx$, orthonormalize $\{1,x,x^2\}$. First $e_1 = 1/\sqrt2$. Next $\langle e_1,x\rangle = 0$ by parity, so $e_2 = x/|x| = \sqrt{3/2}\,x$. For $x^2$, $\langle e_1,x^2\rangle = \frac{1}{\sqrt2}\cdot\frac23$ and $\langle e_2,x^2\rangle = 0$, so
+\[
+    \tilde{v}_3 = x^2 - \frac{1}{\sqrt2}\cdot\frac{\sqrt2}{3}\cdot1 = x^2 - \frac13,
+    \qquad
+    e_3 = \sqrt{\frac{45}{8}}\Bigl(x^2-\frac13\Bigr) = \sqrt{\frac52}\cdot\frac{3x^2-1}{2}.
+\]
+These are the normalized Legendre polynomials $\sqrt{(2\ell+1)/2}\,P_\ell(x)$: the same polynomials that arise from the angular part of the Laplacian.
+\end{example}
 
 % ============================================================
 \section{Dirac Notation}
@@ -184,6 +215,45 @@ Operators can be built from outer products, $T = \sum_k|a_k\rangle\langle b_k|$,
 the \emph{resolution of the identity}. A unitary relating two orthonormal bases, $|f_i\rangle = U|e_i\rangle$, is $U = \sum_i|f_i\rangle\langle e_i|$.
 \end{formula}
 
+\begin{example}[Matrices of $\hat{x}$ and $\hat{p}$ in the oscillator basis]
+In the basis $|n\rangle$ of oscillator eigenstates, $\hat{a}|n\rangle = \sqrt{n}|n-1\rangle$ gives $\langle m|\hat{a}|n\rangle = \sqrt{n}\,\delta_{m,n-1}$:
+\[
+    \hat{a}\leftrightarrow\begin{pmatrix}0&1&0&0&\cdots\\0&0&\sqrt2&0&\cdots\\0&0&0&\sqrt3&\cdots\\\vdots&&&&\ddots\end{pmatrix},
+    \qquad
+    \hat{a}^\dagger = \hat{a}^T,
+\]
+so $\hat{x} = \frac{x_0}{\sqrt2}(\hat{a}+\hat{a}^\dagger)$ is real, symmetric and tridiagonal with zero diagonal, and $\hat{H} = \hbar\omega\operatorname{diag}(\frac12,\frac32,\frac52,\ldots)$. In infinite dimensions $[\hat{a},\hat{a}^\dagger] = I$ is possible; for finite matrices it is not, since $\operatorname{tr}[A,B] = 0\neq\operatorname{tr}I$. This is why $[\hat{x},\hat{p}] = i\hbar$ needs an infinite-dimensional Hilbert space.
+\end{example}
+
+\begin{example}[Change of basis for spin]
+The unitary that takes the $\hat{z}$ basis to the $\hat{x}$ basis is $U = \sum_\pm|\hat{x},\pm\rangle\langle\hat{z},\pm| = \frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$ (the Hadamard matrix). In the $\hat{x}$ basis, $\hat{S}_z$ has matrix $U^\dagger\hat{S}_zU = \frac\hbar2\begin{pmatrix}0&1\\1&0\end{pmatrix}$: the roles of $\sigma_1$ and $\sigma_3$ swap.
+\end{example}
+
+\begin{formula}[Commutator identities]
+\[
+    [A,BC] = [A,B]C + B[A,C],
+    \qquad
+    [A,[B,C]] + [B,[C,A]] + [C,[A,B]] = 0,
+\]
+\[
+    [\hat{x},f(\hat{p})] = i\hbar f'(\hat{p}),
+    \qquad
+    [\hat{p},f(\hat{x})] = -i\hbar f'(\hat{x}),
+\]
+\[
+    e^ABe^{-A} = B + [A,B] + \frac{1}{2!}[A,[A,B]] + \cdots,
+    \qquad
+    e^{A+B} = e^Ae^Be^{-\frac12[A,B]}\ \text{ if }[A,B]\text{ commutes with }A,B.
+\]
+\end{formula}
+\begin{proof}[Proofs]
+The second line follows from the first by induction on powers, $[\hat{x},\hat{p}^n] = i\hbar n\hat{p}^{n-1}$, and then by Taylor series. For the third line, let $F(s) = e^{sA}Be^{-sA}$; then $F' = e^{sA}[A,B]e^{-sA}$, $F'' = e^{sA}[A,[A,B]]e^{-sA}$, and so on, and $F(1)$ is its Taylor series at $s = 0$. For the last, let $G(s) = e^{sA}e^{sB}$. Then $G' = (A + e^{sA}Be^{-sA})G = (A + B + s[A,B])G$, using the previous result truncated after one commutator. This integrates to $G(s) = e^{s(A+B) + \frac{s^2}{2}[A,B]}$, since all the operators in the exponent commute with their derivative; set $s = 1$.
+\end{proof}
+
+\begin{example}[Translation and boost]
+$e^{ia\hat{p}/\hbar}\hat{x}e^{-ia\hat{p}/\hbar} = \hat{x} + \frac{ia}{\hbar}[\hat{p},\hat{x}] = \hat{x} + a$: the series stops after one term. Similarly $e^{-iq\hat{x}/\hbar}\hat{p}e^{iq\hat{x}/\hbar} = \hat{p} + q$, so multiplying a wavefunction by $e^{iqx/\hbar}$ boosts its momentum by $q$ without moving it.
+\end{example}
+
 % ============================================================
 \section{Eigenvalues and the Spectral Theorem}
 % ============================================================
@@ -212,6 +282,24 @@ On a complex vector space, the eigenvectors of $T$ form an orthonormal basis if 
 \]
 \end{theorem}
 
+\begin{example}[Spectral decomposition of $\uvect{n}\cdot\bm{\sigma}$]
+$\uvect{n}\cdot\bm{\sigma}$ is Hermitian with eigenvalues $\pm1$ (since its square is $I$ and its trace is 0). Its spectral decomposition is
+\[
+    \uvect{n}\cdot\bm{\sigma} = P_+ - P_-,
+    \qquad
+    P_\pm = |\uvect{n},\pm\rangle\langle\uvect{n},\pm| = \frac12\bigl(I\pm\uvect{n}\cdot\bm{\sigma}\bigr),
+\]
+and $P_++P_- = I$, $P_+P_- = 0$. Functions of the operator follow at once: $f(\uvect{n}\cdot\bm{\sigma}) = f(1)P_+ + f(-1)P_-$, so
+\[
+    e^{-i\alpha\uvect{n}\cdot\bm{\sigma}/2} = e^{-i\alpha/2}P_+ + e^{i\alpha/2}P_- = \cos\frac\alpha2\,I - i\sin\frac\alpha2\,\uvect{n}\cdot\bm{\sigma},
+\]
+the spin-$\frac12$ rotation by $\alpha$ about $\uvect{n}$. At $\alpha = 2\pi$ it is $-I$: a spinor changes sign under a full rotation.
+\end{example}
+
+\begin{proof}[Proof of the spectral theorem for Hermitian operators]
+Over $\mathbb{C}$, $\det(T-\lambda I) = 0$ has a root, so $T$ has an eigenvector $|u_1\rangle$, which we normalize. Let $U = \operatorname{span}\{|u_1\rangle\}$. For $|w\rangle\in U^\perp$, $\langle u_1|Tw\rangle = \langle Tu_1|w\rangle = \lambda_1^*\langle u_1|w\rangle = 0$, so $U^\perp$ is $T$-invariant, and $T$ restricted to it is still Hermitian. By induction on dimension, $U^\perp$ has an orthonormal eigenbasis, which together with $|u_1\rangle$ is one for $V$.
+\end{proof}
+
 \begin{theorem}[Simultaneous diagonalization]
 Commuting Hermitian operators can be simultaneously diagonalized, and so can any set of mutually commuting operators.
 \end{theorem}
@@ -224,6 +312,10 @@ A CSCO is a set of mutually commuting operators $\{S_1,\ldots,S_n\}$ whose eigen
 
 \begin{example}[A CSCO]
 With $A = \operatorname{diag}(1,1,2)$, $B = \operatorname{diag}(1,2,2)$ and $C = \operatorname{diag}(1,2,3)$, all commuting: neither $\{A\}$ nor $\{B\}$ is a CSCO, but $\{A,B\}$ and $\{C\}$ are, labelling the basis as $|a_i,b_i\rangle$ or $|c_i\rangle$.
+\end{example}
+
+\begin{example}[CSCOs for hydrogen]
+For the Coulomb Hamiltonian without spin, $\{\hat{H}\}$ alone is not complete (degeneracy $n^2$); $\{\hat{H},\hat{\vect{L}}^2,\hat{L}_z\}$ is, labelling states $|n,\ell,m\rangle$. With electron spin, add $\hat{S}_z$ (or, equivalently, use $\{\hat{H},\hat{\vect{L}}^2,\hat{\vect{J}}^2,\hat{J}_z\}$). Once spin--orbit coupling is included, only the second choice still commutes with $\hat{H}$ (Chapter~\ref{ch:fine}): which CSCO is useful depends on the Hamiltonian.
 \end{example}
 
 % ============================================================
@@ -262,6 +354,21 @@ The wavefunction is the component of $|\psi\rangle$ along $|x\rangle$. Overlaps 
     [\hat{x},\hat{p}] = i\hbar\,\hat{I}.
 \]
 
+\begin{proof}[Derivation of $\langle x|p\rangle$ and of $\hat{p}$ in the position basis]
+Momentum generates translations, $e^{-ia\hat{p}/\hbar}|x\rangle = |x+a\rangle$. Taking $\langle p|$ of both sides, $e^{-iap/\hbar}\langle p|x\rangle = \langle p|x+a\rangle$, so $\langle p|x\rangle = Ce^{-ipx/\hbar}$. Normalizing with $\langle p|p'\rangle = \int dx\,\langle p|x\rangle\langle x|p'\rangle = 2\pi\hbar|C|^2\delta(p-p')$ gives $|C| = 1/\sqrt{2\pi\hbar}$. Then
+\[
+    \langle x|\hat{p}|\psi\rangle = \int dp\,\langle x|p\rangle\,p\,\langle p|\psi\rangle = \int dp\,\frac{\hbar}{i}\frac{d}{dx}\frac{e^{ipx/\hbar}}{\sqrt{2\pi\hbar}}\langle p|\psi\rangle = \frac\hbar i\frac{d}{dx}\psi(x).
+\]
+\end{proof}
+
+\begin{example}[Momentum distribution of a well eigenstate]
+For $\phi_1 = \sqrt{2/a}\sin(\pi x/a)$ on $[0,a]$, $\langle p|\phi_1\rangle = \frac{1}{\sqrt{2\pi\hbar}}\int_0^ae^{-ipx/\hbar}\phi_1\,dx$, and
+\[
+    |\langle p|\phi_1\rangle|^2 = \frac{4\pi\hbar^3a}{(\pi^2\hbar^2 - p^2a^2)^2}\cos^2\Bigl(\frac{pa}{2\hbar}\Bigr).
+\]
+It peaks near $p = \pm\pi\hbar/a$, the two momenta of the standing wave $\sin kx = (e^{ikx}-e^{-ikx})/2i$, but is spread over all $p$ because the wave is truncated at the walls. Although $\phi_1$ is an energy eigenstate, it is not a momentum eigenstate: $\hat{p}\phi_1\propto\cos(\pi x/a)$.
+\end{example}
+
 % ============================================================
 \section{The Postulates}
 % ============================================================
@@ -275,6 +382,18 @@ The wavefunction is the component of $|\psi\rangle$ along $|x\rangle$. Overlaps 
     \item Time evolution is unitary: $|\Psi(t)\rangle = \hat{U}(t,t_0)|\Psi(t_0)\rangle$. This implies the Schr\"odinger equation $i\hbar\frac{d}{dt}|\Psi\rangle = \hat{H}|\Psi\rangle$ for a Hermitian $\hat{H}$ (Chapter~\ref{ch:dynamics}).
 \end{enumerate}
 \end{fact}
+
+\begin{example}[Applying the postulates to a spin-1 system]
+A spin-1 particle is prepared in $|\Psi\rangle = \frac{1}{\sqrt2}(|1,1\rangle + |1,-1\rangle)$ and $\hat{J}_x$ is measured. With the matrix of $\hat{J}_x$ from Chapter~\ref{ch:angmom}, its eigenvectors are $|x,\pm1\rangle = \frac12(1,\pm\sqrt2,1)^T$ and $|x,0\rangle = \frac{1}{\sqrt2}(1,0,-1)^T$. In components $|\Psi\rangle = \frac{1}{\sqrt2}(1,0,1)^T$, so
+\[
+    P(+\hbar) = |\langle x,1|\Psi\rangle|^2 = \Bigl|\frac{2}{2\sqrt2}\Bigr|^2 = \frac12,
+    \qquad
+    P(0) = 0,
+    \qquad
+    P(-\hbar) = \frac12 .
+\]
+The probabilities sum to one, $\langle J_x\rangle = 0$, and a result of $+\hbar$ leaves the particle in $|x,1\rangle$, in which a subsequent $\hat{J}_z$ measurement gives $+\hbar,0,-\hbar$ with probabilities $\frac14,\frac12,\frac14$.
+\end{example}
 
 % ============================================================
 \section{Uncertainty Relations}
@@ -310,3 +429,26 @@ For $\hat{H} = \hat{p}^2/2m + \alpha\hat{x}^4$, the ground state can be chosen r
 \]
 compared with the numerical value $0.67(\hbar^2\sqrt\alpha/m)^{2/3}$.
 \end{example}
+
+\begin{example}[Energy--time uncertainty]
+Time is not an operator, but there is still a trade-off. For any $\hat{Q}$, $\frac{d}{dt}\langle Q\rangle = \frac{i}{\hbar}\langle[\hat{H},\hat{Q}]\rangle$, so the uncertainty relation with $A = H$, $B = Q$ gives
+\[
+    \Delta H\,\Delta Q\ge\frac\hbar2\Bigl|\frac{d\langle Q\rangle}{dt}\Bigr| .
+\]
+Defining $\Delta t = \Delta Q/|d\langle Q\rangle/dt|$, the time for $\langle Q\rangle$ to change by one standard deviation, $\Delta H\,\Delta t\ge\hbar/2$. A state with sharp energy changes slowly; an unstable state of lifetime $\tau$ has an energy width $\Gamma\sim\hbar/\tau$.
+\end{example}
+
+\begin{example}[Spin uncertainty]
+For $A = \hat{S}_x$, $B = \hat{S}_y$, $\frac{1}{2i}[\hat{S}_x,\hat{S}_y] = \frac\hbar2\hat{S}_z$, so $\Delta S_x\Delta S_y\ge\frac\hbar2|\langle S_z\rangle|$. In $|\hat{z},+\rangle$, $\langle S_x\rangle = \langle S_y\rangle = 0$ and $\langle S_x^2\rangle = \langle S_y^2\rangle = \hbar^2/4$, so $\Delta S_x\Delta S_y = \hbar^2/4 = \frac\hbar2\langle S_z\rangle$: saturated.
+\end{example}
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item States are vectors in a Hilbert space; wavefunctions are components $\langle x|\psi\rangle$.
+\item Observables are Hermitian operators; the spectral theorem gives $T = \sum_k\lambda_kP_k$.
+\item Commuting observables share eigenbases; a CSCO labels states uniquely.
+\item Postulates: Born rule $|\langle\alpha_n|\Psi\rangle|^2$, projection after measurement, unitary evolution.
+\item $\Delta A\Delta B\ge|\langle\frac{1}{2i}[A,B]\rangle|$.
+\end{itemize}
+\end{fact}

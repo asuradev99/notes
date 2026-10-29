@@ -49,6 +49,21 @@ So a classical system is quantized by promoting $x,p\to\hat{x},\hat{p}$ in $H(x,
 \end{formula}
 Case 2 works because $G = -\frac{i}{\hbar}\int\hat{H}$ commutes with $G' = -\frac{i}{\hbar}\hat{H}(t)$, so $\partial_te^G = G'e^G$ term by term. In case 3 this fails.
 
+\begin{example}[Time evolution with a time-independent Hamiltonian]
+If $\hat{H}|n\rangle = E_n|n\rangle$, then $U(t,0) = e^{-i\hat{H}t/\hbar} = \sum_ne^{-iE_nt/\hbar}|n\rangle\langle n|$ by the spectral theorem, and
+\[
+    |\Psi,t\rangle = \sum_ne^{-iE_nt/\hbar}|n\rangle\langle n|\Psi,0\rangle,
+\]
+recovering the expansion-in-eigenstates recipe of Chapter~\ref{ch:schrodinger}. In position space, $\langle x|U(t,0)|x'\rangle = K(x,t;x',0)$ is the \emph{propagator}: $\Psi(x,t) = \int dx'\,K(x,t;x',0)\Psi(x',0)$. For a free particle, inserting momentum states,
+\[
+    K = \int\frac{dp}{2\pi\hbar}e^{ip(x-x')/\hbar - ip^2t/2m\hbar} = \sqrt{\frac{m}{2\pi i\hbar t}}\exp\Bigl[\frac{im(x-x')^2}{2\hbar t}\Bigr].
+\]
+\end{example}
+
+\begin{proof}[Why the time-ordered exponential works]
+Differentiating the series term by term, $\partial_t$ acts only on the upper limit of the outermost integral, giving $-\frac{i}{\hbar}\hat{H}(t)$ times the series with one fewer integral, i.e.\ $-\frac{i}{\hbar}\hat{H}(t)U(t,t_0)$, with $\hat{H}(t)$ correctly on the left. Writing the $n$th term with all $n$ integrals running from $t_0$ to $t$ would overcount by $n!$, and require the integrand to be ordered, which is what $\mathcal{T}$ means.
+\end{proof}
+
 % ============================================================
 \section{Heisenberg Dynamics}
 % ============================================================
@@ -81,6 +96,24 @@ For $\hat{H} = \hat{p}^2/2m + V(\hat{x})$,
 the quantum analogue of Newton's second law. (Use $[\hat{x},\hat{p}^2] = 2i\hbar\hat{p}$ and $[\hat{p},V(\hat{x})] = -i\hbar V'(\hat{x})$.)
 \end{theorem}
 
+\begin{proof}[Derivation of the Heisenberg equation]
+Differentiate $\hat{A}_H = U^\dagger\hat{A}_SU$, using $i\hbar\partial_tU = \hat{H}_SU$ and $-i\hbar\partial_tU^\dagger = U^\dagger\hat{H}_S$:
+\[
+    i\hbar\frac{d\hat{A}_H}{dt} = -U^\dagger\hat{H}_S\hat{A}_SU + U^\dagger\hat{A}_S\hat{H}_SU + i\hbar U^\dagger(\partial_t\hat{A}_S)U .
+\]
+Inserting $UU^\dagger = I$ between the operators turns the first two terms into $[\hat{A}_H,\hat{H}_H]$, with $\hat{H}_H = U^\dagger\hat{H}_SU$.
+\end{proof}
+
+Ehrenfest's theorem does not mean $\langle x\rangle$ follows a classical trajectory: in general $\langle V'(\hat{x})\rangle\neq V'(\langle x\rangle)$. They agree exactly for potentials at most quadratic (free particle, constant force, oscillator), and approximately when the wavepacket is narrow compared with the scale on which $V'$ varies.
+
+\begin{example}[Free particle in the Heisenberg picture]
+For $\hat{H} = \hat{p}^2/2m$, $\dot{\hat{p}}_H = 0$ and $\dot{\hat{x}}_H = \hat{p}_H/m$, so $\hat{x}_H(t) = \hat{x} + \hat{p}t/m$. Then
+\[
+    \Delta x^2(t) = \Delta x^2(0) + \frac{t}{m}\bigl(\langle\hat{x}\hat{p}+\hat{p}\hat{x}\rangle - 2\langle x\rangle\langle p\rangle\bigr) + \frac{t^2}{m^2}\Delta p^2,
+\]
+which for an initial Gaussian (no $x$--$p$ correlation) is $a^2 + \hbar^2t^2/4m^2a^2$, the spreading found before, now in two lines.
+\end{example}
+
 \begin{example}[Oscillator in the Heisenberg picture]
 For the oscillator (Chapter~\ref{ch:sho}, with $|n\rangle$ the number states), $\frac{d}{dt}\hat{x}_H = \hat{p}_H/m$ and $\frac{d}{dt}\hat{p}_H = -m\omega^2\hat{x}_H$, so
 \[
@@ -90,6 +123,34 @@ For the oscillator (Chapter~\ref{ch:sho}, with $|n\rangle$ the number states), $
 \]
 and $[\hat{H},\hat{a}] = -\hbar\omega\hat{a}$ gives $\hat{a}_H(t) = e^{-i\omega t}\hat{a}$, $\hat{a}^\dagger_H(t) = e^{i\omega t}\hat{a}^\dagger$. These look like the classical equations of motion, but in an energy eigenstate $\langle n|\hat{x}_H(t)|n\rangle = 0$: energy eigenstates do not behave classically.
 \end{example}
+
+\begin{example}[Spin precession in the Heisenberg picture]
+For $\hat{H} = -\gamma B\hat{S}_z$, using $[\hat{S}_z,\hat{S}_x] = i\hbar\hat{S}_y$ and $[\hat{S}_z,\hat{S}_y] = -i\hbar\hat{S}_x$,
+\[
+    \dot{\hat{S}}_x = \frac{i}{\hbar}[\hat{H},\hat{S}_x] = \gamma B\hat{S}_y,
+    \qquad
+    \dot{\hat{S}}_y = -\gamma B\hat{S}_x,
+    \qquad
+    \dot{\hat{S}}_z = 0,
+\]
+so $\hat{S}_x(t) = \hat{S}_x\cos\omega t + \hat{S}_y\sin\omega t$ and $\hat{S}_y(t) = \hat{S}_y\cos\omega t - \hat{S}_x\sin\omega t$ with $\omega = \gamma B$. The operators themselves rotate, and any expectation value follows by taking $\langle\Psi,0|\cdot|\Psi,0\rangle$: the same Larmor precession found in the Schr\"odinger picture (Chapter~\ref{ch:twostate}), without ever writing down the state at time $t$.
+\end{example}
+
+% ============================================================
+\section{The Interaction Picture}
+% ============================================================
+
+For $\hat{H} = \hat{H}_0 + \hat{V}(t)$ with $\hat{H}_0$ solvable, a third picture is useful: let $\hat{H}_0$ evolve the operators and $\hat{V}$ evolve the states. Define
+\[
+    |\Psi_I,t\rangle = e^{i\hat{H}_0t/\hbar}|\Psi,t\rangle,
+    \qquad
+    \hat{V}_I(t) = e^{i\hat{H}_0t/\hbar}\hat{V}(t)e^{-i\hat{H}_0t/\hbar}.
+\]
+Differentiating, the $\hat{H}_0$ terms cancel:
+\[
+    i\hbar\frac{d}{dt}|\Psi_I,t\rangle = \hat{V}_I(t)|\Psi_I,t\rangle .
+\]
+If $\hat{V} = 0$ the interaction-picture state is constant, and all change comes from the interaction. In the basis of $\hat{H}_0$ eigenstates, $\langle k|\hat{V}_I|n\rangle = e^{i(E_k-E_n)t/\hbar}V_{kn}$, which is exactly how the oscillating phases $e^{\pm2i\omega_0t}$ arose in the maser and the rotating frame arose in NMR. The interaction picture is the natural starting point for time-dependent perturbation theory.
 
 % ============================================================
 \section{Coherent States}
@@ -152,6 +213,41 @@ They are not orthogonal, $|\langle\tilde\alpha|\tilde\beta\rangle|^2 = e^{-|\alp
 with $d^2\alpha/\pi = d\langle x\rangle\,d\langle p\rangle/2\pi\hbar$ the phase-space volume. In phase space a coherent state is a blob of fixed size $\Delta x\Delta p\sim\hbar$ circling the origin at frequency $\omega$, with number--phase uncertainty $\Delta N\sim|\alpha|$, $\Delta\varphi\sim1/|\alpha|$. A number state instead fills an annulus, $|\langle\tilde\alpha|n\rangle|^2 = e^{-|\alpha|^2}|\alpha|^{2n}/n!$.
 \end{fact}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.1]
+  \draw[->] (-3,0) -- (3.2,0) node[right]{$\langle x\rangle/\sqrt2d$};
+  \draw[->] (0,-3) -- (0,3.2) node[above]{$\langle p\rangle d/\sqrt2\hbar$};
+  \draw[dashed] (0,0) circle (2.2);
+  \fill[blue!30] (2.2,0) circle (0.35); \draw[blue!70!black] (2.2,0) circle (0.35);
+  \fill[blue!30] (0,-2.2) circle (0.35); \draw[blue!70!black] (0,-2.2) circle (0.35);
+  \draw[->,thick] (1.9,0.9) arc (25:-60:2.1);
+  \node at (2.6,-1.6) {\small $e^{-i\omega t}$};
+  \fill[red!20] (0,0) circle (1.25); \fill[white] (0,0) circle (0.95);
+  \node[red!70!black] at (-1.6,1.3) {\small $|n\rangle$};
+  \fill[green!25] (-1.5,-1.5) ellipse (0.15 and 0.6); \draw[green!50!black] (-1.5,-1.5) ellipse (0.15 and 0.6);
+  \node[green!50!black] at (-2.3,-2.2) {\small squeezed};
+\end{tikzpicture}
+\caption{Phase-space pictures. A coherent state is a round blob of fixed area $\sim\hbar$ circling the origin at $\omega$; a number state is an annulus with no definite phase; a squeezed state is an ellipse, with reduced uncertainty in one quadrature at the expense of the other.}
+\end{figure}
+
+\begin{proof}[The coherent-state expansion via BCH]
+With $\hat{T}_{x_0} = \exp\bigl(\frac{x_0}{\sqrt2d}(\hat{a}^\dagger-\hat{a})\bigr)$ and $A = \frac{x_0}{\sqrt2d}\hat{a}^\dagger$, $B = -\frac{x_0}{\sqrt2d}\hat{a}$, the commutator $[A,B] = \frac{x_0^2}{2d^2}$ is a number, so $e^{A+B} = e^Ae^Be^{-x_0^2/4d^2}$. Acting on $|0\rangle$, $e^B|0\rangle = |0\rangle$ since $\hat{a}|0\rangle = 0$, and $e^A|0\rangle = \sum_n\frac{1}{n!}\bigl(\frac{x_0}{\sqrt2d}\bigr)^n(\hat{a}^\dagger)^n|0\rangle = \sum_n\frac{1}{\sqrt{n!}}\bigl(\frac{x_0}{\sqrt2d}\bigr)^n|n\rangle$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=5cm,xlabel={$t$},ylabel={$\langle x\rangle$},axis lines=middle,xmin=0,xmax=13,ymin=-1.5,ymax=1.5,ytick=\empty,xtick=\empty,samples=300,domain=0:13]
+\addplot[name path=top,draw=none]{cos(deg(x))+0.25};
+\addplot[name path=bot,draw=none]{cos(deg(x))-0.25};
+\addplot[blue!20] fill between[of=top and bot];
+\addplot[thick,blue!70!black]{cos(deg(x))};
+\end{axis}
+\end{tikzpicture}
+\caption{A coherent state oscillates like a classical particle: $\langle x\rangle = x_0\cos\omega t$, with a constant width $\Delta x = \sqrt{\hbar/2m\omega}$ (shaded band).}
+\end{figure}
+
 % ============================================================
 \section{Squeezed States}
 % ============================================================
@@ -174,6 +270,14 @@ with $S(\gamma)$ unitary. More generally $|\tilde\alpha\rangle_\gamma = D(\alpha
 
 As $\gamma\to\infty$, $|0\rangle_\infty\propto e^{-\hat{a}^{\dagger2}/2}|0\rangle$ is annihilated by $\hat{x}\propto\hat{a}+\hat{a}^\dagger$: it is the position eigenstate $|x = 0\rangle$, and translations give the others. As $\gamma\to-\infty$ one obtains momentum eigenstates. In phase space, squeezing deforms the round blob of the coherent state into an ellipse.
 
+\paragraph{Quadrature variances.} Define the quadratures $\hat{X}_1 = \frac12(\hat{a}+\hat{a}^\dagger)$ and $\hat{X}_2 = \frac{1}{2i}(\hat{a}-\hat{a}^\dagger)$, dimensionless versions of $\hat{x}$ and $\hat{p}$ with $[\hat{X}_1,\hat{X}_2] = \frac i2$, so $\Delta X_1\Delta X_2\ge\frac14$. For a coherent state $\Delta X_1 = \Delta X_2 = \frac12$. The squeezed vacuum is annihilated by $\hat{b} = \hat{a}\cosh\gamma + \hat{a}^\dagger\sinh\gamma$, which satisfies $[\hat{b},\hat{b}^\dagger] = 1$; inverting, $\hat{a} = \hat{b}\cosh\gamma - \hat{b}^\dagger\sinh\gamma$. Then $\hat{X}_1 = e^{-\gamma}\cdot\frac12(\hat{b}+\hat{b}^\dagger)$ and $\hat{X}_2 = e^{\gamma}\cdot\frac{1}{2i}(\hat{b}-\hat{b}^\dagger)$, and since the state is the vacuum of $\hat{b}$,
+\[
+    \Delta X_1 = \tfrac12e^{-\gamma},
+    \qquad
+    \Delta X_2 = \tfrac12e^{\gamma}:
+\]
+one quadrature is squeezed below the vacuum noise and the other stretched, keeping the product at its minimum. Advanced LIGO injects squeezed vacuum into its interferometer to reduce the phase noise in the quadrature it measures.
+
 % ============================================================
 \section{The Quantized Electromagnetic Field}
 % ============================================================
@@ -192,6 +296,8 @@ where Maxwell's equations require $p = \dot{q}$. The energy is
 \]
 an oscillator with $m = 1$. Quantize by promoting $q,p$ to operators with $[\hat{q},\hat{p}] = i\hbar$, and define $\hat{a} = (\omega\hat{q} + i\hat{p})/\sqrt{2\hbar\omega}$, which removes a photon.
 
+\paragraph{Why $p = \dot{q}$ and $H = \frac12(p^2+\omega^2q^2)$.} Faraday's law $\partial_zE_x = -\partial_tB_y$ with the mode functions above gives $-k\sqrt{\cdot}\,q\cos kz = -\frac{\mu_0\varepsilon_0}{k}\sqrt{\cdot}\,\dot{p}\cos kz$, so $\dot{p} = -\omega^2q$ (using $\omega = ck$), and the Amp\`ere--Maxwell law similarly gives $\dot{q} = p$. These are Hamilton's equations for $H = \frac12(p^2+\omega^2q^2)$, and the energy integral confirms it: $\int\sin^2kz\,dV = \int\cos^2kz\,dV = V/2$, so $\frac12\varepsilon_0\int E^2 = \frac12\omega^2q^2$ and $\frac{1}{2\mu_0}\int B^2 = \frac12p^2$.
+
 \begin{formula}[Field operators]
 \[
     \hat{E}_x(z,t) = \mathcal{E}_0\bigl(\hat{a}e^{-i\omega t} + \hat{a}^\dagger e^{i\omega t}\bigr)\sin kz,
@@ -200,10 +306,20 @@ an oscillator with $m = 1$. Quantize by promoting $q,p$ to operators with $[\hat
 \]
 \end{formula}
 
-In a number state, $\langle n|\hat{E}_x|n\rangle = 0$ and $\Delta E_x = \mathcal{E}_0|\sin kz|\sqrt{2n+1}$: nothing like a classical field. In a coherent state,
+In a number state, $\langle n|\hat{E}_x|n\rangle = 0$ and $\Delta E_x = \mathcal{E}_0|\sin kz|\sqrt{2n+1}$: nothing like a classical field. (Since $\hat{a}$ and $\hat{a}^\dagger$ change $n$, their diagonal elements vanish; $\langle n|(\hat{a}e^{-i\omega t}+\hat{a}^\dagger e^{i\omega t})^2|n\rangle = \langle n|\hat{a}\hat{a}^\dagger + \hat{a}^\dagger\hat{a}|n\rangle = 2n+1$.) Even the vacuum $n = 0$ has $\Delta E_x\neq0$: these vacuum fluctuations drive spontaneous emission and the Lamb shift. In a coherent state,
 \[
     \langle\tilde\alpha|\hat{E}_x|\tilde\alpha\rangle = 2\mathcal{E}_0|\alpha|\sin kz\cos(\omega t-\theta),
     \qquad
     \Delta E_x = \mathcal{E}_0|\sin kz|,
 \]
 with $\alpha = |\alpha|e^{i\theta}$, an oscillating field with fixed, $\alpha$-independent noise. For $|\alpha|\gg1$ it behaves like the classical field, and the single-mode field of a laser is idealized as a coherent state. Squeezed states trade noise between quadratures: amplitude-squeezed or phase-squeezed light. A general mode with wavevector $\lvect{k}$ and polarization $\lvect{e}_s$ is $\hat{\vect{E}}_{\lvect{k},s}\propto\lvect{e}_s\bigl(\hat{a}_{\lvect{k}}e^{i(\lvect{k}\cdot\lvect{r}-\omega t)} + \hat{a}_{\lvect{k}}^\dagger e^{-i(\lvect{k}\cdot\lvect{r}-\omega t)}\bigr)$, with $\omega = c|\lvect{k}|$.
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item $U(t,t_0)$ is unitary; $\hat{H} = i\hbar(\partial_tU)U^\dagger$; $U = e^{-i\hat{H}t/\hbar}$ for constant $\hat{H}$, time-ordered exponential in general.
+\item Heisenberg picture: $i\hbar\dot{\hat{A}}_H = [\hat{A}_H,\hat{H}_H]$; Ehrenfest's theorem.
+\item Coherent states $\hat{a}|\alpha\rangle = \alpha|\alpha\rangle$: Poisson number distribution, classical motion, minimum uncertainty at all times.
+\item Squeezed states trade noise between quadratures; the EM field is a set of oscillators.
+\end{itemize}
+\end{fact}

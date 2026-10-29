@@ -39,6 +39,19 @@ Light is made of quanta (photons) of energy $E_n = h\nu_n$. If $k_BT\gg E_n$ the
 in agreement with experiment.
 \end{fact}
 
+\paragraph{Deriving Planck's law.} A mode of frequency $\nu$ holding $k$ photons has energy $kh\nu$, with Boltzmann weight $e^{-kh\nu/k_BT}$. Writing $x = h\nu/k_BT$, the mean energy of the mode is
+\[
+    \langle E\rangle_\nu = \frac{\sum_kkh\nu\,e^{-kx}}{\sum_ke^{-kx}}
+    = -h\nu\frac{d}{dx}\ln\sum_{k=0}^\infty e^{-kx}
+    = -h\nu\frac{d}{dx}\ln\frac{1}{1-e^{-x}}
+    = \frac{h\nu}{e^{h\nu/k_BT}-1}.
+\]
+For $h\nu\ll k_BT$ this is $\approx k_BT$, the equipartition value (counting both quadratic degrees of freedom of the mode); for $h\nu\gg k_BT$ it is exponentially small. In a cavity of volume $V$, the number of modes with frequency in $[\nu,\nu+d\nu]$ is $V\cdot8\pi\nu^2d\nu/c^3$ (two polarizations, $k$-space shell of radius $2\pi\nu/c$). Multiplying,
+\[
+    u(\nu)\,d\nu = \frac{8\pi h\nu^3}{c^3}\frac{d\nu}{e^{h\nu/k_BT}-1},
+\]
+Planck's law, whose integral $\int u\,d\nu\propto T^4$ is finite (the Stefan--Boltzmann law). The classical counting instead gives $u = 8\pi\nu^2k_BT/c^3$, whose integral diverges: the ``ultraviolet catastrophe''. Setting $\frac{d}{dx}\frac{x^3}{e^x-1} = 0$ gives $3(1-e^{-x}) = x$, so $x\approx2.82$: the spectrum peaks at $h\nu_{\max}\approx2.82k_BT$, shifting linearly with temperature (Wien's displacement law). For the Sun, $T\approx5800$\,K puts the peak in the visible.
+
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}
@@ -76,14 +89,39 @@ A classical EM wave $E_x = \mathrm{Re}\bigl[\alpha e^{i(\omega t-kz)}\bigr]$ wit
 \]
 and conservation of energy, $|\alpha'|^2+|\beta'|^2 = |\alpha|^2+|\beta|^2$, requires this matrix to be \emph{unitary}: $|r|^2+|t|^2 = 1$, $|u|^2+|v|^2 = 1$, and orthogonal columns, $ru^*+tv^* = 0$. A phase shifter acts as $\operatorname{diag}(1,e^{i\delta})$.
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \draw[thick] (-0.3,-0.3) -- (0.3,0.3); \node[below right] at (0.2,-0.1) {\small BS1};
+  \draw[thick] (3.7,2.7) -- (4.3,3.3); \node[above left] at (3.8,3.2) {\small BS2};
+  \draw[very thick] (3.7,-0.3) -- (4.3,0.3); \node[below right] at (4.1,0) {\small M};
+  \draw[very thick] (-0.3,2.7) -- (0.3,3.3); \node[above left] at (-0.1,3.1) {\small M};
+  \draw[->,red!70!black] (-2,0) -- (-0.05,0);
+  \draw[red!70!black] (0,0) -- (4,0) -- (4,3);
+  \draw[red!70!black] (0,0) -- (0,3) -- (4,3);
+  \draw[->,red!70!black] (4,3) -- (5.6,3); \draw[->,red!70!black] (4,3) -- (4,4.4);
+  \node[right] at (5.6,3) {$D_0$}; \node[above] at (4,4.4) {$D_1$};
+  \fill[gray!40] (1.8,-0.25) rectangle (2.2,0.25); \node[below] at (2,-0.3) {\small $e^{i\delta}$};
+\end{tikzpicture}
+\caption{The Mach--Zehnder interferometer: two beam splitters, two mirrors and a phase shifter in one arm.}
+\end{figure}
+
 \begin{example}[Mach--Zehnder with single photons]
 Use $\mathrm{BS1} = \frac{1}{\sqrt2}\begin{pmatrix}-1&1\\1&1\end{pmatrix}$ and $\mathrm{BS2} = \frac{1}{\sqrt2}\begin{pmatrix}1&1\\-1&1\end{pmatrix}$. Then
 \[
-    \mathrm{BS2}\cdot\mathrm{BS1} = \begin{pmatrix}0&1\\-1&0\end{pmatrix},
+    \mathrm{BS2}\cdot\mathrm{BS1} = \begin{pmatrix}0&1\\1&0\end{pmatrix},
     \qquad
-    \begin{pmatrix}1\\0\end{pmatrix}\mapsto\begin{pmatrix}0\\-1\end{pmatrix}:
+    \begin{pmatrix}1\\0\end{pmatrix}\mapsto\begin{pmatrix}0\\1\end{pmatrix}:
 \]
 the photon always arrives at the bottom detector. For a single photon, the detector clicks with probability $|\text{amplitude}|^2$. The photon interferes destructively with itself: it cannot be only in the top or bottom arm, but has an amplitude in both. Blocking one arm destroys the interference, and each detector then clicks $1/4$ of the time (the block absorbs $1/2$).
+
+With a phase shift $\delta$ in one arm, the output amplitudes are $\mathrm{BS2}\cdot\operatorname{diag}(1,e^{i\delta})\cdot\mathrm{BS1}\,(1,0)^T = \frac12(-1+e^{i\delta},\ 1+e^{i\delta})^T$, so
+\[
+    P(D_0) = \sin^2\frac\delta2,
+    \qquad
+    P(D_1) = \cos^2\frac\delta2 .
+\]
+A single photon at a time builds up the same interference fringes, as a function of $\delta$, as a classical wave.
 \end{example}
 
 \begin{example}[Elitzur--Vaidman bomb tester]
@@ -109,9 +147,56 @@ Light comes in quanta of energy $E = h\nu$, each photoelectron is ejected by one
 \end{formula}
 Increasing the intensity increases the rate of photons, and so the number of photoelectrons, but not $K_{\max}$; photons with $\nu<\nu_0$ cannot eject even the most weakly bound electrons. The slope of $K_{\max}(\nu)$ is the same $h$ found from thermal radiation.
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=8cm,height=5cm,xlabel={$\nu$},ylabel={$K_{\max}$},axis lines=middle,xmin=0,xmax=10,ymin=-3.5,ymax=6,xtick={3,5},xticklabels={$\nu_0^{(1)}$,$\nu_0^{(2)}$},ytick=\empty,legend style={draw=none,at={(0.02,0.98)},anchor=north west,font=\small}]
+\addplot[thick,blue!70!black,domain=3:10]{x-3}; \addlegendentry{metal 1}
+\addplot[thick,red!70!black,domain=5:10]{x-5}; \addlegendentry{metal 2}
+\addplot[dashed,blue!70!black,domain=0:3]{x-3};
+\addplot[dashed,red!70!black,domain=0:5]{x-5};
+\end{axis}
+\end{tikzpicture}
+\caption{Photoelectric effect. $K_{\max}$ is linear in $\nu$ with the universal slope $h$; the intercepts give the work functions, $-W_0$ on the vertical axis and $\nu_0 = W_0/h$ on the horizontal.}
+\end{figure}
+
+\begin{example}[Work function from data]
+Light of $\lambda = 350$\,nm gives $K_{\max} = 1.6$\,eV. Then $W_0 = hc/\lambda - K_{\max} = 3.54 - 1.6\approx1.9$\,eV, and the cutoff wavelength is $\lambda_0 = hc/W_0\approx640$\,nm: red light ejects no electrons, however intense.
+\end{example}
+
 \subsection{Compton Scattering}
 
 Classically, light scatters off bound electrons at its own frequency (Rayleigh scattering, which makes the sky blue). Compton scattered monochromatic X-rays off graphite and measured the scattered wavelength by Bragg reflection ($n\lambda = 2d\sin\phi$). Besides the unshifted line (scattering from tightly bound electrons), a shifted line appears, increasingly shifted at larger angle. Treating the photon as a particle with $E = pc = h/\lambda$ scattering elastically off a free electron, conservation of energy and momentum give
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \draw[decorate,decoration={snake,amplitude=2pt,segment length=6pt},->] (-3,0) -- (-0.2,0) node[midway,above]{$E_0,\ \lvect{p}_0$};
+  \fill (0,0) circle (2.5pt) node[below left]{$e^-$};
+  \draw[decorate,decoration={snake,amplitude=2pt,segment length=6pt},->] (0.1,0.05) -- (2.4,1.5) node[right]{$E_1,\ \lvect{p}_1$};
+  \draw[->,thick] (0.1,-0.05) -- (2.2,-1.3) node[right]{$\lvect{p}_e$};
+  \draw[dashed] (0,0) -- (2.8,0);
+  \draw (0.9,0) arc (0:32:0.9); \node at (1.15,0.25) {$\theta$};
+  \draw (0.8,0) arc (0:-31:0.8); \node at (1.05,-0.25) {$\phi$};
+\end{tikzpicture}
+\caption{Compton scattering of a photon off an electron initially at rest.}
+\end{figure}
+
+\paragraph{Derivation.} Momentum conservation, $\lvect{p}_e = \lvect{p}_0 - \lvect{p}_1$, gives
+\[
+    p_e^2 = p_0^2 + p_1^2 - 2p_0p_1\cos\theta .
+\]
+Energy conservation, with the electron initially at rest, is $p_0c + m_ec^2 = p_1c + \sqrt{p_e^2c^2 + m_e^2c^4}$. Moving $p_1c$ to the left and squaring,
+\[
+    (p_0-p_1)^2c^2 + 2(p_0-p_1)m_ec^3 + m_e^2c^4 = p_e^2c^2 + m_e^2c^4 .
+\]
+Substituting $p_e^2$ and cancelling $p_0^2+p_1^2$:
+\[
+    -2p_0p_1 + 2(p_0-p_1)m_ec = -2p_0p_1\cos\theta
+    \quad\Longrightarrow\quad
+    \frac{1}{p_1} - \frac{1}{p_0} = \frac{1-\cos\theta}{m_ec}.
+\]
+With $p = h/\lambda$ this is the Compton formula.
 
 \begin{formula}[Compton shift]
 \[
@@ -120,6 +205,20 @@ Classically, light scatters off bound electrons at its own frequency (Rayleigh s
     \frac{h}{m_ec}\approx0.0243\ \text{\AA},
 \]
 largest, $2h/m_ec$, for backscattering ($\theta = \pi$).
+\end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=8cm,height=4.5cm,xlabel={$\theta$},ylabel={$\Delta\lambda/(h/m_ec)$},axis lines=left,xmin=0,xmax=3.1416,ymin=0,ymax=2.1,xtick={0,1.5708,3.1416},xticklabels={$0$,$\pi/2$,$\pi$},domain=0:3.1416,samples=100]
+\addplot[thick,blue!70!black]{1-cos(deg(x))};
+\end{axis}
+\end{tikzpicture}
+\caption{The Compton shift as a function of scattering angle, independent of the incident wavelength.}
+\end{figure}
+
+\begin{formula}[Compton shift in frequency]
+Equivalently, the scattered photon energy is $E_1 = E_0/\bigl[1 + \frac{E_0}{m_ec^2}(1-\cos\theta)\bigr]$: for $E_0\ll m_ec^2$ the photon barely loses energy (Thomson/Rayleigh limit), while for $E_0\gg m_ec^2$ a backscattered photon leaves with at most $\approx m_ec^2/2$.
 \end{formula}
 
 Quantum effects matter when $h\nu\gtrsim m_ec^2$ (Compton rather than Rayleigh scattering) and, for blackbody radiation, when $h\nu\gtrsim k_BT$.
@@ -159,6 +258,18 @@ Blackbody radiation, the photoelectric effect, bremsstrahlung and Compton scatte
 for all matter, not just photons.
 \end{formula}
 
+\begin{example}[A free electron cannot absorb a photon]
+Suppose a photon of momentum $p_0$ is absorbed by a free electron at rest. Momentum conservation gives $p_e = p_0$ and energy conservation $p_0c + m_ec^2 = \sqrt{p_e^2c^2 + m_e^2c^4}$. Squaring, $p_0^2c^2 + 2p_0m_ec^3 + m_e^2c^4 = p_0^2c^2 + m_e^2c^4$, so $p_0 = 0$: impossible. Photon absorption needs a third body (the lattice, or the nucleus) to take up momentum, which is why the photoelectric effect involves bound electrons and Compton scattering must emit a photon.
+\end{example}
+
+\begin{example}[Electron versus photon microscopes]
+To resolve $\lambda = 0.1$\,\AA, a photon needs $E = hc/\lambda\approx1.24\times10^5$\,eV, while an electron needs $p = h/\lambda$, which (using the relativistic $E^2 = p^2c^2 + m^2c^4$, since $pc\approx124$\,keV is not small compared with $m_ec^2$) gives a kinetic energy $\approx15$\,keV. The electron does the job with roughly ten times less energy per particle, and does less damage to the sample.
+\end{example}
+
+\begin{example}[Davisson--Germer]
+Electrons of 54\,eV ($\lambda = h/\sqrt{2mK} = 1.67$\,\AA) reflected from a nickel crystal showed a strong diffraction peak at $50^\circ$, matching the Bragg condition $d\sin\phi = \lambda$ for the surface atom spacing $d = 2.15$\,\AA: the first direct confirmation of de Broglie's hypothesis (1927).
+\end{example}
+
 \begin{example}[de Broglie wavelengths]
 A 10\,g stone moving at 10\,m/s has $\lambda\approx6.6\times10^{-24}$\,\AA. An electron with $K = 100$\,eV has $\lambda = h/\sqrt{2mK}\approx1.2$\,\AA, comparable to atomic sizes, so wave behaviour of matter is detectable at atomic scales.
 \end{example}
@@ -176,6 +287,7 @@ The last follows from de Broglie by fitting a whole number of wavelengths around
 
 For a hydrogen-like atom (nuclear charge $Ze$, Gaussian units), $mv^2/r = Ze^2/r^2$ and $L = mvr = n\hbar$ give
 
+Explicitly, from $L = mvr = n\hbar$, $v = n\hbar/mr$; substituting into $mv^2 = Ze^2/r$ gives $n^2\hbar^2/mr = Ze^2$, so $r_n = n^2\hbar^2/mZe^2$. The energy is $E = \frac12mv^2 - Ze^2/r = -\frac12Ze^2/r$ (the virial relation $K = -\frac12V$ for circular orbits), which gives
 \begin{formula}[Bohr atom]
 \[
     r_n = \frac{n^2}{Z}\frac{\hbar^2}{me^2} = \frac{n^2}{Z}a_0,
@@ -188,6 +300,22 @@ with $a_0 = \hbar^2/me^2\approx0.53$\,\AA. For $Z = n = 1$, $E_1 = -13.6$\,eV, t
 \]
 with the Lyman ($n_f = 1$), Balmer ($n_f = 2$) and Paschen ($n_f = 3$) series.
 \end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[yscale=0.33]
+  \foreach \n/\E in {1/-13.6,2/-3.4,3/-1.51,4/-0.85,5/-0.54} {\draw[thick] (0,\E) -- (6,\E) node[right]{\small $n=\n$};}
+  \draw[dashed] (0,0) -- (6,0) node[right]{\small $E=0$};
+  \foreach \n/\E in {2/-3.4,3/-1.51,4/-0.85} {\draw[->,blue!70!black] (0.4+0.3*\n,\E) -- (0.4+0.3*\n,-13.6);}
+  \node[blue!70!black] at (1.1,-15) {\small Lyman};
+  \foreach \n/\E in {3/-1.51,4/-0.85,5/-0.54} {\draw[->,red!70!black] (2.6+0.3*\n,\E) -- (2.6+0.3*\n,-3.4);}
+  \node[red!70!black] at (3.8,-4.3) {\small Balmer};
+  \draw[->] (-0.6,-14) -- (-0.6,0.5) node[above]{\small $E$ (eV)};
+  \node[left] at (-0.6,-13.6) {\small $-13.6$};
+  \node[left] at (-0.6,-3.4) {\small $-3.4$};
+\end{tikzpicture}
+\caption{Hydrogen energy levels and the Lyman (ultraviolet) and Balmer (visible) series.}
+\end{figure}
 
 \subsection{Wilson--Sommerfeld Quantization}
 
@@ -247,4 +375,14 @@ with peaks at $y_n = n\lambda L/d$. An extra relative phase $\phi_B-\phi_A$ shif
 
 \begin{fact}[Which-path information destroys interference]
 If we determine which path the electron took, there is no interference and $P_{AB} = P_A + P_B$. To see the electron with light, the photon must resolve the slits, $\lambda_{\text{ph}}<d$, so it kicks the electron by $\Delta p_y\sim h/\lambda_{\text{ph}}$, which shifts its landing point by $\Delta y\sim\lambda_eL/\lambda_{\text{ph}}>\lambda_eL/d$: more than the fringe spacing, washing out the pattern. If the photon hits with probability $\pi$, the distribution is $\pi(P_A+P_B) + (1-\pi)P_{AB}$.
+\end{fact}
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item Light comes in quanta: $E = h\nu$, $p = h/\lambda$ (blackbody, photoelectric, Compton, bremsstrahlung).
+\item Matter has waves: $\lambda = h/p$ (de Broglie, Davisson--Germer, double slit).
+\item Amplitudes add, probabilities are $|\text{amplitude}|^2$; which-path information destroys interference.
+\item Quantization of periodic motion: $\oint p\,dq = nh$ gives Planck's oscillator and Bohr's atom, $E_n = -13.6\,\text{eV}/n^2$.
+\end{itemize}
 \end{fact}

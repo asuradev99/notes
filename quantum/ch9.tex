@@ -20,6 +20,20 @@ Operators act factor by factor, $(T\otimes S)(|v\rangle\otimes|w\rangle) = T|v\r
 A general state is $|q\rangle = \sum_{ij}q_{ij}|e_i\rangle\otimes|f_j\rangle$. It is a \emph{product state} if it can be written $|v\rangle\otimes|w\rangle$, in which case $q_{ij} = v_iw_j$ is a rank-one matrix. Otherwise it is \emph{entangled}: its information is not of the form (information about $V$)(information about $W$). For $\dim V = \dim W = 2$, a state is a product state if and only if $\det q = 0$.
 \end{definition}
 
+\begin{example}[Testing for entanglement]
+$\frac12\bigl(|{\uparrow\uparrow}\rangle + |{\uparrow\downarrow}\rangle + |{\downarrow\uparrow}\rangle + |{\downarrow\downarrow}\rangle\bigr)$ has $q = \frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}$, $\det q = 0$: it is the product $|\hat{x},+\rangle\otimes|\hat{x},+\rangle$. By contrast $\frac{1}{\sqrt3}\bigl(|{\uparrow\uparrow}\rangle + |{\uparrow\downarrow}\rangle + |{\downarrow\uparrow}\rangle\bigr)$ has $\det q = -\frac13\neq0$: entangled. To see why the determinant test works, note $q_{ij} = v_iw_j$ means $q = \lvect{v}\lvect{w}^T$ has rank one, so its columns are parallel; for $2\times2$ that is $\det q = 0$.
+\end{example}
+
+\begin{example}[Operators on tensor products]
+In the ordered basis $\{|{\uparrow\uparrow}\rangle,|{\uparrow\downarrow}\rangle,|{\downarrow\uparrow}\rangle,|{\downarrow\downarrow}\rangle\}$, $A\otimes B$ is the Kronecker product: the $2\times2$ block structure of $A$ with each entry $A_{ij}$ replaced by $A_{ij}B$. For instance
+\[
+    \sigma_3\otimes I = \operatorname{diag}(1,1,-1,-1),
+    \qquad
+    \sigma_1\otimes\sigma_1 = \begin{pmatrix}0&0&0&1\\0&0&1&0\\0&1&0&0\\1&0&0&0\end{pmatrix},
+\]
+and $(A\otimes B)(C\otimes D) = AC\otimes BD$, so local operators on different factors commute.
+\end{example}
+
 % ============================================================
 \section{The Bell Basis}
 % ============================================================
@@ -51,9 +65,38 @@ Alice holds a qubit $|\psi\rangle_C = \alpha|{\uparrow}\rangle_C + \beta|{\downa
 \]
 where $|\psi\rangle_B = \alpha|{\uparrow}\rangle_B + \beta|{\downarrow}\rangle_B$ has the same coefficients Alice started with.
 
+\paragraph{The algebra.} Expanding,
+\[
+    |\Phi_0\rangle_{AB}|\psi\rangle_C = \tfrac{1}{\sqrt2}\bigl(\alpha|{\uparrow}\rangle_A|{\uparrow}\rangle_C|{\uparrow}\rangle_B + \beta|{\uparrow}\rangle_A|{\downarrow}\rangle_C|{\uparrow}\rangle_B + \alpha|{\downarrow}\rangle_A|{\uparrow}\rangle_C|{\downarrow}\rangle_B + \beta|{\downarrow}\rangle_A|{\downarrow}\rangle_C|{\downarrow}\rangle_B\bigr).
+\]
+Now rewrite each $AC$ product state in the Bell basis: $|{\uparrow\uparrow}\rangle = \frac{1}{\sqrt2}(|\Phi_0\rangle + |\Phi_3\rangle)$, $|{\downarrow\downarrow}\rangle = \frac{1}{\sqrt2}(|\Phi_0\rangle - |\Phi_3\rangle)$, $|{\uparrow\downarrow}\rangle = \frac{1}{\sqrt2}(|\Phi_1\rangle - i|\Phi_2\rangle)$, $|{\downarrow\uparrow}\rangle = \frac{1}{\sqrt2}(|\Phi_1\rangle + i|\Phi_2\rangle)$. Collecting the coefficient of each Bell state,
+\begin{align*}
+    &\tfrac12|\Phi_0\rangle(\alpha|{\uparrow}\rangle + \beta|{\downarrow}\rangle)_B + \tfrac12|\Phi_1\rangle(\beta|{\uparrow}\rangle + \alpha|{\downarrow}\rangle)_B\\
+    &\quad + \tfrac12|\Phi_2\rangle(-i\beta|{\uparrow}\rangle + i\alpha|{\downarrow}\rangle)_B + \tfrac12|\Phi_3\rangle(\alpha|{\uparrow}\rangle - \beta|{\downarrow}\rangle)_B,
+\end{align*}
+and the four kets on $B$ are $\sigma_\mu|\psi\rangle_B$ for $\mu = 0,1,2,3$. Each outcome has probability $\frac14$, independent of $\alpha$ and $\beta$, which is why Alice learns nothing about the state.
+
 \begin{fact}[Teleportation protocol]
 Alice measures $\sigma_1^{(A)}\sigma_1^{(C)}$ and $\sigma_3^{(A)}\sigma_3^{(C)}$ on her two particles, learning $\mu$ and leaving Bob with $\sigma_\mu|\psi\rangle_B$. She sends him the two classical bits $\mu$, and he applies $\sigma_\mu$, using $\sigma_\mu^2 = I$ to recover $|\psi\rangle_B$. The state has not been copied (Alice no longer has it), and neither party learns $\alpha$ or $\beta$.
 \end{fact}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,box/.style={draw,thick,fill=gray!10,minimum width=1cm,minimum height=0.7cm}]
+  \node[left] at (0,2) {$|\psi\rangle_C$}; \node[left] at (0,1) {$A$}; \node[left] at (0,0) {$B$};
+  \draw (0,2) -- (6,2); \draw (0,1) -- (6,1); \draw (0,0) -- (8.6,0);
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (-0.6,1.2) -- (-0.6,-0.2); \node[left] at (-0.8,0.5) {$|\Phi_0\rangle_{AB}$};
+  \node[box,minimum height=1.8cm] at (3,1.5) {Bell meas.};
+  \draw[double,->] (4,1.5) -- (7,1.5) -- (7,0.4); \node[above] at (5.5,1.5) {\small 2 bits $\mu$};
+  \node[box] at (7,0) {$\sigma_\mu$};
+  \node[right] at (8.6,0) {$|\psi\rangle_B$};
+\end{tikzpicture}
+\caption{Quantum teleportation. Alice performs a Bell measurement on $C$ and her half $A$ of an entangled pair, sends the two-bit result over a classical channel (double line), and Bob applies $\sigma_\mu$ to recover $|\psi\rangle$.}
+\end{figure}
+
+\begin{example}[Superdense coding]
+The reverse trade is also possible. If Alice and Bob share $|\Phi_0\rangle$, Alice can apply one of $I,\sigma_1,\sigma_2,\sigma_3$ to her qubit alone, producing one of the four orthogonal Bell states. She then sends her single qubit to Bob, who measures both in the Bell basis and learns which of four operations she applied: two classical bits transmitted by sending one qubit. Teleportation (two bits plus an entangled pair send one qubit) and superdense coding (one qubit plus an entangled pair send two bits) show that entanglement is a resource that can be traded against communication.
+\end{example}
 
 \begin{theorem}[No-cloning theorem]
 There is no unitary $U$ such that $U|\phi\rangle_A\otimes|\chi\rangle_B = e^{i\theta}|\phi\rangle_A\otimes|\phi\rangle_B$ for every state $|\phi\rangle$ and a fixed blank state $|\chi\rangle$.
@@ -93,8 +136,86 @@ In a hidden-variable theory each particle has definite values $(\pm,\pm,\pm)$ al
 \]
 whatever the (possibly correlated) distribution of hidden variables.
 
+\begin{example}[GHZ: non-locality without inequalities]
+For three qubits in $|\text{GHZ}\rangle = \frac{1}{\sqrt2}(|{\uparrow\uparrow\uparrow}\rangle - |{\downarrow\downarrow\downarrow}\rangle)$, one checks $\sigma_x\sigma_y\sigma_y = \sigma_y\sigma_x\sigma_y = \sigma_y\sigma_y\sigma_x = +1$ and $\sigma_x\sigma_x\sigma_x = -1$ on this state (each a definite value, not an average). If each particle carried predetermined values $x_i,y_i = \pm1$, the product of the first three equations would be $x_1x_2x_3(y_1y_2y_3)^2 = x_1x_2x_3 = +1$, contradicting the fourth. A single run suffices to rule out local hidden variables.
+\end{example}
+
 \begin{theorem}[Bell (1964)]
 No local hidden-variable theory can reproduce all the predictions of quantum mechanics: the two give different, experimentally testable answers.
 \end{theorem}
 
 From 1982, Alain Aspect tested closely related inequalities with entangled photons: quantum mechanics was right and local hidden variables wrong (Nobel Prize, 2022).
+
+\subsection{The CHSH Inequality}
+
+The version actually tested uses two settings per side. Let Alice measure $A$ or $A'$ and Bob $B$ or $B'$, each with outcomes $\pm1$. In a local hidden-variable theory every outcome is fixed in advance, and for any assignment
+\[
+    AB + AB' + A'B - A'B' = A(B+B') + A'(B-B') = \pm2,
+\]
+since one of $B\pm B'$ is 0 and the other $\pm2$. Averaging, the CHSH combination $S = \langle AB\rangle + \langle AB'\rangle + \langle A'B\rangle - \langle A'B'\rangle$ satisfies $|S|\le2$.
+
+In the singlet, $\langle(\uvect{a}\cdot\bm{\sigma})(\uvect{b}\cdot\bm{\sigma})\rangle = -\uvect{a}\cdot\uvect{b}$. Choosing coplanar directions at angles $0,\frac\pi2$ for Alice and $\frac\pi4,-\frac\pi4$ for Bob,
+\[
+    |S| = |\cos\tfrac\pi4 + \cos\tfrac\pi4 + \cos\tfrac\pi4 - \cos\tfrac{3\pi}{4}| = 4\cdot\tfrac{1}{\sqrt2} = 2\sqrt2>2 .
+\]
+$2\sqrt2$ is the largest value quantum mechanics allows (Tsirelson's bound), and it is what experiments find, up to detector efficiencies.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=5cm,xlabel={angle between detectors $\theta$},ylabel={$\langle\sigma_a\sigma_b\rangle$},axis lines=middle,xmin=0,xmax=3.2,ymin=-1.1,ymax=1.1,xtick={0,1.5708,3.1416},xticklabels={$0$,$\pi/2$,$\pi$},samples=100,legend style={draw=none,at={(1,0.3)},anchor=east,font=\small}]
+\addplot[thick,blue!70!black,domain=0:3.1416]{-cos(deg(x))}; \addlegendentry{quantum: $-\cos\theta$}
+\addplot[thick,dashed,red!70!black,domain=0:3.1416]{-1+2*x/pi}; \addlegendentry{a local model}
+\end{axis}
+\end{tikzpicture}
+\caption{Spin correlations in the singlet. The quantum curve bulges beyond the straight line of a simple local model, and it is this bulge that violates the Bell and CHSH inequalities.}
+\end{figure}
+
+% ============================================================
+\section{Identical Particles}
+% ============================================================
+
+So far the particles were distinguishable. Identical particles (two electrons, two photons) cannot be labelled: no measurement can tell which is ``particle 1''. Let $\hat{P}_{12}$ exchange the two particles, $\hat{P}_{12}|a\rangle_1|b\rangle_2 = |b\rangle_1|a\rangle_2$. For identical particles every observable commutes with $\hat{P}_{12}$, and the states must satisfy $\hat{P}_{12}|\Psi\rangle = \pm|\Psi\rangle$ (exchanging twice is the identity, so the eigenvalue is $\pm1$).
+
+\begin{fact}[Symmetrization postulate and spin--statistics]
+States of identical \emph{bosons} (integer spin: photons, $^4$He atoms, pions) are symmetric under exchange; states of identical \emph{fermions} (half-integer spin: electrons, protons, neutrons, quarks) are antisymmetric. The connection between spin and statistics is a theorem of relativistic quantum field theory.
+\end{fact}
+
+For two particles in single-particle states $\psi_a$ and $\psi_b$,
+\[
+    \Psi_\pm(\lvect{r}_1,\lvect{r}_2) = \frac{1}{\sqrt2}\bigl[\psi_a(\lvect{r}_1)\psi_b(\lvect{r}_2)\pm\psi_b(\lvect{r}_1)\psi_a(\lvect{r}_2)\bigr],
+\]
+$+$ for bosons and $-$ for fermions. For fermions $\Psi_- = 0$ if $a = b$: the \emph{Pauli exclusion principle}. For $N$ fermions the antisymmetric state is the \emph{Slater determinant} $\frac{1}{\sqrt{N!}}\det[\psi_{a_i}(\lvect{r}_j)]$.
+
+\begin{example}[Exchange ``forces'']
+Compare the mean squared separation $\langle(x_1-x_2)^2\rangle$ for two particles in orthogonal 1D states $\psi_a$, $\psi_b$. For distinguishable particles in $\psi_a(x_1)\psi_b(x_2)$,
+\[
+    \langle(x_1-x_2)^2\rangle_d = \langle x^2\rangle_a + \langle x^2\rangle_b - 2\langle x\rangle_a\langle x\rangle_b .
+\]
+For the (anti)symmetrized states, the cross terms produce an extra exchange contribution:
+\[
+    \langle(x_1-x_2)^2\rangle_\pm = \langle(x_1-x_2)^2\rangle_d\mp2|\langle x\rangle_{ab}|^2,
+    \qquad
+    \langle x\rangle_{ab} = \int\psi_a^*x\psi_b\,dx .
+\]
+Identical bosons sit closer together, and identical fermions further apart, than distinguishable particles in the same orbitals, with no force acting: a purely statistical effect, and only when the wavefunctions overlap.
+\end{example}
+
+\begin{example}[Two electrons with spin]
+The full state is a product of a spatial and a spin part and must be antisymmetric overall. The spin singlet (antisymmetric) pairs with a symmetric spatial state, and the triplet (symmetric) with an antisymmetric one. In helium's excited states $1s\,2s$, the triplet (orthohelium) has an antisymmetric spatial wavefunction that vanishes at $\lvect{r}_1 = \lvect{r}_2$, so its electrons avoid each other and have less Coulomb repulsion: the triplet lies below the singlet. This exchange splitting, not any magnetic interaction, is also the origin of ferromagnetism.
+\end{example}
+
+\begin{example}[Fermions in a box]
+$N$ non-interacting spin-$\frac12$ fermions in an infinite well of width $L$ fill the levels $E_n = n^2\pi^2\hbar^2/2mL^2$ two at a time. The highest filled level, the Fermi energy, is $E_F = \frac{\pi^2\hbar^2}{2mL^2}\bigl(\frac N2\bigr)^2$, and the total energy is $\approx\frac13NE_F$. The ground state of $N$ bosons instead puts all $N$ in $n = 1$, with energy $NE_1$. The Pauli principle thus produces a large ``degeneracy pressure'', which supports white dwarfs against gravity (Chapter~\ref{ch:1d}).
+\end{example}
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item Composite systems live in $V\otimes W$; entangled states are not products ($\det q\neq0$ for two qubits).
+\item Bell states form an entangled basis; teleportation and superdense coding trade entanglement against communication.
+\item No-cloning: unknown states cannot be copied.
+\item Bell/CHSH: quantum correlations ($|S|\le2\sqrt2$) violate every local hidden-variable bound ($|S|\le2$).
+\item Identical particles are symmetric (bosons) or antisymmetric (fermions); exchange effects and Pauli exclusion.
+\end{itemize}
+\end{fact}

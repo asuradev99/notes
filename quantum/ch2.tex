@@ -18,6 +18,10 @@ The double-slit experiment (Section~\ref{sec:double-slit}) tells us that a parti
 Acting on a plane wave, $\hat{p}e^{ikx} = \hbar k\,e^{ikx}$ and $i\hbar\partial_te^{-i\omega t} = \hbar\omega\,e^{-i\omega t}$, which is what motivates these definitions.
 \end{definition}
 
+\begin{example}[Checking linearity]
+$\hat{L} = \partial_x$ is linear, since $\partial_x(c_1\psi_1+c_2\psi_2) = c_1\psi_1'+c_2\psi_2'$. So are $\hat{x}$, $T_a$ and $R$. By contrast $\psi\mapsto\psi^2$ and $\psi\mapsto\psi^*$ are not: $(c\psi)^* = c^*\psi^*\neq c\psi^*$. Only linear operators preserve superposition, which is why observables must be linear.
+\end{example}
+
 \begin{formula}[Time-dependent Schr\"odinger equation]
 \[
     i\hbar\pdv{t}\Psi(x,t) = \hat{H}\Psi(x,t) = \left[-\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)\right]\Psi(x,t).
@@ -48,6 +52,26 @@ Wavefunctions differing by a constant factor represent the same state; physicall
     \pdv{\rho}{t} + \pdv{J}{x} = 0 .
 \]
 In integral form, $\frac{d}{dt}\int_a^b\rho\,dx = J(a,t) - J(b,t)$: probability flows into $[a,b]$ through its ends. In particular the total probability is conserved, which (Section~\ref{sec:hermitian}) is equivalent to $\hat{H}$ being Hermitian.
+
+\begin{proof}[Derivation of the continuity equation]
+From the Schr\"odinger equation and its complex conjugate (with real $V$),
+\[
+    \pdv{\Psi}{t} = \frac{i\hbar}{2m}\pdv[2]{\Psi}{x} - \frac{i}{\hbar}V\Psi,
+    \qquad
+    \pdv{\Psi^*}{t} = -\frac{i\hbar}{2m}\pdv[2]{\Psi^*}{x} + \frac{i}{\hbar}V\Psi^* .
+\]
+Then
+\[
+    \pdv{\rho}{t} = \Psi^*\pdv{\Psi}{t} + \Psi\pdv{\Psi^*}{t}
+    = \frac{i\hbar}{2m}\Bigl(\Psi^*\pdv[2]{\Psi}{x} - \Psi\pdv[2]{\Psi^*}{x}\Bigr)
+    = \pdv{x}\Bigl[\frac{i\hbar}{2m}\Bigl(\Psi^*\pdv{\Psi}{x} - \Psi\pdv{\Psi^*}{x}\Bigr)\Bigr] = -\pdv{J}{x},
+\]
+the potential terms cancelling because $V$ is real. The last step uses $\partial_x(\Psi^*\Psi' - \Psi\Psi^{*\prime}) = \Psi^*\Psi'' - \Psi\Psi^{*\prime\prime}$.
+\end{proof}
+
+\begin{example}[Current of a plane wave]
+For $\Psi = Ae^{i(kx-\omega t)}$, $\Psi^*\partial_x\Psi = ik|A|^2$, so $J = \frac{\hbar k}{m}|A|^2 = v\rho$: density times velocity, as for a classical fluid. A real wavefunction (e.g.\ a bound state, or a standing wave $\sin kx$) carries no current.
+\end{example}
 \end{formula}
 
 % ============================================================
@@ -84,6 +108,14 @@ Expand the initial state in energy eigenstates, $\Psi(x,0) = \sum_Ea_E\psi_E(x)$
 each component acquiring its own phase. Then $\langle\hat{H}\rangle = \sum_E|a_E|^2E$ is time-independent, while other observables oscillate through the \emph{relative} phases $e^{-i(E-E')t/\hbar}$.
 \end{formula}
 
+\begin{example}[Expectation values in a superposition]
+For the infinite well with $\Psi(x,0) = \frac{1}{\sqrt2}(\phi_1+\phi_2)$,
+\[
+    \langle x\rangle(t) = \frac a2 + \mathrm{Re}\bigl[\langle\phi_1|x|\phi_2\rangle e^{-i(E_2-E_1)t/\hbar}\bigr] = \frac a2 - \frac{16a}{9\pi^2}\cos\Bigl(\frac{3\pi^2\hbar}{2ma^2}t\Bigr),
+\]
+using $\langle\phi_1|x|\phi_2\rangle = \frac2a\int_0^ax\sin\frac{\pi x}{a}\sin\frac{2\pi x}{a}dx = -\frac{16a}{9\pi^2}$. The particle sloshes back and forth at the Bohr frequency $(E_2-E_1)/\hbar$, and $\langle p\rangle = m\,d\langle x\rangle/dt$ oscillates in quadrature. The energy, by contrast, is constant: $\langle H\rangle = \frac12(E_1+E_2)$.
+\end{example}
+
 % ============================================================
 \section{Free Particles and Fourier Transforms}
 % ============================================================
@@ -109,6 +141,18 @@ In terms of momentum, $\phi(p) = \tilde\psi(p/\hbar)/\sqrt\hbar$:
 \]
 $|\phi(p)|^2$ is the momentum probability density, and Parseval's theorem $\int|\psi|^2dx = \int|\phi|^2dp$ keeps both normalized. The two representations contain exactly the same information.
 \end{formula}
+
+\begin{proof}[Parseval's theorem and $\langle p\rangle$ in momentum space]
+Substitute the Fourier representation into $\int|\psi|^2dx$:
+\[
+    \int dx\,\psi^*\psi = \int\frac{dx}{2\pi}\int dk'\,\tilde\psi^*(k')e^{-ik'x}\int dk\,\tilde\psi(k)e^{ikx} = \int dk'\,dk\,\tilde\psi^*(k')\tilde\psi(k)\delta(k-k') = \int|\tilde\psi(k)|^2dk .
+\]
+The same steps with $\hat{p}^n = (-i\hbar\partial_x)^n$ acting on $e^{ikx}$ bring down $(\hbar k)^n$, so
+\[
+    \langle p^n\rangle = \int dx\,\psi^*(-i\hbar\partial_x)^n\psi = \int dk\,(\hbar k)^n|\tilde\psi(k)|^2,
+\]
+confirming that $|\tilde\psi(k)|^2$ (or $|\phi(p)|^2$) is the momentum probability density.
+\end{proof}
 
 The inversion theorem rests on the delta function:
 \[
@@ -137,6 +181,76 @@ The Gaussian integral $\int dx\,e^{-\alpha(x-\beta)^2} = \sqrt{\pi/\alpha}$ (squ
 \]
 of width $\sim\alpha$ while $\psi$ has width $\sim1/\alpha$.
 \end{example}
+
+\begin{example}[Fourier transform of a Gaussian]
+For $\psi(x) = (2\pi a^2)^{-1/4}e^{-x^2/4a^2}$, complete the square in the exponent:
+\[
+    -\frac{x^2}{4a^2} - ikx = -\frac{1}{4a^2}\bigl(x + 2ia^2k\bigr)^2 - a^2k^2 .
+\]
+The shifted Gaussian integrates to $\sqrt{4\pi a^2}$, so
+\[
+    \tilde\psi(k) = \frac{1}{\sqrt{2\pi}}(2\pi a^2)^{-1/4}\sqrt{4\pi a^2}\,e^{-a^2k^2} = \Bigl(\frac{2a^2}{\pi}\Bigr)^{1/4}e^{-a^2k^2}.
+\]
+The transform of a Gaussian is a Gaussian. $|\psi|^2\propto e^{-x^2/2a^2}$ has $\Delta x = a$, and $|\tilde\psi|^2\propto e^{-2a^2k^2}$ has $\Delta k = 1/2a$: so $\Delta x\Delta k = \frac12$ exactly.
+\end{example}
+
+\subsection{Free Evolution of a Gaussian}
+
+Each Fourier component evolves with its own phase, $\tilde\psi(k,t) = \tilde\psi(k)e^{-i\hbar k^2t/2m}$, so
+\[
+    \Psi(x,t) = \frac{1}{\sqrt{2\pi}}\Bigl(\frac{2a^2}{\pi}\Bigr)^{1/4}\int dk\,\exp\Bigl[-\Bigl(a^2 + \frac{i\hbar t}{2m}\Bigr)k^2 + ikx\Bigr].
+\]
+This is again a Gaussian integral, with $a^2$ replaced by the complex $a^2(1+it/\tau)$, where $\tau = 2ma^2/\hbar$. Completing the square,
+\[
+    \Psi(x,t) = \frac{1}{(2\pi a^2)^{1/4}\sqrt{1+it/\tau}}\exp\Bigl[-\frac{x^2}{4a^2(1+it/\tau)}\Bigr],
+    \qquad
+    |\Psi(x,t)|^2 = \frac{1}{\sqrt{2\pi a(t)^2}}e^{-x^2/2a(t)^2},
+\]
+with
+\begin{formula}[Spreading of a free wavepacket]
+\[
+    a(t) = a\sqrt{1 + \frac{t^2}{\tau^2}},
+    \qquad
+    \tau = \frac{2ma^2}{\hbar}.
+\]
+For $t\gg\tau$, $a(t)\approx\hbar t/2ma = \Delta v\,t$ with $\Delta v = \Delta p/m$: the momentum spread, fixed at $t = 0$, turns into a position spread. A narrower packet has a larger $\Delta p$ and spreads faster.
+\end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=5cm,xlabel={$x/a$},ylabel={$|\Psi|^2$},axis lines=left,domain=-6:6,samples=150,ymin=0,legend style={draw=none,font=\small}]
+\addplot[thick,blue!70!black]{exp(-x^2/2)/sqrt(2*pi)}; \addlegendentry{$t=0$}
+\addplot[thick,red!70!black]{exp(-x^2/(2*2))/sqrt(2*pi*2)}; \addlegendentry{$t=\tau$}
+\addplot[thick,green!50!black]{exp(-x^2/(2*5))/sqrt(2*pi*5)}; \addlegendentry{$t=2\tau$}
+\end{axis}
+\end{tikzpicture}
+\caption{A free Gaussian packet spreads: $a(t)^2 = a^2(1+t^2/\tau^2)$, while the area under $|\Psi|^2$ stays 1.}
+\end{figure}
+
+\begin{example}[How fast do things spread?]
+An electron localized to $a = 1$\,\AA\ has $\tau = 2m_ea^2/\hbar\approx2\times10^{-16}$\,s: it spreads essentially instantly. A 1\,g ball localized to $1\,\mu$m has $\tau\sim10^{19}$\,s, longer than the age of the universe.
+\end{example}
+
+\paragraph{Group velocity.} For a packet $\int dk\,f(k)e^{i(kx-\omega(k)t)}$ peaked at $k_0$, expand $\omega(k)\approx\omega_0 + v_g(k-k_0)$ with $v_g = \omega'(k_0)$. Then
+\[
+    \Psi(x,t)\approx e^{i(k_0x-\omega_0t)}\int dk\,f(k)e^{i(k-k_0)(x-v_gt)}:
+\]
+a carrier wave moving at $v_p = \omega_0/k_0$ times an envelope that depends only on $x - v_gt$, moving rigidly at $v_g$. The next term, $\frac12\omega''(k-k_0)^2$, makes the envelope spread.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=11cm,height=4cm,axis lines=middle,xlabel={$x$},ytick=\empty,xtick=\empty,xmin=-6,xmax=6,ymin=-1.2,ymax=1.3,samples=500,domain=-6:6]
+\addplot[thick,blue!70!black]{exp(-x^2/4)*cos(deg(5*x))};
+\addplot[dashed,red!70!black]{exp(-x^2/4)};
+\addplot[dashed,red!70!black]{-exp(-x^2/4)};
+\draw[->,thick,red!70!black] (axis cs:2.5,1.05) -- (axis cs:4,1.05) node[right]{\small $v_g$};
+\draw[->,thick,blue!70!black] (axis cs:0.3,-1.05) -- (axis cs:1.05,-1.05) node[right]{\small $v_p = v_g/2$};
+\end{axis}
+\end{tikzpicture}
+\caption{A wavepacket: the carrier crests (solid) move at the phase velocity, the envelope (dashed) at the group velocity. For a free non-relativistic particle the envelope moves twice as fast, so crests appear at the back of the packet and disappear at the front.}
+\end{figure}
 
 A wavepacket $\mathrm{Re}\,\psi\propto e^{-x^2/a^2}\cos(k_0x)$ has an envelope moving at the \emph{group velocity} $d\omega/dk$ and crests moving at the \emph{phase velocity} $\omega/k$. For a free particle, $d\omega/dk = \hbar k/m = 2\omega/k$, so the group velocity is the classical velocity and exceeds the phase velocity, and each Fourier component evolves as $\tilde\psi(k,t) = \tilde\psi(k,0)e^{-i\hbar k^2t/2m}$: the packet spreads.
 
@@ -176,6 +290,14 @@ Multiplication by a real function, $\hat{V}f = V(x)f$, is Hermitian since $\int 
     \langle\hat{p}f,g\rangle - \langle f,\hat{p}g\rangle = i\hbar\int dx\,\frac{d}{dx}(f^*g) = i\hbar\bigl[f^*g\bigr]_{-\infty}^\infty = 0
 \]
 for normalizable functions, which vanish at infinity. Then $\langle\hat{p}^2f,g\rangle = \langle\hat{p}f,\hat{p}g\rangle = \langle f,\hat{p}^2g\rangle$, so $\hat{H} = \hat{p}^2/2m + \hat{V}$ is Hermitian.
+\end{example}
+
+\begin{example}[When boundary terms matter]
+On a finite interval $[0,L]$, $\langle f,\hat{p}g\rangle - \langle\hat{p}f,g\rangle = -i\hbar\bigl[f^*g\bigr]_0^L$. So $\hat{p}$ is Hermitian only on functions whose boundary terms cancel: for periodic functions ($f(0) = f(L)$, the particle on a ring) it is, and $e^{2\pi inx/L}$ are its eigenfunctions. In the infinite square well the eigenfunctions vanish at the walls, which makes $\hat{H}$ Hermitian, but $\hat{p}$'s would-be eigenfunctions $e^{ikx}$ do not vanish there: momentum is not a good quantum number in a box, and its distribution in $\phi_n$ is spread out (Chapter~\ref{ch:formalism}). The domain of an operator is part of its definition.
+\end{example}
+
+\begin{example}[Hermitian combinations]
+If $\hat{A}$ and $\hat{B}$ are Hermitian, $\hat{A}\hat{B}$ is Hermitian only if they commute, since $(\hat{A}\hat{B})^\dagger = \hat{B}\hat{A}$. So $\hat{x}\hat{p}$ is not Hermitian, but the symmetrized $\frac12(\hat{x}\hat{p}+\hat{p}\hat{x})$ is, and $i[\hat{A},\hat{B}]$ always is. This is why classical expressions like $xp$ need care (an ordering choice) when quantized.
 \end{example}
 
 \begin{theorem}[Hermitian operators conserve probability]
@@ -259,6 +381,18 @@ Expanding, $\int x^2|\psi|^2 = (\Delta x)^2$; the cross term is $\lambda\int x\,
 Choosing $\lambda = 1/2(\Delta k)^2$ gives $\Delta x\,\Delta k\ge\frac12$, i.e.\ $\Delta x\,\Delta p\ge\hbar/2$. The general version is proved in Chapter~\ref{ch:formalism}.
 \end{proof}
 
+\begin{example}[Uncertainties in the Gaussian, step by step]
+For $\psi = (2\pi a^2)^{-1/4}e^{-x^2/4a^2}$, $\langle x\rangle = 0$ by symmetry, and using $\int x^2e^{-\alpha x^2}dx = \frac12\sqrt{\pi/\alpha^3}$ with $\alpha = 1/2a^2$,
+\[
+    \langle x^2\rangle = \frac{1}{\sqrt{2\pi a^2}}\cdot\frac12\sqrt{\pi(2a^2)^3} = a^2 .
+\]
+For momentum, $\psi' = -\frac{x}{2a^2}\psi$, so $\langle p\rangle = -i\hbar\int\psi\psi' = 0$ (odd integrand) and
+\[
+    \langle p^2\rangle = \hbar^2\int|\psi'|^2dx = \frac{\hbar^2}{4a^4}\langle x^2\rangle = \frac{\hbar^2}{4a^2}.
+\]
+So $\Delta x\,\Delta p = a\cdot\hbar/2a = \hbar/2$.
+\end{example}
+
 The uncertainty principle is not about the disturbance caused by measuring. It concerns counterfactual results: a state cannot have sharp values of both $x$ and $p$, whichever one is actually measured.
 
 \begin{example}[Gaussian wavepacket]
@@ -271,3 +405,14 @@ has $\langle x\rangle = 0$, $\Delta x = a$ and $\Delta p = \hbar/2a$, saturating
 \]
 has $\langle x\rangle = x_0$ and $\langle p\rangle = p_0$ with the same widths, a quantum stand-in for a classical particle at $(x_0,p_0)$. Under free evolution $\Delta x$ grows: the packet spreads. Classical objects do not visibly spread because they constantly interact with their surroundings and are effectively being measured.
 \end{example}
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item $i\hbar\partial_t\Psi = \hat{H}\Psi$ is linear and first order in time; $|\Psi|^2$ is a probability density with conserved current $J$.
+\item Stationary states $e^{-iEt/\hbar}\psi_E$; general solution $\sum_Ea_Ee^{-iEt/\hbar}\psi_E$.
+\item Position and momentum representations are Fourier transforms of each other; free packets move at $v_g$ and spread.
+\item Observables are Hermitian (real eigenvalues, orthogonal eigenfunctions); outcomes have Born probabilities $|a_\lambda|^2$.
+\item $\Delta x\Delta p\ge\hbar/2$, saturated by Gaussians.
+\end{itemize}
+\end{fact}

@@ -18,6 +18,16 @@ In three dimensions $\hat{\lvect{x}} = (\hat{x},\hat{y},\hat{z})$ and $\hat{\lve
     \hat{\lvect{L}}^2 = -\hbar^2\Bigl[\frac{1}{\sin\theta}\pdv{\theta}\Bigl(\sin\theta\pdv{\theta}\Bigr) + \frac{1}{\sin^2\theta}\pdv[2]{\phi}\Bigr].
 \]
 
+\paragraph{Why the angular Laplacian is $\hat{\vect{L}}^2$.} Using $\epsilon_{ijk}\epsilon_{ilm} = \delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl}$ and $[\hat{x}_j,\hat{p}_k] = i\hbar\delta_{jk}$,
+\[
+    \hat{\vect{L}}^2 = \epsilon_{ijk}\epsilon_{ilm}\hat{x}_j\hat{p}_k\hat{x}_l\hat{p}_m = \hat{r}^2\hat{\lvect{p}}^2 - (\hat{\lvect{r}}\cdot\hat{\lvect{p}})^2 + i\hbar\,\hat{\lvect{r}}\cdot\hat{\lvect{p}} .
+\]
+In position space $\hat{\lvect{r}}\cdot\hat{\lvect{p}} = -i\hbar r\partial_r$, so $(\hat{\lvect{r}}\cdot\hat{\lvect{p}})^2 - i\hbar\hat{\lvect{r}}\cdot\hat{\lvect{p}} = -\hbar^2(r^2\partial_r^2 + 2r\partial_r)$, and
+\[
+    \hat{\lvect{p}}^2 = -\hbar^2\Bigl(\partial_r^2 + \frac2r\partial_r\Bigr) + \frac{\hat{\vect{L}}^2}{r^2} = -\hbar^2\frac1r\partial_r^2r + \frac{\hat{\vect{L}}^2}{r^2}.
+\]
+The radial and angular parts separate exactly, which is why a central potential reduces to a one-dimensional problem in $r$.
+
 \begin{formula}[Hamiltonian for a central potential]
 \[
     \hat{H} = -\frac{\hbar^2}{2m}\frac1r\pdv[2]{r}r + \frac{\hat{\lvect{L}}^2}{2mr^2} + V(r).
@@ -97,6 +107,20 @@ $Y_{20}\propto3z^2/r^2-1$, $Y_{2,\pm1}\propto z(x\pm iy)/r^2$, $Y_{2,\pm2}\propt
 
 $\ell$ sets the magnitude of the total angular momentum and $m$ its $z$-component. The $s$ ($\ell = 0$), $p$ ($\ell = 1$) and $d$ ($\ell = 2$) orbitals are the familiar sphere, dumbbell and cloverleaf shapes.
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.1]
+  \foreach \xs/\f/\lab in {0/{1}/{$|Y_{00}|$},3/{abs(cos(\t))}/{$|Y_{10}|\propto|\cos\theta|$},6/{abs(sin(\t))}/{$|Y_{1,\pm1}|\propto|\sin\theta|$},9/{abs(3*cos(\t)^2-1)/2}/{$|Y_{20}|\propto|3\cos^2\theta-1|$}} {
+    \begin{scope}[xshift=\xs cm]
+      \draw[gray,->] (0,-1.2) -- (0,1.3) node[above]{\scriptsize $z$};
+      \draw[thick,blue!70!black,domain=0:360,samples=181,variable=\t] plot ({\f*sin(\t)},{\f*cos(\t)});
+      \node at (0,-1.55) {\small \lab};
+    \end{scope}
+  }
+\end{tikzpicture}
+\caption{Polar plots of $|Y_{\ell m}(\theta)|$ in a plane containing the $z$-axis (vertical). The distance from the origin in direction $\theta$ is $|Y_{\ell m}|$; each shape is rotationally symmetric about $z$, since $|e^{im\phi}| = 1$.}
+\end{figure}
+
 \subsection{Ladder Operators for Angular Momentum}
 
 \begin{definition}[Angular momentum ladder operators]
@@ -149,10 +173,18 @@ with $u(0) = 0$ and normalization $\int_0^\infty|u|^2dr = 1$.
 \caption{The effective radial potential for the Coulomb problem. The centrifugal barrier $\hbar^2\ell(\ell+1)/2mr^2$ keeps states with $\ell>0$ away from the origin.}
 \end{figure}
 
-The centrifugal term is the quantum version of the effective potential in planetary motion. $E$, $u$ and $R$ depend on $\ell$ (and a radial quantum number $n$) but never on $m$: rotational symmetry makes each level $(2\ell+1)$-fold degenerate.
+The centrifugal term is the quantum version of the effective potential in planetary motion. To derive the radial equation, write $\psi = R(r)Y_{\ell m}$ and use $\frac1r\partial_r^2(rR) = \frac{1}{r}u''$ with $u = rR$; the angular part gives $\hat{\vect{L}}^2Y_{\ell m} = \hbar^2\ell(\ell+1)Y_{\ell m}$, and dividing by $Y_{\ell m}/r$ leaves the one-dimensional equation for $u$. The condition $u(0) = 0$ ensures $R = u/r$ is finite at the origin (for $\ell = 0$, $R\sim1/r$ would make $\laplacian\psi$ contain a delta function, not a solution). $E$, $u$ and $R$ depend on $\ell$ (and a radial quantum number $n$) but never on $m$: rotational symmetry makes each level $(2\ell+1)$-fold degenerate.
 
 \begin{example}[Free particle in 3D]
 For $V = 0$ and $\rho = kr$, $u'' = \bigl[\ell(\ell+1)/\rho^2 - 1\bigr]u$. For $\ell = 0$, $u = \sin\rho$ (the $\cos\rho$ solution makes $R\sim1/r$ singular), an outgoing spherical wave. In general, near $\rho = 0$, $u\sim\rho^{\ell+1}$ or $\rho^{-\ell}$; the regular solutions are the spherical Bessel functions $j_\ell(\rho)\sim\rho^\ell$, e.g.\ $j_0 = \sin\rho/\rho$ and $j_1 = \sin\rho/\rho^2 - \cos\rho/\rho$. Higher $\ell$ keeps the particle further from the origin.
+\end{example}
+
+\begin{example}[Particle in a spherical well]
+For $V = 0$ inside $r<a$ and $\infty$ outside, $R = j_\ell(kr)$ with $j_\ell(ka) = 0$. For $\ell = 0$, $u = \sin kr$ and $ka = n\pi$, so $E_{n0} = \frac{\hbar^2\pi^2n^2}{2ma^2}$, identical to a 1D well of width $a$ (the $u(0) = 0$ condition acts like a wall at the origin). For $\ell = 1$, $j_1(x) = \sin x/x^2 - \cos x/x$ vanishes at $\tan x = x$, first at $x\approx4.49$, so the lowest $p$ state lies between the first two $s$ states. The ordering $1s,1p,1d,2s,\ldots$ is the basis of the nuclear shell model.
+\end{example}
+
+\begin{example}[The 3D box and degeneracy]
+In a cubic box of side $L$, the Hamiltonian separates in Cartesian coordinates and $E = \frac{\pi^2\hbar^2}{2mL^2}(n_x^2+n_y^2+n_z^2)$. The ground state $(1,1,1)$ is non-degenerate; the first excited level $(2,1,1)$ is three-fold degenerate. These degeneracies come from the cubic symmetry, a discrete subgroup of rotations, rather than full rotational invariance. Counting states with $n_x^2+n_y^2+n_z^2\le N^2$, an octant of a sphere, gives the free-electron density of states $\propto\sqrt{E}$ used throughout solid-state physics.
 \end{example}
 
 % ============================================================
@@ -171,11 +203,28 @@ With $\rho = \kappa r$ and $\kappa^2 = -2mE/\hbar^2$ (bound states have $E<0$), 
 \[
     u'' = \Bigl[\frac{\ell(\ell+1)}{\rho^2} - \frac{2Z}{\kappa a_0\rho} + 1\Bigr]u .
 \]
+(Dividing the radial equation by $-\hbar^2\kappa^2/2m = E$ and using $\frac{2m}{\hbar^2}\frac{Ze^2}{r} = \frac{2Z}{a_0r}$.)
 As $\rho\to\infty$, $u\sim e^{-\rho}$; as $\rho\to0$, $u\sim\rho^{\ell+1}$. Writing $u = \rho^{\ell+1}e^{-\rho}W(\rho)$ with $W = \sum_jc_j\rho^j$, the recursion is
 \[
     \frac{c_{j+1}}{c_j} = \frac{2(j+\ell+1) - 2Z/\kappa a_0}{(j+1)(j+2\ell+2)}.
 \]
-If the series did not terminate, $c_{j+1}/c_j\to2/j$, so $W\sim e^{2\rho}$ and $u$ would blow up. It must therefore terminate at some $j = N$, which requires $Z/\kappa a_0 = N+\ell+1\equiv n$.
+If the series did not terminate, $c_{j+1}/c_j\to2/j$, so $W\sim e^{2\rho}$ and $u$ would blow up. It must therefore terminate at some $j = N$, which requires $Z/\kappa a_0 = N+\ell+1\equiv n$. Then $\kappa = Z/na_0$ and $E = -\frac{\hbar^2\kappa^2}{2m} = -\frac{\hbar^2Z^2}{2ma_0^2n^2} = -\frac{Z^2e^2}{2a_0n^2}$.
+
+\paragraph{The recursion in detail.} With $u = \rho^{\ell+1}e^{-\rho}W$,
+\[
+    u'' = \rho^{\ell+1}e^{-\rho}\Bigl[W'' + 2\Bigl(\frac{\ell+1}{\rho} - 1\Bigr)W' + \Bigl(\frac{\ell(\ell+1)}{\rho^2} - \frac{2(\ell+1)}{\rho} + 1\Bigr)W\Bigr].
+\]
+Setting this equal to the right side of the radial equation, the $\ell(\ell+1)/\rho^2$ and $1$ terms cancel, leaving
+\[
+    \rho W'' + 2(\ell+1-\rho)W' + \bigl(\rho_0 - 2(\ell+1)\bigr)W = 0,
+    \qquad
+    \rho_0 = \frac{2Z}{\kappa a_0}.
+\]
+Substituting $W = \sum_jc_j\rho^j$ and collecting the coefficient of $\rho^j$:
+\[
+    (j+1)j\,c_{j+1} + 2(\ell+1)(j+1)c_{j+1} - 2jc_j + (\rho_0 - 2\ell - 2)c_j = 0,
+\]
+which is the recursion above. Termination at $j = N$ requires $\rho_0 = 2(N+\ell+1) = 2n$.
 
 \begin{formula}[Hydrogen spectrum]
 \[
@@ -185,6 +234,20 @@ If the series did not terminate, $c_{j+1}/c_j\to2/j$, so $W\sim e^{2\rho}$ and $
 \]
 with $W_{n\ell}$ a polynomial of degree $n-\ell-1$ (an associated Laguerre polynomial) and quantum numbers $n>\ell\ge|m|$. The energy depends only on $n$, so the degeneracy of $E_n$ is $\sum_{\ell=0}^{n-1}(2\ell+1) = n^2$ (or $2n^2$ with spin).
 \end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[yscale=0.35,xscale=1.2]
+  \foreach \l/\name in {0/s,1/p,2/d,3/f} {\node at (\l*1.5+0.5,1.2) {\small $\ell=\l$ ($\name$)};}
+  \foreach \n/\E in {1/-13.6,2/-3.4,3/-1.51,4/-0.85} {
+     \pgfmathtruncatemacro{\lmax}{\n-1}
+     \foreach \l in {0,...,\lmax} {\draw[thick] (\l*1.5,\E) -- (\l*1.5+1,\E);}
+     \node[left] at (-0.2,\E) {\small $n=\n$};
+  }
+  \draw[dashed] (-0.2,0) -- (6,0) node[right]{\small $0$};
+\end{tikzpicture}
+\caption{Hydrogen levels arranged by $\ell$. Levels with the same $n$ but different $\ell$ are degenerate: the ``accidental'' degeneracy of the Coulomb potential. Each level is further $(2\ell+1)$-fold degenerate in $m$.}
+\end{figure}
 
 \begin{figure}[ht]
 \centering
@@ -239,6 +302,18 @@ From $\langle T\rangle = \frac12m\langle v^2\rangle = -E_n = \frac{\alpha^2mc^2Z
 For $Z = n = 1$ the electron moves at $c/137$: hydrogen is non-relativistic, and relativistic corrections are of relative order $\alpha^2$ (Chapter~\ref{ch:fine}).
 \end{example}
 
+\begin{example}[Expectation values in the ground state]
+With $|\psi_{100}|^2 = e^{-2r/a_0}/\pi a_0^3$ and $\int_0^\infty r^ne^{-2r/a_0}dr = n!(a_0/2)^{n+1}$:
+\[
+    \langle r\rangle = \frac{4}{a_0^3}\int_0^\infty r^3e^{-2r/a_0}dr = \frac32a_0,
+    \qquad
+    \langle r^2\rangle = 3a_0^2,
+    \qquad
+    \Bigl\langle\frac1r\Bigr\rangle = \frac{1}{a_0}.
+\]
+The most probable radius, where $r^2|\psi|^2\propto r^2e^{-2r/a_0}$ peaks, is $a_0$ exactly: the Bohr radius. The probability of finding the electron beyond $r$ is $(1+2x+2x^2)e^{-2x}$ with $x = r/a_0$, so $\approx24\%$ lies outside the classical turning point $r = 2a_0$.
+\end{example}
+
 \paragraph{The proton.} The proton is not infinitely heavy ($m_p/m_e\approx1800$). Treating both particles, the Hamiltonian separates into centre-of-mass and relative coordinates, $\vect{R} = (m_p\lvect{r}_p + m_e\lvect{r}_e)/M$ and $\lvect{r} = \lvect{r}_e - \lvect{r}_p$, with conjugate momenta $\vect{P} = \lvect{p}_e+\lvect{p}_p$ and $\lvect{p} = (m_p\lvect{p}_e - m_e\lvect{p}_p)/M$:
 \[
     \hat{H} = \frac{\hat{\vect{P}}^2}{2M} + \frac{\hat{\lvect{p}}^2}{2\mu} + V(\lvect{r}),
@@ -246,6 +321,17 @@ For $Z = n = 1$ the electron moves at $c/137$: hydrogen is non-relativistic, and
     \mu = \frac{m_em_p}{m_e+m_p},
 \]
 so the hydrogen results hold with $m\to\mu$. Further corrections are \emph{fine structure}, of relative order $\alpha^2$, from the electron's spin coupling to its orbit ($\propto\hat{\lvect{L}}\cdot\hat{\lvect{S}}$), and \emph{hyperfine structure}, smaller by a further $m_e/m_p$, from the proton's spin.
+
+\begin{example}[Hydrogen-like systems]
+The same formulas, with $Z$ and the reduced mass $\mu$, describe:
+\begin{itemize}
+    \item \emph{Ions} such as He$^+$ ($Z = 2$): energies $Z^2 = 4$ times larger, radii $Z$ times smaller.
+    \item \emph{Isotopes}: deuterium's larger $\mu$ shifts the spectrum by $\Delta\mu/\mu\approx m_e/2m_p\approx2.7\times10^{-4}$, how deuterium was discovered.
+    \item \emph{Positronium} ($e^+e^-$, $\mu = m_e/2$): binding energy $6.8$\,eV and twice the Bohr radius.
+    \item \emph{Muonic hydrogen} ($\mu\approx186m_e$): radius $\sim200$ times smaller, probing the proton's size (Chapter~\ref{ch:fine}).
+    \item \emph{Excitons} in semiconductors, an electron and hole bound in a dielectric: $e^2\to e^2/\varepsilon$ and effective masses give binding energies of meV and radii of tens of nanometres.
+\end{itemize}
+\end{example}
 
 \begin{fact}[Concept checks]
 \leavevmode
@@ -259,6 +345,10 @@ so the hydrogen results hold with $m\to\mu$. Further corrections are \emph{fine 
 \end{itemize}
 \end{fact}
 
+\begin{example}[Rotational spectra of molecules]
+A diatomic molecule rotating as a rigid body with moment of inertia $I = \mu R^2$ has $\hat{H} = \hat{\vect{L}}^2/2I$, so $E_\ell = \frac{\hbar^2\ell(\ell+1)}{2I}$ with degeneracy $2\ell+1$. Dipole transitions have $\Delta\ell = \pm1$, giving absorption lines at $E_{\ell+1} - E_\ell = \hbar^2(\ell+1)/I$: equally spaced lines in the microwave/far-infrared. For CO, $\hbar^2/I\approx4.8\times10^{-4}$\,eV, so $\hbar^2/2Ik_B\approx2.8$\,K: rotations are excited at room temperature (the $\frac52$ step in the heat capacity), while vibrations, at $\hbar\omega\approx0.27$\,eV, are frozen out.
+\end{example}
+
 \subsection{The Periodic Table}
 
 Electrons are fermions, so a many-electron wavefunction is antisymmetric under exchange, $\Psi(\ldots\lvect{r}_i\ldots\lvect{r}_j\ldots) = -\Psi(\ldots\lvect{r}_j\ldots\lvect{r}_i\ldots)$, and vanishes if two electrons share a state. For non-interacting electrons in single-particle states $\psi_\alpha$, the two-electron state is $\psi_\alpha(\lvect{r}_1)\psi_\beta(\lvect{r}_2) - \psi_\beta(\lvect{r}_1)\psi_\alpha(\lvect{r}_2)$, requiring $\alpha\neq\beta$.
@@ -268,5 +358,20 @@ No two electrons occupy the same state. With spin, each hydrogen level holds $2n
 \end{fact}
 
 \begin{example}[Sudden change of the nucleus]
-In tritium ($Z = 1$) beta decay to $^3$He$^+$ ($Z = 2$), the electron wavefunction does not have time to change. The probability of finding the new ion in its ground state is $|\langle\psi_{100}^{Z=2}|\psi_{100}^{Z=1}\rangle|^2 = 512/729\approx0.70$.
+In tritium ($Z = 1$) beta decay to $^3$He$^+$ ($Z = 2$), the electron wavefunction does not have time to change. The probability of finding the new ion in its ground state is $|\langle\psi_{100}^{Z=2}|\psi_{100}^{Z=1}\rangle|^2 = 512/729\approx0.70$. To see this, with $\psi_{100}^{Z} = \sqrt{Z^3/\pi a_0^3}\,e^{-Zr/a_0}$,
+\[
+    \langle\psi^{(2)}|\psi^{(1)}\rangle = \frac{\sqrt{8}}{\pi a_0^3}\int_0^\infty4\pi r^2e^{-3r/a_0}dr = \frac{4\sqrt8}{a_0^3}\cdot\frac{2a_0^3}{27} = \frac{16\sqrt2}{27},
+\]
+whose square is $512/729$. This is the \emph{sudden approximation}: when $\hat{H}$ changes much faster than the system's natural timescale, the state is unchanged, and the probabilities are its overlaps with the new eigenstates.
 \end{example}
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item Central potentials separate: $\psi = \frac{u(r)}{r}Y_{\ell m}$, with $V_{\text{eff}} = V + \hbar^2\ell(\ell+1)/2mr^2$.
+\item $[\hat{L}_i,\hat{L}_j] = i\hbar\epsilon_{ijk}\hat{L}_k$; $\hat{\vect{L}}^2$, $\hat{L}_z$ eigenvalues $\hbar^2\ell(\ell+1)$, $\hbar m$, with $|m|\le\ell$.
+\item Hydrogen: $E_n = -\text{Ry}Z^2/n^2$, $n>\ell$, degeneracy $n^2$ ($2n^2$ with spin); reduced mass $\mu$.
+\item Virial theorem: $\langle T\rangle = -\frac12\langle V\rangle$ for Coulomb.
+\item Pauli exclusion and screening explain the periodic table.
+\end{itemize}
+\end{fact}

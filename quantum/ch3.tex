@@ -3,15 +3,111 @@
 
 To solve a problem with potential $V$, find the eigenstates $\hat{H}\phi_E = E\phi_E$, expand $\Psi(x,0) = \sum_Ea_E\phi_E$, and evolve each with $e^{-iEt/\hbar}$. This chapter does the first step for the standard one-dimensional potentials.
 
-\begin{fact}[General properties of 1D eigenfunctions]
+% ============================================================
+\section{General Properties of One-Dimensional Eigenstates}
+\label{sec:1d-general}
+% ============================================================
+
+Throughout, $V(x)$ is real and piecewise continuous, possibly with finitely many finite jumps, and we study
+\begin{equation}
+    \psi''(x) = \frac{2m}{\hbar^2}\bigl(V(x)-E\bigr)\psi(x).
+    \label{eq:1d-tise}
+\end{equation}
+Singular potentials (infinite walls, delta functions) are treated as limits of regular ones.
+
+\begin{theorem}[Continuity of $\psi$ and $\psi'$]
+If $V$ is finite, then $\psi$ and $\psi'$ are continuous everywhere, including at jumps of $V$.
+\end{theorem}
+\begin{proof}
+Integrate \eqref{eq:1d-tise} across a point $x_0$:
+\[
+    \psi'(x_0+\epsilon) - \psi'(x_0-\epsilon) = \frac{2m}{\hbar^2}\int_{x_0-\epsilon}^{x_0+\epsilon}(V-E)\psi\,dx .
+\]
+If $V$ and $\psi$ are bounded near $x_0$, the right side is at most $2\epsilon\cdot\text{const}\to0$, so $\psi'$ is continuous; then $\psi$, the integral of $\psi'$, is continuous too. (Boundedness of $\psi$ itself follows: a jump in $\psi$ would make $\psi'$ contain a delta function and $\psi''$ a $\delta'$, which a finite $V\psi$ cannot balance.)
+\end{proof}
+
+\begin{fact}[Singular potentials]
 \leavevmode
 \begin{itemize}
-    \item $\psi'' = \frac{2m}{\hbar^2}(V-E)\psi$. If $V$ is finite, $\psi''$ is finite, so $\psi'$ and $\psi$ are continuous. (Finite kinetic energy, $\langle T\rangle = \frac{\hbar^2}{2m}\int|\psi'|^2$, also requires $\psi$ continuous.) At an infinite wall $\psi = 0$; at a delta function $\psi'$ jumps.
-    \item $E$ must exceed $\min V$. Where $E>V$ the solution oscillates (classically allowed); where $E<V$ it grows or decays exponentially (classically forbidden).
-    \item \emph{Bound states} ($E<V(\pm\infty)$) are normalizable and have a discrete spectrum. In 1D they are non-degenerate, and the $n$th bound state has $n-1$ nodes. \emph{Scattering states} ($E>V$ at infinity) are not normalizable and have a continuous spectrum: two solutions per energy if the particle is free on both sides, one if free on one side only.
-    \item The ground state is a trade-off between kinetic energy, which favours spreading out, and potential energy.
+    \item \emph{Infinite wall}: for $V = V_0$ on $x>0$ and $E<V_0$, the solution there is $\propto e^{-\kappa x}$ with $\kappa = \sqrt{2m(V_0-E)}/\hbar$. Matching $\psi'/\psi = -\kappa$ at $x = 0$ and letting $V_0\to\infty$ forces $\psi(0)\to0$, while $\psi'(0)$ stays finite and generally nonzero. So at an infinite wall $\psi = 0$ but $\psi'$ jumps.
+    \item \emph{Delta function} $V = \lambda\delta(x-a)$: $\psi$ is continuous but $\psi'(a^+) - \psi'(a^-) = \frac{2m\lambda}{\hbar^2}\psi(a)$ (derived in Section~\ref{sec:1d-delta}).
 \end{itemize}
 \end{fact}
+
+\begin{theorem}[Real eigenfunctions]
+The solutions of \eqref{eq:1d-tise} for a given $E$ can be chosen real.
+\end{theorem}
+\begin{proof}
+Since $V$ and $E$ are real, if $\psi$ solves the equation so does $\psi^*$, and hence so do $\mathrm{Re}\,\psi = \frac12(\psi+\psi^*)$ and $\mathrm{Im}\,\psi = \frac{1}{2i}(\psi-\psi^*)$. Any solution is a combination of these two real ones.
+\end{proof}
+
+\begin{theorem}[Energies lie above the minimum of $V$]
+If $\psi$ is a normalizable eigenstate with energy $E$, then $E>\min V$.
+\end{theorem}
+\begin{proof}
+$E = \langle\hat{H}\rangle = \frac{\hbar^2}{2m}\int|\psi'|^2dx + \int V|\psi|^2dx$, after integrating the kinetic term by parts (boundary terms vanish for normalizable $\psi$). The first term is strictly positive, since $\psi' = 0$ everywhere would make $\psi$ constant and so not normalizable, and the second is at least $\min V$.
+\end{proof}
+
+Equivalently, if $E<\min V$ then $\psi''/\psi>0$ everywhere: $\psi$ is convex where positive and concave where negative, so it curves away from the axis and must diverge at $+\infty$ or $-\infty$.
+
+\begin{definition}[Wronskian]
+For two solutions $\psi_1$, $\psi_2$ of \eqref{eq:1d-tise},
+\[
+    W[\psi_1,\psi_2](x) = \psi_1\psi_2' - \psi_2\psi_1' .
+\]
+\end{definition}
+
+\begin{theorem}[Properties of the Wronskian]
+\leavevmode
+\begin{enumerate}
+    \item If $\psi_1$ and $\psi_2$ have the same energy, $W$ is independent of $x$.
+    \item $W = 0$ if and only if $\psi_1$ and $\psi_2$ are linearly dependent.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(1) $W' = \psi_1\psi_2'' - \psi_2\psi_1'' = \frac{2m}{\hbar^2}(V-E)(\psi_1\psi_2 - \psi_2\psi_1) = 0$. (2) If $W = 0$ at a point $x_0$, then the vectors $(\psi_1,\psi_1')$ and $(\psi_2,\psi_2')$ at $x_0$ are parallel, so some combination $c_1\psi_1+c_2\psi_2$ has zero value and zero derivative at $x_0$. By uniqueness of solutions of a second-order ODE with given initial data, that combination vanishes identically.
+\end{proof}
+
+\begin{theorem}[No degenerate bound states in one dimension]
+If $\psi_1$ and $\psi_2$ are normalizable eigenstates with the same energy, then $\psi_2 = c\psi_1$.
+\end{theorem}
+\begin{proof}
+Normalizable bound states, and their derivatives, vanish as $|x|\to\infty$, so $W\to0$ there. Since $W$ is constant, $W = 0$ everywhere, and the two solutions are dependent.
+\end{proof}
+
+The proof fails, as it should, for the particle on a ring (no infinity at which $W$ vanishes) and in more than one dimension.
+
+\begin{theorem}[Probability current and the Wronskian]
+For a single solution $\psi$ of energy $E$, the current is
+\[
+    J = \frac{\hbar}{2mi}\bigl(\psi^*\psi' - \psi\psi^{*\prime}\bigr) = \frac{\hbar}{2mi}W[\psi^*,\psi],
+\]
+and since $\psi^*$ is a solution with the same energy, $J$ is independent of $x$. For a real $\psi$, $J = 0$.
+\end{theorem}
+
+This is the stationary form of the continuity equation: in a stationary state $\partial_t\rho = 0$, so $\partial_xJ = 0$. It is what guarantees $R + T = 1$ in every scattering problem below: evaluate the constant $J$ on the left, where it is $\frac{\hbar k}{m}(1 - |r|^2)$, and on the right, where it is the transmitted current.
+
+\begin{theorem}[Node theorem]
+Order the bound states by energy, $E_1<E_2<\cdots$. Then $\psi_n$ has exactly $n-1$ nodes, and between any two consecutive nodes of $\psi_n$ there is a node of $\psi_{n+1}$.
+\end{theorem}
+\begin{proof}[Proof of the interlacing step]
+Let $\psi_n$ and $\psi_{n+1}$ be real, and let $a<b$ be consecutive zeros of $\psi_n$, with $\psi_n>0$ on $(a,b)$, so $\psi_n'(a)>0$ and $\psi_n'(b)<0$. From \eqref{eq:1d-tise},
+\[
+    \frac{d}{dx}W[\psi_n,\psi_{n+1}] = \frac{2m}{\hbar^2}(E_n - E_{n+1})\psi_n\psi_{n+1}.
+\]
+Integrate from $a$ to $b$: the left side is $W(b) - W(a) = -\psi_n'(b)\psi_{n+1}(b) + \psi_n'(a)\psi_{n+1}(a)$. If $\psi_{n+1}$ had no zero in $(a,b)$, say $\psi_{n+1}>0$ there, the right side would be strictly negative, while the left side would be $\ge0$ (each term is $\ge0$). Contradiction. Counting nodes as $n$ increases then gives $n-1$ for $\psi_n$ (the ground state, with no nodes, being the one that can be chosen positive).
+\end{proof}
+
+\begin{fact}[Classification of the spectrum]
+Let $V\to V_\pm$ as $x\to\pm\infty$, with $V_-\le V_+$.
+\begin{itemize}
+    \item $E<V_-$: on each side one of the two asymptotic solutions grows exponentially and must be excluded. That is two conditions on the two free constants of the solution, plus normalization fixes the overall scale; so solutions exist only for discrete $E$. These are the \emph{bound states}: normalizable, non-degenerate, discrete spectrum.
+    \item $V_-<E<V_+$: oscillatory on the left, one condition on the right. One solution per $E$, for a continuous range of $E$: total reflection.
+    \item $E>V_+$: oscillatory on both sides, no conditions. Two independent solutions per $E$ (incident from the left or the right), continuous spectrum: \emph{scattering states}, not normalizable.
+\end{itemize}
+\end{fact}
+
+The ground state is a trade-off: the kinetic term $\frac{\hbar^2}{2m}\int|\psi'|^2$ favours spreading out, the potential term favours sitting at the minimum of $V$. Every result in the rest of this chapter is an instance of these general theorems.
 
 % ============================================================
 \section{The Infinite Square Well}
@@ -49,7 +145,7 @@ Let $V = 0$ for $0\le x\le a$ and $\infty$ elsewhere. Outside, $\psi = 0$ (other
 \begin{enumerate}
     \item $\phi_n$ has $n-1$ nodes in $(0,a)$.
     \item The eigenfunctions alternate between symmetric and antisymmetric about $x = a/2$.
-    \item They are orthonormal, $\langle\phi_m,\phi_n\rangle = \frac2a\int_0^a\sin\frac{m\pi x}{a}\sin\frac{n\pi x}{a}dx = \delta_{mn}$, and form a basis for functions on $[0,a]$ vanishing at both ends. The expansion $\psi = \sum a_n\phi_n$ is unique, with $a_n = \langle\phi_n,\psi\rangle$.
+    \item They are orthonormal, $\langle\phi_m,\phi_n\rangle = \frac2a\int_0^a\sin\frac{m\pi x}{a}\sin\frac{n\pi x}{a}dx = \delta_{mn}$, and form a basis for functions on $[0,a]$ vanishing at both ends. The expansion $\psi = \sum a_n\phi_n$ is unique, with $a_n = \langle\phi_n,\psi\rangle$. Orthonormality follows from $\sin A\sin B = \frac12[\cos(A-B)-\cos(A+B)]$: for $m\neq n$ both cosines integrate to zero over $[0,a]$, and for $m = n$ the first gives $a/2$. Completeness is Fourier's theorem for the sine series on $[0,a]$.
 \end{enumerate}
 \end{fact}
 
@@ -59,6 +155,14 @@ Let $\Psi(x,0) = \sqrt{\tfrac13}\phi_1 + \sqrt{\tfrac23}\phi_2$. Then
     |\Psi(x,t)|^2 = \tfrac13\phi_1^2 + \tfrac23\phi_2^2 + \tfrac{2\sqrt2}{3}\phi_1\phi_2\cos\Bigl(\frac{(E_2-E_1)t}{\hbar}\Bigr):
 \]
 the first two terms are what a classical mixture would give, and the last is quantum interference, oscillating at the Bohr frequency.
+\end{example}
+
+\begin{example}[Measuring the energy in a well]
+A particle in the well starts in $\Psi(x,0) = \sqrt{30/a^5}\,x(a-x)$. Its energy-eigenstate components are
+\[
+    c_n = \int_0^a\sqrt{\frac2a}\sin\frac{n\pi x}{a}\sqrt{\frac{30}{a^5}}x(a-x)\,dx = \frac{4\sqrt{15}}{(n\pi)^3}\bigl[1-(-1)^n\bigr],
+\]
+so only odd $n$ appear (the state is symmetric about $a/2$), with $|c_1|^2 = 960/\pi^6\approx0.998$: the parabola is almost exactly the ground state. A measurement of energy gives $E_1$ with probability $0.998$, and $\langle H\rangle = \sum|c_n|^2E_n = \frac{5\hbar^2}{ma^2}$, just above $E_1 = \frac{\pi^2\hbar^2}{2ma^2}\approx\frac{4.93\hbar^2}{ma^2}$, as the variational principle requires.
 \end{example}
 
 \begin{example}[Physical scales]
@@ -83,7 +187,13 @@ By the chain rule $\hat{P}\partial_x = -\partial_x\hat{P}$, so $\hat{P}$ commute
 If $[\hat{Q},\hat{H}] = 0$ and $\hat{H}\psi = E\psi$, then $\hat{H}(\hat{Q}\psi) = \hat{Q}\hat{H}\psi = E\hat{Q}\psi$: $\hat{Q}\psi$ is also an eigenfunction with energy $E$. One can therefore find simultaneous eigenfunctions of $\hat{Q}$ and $\hat{H}$.
 \end{theorem}
 
-For an even potential, $\psi\pm\hat{P}\psi$ are even and odd eigenfunctions of the same energy, at least one of them nonzero. So the energy eigenstates can always be chosen to have definite parity; in 1D, with no degeneracy, they automatically do.
+\begin{theorem}[Bound states of an even potential have definite parity]
+If $V(-x) = V(x)$, every one-dimensional bound state is either even or odd.
+\end{theorem}
+\begin{proof}
+If $\hat{H}\psi = E\psi$, then $\hat{H}(\hat{P}\psi) = \hat{P}\hat{H}\psi = E\hat{P}\psi$, so $\hat{P}\psi$ is a bound state of the same energy. By non-degeneracy (Section~\ref{sec:1d-general}), $\hat{P}\psi = c\psi$. Applying $\hat{P}$ again, $\psi = c^2\psi$, so $c = \pm1$.
+\end{proof}
+For scattering states, which can be degenerate, $\psi\pm\hat{P}\psi$ still give even and odd solutions of the same energy, so a basis of definite parity can always be chosen. In practice parity halves the work: solve on $x>0$ with $\psi'(0) = 0$ (even) or $\psi(0) = 0$ (odd).
 
 % ============================================================
 \section{The Finite Square Well}
@@ -100,6 +210,8 @@ Normalizability kills the growing exponentials, and by parity the solutions are 
     \psi(x) = \begin{cases}Ae^{\kappa x} & x<-a\\ C\cos qx\ \text{or}\ C\sin qx & |x|\le a\\ \pm Ae^{-\kappa x} & x>a\end{cases}
 \]
 Continuity of $\psi'/\psi$ at $x = a$ gives $\kappa = q\tan qa$ (even) or $\kappa = -q\cot qa$ (odd). With the dimensionless variables $\xi = \kappa a$ and $\eta = qa$:
+
+In detail, for the even solution: continuity of $\psi$ at $x = a$ gives $C\cos qa = Ae^{-\kappa a}$, and continuity of $\psi'$ gives $-qC\sin qa = -\kappa Ae^{-\kappa a}$. Dividing the second by the first eliminates both amplitudes, leaving $q\tan qa = \kappa$. The odd solution gives $q\cot qa = -\kappa$ in the same way. Separately, $\kappa^2 + q^2 = 2mV_0/\hbar^2$ is fixed by the well. Multiplying by $a$:
 
 \begin{formula}[Finite well quantization]
 \[
@@ -131,11 +243,36 @@ Continuity of $\psi'/\psi$ at $x = a$ gives $\kappa = q\tan qa$ (even) or $\kapp
 There is always at least one (even) bound state, however shallow the well. The number of bound states is $\lceil z_0/(\pi/2)\rceil$, consistent with the infinite well of width $2a$: its levels $E_n = \hbar^2\pi^2n^2/2m(2a)^2$ fit below $V_0$ for $n\le z_0/(\pi/2)$.
 \end{fact}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=5.5cm,axis lines=middle,xlabel={$x/a$},ytick=\empty,xtick={-1,1},xmin=-3,xmax=3,ymin=-1.3,ymax=1.5,samples=200,legend style={draw=none,at={(1,1.05)},anchor=north east,font=\small}]
+\addplot[thick,blue!70!black,domain=-1:1]{cos(deg(1.1*x))}; \addlegendentry{even, $n=1$}
+\addplot[thick,blue!70!black,domain=1:3]{cos(deg(1.1))*exp(-1.96*(x-1))};
+\addplot[thick,blue!70!black,domain=-3:-1]{cos(deg(1.1))*exp(1.96*(x+1))};
+\addplot[thick,red!70!black,domain=-1:1]{sin(deg(2.1*x))}; \addlegendentry{odd, $n=2$}
+\addplot[thick,red!70!black,domain=1:3]{sin(deg(2.1))*exp(-1.2*(x-1))};
+\addplot[thick,red!70!black,domain=-3:-1]{-sin(deg(2.1))*exp(1.2*(x+1))};
+\draw[dashed,gray] (axis cs:-1,-1.3) -- (axis cs:-1,1.5); \draw[dashed,gray] (axis cs:1,-1.3) -- (axis cs:1,1.5);
+\end{axis}
+\end{tikzpicture}
+\caption{The two lowest bound states of a finite square well. Inside they oscillate; outside they decay as $e^{-\kappa|x|}$, more slowly for the less tightly bound excited state.}
+\end{figure}
+
+\begin{example}[Limits of the finite well]
+For a deep well ($z_0\to\infty$), the circle meets the curves near their asymptotes $\eta = n\pi/2$, so $q\cdot2a = n\pi$: the infinite-well spectrum for width $2a$, measured from the bottom. For a shallow well ($z_0\ll1$), the single even state has $\eta\approx z_0$ and $\xi\approx\eta^2 = z_0^2$, so $\kappa\approx z_0^2/a$ and the binding energy $E = -\hbar^2\kappa^2/2m\propto V_0^2$: it is bound only weakly, with a wavefunction spread far outside the well. With $\alpha = 2aV_0$ fixed and $a\to0$, $\kappa = z_0^2/a = 2maV_0/\hbar^2 = m\alpha/\hbar^2$, the delta-function result below.
+\end{example}
+
 % ============================================================
 \section{The Delta-Function Potential}
+\label{sec:1d-delta}
 % ============================================================
 
 Shrink the well to zero width at fixed strength $\alpha = 2aV_0$: $V(x) = -\alpha\,\delta(x)$, with $[\alpha] = $ energy$\cdot$length. Integrating the Schr\"odinger equation across $x = 0$:
+\[
+    -\frac{\hbar^2}{2m}\int_{-\epsilon}^{\epsilon}\psi''\,dx + \int_{-\epsilon}^{\epsilon}V\psi\,dx = E\int_{-\epsilon}^{\epsilon}\psi\,dx .
+\]
+As $\epsilon\to0$ the right side vanishes (finite $\psi$), the first term gives $-\frac{\hbar^2}{2m}[\psi'(\epsilon)-\psi'(-\epsilon)]$, and only the delta function survives in the potential term. In general:
 
 \begin{formula}[Delta-function matching condition]
 For $V = \lambda\,\delta(x-a)$ plus a finite potential,
@@ -158,6 +295,29 @@ For the attractive delta, $V = -\alpha\delta(x)$, the bound state is $\psi = Ae^
 There is exactly one bound state.
 \end{formula}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=4.5cm,axis lines=middle,xlabel={$x$},ytick=\empty,xtick=\empty,xmin=-3,xmax=3,ymin=-0.2,ymax=1.2,samples=200,domain=-3:3]
+\addplot[thick,blue!70!black]{exp(-1.5*abs(x))};
+\draw[->,thick,red!70!black] (axis cs:0,0) -- (axis cs:0,-0.18);
+\node at (axis cs:1.3,0.8) {\small $\sqrt\kappa\,e^{-\kappa|x|}$};
+\end{axis}
+\end{tikzpicture}
+\caption{The single bound state of an attractive delta function: a cusp at the origin, where $\psi'$ jumps by $-2\kappa\psi(0)$, and exponential decay with length $1/\kappa = \hbar^2/m\alpha$.}
+\end{figure}
+
+\begin{formula}[Delta-function bound state, summary]
+\[
+    \langle x^2\rangle = \frac{1}{2\kappa^2},
+    \qquad
+    \langle T\rangle = \frac{\hbar^2\kappa^2}{2m} = -E,
+    \qquad
+    \langle V\rangle = -\alpha|\psi(0)|^2 = -\alpha\kappa = 2E,
+\]
+consistent with the virial relation $2\langle T\rangle = -\langle V\rangle$ for a potential scaling as $1/x$ (the delta function has $\delta(\lambda x) = \delta(x)/\lambda$).
+\end{formula}
+
 \begin{example}[Double delta well and tunnelling splitting]
 For $V = -\frac{\hbar^2\lambda}{ma}\bigl[\delta(x-a)+\delta(x+a)\bigr]$, bound states have $\psi\propto e^{\kappa x}$ outside and $\cosh\kappa x$ (even) or $\sinh\kappa x$ (odd) inside. With $\epsilon = \kappa a$ the jump conditions give
 \[
@@ -175,6 +335,44 @@ exponentially small in the barrier between the wells: the same physics as the am
 \end{example}
 
 % ============================================================
+\section{Periodic Potentials and Bands}
+% ============================================================
+
+\begin{theorem}[Bloch's theorem in one dimension]
+If $V(x+a) = V(x)$, the eigenstates can be chosen to satisfy $\psi(x+a) = e^{iKa}\psi(x)$ for some real $K\in(-\pi/a,\pi/a]$, the crystal momentum.
+\end{theorem}
+\begin{proof}
+The translation $\hat{T}_a\psi(x) = \psi(x+a)$ commutes with $\hat{H}$, so it maps each (at most two-dimensional) energy eigenspace to itself and can be diagonalized within it: $\hat{T}_a\psi = \lambda\psi$. Boundedness of $\psi$ as $x\to\pm\infty$ (applying $\hat{T}_a^N$) requires $|\lambda| = 1$, so $\lambda = e^{iKa}$.
+\end{proof}
+
+\paragraph{The Kronig--Penney model.} Take a comb of delta functions, $V = \lambda\sum_n\delta(x-na)$. Between $0$ and $a$, $\psi = A\sin kx + B\cos kx$ with $E = \hbar^2k^2/2m$. Bloch's theorem gives $\psi$ on $(-a,0)$ as $e^{-iKa}[A\sin k(x+a) + B\cos k(x+a)]$. Continuity at $x = 0$ gives $B = e^{-iKa}(A\sin ka + B\cos ka)$, and the derivative jump $\psi'(0^+) - \psi'(0^-) = \frac{2m\lambda}{\hbar^2}\psi(0)$ gives
+\[
+    kA - e^{-iKa}k(A\cos ka - B\sin ka) = \frac{2m\lambda}{\hbar^2}B .
+\]
+Eliminating $A$ and $B$ (solve the first for $A\sin ka$, substitute) leaves a single condition:
+
+\begin{formula}[Kronig--Penney band condition]
+\[
+    \cos Ka = \cos ka + \frac{m\lambda}{\hbar^2k}\sin ka\equiv f(ka).
+\]
+Since $|\cos Ka|\le1$, energies with $|f(ka)|>1$ are forbidden.
+\end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=11cm,height=5cm,xlabel={$ka$},ylabel={$f(ka)$},axis lines=middle,xmin=0,xmax=13,ymin=-2.2,ymax=4,samples=500,domain=0.05:13,xtick={3.1416,6.2832,9.4248,12.566},xticklabels={$\pi$,$2\pi$,$3\pi$,$4\pi$}]
+\fill[green!15] (axis cs:0,-1) rectangle (axis cs:13,1);
+\addplot[thick,blue!70!black]{cos(deg(x))+3*sin(deg(x))/x};
+\draw[dashed] (axis cs:0,1) -- (axis cs:13,1); \draw[dashed] (axis cs:0,-1) -- (axis cs:13,-1);
+\end{axis}
+\end{tikzpicture}
+\caption{The Kronig--Penney function $f(ka) = \cos ka + \frac{g}{ka}\sin ka$ (here $g = m\lambda a/\hbar^2 = 3$). Allowed energies lie where $|f|\le1$ (shaded strip): bands, separated by gaps. The gaps open at $ka = n\pi$, where the Bragg condition holds, and shrink at high energy.}
+\end{figure}
+
+The spectrum therefore consists of continuous \emph{bands} separated by \emph{gaps}. As $\lambda\to0$, $f = \cos ka$ and $K = k$: free particles. As $\lambda\to\infty$, the bands shrink to the levels $ka = n\pi$ of isolated wells. This is the one-dimensional origin of the band structure of solids, treated in detail in the solid-state notes.
+
+% ============================================================
 \section{Scattering}
 % ============================================================
 
@@ -184,7 +382,7 @@ Let $V = 0$ for $x<0$ and $V_0$ for $x>0$, with a particle incident from the lef
 \[
     \psi = \begin{cases}e^{ikx} + re^{-ikx} & x<0\\ te^{iqx} & x>0\end{cases}
 \]
-Continuity of $\psi$ and $\psi'$ gives $1 + r = t$ and $k(1-r) = qt$.
+Continuity of $\psi$ and $\psi'$ gives $1 + r = t$ and $k(1-r) = qt$. Adding $k$ times the first to the second gives $2k = (k+q)t$, so $t = 2k/(k+q)$, and then $r = t-1 = (k-q)/(k+q)$.
 
 \begin{formula}[Step potential]
 \[
@@ -200,7 +398,26 @@ Continuity of $\psi$ and $\psi'$ gives $1 + r = t$ and $k(1-r) = qt$.
 \]
 \end{formula}
 
-Note $|r|^2+|t|^2\neq1$: what is conserved is the probability current. With $J_{\text{inc}} = \hbar k/m$, $J_{\text{ref}} = \hbar k|r|^2/m$ and $J_{\text{trans}} = \hbar q|t|^2/m$, current conservation $J_{\text{inc}} = J_{\text{ref}} + J_{\text{trans}}$ is $R+T = 1$.
+Note $|r|^2+|t|^2\neq1$: what is conserved is the probability current. Precisely, define
+\[
+    R = \frac{|J_{\text{ref}}|}{J_{\text{inc}}},
+    \qquad
+    T = \frac{J_{\text{trans}}}{J_{\text{inc}}},
+\]
+the fractions of the incident probability flux reflected and transmitted. Since $J$ is independent of $x$ (Section~\ref{sec:1d-general}), evaluating it on both sides gives $J_{\text{inc}} - |J_{\text{ref}}| = J_{\text{trans}}$, i.e.\ $R+T = 1$ exactly. With $J_{\text{inc}} = \hbar k/m$, $J_{\text{ref}} = \hbar k|r|^2/m$ and $J_{\text{trans}} = \hbar q|t|^2/m$, current conservation $J_{\text{inc}} = J_{\text{ref}} + J_{\text{trans}}$ is $R+T = 1$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=5cm,xlabel={$E/V_0$},axis lines=left,xmin=0,xmax=5,ymin=0,ymax=1.1,samples=200,legend style={draw=none,at={(0.98,0.6)},anchor=east,font=\small}]
+\addplot[thick,red!70!black,domain=0:1]{1}; \addlegendentry{$R$}
+\addplot[thick,blue!70!black,domain=1.0001:5]{4*sqrt(x*(x-1))/(sqrt(x)+sqrt(x-1))^2}; \addlegendentry{$T$}
+\addplot[thick,red!70!black,domain=1.0001:5]{((sqrt(x)-sqrt(x-1))/(sqrt(x)+sqrt(x-1)))^2};
+\addplot[thick,blue!70!black,domain=0:1]{0};
+\end{axis}
+\end{tikzpicture}
+\caption{Reflection and transmission at a potential step. Classically $R = 0$ for $E>V_0$; quantum mechanically some reflection persists, vanishing only as $E\to\infty$.}
+\end{figure}
 
 \begin{fact}[Limits of the step]
 As $V_0\to0$, $q\to k$, so $t\to1$ and $r\to0$. As $E\to V_0^+$, $q\to0$ and $R\to1$: it is very hard to enter the barrier. For $V_0\ll E$, $q\approx k(1-\delta)$ with $R\approx\delta^2/4$, quadratic in the step size. Dividing a total step into $N$ small steps gives total reflection at most $\sim N\cdot1/4N^2\to0$: a slowly varying potential does not reflect (the \emph{adiabatic principle}).
@@ -251,7 +468,21 @@ With $\varphi = kx-\omega(k)t$, the packet's peak is at $x = \omega'(k_0)t$: it 
 
 \subsection{Tunnelling}
 
-For a barrier $V_0$ on $|x|<a$ with $0<E<V_0$, matching $Ae^{ikx}+Be^{-ikx}$, $Fe^{\kappa x}+Ge^{-\kappa x}$ and $Ce^{ikx}$ at $x = \pm a$ gives
+For a barrier $V_0$ on $|x|<a$ with $0<E<V_0$, matching $Ae^{ikx}+Be^{-ikx}$, $Fe^{\kappa x}+Ge^{-\kappa x}$ and $Ce^{ikx}$ at $x = \pm a$ gives four linear equations. At $x = a$, continuity of $\psi$ and $\psi'$ give
+\[
+    Fe^{\kappa a} + Ge^{-\kappa a} = Ce^{ika},
+    \qquad
+    \kappa\bigl(Fe^{\kappa a} - Ge^{-\kappa a}\bigr) = ikCe^{ika},
+\]
+so $F = \frac{C}{2}\bigl(1+\frac{ik}{\kappa}\bigr)e^{(ik-\kappa)a}$ and $G = \frac{C}{2}\bigl(1-\frac{ik}{\kappa}\bigr)e^{(ik+\kappa)a}$. Matching at $x = -a$ similarly expresses $A$ in terms of $F$ and $G$:
+\[
+    A = \frac{e^{ika}}{2}\Bigl[\Bigl(1+\frac{\kappa}{ik}\Bigr)Fe^{-\kappa a} + \Bigl(1-\frac{\kappa}{ik}\Bigr)Ge^{\kappa a}\Bigr].
+\]
+Substituting and collecting the $e^{\pm2\kappa a}$ terms into hyperbolic functions,
+\[
+    \frac{A}{C} = e^{2ika}\Bigl[\cosh2\kappa a + \frac{i}{2}\Bigl(\frac{\kappa}{k} - \frac{k}{\kappa}\Bigr)\sinh2\kappa a\Bigr],
+\]
+and $T = |C/A|^2$. Using $\cosh^2 = 1+\sinh^2$ and $\frac14(\frac\kappa k-\frac k\kappa)^2 + 1 = \frac{(k^2+\kappa^2)^2}{4k^2\kappa^2} = \frac{V_0^2}{4E(V_0-E)}$ gives
 
 \begin{formula}[Transmission through a barrier]
 \[
@@ -267,9 +498,43 @@ For a thick barrier, $\sinh^2(2\kappa a)\approx e^{4\kappa a}/4$, so
 
 Tunnelling explains why fusion in the Sun happens far more often than the classical estimate predicts. The exponential suppression resembles a thermal activation: for $N$ particles each with energy $E\pm\Delta E$, the probability that their total exceeds $N(E+\delta)$ is $\sim e^{-N\delta^2/2\Delta E^2}$, exponentially small in an extensive quantity times an intensive one. Tunnelling is likewise $\sim\exp(-\text{size}\times\sqrt{\text{energy deficit}})$.
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=4.5cm,axis lines=middle,xlabel={$x$},ytick=\empty,xtick={-1,1},xticklabels={$-a$,$a$},xmin=-5,xmax=5,ymin=-1.6,ymax=1.8,samples=200]
+\fill[orange!25] (axis cs:-1,-1.6) rectangle (axis cs:1,1.8);
+\addplot[thick,blue!70!black,domain=-5:-1]{cos(deg(2.5*(x+1)))+0.25*sin(deg(2.5*(x+1)))};
+\addplot[thick,blue!70!black,domain=-1:1]{exp(-1.5*(x+1))+0.02*exp(1.5*(x+1))};
+\addplot[thick,blue!70!black,domain=1:5]{0.07*cos(deg(2.5*(x-1)))};
+\node at (axis cs:0,1.4) {\small $V_0$};
+\end{axis}
+\end{tikzpicture}
+\caption{Tunnelling through a barrier (real part of $\psi$). The wave decays exponentially inside the barrier and emerges with a much smaller amplitude, so $T\sim e^{-4\kappa a}$.}
+\end{figure}
+
+\begin{example}[Alpha decay]
+An alpha particle in a nucleus of radius $R$ faces the Coulomb barrier $V = 2Ze^2/r$ out to the classical turning point $b = 2Ze^2/E$. Generalizing $T\sim e^{-2\kappa L}$ to a slowly varying barrier, $T\sim\exp\bigl(-\frac2\hbar\int_R^b\sqrt{2m(V(r)-E)}\,dr\bigr)$. For $b\gg R$ the integral is $\approx\pi Ze^2\sqrt{2m/E}/\hbar$, so $\ln T\approx-c\,Z/\sqrt{E}$. Since lifetimes scale as $1/T$, a small change in $E$ changes the lifetime enormously: the Geiger--Nuttall law, spanning lifetimes from microseconds to $10^{10}$ years.
+\end{example}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=5cm,xlabel={$\lambda$},ylabel={$\epsilon = \kappa a$},axis lines=left,xmin=0,xmax=3,ymin=0,ymax=3.2,samples=200,legend style={draw=none,at={(0.02,0.98)},anchor=north west,font=\small}]
+\addplot[thick,blue!70!black,domain=0.01:3.2,variable=\e] ({\e/2*(1+tanh(\e))},{\e}); \addlegendentry{even}
+\addplot[thick,red!70!black,domain=0.05:3.2,variable=\e] ({\e/2*(1+1/tanh(\e))},{\e}); \addlegendentry{odd}
+\addplot[dashed,gray,domain=0:3]{x};
+\end{axis}
+\end{tikzpicture}
+\caption{Bound states of the double delta well. The even state exists for every $\lambda>0$; the odd one only for $\lambda>\frac12$. For large $\lambda$ both approach $\epsilon = \lambda$ (dashed), the single-well value, from opposite sides: the exponentially small tunnelling splitting.}
+\end{figure}
+
 \begin{fact}[Transmission resonances]
 For $E>V_0$ over a barrier of width $2a$, the transmission is $1/T = 1 + \frac{V_0^2}{4E(E-V_0)}\sin^2(2qa)$ with $q = \sqrt{2m(E-V_0)}/\hbar$. It reaches $T = 1$ when $2qa = n\pi$, i.e.\ $E = V_0 + \frac{\hbar^2n^2\pi^2}{8ma^2}$: reflections from the two edges cancel when a whole number of half-wavelengths fits across the barrier.
 \end{fact}
+
+\begin{proof}[Derivation for the delta function]
+For $V = -\lambda\delta(x)$, continuity at $0$ gives $A + A_r = B$, and the jump condition gives $ikB - ik(A - A_r) = -\frac{2m\lambda}{\hbar^2}B$. Substituting $B = A + A_r$, $2ikA_r = -\frac{2m\lambda}{\hbar^2}(A+A_r)$, so $A_r(ik + \frac{m\lambda}{\hbar^2}) = -\frac{m\lambda}{\hbar^2}A$, which rearranges to the reflection amplitude below. Since $k$ is the same on both sides, $R = |A_r/A|^2$ and $T = |B/A|^2 = 1-R$.
+\end{proof}
 
 \begin{example}[Scattering off a delta function]
 For $V = -\lambda\delta(x)$ (attractive, $\lambda>0$) with $\psi = Ae^{ikx}+A_re^{-ikx}$ for $x<0$ and $Be^{ikx}$ for $x>0$, continuity and the jump condition give
@@ -280,3 +545,24 @@ For $V = -\lambda\delta(x)$ (attractive, $\lambda>0$) with $\psi = Ae^{ikx}+A_re
 \]
 As $\lambda\to0$, $R\to0$; as $E\to0$, $R\to1$. The same result holds for a repulsive delta.
 \end{example}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=8.5cm,height=4.5cm,xlabel={$E/(m\lambda^2/2\hbar^2)$},axis lines=left,xmin=0,xmax=6,ymin=0,ymax=1.05,domain=0:6,samples=100,legend style={draw=none,font=\small}]
+\addplot[thick,red!70!black]{1/(1+x)}; \addlegendentry{$R$}
+\addplot[thick,blue!70!black]{x/(1+x)}; \addlegendentry{$T$}
+\end{axis}
+\end{tikzpicture}
+\caption{Scattering from a delta function. Slow particles are almost totally reflected, fast ones almost totally transmitted; $R = T = \frac12$ at $E = m\lambda^2/2\hbar^2$, the magnitude of the bound-state energy.}
+\end{figure}
+
+\begin{fact}[Key results of this chapter]
+\leavevmode
+\begin{itemize}
+\item $\psi$, $\psi'$ continuous for finite $V$; walls force $\psi = 0$; delta functions make $\psi'$ jump.
+\item Bound states are real, non-degenerate, discrete, with $n-1$ nodes (Wronskian arguments); even potentials give definite parity.
+\item Infinite well: $E_n\propto n^2$. Finite well: at least one bound state. Delta well: exactly one.
+\item Scattering: $R + T = 1$ from current conservation; tunnelling $T\sim e^{-2\int\kappa\,dx}$; periodic potentials give bands.
+\end{itemize}
+\end{fact}
