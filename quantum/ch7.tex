@@ -364,6 +364,26 @@ So a position-dependent phase changes the kinetic energy, and absorbing it requi
 \end{equation}
 Only the potential difference enters, consistent with the arbitrariness of the zero of energy.
 
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,thick]
+  \draw[->] (0,0) -- (1,0) node[midway,above]{in};
+  \draw[very thick] (0.8,-0.4) -- (1.2,0.4); \node[below] at (1,-0.4) {BS1};
+  \draw[->,blue!60!black] (1,0) -- (2,1.2) -- (3,1.2);
+  \draw[->,red!60!black] (1,0) -- (2,-1.2) -- (3,-1.2);
+  \draw[fill=gray!15] (3,0.8) rectangle (5,1.6); \node at (4,1.2) {$V_1(t)$};
+  \draw[fill=gray!15] (3,-1.6) rectangle (5,-0.8); \node at (4,-1.2) {$V_2(t)$};
+  \draw[blue!60!black] (5,1.2) -- (6,1.2) -- (7,0);
+  \draw[red!60!black] (5,-1.2) -- (6,-1.2) -- (7,0);
+  \draw[very thick] (6.8,-0.4) -- (7.2,0.4); \node[below] at (7,-0.4) {BS2};
+  \draw[->] (7,0) -- (8.2,0.6) node[right]{$a$: $P_a=\frac{1+\cos\Delta\phi}{2}$};
+  \draw[->] (7,0) -- (8.2,-0.6) node[right]{$b$: $P_b=\frac{1-\cos\Delta\phi}{2}$};
+\end{tikzpicture}
+\caption{The electrostatic interference experiment. Each packet sits in a cage while a potential is applied, so it feels no force, yet the outputs depend on $\Delta\phi = \frac1\hbar\int(V_2-V_1)\,dt$.}
+\label{fig:cages}
+\end{figure}
+
 While the packets are apart they occupy orthogonal states, $|\text{up}\rangle$ and $|\text{down}\rangle$, and $|\psi\rangle = \frac{1}{\sqrt2}\bigl(|\text{up}\rangle + e^{i\Delta\phi}|\text{down}\rangle\bigr)$ has norm one for every $\Delta\phi$: the relative phase is invisible. Interference requires mapping both paths onto \emph{common} final states, which a 50/50 beam splitter does. Being unitary, it must send orthogonal inputs to orthogonal outputs; with equal weights this forces a relative sign:
 \[
     |\text{up}\rangle\to\frac{|a\rangle+|b\rangle}{\sqrt2},
@@ -510,12 +530,53 @@ Suppose $\curl\vect{A} = 0$ throughout a region, while $\vect{A}\neq0$. In a \em
 \]
 \end{formula}
 
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,decoration={markings,mark=at position 0.25 with {\arrow{>}}}]
+  \begin{scope}
+    \fill[gray!10] (-2.2,-1.8) rectangle (2.2,1.8);
+    \draw[thick,blue!60!black,postaction={decorate}] (0.3,0.2) ellipse (0.9 and 0.6);
+    \node[blue!60!black] at (0.3,-0.8) {$C$ contracts};
+    \node at (0,1.5) {simply connected};
+    \node at (0,-1.5) {$\oint_C\vect{A}\cdot d\lvect{s}=0$};
+  \end{scope}
+  \begin{scope}[xshift=5.5cm]
+    \fill[gray!10] (-2.2,-1.8) rectangle (2.2,1.8);
+    \draw[fill=gray!50] (0,0) circle (0.35); \node at (0,0) {\small$\Phi$};
+    \draw[thick,red!60!black,postaction={decorate}] (0,0) circle (1.1);
+    \draw[thick,blue!60!black,postaction={decorate}] (1.5,0.9) circle (0.3);
+    \node at (0,1.5) {hole: not simply connected};
+    \node at (0,-1.5) {$\oint\vect{A}\cdot d\lvect{s}=\Phi$ around the hole};
+  \end{scope}
+\end{tikzpicture}
+\caption{Field-free regions. Left: every loop can be shrunk to a point, so $\vect{A}$ is pure gauge and loop phases vanish. Right: a loop encircling the hole (red) cannot be shrunk without crossing the flux and picks up $\Phi$; a loop that does not encircle it (blue) still gives zero.}
+\label{fig:simply-connected}
+\end{figure}
+
 In a simply connected region nothing is observable: $|\psi|^2 = |\psi_0|^2$, any two paths to the same point give the same phase, and moving $\lvect{x}_0$ only adds a global phase. This is the precise sense in which the vector potential ``doesn't matter'' when there is no field.
 
 \subsection{The Aharonov--Bohm Effect}
 
 An impenetrable cylinder contains flux $\Phi$; outside, $\vect{B} = 0$ but $\vect{A}\neq0$. The field-free region is now the plane with a hole, which is not simply connected. Particles travel from a source $A$ to a point $\lvect{x}$ on a screen, either above or below the cylinder (Figure~\ref{fig:ab-paths}).
 
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \foreach \r in {0.9,1.5,2.2} {
+    \draw[gray!60] (0,0) circle (\r);
+    \pgfmathsetmacro{\L}{0.55/\r}
+    \foreach \a in {0,45,...,315} {
+      \draw[->,thick,blue!60!black] ({\r*cos(\a)},{\r*sin(\a)}) -- ++({-\L*sin(\a)},{\L*cos(\a)});
+    }
+  }
+  \draw[fill=gray!40] (0,0) circle (0.4); \node at (0,0) {$\vect{B}$};
+  \node[right] at (2.5,0) {$\vect{A}=\dfrac{\Phi}{2\pi r}\hat{\bm{\varphi}},\quad \vect{B}=0$};
+\end{tikzpicture}
+\caption{Outside a long solenoid the magnetic field vanishes but the vector potential circulates, falling off as $1/r$. Its curl is zero everywhere outside, yet its circulation around any loop enclosing the solenoid is $\Phi$.}
+\label{fig:A-solenoid}
+\end{figure}
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1.0,>=Stealth,decoration={markings,mark=at position 0.5 with {\arrow{>}}}]
@@ -548,6 +609,20 @@ It does not depend on where on the screen $\lvect{x}$ is: moving $\lvect{x}$ cha
 \]
 and the flux slides the fringe pattern rigidly, one fringe per flux quantum. The particle never enters a region with nonzero $\vect{B}$, and the Lorentz force on it vanishes everywhere it can be, yet the pattern depends on $\Phi$.
 
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=4.5cm,xlabel={screen position $kd\,x/L$},ylabel={$I(x)$},axis lines=left,xmin=-9.5,xmax=9.5,ymin=0,ymax=2.3,domain=-9.5:9.5,samples=200,ytick=\empty,legend style={draw=none,at={(0.5,1.02)},anchor=south,legend columns=3,font=\small}]
+  \addplot[thick,black] {1+cos(deg(x))}; \addlegendentry{$\Phi=0$}
+  \addplot[thick,blue!70!black,dashed] {1+cos(deg(x)+90)}; \addlegendentry{$\Phi=\Phi_0/4$}
+  \addplot[thick,red!70!black,dotted] {1+cos(deg(x)+180)}; \addlegendentry{$\Phi=\Phi_0/2$}
+\end{axis}
+\end{tikzpicture}
+\caption{Aharonov--Bohm fringe shift. The envelope and spacing are unchanged; the whole pattern slides by $\Phi/\Phi_0$ of a fringe. At $\Phi=\Phi_0/2$ bright and dark fringes swap, and at $\Phi=\Phi_0$ the pattern returns to itself.}
+\label{fig:ab-fringes}
+\end{figure}
+
 \paragraph{Periodicity in the flux.} For $\Phi = N\Phi_0$ the vector potential outside is
 \[
     \vect{A} = \frac{N\Phi_0}{2\pi r}\hat{\bm{\varphi}} = \grad\Lambda,
@@ -558,7 +633,24 @@ and the flux slides the fringe pattern rigidly, one fringe per flux quantum. The
 \]
 which is single-valued. So an allowed gauge transformation removes $\vect{A}$ entirely, and every observable is the same as with no flux. For non-integer $\Phi/\Phi_0$ the required phase factor is multivalued, no allowed gauge transformation removes $\vect{A}$, and the effect is physical. Physics depends on $\Phi$ only modulo $\Phi_0$.
 
-\paragraph{Bound-state version: a ring around a solenoid.} Confine the particle to a thin ring of radius $R$ enclosing flux $\Phi$. On the ring, $\vect{A} = \frac{\Phi}{2\pi R}\hat{\bm{\varphi}}$ and $\hat{p}_\varphi = -\frac{i\hbar}{R}\partial_\varphi$, so
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \draw[very thick,gray] (0,0) ellipse (2 and 0.7);
+  \fill[gray!35] (-0.35,-1.6) rectangle (0.35,1.6);
+  \draw (-0.35,-1.6) rectangle (0.35,1.6);
+  \foreach \x in {-0.2,0,0.2} \draw[->,red!70!black] (\x,-1.4) -- (\x,1.4);
+  \node[red!70!black,right] at (0.4,1.4) {$\Phi$};
+  \fill[blue!70!black] (1.6,0.42) circle (2.5pt) node[above right]{$e$};
+  \draw[->,blue!70!black] (2.25,-0.15) arc (-10:30:2.1 and 0.8);
+  \node at (0,-2.0) {radius $R$, $\vect{B}=0$ on the ring};
+\end{tikzpicture}
+\caption{A charge confined to a ring around a solenoid. It never meets the field, yet its spectrum depends on $\Phi$ modulo $\Phi_0$.}
+\label{fig:ring}
+\end{figure}
+
+\paragraph{Bound-state version: a ring around a solenoid.} Confine the particle to a thin ring of radius $R$ enclosing flux $\Phi$ (Figure~\ref{fig:ring}). On the ring, $\vect{A} = \frac{\Phi}{2\pi R}\hat{\bm{\varphi}}$ and $\hat{p}_\varphi = -\frac{i\hbar}{R}\partial_\varphi$, so
 \[
     \hat{H} = \frac{1}{2m}\Bigl(-\frac{i\hbar}{R}\partial_\varphi - \frac{e\Phi}{2\pi Rc}\Bigr)^2 = \frac{\hbar^2}{2mR^2}\Bigl(-i\partial_\varphi - \frac{e\Phi}{2\pi\hbar c}\Bigr)^2 .
 \]
@@ -604,6 +696,22 @@ and enters quantum mechanics through Feynman's amplitude $e^{iS/\hbar}$. Under a
     S\to S + \frac ec\int_1^2\bigl(\grad\Lambda\cdot d\lvect{r} + \partial_t\Lambda\,dt\bigr) = S + \frac ec\bigl[\Lambda(\lvect{r}_2,t_2) - \Lambda(\lvect{r}_1,t_1)\bigr],
 \]
 which depends only on the endpoints and therefore cancels between two trajectories with common endpoints. The interference phase between trajectories $\lvect{r}'(t)$ and $\lvect{r}''(t)$ is the action difference, a closed loop in space-time (forward along $\lvect{r}'$, back along $\lvect{r}''$):
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,decoration={markings,mark=at position 0.5 with {\arrow{>}}}]
+  \draw[->] (0,0) -- (6,0) node[right]{$x$};
+  \draw[->] (0,0) -- (0,4) node[above]{$t$};
+  \fill (3,0.4) circle (2pt) node[below]{$(\lvect{r}_1,t_1)$};
+  \fill (3,3.5) circle (2pt) node[above]{$(\lvect{r}_2,t_2)$};
+  \draw[thick,blue!60!black,postaction={decorate}] (3,0.4) .. controls (5,1.3) and (5,2.6) .. (3,3.5) node[pos=0.5,right]{$\lvect{r}'(t)$};
+  \draw[thick,red!60!black,postaction={decorate}] (3,0.4) .. controls (1,1.3) and (1,2.6) .. (3,3.5) node[pos=0.5,left]{$\lvect{r}''(t)$};
+  \node at (3,1.95) {$\theta$};
+\end{tikzpicture}
+\caption{Two trajectories with common endpoints form a closed loop in space-time. The gauge-dependent endpoint terms cancel, leaving $\theta = \frac{e}{\hbar c}\oint(\vect{A}\cdot d\lvect{r} - c\phi\,dt)$. A purely spatial loop gives the magnetic AB phase; a loop separated in time by a voltage gives the electric one.}
+\label{fig:spacetime-loop}
+\end{figure}
 
 \begin{formula}[Gauge-invariant space-time loop phase]
 \[
