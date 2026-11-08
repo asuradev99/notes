@@ -480,9 +480,61 @@ leaving $\vect{E}$ and $\vect{B}$ unchanged. The extra term $-\frac ec\partial_t
 \caption{What is and is not gauge invariant.}
 \end{table}
 
+\subsection{Field-Free Regions: the Vector Potential Is Locally Pure Gauge}
+\label{sec:field-free}
+
+Suppose $\curl\vect{A} = 0$ throughout a region, while $\vect{A}\neq0$. In a \emph{simply connected} region define $\chi(\lvect{x}) = \int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}$. Two paths from $\lvect{x}_0$ to $\lvect{x}$ form a loop bounding a surface inside the region, where the field vanishes, so by Stokes the integral is path independent and $\chi$ is a well-defined function. Comparing $\chi(\lvect{x}+d\lvect{x})$ and $\chi(\lvect{x})$ along a path that ends with the step $d\lvect{x}$ gives $\grad\chi = \vect{A}$: the vector potential is a pure gradient. Taking $\psi_0$ to solve the problem with no vector potential and gauge-transforming with $\Lambda = \chi$ (from $\vect{0}$ to $\grad\chi = \vect{A}$):
+
+\begin{formula}[Phase from a field-free vector potential]
+\[
+    \psi(\lvect{x},t) = \exp\Bigl[\frac{ie}{\hbar c}\int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}\Bigr]\psi_0(\lvect{x},t).
+\]
+\end{formula}
+
+\paragraph{The dictionary, explicitly.} In a field-free, simply connected region three objects are the same thing:
+\[
+    \underbrace{\Lambda(\lvect{x})}_{\text{gauge function}}
+    \;=\;
+    \underbrace{\int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}}_{\text{line integral}}
+    \;=\;
+    \frac{\hbar c}{e}\,\underbrace{\theta(\lvect{x})}_{\text{phase of }\psi\text{ relative to }\psi_0}.
+\]
+\begin{itemize}
+    \item \emph{$\Lambda\leftrightarrow$ line integral.} $\vect{A} = \grad\Lambda$ is inverted by the fundamental theorem of calculus, $\Lambda(\lvect{x}) - \Lambda(\lvect{x}_0) = \int_{\lvect{x}_0}^{\lvect{x}}\grad\Lambda\cdot d\lvect{s} = \int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}$. Path independence ($\curl\vect{A} = 0$ plus simple connectivity) is exactly what makes this a function of $\lvect{x}$ alone; the base point $\lvect{x}_0$ is the additive constant in $\Lambda$.
+    \item \emph{$\Lambda\leftrightarrow$ phase.} The gauge transformation multiplies $\psi$ by $e^{ie\Lambda/\hbar c}$, so the local phase is $\theta(\lvect{x}) = \frac{e}{\hbar c}\Lambda(\lvect{x})$: each step $d\lvect{s}$ adds $d\theta = \frac{e}{\hbar c}\vect{A}\cdot d\lvect{s}$.
+    \item \emph{Why it is unobservable here.} The phase difference between two points, $\theta(\lvect{x}_2) - \theta(\lvect{x}_1) = \frac{e}{\hbar c}\int_{\lvect{x}_1}^{\lvect{x}_2}\vect{A}\cdot d\lvect{s}$, is the same for every path, so two beams arriving at a point carry the \emph{same} extra phase and their interference is unchanged. Equivalently, $\vect{A}$ shifts the canonical momentum by $\hbar\grad\theta = \frac ec\vect{A}$, exactly cancelling the $-\frac ec\vect{A}$ in $\bm{\Pi}$, so $\bm{\Pi}\psi = e^{i\theta}\hat{\lvect{p}}\psi_0$.
+\end{itemize}
+Around a hole the first item fails: the line integral depends on which side of the hole the path passes, $\Lambda$ becomes multivalued, and the phase difference between the two sides is the loop integral, $\frac{e}{\hbar c}\Phi$. That is the Aharonov--Bohm effect.
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,decoration={markings,mark=at position 0.25 with {\arrow{>}}}]
+  \begin{scope}
+    \fill[gray!10] (-2.2,-1.8) rectangle (2.2,1.8);
+    \draw[thick,blue!60!black,postaction={decorate}] (0.3,0.2) ellipse (0.9 and 0.6);
+    \node[blue!60!black] at (0.3,-0.8) {$C$ contracts};
+    \node at (0,1.5) {simply connected};
+    \node at (0,-1.5) {$\oint_C\vect{A}\cdot d\lvect{s}=0$};
+  \end{scope}
+  \begin{scope}[xshift=5.5cm]
+    \fill[gray!10] (-2.2,-1.8) rectangle (2.2,1.8);
+    \draw[fill=gray!50] (0,0) circle (0.35); \node at (0,0) {\small$\Phi$};
+    \draw[thick,red!60!black,postaction={decorate}] (0,0) circle (1.1);
+    \draw[thick,blue!60!black,postaction={decorate}] (1.5,0.9) circle (0.3);
+    \node at (0,1.5) {hole: not simply connected};
+    \node at (0,-1.5) {$\oint\vect{A}\cdot d\lvect{s}=\Phi$ around the hole};
+  \end{scope}
+\end{tikzpicture}
+\caption{Field-free regions. Left: every loop can be shrunk to a point, so $\vect{A}$ is pure gauge and loop phases vanish. Right: a loop encircling the hole (red) cannot be shrunk without crossing the flux and picks up $\Phi$; a loop that does not encircle it (blue) still gives zero.}
+\label{fig:simply-connected}
+\end{figure}
+
+In a simply connected region nothing is observable: $|\psi|^2 = |\psi_0|^2$, any two paths to the same point give the same phase, and moving $\lvect{x}_0$ only adds a global phase. This is the precise sense in which the vector potential ``doesn't matter'' when there is no field.
+
 \subsection{Loop Integrals Are Gauge Invariant Modulo \texorpdfstring{$2\pi$}{2 pi}}
 
-Under $\vect{A}\to\vect{A} + \grad\Lambda$, the integral of $\vect{A}$ around a closed loop $C$ changes by the integral of a gradient, which is the change of $\Lambda$ between the endpoints:
+The previous subsection showed that in a simply connected field-free region every closed loop integral of $\vect{A}$ vanishes. Around a hole it need not, so we now ask what freedom a gauge transformation has to change it. Under $\vect{A}\to\vect{A} + \grad\Lambda$, the integral of $\vect{A}$ around a closed loop $C$ changes by the integral of a gradient, which is the change of $\Lambda$ between the endpoints:
 \[
     \frac{e}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s}\ \to\ \frac{e}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s} + \frac{e}{\hbar c}\Delta\Lambda,
     \qquad
@@ -520,42 +572,6 @@ Under any allowed (single-valued) gauge transformation,
 The loop phase is defined modulo $2\pi$, and the phase factor $\exp\bigl(\frac{ie}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s}\bigr)$ is gauge invariant. An allowed gauge transformation can add or remove exactly $N$ flux quanta through a hole.
 \end{theorem}
 
-\subsection{Field-Free Regions: the Vector Potential Is Locally Pure Gauge}
-
-Suppose $\curl\vect{A} = 0$ throughout a region, while $\vect{A}\neq0$. In a \emph{simply connected} region define $\chi(\lvect{x}) = \int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}$. Two paths from $\lvect{x}_0$ to $\lvect{x}$ form a loop bounding a surface inside the region, where the field vanishes, so by Stokes the integral is path independent and $\chi$ is a well-defined function. Comparing $\chi(\lvect{x}+d\lvect{x})$ and $\chi(\lvect{x})$ along a path that ends with the step $d\lvect{x}$ gives $\grad\chi = \vect{A}$: the vector potential is a pure gradient. Taking $\psi_0$ to solve the problem with no vector potential and gauge-transforming with $\Lambda = \chi$ (from $\vect{0}$ to $\grad\chi = \vect{A}$):
-
-\begin{formula}[Phase from a field-free vector potential]
-\[
-    \psi(\lvect{x},t) = \exp\Bigl[\frac{ie}{\hbar c}\int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}\Bigr]\psi_0(\lvect{x},t).
-\]
-\end{formula}
-
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[>=Stealth,decoration={markings,mark=at position 0.25 with {\arrow{>}}}]
-  \begin{scope}
-    \fill[gray!10] (-2.2,-1.8) rectangle (2.2,1.8);
-    \draw[thick,blue!60!black,postaction={decorate}] (0.3,0.2) ellipse (0.9 and 0.6);
-    \node[blue!60!black] at (0.3,-0.8) {$C$ contracts};
-    \node at (0,1.5) {simply connected};
-    \node at (0,-1.5) {$\oint_C\vect{A}\cdot d\lvect{s}=0$};
-  \end{scope}
-  \begin{scope}[xshift=5.5cm]
-    \fill[gray!10] (-2.2,-1.8) rectangle (2.2,1.8);
-    \draw[fill=gray!50] (0,0) circle (0.35); \node at (0,0) {\small$\Phi$};
-    \draw[thick,red!60!black,postaction={decorate}] (0,0) circle (1.1);
-    \draw[thick,blue!60!black,postaction={decorate}] (1.5,0.9) circle (0.3);
-    \node at (0,1.5) {hole: not simply connected};
-    \node at (0,-1.5) {$\oint\vect{A}\cdot d\lvect{s}=\Phi$ around the hole};
-  \end{scope}
-\end{tikzpicture}
-\caption{Field-free regions. Left: every loop can be shrunk to a point, so $\vect{A}$ is pure gauge and loop phases vanish. Right: a loop encircling the hole (red) cannot be shrunk without crossing the flux and picks up $\Phi$; a loop that does not encircle it (blue) still gives zero.}
-\label{fig:simply-connected}
-\end{figure}
-
-In a simply connected region nothing is observable: $|\psi|^2 = |\psi_0|^2$, any two paths to the same point give the same phase, and moving $\lvect{x}_0$ only adds a global phase. This is the precise sense in which the vector potential ``doesn't matter'' when there is no field.
-
 \subsection{The Aharonov--Bohm Effect}
 
 An impenetrable cylinder contains flux $\Phi$; outside, $\vect{B} = 0$ but $\vect{A}\neq0$. The field-free region is now the plane with a hole, which is not simply connected. Particles travel from a source $A$ to a point $\lvect{x}$ on a screen, either above or below the cylinder (Figure~\ref{fig:ab-paths}).
@@ -591,7 +607,7 @@ An impenetrable cylinder contains flux $\Phi$; outside, $\vect{B} = 0$ but $\vec
 \label{fig:ab-paths}
 \end{figure}
 
-Each path carries the phase factor of the previous subsection, but now the two line integrals differ: the two paths together form a loop around the hole, and Stokes' theorem applied to a surface that includes the solenoid gives the enclosed flux,
+Each path carries the phase factor of Section~\ref{sec:field-free}, but now the two line integrals differ: the two paths together form a loop around the hole, and Stokes' theorem applied to a surface that includes the solenoid gives the enclosed flux,
 \[
     \chi_{\text{above}}(\lvect{x}) - \chi_{\text{below}}(\lvect{x}) = \oint\vect{A}\cdot d\lvect{s} = \Phi .
 \]
