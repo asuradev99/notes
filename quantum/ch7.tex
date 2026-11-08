@@ -314,6 +314,344 @@ In a number state, $\langle n|\hat{E}_x|n\rangle = 0$ and $\Delta E_x = \mathcal
 \]
 with $\alpha = |\alpha|e^{i\theta}$, an oscillating field with fixed, $\alpha$-independent noise. For $|\alpha|\gg1$ it behaves like the classical field, and the single-mode field of a laser is idealized as a coherent state. Squeezed states trade noise between quadratures: amplitude-squeezed or phase-squeezed light. A general mode with wavevector $\lvect{k}$ and polarization $\lvect{e}_s$ is $\hat{\vect{E}}_{\lvect{k},s}\propto\lvect{e}_s\bigl(\hat{a}_{\lvect{k}}e^{i(\lvect{k}\cdot\lvect{r}-\omega t)} + \hat{a}_{\lvect{k}}^\dagger e^{-i(\lvect{k}\cdot\lvect{r}-\omega t)}\bigr)$, with $\omega = c|\lvect{k}|$.
 
+% ============================================================
+\section{Potentials as Phases: Gauge Transformations and the Aharonov--Bohm Effect}
+\label{sec:gauge-ab}
+% ============================================================
+
+This section uses Gaussian units, following Sakurai. The particle's charge $e$ carries its sign ($e<0$ for the electron), and the flux quantum is
+\[
+    \Phi_0 = \frac{2\pi\hbar c}{|e|}\approx4.14\times10^{-7}\ \text{G\,cm}^2
+    \qquad(\text{SI: }h/|e|\approx4.14\times10^{-15}\ \text{Wb}).
+\]
+A charge in electromagnetic potentials has
+\[
+    \hat{H} = \frac{1}{2m}\Bigl(\hat{\lvect{p}} - \frac{e\vect{A}}{c}\Bigr)^2 + e\phi + V,
+    \qquad
+    \vect{E} = -\grad\phi - \frac1c\partial_t\vect{A},
+    \quad
+    \vect{B} = \curl\vect{A}.
+\]
+The central idea: potentials enter quantum mechanics only through phases. A single phase is never observable, but the \emph{difference} of the phases accumulated along two paths that recombine is, and it is given by a closed-loop integral of the potentials, which is gauge invariant modulo $2\pi$.
+
+\subsection{A Potential That Exerts No Force Still Produces a Phase}
+
+Shifting the potential by a constant, $V\to V+V_0$, multiplies every state by $e^{-iV_0(t-t_0)/\hbar}$ and shifts every energy by $V_0$. Nothing observable changes, because observables depend only on energy differences. Now let the shift depend on time but not on position, $V\to V+V_0(t)$, and look for a solution of the shifted problem of the form $e^{if(t)}|\alpha;t\rangle$, where $|\alpha;t\rangle$ solves the unshifted problem. The time derivative brings down the derivative of the phase,
+\[
+    i\hbar\,\partial_t\bigl(e^{if}|\alpha;t\rangle\bigr) = \bigl(-\hbar\dot{f} + \hat{H}\bigr)e^{if}|\alpha;t\rangle,
+\]
+which equals $(\hat{H}+V_0)e^{if}|\alpha;t\rangle$ provided $-\hbar\dot{f} = V_0(t)$.
+
+\begin{formula}[Time-dependent uniform potential]
+\[
+    |\alpha;t\rangle\ \to\ \exp\Bigl[-\frac{i}{\hbar}\int_{t_0}^tV_0(t')\,dt'\Bigr]|\alpha;t\rangle .
+\]
+\end{formula}
+
+This works only because the phase commutes with the kinetic term. A position-dependent phase does not commute with $\hat{\lvect{p}}$; moving $\hat{\lvect{p}}$ through it leaves behind the gradient of the phase (Chapter~\ref{ch:formalism}):
+\begin{equation}
+    \hat{\lvect{p}}\,e^{i\theta(\lvect{x})} = e^{i\theta(\lvect{x})}\bigl(\hat{\lvect{p}} + \hbar\grad\theta\bigr).
+    \label{eq:p-through-phase}
+\end{equation}
+So a position-dependent phase changes the kinetic energy, and absorbing it requires a compensating shift of the momentum, i.e.\ a vector potential. This is the seed of the gauge transformation below.
+
+\paragraph{The electrostatic interference experiment.} A beam is split into two wavepackets, each entering a metal cage. While the packets are inside, potentials $V_1(t)$ and $V_2(t)$ are applied to the cages and switched off before the packets leave. Inside each cage the potential is uniform, so the particle feels \emph{no force at any time}. By the result above, packet $j$ acquires the phase
+\begin{equation}
+    \phi_j = -\frac1\hbar\int_{t_i}^{t_f}V_j(t)\,dt,
+    \qquad
+    \Delta\phi\equiv\phi_1-\phi_2 = \frac1\hbar\int_{t_i}^{t_f}\bigl[V_2(t)-V_1(t)\bigr]dt .
+    \label{eq:cage-phase}
+\end{equation}
+Only the potential difference enters, consistent with the arbitrariness of the zero of energy.
+
+While the packets are apart they occupy orthogonal states, $|\text{up}\rangle$ and $|\text{down}\rangle$, and $|\psi\rangle = \frac{1}{\sqrt2}\bigl(|\text{up}\rangle + e^{i\Delta\phi}|\text{down}\rangle\bigr)$ has norm one for every $\Delta\phi$: the relative phase is invisible. Interference requires mapping both paths onto \emph{common} final states, which a 50/50 beam splitter does. Being unitary, it must send orthogonal inputs to orthogonal outputs; with equal weights this forces a relative sign:
+\[
+    |\text{up}\rangle\to\frac{|a\rangle+|b\rangle}{\sqrt2},
+    \qquad
+    |\text{down}\rangle\to\frac{|a\rangle-|b\rangle}{\sqrt2},
+    \qquad
+    U = \frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+\]
+Then
+\[
+    |\psi_f\rangle = \tfrac12\bigl[(1+e^{i\Delta\phi})|a\rangle + (1-e^{i\Delta\phi})|b\rangle\bigr],
+    \qquad
+    P_a = \frac{1+\cos\Delta\phi}{2},
+    \quad
+    P_b = \frac{1-\cos\Delta\phi}{2},
+\]
+and $P_a+P_b = 1$: the voltage redistributes particles between the outputs, and creates or destroys none.
+
+\begin{fact}[A common slip]
+Writing both branches as the same ket, $|\alpha\rangle + e^{i\Delta\phi}|\alpha\rangle$, gives a ``norm'' $1+\cos\Delta\phi$ that varies between 0 and 2. That expression is $2P_a$: it projects both paths onto one output without the beam splitter's factor. Adding a state to a phase-shifted copy of itself is not a unitary operation.
+\end{fact}
+
+If instead the packets simply overlap on a screen, like a double slit (Section~\ref{sec:double-slit}), the intensity at position $x$ is
+\[
+    I(x)\propto1 + \cos\Bigl(\frac{kd\,x}{L} + \Delta\phi\Bigr),
+\]
+so the voltage slides the fringe pattern rigidly without changing its spacing. Equivalently, at a fixed detector the counts oscillate as the voltage is varied, with period $\Delta V\,\tau = 2\pi\hbar$ for a constant difference applied for a time $\tau$.
+
+\paragraph{The classical limit.} Both fringe spacings are proportional to $\hbar$: $\Delta x_{\text{fringe}} = 2\pi\hbar L/pd$ in space and $2\pi\hbar/\tau$ in voltage. As $\hbar\to0$, any detector of finite size and any voltage with a little noise average over many fringes, $\langle\cos\Delta\phi\rangle\to0$, and the intensity reduces to the classical sum of the two beams. The effect is purely quantum: a potential that exerts no force is observable, but only through a phase, and only when the paths recombine.
+
+\subsection{Gauge Transformations}
+\label{sec:gauge}
+
+The potentials $\vect{A}$ and $\tilde{\vect{A}} = \vect{A} + \grad\Lambda$ produce the same field. We look for the operator $\mathcal{G}$ relating the kets that describe the same physical situation in the two gauges, $|\tilde\alpha\rangle = \mathcal{G}|\alpha\rangle$. The physical requirements are
+\begin{align*}
+    &\text{normalization:} && \mathcal{G}^\dagger\mathcal{G} = 1,\\
+    &\text{position:} && \mathcal{G}^\dagger\hat{\lvect{x}}\mathcal{G} = \hat{\lvect{x}},\\
+    &\text{kinetic momentum } \bm{\Pi} = m\dot{\lvect{x}}: && \mathcal{G}^\dagger\Bigl(\hat{\lvect{p}} - \frac{e\tilde{\vect{A}}}{c}\Bigr)\mathcal{G} = \hat{\lvect{p}} - \frac{e\vect{A}}{c}.
+\end{align*}
+The canonical momentum $\hat{\lvect{p}}$ is \emph{not} required to be invariant: it is tied to the choice of gauge by $\hat{\lvect{p}} = \bm{\Pi} + e\vect{A}/c$.
+
+\paragraph{The operator must be a phase.} Multiplying the position condition by $\mathcal{G}$ on the left gives $[\hat{\lvect{x}},\mathcal{G}] = 0$. An operator that commutes with position is diagonal in the position basis, so it acts on wavefunctions by multiplication: $\langle\lvect{x}'|\mathcal{G}|\lvect{x}''\rangle = g(\lvect{x}')\delta^3(\lvect{x}'-\lvect{x}'')$, i.e.\ $(\mathcal{G}\psi)(\lvect{x}) = g(\lvect{x})\psi(\lvect{x})$. Unitarity then requires $|g(\lvect{x})|^2 = 1$ \emph{at every point separately}, since every diagonal entry of a unitary diagonal matrix lies on the unit circle. Hence $g(\lvect{x}) = e^{i\theta(\lvect{x})}$.
+
+\paragraph{Which phase.} Conjugate $\hat{\lvect{p}}$ by the phase using the BCH expansion $e^XYe^{-X} = Y + [X,Y] + \frac{1}{2!}[X,[X,Y]] + \cdots$ with $X = -i\theta(\hat{\lvect{x}})$ and $Y = \hat{\lvect{p}}$. Since $[\theta(\hat{\lvect{x}}),\hat{\lvect{p}}] = i\hbar\grad\theta$,
+\[
+    [X,Y] = -i\,(i\hbar\grad\theta) = \hbar\grad\theta,
+    \qquad
+    [X,[X,Y]] = [-i\theta,\hbar\grad\theta] = 0,
+\]
+because functions of position commute. The series terminates, giving $e^{-i\theta}\hat{\lvect{p}}e^{i\theta} = \hat{\lvect{p}} + \hbar\grad\theta$, which is \eqref{eq:p-through-phase} again. Inserting this into the kinetic-momentum condition,
+\[
+    \hat{\lvect{p}} + \hbar\grad\theta - \frac{e\vect{A}}{c} - \frac{e\grad\Lambda}{c} = \hat{\lvect{p}} - \frac{e\vect{A}}{c}
+    \qquad\Longrightarrow\qquad
+    \theta(\lvect{x}) = \frac{e\Lambda(\lvect{x})}{\hbar c} + \text{const}.
+\]
+The constant is a global phase and is unobservable.
+
+\begin{theorem}[Gauge transformation]
+\[
+    \vect{A}\to\vect{A} + \grad\Lambda,
+    \qquad
+    \psi(\lvect{x})\to\exp\Bigl[\frac{ie\Lambda(\lvect{x})}{\hbar c}\Bigr]\psi(\lvect{x}).
+\]
+Nothing was assumed about the form of $\mathcal{G}$: invariance of position, kinetic momentum and normalization force it.
+\end{theorem}
+
+\paragraph{Consistency with the dynamics.} The defining property can be written as an intertwining relation, $(\hat{\lvect{p}} - e\tilde{\vect{A}}/c)\mathcal{G} = \mathcal{G}(\hat{\lvect{p}} - e\vect{A}/c)$. Applying it twice gives the same relation for $\bm{\Pi}^2$, hence $\tilde{H}\mathcal{G} = \mathcal{G}H$. For a time-independent $\Lambda$, $\mathcal{G}$ commutes with $\partial_t$, so if $\psi$ solves the Schr\"odinger equation with $\vect{A}$, then $\mathcal{G}\psi$ solves it with $\tilde{\vect{A}}$.
+
+\begin{formula}[Time-dependent gauge functions]
+For $\Lambda(\lvect{x},t)$ the full transformation also shifts the scalar potential:
+\[
+    \vect{A}\to\vect{A} + \grad\Lambda,
+    \qquad
+    \phi\to\phi - \frac1c\partial_t\Lambda,
+    \qquad
+    \psi\to e^{ie\Lambda/\hbar c}\psi,
+\]
+leaving $\vect{E}$ and $\vect{B}$ unchanged. The extra term $-\frac ec\partial_t\Lambda$ from $i\hbar\partial_t$ acting on the phase is exactly cancelled by the shift of $e\phi$. The uniform potential above is the special case $\Lambda = \Lambda(t)$.
+\end{formula}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}ll@{}}
+    \toprule
+    Gauge invariant & Gauge dependent\\
+    \midrule
+    $\langle\lvect{x}\rangle$, $|\psi(\lvect{x})|^2$ & the phase of $\psi$ at a point\\
+    $\langle\bm{\Pi}\rangle = \langle\hat{\lvect{p}} - e\vect{A}/c\rangle$, probability current & $\langle\hat{\lvect{p}}\rangle$ (canonical momentum)\\
+    $\vect{E}$, $\vect{B}$ & $\vect{A}$, $\phi$\\
+    $\exp\bigl(\frac{ie}{\hbar c}\oint\vect{A}\cdot d\lvect{s}\bigr)$ around a closed loop & $\int_{\lvect{x}_1}^{\lvect{x}_2}\vect{A}\cdot d\lvect{s}$ along an open path\\
+    \bottomrule
+\end{tabular}
+\caption{What is and is not gauge invariant.}
+\end{table}
+
+\subsection{Loop Integrals Are Gauge Invariant Modulo \texorpdfstring{$2\pi$}{2 pi}}
+
+Under $\vect{A}\to\vect{A} + \grad\Lambda$, the integral of $\vect{A}$ around a closed loop $C$ changes by the integral of a gradient, which is the change of $\Lambda$ between the endpoints:
+\[
+    \frac{e}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s}\ \to\ \frac{e}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s} + \frac{e}{\hbar c}\Delta\Lambda,
+    \qquad
+    \Delta\Lambda = \Lambda(\text{end}) - \Lambda(\text{start}).
+\]
+
+\begin{fact}[Why ``the curl of a gradient vanishes'' is not enough]
+Stokes' theorem gives $\oint_C\grad\Lambda\cdot d\lvect{s} = \int_S(\curl\grad\Lambda)\cdot d\lvect{a} = 0$ only if $\Lambda$ is smooth on a surface $S$ bounded by $C$. Around a hole there may be no such surface. In the plane with the origin removed,
+\[
+    \Lambda = \frac{\Phi}{2\pi}\varphi,
+    \qquad
+    \grad\Lambda = \frac{\Phi}{2\pi r}\hat{\bm{\varphi}},
+    \qquad
+    \curl\grad\Lambda = 0\ (r\neq0),
+    \qquad
+    \oint\grad\Lambda\cdot d\lvect{s} = \Phi .
+\]
+The correct condition is that $\Lambda$ be \emph{single-valued along the loop}.
+\end{fact}
+
+The gauge function itself need not be single-valued: what must be single-valued is the transformed wavefunction, i.e.\ the factor $e^{ie\Lambda/\hbar c}$. Going once around the loop this requires
+\[
+    \frac{e\,\Delta\Lambda}{\hbar c} = 2\pi N,
+    \quad
+    N\in\mathbb{Z}
+    \qquad\Longleftrightarrow\qquad
+    \Delta\Lambda = N\frac{2\pi\hbar c}{e} = \pm N\Phi_0 .
+\]
+
+\begin{theorem}[Gauge invariance of loop phases]
+Under any allowed (single-valued) gauge transformation,
+\[
+    \frac{e}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s}\ \to\ \frac{e}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s} + 2\pi N .
+\]
+The loop phase is defined modulo $2\pi$, and the phase factor $\exp\bigl(\frac{ie}{\hbar c}\oint_C\vect{A}\cdot d\lvect{s}\bigr)$ is gauge invariant. An allowed gauge transformation can add or remove exactly $N$ flux quanta through a hole.
+\end{theorem}
+
+\subsection{Field-Free Regions: the Vector Potential Is Locally Pure Gauge}
+
+Suppose $\curl\vect{A} = 0$ throughout a region, while $\vect{A}\neq0$. In a \emph{simply connected} region define $\chi(\lvect{x}) = \int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}$. Two paths from $\lvect{x}_0$ to $\lvect{x}$ form a loop bounding a surface inside the region, where the field vanishes, so by Stokes the integral is path independent and $\chi$ is a well-defined function. Comparing $\chi(\lvect{x}+d\lvect{x})$ and $\chi(\lvect{x})$ along a path that ends with the step $d\lvect{x}$ gives $\grad\chi = \vect{A}$: the vector potential is a pure gradient. Taking $\psi_0$ to solve the problem with no vector potential and gauge-transforming with $\Lambda = \chi$ (from $\vect{0}$ to $\grad\chi = \vect{A}$):
+
+\begin{formula}[Phase from a field-free vector potential]
+\[
+    \psi(\lvect{x},t) = \exp\Bigl[\frac{ie}{\hbar c}\int_{\lvect{x}_0}^{\lvect{x}}\vect{A}\cdot d\lvect{s}\Bigr]\psi_0(\lvect{x},t).
+\]
+\end{formula}
+
+In a simply connected region nothing is observable: $|\psi|^2 = |\psi_0|^2$, any two paths to the same point give the same phase, and moving $\lvect{x}_0$ only adds a global phase. This is the precise sense in which the vector potential ``doesn't matter'' when there is no field.
+
+\subsection{The Aharonov--Bohm Effect}
+
+An impenetrable cylinder contains flux $\Phi$; outside, $\vect{B} = 0$ but $\vect{A}\neq0$. The field-free region is now the plane with a hole, which is not simply connected. Particles travel from a source $A$ to a point $\lvect{x}$ on a screen, either above or below the cylinder (Figure~\ref{fig:ab-paths}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0,>=Stealth,decoration={markings,mark=at position 0.5 with {\arrow{>}}}]
+  \fill (0,0) circle (2pt) node[left]{source $A$};
+  \fill (7,0) circle (2pt) node[right]{screen point $\lvect{x}$};
+  \draw[thick,blue!60!black,postaction={decorate}] (0,0) .. controls (2.5,1.6) and (4.5,1.6) .. (7,0) node[pos=0.5,above]{above};
+  \draw[thick,red!60!black,postaction={decorate}] (0,0) .. controls (2.5,-1.6) and (4.5,-1.6) .. (7,0) node[pos=0.5,below]{below};
+  \draw[fill=gray!25] (3.5,0) circle (0.45);
+  \node at (3.5,0) {$\Phi$};
+\end{tikzpicture}
+\caption{The Aharonov--Bohm geometry. The two paths together enclose the flux $\Phi$, although neither passes through any magnetic field.}
+\label{fig:ab-paths}
+\end{figure}
+
+Each path carries the phase factor of the previous subsection, but now the two line integrals differ: the two paths together form a loop around the hole, and Stokes' theorem applied to a surface that includes the solenoid gives the enclosed flux,
+\[
+    \chi_{\text{above}}(\lvect{x}) - \chi_{\text{below}}(\lvect{x}) = \oint\vect{A}\cdot d\lvect{s} = \Phi .
+\]
+The function $\chi$ is multivalued: locally $\vect{A} = \grad\chi$ everywhere, but globally the gauge function needed to remove $\vect{A}$ jumps by $\Phi$ around the hole.
+
+\begin{formula}[Aharonov--Bohm phase]
+\[
+    \Delta\phi_{AB} = \frac{e}{\hbar c}\oint\vect{A}\cdot d\lvect{s} = \frac{e}{\hbar c}\Phi = \pm2\pi\frac{\Phi}{\Phi_0}.
+\]
+\end{formula}
+
+It does not depend on where on the screen $\lvect{x}$ is: moving $\lvect{x}$ changes both path ends the same way while the enclosed flux stays $\Phi$. So the total relative phase is the ordinary double-slit phase plus a uniform shift,
+\[
+    I(x)\propto1 + \cos\Bigl(\frac{kd\,x}{L} + 2\pi\frac{\Phi}{\Phi_0}\Bigr),
+\]
+and the flux slides the fringe pattern rigidly, one fringe per flux quantum. The particle never enters a region with nonzero $\vect{B}$, and the Lorentz force on it vanishes everywhere it can be, yet the pattern depends on $\Phi$.
+
+\paragraph{Periodicity in the flux.} For $\Phi = N\Phi_0$ the vector potential outside is
+\[
+    \vect{A} = \frac{N\Phi_0}{2\pi r}\hat{\bm{\varphi}} = \grad\Lambda,
+    \qquad
+    \Lambda = \frac{N\Phi_0}{2\pi}\varphi,
+    \qquad
+    e^{ie\Lambda/\hbar c} = e^{\pm iN\varphi},
+\]
+which is single-valued. So an allowed gauge transformation removes $\vect{A}$ entirely, and every observable is the same as with no flux. For non-integer $\Phi/\Phi_0$ the required phase factor is multivalued, no allowed gauge transformation removes $\vect{A}$, and the effect is physical. Physics depends on $\Phi$ only modulo $\Phi_0$.
+
+\paragraph{Bound-state version: a ring around a solenoid.} Confine the particle to a thin ring of radius $R$ enclosing flux $\Phi$. On the ring, $\vect{A} = \frac{\Phi}{2\pi R}\hat{\bm{\varphi}}$ and $\hat{p}_\varphi = -\frac{i\hbar}{R}\partial_\varphi$, so
+\[
+    \hat{H} = \frac{1}{2m}\Bigl(-\frac{i\hbar}{R}\partial_\varphi - \frac{e\Phi}{2\pi Rc}\Bigr)^2 = \frac{\hbar^2}{2mR^2}\Bigl(-i\partial_\varphi - \frac{e\Phi}{2\pi\hbar c}\Bigr)^2 .
+\]
+Single-valuedness requires $\psi_n = e^{in\varphi}/\sqrt{2\pi}$ with integer $n$.
+
+\begin{formula}[Spectrum of a ring threaded by flux]
+\[
+    E_n(\Phi) = \frac{\hbar^2}{2mR^2}\Bigl(n - \frac{e\Phi}{2\pi\hbar c}\Bigr)^2,
+    \qquad
+    n\in\mathbb{Z}.
+\]
+\end{formula}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9cm,height=5.5cm,xlabel={$\Phi/\Phi_0$},ylabel={$E_n/(\hbar^2/2mR^2)$},axis lines=left,xmin=-1.5,xmax=1.5,ymin=0,ymax=2.6,domain=-1.5:1.5,samples=100]
+\foreach \n in {-2,-1,0,1,2} {\edef\t{\noexpand\addplot[thick,blue!70!black]{(\n - x)^2};}\t}
+\end{axis}
+\end{tikzpicture}
+\caption{Energy levels of a ring threaded by flux (for $e>0$). The set of levels is periodic in $\Phi$ with period $\Phi_0$, but each individual level moves: following one as $\Phi$ increases by $\Phi_0$, $n$ changes by one (spectral flow).}
+\end{figure}
+
+\begin{itemize}
+    \item The spectrum depends on $\Phi$ although the particle never touches the field.
+    \item The \emph{set} of energies is periodic with period $\Phi_0$: shifting $\Phi\to\Phi+\Phi_0$ maps the spectrum to itself with $n\to n\pm1$. This is the bound-state face of the gauge argument above.
+    \item Individual levels are not periodic. Following one state continuously as $\Phi$ increases by $\Phi_0$, it ends in a \emph{different} state, $n\to n\pm1$ (spectral flow). This is the mechanism of Laughlin's argument for the quantum Hall effect: threading one flux quantum returns the Hamiltonian to itself but moves the occupied states over by one.
+    \item The ground state carries a persistent current $I = -c\,\partial E/\partial\Phi$ that oscillates in $\Phi$ with period $\Phi_0$.
+\end{itemize}
+
+\begin{example}[Can the vector potential on the ring be gauged away?]
+Locally yes: $\vect{A} = \frac{\Phi}{2\pi R}\hat{\bm{\varphi}} = \grad\Lambda$ with $\Lambda = \Phi\varphi/2\pi$. Globally only if $e^{ie\Lambda/\hbar c} = e^{ie\Phi\varphi/2\pi\hbar c}$ is single-valued, i.e.\ $\Phi = N\Phi_0$. Otherwise the transformation violates single-valuedness, and the flux has observable effects, here the shifted spectrum. Equivalently, one can gauge $\vect{A}$ away at the cost of a twisted boundary condition $\psi(\varphi+2\pi) = e^{-ie\Phi/\hbar c}\psi(\varphi)$: the physics moves from the Hamiltonian into the boundary condition but does not disappear.
+\end{example}
+
+\subsection{The Action Picture: Space-Time Loops}
+
+The classical action of a charge contains the potentials through
+\[
+    S[\lvect{r}(t)] = \int_1^2\Bigl[\frac ec\vect{A}(\lvect{r},t)\cdot d\lvect{r} - e\phi(\lvect{r},t)\,dt\Bigr] + (\text{kinetic terms}),
+\]
+and enters quantum mechanics through Feynman's amplitude $e^{iS/\hbar}$. Under a gauge transformation the potential terms change by a total derivative,
+\[
+    S\to S + \frac ec\int_1^2\bigl(\grad\Lambda\cdot d\lvect{r} + \partial_t\Lambda\,dt\bigr) = S + \frac ec\bigl[\Lambda(\lvect{r}_2,t_2) - \Lambda(\lvect{r}_1,t_1)\bigr],
+\]
+which depends only on the endpoints and therefore cancels between two trajectories with common endpoints. The interference phase between trajectories $\lvect{r}'(t)$ and $\lvect{r}''(t)$ is the action difference, a closed loop in space-time (forward along $\lvect{r}'$, back along $\lvect{r}''$):
+
+\begin{formula}[Gauge-invariant space-time loop phase]
+\[
+    \theta = \frac{e}{\hbar c}\oint\bigl(\vect{A}\cdot d\lvect{r} - c\,\phi\,dt\bigr).
+\]
+\end{formula}
+
+\begin{itemize}
+    \item \textbf{Static magnetic case} ($\phi = 0$, $\vect{A}$ time-independent): $\theta = \frac{e}{\hbar c}\Phi_B$, the Aharonov--Bohm phase. It is geometric: independent of how fast the particle moves along the loop.
+    \item \textbf{Electric, non-stationary case} ($\vect{B} = 0$, time-dependent $\vect{E}$): choose $\vect{A} = 0$. Then $\theta = -\frac e\hbar\oint\phi\,dt = -\frac e\hbar\int V(t)\,dt$, with $V(t)$ the voltage between the paths. This is exactly the cage experiment above: the electric (``Minkowski-rotated'') Aharonov--Bohm effect.
+    \item \textbf{Integer pulses.} A voltage pulse with $\int V\,dt = nh/e$ gives $\theta = 2\pi n$ and leaves no interference signature, the electric analogue of an integer number of flux quanta. Such pulses transfer charge $ne$ cleanly (``levitons'').
+\end{itemize}
+
+\subsection{Summary and the Bridge to Berry Phase}
+
+\begin{fact}[Potentials as phases]
+\leavevmode
+\begin{enumerate}
+    \item A position-dependent phase shifts the momentum by $\hbar\grad\theta$; a time-dependent one shifts the energy.
+    \item Gauge invariance of position, kinetic momentum and normalization forces $\psi\to e^{ie\Lambda/\hbar c}\psi$ under $\vect{A}\to\vect{A}+\grad\Lambda$.
+    \item Loop phases $\frac{e}{\hbar c}\oint\vect{A}\cdot d\lvect{s}$ are gauge invariant modulo $2\pi$, because single-valuedness of $\psi$ allows $\Lambda$ to jump by $N\Phi_0$ around a hole.
+    \item In a field-free, simply connected region $\vect{A}$ is pure gauge and unobservable. Around a hole it is locally pure gauge but globally not, and the enclosed flux is observable modulo $\Phi_0$: the Aharonov--Bohm effect.
+    \item The general gauge-invariant object is the space-time loop phase $\frac{e}{\hbar c}\oint(\vect{A}\cdot d\lvect{r} - c\phi\,dt)$.
+\end{enumerate}
+\end{fact}
+
+Every item has a Berry-phase counterpart, with the real-space potential replaced by a potential on the space of a Hamiltonian's parameters $\lvect{R}$:
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}lll@{}}
+    \toprule
+    & Electromagnetism (real space) & Berry phase (parameter space $\lvect{R}$)\\
+    \midrule
+    Potential & $\frac{e}{\hbar c}\vect{A}(\lvect{x})$ & $\mathcal{A}_n(\lvect{R}) = i\langle n|\grad_{\lvect{R}}n\rangle$\\
+    Gauge freedom & $\psi\to e^{ie\Lambda/\hbar c}\psi$ & $|n\rangle\to e^{i\delta(\lvect{R})}|n\rangle$\\
+    Change of potential & $\vect{A}\to\vect{A}+\grad\Lambda$ & $\mathcal{A}_n\to\mathcal{A}_n - \grad_{\lvect{R}}\delta$\\
+    Field & $\vect{B} = \curl\vect{A}$ & $\mathcal{B}_n = \grad_{\lvect{R}}\times\mathcal{A}_n$ (Berry curvature)\\
+    Loop phase & $\frac{e}{\hbar c}\oint\vect{A}\cdot d\lvect{s}$ (mod $2\pi$) & $\gamma_n = \oint\mathcal{A}_n\cdot d\lvect{R}$ (mod $2\pi$)\\
+    Singular source & solenoid, monopole & degeneracy point of $H(\lvect{R})$\\
+    \bottomrule
+\end{tabular}
+\caption{Electromagnetic potentials and Berry phase compared.}
+\end{table}
+
+The next step is the magnetic monopole, where no single smooth $\vect{A}$ exists on a sphere surrounding it, and Dirac's quantization condition follows from requiring the loop phase to be well defined.
+
 \begin{fact}[Key results of this chapter]
 \leavevmode
 \begin{itemize}
@@ -321,5 +659,6 @@ with $\alpha = |\alpha|e^{i\theta}$, an oscillating field with fixed, $\alpha$-i
 \item Heisenberg picture: $i\hbar\dot{\hat{A}}_H = [\hat{A}_H,\hat{H}_H]$; Ehrenfest's theorem.
 \item Coherent states $\hat{a}|\alpha\rangle = \alpha|\alpha\rangle$: Poisson number distribution, classical motion, minimum uncertainty at all times.
 \item Squeezed states trade noise between quadratures; the EM field is a set of oscillators.
+\item Potentials enter only as phases: $\psi\to e^{ie\Lambda/\hbar c}\psi$ under gauge transformations, and loop phases $\frac{e}{\hbar c}\oint\vect{A}\cdot d\lvect{s}$ are observable modulo $2\pi$ (Aharonov--Bohm).
 \end{itemize}
 \end{fact}
