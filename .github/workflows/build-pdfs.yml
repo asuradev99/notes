@@ -30,7 +30,7 @@ jobs:
       - name: Build every subject
         run: |
           mkdir -p site
-          for d in thermo-stat-mech class-mech electro methods waves solid-state circuits; do
+          for d in thermo-stat-mech class-mech electro methods waves solid-state circuits quantum; do
             (cd "$d" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex)
             cp "$d"/*.pdf site/
           done
