@@ -798,6 +798,177 @@ These are the conditions of Section~\ref{sec:em-mag-bc} with $\vect{B}/\mu_0\to\
 
 As a check, an infinite sheet $\vect{K} = K\ihat$ at $z = 0$ has $\vect{H} = \mp\frac K2\jhat$ above and below, a jump of $-K\jhat$.
 
+\subsection{Linear Magnetic Media}
+\label{sec:em-linear-magnetic}
+
+\begin{definition}[Linear magnetic medium]
+For paramagnets and diamagnets in fields that are not too strong, $\vect{M}$ is sustained by the field and proportional to it. By convention it is written in terms of $\vect{H}$, because the experimenter controls the free current and hence $\vect{H}$:
+\[
+    \vect{M} = \chi_m\vect{H},
+    \qquad
+    \vect{B} = \mu_0(\vect{H}+\vect{M}) = \mu\vect{H},
+    \qquad
+    \mu = \mu_0(1+\chi_m),
+    \qquad
+    \mu_r = \frac{\mu}{\mu_0} = 1+\chi_m .
+\]
+$\chi_m$ is the \emph{magnetic susceptibility} and $\mu$ the \emph{permeability}.
+\end{definition}
+
+Paramagnets have $\chi_m>0$ and diamagnets $\chi_m<0$, typically with $|\chi_m|\sim10^{-5}$--$10^{-4}$, so $\vect{B}\approx\mu_0\vect{H}$. A superconductor is a perfect diamagnet, $\chi_m = -1$, so $\vect{B} = 0$ inside (the Meissner effect). Ferromagnets are \emph{not} linear: $\vect{M}$ depends on the history of the field (hysteresis).
+
+Note the asymmetry with the dielectric convention $\vect{P} = \varepsilon_0\chi_e\vect{E}$ (Section~\ref{sec:em-linear-dielectric}): there $\vect{P}$ is written in terms of the total field $\vect{E}$, here $\vect{M}$ in terms of the auxiliary field $\vect{H}$. Both choices follow what is controlled in the lab: the voltage fixes $\vect{E}$, the current fixes $\vect{H}$.
+
+\paragraph{Bound sources sit only where free sources are.} In a homogeneous linear medium ($\chi_m$ constant),
+\[
+    \vect{J}_b = \curl\vect{M} = \chi_m\curl\vect{H} = \chi_m\vect{J}_f .
+\]
+So bound volume current flows only where free current flows; everywhere else the bound current lives on surfaces. Likewise $\div\vect{M} = \chi_m\div\vect{H}$ together with $\div\vect{H} = -\div\vect{M}$ gives $(1+\chi_m)\div\vect{H} = 0$: inside the medium $\div\vect{H} = 0$, and the effective magnetic ``poles'' sit only on boundaries.
+
+\begin{fact}[Recipe for linear magnetic media]
+\leavevmode
+\begin{enumerate}
+    \item Find $\vect{H}$ from $\oint\vect{H}\cdot d\lvect{l} = I_{f,\text{enc}}$. This is valid only when symmetry fixes the direction and dependence of $\vect{H}$ (the catch above).
+    \item In \emph{each region} use that region's own $\mu$: $\vect{B} = \mu\vect{H}$, $\vect{M} = \chi_m\vect{H}$. Outside the material $\chi_m = 0$, $\vect{M} = 0$ and $\vect{B} = \mu_0\vect{H}$.
+    \item Bound currents: $\vect{J}_b = \chi_m\vect{J}_f$ (no curl needed), and $\vect{K}_b = \vect{M}\times\uvect{n}$ using the $\vect{M}$ just \emph{inside} the surface.
+    \item Check: the net bound current through any cross-section is zero (Stokes' theorem for $\vect{M}$ on a loop just outside the material, where $\vect{M} = 0$). So far away $\vect{B}$ must look as if only the free current were present.
+\end{enumerate}
+\end{fact}
+
+\begin{example}[A wire made of linear material]
+A current $I$ flows uniformly down a long wire of radius $a$ and susceptibility $\chi_m$ (for instance a copper rod). Amp\`ere's law for $\vect{H}$ on a circle of radius $s$ gives
+\[
+    \vect{H} = \frac{Is}{2\pi a^2}\hat{\boldsymbol{\phi}}\quad(s<a),
+    \qquad
+    \vect{H} = \frac{I}{2\pi s}\hat{\boldsymbol{\phi}}\quad(s>a),
+\]
+so
+\[
+    \vect{B}_{\text{in}} = \frac{\mu_0(1+\chi_m)Is}{2\pi a^2}\hat{\boldsymbol{\phi}},
+    \qquad
+    \vect{B}_{\text{out}} = \frac{\mu_0I}{2\pi s}\hat{\boldsymbol{\phi}}
+    \quad(\text{vacuum: }\mu_0,\text{ not }\mu).
+\]
+The bound currents are
+\[
+    \vect{J}_b = \chi_m\frac{I}{\pi a^2}\khat,
+    \qquad
+    \vect{K}_b = \chi_m\frac{I}{2\pi a}\bigl(\hat{\boldsymbol{\phi}}\times\hat{\lvect{s}}\bigr) = -\chi_m\frac{I}{2\pi a}\khat,
+    \qquad
+    I_b^{\text{tot}} = \chi_mI - \chi_mI = 0 .
+\]
+For copper ($\chi_m<0$) the bound volume current flows against $I$ and the surface current along it (Figure~\ref{fig:em-linear-wire}). The common slip is using $\mu$ outside the wire.
+\end{example}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  % cross-section of the wire
+  \begin{scope}
+    \draw[thick,fill=orange!12] (0,0) circle (1.4);
+    \foreach \p in {(-0.6,0.5),(0.5,0.6),(0,-0.1),(-0.5,-0.7),(0.6,-0.6)} {
+      \draw \p circle (0.12); \fill \p circle (0.035);
+    }
+    \foreach \a in {0,30,...,330} {
+      \draw[blue!70!black] ({1.4*cos(\a)},{1.4*sin(\a)}) ++(-0.08,-0.08) -- ++(0.16,0.16) ++(-0.16,0) -- ++(0.16,-0.16);
+    }
+    \node at (0,-1.9) {\small cross-section, $I$ out of page};
+    \node[blue!70!black,right] at (1.5,1.0) {\small $\vect{K}_b$ (into page if $\chi_m>0$)};
+  \end{scope}
+  % side view
+  \begin{scope}[xshift=6.5cm]
+    \draw[thick,fill=orange!12] (-0.6,-1.6) rectangle (0.6,1.6);
+    \draw[->,very thick] (0,-1.3) -- (0,1.3) node[above,yshift=0.2cm]{$I$};
+    \draw[->,thick,red!70!black] (-0.3,-0.9) -- (-0.3,0.9);
+    \draw[->,thick,red!70!black] (0.3,-0.9) -- (0.3,0.9);
+    \node[red!70!black,align=center] at (0,-2.1) {\small $\vect{J}_b=\chi_m\vect{J}_f$};
+    \draw[<-,thick,blue!70!black] (-0.75,-1.2) -- (-0.75,1.2);
+    \draw[<-,thick,blue!70!black] (0.75,-1.2) -- (0.75,1.2);
+    \node[blue!70!black,right] at (0.85,0) {\small $\vect{K}_b$};
+  \end{scope}
+\end{tikzpicture}
+\caption{Bound currents in a current-carrying wire of linear material, drawn for $\chi_m>0$. The volume current $\vect{J}_b = \chi_m\vect{J}_f$ runs with the free current and the surface current runs back against it, so the total bound current is zero. For a diamagnet ($\chi_m<0$, e.g.\ copper) both arrows reverse.}
+\label{fig:em-linear-wire}
+\end{figure}
+
+\begin{example}[A solenoid with a linear core]
+$\vect{H} = nI\khat$ inside regardless of the core, so
+\[
+    \vect{B} = \mu_0(1+\chi_m)nI\khat,
+    \qquad
+    \vect{M} = \chi_mnI\khat,
+    \qquad
+    \vect{K}_b = \vect{M}\times\hat{\lvect{s}} = \chi_mnI\,\hat{\boldsymbol{\phi}}.
+\]
+A paramagnetic core's bound current circulates with the windings and boosts $B$ by the factor $\mu_r$, the analogue of $C\to\varepsilon_rC$ for a capacitor. A diamagnetic core's bound current circulates against the windings.
+\end{example}
+
+\paragraph{When $\vect{H}$ is not fixed by free current alone.} Linear or not, $\div\vect{H} = -\div\vect{M}$, including the surface poles $\sigma_m = \vect{M}\cdot\uvect{n}$. When symmetry does not remove these (a sphere, a finite rod), Amp\`ere's law for $\vect{H}$ does not determine $\vect{H}$. The sphere below is such a case: it is solved with a self-consistent guess rather than Amp\`ere's law.
+
+\begin{example}[A linear sphere in a uniform field]
+Place a sphere of susceptibility $\chi_m$ in a uniform external field $\vect{B}_0$, and guess that $\vect{M}$ is uniform. A uniformly magnetized sphere adds $\frac23\mu_0\vect{M}$ inside, so
+\[
+    \vect{B}_{\text{in}} = \vect{B}_0 + \tfrac23\mu_0\vect{M},
+    \qquad
+    \vect{H}_{\text{in}} = \frac{\vect{B}_{\text{in}}}{\mu_0} - \vect{M} = \frac{\vect{B}_0}{\mu_0} - \tfrac13\vect{M}.
+\]
+Self-consistency, $\vect{M} = \chi_m\vect{H}_{\text{in}}$, gives $\vect{M}\bigl(1+\frac{\chi_m}{3}\bigr) = \chi_m\vect{B}_0/\mu_0$, so
+\[
+    \vect{M} = \frac{3\chi_m}{3+\chi_m}\frac{\vect{B}_0}{\mu_0},
+    \qquad
+    \vect{B}_{\text{in}} = \frac{3(1+\chi_m)}{3+\chi_m}\vect{B}_0 = \frac{3\mu_r}{\mu_r+2}\vect{B}_0 .
+\]
+The guess worked, so by uniqueness it is the solution. For a superconductor ($\chi_m = -1$), $\vect{B}_{\text{in}} = 0$. Compare the dielectric sphere, $\vect{E}_{\text{in}} = \frac{3}{\varepsilon_r+2}\vect{E}_0$: the extra factor $\mu_r$ is the difference between $\vect{B}_{\text{in}}\parallel\vect{M}$ and $\vect{E}_{\text{in}}$ antiparallel to $\vect{P}$.
+\end{example}
+
+\paragraph{Boundary conditions between linear media.} With no free surface current, $B^\perp$ and $\vect{H}^\parallel$ are continuous, i.e.\ $\mu_1H_1^\perp = \mu_2H_2^\perp$ and $H_1^\parallel = H_2^\parallel$. Measuring $\theta$ from the normal, $\tan\theta = H^\parallel/H^\perp$, so field lines bend at the interface:
+\[
+    \frac{\tan\theta_1}{\tan\theta_2} = \frac{H_2^\perp}{H_1^\perp} = \frac{\mu_1}{\mu_2}.
+\]
+Entering a high-$\mu$ material, the lines swing toward the interface (large $\theta$), which is why iron channels flux along itself.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \fill[gray!20] (-3,-2) rectangle (3,0);
+  \draw[thick] (-3,0) -- (3,0);
+  \draw[dashed] (0,-2) -- (0,2);
+  \draw[->,very thick,blue!70!black] (-0.9,1.9) -- (0,0);
+  \draw[->,very thick,blue!70!black] (0,0) -- (2.6,-1.0);
+  \draw (0,1.0) arc (90:115.3:1.0); \node at (-0.25,1.25) {$\theta_1$};
+  \draw (0,-0.8) arc (-90:-21:0.8); \node at (0.55,-0.85) {$\theta_2$};
+  \node[right] at (1.6,1.5) {$\mu_1$ (e.g.\ air)};
+  \node[right] at (-2.95,-1.7) {\small $\mu_2>\mu_1$ (iron)};
+  \node[blue!70!black,left] at (-0.6,1.5) {$\vect{B}$};
+\end{tikzpicture}
+\caption{Refraction of $\vect{B}$ lines at an interface between linear media with no free surface current: $\tan\theta_1/\tan\theta_2 = \mu_1/\mu_2$, so the lines bend away from the normal on entering the higher-permeability medium.}
+\end{figure}
+
+\paragraph{Forces on linear materials.} A small piece of volume $V$ acquires an induced moment $\lvect{m} = \chi_mV\vect{H}\approx\chi_mV\vect{B}/\mu_0$ (since $|\chi_m|\ll1$). Because the moment grows as the field is turned on, its energy carries a factor $\frac12$ relative to a permanent dipole's $-\lvect{m}\cdot\vect{B}$:
+
+\begin{formula}[Energy and force on a linear magnetic sample]
+\[
+    U = -\int_0^{\vect{B}}\lvect{m}\cdot d\vect{B}' = -\frac{\chi_mV}{2\mu_0}B^2,
+    \qquad
+    \vect{F} = -\grad U = \frac{\chi_mV}{2\mu_0}\grad\bigl(B^2\bigr).
+\]
+\end{formula}
+
+Paramagnets ($\chi_m>0$) are pulled toward strong field; diamagnets ($\chi_m<0$) are pushed toward weak field. A diamagnet of density $\rho$ levitates where
+\[
+    \frac{|\chi_m|}{2\mu_0}\frac{d(B^2)}{dz} = \rho g .
+\]
+
+\begin{example}[A diamagnetic bead on the axis of a ring]
+On the axis of a ring of radius $R$ carrying current $I$, $B_z = \mu_0IR^2/\bigl[2(R^2+z^2)^{3/2}\bigr]$, so $B_z^2 = \mu_0^2I^2R^4/\bigl[4(R^2+z^2)^3\bigr]$ and
+\[
+    F_z = \frac{\chi_mV}{2\mu_0}\frac{d(B_z^2)}{dz}
+    = \frac{\chi_mV}{2\mu_0}\cdot\frac{\mu_0^2I^2R^4}{4}\cdot\frac{-6z}{(R^2+z^2)^4}
+    = -\frac{3\chi_m\mu_0I^2R^4V\,z}{4(R^2+z^2)^4}.
+\]
+For $\chi_m<0$ this has the sign of $z$: the bead is pushed \emph{away} from the plane of the ring, where $B^2$ is largest, on both sides.
+\end{example}
+
 \subsection{Summary: Polarization and Magnetization}
 
 \begin{table}[ht]
@@ -811,7 +982,9 @@ As a check, an infinite sheet $\vect{K} = K\ihat$ at $z = 0$ has $\vect{H} = \mp
     Auxiliary field & $\vect{D} = \varepsilon_0\vect{E} + \vect{P}$ & $\vect{H} = \vect{B}/\mu_0 - \vect{M}$\\
     Free-source law & $\div\vect{D} = \rho_f$ & $\curl\vect{H} = \vect{J}_f$\\
     The catch & $\curl\vect{D} = \curl\vect{P}$ & $\div\vect{H} = -\div\vect{M}$\\
-    Uniform sphere, inside & $\vect{E} = -\vect{P}/3\varepsilon_0$ & $\vect{B} = \frac23\mu_0\vect{M}$
+    Uniform sphere, inside & $\vect{E} = -\vect{P}/3\varepsilon_0$ & $\vect{B} = \frac23\mu_0\vect{M}$\\
+    Linear medium & $\vect{P} = \varepsilon_0\chi_e\vect{E}$, $\vect{D} = \varepsilon\vect{E}$ & $\vect{M} = \chi_m\vect{H}$, $\vect{B} = \mu\vect{H}$\\
+    Linear sphere in uniform field & $\vect{E}_{\text{in}} = \frac{3}{\varepsilon_r+2}\vect{E}_0$ & $\vect{B}_{\text{in}} = \frac{3\mu_r}{\mu_r+2}\vect{B}_0$
 \end{tabular}
 \caption{Polarization and magnetization side by side.}
 \end{table}
