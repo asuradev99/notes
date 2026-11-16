@@ -176,6 +176,23 @@ There are thus $N$ independent subproblems of the form $\hat{H}_{\lvect{k}}\psi_
 \end{equation}
 Since $u^n_{\lvect{k}}(\lvect{x}+\cvect{R}) = \sum_{\cvect{G}} c^n_{\cvect{G}} e^{i\cvect{G}\cdot(\lvect{x}+\cvect{R})} = \sum_{\cvect{G}} c^n_{\cvect{G}} e^{i\cvect{G}\cdot\lvect{x}} = u^n_{\lvect{k}}(\lvect{x})$, this proves Bloch's theorem a second time.
 
+\begin{fact}[Bloch wavefunctions are orthogonal]
+With Born--von Karman boundary conditions on a crystal of $N$ cells and volume $V$, and $\lvect{k}$, $\lvect{k}'$ restricted to the first Brillouin zone,
+\[
+    \int_V\psi^*_{n\lvect{k}}(\lvect{x})\,\psi_{n'\lvect{k}'}(\lvect{x})\,d^3x = \delta_{nn'}\,\delta_{\lvect{k}\lvect{k}'} .
+\]
+\emph{Different $\lvect{k}$.} Split the crystal into cells, $\lvect{x} = \cvect{R} + \lvect{y}$ with $\lvect{y}$ in one cell. Bloch's theorem gives $\psi_{n\lvect{k}}(\cvect{R}+\lvect{y}) = e^{i\lvect{k}\cdot\cvect{R}}\psi_{n\lvect{k}}(\lvect{y})$, so
+\[
+    \int_V\psi^*_{n\lvect{k}}\psi_{n'\lvect{k}'}\,d^3x
+    = \Bigl[\sum_{\cvect{R}}e^{i(\lvect{k}'-\lvect{k})\cdot\cvect{R}}\Bigr]\int_{\text{cell}}\psi^*_{n\lvect{k}}\psi_{n'\lvect{k}'}\,d^3y .
+\]
+The lattice sum is $N\delta_{\lvect{k}\lvect{k}'}$ for allowed wavevectors in the first zone (it equals $N$ only if $\lvect{k}'-\lvect{k}$ is a reciprocal lattice vector). Equivalently: $\psi_{n\lvect{k}}$ and $\psi_{n'\lvect{k}'}$ are eigenvectors of the unitary translation operators $\hat{T}_{\cvect{R}}$ with different eigenvalues $e^{i\lvect{k}\cdot\cvect{R}}\neq e^{i\lvect{k}'\cdot\cvect{R}}$ for some $\cvect{R}$, and such eigenvectors are orthogonal.
+
+\emph{Same $\lvect{k}$, different bands.} The states are eigenvectors of the same Hermitian block $\hat{H}_{\lvect{k}}$, so they are orthogonal when $E_n(\lvect{k})\neq E_{n'}(\lvect{k})$ and can be chosen orthogonal at degeneracies. In terms of the periodic parts, $\int_{\text{cell}}u^*_{n\lvect{k}}u_{n'\lvect{k}}\,d^3y\propto\delta_{nn'}$.
+
+Note that the periodic parts $u_{n\lvect{k}}$ of \emph{different} $\lvect{k}$ in the same band are \emph{not} orthogonal: the orthogonality across $\lvect{k}$ comes entirely from the phase factor $e^{i\lvect{k}\cdot\cvect{R}}$.
+\end{fact}
+
 % ============================================================
 \section{Consequences of Bloch's Theorem}
 % ============================================================
